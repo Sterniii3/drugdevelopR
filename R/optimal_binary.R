@@ -164,7 +164,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
 
       cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
 
-      clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "En3_binary",
+      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "En3_binary",
                           "EPsProg_binary","t1", "t2", "t3", "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                           "K", "gamma",
@@ -172,7 +172,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           "b1", "b2", "b3", "w", "RRgo",
                           "p0", "p11", "p12", "in1", "in2"), envir=environment())
 
-      result <- parSapply(cl, N2, utility_binary)
+      result <- parallel::parSapply(cl, N2, utility_binary)
       setTxtProgressBar(title= "i", pb, j)
       stopCluster(cl)
 
