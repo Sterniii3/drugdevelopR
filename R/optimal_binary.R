@@ -131,7 +131,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
      cat("", fill = TRUE)
 
    }
-
+  
    if(round(n2min/2) != n2min / 2) {
      n2min = n2min - 1
      cat(paste0("n2min must be equal number and is therefore set to: ", n2min), fill = TRUE)
@@ -162,8 +162,8 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
 
       RRgo <- HRGO[j]
 
-      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
-
+      cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
+      
       parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "En3_binary",
                           "EPsProg_binary","t1", "t2", "t3", "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
@@ -171,8 +171,9 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           "c2", "c3", "c02", "c03",
                           "b1", "b2", "b3", "w", "RRgo",
                           "p0", "p11", "p12", "in1", "in2"), envir=environment())
+      
+      result <- parSapply(cl, N2, utility_binary)
 
-      result <- parallel::parSapply(cl, N2, utility_binary)
       setTxtProgressBar(title= "i", pb, j)
       stopCluster(cl)
 

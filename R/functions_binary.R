@@ -9,15 +9,15 @@ box_binary<-function(w, p11, p12, in1, in2){
 }
 
 # auxiliary functions
-t1 <- function(x){((1-p0)/p0) + ((1-x)/x)}
-t2 <- function(x){sqrt(2*(1-((p0 + x)/2))/((p0 + x)/2))}
-t3 <- function(x){sqrt(((1-p0)/p0) + ((1-x)/x))}
+t1 <- function(x, p0){((1-p0)/p0) + ((1-x)/x)}
+t2 <- function(x, p0){sqrt(2*(1-((p0 + x)/2))/((p0 + x)/2))}
+t3 <- function(x, p0){sqrt(((1-p0)/p0) + ((1-x)/x))}
 
 # Expected probability to go to phase III: Epgo
 Epgo_binary <-  function(RRgo, n2, p0, w, p11, p12, in1, in2){
   integrate(function(x){
     sapply(x, function(x){
-      pnorm((-log(x/p0) + log(RRgo))/sqrt((2/n2)*t1(x)))  *
+      pnorm((-log(x/p0) + log(RRgo))/sqrt((2/n2)*t1(x, p0)))  *
         prior_binary(x, w, p11, p12, in1, in2)
     })
   },  0, 1)$value
@@ -29,10 +29,10 @@ En3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2){
   ceiling(integrate(function(x){
     sapply(x, function(x){
       integrate(function(y){
-        ((2*(qnorm(1-alpha)*t2(x)+qnorm(1-beta)*t3(x))^2)/y^2) *
+        ((2*(qnorm(1-alpha)*t2(x, p0)+qnorm(1-beta)*t3(x, p0))^2)/y^2) *
           dnorm(y,
                 mean = -log(x/p0),
-                sd = sqrt((2/n2)*t1(x)))*
+                sd = sqrt((2/n2)*t1(x, p0)))*
           prior_binary(x, w, p11, p12, in1, in2)
       }, - log(RRgo), Inf)$value
     })
@@ -46,20 +46,20 @@ EPsProg_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p12
     sapply(x, function(x){
       integrate(function(y){
         ( pnorm(qnorm(1 - alpha) -
-                  log(step2)/sqrt((t1(x)*y^2)/(qnorm(1-alpha)*t2(x) +
-                                                       qnorm(1-beta)*t3(x))^2),
-                mean = -log((x+gamma)/p0)/sqrt((t1(x)*y^2)/(qnorm(1-alpha)*t2(x) +
-                                                              qnorm(1-beta)*t3(x))^2),
+                  log(step2)/sqrt((t1(x, p0)*y^2)/(qnorm(1-alpha)*t2(x, p0) +
+                                                       qnorm(1-beta)*t3(x, p0))^2),
+                mean = -log((x+gamma)/p0)/sqrt((t1(x, p0)*y^2)/(qnorm(1-alpha)*t2(x, p0) +
+                                                              qnorm(1-beta)*t3(x, p0))^2),
                 sd = 1) -
             pnorm(qnorm(1 - alpha) -
-                    log(step1)/sqrt((t1(x)*y^2)/(qnorm(1-alpha)*t2(x) +
-                                                   qnorm(1-beta)*t3(x))^2),
-                  mean = -log((x+gamma)/p0)/sqrt((t1(x)*y^2)/(qnorm(1-alpha)*t2(x) +
-                                                                qnorm(1-beta)*t3(x))^2),
+                    log(step1)/sqrt((t1(x, p0)*y^2)/(qnorm(1-alpha)*t2(x, p0) +
+                                                   qnorm(1-beta)*t3(x, p0))^2),
+                  mean = -log((x+gamma)/p0)/sqrt((t1(x, p0)*y^2)/(qnorm(1-alpha)*t2(x, p0) +
+                                                                qnorm(1-beta)*t3(x, p0))^2),
                   sd = 1) ) *
           dnorm(y,
                 mean = -log(x/p0),
-                sd = sqrt((2/n2)*t1(x))) *
+                sd = sqrt((2/n2)*t1(x, p0))) *
           prior_binary(x, w, p11, p12, in1, in2)
       }, -log(RRgo), Inf)$value
     })
