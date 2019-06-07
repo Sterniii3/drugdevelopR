@@ -162,7 +162,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
 
       RRgo <- HRGO[j]
 
-      cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
+      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
 
       clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "En3_binary",
                           "EPsProg_binary","t1", "t2", "t3", "alpha", "beta",
