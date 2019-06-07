@@ -14,4 +14,6 @@ Imports:
     mvtnorm,
     doParallel,
     parallel,
-    msm
+    msm,
+    foreach,
+    iterators
