@@ -57,8 +57,8 @@
 #'   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,      # (https://web.imbi.uni-heidelberg.de/prior/)
 #'   a = 0.25, b = 0.75,
 #'   n2min=20, n2max=100, stepn2=4,                         # define optimization set for n2
-#'   kappamin=0.02, kappamax=0.2, stepkappa=0.02,            # define optimization set for kappa
-#'   beta = 0.1, alpha = 0.025,                             # drug development planning parameters
+#'   kappamin=0.02, kappamax=0.2, stepkappa=0.02,           # define optimization set for kappa
+#'   alpha = 0.025, beta = 0.1,                             # drug development planning parameters
 #'   c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20, K = Inf,    # define fixed and variable costs for phase II and III, set maximal costs for the program
 #'   steps1 = 0,                                            # define lower boundary for "small"
 #'   stepm1 = 0.5,                                          # "medium"
