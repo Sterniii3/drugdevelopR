@@ -158,7 +158,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
 
     cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
 
-    print(c(alpha, beta))
+    cat(c(alpha, beta))
     
     clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", "Epgo_tte", "Ed3_tte",
                         "EPsProg_tte", "alpha", "beta",
