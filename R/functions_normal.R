@@ -60,7 +60,7 @@ EPsProg_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, Del
 }
 
 # Utility function
-utility_normal <-  function(n2, w, Delta1, Delta2, in1, in2, a, b,
+utility_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                             alpha, beta, 
                             c2, c3, c02, c03, K,
                             steps1, stepm1, stepl1,

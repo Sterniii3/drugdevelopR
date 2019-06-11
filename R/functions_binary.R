@@ -68,7 +68,7 @@ EPsProg_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p12
 }
 
 # Utility function
-utility_binary <-  function(n2, w, p0, p11, p12, in1, in2,
+utility_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                             alpha, beta, 
                             c2, c3, c02, c03, K,
                             steps1, stepm1, stepl1,

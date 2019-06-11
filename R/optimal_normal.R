@@ -178,7 +178,7 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                           "b1", "b2", "b3", "w", "kappa",
                           "Delta1", "Delta2", "in1", "in2", "a", "b"), envir=environment())
 
-      result <- parSapply(cl, N2, utility_normal, w, Delta1, Delta2, in1, in2, a, b,
+      result <- parSapply(cl, N2, utility_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
                           alpha, beta, 
                           c2, c3, c02, c03, K,
                           steps1, stepm1, stepl1,

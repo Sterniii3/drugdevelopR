@@ -58,7 +58,7 @@ EPsProg_tte <-  function(HRgo, d2, alpha, beta, step1, step2, w, hr1, hr2, id1, 
 }
 
 # Utility function
-utility_tte <-  function(d2, w, hr1, hr2, id1, id2,
+utility_tte <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                          alpha, beta, xi2, xi3,
                          c2, c3, c02, c03, K,
                          steps1, stepm1, stepl1,

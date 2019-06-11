@@ -167,7 +167,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                         "hr1", "hr2", "id1", "id2"), envir = environment())
 
     
-    result <- parSapply(cl, D2, utility_tte, w, hr1, hr2, id1, id2,
+    result <- parSapply(cl, D2, utility_tte, HRgo, w, hr1, hr2, id1, id2,
                         alpha, beta, xi2, xi3,
                         c2, c3, c02, c03, K,
                         steps1, stepm1, stepl1,
