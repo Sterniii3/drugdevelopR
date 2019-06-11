@@ -1,7 +1,7 @@
 #' Optimal phase II/III drug development planning with binary endpoint
 #'
 #' The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules when assuming a prior distribution for the treatment effect. For binary endpoints the treatment effect is measured by the risk ratio (RR). The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the associated prior distributions used in this package.
-#' @docType package
+#' @docType function
 #' @name optimal_binary
 #' @param w weight for mixture prior distribution
 #' @param p0 assumed true rate of control group
