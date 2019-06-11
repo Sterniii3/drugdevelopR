@@ -1,7 +1,7 @@
 #' Optimal phase II/III drug development planning with normally distributed endpoint
 #'
 #' The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules when assuming a prior distribution for the treatment effect. For normally distributed endpoints the treatment effect is measured by the standardized difference in means (Delta). The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the associated prior distributions used in this package.
-#' @docType function
+#' @docType package
 #' @name optimal_normal
 #' @param w weight for mixture prior distribution
 #' @param Delta1 assumed true treatment effect for standardized difference in means
