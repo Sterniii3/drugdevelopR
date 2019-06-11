@@ -164,9 +164,10 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                         "K", "gamma",
                         "xi2", "xi3", "c2", "c3", "c02", "c03",
                         "b1", "b2", "b3", "w", "HRgo",
-                        "hr1", "hr2", "id1", "id2"), envir=environment())
+                        "hr1", "hr2", "id1", "id2"))
 
     result <- parSapply(cl, D2, utility_tte)
+
     setTxtProgressBar(title= "i", pb, j)
     stopCluster(cl)
 
