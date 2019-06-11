@@ -1,7 +1,7 @@
 #' Optimal phase II/III drug development planning with binary endpoint
 #'
 #' The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules when assuming a prior distribution for the treatment effect. For binary endpoints the treatment effect is measured by the risk ratio (RR). The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the associated prior distributions used in this package.
-#' @docType package
+#' @docType function
 #' @name optimal_binary
 #' @param w weight for mixture prior distribution
 #' @param p0 assumed true rate of control group
@@ -51,11 +51,11 @@
 #'
 #' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' @examples
-#' res <- optimal_binary(w=0.3,                             # define parameters for prior
-#'   p0=0.6, p11= 0.3, p12=0.5, in1=30, in2=60,             # (https://web.imbi.uni-heidelberg.de/prior/)
-#'   n2min=20, n2max=100, stepn2=4,                         # define optimization set for n2
-#'   rrgomin=0.7, rrgomax=0.9, steprrgo=0.05,               # define optimization set for RRgo
-#'   beta = 0.1, alpha = 0.025,                             # drug development planning parameters
+#' res <- optimal_binary(w = 0.3,                           # define parameters for prior
+#'   p0 = 0.6, p11 =  0.3, p12 = 0.5, in1 = 30, in2 = 60,   # (https://web.imbi.uni-heidelberg.de/prior/)
+#'   n2min = 20, n2max = 100, stepn2 = 4,                   # define optimization set for n2
+#'   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,         # define optimization set for RRgo
+#'   alpha = 0.025, beta = 0.1,                             # drug development planning parameters
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150, K = Inf,      # define fixed and variable costs for phase II and III, set maximal costs for the program
 #'   steps1 = 1,                                            # define lower boundary for "small"
 #'   stepm1 = 0.95,                                         # "medium"
@@ -86,7 +86,7 @@
 optimal_binary <- function(w, p0, p11, p12, in1, in2,
                         n2min, n2max, stepn2,
                         rrgomin, rrgomax, steprrgo,
-                        beta, alpha,
+                        alpha, beta, 
                         c2, c3, c02, c03, K = Inf,
                         steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                         b1, b2, b3,
@@ -172,7 +172,12 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           "b1", "b2", "b3", "w", "RRgo",
                           "p0", "p11", "p12", "in1", "in2"), envir=environment())
       
-      result <- parSapply(cl, N2, utility_binary)
+      result <- parSapply(cl, N2, utility_binary, w, p0, p11, p12, in1, in2,
+                          alpha, beta, 
+                          c2, c3, c02, c03, K,
+                          steps1, stepm1, stepl1,
+                          b1, b2, b3,
+                          gamma)
 
       setTxtProgressBar(title= "i", pb, j)
       stopCluster(cl)

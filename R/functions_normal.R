@@ -60,7 +60,12 @@ EPsProg_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, Del
 }
 
 # Utility function
-utility_normal <-  function(n2){
+utility_normal <-  function(n2, w, Delta1, Delta2, in1, in2, a, b,
+                            alpha, beta, 
+                            c2, c3, c02, c03, K,
+                            steps1, stepm1, stepl1,
+                            b1, b2, b3,
+                            gamma){
 
   pg    <-  Epgo_normal(kappa = kappa, n2 = n2,
                       w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b)

@@ -58,7 +58,12 @@ EPsProg_tte <-  function(HRgo, d2, alpha, beta, step1, step2, w, hr1, hr2, id1, 
 }
 
 # Utility function
-utility_tte <-  function(d2){
+utility_tte <-  function(d2, w, hr1, hr2, id1, id2,
+                         alpha, beta, xi2, xi3,
+                         c2, c3, c02, c03, K,
+                         steps1, stepm1, stepl1,
+                         b1, b2, b3,
+                         gamma){
 
   pg    <-  Epgo_tte(HRgo = HRgo, d2 = d2, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2)
   d3    <-  Ed3_tte(HRgo = HRgo, d2 = d2, alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2)

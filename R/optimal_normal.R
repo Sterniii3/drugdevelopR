@@ -1,7 +1,7 @@
 #' Optimal phase II/III drug development planning with normally distributed endpoint
 #'
 #' The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules when assuming a prior distribution for the treatment effect. For normally distributed endpoints the treatment effect is measured by the standardized difference in means (Delta). The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the associated prior distributions used in this package.
-#' @docType package
+#' @docType function
 #' @name optimal_normal
 #' @param w weight for mixture prior distribution
 #' @param Delta1 assumed true treatment effect for standardized difference in means
@@ -90,7 +90,7 @@
 optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                         n2min, n2max, stepn2,
                         kappamin, kappamax, stepkappa,
-                        beta, alpha,
+                        alpha, beta, 
                         c2, c3, c02, c03, K = Inf,
                         steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                         b1, b2, b3,
@@ -178,7 +178,13 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                           "b1", "b2", "b3", "w", "kappa",
                           "Delta1", "Delta2", "in1", "in2", "a", "b"), envir=environment())
 
-      result <- parSapply(cl, N2, utility_normal)
+      result <- parSapply(cl, N2, utility_normal, w, Delta1, Delta2, in1, in2, a, b,
+                          alpha, beta, 
+                          c2, c3, c02, c03, K,
+                          steps1, stepm1, stepl1,
+                          b1, b2, b3,
+                          gamma)
+      
       setTxtProgressBar(title= "i", pb, j)
       stopCluster(cl)
 

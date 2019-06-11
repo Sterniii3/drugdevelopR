@@ -56,11 +56,11 @@
 #'
 #' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' @examples
-#' res <- optimal_tte(w=0.3,                                # define parameters for prior
-#'   hr1=0.69, hr2=0.88, id1=210, id2=420,                  # (https://web.imbi.uni-heidelberg.de/prior/)
-#'   d2min=20, d2max=100, stepd2=5,                         # define optimization set for n2
-#'   hrgomin=0.7, hrgomax=0.9, stephrgo=0.05,               # define optimization set for HRgo
-#'   beta = 0.1, alpha = 0.025, xi2 = 0.7, xi3 = 0.7,       # drug development planning parameters
+#' res <- optimal_tte(w = 0.3,                              # define parameters for prior
+#'   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,          # (https://web.imbi.uni-heidelberg.de/prior/)
+#'   d2min = 20, d2max = 100, stepd2 = 5,                   # define optimization set for n2
+#'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
+#'   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,       # drug development planning parameters
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150, K = Inf,      # define fixed and variable costs for phase II and III, set maximal costs for the program
 #'   steps1 = 1,                                            # define lower boundary for "small"
 #'   stepm1 = 0.95,                                         # "medium"
@@ -157,8 +157,6 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
     HRgo <- HRGO[j]
 
     cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
-
-    cat(c(alpha, beta))
     
     clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", "Epgo_tte", "Ed3_tte",
                         "EPsProg_tte", "alpha", "beta",
@@ -168,7 +166,13 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                         "b1", "b2", "b3", "w", "HRgo",
                         "hr1", "hr2", "id1", "id2"), envir = environment())
 
-    result <- parSapply(cl, D2, utility_tte)
+    
+    result <- parSapply(cl, D2, utility_tte, w, hr1, hr2, id1, id2,
+                        alpha, beta, xi2, xi3,
+                        c2, c3, c02, c03, K,
+                        steps1, stepm1, stepl1,
+                        b1, b2, b3,
+                        gamma)
 
     setTxtProgressBar(title= "i", pb, j)
     stopCluster(cl)
