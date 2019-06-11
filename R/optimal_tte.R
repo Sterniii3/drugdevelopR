@@ -1,7 +1,7 @@
 #' Optimal phase II/III drug development planning with time-to-event endpoint
 #'
 #' The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules when assuming a prior distribution for the treatment effect. For time-to-event endpoints the treatment effect is measured by the hazard ratio (HR) and more information on the framework can be found in Kirchner et al. (2016). The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the associated prior distributions used in this package.
-#' @docType package
+#' @docType function
 #' @name optimal_tte
 #' @param w weight for mixture prior distribution
 #' @param hr1 first assumed true treatment effect on HR scale for prior distribution
@@ -96,7 +96,7 @@
 optimal_tte <- function(w,  hr1, hr2, id1, id2,
                         d2min, d2max, stepd2,
                         hrgomin, hrgomax, stephrgo,
-                        beta, alpha, xi2, xi3,
+                        alpha, beta, xi2, xi3,
                         c2, c3, c02, c03, K = Inf,
                         steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                         b1, b2, b3,
@@ -159,12 +159,12 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
     cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
 
     clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", "Epgo_tte", "Ed3_tte",
-                        "EPsProg_tte", "beta", "alpha",
+                        "EPsProg_tte", "alpha", "beta",
                         "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                         "K", "gamma",
                         "xi2", "xi3", "c2", "c3", "c02", "c03",
                         "b1", "b2", "b3", "w", "HRgo",
-                        "hr1", "hr2", "id1", "id2"))
+                        "hr1", "hr2", "id1", "id2"), envir = environment())
 
     result <- parSapply(cl, D2, utility_tte)
 
