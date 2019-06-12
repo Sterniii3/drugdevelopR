@@ -110,7 +110,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
 
   if(skipII==TRUE){
 
-    median_prior = quantile(box_tte(w, hr1, hr2, id1,id2),0.5)
+    median_prior = round(quantile(box_tte(w, hr1, hr2, id1,id2),0.5),2)
 
     names(median_prior) = NULL
 

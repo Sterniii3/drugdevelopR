@@ -100,7 +100,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
 
    if(skipII==TRUE){
 
-     median_prior = quantile(box_binary(w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2),0.5)
+     median_prior = round(quantile(box_binary(w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2),0.5),2)
 
      names(median_prior) = NULL
 

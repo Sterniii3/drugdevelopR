@@ -104,8 +104,8 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
 
    if(skipII){
 
-     median_prior = quantile(box_normal(w = w, Delta1 = Delta1, Delta2 = Delta2,
-                                        in1 = in1, in2 = in2, a = a, b = b),0.5)
+     median_prior = round(quantile(box_normal(w = w, Delta1 = Delta1, Delta2 = Delta2,
+                                        in1 = in1, in2 = in2, a = a, b = b),0.5),2)
 
      names(median_prior) = NULL
 
