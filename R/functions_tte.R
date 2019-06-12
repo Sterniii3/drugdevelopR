@@ -23,7 +23,7 @@ Ed3_tte <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
   ceiling(integrate(function(x){
     sapply(x, function(x){
       integrate(function(y){
-        ( (4 * (qnorm(1 - alpha) + qnorm(1 - beta))^2)/(y^2)) *
+        ( (4 * (qnorm(1 - alpha/2) + qnorm(1 - beta))^2)/(y^2)) *
           dnorm(y,
                 mean = x,
                 sd = sqrt(4/d2)) *
@@ -36,15 +36,15 @@ Ed3_tte <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
 # Expected probability of a successful program: EsP
 EPsProg_tte <-  function(HRgo, d2, alpha, beta, step1, step2, w, hr1, hr2, id1, id2, gamma){
 
-  c = (qnorm(1 - alpha) + qnorm(1 - beta))^2
+  c = (qnorm(1 - alpha/2) + qnorm(1 - beta))^2
 
   integrate(function(x){
     sapply(x, function(x){
       integrate(function(y){
-        ( pnorm(qnorm(1 - alpha) -log(step2)/(sqrt(y^2/c)),
+        ( pnorm(qnorm(1 - alpha/2) -log(step2)/(sqrt(y^2/c)),
                 mean = (x+gamma)/(sqrt(y^2/c)),
                 sd = 1) -
-            pnorm(qnorm(1 - alpha) -log(step1)/(sqrt(y^2/c)),
+            pnorm(qnorm(1 - alpha/2) -log(step1)/(sqrt(y^2/c)),
                   mean = (x+gamma)/(sqrt(y^2/c)),
                   sd = 1) ) *
           dnorm(y,
@@ -120,14 +120,14 @@ d3_skipII_tte <-function(alpha, beta, median_prior){
 # expected probability of a successful program based on median_prior
 EPsProg_skipII_tte <-function(alpha, beta, step1, step2, median_prior, w, hr1, hr2, id1, id2, gamma){
 
-  c=(qnorm(1-alpha)+qnorm(1-beta))^2
+  c=(qnorm(1-alpha/2)+qnorm(1-beta))^2
 
   integrate(function(x){
     sapply(x,function(x){
-      ( pnorm(qnorm(1-alpha) - log(step2)/(sqrt(median_prior^2/c)),
+      ( pnorm(qnorm(1-alpha/2) - log(step2)/(sqrt(median_prior^2/c)),
               mean=(x+gamma)/(sqrt(median_prior^2/c)),
               sd=1)-
-          pnorm(qnorm(1-alpha) - log(step1)/(sqrt(median_prior^2/c)),
+          pnorm(qnorm(1-alpha/2) - log(step1)/(sqrt(median_prior^2/c)),
                 mean=(x+gamma)/(sqrt(median_prior^2/c)),
                 sd=1) )*
         prior_tte(x, w, hr1, hr2, id1, id2)

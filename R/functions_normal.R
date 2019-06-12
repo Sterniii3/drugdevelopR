@@ -25,7 +25,7 @@ En3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, 
   ceiling(integrate(function(x){
     sapply(x, function(x){
       integrate(function(y){
-        ((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/y^2) *
+        ((4*(qnorm(1-alpha/2)+qnorm(1-beta))^2)/y^2) *
           dnorm(y,
                 mean = x,
                 sd = sqrt(4/n2))*
@@ -43,10 +43,10 @@ EPsProg_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, Del
   integrate(function(x){
     sapply(x, function(x){
       integrate(function(y){
-        ( pnorm(qnorm(1 - alpha) + step2/sqrt(y^2/c),
+        ( pnorm(qnorm(1 - alpha/2) + step2/sqrt(y^2/c),
                 mean = (x+gamma)/sqrt(y^2/c),
                 sd = 1) -
-            pnorm(qnorm(1 - alpha) + step1/sqrt(y^2/c),
+            pnorm(qnorm(1 - alpha/2) + step1/sqrt(y^2/c),
                   mean = (x+gamma)/sqrt(y^2/c),
                   sd = 1) ) *
           dnorm(y,
@@ -116,7 +116,7 @@ utility_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
 # number of events for phase III based on median_prior
 n3_skipII_normal <-function(alpha, beta, median_prior){
 
-  ceiling((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(median_prior^2))
+  ceiling((4*(qnorm(1-alpha/2)+qnorm(1-beta))^2)/(median_prior^2))
 
 }
 
@@ -128,10 +128,10 @@ EPsProg_skipII_normal <-function(alpha, beta, step1, step2, median_prior,
 
   integrate(function(x){
     sapply(x,function(x){
-      ( pnorm(qnorm(1-alpha)+step2/(sqrt(median_prior^2/c)),
+      ( pnorm(qnorm(1-alpha/2)+step2/(sqrt(median_prior^2/c)),
               mean = (x+gamma)/(sqrt(median_prior^2/c)),
               sd = 1) -
-          pnorm(qnorm(1-alpha)+step1/(sqrt(median_prior^2/c)),
+          pnorm(qnorm(1-alpha/2)+step1/(sqrt(median_prior^2/c)),
                 mean = (x+gamma)/(sqrt(median_prior^2/c)),
                 sd = 1) )*
         prior_normal(x, w, Delta1, Delta2, in1, in2, a, b)

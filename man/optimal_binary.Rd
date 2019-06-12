@@ -111,7 +111,7 @@ res <- optimal_binary(w = 0.3,                           # define parameters for
   p0 = 0.6, p11 =  0.3, p12 = 0.5, in1 = 30, in2 = 60,   # (https://web.imbi.uni-heidelberg.de/prior/)
   n2min = 20, n2max = 100, stepn2 = 4,                   # define optimization set for n2
   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,         # define optimization set for RRgo
-  alpha = 0.025, beta = 0.1,                             # drug development planning parameters
+  alpha = 0.05, beta = 0.1,                              # drug development planning parameters
   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150, K = Inf,      # define fixed and variable costs for phase II and III, set maximal costs for the program
   steps1 = 1,                                            # define lower boundary for "small"
   stepm1 = 0.95,                                         # "medium"
