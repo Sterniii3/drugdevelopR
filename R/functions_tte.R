@@ -113,7 +113,7 @@ utility_tte <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 # number of events for phase III based on median_prior
 d3_skipII_tte <-function(alpha, beta, median_prior){
 
-  ceiling((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(median_prior^2))
+  ceiling((4*(qnorm(1-alpha/2)+qnorm(1-beta))^2)/(median_prior^2))
 
 }
 

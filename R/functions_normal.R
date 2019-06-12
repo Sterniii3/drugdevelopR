@@ -124,7 +124,7 @@ n3_skipII_normal <-function(alpha, beta, median_prior){
 EPsProg_skipII_normal <-function(alpha, beta, step1, step2, median_prior,
                                  w, Delta1, Delta2, in1, in2, a, b, gamma){
 
-  c=(qnorm(1-alpha)+qnorm(1-beta))^2
+  c=(qnorm(1-alpha/2)+qnorm(1-beta))^2
 
   integrate(function(x){
     sapply(x,function(x){
