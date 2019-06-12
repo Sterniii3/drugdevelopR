@@ -238,6 +238,11 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
    }else{
      cat("Skipping phase II is NOT the optimal option with respect to the maximal expected utility.", fill = TRUE)
    }
+    
+    return(list(result,result_skipII))
+    
   }
 
+  return(result)
+  
 }

@@ -239,6 +239,10 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
      }else{
        cat("Skipping phase II is NOT the optimal option with respect to the maximal expected utility.", fill = TRUE)
      }
+     return(list(result,result_skipII))
+     
    }
+   
+   return(result)
 }
 
