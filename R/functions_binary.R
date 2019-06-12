@@ -5,7 +5,7 @@ prior_binary<-function(x, w, p11, p12, in1, in2){
 
 # 10000 realizations of the prior distribution
 box_binary<-function(w, p11, p12, in1, in2){
-  w*rnorm(100000,p11,sqrt(p11*(1-p11)/in1))+(1-w)*rnorm(100000,p12,sqrt(p12*(1-p12)/in2))
+  w*rnorm(1000000,p11,sqrt(p11*(1-p11)/in1))+(1-w)*rnorm(1000000,p12,sqrt(p12*(1-p12)/in2))
 }
 
 # auxiliary functions

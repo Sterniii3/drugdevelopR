@@ -5,7 +5,7 @@ prior_tte<-function(x, w, hr1, hr2, id1, id2){
 
 # 10000 realizations of the prior distribution
 box_tte<-function(w, hr1, hr2, id1, id2){
-  w * rnorm(100000, -log(hr1),sqrt(4/id1)) + (1 - w) * rnorm(100000, -log(hr2), sqrt(4/id2))
+  w * rnorm(1000000, -log(hr1),sqrt(4/id1)) + (1 - w) * rnorm(1000000, -log(hr2), sqrt(4/id2))
 }
 
 # Expected probability to go to phase III: Epgo
