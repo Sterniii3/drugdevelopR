@@ -7,9 +7,9 @@
 \title{Optimal phase II/III drug development planning with time-to-event endpoint}
 \usage{
 optimal_tte(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin, hrgomax,
-  stephrgo, alpha, beta, xi2, xi3, c2, c3, c02, c03, K = Inf,
-  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, b1, b2, b3, gamma = 0,
-  skipII = FALSE, num_cl = 1)
+  stephrgo, alpha, beta, xi2, xi3, c2, c3, c02, c03, K = Inf, N = Inf,
+  S = -Inf, steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, b1, b2, b3,
+  gamma = 0, skipII = FALSE, num_cl = 1)
 }
 \arguments{
 \item{w}{weight for mixture prior distribution}
@@ -51,6 +51,10 @@ optimal_tte(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin, hrgomax,
 \item{c03}{fixed cost for phase III}
 
 \item{K}{constraint on the costs of the program, default: Inf, e.g. no constraint}
+
+\item{N}{constraint on the total expected sample size of the program, default: Inf, e.g. no constraint}
+
+\item{S}{constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint}
 
 \item{steps1}{lower boundary for effect size category "small" in HR scale, default: 1}
 
@@ -120,7 +124,8 @@ res <- optimal_tte(w = 0.3,                              # define parameters for
   d2min = 20, d2max = 100, stepd2 = 5,                   # define optimization set for n2
   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,        # drug development planning parameters
-  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150, K = Inf,      # define fixed and variable costs for phase II and III, set maximal costs for the program
+  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
+  K = Inf, N = Inf, S = -Inf                             # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
   steps1 = 1,                                            # define lower boundary for "small"
   stepm1 = 0.95,                                         # "medium"
   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
