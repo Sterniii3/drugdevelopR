@@ -244,7 +244,7 @@ utility_skipII_tte <-function(alpha, beta, xi3, c03, c3, b1, b2, b3, median_prio
       return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
       
     }else{
-      
+
       # probability of a successful program; small, medium, large effect size
       prob1 <- EPsProg_skipII_tte(alpha = alpha, beta = beta, step1 = steps1, step2 = steps2,
                                   median_prior = median_prior, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,

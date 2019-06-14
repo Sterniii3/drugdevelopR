@@ -134,17 +134,33 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                               stepm1 = stepm1, stepm2 = stepm2,
                               stepl1 = stepl1, stepl2 = stepl2,
                               w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                              gamma = gamma)
+                              gamma = gamma, fixed = fixed)
 
-    result_skipII <-  data.frame(u = round(res[1],2), median_prior_HR=round(exp(-median_prior),2),
-                             HRgo = Inf, d2 = 0, d3 = res[2],
-                             n2 = 0, n3 = res[3],
-                             pgo = 1, sProg = round(res[4],2), K = K, N = N, S = S, K2 = 0, K3 = round(res[5]),
-                             sProg1 = round(res[6],2), sProg2 = round(res[7],2), sProg3 = round(res[8],2),
-                             steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
-                             alpha = alpha, beta = beta, xi3 = xi3, c02 = 0,
-                             c03 = c03, c2 = 0, c3 = c3, b1 = b1, b2 = b2, b3 = b3,
-                             w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, gamma = gamma)
+    if(fixed){
+      
+      result_skipII <-  data.frame(u = round(res[1],2), median_prior_HR=round(exp(-median_prior),2),
+                                   HRgo = Inf, d2 = 0, d3 = res[2],
+                                   n2 = 0, n3 = res[3],
+                                   pgo = 1, sProg = round(res[4],2), K = K, N = N, S = S, K2 = 0, K3 = round(res[5]),
+                                   sProg1 = round(res[6],2), sProg2 = round(res[7],2), sProg3 = round(res[8],2),
+                                   steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
+                                   alpha = alpha, beta = beta, xi3 = xi3, c02 = 0,
+                                   c03 = c03, c2 = 0, c3 = c3, b1 = b1, b2 = b2, b3 = b3,
+                                   w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, gamma = gamma) 
+      
+    }else{
+      result_skipII <-  data.frame(u = round(res[1],2), HR=round(exp(-median_prior),2),
+                                   HRgo = Inf, d2 = 0, d3 = res[2],
+                                   n2 = 0, n3 = res[3],
+                                   pgo = 1, sProg = round(res[4],2), K = K, N = N, S = S, K2 = 0, K3 = round(res[5]),
+                                   sProg1 = round(res[6],2), sProg2 = round(res[7],2), sProg3 = round(res[8],2),
+                                   steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
+                                   alpha = alpha, beta = beta, xi3 = xi3, c02 = 0,
+                                   c03 = c03, c2 = 0, c3 = c3, b1 = b1, b2 = b2, b3 = b3,
+                                   gamma = gamma)
+    }
+    
+
 
     cat("Result when skipping phase II:", fill = TRUE)
     cat("", fill = TRUE)
