@@ -220,7 +220,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
   n3    <- n3fkt[I,J]
 
   
-  if(fixed){
+  if(!fixed){
     
     result <-  data.frame(u = round(Eud,2), HRgo = HRGO[J], d2 = D2[I], d3 = d3, d = D2[I] + d3,
                           n2 = n2, n3 = n3, n = n2 + n3,
