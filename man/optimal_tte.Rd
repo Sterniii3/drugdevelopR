@@ -70,6 +70,8 @@ optimal_tte(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin, hrgomax,
 
 \item{gamma}{to model different populations in phase II and III choose gamma!=0, default: 0}
 
+\item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
+
 \item{skipII}{choose if skipping phase II is an option, default: FASLE}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
