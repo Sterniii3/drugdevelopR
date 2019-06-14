@@ -180,7 +180,7 @@ utility_tte <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 #################
 
 # number of events for phase III based on median_prior
-d3_skipII_tte <-function(alpha, beta, median_prior, fixed){
+d3_skipII_tte <-function(alpha, beta, median_prior){
 
   ceiling((4*(qnorm(1-alpha/2)+qnorm(1-beta))^2)/(median_prior^2))
 
@@ -191,7 +191,7 @@ EPsProg_skipII_tte <-function(alpha, beta, step1, step2, median_prior, w, hr1, h
 
   c=(qnorm(1-alpha/2)+qnorm(1-beta))^2
 
-  if(fixed){
+  if(!fixed){
     return(
       integrate(function(x){
         sapply(x,function(x){
@@ -226,7 +226,7 @@ utility_skipII_tte <-function(alpha, beta, xi3, c03, c3, b1, b2, b3, median_prio
                               K, N, S, steps1, steps2, stepm1, stepm2, stepl1, stepl2,
                               w, hr1, hr2, id1, id2, gamma, fixed){
 
-  d3  <- d3_skipII_tte(alpha = alpha, beta = beta, median_prior = median_prior, fixed = fixed)
+  d3  <- d3_skipII_tte(alpha = alpha, beta = beta, median_prior = median_prior)
 
   n3  <- ceiling(d3 * (1/xi3))
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
