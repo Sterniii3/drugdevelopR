@@ -43,7 +43,7 @@ Ed3_tte <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, fixed){
               dnorm(y,
                   mean = x,
                   sd = sqrt(4/d2)) *
-            prior_tte(x, w, hr1, hr2, id1, id2, fixed)
+            prior_tte(x, w, hr1, hr2, id1, id2)
           },  - log(HRgo), Inf)$value
         })
       },  - Inf, Inf)$value)
@@ -81,7 +81,7 @@ EPsProg_tte <-  function(HRgo, d2, alpha, beta, step1, step2, w, hr1, hr2, id1, 
               dnorm(y,
                     mean = x,
                     sd = sqrt(4/d2)) *
-              prior_tte(x, w, hr1, hr2, id1, id2, fixed)
+              prior_tte(x, w, hr1, hr2, id1, id2)
           },  - log(HRgo), Inf)$value
         })
       },  - Inf, Inf)$value
