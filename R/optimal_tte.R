@@ -70,6 +70,7 @@
 #'   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
 #'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
 #'   gamma = 0,                                             # assume different/same population structures in phase II and III
+#'   fixed = FALSE,                                         # choose if true treatment effects are fixed or random
 #'   skipII = FALSE,                                        # choose if skipping phase II would be an option
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 #'

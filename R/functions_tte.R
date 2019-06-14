@@ -11,7 +11,7 @@ box_tte<-function(w, hr1, hr2, id1, id2){
 # Expected probability to go to phase III: Epgo
 Epgo_tte <-  function(HRgo, d2, w, hr1, hr2, id1, id2, fixed){
   
-  if(fixed){
+  if(!fixed){
     
     return(  
       integrate(function(x){
@@ -25,7 +25,7 @@ Epgo_tte <-  function(HRgo, d2, w, hr1, hr2, id1, id2, fixed){
   }else{
     
     return(
-      pnorm((log(HRgo) -log(hr1))/sqrt(4/d2))
+      pnorm((log(HRgo) - log(hr1))/sqrt(4/d2))
       )
   }
 
@@ -34,7 +34,7 @@ Epgo_tte <-  function(HRgo, d2, w, hr1, hr2, id1, id2, fixed){
 # Expected number of events for phase III when going to phase III: Ed3
 Ed3_tte <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, fixed){
 
-  if(fixed){
+  if(!fixed){
     return(  
       ceiling(integrate(function(x){
         sapply(x, function(x){
@@ -67,7 +67,7 @@ EPsProg_tte <-  function(HRgo, d2, alpha, beta, step1, step2, w, hr1, hr2, id1, 
 
   c = (qnorm(1 - alpha/2) + qnorm(1 - beta))^2
 
-  if(fixed){
+  if(!fixed){
     return(
       integrate(function(x){
         sapply(x, function(x){
