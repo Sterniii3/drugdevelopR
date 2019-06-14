@@ -1,6 +1,4 @@
-Utility based optimal phase II/III drug development planning.
-
-## Installation
+## drugdevelopR: Utility based optimal phase II/III drug development planning.
 
 Install the development version of the package directly from [GitHub](https://github.com/) with:
 
