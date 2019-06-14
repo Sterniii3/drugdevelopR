@@ -188,7 +188,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
     clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", "Epgo_tte", "Ed3_tte",
                         "EPsProg_tte", "alpha", "beta",
                         "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                        "K", "N", "S", "gamma",
+                        "K", "N", "S", "gamma", "fixed",
                         "xi2", "xi3", "c2", "c3", "c02", "c03",
                         "b1", "b2", "b3", "w", "HRgo",
                         "hr1", "hr2", "id1", "id2"), envir = environment())

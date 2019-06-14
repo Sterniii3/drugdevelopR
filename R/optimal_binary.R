@@ -22,6 +22,8 @@
 #' @param c02 fixed cost for phase II
 #' @param c03 fixed cost for phase III
 #' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
 #' @param steps1 lower boundary for effect size category "small" in RR scale, default: 1
 #' @param stepm1 lower boundary for effect size category "medium" in RR scale = upper boundary for effect size category "small" in RR scale, default: 0.95
 #' @param stepl1 lower boundary for effect size category "large" in RR scale = upper boundary for effect size category "medium" in RR scale, default: 0.85
@@ -29,6 +31,7 @@
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
 #' @param gamma to model different populations in phase II and III choose gamma!=0, default: 0
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
 #' The output of the function \code{\link{optimal_binary}} is a data.frame containing the optimization results:
@@ -56,12 +59,14 @@
 #'   n2min = 20, n2max = 100, stepn2 = 4,                   # define optimization set for n2
 #'   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,         # define optimization set for RRgo
 #'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
-#'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150, K = Inf,      # define fixed and variable costs for phase II and III, set maximal costs for the program
+#'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III,
+#'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
 #'   steps1 = 1,                                            # define lower boundary for "small"
 #'   stepm1 = 0.95,                                         # "medium"
 #'   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
 #'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
 #'   gamma = 0,                                             # assume different/same population structures in phase II and III
+#'   fixed = FALSE,                                         # choose if true treatment effects are fixed or random
 #'   skipII = FALSE,                                        # choose if skipping phase II would be an option
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 #'
@@ -87,10 +92,12 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                         n2min, n2max, stepn2,
                         rrgomin, rrgomax, steprrgo,
                         alpha, beta, 
-                        c2, c3, c02, c03, K = Inf,
+                        c2, c3, c02, c03, 
+                        K = Inf, N = Inf, S = -Inf,
                         steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                         b1, b2, b3,
-                        gamma = 0, skipII = FALSE, num_cl = 1){
+                        gamma = 0, fixed = false,
+                        skipII = FALSE, num_cl = 1){
 
   date <- Sys.time()
 
@@ -100,9 +107,14 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
 
    if(skipII==TRUE){
 
-     median_prior = round(quantile(box_binary(w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2),0.5),2)
-
-     names(median_prior) = NULL
+     if(fixed){
+       median_prior = p11
+     }else{
+       median_prior = round(quantile(box_binary(w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2),0.5),2)
+       
+       names(median_prior) = NULL 
+     }
+     
 
      res <- utility_skipII_binary(alpha = alpha, beta = beta,
                                   c03 = c03, c3 = c3,
@@ -113,16 +125,29 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                                   stepm1 = stepm1, stepm2 = stepm2,
                                   stepl1 = stepl1, stepl2 = stepl2,
                                   w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2,
-                                  gamma = gamma)
+                                  gamma = gamma, fixed = fixed)
 
-     result_skipII <-  data.frame(u = round(res[1],2), median_prior_RR=round(median_prior/p0,2),
-                                  RRgo = Inf, n2 = 0, n3 = res[2],
-                                  pgo = 1, sProg = round(res[3],2), K = K, K2 = 0, K3 = round(res[4]),
-                                  sProg1 = round(res[5],2), sProg2 = round(res[6],2), sProg3 = round(res[7],2),
-                                  steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
-                                  alpha = alpha, beta = beta, c02 = 0,
-                                  c03 = c03, c2 = 0, c3 = c3, b1 = b1, b2 = b2, b3 = b3,
-                                  w = w, p0 = p0, p11 = p11, p12 = p12, in1 = in1, in2 = in2, gamma = gamma)
+     if(fixed){
+       result_skipII <-  data.frame(u = round(res[1],2), RR=round(median_prior/p0,2),
+                                    RRgo = Inf, n2 = 0, n3 = res[2],
+                                    pgo = 1, sProg = round(res[3],2), K = K, K2 = 0, K3 = round(res[4]),
+                                    sProg1 = round(res[5],2), sProg2 = round(res[6],2), sProg3 = round(res[7],2),
+                                    steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
+                                    alpha = alpha, beta = beta, c02 = 0,
+                                    c03 = c03, c2 = 0, c3 = c3, b1 = b1, b2 = b2, b3 = b3,
+                                    p0 = p0, p1 = p11, gamma = gamma)  
+     }else{
+       result_skipII <-  data.frame(u = round(res[1],2), median_prior_RR=round(median_prior/p0,2),
+                                    RRgo = Inf, n2 = 0, n3 = res[2],
+                                    pgo = 1, sProg = round(res[3],2), K = K, K2 = 0, K3 = round(res[4]),
+                                    sProg1 = round(res[5],2), sProg2 = round(res[6],2), sProg3 = round(res[7],2),
+                                    steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
+                                    alpha = alpha, beta = beta, c02 = 0,
+                                    c03 = c03, c2 = 0, c3 = c3, b1 = b1, b2 = b2, b3 = b3,
+                                    w = w, p0 = p0, p11 = p11, p12 = p12, in1 = in1, in2 = in2, gamma = gamma)
+     }
+     
+
 
      cat("Result when skipping phase II:", fill = TRUE)
      cat("", fill = TRUE)
@@ -167,7 +192,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
       parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "En3_binary",
                           "EPsProg_binary","t1", "t2", "t3", "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                          "K", "gamma",
+                          "K", "N", "S", "gamma", "fixed",
                           "c2", "c3", "c02", "c03",
                           "b1", "b2", "b3", "w", "RRgo",
                           "p0", "p11", "p12", "in1", "in2"), envir=environment())
@@ -177,7 +202,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           c2, c3, c02, c03, K,
                           steps1, stepm1, stepl1,
                           b1, b2, b3,
-                          gamma)
+                          gamma, fixed)
 
       setTxtProgressBar(title= "i", pb, j)
       stopCluster(cl)
@@ -209,15 +234,29 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
    prob2 <- sp2fkt[I, J]
    prob3 <- sp3fkt[I, J]
 
-   result <-  data.frame(u = round(Eud,2), RRgo = HRGO[J], n2 = N2[I],
-                     n3 = n3, n = N2[I] + n3,
-                     pgo = round(pg,2), sProg = round(prob,2),
-                     w = w, p0 = p0, p11 = p11, p12 = p12, in1 = in1, in2 = in2,
-                     K = K, K2 = round(k2), K3 = round(k3),
-                     sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
-                     steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
-                     alpha = alpha, beta = beta, c02 = c02,
-                     c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma)
+   if(fixed){
+     result <-  data.frame(u = round(Eud,2), RRgo = HRGO[J], n2 = N2[I],
+                           n3 = n3, n = N2[I] + n3,
+                           pgo = round(pg,2), sProg = round(prob,2),
+                           p0 = p0, p1 = p11, 
+                           K = K, K2 = round(k2), K3 = round(k3),
+                           sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
+                           steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
+                           alpha = alpha, beta = beta, c02 = c02,
+                           c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma)  
+   }else{
+     result <-  data.frame(u = round(Eud,2), RRgo = HRGO[J], n2 = N2[I],
+                           n3 = n3, n = N2[I] + n3,
+                           pgo = round(pg,2), sProg = round(prob,2),
+                           w = w, p0 = p0, p11 = p11, p12 = p12, in1 = in1, in2 = in2,
+                           K = K, K2 = round(k2), K3 = round(k3),
+                           sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
+                           steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
+                           alpha = alpha, beta = beta, c02 = c02,
+                           c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma)
+   }
+   
+
 
    comment(result) <-   c("\noptimization sequence RRgo:", HRGO,
                       "\noptimization sequence n2:", N2,

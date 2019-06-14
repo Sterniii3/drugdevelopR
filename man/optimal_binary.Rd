@@ -7,9 +7,9 @@
 \title{Optimal phase II/III drug development planning with binary endpoint}
 \usage{
 optimal_binary(w, p0, p11, p12, in1, in2, n2min, n2max, stepn2, rrgomin,
-  rrgomax, steprrgo, alpha, beta, c2, c3, c02, c03, K = Inf,
-  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, b1, b2, b3, gamma = 0,
-  skipII = FALSE, num_cl = 1)
+  rrgomax, steprrgo, alpha, beta, c2, c3, c02, c03, K = Inf, N = Inf,
+  S = -Inf, steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, b1, b2, b3,
+  gamma = 0, fixed = false, skipII = FALSE, num_cl = 1)
 }
 \arguments{
 \item{w}{weight for mixture prior distribution}
@@ -50,6 +50,10 @@ optimal_binary(w, p0, p11, p12, in1, in2, n2min, n2max, stepn2, rrgomin,
 
 \item{K}{constraint on the costs of the program, default: Inf, e.g. no constraint}
 
+\item{N}{constraint on the total expected sample size of the program, default: Inf, e.g. no constraint}
+
+\item{S}{constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint}
+
 \item{steps1}{lower boundary for effect size category "small" in RR scale, default: 1}
 
 \item{stepm1}{lower boundary for effect size category "medium" in RR scale = upper boundary for effect size category "small" in RR scale, default: 0.95}
@@ -63,6 +67,8 @@ optimal_binary(w, p0, p11, p12, in1, in2, n2min, n2max, stepn2, rrgomin,
 \item{b3}{expected gain for effect size category "large"}
 
 \item{gamma}{to model different populations in phase II and III choose gamma!=0, default: 0}
+
+\item{fixed}{choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
@@ -113,12 +119,14 @@ res <- optimal_binary(w = 0.3,                           # define parameters for
   n2min = 20, n2max = 100, stepn2 = 4,                   # define optimization set for n2
   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,         # define optimization set for RRgo
   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
-  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150, K = Inf,      # define fixed and variable costs for phase II and III, set maximal costs for the program
+  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III,
+  K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
   steps1 = 1,                                            # define lower boundary for "small"
   stepm1 = 0.95,                                         # "medium"
   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
   gamma = 0,                                             # assume different/same population structures in phase II and III
+  fixed = FALSE,                                         # choose if true treatment effects are fixed or random
   skipII = FALSE,                                        # choose if skipping phase II would be an option
   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 
