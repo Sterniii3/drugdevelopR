@@ -157,7 +157,7 @@ EPsProg_skipII_tte <-function(alpha, beta, step1, step2, median_prior, w, hr1, h
 
 #utility function
 utility_skipII_tte <-function(alpha, beta, xi3, c03, c3, b1, b2, b3, median_prior,
-                              K, steps1, steps2, stepm1, stepm2, stepl1, stepl2,
+                              K, N, S, steps1, steps2, stepm1, stepm2, stepl1, stepl2,
                               w, hr1, hr2, id1, id2, gamma){
 
   d3  <- d3_skipII_tte(alpha = alpha, beta = beta, median_prior = median_prior)
@@ -165,33 +165,46 @@ utility_skipII_tte <-function(alpha, beta, xi3, c03, c3, b1, b2, b3, median_prio
   n3  <- ceiling(d3 * (1/xi3))
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
 
-  K2  <- 0 #cost phase II
-  K3  <- c03 + c3 * n3 #cost phase III
-
-  if(K2+K3>K){
-
+  if(n3>N){
+    
     return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
-
+    
   }else{
-
-    # probability of a successful program; small, medium, large effect size
-    prob1 <- EPsProg_skipII_tte(alpha = alpha, beta = beta, step1 = steps1, step2 = steps2,
-                            median_prior = median_prior, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                            gamma = gamma)
-    prob2 <- EPsProg_skipII_tte(alpha = alpha, beta = beta, step1 = stepm1, step2 = stepm2,
-                            median_prior = median_prior, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                            gamma = gamma)
-    prob3 <- EPsProg_skipII_tte(alpha = alpha, beta = beta, step1 = stepl1, step2 = stepl2,
-                            median_prior = median_prior, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                            gamma = gamma)
-
-    G     <- b1 * prob1 + b2 * prob2 + b3 * prob3 #gain
-
-    EU    <-  - K2 - K3 + G
-    SP    <-  prob1 + prob2 + prob3
-
-    return(c(EU, d3, n3, SP, K3, prob1, prob2, prob3))
-
+    K2  <- 0 #cost phase II
+    K3  <- c03 + c3 * n3 #cost phase III
+    
+    if(K2+K3>K){
+      
+      return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+      
+    }else{
+      
+      # probability of a successful program; small, medium, large effect size
+      prob1 <- EPsProg_skipII_tte(alpha = alpha, beta = beta, step1 = steps1, step2 = steps2,
+                                  median_prior = median_prior, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                                  gamma = gamma)
+      prob2 <- EPsProg_skipII_tte(alpha = alpha, beta = beta, step1 = stepm1, step2 = stepm2,
+                                  median_prior = median_prior, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                                  gamma = gamma)
+      prob3 <- EPsProg_skipII_tte(alpha = alpha, beta = beta, step1 = stepl1, step2 = stepl2,
+                                  median_prior = median_prior, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                                  gamma = gamma)
+      
+      SP    <-  prob1 + prob2 + prob3
+      
+      if(SP<S){
+        
+        return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+        
+      }else{
+        
+        G     <- b1 * prob1 + b2 * prob2 + b3 * prob3 #gain
+        
+        EU    <-  - K2 - K3 + G
+        
+        return(c(EU, d3, n3, SP, K3, prob1, prob2, prob3))
+      }
+    }
   }
 
 }
