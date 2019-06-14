@@ -104,7 +104,8 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                         K = Inf, N = Inf, S = -Inf,
                         steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                         b1, b2, b3,
-                        gamma = 0,  skipII = FALSE,  num_cl = 1){
+                        gamma = 0,  fixed = FALSE,
+                        skipII = FALSE,  num_cl = 1){
 
   steps2 <- stepm1
   stepm2 <- stepl1
@@ -114,9 +115,13 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
 
   if(skipII==TRUE){
 
-    median_prior = round(quantile(box_tte(w, hr1, hr2, id1,id2),0.5),2)
-
-    names(median_prior) = NULL
+    if(fixed==TRUE){
+      median_prior = -log(hr1)
+    }else{
+      median_prior = round(quantile(box_tte(w, hr1, hr2, id1,id2),0.5),2)
+      
+      names(median_prior) = NULL  
+    }
 
     res <- utility_skipII_tte(alpha = alpha, beta = beta, xi3 = xi3,
                               c03 = c03, c3 = c3,
@@ -177,7 +182,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                         K, N, S,
                         steps1, stepm1, stepl1,
                         b1, b2, b3,
-                        gamma)
+                        gamma, fixed)
 
     setTxtProgressBar(title= "i", pb, j)
     stopCluster(cl)
@@ -213,15 +218,30 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
   n2    <- n2fkt[I,J]
   n3    <- n3fkt[I,J]
 
-  result <-  data.frame(u = round(Eud,2), HRgo = HRGO[J], d2 = D2[I], d3 = d3, d = D2[I] + d3,
-                   n2 = n2, n3 = n3, n = n2 + n3,
-                   pgo = round(pg,2), sProg = round(prob,2),
-                   w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                   K = K, N = N, S = S, K2 = round(k2), K3 = round(k3),
-                   sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
-                   steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
-                   alpha = alpha, beta = beta, xi2 = xi2, xi3 = xi3, c02 = c02,
-                   c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma)
+  
+  if(fixed){
+    
+    result <-  data.frame(u = round(Eud,2), HRgo = HRGO[J], d2 = D2[I], d3 = d3, d = D2[I] + d3,
+                          n2 = n2, n3 = n3, n = n2 + n3,
+                          pgo = round(pg,2), sProg = round(prob,2),
+                          w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                          K = K, N = N, S = S, K2 = round(k2), K3 = round(k3),
+                          sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
+                          steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
+                          alpha = alpha, beta = beta, xi2 = xi2, xi3 = xi3, c02 = c02,
+                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma)
+  }else{
+    result <-  data.frame(u = round(Eud,2), HRgo = HRGO[J], d2 = D2[I], d3 = d3, d = D2[I] + d3,
+                          n2 = n2, n3 = n3, n = n2 + n3,
+                          pgo = round(pg,2), sProg = round(prob,2),
+                          hr = hr1,
+                          K = K, N = N, S = S, K2 = round(k2), K3 = round(k3),
+                          sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
+                          steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
+                          alpha = alpha, beta = beta, xi2 = xi2, xi3 = xi3, c02 = c02,
+                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma)
+  }
+
 
   comment(result) <-   c("\noptimization sequence HRgo:", HRGO,
                     "\noptimization sequence d2:", D2,

@@ -1,6 +1,12 @@
 # Prior distribution for theta
-prior_tte<-function(x, w, hr1, hr2, id1, id2){
-  w * dnorm(x, -log(hr1), sqrt(4/id1)) + (1 - w) * dnorm(x, -log(hr2), sqrt(4/id2))
+prior_tte<-function(x, w, hr1, hr2, id1, id2, fixed = FALSE){
+  
+  if(fixed){
+    hr1
+  }else{
+    w * dnorm(x, -log(hr1), sqrt(4/id1)) + (1 - w) * dnorm(x, -log(hr2), sqrt(4/id2))
+    
+  }
 }
 
 # 10000 realizations of the prior distribution
@@ -9,17 +15,17 @@ box_tte<-function(w, hr1, hr2, id1, id2){
 }
 
 # Expected probability to go to phase III: Epgo
-Epgo_tte <-  function(HRgo, d2, w, hr1, hr2, id1, id2){
+Epgo_tte <-  function(HRgo, d2, w, hr1, hr2, id1, id2, fixed){
   integrate(function(x){
     sapply(x, function(x){
       pnorm((log(HRgo) + x)/sqrt(4/d2)) *
-        prior_tte(x, w, hr1, hr2, id1, id2)
+        prior_tte(x, w, hr1, hr2, id1, id2, fixed)
     })
   },  - Inf, Inf)$value
 }
 
 # Expected number of events for phase III when going to phase III: Ed3
-Ed3_tte <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
+Ed3_tte <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, fixed){
   ceiling(integrate(function(x){
     sapply(x, function(x){
       integrate(function(y){
@@ -27,14 +33,14 @@ Ed3_tte <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
           dnorm(y,
                 mean = x,
                 sd = sqrt(4/d2)) *
-          prior_tte(x, w, hr1, hr2, id1, id2)
+          prior_tte(x, w, hr1, hr2, id1, id2, fixed)
       },  - log(HRgo), Inf)$value
     })
   },  - Inf, Inf)$value)
 }
 
 # Expected probability of a successful program: EsP
-EPsProg_tte <-  function(HRgo, d2, alpha, beta, step1, step2, w, hr1, hr2, id1, id2, gamma){
+EPsProg_tte <-  function(HRgo, d2, alpha, beta, step1, step2, w, hr1, hr2, id1, id2, gamma, fixed){
 
   c = (qnorm(1 - alpha/2) + qnorm(1 - beta))^2
 
@@ -50,7 +56,7 @@ EPsProg_tte <-  function(HRgo, d2, alpha, beta, step1, step2, w, hr1, hr2, id1, 
           dnorm(y,
                 mean = x,
                 sd = sqrt(4/d2)) *
-          prior_tte(x, w, hr1, hr2, id1, id2)
+          prior_tte(x, w, hr1, hr2, id1, id2, fixed)
       },  - log(HRgo), Inf)$value
     })
   },  - Inf, Inf)$value
@@ -64,9 +70,10 @@ utility_tte <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                          K, N, S,
                          steps1, stepm1, stepl1,
                          b1, b2, b3,
-                         gamma){
+                         gamma, fixed){
 
-  d3    <-  Ed3_tte(HRgo = HRgo, d2 = d2, alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2)
+  d3    <-  Ed3_tte(HRgo = HRgo, d2 = d2, alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                    fixed = fixed)
 
   # round up to next even natural number
   n2 = ceiling(d2 * (1/xi2))
@@ -81,7 +88,8 @@ utility_tte <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
     
   }else{
    
-    pg    <-  Epgo_tte(HRgo = HRgo, d2 = d2, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2)
+    pg    <-  Epgo_tte(HRgo = HRgo, d2 = d2, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                       fixed = fixed)
     
     K2    <-  c02 + c2 * n2         # cost phase II
     K3    <-  c03 * pg + c3 * n3    # cost phase III
@@ -94,13 +102,16 @@ utility_tte <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
       # probability of a successful program; small, medium, large effect size
       prob1 <-  EPsProg_tte(HRgo = HRgo, d2 = d2, alpha = alpha, beta = beta,
                             step1 = steps1, step2 =  steps2,
-                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, gamma = gamma)
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, gamma = gamma,
+                            fixed = fixed)
       prob2 <-  EPsProg_tte(HRgo = HRgo, d2 = d2, alpha = alpha, beta = beta,
                             step1 =  stepm1, step2 =  stepm2,
-                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, gamma = gamma)
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, gamma = gamma,
+                            fixed = fixed)
       prob3 <-  EPsProg_tte(HRgo = HRgo, d2 = d2, alpha = alpha, beta = beta,
                             step1 =  stepl1, step2 = stepl2,
-                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, gamma = gamma)
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, gamma = gamma,
+                            fixed = fixed)
       
       SP    <-  prob1 + prob2 + prob3
       
