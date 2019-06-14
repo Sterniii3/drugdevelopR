@@ -64,7 +64,7 @@
 #'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
 #'   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,        # drug development planning parameters
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
-#'   K = Inf, N = Inf, S = -Inf                             # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
+#'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
 #'   steps1 = 1,                                            # define lower boundary for "small"
 #'   stepm1 = 0.95,                                         # "medium"
 #'   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
