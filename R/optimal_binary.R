@@ -96,7 +96,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                         K = Inf, N = Inf, S = -Inf,
                         steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                         b1, b2, b3,
-                        gamma = 0, fixed = false,
+                        gamma = 0, fixed = FALSE,
                         skipII = FALSE, num_cl = 1){
 
   date <- Sys.time()
