@@ -34,14 +34,14 @@ Epgo_binary <-  function(RRgo, n2, p0, w, p11, p12, in1, in2, fixed){
 # Expected sample size for phase III when going to phase III: En3
 En3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, fixed){
   if(fixed){
-    return(
+    return(ceiling(
       integrate(function(y){
         ((2*(qnorm(1-alpha/2)*t2(p11, p0)+qnorm(1-beta)*t3(p11, p0))^2)/y^2) *
           dnorm(y,
                 mean = -log(p11/p0),
                 sd = sqrt((2/n2)*t1(p11, p0)))
       }, - log(RRgo), Inf)$value
-    )
+    ))
   }else{
     return(
       ceiling(integrate(function(x){
