@@ -199,7 +199,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
       
       result <- parSapply(cl, N2, utility_binary, RRgo, w, p0, p11, p12, in1, in2,
                           alpha, beta, 
-                          c2, c3, c02, c03, K,
+                          c2, c3, c02, c03, K, N, S,
                           steps1, stepm1, stepl1,
                           b1, b2, b3,
                           gamma, fixed)

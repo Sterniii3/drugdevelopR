@@ -120,41 +120,58 @@ utility_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                             b1, b2, b3,
                             gamma, fixed){
 
-  pg    <-  Epgo_binary(RRgo = RRgo, n2 = n2, p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, fixed = fixed)
+
   n3    <-  En3_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
                        p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, fixed = fixed)
 
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
 
+  if(n2+n3>N){
+    
+    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+    
+  }else{
+  
+  pg    <-  Epgo_binary(RRgo = RRgo, n2 = n2, p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, fixed = fixed)
+  
   K2    <-  c02 + c2 * n2         # cost phase II
   K3    <-  c03 * pg + c3 * n3    # cost phase III
 
-  if(K2+K3>K){
-
-    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
-
-  }else{
-    # probability of a successful program; small, medium, large effect size
-    prob1 <-  EPsProg_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                             step1 = steps1, step2 =  steps2,
-                             p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, gamma = gamma, fixed = fixed)
-    prob2 <-  EPsProg_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                             step1 =  stepm1, step2 =  stepm2,
-                             p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, gamma = gamma, fixed = fixed)
-    prob3 <-  EPsProg_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                             step1 =  stepl1, step2 = stepl2,
-                             p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, gamma = gamma, fixed = fixed)
-
-    G     <-  b1 * prob1 + b2 * prob2 + b3 * prob3 #gain
-
-    EU    <-  - K2 - K3 + G
-
-    SP    <-  prob1 + prob2 + prob3
-
-    return(c(EU, n3, SP, pg, K2, K3, prob1, prob2, prob3))
-
+    if(K2+K3>K){
+  
+      return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+  
+    }else{
+      # probability of a successful program; small, medium, large effect size
+      prob1 <-  EPsProg_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
+                               step1 = steps1, step2 =  steps2,
+                               p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
+                               gamma = gamma, fixed = fixed)
+      prob2 <-  EPsProg_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
+                               step1 =  stepm1, step2 =  stepm2,
+                               p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
+                               gamma = gamma, fixed = fixed)
+      prob3 <-  EPsProg_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
+                               step1 =  stepl1, step2 = stepl2,
+                               p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
+                               gamma = gamma, fixed = fixed)
+  
+      SP    <-  prob1 + prob2 + prob3
+    
+      if(SP<S){
+        
+        return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+        
+      }else{
+      
+      G     <-  b1 * prob1 + b2 * prob2 + b3 * prob3 #gain
+  
+      EU    <-  - K2 - K3 + G
+  
+      return(c(EU, n3, SP, pg, K2, K3, prob1, prob2, prob3))
+      }
+    }
   }
-
 }
 
 #################
@@ -204,43 +221,58 @@ EPsProg_skipII_binary <-function(alpha, beta, step1, step2, p0, median_prior, w,
 }
 
 #utility function
-utility_skipII_binary <-function(alpha, beta, c03, c3, b1, b2, b3, p0, median_prior, K,
-                          steps1, steps2, stepm1, stepm2, stepl1, stepl2,
-                          w, p11, p12, in1, in2, gamma, fixed){
+utility_skipII_binary <-function(alpha, beta, c03, c3, b1, b2, b3, p0, median_prior, 
+                                K, N, S,
+                                steps1, steps2, stepm1, stepm2, stepl1, stepl2,
+                                w, p11, p12, in1, in2, gamma, fixed){
 
   n3  <- n3_skipII_binary(alpha = alpha, beta = beta, p0 = p0, median_prior = median_prior)
 
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
 
+  if(n3>N){
+    
+    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+    
+  }else{
+  
   K2  <- 0 #cost phase II
   K3  <- c03 + c3 * n3 #cost phase III
 
-  if(K2+K3>K){
-
-    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999))
-
-  }else{
-
-    # probability of a successful program; small, medium, large effect size
-    prob1 <- EPsProg_skipII_binary(alpha = alpha, beta = beta, step1 = steps1, step2 = steps2,
-                            p0 = p0, median_prior = median_prior, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2,
-                            gamma = gamma, fixed = fixed)
-    prob2 <- EPsProg_skipII_binary(alpha = alpha, beta = beta, step1 = stepm1, step2 = stepm2,
-                            p0 = p0, median_prior = median_prior, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2,
-                            gamma = gamma, fixed = fixed)
-    prob3 <- EPsProg_skipII_binary(alpha = alpha, beta = beta, step1 = stepl1, step2 = stepl2,
-                            p0 = p0, median_prior = median_prior, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2,
-                            gamma = gamma, fixed = fixed)
-
-    G     <- b1 * prob1 + b2 * prob2 + b3 * prob3 #gain
-
-    EU    <-  - K2 - K3 + G
-    SP    <-  prob1 + prob2 + prob3
-
-    return(c(EU, n3, SP, K3, prob1, prob2, prob3))
-
+    if(K2+K3>K){
+  
+      return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999))
+  
+    }else{
+  
+      # probability of a successful program; small, medium, large effect size
+      prob1 <- EPsProg_skipII_binary(alpha = alpha, beta = beta, step1 = steps1, step2 = steps2,
+                              p0 = p0, median_prior = median_prior, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2,
+                              gamma = gamma, fixed = fixed)
+      prob2 <- EPsProg_skipII_binary(alpha = alpha, beta = beta, step1 = stepm1, step2 = stepm2,
+                              p0 = p0, median_prior = median_prior, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2,
+                              gamma = gamma, fixed = fixed)
+      prob3 <- EPsProg_skipII_binary(alpha = alpha, beta = beta, step1 = stepl1, step2 = stepl2,
+                              p0 = p0, median_prior = median_prior, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2,
+                              gamma = gamma, fixed = fixed)
+  
+      SP    <-  prob1 + prob2 + prob3
+      
+        if(SP<S){
+          
+          return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+          
+        }else{
+        
+        G     <- b1 * prob1 + b2 * prob2 + b3 * prob3 #gain
+    
+        EU    <-  - K2 - K3 + G
+    
+    
+        return(c(EU, n3, SP, K3, prob1, prob2, prob3))
+      }
+    }
   }
-
 }
 
 
