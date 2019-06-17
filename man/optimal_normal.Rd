@@ -8,8 +8,8 @@
 \usage{
 optimal_normal(w, Delta1, Delta2, in1, in2, a, b, n2min, n2max, stepn2,
   kappamin, kappamax, stepkappa, alpha, beta, c2, c3, c02, c03, K = Inf,
-  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8, b1, b2, b3, gamma = 0,
-  skipII = FALSE, num_cl = 1)
+  N = Inf, S = -Inf, steps1 = 0, stepm1 = 0.5, stepl1 = 0.8, b1,
+  b2, b3, gamma = 0, fixed = FALSE, skipII = FALSE, num_cl = 1)
 }
 \arguments{
 \item{w}{weight for mixture prior distribution}
@@ -52,6 +52,10 @@ optimal_normal(w, Delta1, Delta2, in1, in2, a, b, n2min, n2max, stepn2,
 
 \item{K}{constraint on the costs of the program, default: Inf, e.g. no constraint}
 
+\item{N}{constraint on the total expected sample size of the program, default: Inf, e.g. no constraint}
+
+\item{S}{constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint}
+
 \item{steps1}{lower boundary for effect size category "small", default: 0}
 
 \item{stepm1}{lower boundary for effect size category "medium" = upper boundary for effect size category "small" default: 0.5}
@@ -65,6 +69,8 @@ optimal_normal(w, Delta1, Delta2, in1, in2, a, b, n2min, n2max, stepn2,
 \item{b3}{expected gain for effect size category "large"}
 
 \item{gamma}{to model different populations in phase II and III choose gamma!=0, default: 0}
+
+\item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
 
 \item{skipII}{choose if skipping phase II is an option, default: FASLE}
 
@@ -108,7 +114,7 @@ to plan optimal phase II/III drug development programs with
   \item binary (treatment effect measured by risk ratio (RR)) and
   \item normally distributed (treatment effect measured by standardized difference in means (Delta))
 }
-endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}.
+endpoint, where the treatment effect is assumed fixed or modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can also be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}.
 }
 
 \examples{
@@ -118,12 +124,14 @@ res <- optimal_normal(w=0.3,                             # define parameters for
   n2min = 20, n2max = 100, stepn2 = 4,                   # define optimization set for n2
   kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,     # define optimization set for kappa
   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
-  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20, K = Inf,    # define fixed and variable costs for phase II and III, set maximal costs for the program
+  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,             # define fixed and variable costs for phase II and III
+  K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
   steps1 = 0,                                            # define lower boundary for "small"
   stepm1 = 0.5,                                          # "medium"
   stepl1 = 0.8,                                          # and "large" treatment effect size categories as proposed by e.g. Cohen (1988)
   b1 = 3000, b2 = 8000, b3 = 10000,                      # define expected benefit for a "small", "medium" and "large" treatment effect
   gamma = 0,                                             # assume different/same population structures in phase II and III
+  fixed = FALSE,                                         # choose if true treatment effects are fixed or random
   skipII = FALSE,                                        # choose if skipping phase II would be an option
   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 

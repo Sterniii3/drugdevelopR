@@ -59,7 +59,7 @@ En3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, 
 }
 
 # Expected probability of a successful program: EsP
-EPsProg_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, gamma){
+EPsProg_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, gamma, fixed){
 
   c = (qnorm(1 - alpha) + qnorm(1 - beta))^2
 
