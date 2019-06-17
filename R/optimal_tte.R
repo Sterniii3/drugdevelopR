@@ -272,8 +272,6 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
   cat("Optimization result:", fill = TRUE)
   cat("", fill = TRUE)
 
-  print(result)
-
   if(skipII==TRUE){
    cat("", fill = TRUE)
    if(result_skipII[1]>result[1]){
