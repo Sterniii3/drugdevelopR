@@ -101,7 +101,7 @@ and further input parameters.
 Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 }
 \description{
-The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules when assuming a prior distribution for the treatment effect. For time-to-event endpoints the treatment effect is measured by the hazard ratio (HR) and more information on the framework can be found in Kirchner et al. (2016). The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the associated prior distributions used in this package.
+The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. For time-to-event endpoints the treatment effect is measured by the hazard ratio (HR) and more information on the framework can be found in Kirchner et al. (2016). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
 }
 \section{drugdevelopR functions}{
 
