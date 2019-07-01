@@ -62,7 +62,7 @@ optimal_multitrial(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin,
 
 \item{b3}{expected gain for effect size category "large"}
 
-\item{case}{chose case: "at least 1, 2 or 3 significant trials needed for approval"}
+\item{case}{choose case: "at least 1, 2 or 3 significant trials needed for approval"}
 
 \item{strategy}{choose strategy: "conduct 1, 2, 3 or 4 trial"; TRUE calculates all strategies of the selected Case}
 

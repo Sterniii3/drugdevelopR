@@ -28,7 +28,7 @@
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
-#' @param case chose case: "at least 1, 2 or 3 significant trials needed for approval"
+#' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
 #' @param strategy choose strategy: "conduct 1, 2, 3 or 4 trial"; TRUE calculates all strategies of the selected Case 
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect
 #' @param num_cl number of clusters used for parallel computing, default: 1

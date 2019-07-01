@@ -7,11 +7,11 @@
 \title{Optimal phase II/III drug development planning when discounting phase II results}
 \usage{
 optimal_bias(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin, hrgomax,
-  stephrgo, lambdamin = NULL, lambdamax = NULL, steplambda = NULL,
-  alphaCImin = NULL, alphaCImax = NULL, stepalphaCI = NULL, alpha,
-  beta, xi2, xi3, c2, c3, c02, c03, K = Inf, N = Inf, S = -Inf,
-  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, b1, b2, b3, gamma = 0,
-  fixed = FALSE, skipII = FALSE, num_cl = 1)
+  stephrgo, adj = "both", lambdamin = NULL, lambdamax = NULL,
+  steplambda = NULL, alphaCImin = NULL, alphaCImax = NULL,
+  stepalphaCI = NULL, alpha, beta, xi2, xi3, c2, c3, c02, c03, K = Inf,
+  N = Inf, S = -Inf, steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
+  b1, b2, b3, fixed = FALSE, num_cl = 1)
 }
 \arguments{
 \item{w}{weight for mixture prior distribution}
@@ -35,6 +35,8 @@ optimal_bias(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin, hrgomax,
 \item{hrgomax}{maximal threshold value for the go/no-go decision rule}
 
 \item{stephrgo}{stepsize for the optimization over HRgo}
+
+\item{adj}{choose type of adjustment: "multiplicative", "additive" or "both"}
 
 \item{lambdamin}{minimal adjustment parameter &lambda;}
 
@@ -82,13 +84,13 @@ optimal_bias(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin, hrgomax,
 
 \item{b3}{expected gain for effect size category "large"}
 
-\item{gamma}{to model different populations in phase II and III choose gamma!=0, default: 0}
-
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
 
-\item{skipII}{choose if skipping phase II is an option, default: FASLE}
-
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
+
+\item{gamma}{to model different populations in phase II and III choose gamma!=0, default: 0}
+
+\item{skipII}{choose if skipping phase II is an option, default: FASLE}
 }
 \value{
 The output of the function \code{\link{optimal_bias}} is a data.frame containing the optimization results:
@@ -140,18 +142,17 @@ res <- optimal_bias(w = 0.3,                                 # define parameters
   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,              # (https://web.imbi.uni-heidelberg.de/prior/)
   d2min = 20, d2max = 100, stepd2 = 5,                       # define optimization set for n2
   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,             # define optimization set for HRgo
+  adj = "both",                                              # choose type of adjustment
   lambdamin = 0.2, lambdamax = 1, steplambda = 0.05,         # define optimization set for lambda
   alphaCImin = 0.025, alphaCImax = 0.5, stepalphaCI = 0.025, # define optimization set for &alpha;<sub>CI<sub/>
-  alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,            # drug development planning parameters
+  alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,            # drug development planning parameters
   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,                   # define fixed and variable costs for phase II and III
   K = Inf, N = Inf, S = -Inf,                                # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
   steps1 = 1,                                                # define lower boundary for "small"
   stepm1 = 0.95,                                             # "medium"
   stepl1 = 0.85,                                             # and "large" treatment effect size categories as proposed by IQWiG (2016)
   b1 = 1000, b2 = 2000, b3 = 3000,                           # define expected benefit for a "small", "medium" and "large" treatment effect
-  gamma = 0,                                                 # assume different/same population structures in phase II and III
   fixed = FALSE,                                             # choose if true treatment effects are fixed or random
-  skipII = FALSE,                                            # choose if skipping phase II would be an option
   num_cl = 1)                                                # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 
 cat(comment(res))                                            # displays the optimization sequence, start and finish date of the optimization procedure.
