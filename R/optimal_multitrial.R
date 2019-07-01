@@ -283,6 +283,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
   cat("", fill = TRUE)
   cat("Optimization result:", fill = TRUE)
   cat("", fill = TRUE)
+  print(result)
   return(result)
   
 }
