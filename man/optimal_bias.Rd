@@ -50,7 +50,7 @@ optimal_bias(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin, hrgomax,
 
 \item{stepalphaCI}{stepsize for &alpha;<sub>CI<sub/>}
 
-\item{alpha}{significance level}
+\item{alpha}{one-sided significance level}
 
 \item{beta}{1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula}
 
@@ -95,8 +95,9 @@ optimal_bias(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin, hrgomax,
 \value{
 The output of the function \code{\link{optimal_bias}} is a data.frame containing the optimization results:
 \describe{
+  \item{Method}{Type of adjustment: multipl. (multiplicative) or add. (additive)}
   \item{u}{maximal expected utility}
-  \item{Adj}{optimal adjustment parameter (&lambda; or &alpha;<sub>CI<sub/>)}
+  \item{Adj}{optimal adjustment parameter (&lambda; or &alpha;<sub>CI<sub/> according to Method)}
   \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
   \item{d2}{optimal total number of events for phase II}
   \item{d3}{total expected number of events for phase III; rounded to next natural number}
@@ -134,7 +135,12 @@ to plan optimal phase II/III drug development programs with
   \item binary (treatment effect measured by risk ratio (RR)) or
   \item normally distributed (treatment effect measured by standardized difference in means (Delta))
 }
-endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}.
+endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are 
+\itemize{
+  \item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
+  \item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
+  \item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
+}
 }
 
 \examples{
@@ -154,11 +160,13 @@ res <- optimal_bias(w = 0.3,                                 # define parameters
   b1 = 1000, b2 = 2000, b3 = 3000,                           # define expected benefit for a "small", "medium" and "large" treatment effect
   fixed = FALSE,                                             # choose if true treatment effects are fixed or random
   num_cl = 1)                                                # set number of cores used for parallelized computing (check maximum number possible with detectCores())
-
+res
 cat(comment(res))                                            # displays the optimization sequence, start and finish date of the optimization procedure.
 }
 \references{
 IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
+
+Preussler, S., Kirchner, M., Goette, H., Kieser, M.. Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. Submitted to peer-review journal.
 
 Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
 }

@@ -1,30 +1,3 @@
-# Prior distribution for theta
-prior_tte<-function(x, w, hr1, hr2, id1, id2){
-    w * dnorm(x, -log(hr1), sqrt(4/id1)) + (1 - w) * dnorm(x, -log(hr2), sqrt(4/id2))
-}
-
-# Expected probability to go to phase III: Epgo
-Epgo_tte <-  function(HRgo, d2, w, hr1, hr2, id1, id2, fixed){
-  
-  if(!fixed){
-    
-    return(  
-      integrate(function(x){
-        sapply(x, function(x){
-          pnorm((log(HRgo) + x)/sqrt(4/d2)) *
-            prior_tte(x, w, hr1, hr2, id1, id2)
-        })
-      },  - Inf, Inf)$value
-    ) 
-    
-  }else{
-    
-    return(
-      pnorm((log(HRgo) - log(hr1))/sqrt(4/d2))
-      )
-  }
-
-}
 
 # 1.1. conservative sample size calculation: use lower bound of one-sided confidence intervall
 ##############################################################################################

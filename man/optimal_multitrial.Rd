@@ -71,7 +71,7 @@ optimal_multitrial(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin,
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
 \value{
-The output of the function \code{\link{optimal_tte}} is a data.frame containing the optimization results:
+The output of the function \code{\link{optimal_multitrial}} is a data.frame containing the optimization results:
 \describe{
   \item{Case}{Case: "number of significant trials needed"}
   \item{Strategy}{Strategy: "number of conducted trials"}
@@ -97,11 +97,11 @@ and further input parameters.
 Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 }
 \description{
-The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. For time-to-event endpoints the treatment effect is measured by the hazard ratio (HR) and more information on the framework can be found in Kirchner et al. (2016). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
+The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules for programs with several phase III trials (Preussler et. al, 2019). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
 }
 \section{drugdevelopR functions}{
 
-The drugdevelopR package also provides the functions
+The drugdevelopR package provides the functions
 \itemize{
   \item \code{\link{optimal_tte}},
   \item \code{\link{optimal_binary}} and
@@ -113,7 +113,12 @@ to plan optimal phase II/III drug development programs with
   \item binary (treatment effect measured by risk ratio (RR)) or
   \item normally distributed (treatment effect measured by standardized difference in means (Delta))
 }
-endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/base/}{base} or, in the multitrial case: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}.
+endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/base/}{base}. Extensions are 
+\itemize{
+  \item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
+  \item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
+  \item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
+}
 }
 
 \examples{
@@ -128,13 +133,13 @@ res <- optimal_multitrial(w = 0.3,                              # define paramet
   case = 1, strategy = TRUE,                             # chose Case and Strategy
   fixed = TRUE,                                          # choose if true treatment effects are fixed or random
   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
-
+res
 cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
 }
 \references{
-Kirchner, M., Kieser, M., Goette, H., & Schueler, A. (2016). Utility-based optimization of phase II/III programs. Statistics in Medicine, 35(2), 305-316.
-
 IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
+
+Preussler, S., Kieser, M., and Kirchner, M. (2019). Optimal sample size allocation and go/no-go decision rules for phase II/III programs where several phase III trials are performed. Biometrical Journal, 61(2), 357-378.
 
 Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
 }
