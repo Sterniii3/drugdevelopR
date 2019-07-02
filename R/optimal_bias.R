@@ -1,6 +1,6 @@
 #' Optimal phase II/III drug development planning when discounting phase II results
 #'
-#' The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. To avoid overestimation of the treatment effect estimate after the decision rule, phase II results are discounted. The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast computing is enabled by parallel programming.
+#' The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results (Preussler et. al, 2019). The assumed true treatment effects can be assumed fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}) or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast computing is enabled by parallel programming.
 #' @docType package
 #' @name optimal_bias
 #' @param w weight for mixture prior distribution
@@ -108,7 +108,7 @@
 #' @references
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 #'
-#'Preussler, S., Kirchner, M., Goette, H., Kieser, M.. Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. Submitted to peer-review journal.
+#'Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. Submitted to peer-review journal.
 #'
 #' Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
 #'
