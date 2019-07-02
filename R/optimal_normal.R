@@ -72,7 +72,7 @@
 #'   fixed = FALSE,                                         # choose if true treatment effects are fixed or random
 #'   skipII = FALSE,                                        # choose if skipping phase II would be an option
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
-#'
+#' res
 #' cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
 #' @section drugdevelopR functions:
 #' The drugdevelopR package provides the functions
@@ -87,7 +87,12 @@
 #'   \item binary (treatment effect measured by risk ratio (RR)) and
 #'   \item normally distributed (treatment effect measured by standardized difference in means (Delta))
 #' }
-#' endpoint, where the treatment effect is assumed fixed or modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can also be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}.
+#' endpoint, where the treatment effect is assumed fixed or modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can also be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are 
+#' \itemize{
+#'   \item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
+#'   \item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
+#'   \item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
+#' }
 #' @references
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences.
 #'

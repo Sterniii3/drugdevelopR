@@ -61,7 +61,7 @@
 #' @examples
 #' res <- optimal_tte(w = 0.3,                              # define parameters for prior
 #'   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,          # (https://web.imbi.uni-heidelberg.de/prior/)
-#'   d2min = 20, d2max = 100, stepd2 = 5,                   # define optimization set for n2
+#'   d2min = 20, d2max = 100, stepd2 = 5,                   # define optimization set for d2
 #'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
 #'   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,        # drug development planning parameters
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
@@ -74,7 +74,7 @@
 #'   fixed = FALSE,                                         # choose if true treatment effects are fixed or random
 #'   skipII = FALSE,                                        # choose if skipping phase II would be an option
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
-#'
+#' res
 #' cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
 #' @section drugdevelopR functions:
 #' The drugdevelopR package provides the functions
@@ -89,7 +89,12 @@
 #'   \item binary (treatment effect measured by risk ratio (RR)) or
 #'   \item normally distributed (treatment effect measured by standardized difference in means (Delta))
 #' }
-#' endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}.
+#' endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are 
+#' \itemize{
+#'   \item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
+#'   \item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
+#'   \item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
+#' }
 #' @references
 #' Kirchner, M., Kieser, M., Goette, H., & Schueler, A. (2016). Utility-based optimization of phase II/III programs. Statistics in Medicine, 35(2), 305-316.
 #'
