@@ -1,7 +1,7 @@
 #' Optimal phase II/III drug development planning where several phase III trials are performed
 #'
 #' The function \code{\link{optimal_multitrial}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules for programs with several phase III trials (Preussler et. al, 2019). The assumed true treatment effects can be assumed fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
-#' @docType package
+#' 
 #' @name optimal_multitrial
 #' @param w weight for mixture prior distribution
 #' @param hr1 first assumed true treatment effect on HR scale for prior distribution
