@@ -142,67 +142,66 @@ utility_L <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
                   alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
                   fixed = fixed)
 
-  # round up to next even natural number
-  n2 = ceiling(d2 * (1/xi2))
-  if(round(n2/2) != n2 / 2) {n2 = n2 + 1}
-
-  n3 = ceiling(d3 * (1/xi3))
-  if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
-
-  if(n2+n3>N){
-   
-    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
-    
+  if(is.na(d3)){
+    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))  
   }else{
-   
-    pg    <-  Epgo_tte(HRgo = HRgo, d2 = d2, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                       fixed = fixed)
+    # round up to next even natural number
+    n2 = ceiling(d2 * (1/xi2))
+    if(round(n2/2) != n2 / 2) {n2 = n2 + 1}
     
-    K2    <-  c02 + c2 * n2         # cost phase II
-    K3    <-  c03 * pg + c3 * n3    # cost phase III
+    n3 = ceiling(d3 * (1/xi3))
+    if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
     
-    if(K2+K3>K){
+    if(n2+n3>N){
       
       return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
       
     }else{
-      # probability of a successful program; small, medium, large effect size
-      prob1 <-  EPsProg_L(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
-                            step1 = steps1, step2 =  steps2,
-                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                            fixed = fixed)
-      prob2 <-  EPsProg_L(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
-                            step1 =  stepm1, step2 =  stepm2,
-                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
-                            fixed = fixed)
-      prob3 <-  EPsProg_L(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
-                            step1 =  stepl1, step2 = stepl2,
-                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
-                            fixed = fixed)
       
-      SP    <-  prob1 + prob2 + prob3
+      pg    <-  Epgo_tte(HRgo = HRgo, d2 = d2, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                         fixed = fixed)
       
-      if(SP<S){
+      K2    <-  c02 + c2 * n2         # cost phase II
+      K3    <-  c03 * pg + c3 * n3    # cost phase III
+      
+      if(K2+K3>K){
         
         return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
         
       }else{
+        # probability of a successful program; small, medium, large effect size
+        prob1 <-  EPsProg_L(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
+                            step1 = steps1, step2 =  steps2,
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                            fixed = fixed)
+        prob2 <-  EPsProg_L(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
+                            step1 =  stepm1, step2 =  stepm2,
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
+                            fixed = fixed)
+        prob3 <-  EPsProg_L(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
+                            step1 =  stepl1, step2 = stepl2,
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
+                            fixed = fixed)
         
-        G     <-  b1 * prob1 + b2 * prob2 + b3 * prob3 #gain
+        SP    <-  prob1 + prob2 + prob3
         
-        EU    <-  - K2 - K3 + G
-
-        return(c(EU, d3, SP, pg, K2, K3, prob1, prob2, prob3, n2, n3))
-        #output: expected utility Eud, En3, EsP, Epgo, cost phase II and III
+        if(SP<S){
+          
+          return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+          
+        }else{
+          
+          G     <-  b1 * prob1 + b2 * prob2 + b3 * prob3 #gain
+          
+          EU    <-  - K2 - K3 + G
+          
+          return(c(EU, d3, SP, pg, K2, K3, prob1, prob2, prob3, n2, n3))
+          #output: expected utility Eud, En3, EsP, Epgo, cost phase II and III
+        } 
       } 
-      
-    } 
-        
+    }
   }
-
 }
-
-
 
 # 1.2. conservative decision rule and sample size calculation: 
 # use lower bound of one-sided confidence intervall
@@ -337,65 +336,65 @@ utility_L2 <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
   d3    <-  Ed3_L2(HRgo = HRgo, d2 = d2, Adj = Adj,
                   alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
                   fixed = fixed)
-  
-  # round up to next even natural number
-  n2 = ceiling(d2 * (1/xi2))
-  if(round(n2/2) != n2 / 2) {n2 = n2 + 1}
-  
-  n3 = ceiling(d3 * (1/xi3))
-  if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
-  
-  if(n2+n3>N){
-    
-    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
-    
+  if(is.na(d3)){
+    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))  
   }else{
+    # round up to next even natural number
+    n2 = ceiling(d2 * (1/xi2))
+    if(round(n2/2) != n2 / 2) {n2 = n2 + 1}
     
-    pg    <-  Epgo_L2(HRgo = HRgo, d2 = d2, Adj = Adj, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                       fixed = fixed)
+    n3 = ceiling(d3 * (1/xi3))
+    if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
     
-    K2    <-  c02 + c2 * n2         # cost phase II
-    K3    <-  c03 * pg + c3 * n3    # cost phase III
-    
-    if(K2+K3>K){
+    if(n2+n3>N){
       
       return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
       
     }else{
-      # probability of a successful program; small, medium, large effect size
-      prob1 <-  EPsProg_L2(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
-                          step1 = steps1, step2 =  steps2,
-                          w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                          fixed = fixed)
-      prob2 <-  EPsProg_L2(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
-                          step1 =  stepm1, step2 =  stepm2,
-                          w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
-                          fixed = fixed)
-      prob3 <-  EPsProg_L2(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
-                          step1 =  stepl1, step2 = stepl2,
-                          w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
-                          fixed = fixed)
       
-      SP    <-  prob1 + prob2 + prob3
+      pg    <-  Epgo_L2(HRgo = HRgo, d2 = d2, Adj = Adj, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                         fixed = fixed)
       
-      if(SP<S){
+      K2    <-  c02 + c2 * n2         # cost phase II
+      K3    <-  c03 * pg + c3 * n3    # cost phase III
+      
+      if(K2+K3>K){
         
         return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
         
       }else{
+        # probability of a successful program; small, medium, large effect size
+        prob1 <-  EPsProg_L2(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
+                            step1 = steps1, step2 =  steps2,
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                            fixed = fixed)
+        prob2 <-  EPsProg_L2(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
+                            step1 =  stepm1, step2 =  stepm2,
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
+                            fixed = fixed)
+        prob3 <-  EPsProg_L2(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
+                            step1 =  stepl1, step2 = stepl2,
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
+                            fixed = fixed)
         
-        G     <-  b1 * prob1 + b2 * prob2 + b3 * prob3 #gain
+        SP    <-  prob1 + prob2 + prob3
         
-        EU    <-  - K2 - K3 + G
-        
-        return(c(EU, d3, SP, pg, K2, K3, prob1, prob2, prob3, n2, n3))
-        #output: expected utility Eud, En3, EsP, Epgo, cost phase II and III
+        if(SP<S){
+          
+          return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+          
+        }else{
+          
+          G     <-  b1 * prob1 + b2 * prob2 + b3 * prob3 #gain
+          
+          EU    <-  - K2 - K3 + G
+          
+          return(c(EU, d3, SP, pg, K2, K3, prob1, prob2, prob3, n2, n3))
+          #output: expected utility Eud, En3, EsP, Epgo, cost phase II and III
+        } 
       } 
-      
-    } 
-    
+    }
   }
-  
 }
 
 
@@ -515,64 +514,68 @@ utility_R <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
                   alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
                   fixed = fixed)
   
-  # round up to next even natural number
-  n2 = ceiling(d2 * (1/xi2))
-  if(round(n2/2) != n2 / 2) {n2 = n2 + 1}
-  
-  n3 = ceiling(d3 * (1/xi3))
-  if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
-  
-  if(n2+n3>N){
-    
-    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
-    
+  if(is.na(d3)){
+    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))  
   }else{
+  
+    # round up to next even natural number
+    n2 = ceiling(d2 * (1/xi2))
+    if(round(n2/2) != n2 / 2) {n2 = n2 + 1}
     
-    pg    <-  Epgo_tte(HRgo = HRgo, d2 = d2, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                       fixed = fixed)
+    n3 = ceiling(d3 * (1/xi3))
+    if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
     
-    K2    <-  c02 + c2 * n2         # cost phase II
-    K3    <-  c03 * pg + c3 * n3    # cost phase III
-    
-    if(K2+K3>K){
+    if(n2+n3>N){
       
       return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
       
     }else{
-      # probability of a successful program; small, medium, large effect size
-      prob1 <-  EPsProg_R(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
-                          step1 = steps1, step2 =  steps2,
-                          w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                          fixed = fixed)
-      prob2 <-  EPsProg_R(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
-                          step1 =  stepm1, step2 =  stepm2,
-                          w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
-                          fixed = fixed)
-      prob3 <-  EPsProg_R(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
-                          step1 =  stepl1, step2 = stepl2,
-                          w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
-                          fixed = fixed)
       
-      SP    <-  prob1 + prob2 + prob3
+      pg    <-  Epgo_tte(HRgo = HRgo, d2 = d2, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                         fixed = fixed)
       
-      if(SP<S){
+      K2    <-  c02 + c2 * n2         # cost phase II
+      K3    <-  c03 * pg + c3 * n3    # cost phase III
+      
+      if(K2+K3>K){
         
         return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
         
       }else{
+        # probability of a successful program; small, medium, large effect size
+        prob1 <-  EPsProg_R(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
+                            step1 = steps1, step2 =  steps2,
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                            fixed = fixed)
+        prob2 <-  EPsProg_R(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
+                            step1 =  stepm1, step2 =  stepm2,
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
+                            fixed = fixed)
+        prob3 <-  EPsProg_R(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
+                            step1 =  stepl1, step2 = stepl2,
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
+                            fixed = fixed)
         
-        G     <-  b1 * prob1 + b2 * prob2 + b3 * prob3 #gain
+        SP    <-  prob1 + prob2 + prob3
         
-        EU    <-  - K2 - K3 + G
+        if(SP<S){
+          
+          return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+          
+        }else{
+          
+          G     <-  b1 * prob1 + b2 * prob2 + b3 * prob3 #gain
+          
+          EU    <-  - K2 - K3 + G
+          
+          return(c(EU, d3, SP, pg, K2, K3, prob1, prob2, prob3, n2, n3))
+          #output: expected utility Eud, En3, EsP, Epgo, cost phase II and III
+        } 
         
-        return(c(EU, d3, SP, pg, K2, K3, prob1, prob2, prob3, n2, n3))
-        #output: expected utility Eud, En3, EsP, Epgo, cost phase II and III
       } 
       
-    } 
-    
+    }
   }
-  
 }
 
 # 2.2. conservative decision rule and sample size calculation: 
@@ -705,62 +708,66 @@ utility_R2 <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
                   alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
                   fixed = fixed)
   
-  # round up to next even natural number
-  n2 = ceiling(d2 * (1/xi2))
-  if(round(n2/2) != n2 / 2) {n2 = n2 + 1}
-  
-  n3 = ceiling(d3 * (1/xi3))
-  if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
-  
-  if(n2+n3>N){
-    
-    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
-    
+  if(is.na(d3)){
+    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))  
   }else{
+  
+    # round up to next even natural number
+    n2 = ceiling(d2 * (1/xi2))
+    if(round(n2/2) != n2 / 2) {n2 = n2 + 1}
     
-    pg    <-  Epgo_R2(HRgo = HRgo, d2 = d2, Adj = Adj, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                       fixed = fixed)
+    n3 = ceiling(d3 * (1/xi3))
+    if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
     
-    K2    <-  c02 + c2 * n2         # cost phase II
-    K3    <-  c03 * pg + c3 * n3    # cost phase III
-    
-    if(K2+K3>K){
+    if(n2+n3>N){
       
       return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
       
     }else{
-      # probability of a successful program; small, medium, large effect size
-      prob1 <-  EPsProg_R2(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
-                          step1 = steps1, step2 =  steps2,
-                          w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                          fixed = fixed)
-      prob2 <-  EPsProg_R2(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
-                          step1 =  stepm1, step2 =  stepm2,
-                          w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
-                          fixed = fixed)
-      prob3 <-  EPsProg_R2(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
-                          step1 =  stepl1, step2 = stepl2,
-                          w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
-                          fixed = fixed)
       
-      SP    <-  prob1 + prob2 + prob3
+      pg    <-  Epgo_R2(HRgo = HRgo, d2 = d2, Adj = Adj, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                         fixed = fixed)
       
-      if(SP<S){
+      K2    <-  c02 + c2 * n2         # cost phase II
+      K3    <-  c03 * pg + c3 * n3    # cost phase III
+      
+      if(K2+K3>K){
         
         return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
         
       }else{
+        # probability of a successful program; small, medium, large effect size
+        prob1 <-  EPsProg_R2(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
+                            step1 = steps1, step2 =  steps2,
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                            fixed = fixed)
+        prob2 <-  EPsProg_R2(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
+                            step1 =  stepm1, step2 =  stepm2,
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
+                            fixed = fixed)
+        prob3 <-  EPsProg_R2(HRgo = HRgo, d2 = d2, Adj = Adj, alpha = alpha, beta = beta,
+                            step1 =  stepl1, step2 = stepl2,
+                            w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2, 
+                            fixed = fixed)
         
-        G     <-  b1 * prob1 + b2 * prob2 + b3 * prob3 #gain
+        SP    <-  prob1 + prob2 + prob3
         
-        EU    <-  - K2 - K3 + G
+        if(SP<S){
+          
+          return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+          
+        }else{
+          
+          G     <-  b1 * prob1 + b2 * prob2 + b3 * prob3 #gain
+          
+          EU    <-  - K2 - K3 + G
+          
+          return(c(EU, d3, SP, pg, K2, K3, prob1, prob2, prob3, n2, n3))
+          #output: expected utility Eud, En3, EsP, Epgo, cost phase II and III
+        } 
         
-        return(c(EU, d3, SP, pg, K2, K3, prob1, prob2, prob3, n2, n3))
-        #output: expected utility Eud, En3, EsP, Epgo, cost phase II and III
       } 
       
-    } 
-    
+    }
   }
-  
 }
