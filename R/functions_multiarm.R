@@ -386,8 +386,10 @@ utility_multiarm<-function(HRgo,n2,alpha,beta,hr1,hr2,strategy,ec,c2,c02,c3,c03,
     
     n321    = Ess(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,hr1=hr1,hr2=hr2,
                   strategy=strategy,case=21)
+    print(n321)
     n322    = Ess(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,hr1=hr1,hr2=hr2,
                   strategy=strategy,case=22)
+    print(n322)
     n3      = n321+n322           # total expected sample size for phase III
     
     if(round(n3/3) != n3 / 3) {n3 = n3 + 1}

@@ -16,11 +16,11 @@ optimal_multiarm(hr1, hr2, ec, n2min, n2max, stepn2, hrgomin, hrgomax,
 
 \item{ec}{control arm event rate for phase II and III}
 
-\item{n2min}{minimal total sample size in phase II}
+\item{n2min}{minimal total sample size in phase II, must be divisible by 3}
 
-\item{n2max}{maximal total sample size in phase II}
+\item{n2max}{maximal total sample size in phase II, must be divisible by 3}
 
-\item{stepn2}{stepsize for the optimization over n2}
+\item{stepn2}{stepsize for the optimization over n2, must be divisible by 3}
 
 \item{hrgomin}{minimal threshold value for the go/no-go decision rule}
 
@@ -58,7 +58,7 @@ optimal_multiarm(hr1, hr2, ec, n2min, n2max, stepn2, hrgomin, hrgomax,
 
 \item{b3}{expected gain for effect size category "large"}
 
-\item{strategy}{choose Strategy: 1: "only best promising", 2: "all promising" or "both"}
+\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
@@ -111,7 +111,7 @@ endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni
 
 \examples{
 res <- optimal_multiarm(hr1 = 0.75, hr2 = 0.80, ec = 0.6,# define assumed true HRs and control arm event rate
-  n2min = 20, n2max = 100, stepn2 = 5,                   # define optimization set for n2
+  n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
@@ -120,7 +120,7 @@ res <- optimal_multiarm(hr1 = 0.75, hr2 = 0.80, ec = 0.6,# define assumed true H
   stepm1 = 0.95,                                         # "medium"
   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
-  strategy = 1,                                          # choose strategy
+  strategy = 1,                                          # choose strategy: 1, 2 or 3
   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 res
 cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
