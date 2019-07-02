@@ -132,7 +132,7 @@ optimal_multiarm <- function(hr1, hr2, ec,
       clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo", "ss", "Ess",
                           "PsProg", "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                          "K", "N", "S", 
+                          "K", "N", "S", "strategy",
                           "c2", "c3", "c02", "c03",
                           "b1", "b2", "b3", "HRgo",
                           "hr1", "hr2", "ec"), envir = environment())
