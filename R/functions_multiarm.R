@@ -390,7 +390,8 @@ utility_multiarm<-function(HRgo,n2,alpha,beta,hr1,hr2,strategy,ec,c2,c02,c3,c03,
                   strategy=strategy,case=22)
     n3      = n321+n322           # total expected sample size for phase III
     
-    if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
+    if(round(n3/3) != n3 / 3) {n3 = n3 + 1}
+    if(round(n3/3) != n3 / 3) {n3 = n3 + 1}
     
     if(n2+n3>N){
       
@@ -460,7 +461,8 @@ utility_multiarm<-function(HRgo,n2,alpha,beta,hr1,hr2,strategy,ec,c2,c02,c3,c03,
                   strategy=strategy,case=32)
     n3      = n321+n322+n331+n332   # total expected sample size for phase III
     
-    if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
+    if(round(n3/3) != n3 / 3) {n3 = n3 + 1}
+    if(round(n3/3) != n3 / 3) {n3 = n3 + 1}
     
     if(n2+n3>N){
       

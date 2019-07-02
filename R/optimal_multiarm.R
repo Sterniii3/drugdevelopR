@@ -6,9 +6,9 @@
 #' @param hr1 assumed true treatment effect on HR scale for treatment 1
 #' @param hr2 assumed true treatment effect on HR scale for treatment 2
 #' @param ec control arm event rate for phase II and III
-#' @param n2min minimal total sample size in phase II
-#' @param n2max maximal total sample size in phase II
-#' @param stepn2 stepsize for the optimization over n2
+#' @param n2min minimal total sample size in phase II, must be divisible by 3
+#' @param n2max maximal total sample size in phase II, must be divisible by 3
+#' @param stepn2 stepsize for the optimization over n2, must be divisible by 3
 #' @param hrgomin minimal threshold value for the go/no-go decision rule
 #' @param hrgomax maximal threshold value for the go/no-go decision rule
 #' @param stephrgo stepsize for the optimization over HRgo
@@ -52,7 +52,7 @@
 #' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' @examples
 #' res <- optimal_multiarm(hr1 = 0.75, hr2 = 0.80, ec = 0.6,# define assumed true HRs and control arm event rate
-#'   n2min = 20, n2max = 100, stepn2 = 5,                   # define optimization set for n2
+#'   n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
 #'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
 #'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
@@ -115,6 +115,7 @@ optimal_multiarm <- function(hr1, hr2, ec,
   result <- NULL
   
   for(strategy in STRATEGY){
+    
     ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
       sp2fkt <- sp3fkt <- n3fkt <- matrix(0, length(N2), length(HRGO))
     
@@ -128,7 +129,7 @@ optimal_multiarm <- function(hr1, hr2, ec,
       
       cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
-      clusterExport(cl, c("pmvnorm", "dmvnorm","adaptIntegrate", "pgo", "ss", "Ess",
+      clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo", "ss", "Ess",
                           "PsProg", "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                           "K", "N", "S", 
@@ -138,11 +139,9 @@ optimal_multiarm <- function(hr1, hr2, ec,
       
       
       res <- parSapply(cl, N2, utility_multiarm, HRgo,
-                          alpha,beta,hr1,hr2,
-                          strategy,ec,c2,c02,c3,c03,
-                          K,N,S,
-                          steps1,stepm1,stepl1,
-                          b1, b2, b3)
+                       alpha,beta,hr1,hr2,strategy,ec,
+                       c2,c02,c3,c03,K,N,S,
+                       steps1, stepm1, stepl1,b1, b2, b3)
       
       setTxtProgressBar(title= "i", pb, j)
       stopCluster(cl)
