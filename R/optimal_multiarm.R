@@ -1,7 +1,7 @@
 #' Optimal phase II/III drug development planning for multi-arm programs
 #'
 #' The function \code{\link{optimal_multiarm}} of the drugdevelopR package enables planning of multi-arm phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules (Preussler et. al, 2019). The assumed true treatment effects are assumed fixed (planning is also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}). Fast coputing is enabled by parallel programming.
-#' @docType package
+#' 
 #' @name optimal_multiarm
 #' @param hr1 assumed true treatment effect on HR scale for treatment 1
 #' @param hr2 assumed true treatment effect on HR scale for treatment 2

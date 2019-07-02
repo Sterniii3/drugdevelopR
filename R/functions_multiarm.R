@@ -240,10 +240,10 @@ PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
       return(integrate(function(y1){ 
         sapply(y1,function(y1){
           integrate(function(y2){ 
-            ( pnorm(qnorm(1-alpha/2)+step2/(sqrt(y1^2/c)),
+            ( pnorm(qnorm(1-alpha/2)-log(step2)/(sqrt(y1^2/c)),
                     mean=-log(hr1)/(sqrt(y1^2/c)),
                     sd=1) -
-                pnorm(qnorm(1-alpha/2)+step1/(sqrt(y1^2/c)),
+                pnorm(qnorm(1-alpha/2)-log(step1)/(sqrt(y1^2/c)),
                       mean=-log(hr1)/(sqrt(y1^2/c)),
                       sd=1) )*
               dmvnorm(cbind(y1,y2),
@@ -261,10 +261,10 @@ PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
       return(integrate(function(y2){ 
         sapply(y2,function(y2){
           integrate(function(y1){ 
-            ( pnorm(qnorm(1-alpha/2)+step2/(sqrt(y2^2/c)),
+            ( pnorm(qnorm(1-alpha/2)-log(step2)/(sqrt(y2^2/c)),
                     mean=-log(hr2)/(sqrt(y2^2/c)),
                     sd=1) -
-                pnorm(qnorm(1-alpha/2)+step1/(sqrt(y2^2/c)),
+                pnorm(qnorm(1-alpha/2)-log(step1)/(sqrt(y2^2/c)),
                       mean=-log(hr2)/(sqrt(y2^2/c)),
                       sd=1) )*
               dmvnorm(cbind(y1,y2),
@@ -283,10 +283,10 @@ PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
       c     = (qnorm(1-alpha/2)+qnorm(1-beta))^2 
       
       f <- function(y){ 
-        ( pnorm(qnorm(1-alpha/2)+step2/(sqrt(y[1]^2/c)),
+        ( pnorm(qnorm(1-alpha/2)-log(step2)/(sqrt(y[1]^2/c)),
                 mean=-log(hr1)/(sqrt(y[1]^2/c)),
                 sd=1)-
-            pnorm(qnorm(1-alpha/2)+step1/(sqrt(y[1]^2/c)),
+            pnorm(qnorm(1-alpha/2)-log(step1)/(sqrt(y[1]^2/c)),
                   mean=-log(hr1)/(sqrt(y[1]^2/c)),
                   sd=1) )*
           dmvnorm(c(y[1],y[2]),
@@ -302,10 +302,10 @@ PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
       c     = (qnorm(1-alpha/2)+qnorm(1-beta))^2 
       
       f <- function(y){ 
-        ( pnorm(qnorm(1-alpha/2)+step2/(sqrt(y[2]^2/c)),
+        ( pnorm(qnorm(1-alpha/2)-log(step2)/(sqrt(y[2]^2/c)),
                 mean=-log(hr2)/(sqrt(y[2]^2/c)),
                 sd=1)-
-            pnorm(qnorm(1-alpha/2)+step1/(sqrt(y[2]^2/c)),
+            pnorm(qnorm(1-alpha/2)-log(step1)/(sqrt(y[2]^2/c)),
                   mean=-log(hr2)/(sqrt(y[2]^2/c)),
                   sd=1) )*
           dmvnorm(c(y[1],y[2]),
@@ -327,13 +327,13 @@ PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
           integrate(function(y2){ 
             sapply(y2,function(y2){ # How to erase??
               ( pmvnorm(lower=c(-Inf,-Inf),
-                        upper=c(calpha+step2/(sqrt(y2^2/c)),
-                                calpha+step2/(sqrt(y2^2/c))),
+                        upper=c(calpha-log(step2)/(sqrt(y2^2/c)),
+                                calpha-log(step2)/(sqrt(y2^2/c))),
                         mean=c(-log(hr1)/(sqrt(y2^2/c)),-log(hr2)/(sqrt(y2^2/c))),
                         sigma=SIGMAZ)-
                   pmvnorm(lower=c(-Inf,-Inf),
-                          upper=c(calpha+step1/(sqrt(y2^2/c)),
-                                  calpha+step1/(sqrt(y2^2/c))),
+                          upper=c(calpha-log(step1)/(sqrt(y2^2/c)),
+                                  calpha-log(step1)/(sqrt(y2^2/c))),
                           mean=c(-log(hr1)/(sqrt(y2^2/c)),-log(hr2)/(sqrt(y2^2/c))),
                           sigma=SIGMAZ) )*
                 dmvnorm(c(y1,y2),
@@ -357,13 +357,13 @@ PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
           integrate(function(y1){ 
             sapply(y1,function(y1){ # How to erase??
               ( pmvnorm(lower=c(-Inf,-Inf),
-                        upper=c(calpha+step2/(sqrt(y1^2/c)),
-                                calpha+step2/(sqrt(y1^2/c))),
+                        upper=c(calpha-log(step2)/(sqrt(y1^2/c)),
+                                calpha-log(step2)/(sqrt(y1^2/c))),
                         mean=c(-log(hr1)/(sqrt(y1^2/c)),-log(hr2)/(sqrt(y1^2/c))),
                         sigma=SIGMAZ)-
                   pmvnorm(lower=c(-Inf,-Inf),
-                          upper=c(calpha+step1/(sqrt(y1^2/c)),
-                                  calpha+step1/(sqrt(y1^2/c))),
+                          upper=c(calpha-log(step1)/(sqrt(y1^2/c)),
+                                  calpha-log(step1)/(sqrt(y1^2/c))),
                           mean=c(-log(hr1)/(sqrt(y1^2/c)),-log(hr2)/(sqrt(y1^2/c))),
                           sigma=SIGMAZ) )*
                 dmvnorm(c(y1,y2),
