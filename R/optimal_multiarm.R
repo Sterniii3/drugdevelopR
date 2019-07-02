@@ -3,7 +3,6 @@
 #' The function \code{\link{optimal_multiarm}} of the drugdevelopR package enables planning of multi-arm phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules (Preussler et. al, 2019). The assumed true treatment effects are assumed fixed (planning is also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}). Fast coputing is enabled by parallel programming.
 #' @docType package
 #' @name optimal_multiarm
-#' @param w weight for mixture prior distribution
 #' @param hr1 assumed true treatment effect on HR scale for treatment 1
 #' @param hr2 assumed true treatment effect on HR scale for treatment 2
 #' @param ec control arm event rate for phase II and III
@@ -28,7 +27,7 @@
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
-#' @param Strategy choose Strategy: 1: "only best promising", 2: "all promising" or "both"
+#' @param strategy choose Strategy: 1: "only best promising", 2: "all promising" or "both"
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
 #' The output of the function \code{\link{optimal_multiarm}} is a data.frame containing the optimization results:
@@ -52,7 +51,7 @@
 #' res
 #' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' @examples
-#' res <- optimal_multiarm(hr1 = 0.75, hr2 = 0.80, ec = 0.6 # define assumed true HRs and control arm event rate
+#' res <- optimal_multiarm(hr1 = 0.75, hr2 = 0.80, ec = 0.6,# define assumed true HRs and control arm event rate
 #'   n2min = 20, n2max = 100, stepn2 = 5,                   # define optimization set for n2
 #'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
 #'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
@@ -62,6 +61,7 @@
 #'   stepm1 = 0.95,                                         # "medium"
 #'   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
 #'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
+#'   strategy = 1,                                          # choose strategy
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 #' res
 #' cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
@@ -97,7 +97,7 @@ optimal_multiarm <- function(hr1, hr2, ec,
                         K = Inf, N = Inf, S = -Inf,
                         steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                         b1, b2, b3,
-                        num_cl = 1){
+                        strategy, num_cl = 1){
 
   steps2 <- stepm1
   stepm2 <- stepl1
