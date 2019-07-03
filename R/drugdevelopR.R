@@ -1,6 +1,6 @@
 #' Utility based optimal phase II/III drug development planning 
 #'
-#' The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. The assumed true treatment effects can be assumed fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/drugdevelopR/}{drugdevelopR}) or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
+#' The drugdevelopR package enables utility based planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. The assumed true treatment effects can be assumed fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/drugdevelopR/}{drugdevelopR}) or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
 #' @docType package
 #' @name drugdevelopR
 #' @section drugdevelopR package and R Shiny App:
@@ -26,6 +26,8 @@
 #' 
 #'Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal designs for multi-arm Phase II/III drug development programs. Submitted to peer-review journal.
 #'
-#' @export
+#' 
 #'
-drugdevelopR <- function(){}  
+drugdevelopR <- function(){
+  cat("Utility based optimal phase II/III planning")
+}  

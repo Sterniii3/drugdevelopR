@@ -1,6 +1,6 @@
 #' Optimal phase II/III drug development planning with time-to-event endpoint
 #'
-#' The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. For time-to-event endpoints the treatment effect is measured by the hazard ratio (HR) and more information on the framework can be found in Kirchner et al. (2016). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
+#' The \code{\link{drugdevelopR}} package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. For time-to-event endpoints the treatment effect is measured by the hazard ratio (HR) and more information on the framework can be found in Kirchner et al. (2016). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
 #' 
 #' @name optimal_tte
 #' @param w weight for mixture prior distribution
@@ -57,7 +57,7 @@
 #'   \item{K3}{expected costs for phase III}
 #'   }
 #' and further input parameters.
-#'
+#' 
 #' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' @examples
 #' res <- optimal_tte(w = 0.3,                              # define parameters for prior
@@ -77,25 +77,21 @@
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 #' res
 #' cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
-#' @section drugdevelopR functions:
-#' The drugdevelopR package provides the functions
+#' @section drugdevelopR package and R Shiny App:
+#' The drugdevelopR package provides the functions to plan optimal phase II/III drug development programs with
 #' \itemize{
-#'   \item \code{\link{optimal_tte}},
-#'   \item \code{\link{optimal_binary}} and
-#'   \item \code{\link{optimal_normal}}
+#'   \item time-to-event endpoint (\code{\link{optimal_tte}}),
+#'   \item binary endpoint (\code{\link{optimal_binary}}) and
+#'   \item normally distributed endpoint (\code{\link{optimal_normal}}),
 #' }
-#' to plan optimal phase II/III drug development programs with
-#' \itemize{
-#'   \item time-to-event (treatment effect measured by hazard ratio (HR)),
-#'   \item binary (treatment effect measured by risk ratio (RR)) or
-#'   \item normally distributed (treatment effect measured by standardized difference in means (Delta))
-#' }
-#' endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are 
+#' where the treatment effect is assumed fixed or modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed assumed treatment effects can also be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions to the basic setting are 
 #' \itemize{
 #'   \item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
 #'   \item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-#'   \item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
+#'   \item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}). 
 #' }
+#' The R Shiny App \href{https://web.imbi.uni-heidelberg.de/drugdevelopR/}{drugdevelopR} serves as homepage, navigating the different parts of drugdevelopR via links.
+#' 
 #' @references
 #' Kirchner, M., Kieser, M., Goette, H., & Schueler, A. (2016). Utility-based optimization of phase II/III programs. Statistics in Medicine, 35(2), 305-316.
 #'
@@ -103,7 +99,7 @@
 #'
 #' Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
 #'
-#' @seealso \code{\link{optimal_binary}}
+#' @seealso \code{\link{optimal_binary}}, \code{\link{optimal_normal}}, \code{\link{optimal_bias}}, \code{\link{optimal_multitrial}} and \code{\link{optimal_multiarm}}
 #'
 #' @export
 optimal_tte <- function(w,  hr1, hr2, id1, id2,
@@ -183,6 +179,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
   ufkt <- d3fkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
    sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- matrix(0, length(D2), length(HRGO))
 
+  cat("", fill = TRUE)
   cat("Optimization progress:", fill = TRUE)
   cat("", fill = TRUE)
   pb <- txtProgressBar(min = 0, max = length(HRGO), style = 3, label = "Optimization progess")
