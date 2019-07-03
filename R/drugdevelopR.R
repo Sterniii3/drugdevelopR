@@ -27,4 +27,7 @@
 #'Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal designs for multi-arm Phase II/III drug development programs. Submitted to peer-review journal.
 #'
 #' 
-
+#'@export
+drugdevelopR <- function(){
+  cat("The package drugdevelopR enables utility based optimal phase II/III drug development planning")
+}  
