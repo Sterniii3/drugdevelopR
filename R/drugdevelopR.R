@@ -33,4 +33,4 @@
 #'
 #' @export
 #'
-#'   
+#' \code{\link{optimal_multitrial}}  

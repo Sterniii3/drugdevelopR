@@ -109,9 +109,9 @@ pgo<-function(HRgo,n2,ec,hr1,hr2,strategy,case){
 # l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
 # l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
 ss<-function(alpha,beta,ec,ek,y,l){
-  
+
   if(l==1){calpha = qnorm(1-alpha/2)}
-  if(l==2){calpha = as.numeric(qmvnorm(1-alpha/2, mean=c(0,0), sigma=matrix(c(1,1/2,1/2,1), nrow=2, ncol=2))[1])}
+  if(l==2){calpha = as.numeric(mvtnorm::qmvnorm(1-alpha/2, mean=c(0,0), sigma=matrix(c(1,1/2,1/2,1), nrow=2, ncol=2))[1])}
   
   return(((l+1)*(calpha+qnorm(1-beta))^2)/(y^2)*((1/ec)+(1/ek)))
 }
@@ -380,7 +380,7 @@ PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
 } 
 
 #utility function
-utility_multiarm<-function(HRgo,n2,alpha,beta,hr1,hr2,strategy,ec,c2,c02,c3,c03,K,N,S,steps1, stepm1, stepl1,b1, b2, b3){ 
+utility_multiarm<-function(n2,HRgo,alpha,beta,hr1,hr2,strategy,ec,c2,c02,c3,c03,K,N,S,steps1, stepm1, stepl1,b1, b2, b3){ 
   
   if(strategy==1){
     
