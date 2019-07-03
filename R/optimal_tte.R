@@ -35,6 +35,7 @@
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect
 #' @param skipII choose if skipping phase II is an option, default: FASLE
 #' @param num_cl number of clusters used for parallel computing, default: 1
+#' @format data.frame containing the optimization results (see Value)
 #' @return
 #' The output of the function \code{\link{optimal_tte}} is a data.frame containing the optimization results:
 #' \describe{
@@ -101,6 +102,8 @@
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 #'
 #' Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
+#'
+#' @seealso \code{\link{optimal_binary}}
 #'
 #' @export
 optimal_tte <- function(w,  hr1, hr2, id1, id2,

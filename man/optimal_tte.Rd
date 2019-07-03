@@ -3,6 +3,7 @@
 \name{optimal_tte}
 \alias{optimal_tte}
 \title{Optimal phase II/III drug development planning with time-to-event endpoint}
+\format{data.frame containing the optimization results (see Value)}
 \usage{
 optimal_tte(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin, hrgomax,
   stephrgo, alpha, beta, xi2, xi3, c2, c3, c02, c03, K = Inf, N = Inf,
@@ -148,4 +149,7 @@ Kirchner, M., Kieser, M., Goette, H., & Schueler, A. (2016). Utility-based optim
 IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 
 Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
+}
+\seealso{
+\code{\link{optimal_binary}}
 }
