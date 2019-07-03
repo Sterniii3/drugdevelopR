@@ -1,6 +1,6 @@
 #' Optimal phase II/III drug development planning with time-to-event endpoint
 #'
-#' The \code{\link{drugdevelopR}} package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. For time-to-event endpoints the treatment effect is measured by the hazard ratio (HR) and more information on the framework can be found in Kirchner et al. (2016). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast computing is enabled by parallel programming.
+#' The function \code{\link{optimal_tte}} of the \code{\link{drugdevelopR}} package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules for time-to-event endpoints (Kirchner et al., 2016). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. When assuming fixed true tratment effects, planning can also be done with the user friendly R Shiny App \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. The App \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast computing is enabled by parallel programming.
 #' 
 #' @name optimal_tte
 #' @param w weight for mixture prior distribution
