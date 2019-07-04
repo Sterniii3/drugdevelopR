@@ -35,8 +35,8 @@
 #'   \item{Strategy}{Strategy, 1: "only best promising" or 2: "all promising"}
 #'   \item{u}{maximal expected utility}
 #'   \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
-#'   \item{n2}{optimal total sample size in phase II; rounded to the next even natural number}
-#'   \item{n3}{total expected sample size for phase III; rounded to next even natural number}
+#'   \item{n2}{optimal total sample size in phase II}
+#'   \item{n3}{total expected sample size for phase III; rounded to next natural number}
 #'   \item{n}{total sample size in the program; n = n2 + n3}
 #'   \item{K}{maximal costs of the program}
 #'   \item{pgo}{probability to go to phase III}
