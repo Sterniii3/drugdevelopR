@@ -391,10 +391,7 @@ utility_multiarm<-function(n2,HRgo,alpha,beta,hr1,hr2,strategy,ec,c2,c02,c3,c03,
                   strategy=strategy,case=22)
     
     n3      = ceiling(n321+n322)           # total expected sample size for phase III
-    
-    if(round(n3/3) != n3 / 3) {n3 = n3 + 1}
-    if(round(n3/3) != n3 / 3) {n3 = n3 + 1}
-    
+  
     if(n2+n3>N){
       
       return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
@@ -462,9 +459,6 @@ utility_multiarm<-function(n2,HRgo,alpha,beta,hr1,hr2,strategy,ec,c2,c02,c3,c03,
     n332    = Ess(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,hr1=hr1,hr2=hr2,
                   strategy=strategy,case=32)
     n3      = ceiling(n321+n322+n331+n332)   # total expected sample size for phase III
-    
-    if(round(n3/3) != n3 / 3) {n3 = n3 + 1}
-    if(round(n3/3) != n3 / 3) {n3 = n3 + 1}
     
     if(n2+n3>N){
       
