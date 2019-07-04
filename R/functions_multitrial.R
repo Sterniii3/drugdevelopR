@@ -342,12 +342,15 @@ utility2 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
   d3    <-  Ed3_tte(HRgo = HRgo, d2 = d2, alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
                     fixed = fixed)
   
-  # round up to next even natural number
-  n2 = ceiling(d2 * (1/xi2))
-  if(round(n2/2) != n2 / 2) {n2 = n2 + 1}
+  # sample size is rounded up to next even natural number
+  n2  <- ceiling(d2 * (1/xi2))
+  if(round(n2/2) != n2 / 2) {n2 <- n2 + 1}
   
-  n3 = ceiling(d3 * (1/xi3))
-  if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
+  n3  <- ceiling(d3 * (1/xi3))
+  if(round(n3/2) != n3 / 2) {n3 <- n3 + 1}
+  
+  # expected number of events is rounded to natural number for presentation
+  d3  <- ceiling(d3)
   
   if(n2+2*n3>N){
     
@@ -845,12 +848,15 @@ utility3 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
   d3    <-  Ed3_tte(HRgo = HRgo, d2 = d2, alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
                     fixed = fixed)
   
-  # round up to next even natural number
-  n2 = ceiling(d2 * (1/xi2))
-  if(round(n2/2) != n2 / 2) {n2 = n2 + 1}
+  # sample size is rounded up to next even natural number
+  n2  <- ceiling(d2 * (1/xi2))
+  if(round(n2/2) != n2 / 2) {n2 <- n2 + 1}
   
-  n3 = ceiling(d3 * (1/xi3))
-  if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
+  n3  <- ceiling(d3 * (1/xi3))
+  if(round(n3/2) != n3 / 2) {n3 <- n3 + 1}
+  
+  # expected number of events is rounded to natural number for presentation
+  d3  <- ceiling(d3)
   
   if(n2+3*n3>N){
     
@@ -1179,12 +1185,15 @@ utility4 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
   d3    <-  Ed3_tte(HRgo = HRgo, d2 = d2, alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
                     fixed = fixed)
   
-  # round up to next even natural number
-  n2 = ceiling(d2 * (1/xi2))
-  if(round(n2/2) != n2 / 2) {n2 = n2 + 1}
+  # sample size is rounded up to next even natural number
+  n2  <- ceiling(d2 * (1/xi2))
+  if(round(n2/2) != n2 / 2) {n2 <- n2 + 1}
   
-  n3 = ceiling(d3 * (1/xi3))
-  if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
+  n3  <- ceiling(d3 * (1/xi3))
+  if(round(n3/2) != n3 / 2) {n3 <- n3 + 1}
+  
+  # expected number of events is rounded to natural number for presentation
+  d3  <- ceiling(d3)
   
   if(n2+4*n3>N){
     

@@ -34,16 +34,16 @@ En3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, 
 
   if(fixed){
     return(
-      ceiling(integrate(function(y){
+      integrate(function(y){
             ((4*(qnorm(1-alpha/2)+qnorm(1-beta))^2)/y^2) *
               dnorm(y,
                     mean = Delta1,
                     sd = sqrt(4/n2))
-          }, kappa, Inf)$value)  
+          }, kappa, Inf)$value  
     )
   }else{
     return(
-      ceiling(integrate(function(x){
+      integrate(function(x){
         sapply(x, function(x){
           integrate(function(y){
             ((4*(qnorm(1-alpha/2)+qnorm(1-beta))^2)/y^2) *
@@ -53,7 +53,7 @@ En3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, 
               prior_normal(x, w, Delta1, Delta2, in1, in2, a, b)
           }, kappa, Inf)$value
         })
-      },  - Inf, Inf)$value)
+      },  - Inf, Inf)$value
     )
   }
 }
@@ -109,10 +109,12 @@ utility_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                             b1, b2, b3,
                             gamma, fixed){
 
-  n3    <-  En3_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
+  n3  <-  En3_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
                       w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                       fixed = fixed)
 
+  n3  <- ceiling(n3)
+  
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
 
   if(n2+n3>N){
@@ -175,7 +177,7 @@ utility_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
 # number of events for phase III based on median_prior
 n3_skipII_normal <-function(alpha, beta, median_prior){
 
-  ceiling((4*(qnorm(1-alpha/2)+qnorm(1-beta))^2)/(median_prior^2))
+  (4*(qnorm(1-alpha/2)+qnorm(1-beta))^2)/(median_prior^2)
 
 }
 
@@ -219,6 +221,8 @@ utility_skipII_normal <-function(alpha, beta, c03, c3, b1, b2, b3, median_prior,
 
   n3  <- n3_skipII_normal(alpha = alpha, beta = beta, median_prior = median_prior)
 
+  n3  <- ceiling(n3)
+  
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
   
   if(n3>N){

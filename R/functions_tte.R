@@ -36,7 +36,7 @@ Ed3_tte <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, fixed){
 
   if(!fixed){
     return(  
-      ceiling(integrate(function(x){
+      integrate(function(x){
         sapply(x, function(x){
           integrate(function(y){
             ( (4 * (qnorm(1 - alpha) + qnorm(1 - beta))^2)/(y^2)) *
@@ -46,18 +46,17 @@ Ed3_tte <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, fixed){
             prior_tte(x, w, hr1, hr2, id1, id2)
           },  - log(HRgo), Inf)$value
         })
-      },  - Inf, Inf)$value)
+      },  - Inf, Inf)$value
     )
   }else{
     
     return(  
-      ceiling(
         integrate(function(y){
           ( (4 * (qnorm(1 - alpha) + qnorm(1 - beta))^2)/(y^2)) *
             dnorm(y,
                   mean = -log(hr1),
                   sd = sqrt(4/d2)) 
-        },  - log(HRgo), Inf)$value)
+        },  - log(HRgo), Inf)$value
       )
   }
 }
@@ -112,16 +111,19 @@ utility_tte <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                          b1, b2, b3,
                          gamma, fixed){
 
-  d3    <-  Ed3_tte(HRgo = HRgo, d2 = d2, alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+  d3  <-  Ed3_tte(HRgo = HRgo, d2 = d2, alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
                     fixed = fixed)
 
-  # round up to next even natural number
-  n2 = ceiling(d2 * (1/xi2))
-  if(round(n2/2) != n2 / 2) {n2 = n2 + 1}
+  # sample size is rounded up to next even natural number
+  n2  <- ceiling(d2 * (1/xi2))
+  if(round(n2/2) != n2 / 2) {n2 <- n2 + 1}
 
-  n3 = ceiling(d3 * (1/xi3))
-  if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
+  n3  <- ceiling(d3 * (1/xi3))
+  if(round(n3/2) != n3 / 2) {n3 <- n3 + 1}
 
+  # expected number of events is rounded to natural number for presentation
+  d3  <- ceiling(d3)
+  
   if(n2+n3>N){
    
     return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
@@ -182,7 +184,7 @@ utility_tte <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 # number of events for phase III based on median_prior
 d3_skipII_tte <-function(alpha, beta, median_prior){
 
-  ceiling((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(median_prior^2))
+  return((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(median_prior^2))
 
 }
 
@@ -231,6 +233,8 @@ utility_skipII_tte <-function(alpha, beta, xi3, c03, c3, b1, b2, b3, median_prio
   n3  <- ceiling(d3 * (1/xi3))
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
 
+  d3  <- ceiling(d3)
+  
   if(n3>N){
     
     return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))

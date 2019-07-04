@@ -34,17 +34,17 @@ Epgo_binary <-  function(RRgo, n2, p0, w, p11, p12, in1, in2, fixed){
 # Expected sample size for phase III when going to phase III: En3
 En3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, fixed){
   if(fixed){
-    return(ceiling(
+    return(
       integrate(function(y){
         ((2*(qnorm(1-alpha/2)*t2(p11, p0)+qnorm(1-beta)*t3(p11, p0))^2)/y^2) *
           dnorm(y,
                 mean = -log(p11/p0),
                 sd = sqrt((2/n2)*t1(p11, p0)))
       }, - log(RRgo), Inf)$value
-    ))
+    )
   }else{
     return(
-      ceiling(integrate(function(x){
+      integrate(function(x){
         sapply(x, function(x){
           integrate(function(y){
             ((2*(qnorm(1-alpha/2)*t2(x, p0)+qnorm(1-beta)*t3(x, p0))^2)/y^2) *
@@ -54,7 +54,7 @@ En3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, fixed)
               prior_binary(x, w, p11, p12, in1, in2)
           }, - log(RRgo), Inf)$value
         })
-      }, 0, 1)$value)
+      }, 0, 1)$value
     )
   }
 }
@@ -121,9 +121,11 @@ utility_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                             gamma, fixed){
 
 
-  n3    <-  En3_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
+  n3  <-  En3_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
                        p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, fixed = fixed)
 
+  n3  <- ceiling(n3)
+  
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
 
   if(n2+n3>N){
@@ -183,7 +185,7 @@ n3_skipII_binary <-function(alpha, beta, p0, median_prior){
 
   median_RR = -log(median_prior/p0)
 
-  ceiling(((2*(qnorm(1-alpha/2)*sqrt(2*(1-((p0 + median_prior)/2))/((p0 + median_prior)/2))+qnorm(1-beta)*sqrt((1-p0)/p0+(1-median_prior)/median_prior))^2)/median_RR^2))
+  return(((2*(qnorm(1-alpha/2)*sqrt(2*(1-((p0 + median_prior)/2))/((p0 + median_prior)/2))+qnorm(1-beta)*sqrt((1-p0)/p0+(1-median_prior)/median_prior))^2)/median_RR^2))
 
 }
 
@@ -227,7 +229,9 @@ utility_skipII_binary <-function(alpha, beta, c03, c3, b1, b2, b3, p0, median_pr
                                 w, p11, p12, in1, in2, gamma, fixed){
 
   n3  <- n3_skipII_binary(alpha = alpha, beta = beta, p0 = p0, median_prior = median_prior)
-
+  
+  n3  <- ceiling(n3)
+  
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
 
   if(n3>N){

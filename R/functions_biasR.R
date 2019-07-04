@@ -29,7 +29,7 @@ Ed3_L<-function(HRgo, d2, Adj, alpha, beta, w, hr1, hr2, id1, id2, fixed){
     } else {
       integrated <- int$value
     }
-    return(ceiling(integrated))
+    return(integrated)
     
   }else{
     int   = try(integrate(function(x){
@@ -49,7 +49,7 @@ Ed3_L<-function(HRgo, d2, Adj, alpha, beta, w, hr1, hr2, id1, id2, fixed){
     } else {
       integrated <- int$value
     }
-    return(ceiling(integrated))
+    return(integrated)
   }
 
 } 
@@ -118,12 +118,16 @@ utility_L <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
   if(is.na(d3)){
     return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))  
   }else{
-    # round up to next even natural number
-    n2 = ceiling(d2 * (1/xi2))
-    if(round(n2/2) != n2 / 2) {n2 = n2 + 1}
     
-    n3 = ceiling(d3 * (1/xi3))
-    if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
+    # sample size is rounded up to next even natural number
+    n2  <- ceiling(d2 * (1/xi2))
+    if(round(n2/2) != n2 / 2) {n2 <- n2 + 1}
+    
+    n3  <- ceiling(d3 * (1/xi3))
+    if(round(n3/2) != n3 / 2) {n3 <- n3 + 1}
+    
+    # expected number of events is rounded to natural number for presentation
+    d3  <- ceiling(d3)
     
     if(n2+n3>N){
       
