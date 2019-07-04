@@ -155,13 +155,16 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
     calresults <- NULL
     
     if(strategy == 1|strategy==3){
+      proz <- "multiplicative"
       ADJ <- seq(lambdamin, lambdamax, steplambda)
     }
     if(strategy == 2|strategy==4){
+      proz <- "additive"
       ADJ <- seq(alphaCImin, alphaCImax, stepalphaCI)
     }
     
-    cat("Optimization progress:", fill = TRUE)
+    cat("", fill = TRUE)
+    cat(paste("Optimization progess for adjustment type ", proz), fill = TRUE)
     cat("", fill = TRUE)
     pb <- txtProgressBar(min = 0, max = length(ADJ), style = 3, label = "Optimization progess")
     
@@ -311,6 +314,7 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
   cat("Optimization result:", fill = TRUE)
   cat("", fill = TRUE)
 
+  print(result)
 
   return(result)
   
