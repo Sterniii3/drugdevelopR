@@ -262,10 +262,10 @@ EPsProg_L2<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1,
 
           integrate(function(y){ 
             
-            ( pnorm(qnorm(1-alpha)+step2/(sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c)),
+            ( pnorm(qnorm(1-alpha)-log(step2)/(sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c)),
                     mean=-log(hr1)/(sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c)),
                     sd=1)-
-                pnorm(qnorm(1-alpha)+step1/(sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c)),
+                pnorm(qnorm(1-alpha)-log(step1)/(sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c)),
                       mean=-log(hr1)/(sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c)),
                       sd=1) )*
               dnorm(y,
@@ -281,10 +281,10 @@ EPsProg_L2<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1,
         sapply(x,function(x){
           integrate(function(y){ 
 
-              ( pnorm(qnorm(1-alpha)+step2/(sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c)),
+              ( pnorm(qnorm(1-alpha)-log(step2)/(sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c)),
                       mean=x/(sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c)),
                       sd=1)-
-                  pnorm(qnorm(1-alpha)+step1/(sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c)),
+                  pnorm(qnorm(1-alpha)-log(step1)/(sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c)),
                         mean=x/(sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c)),
                         sd=1) )*
                 dnorm(y,
@@ -642,10 +642,10 @@ EPsProg_R2<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1,
   if(fixed){
       return(
         integrate(function(y){ 
-          ( pnorm(qnorm(1-alpha)+step2/(sqrt((y*Adj)^2/c)),
+          ( pnorm(qnorm(1-alpha)-log(step2)/(sqrt((y*Adj)^2/c)),
                   mean=-log(hr1)/(sqrt((y*Adj)^2/c)),
                   sd=1)-
-              pnorm(qnorm(1-alpha)+step1/(sqrt((y*Adj)^2/c)),
+              pnorm(qnorm(1-alpha)-log(step1)/(sqrt((y*Adj)^2/c)),
                     mean=-log(hr1)/(sqrt((y*Adj)^2/c)),
                     sd=1) )*
             dnorm(y,
@@ -660,10 +660,10 @@ EPsProg_R2<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1,
       integrate(function(x){
         sapply(x,function(x){
           integrate(function(y){ 
-              ( pnorm(qnorm(1-alpha)+step2/(sqrt((y*Adj)^2/c)),
+              ( pnorm(qnorm(1-alpha)-log(step2)/(sqrt((y*Adj)^2/c)),
                       mean=x/(sqrt((y*Adj)^2/c)),
                       sd=1)-
-                  pnorm(qnorm(1-alpha)+step1/(sqrt((y*Adj)^2/c)),
+                  pnorm(qnorm(1-alpha)-log(step1)/(sqrt((y*Adj)^2/c)),
                         mean=x/(sqrt((y*Adj)^2/c)),
                         sd=1) )*
                 dnorm(y,
