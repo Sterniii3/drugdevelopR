@@ -287,9 +287,10 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
      }else{
        cat("Skipping phase II is NOT the optimal option with respect to the maximal expected utility.", fill = TRUE)
      }
+     print(list(result,result_skipII))
      return(list(result,result_skipII))
      
    }
-   
+   print(result)
    return(result)
 }
