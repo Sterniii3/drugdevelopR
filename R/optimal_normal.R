@@ -279,7 +279,9 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
    cat("", fill = TRUE)
    cat("Optimization result:", fill = TRUE)
    cat("", fill = TRUE)
-
+   print(result)
+   cat("", fill = TRUE)
+   
    if(skipII==TRUE){
      cat("", fill = TRUE)
      if(result_skipII[1]>result[1]){
@@ -291,6 +293,6 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
      return(list(result,result_skipII))
      
    }
-   print(result)
+
    return(result)
 }

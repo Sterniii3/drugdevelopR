@@ -273,7 +273,8 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
    cat("", fill = TRUE)
    cat("Optimization result:", fill = TRUE)
    cat("", fill = TRUE)
-
+   cat("", fill = TRUE)
+   
    if(skipII==TRUE){
      cat("", fill = TRUE)
      if(result_skipII[1]>result[1]){

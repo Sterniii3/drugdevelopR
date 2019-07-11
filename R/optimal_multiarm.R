@@ -188,6 +188,13 @@ optimal_multiarm <- function(hr1, hr2, ec,
                     "\nfinish date:", as.character(Sys.time()))
   close(pb)
 
+  cat("", fill = TRUE)
+  cat("", fill = TRUE)
+  cat("Optimization result:", fill = TRUE)
+  cat("", fill = TRUE)
+  print(result)
+  cat("", fill = TRUE)
+  
   return(result)
   
 }
