@@ -36,7 +36,7 @@ En3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, fixed)
   if(fixed){
     return(
       integrate(function(y){
-        ((2*(qnorm(1-alpha/2)*t2(p11, p0)+qnorm(1-beta)*t3(p11, p0))^2)/y^2) *
+        ((2*(qnorm(1-alpha)*t2(p11, p0)+qnorm(1-beta)*t3(p11, p0))^2)/y^2) *
           dnorm(y,
                 mean = -log(p11/p0),
                 sd = sqrt((2/n2)*t1(p11, p0)))
@@ -47,7 +47,7 @@ En3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, fixed)
       integrate(function(x){
         sapply(x, function(x){
           integrate(function(y){
-            ((2*(qnorm(1-alpha/2)*t2(x, p0)+qnorm(1-beta)*t3(x, p0))^2)/y^2) *
+            ((2*(qnorm(1-alpha)*t2(x, p0)+qnorm(1-beta)*t3(x, p0))^2)/y^2) *
               dnorm(y,
                     mean = -log(x/p0),
                     sd = sqrt((2/n2)*t1(x, p0)))*
@@ -65,16 +65,16 @@ EPsProg_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p12
   if(fixed){
     return(
       integrate(function(y){
-        ( pnorm(qnorm(1 - alpha/2) -
-                  log(step2)/sqrt((t1(p11, p0)*y^2)/(qnorm(1-alpha/2)*t2(p11, p0) +
+        ( pnorm(qnorm(1 - alpha) -
+                  log(step2)/sqrt((t1(p11, p0)*y^2)/(qnorm(1-alpha)*t2(p11, p0) +
                                                      qnorm(1-beta)*t3(p11, p0))^2),
-                mean = -log((p11+gamma)/p0)/sqrt((t1(p11, p0)*y^2)/(qnorm(1-alpha/2)*t2(p11, p0) +
+                mean = -log((p11+gamma)/p0)/sqrt((t1(p11, p0)*y^2)/(qnorm(1-alpha)*t2(p11, p0) +
                                                                   qnorm(1-beta)*t3(p11, p0))^2),
                 sd = 1) -
-            pnorm(qnorm(1 - alpha/2) -
-                    log(step1)/sqrt((t1(p11, p0)*y^2)/(qnorm(1-alpha/2)*t2(p11, p0) +
+            pnorm(qnorm(1 - alpha) -
+                    log(step1)/sqrt((t1(p11, p0)*y^2)/(qnorm(1-alpha)*t2(p11, p0) +
                                                        qnorm(1-beta)*t3(p11, p0))^2),
-                  mean = -log((p11+gamma)/p0)/sqrt((t1(p11, p0)*y^2)/(qnorm(1-alpha/2)*t2(p11, p0) +
+                  mean = -log((p11+gamma)/p0)/sqrt((t1(p11, p0)*y^2)/(qnorm(1-alpha)*t2(p11, p0) +
                                                                     qnorm(1-beta)*t3(p11, p0))^2),
                   sd = 1) ) *
           dnorm(y,
@@ -87,16 +87,16 @@ EPsProg_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p12
       integrate(function(x){
         sapply(x, function(x){
           integrate(function(y){
-            ( pnorm(qnorm(1 - alpha/2) -
-                      log(step2)/sqrt((t1(x, p0)*y^2)/(qnorm(1-alpha/2)*t2(x, p0) +
+            ( pnorm(qnorm(1 - alpha) -
+                      log(step2)/sqrt((t1(x, p0)*y^2)/(qnorm(1-alpha)*t2(x, p0) +
                                                          qnorm(1-beta)*t3(x, p0))^2),
-                    mean = -log((x+gamma)/p0)/sqrt((t1(x, p0)*y^2)/(qnorm(1-alpha/2)*t2(x, p0) +
+                    mean = -log((x+gamma)/p0)/sqrt((t1(x, p0)*y^2)/(qnorm(1-alpha)*t2(x, p0) +
                                                                       qnorm(1-beta)*t3(x, p0))^2),
                     sd = 1) -
-                pnorm(qnorm(1 - alpha/2) -
-                        log(step1)/sqrt((t1(x, p0)*y^2)/(qnorm(1-alpha/2)*t2(x, p0) +
+                pnorm(qnorm(1 - alpha) -
+                        log(step1)/sqrt((t1(x, p0)*y^2)/(qnorm(1-alpha)*t2(x, p0) +
                                                            qnorm(1-beta)*t3(x, p0))^2),
-                      mean = -log((x+gamma)/p0)/sqrt((t1(x, p0)*y^2)/(qnorm(1-alpha/2)*t2(x, p0) +
+                      mean = -log((x+gamma)/p0)/sqrt((t1(x, p0)*y^2)/(qnorm(1-alpha)*t2(x, p0) +
                                                                         qnorm(1-beta)*t3(x, p0))^2),
                       sd = 1) ) *
               dnorm(y,
@@ -185,23 +185,23 @@ n3_skipII_binary <-function(alpha, beta, p0, median_prior){
 
   median_RR = -log(median_prior/p0)
 
-  return(((2*(qnorm(1-alpha/2)*sqrt(2*(1-((p0 + median_prior)/2))/((p0 + median_prior)/2))+qnorm(1-beta)*sqrt((1-p0)/p0+(1-median_prior)/median_prior))^2)/median_RR^2))
+  return(((2*(qnorm(1-alpha)*sqrt(2*(1-((p0 + median_prior)/2))/((p0 + median_prior)/2))+qnorm(1-beta)*sqrt((1-p0)/p0+(1-median_prior)/median_prior))^2)/median_RR^2))
 
 }
 
 # expected probability of a successful program based on median_prior
 EPsProg_skipII_binary <-function(alpha, beta, step1, step2, p0, median_prior, w, p11, p12, in1, in2, gamma, fixed){
 
-  c=(qnorm(1-alpha/2)+qnorm(1-beta))^2
+  c=(qnorm(1-alpha)+qnorm(1-beta))^2
 
   median_RR = -log(median_prior/p0)
 
   if(fixed){
     return(
-      pnorm(qnorm(1-alpha/2) - log(step2)/(sqrt(median_RR^2/c)),
+      pnorm(qnorm(1-alpha) - log(step2)/(sqrt(median_RR^2/c)),
               mean=-log((p11+gamma)/p0)/(sqrt(median_RR^2/c)),
               sd=1)-
-          pnorm(qnorm(1-alpha/2) - log(step1)/(sqrt(median_RR^2/c)),
+          pnorm(qnorm(1-alpha) - log(step1)/(sqrt(median_RR^2/c)),
                 mean=-log((p11+gamma)/p0)/(sqrt(median_RR^2/c)),
                 sd=1)
     )
@@ -209,10 +209,10 @@ EPsProg_skipII_binary <-function(alpha, beta, step1, step2, p0, median_prior, w,
     return(
       integrate(function(x){
         sapply(x,function(x){
-          ( pnorm(qnorm(1-alpha/2) - log(step2)/(sqrt(median_RR^2/c)),
+          ( pnorm(qnorm(1-alpha) - log(step2)/(sqrt(median_RR^2/c)),
                   mean=-log((x+gamma)/p0)/(sqrt(median_RR^2/c)),
                   sd=1)-
-              pnorm(qnorm(1-alpha/2) - log(step1)/(sqrt(median_RR^2/c)),
+              pnorm(qnorm(1-alpha) - log(step1)/(sqrt(median_RR^2/c)),
                     mean=-log((x+gamma)/p0)/(sqrt(median_RR^2/c)),
                     sd=1) )*
             prior_binary(x, w, p11, p12, in1, in2)

@@ -110,8 +110,8 @@ pgo<-function(HRgo,n2,ec,hr1,hr2,strategy,case){
 # l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
 ss<-function(alpha,beta,ec,ek,y,l){
 
-  if(l==1){calpha = qnorm(1-alpha/2)}
-  if(l==2){calpha = as.numeric(mvtnorm::qmvnorm(1-alpha/2, mean=c(0,0), sigma=matrix(c(1,1/2,1/2,1), nrow=2, ncol=2))[1])}
+  if(l==1){calpha = qnorm(1-alpha)}
+  if(l==2){calpha = as.numeric(mvtnorm::qmvnorm(1-alpha, mean=c(0,0), sigma=matrix(c(1,1/2,1/2,1), nrow=2, ncol=2))[1])}
   
   return(((l+1)*(calpha+qnorm(1-beta))^2)/(y^2)*((1/ec)+(1/ek)))
 }
@@ -235,15 +235,15 @@ PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
   if(strategy==1){# best promising
     if(case==21){# treatment 1 is promising and better than treatment 2
       
-      c     = (qnorm(1-alpha/2)+qnorm(1-beta))^2 
+      c     = (qnorm(1-alpha)+qnorm(1-beta))^2 
       
       return(integrate(function(y1){ 
         sapply(y1,function(y1){
           integrate(function(y2){ 
-            ( pnorm(qnorm(1-alpha/2)-log(step2)/(sqrt(y1^2/c)),
+            ( pnorm(qnorm(1-alpha)-log(step2)/(sqrt(y1^2/c)),
                     mean=-log(hr1)/(sqrt(y1^2/c)),
                     sd=1) -
-                pnorm(qnorm(1-alpha/2)-log(step1)/(sqrt(y1^2/c)),
+                pnorm(qnorm(1-alpha)-log(step1)/(sqrt(y1^2/c)),
                       mean=-log(hr1)/(sqrt(y1^2/c)),
                       sd=1) )*
               dmvnorm(cbind(y1,y2),
@@ -256,15 +256,15 @@ PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
     }
     if(case==22){# treatment 2 is promising and better than treatment 1
       
-      c     = (qnorm(1-alpha/2)+qnorm(1-beta))^2 
+      c     = (qnorm(1-alpha)+qnorm(1-beta))^2 
       
       return(integrate(function(y2){ 
         sapply(y2,function(y2){
           integrate(function(y1){ 
-            ( pnorm(qnorm(1-alpha/2)-log(step2)/(sqrt(y2^2/c)),
+            ( pnorm(qnorm(1-alpha)-log(step2)/(sqrt(y2^2/c)),
                     mean=-log(hr2)/(sqrt(y2^2/c)),
                     sd=1) -
-                pnorm(qnorm(1-alpha/2)-log(step1)/(sqrt(y2^2/c)),
+                pnorm(qnorm(1-alpha)-log(step1)/(sqrt(y2^2/c)),
                       mean=-log(hr2)/(sqrt(y2^2/c)),
                       sd=1) )*
               dmvnorm(cbind(y1,y2),
@@ -280,13 +280,13 @@ PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
     
     if(case==21){# treatment 1 is promising, treatment 2 is not
       
-      c     = (qnorm(1-alpha/2)+qnorm(1-beta))^2 
+      c     = (qnorm(1-alpha)+qnorm(1-beta))^2 
       
       f <- function(y){ 
-        ( pnorm(qnorm(1-alpha/2)-log(step2)/(sqrt(y[1]^2/c)),
+        ( pnorm(qnorm(1-alpha)-log(step2)/(sqrt(y[1]^2/c)),
                 mean=-log(hr1)/(sqrt(y[1]^2/c)),
                 sd=1)-
-            pnorm(qnorm(1-alpha/2)-log(step1)/(sqrt(y[1]^2/c)),
+            pnorm(qnorm(1-alpha)-log(step1)/(sqrt(y[1]^2/c)),
                   mean=-log(hr1)/(sqrt(y[1]^2/c)),
                   sd=1) )*
           dmvnorm(c(y[1],y[2]),
@@ -299,13 +299,13 @@ PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
     }
     if(case==22){# treatment 2 is promising, treatment 1 is not 
       
-      c     = (qnorm(1-alpha/2)+qnorm(1-beta))^2 
+      c     = (qnorm(1-alpha)+qnorm(1-beta))^2 
       
       f <- function(y){ 
-        ( pnorm(qnorm(1-alpha/2)-log(step2)/(sqrt(y[2]^2/c)),
+        ( pnorm(qnorm(1-alpha)-log(step2)/(sqrt(y[2]^2/c)),
                 mean=-log(hr2)/(sqrt(y[2]^2/c)),
                 sd=1)-
-            pnorm(qnorm(1-alpha/2)-log(step1)/(sqrt(y[2]^2/c)),
+            pnorm(qnorm(1-alpha)-log(step1)/(sqrt(y[2]^2/c)),
                   mean=-log(hr2)/(sqrt(y[2]^2/c)),
                   sd=1) )*
           dmvnorm(c(y[1],y[2]),
@@ -319,7 +319,7 @@ PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
     if(case==31){# both treatments are promising, treatment 1 is better
       
       SIGMAZ   = matrix(c(1,1/2,1/2,1), nrow = 2, ncol = 2)
-      calpha   = as.numeric(qmvnorm(1-alpha/2, mean=c(0,0), sigma= SIGMAZ)[1])
+      calpha   = as.numeric(qmvnorm(1-alpha, mean=c(0,0), sigma= SIGMAZ)[1])
       c        = (calpha+qnorm(1-beta))^2 
       
       return(integrate(function(y1){ 
@@ -349,7 +349,7 @@ PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
     if(case==32){# both treatments are promising, treatment 2 is better
       
       SIGMAZ   = matrix(c(1,1/2,1/2,1), nrow = 2, ncol = 2) 
-      calpha   = as.numeric(qmvnorm(1-alpha/2, mean=c(0,0), sigma= SIGMAZ)[1])
+      calpha   = as.numeric(qmvnorm(1-alpha, mean=c(0,0), sigma= SIGMAZ)[1])
       c        = (calpha+qnorm(1-beta))^2 
       
       return(integrate(function(y2){ 
