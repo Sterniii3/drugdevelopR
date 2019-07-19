@@ -170,7 +170,8 @@ optimal_multiarm <- function(hr1, hr2, ec,
     prob2 <- sp2fkt[I, J]
     prob3 <- sp3fkt[I, J]
     
-    result <-  rbind(result, data.frame(u = round(Eud,2), HRgo = HRGO[J], n2 = N2[I], n3 = n3, n = N2[I] + n3,
+    result <-  rbind(result, data.frame(Strategy= strategy,u = round(Eud,2), HRgo = HRGO[J], n2 = N2[I], 
+                          n3 = n3, n = N2[I] + n3,
                           pgo = round(pg,2), sProg = round(prob,2),
                           hr1 = hr1, hr2 = hr2, ec = ec,
                           K = K, N = N, S = S, K2 = round(k2), K3 = round(k3),
