@@ -108,7 +108,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
                         case, strategy = TRUE,
                         fixed = FALSE,  num_cl = 1){
 
-  result <- NULL
+  result <- result23 <- NULL
   
   # spezifications for one phase III trial
   steps1 = 1; stepm1 = 0.95; stepl1 = 0.85
@@ -116,6 +116,8 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
   stepm2  <- stepl1
   stepl2  <- 0
   gamma   <- 0
+  ymin <- 0.8
+  
   
   alpha_in <- alpha
 
@@ -131,7 +133,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
     }
     if(case==2){
       # Strategy 1alpha^2 vs. Strategy 2/2 vs. Strategy 2/3 vs. Strategy 2/2( + 1)
-      STRATEGY = c(1, 2, 3)
+      STRATEGY = c(1, 2, 3, 23)
     }
     if(case==3){
       # Strategy 1alpha^3 vs. Strategy 3/3 vs. Strategy 3/4
@@ -144,7 +146,8 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
   for(Strategy in STRATEGY){
     
     ufkt <- d3fkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
-      sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- matrix(0, length(D2), length(HRGO))
+      sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- pgo2fkt <- 
+      d33fkt <-  n33fkt<-  sp13fkt   <- sp23fkt   <- sp33fkt <- matrix(0, length(D2), length(HRGO))
     
     cat("", fill = TRUE)
     cat(paste("Case ", case,": Optimization progess for Strategy ", Strategy), fill = TRUE)
@@ -174,13 +177,13 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
         alpha <- alpha_in
       }
 
-      clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", "Epgo_tte", "Ed3_tte",
-                          "EPsProg_tte", "EPsProg2", "EPsProg3", "EPsProg4",
+      clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", "Epgo_tte", "Epgo23", "Ed3_tte",
+                          "EPsProg_tte", "EPsProg2", "EPsProg3", "EPsProg4", "EPsProg23",
                           "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                           "K", "N", "S","gamma", "fixed", "case", "Strategy",
                           "xi2", "xi3", "c2", "c3", "c02", "c03",
-                          "b1", "b2", "b3", "w", "HRgo",
+                          "b1", "b2", "b3", "w", "HRgo", "ymin",
                           "hr1", "hr2", "id1", "id2"), envir = environment())
       
       if(Strategy==1){
@@ -208,6 +211,12 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
                             b1, b2, b3,
                             case, fixed)  
       }
+      if(Strategy==23){
+        res <- parSapply(cl, D2, utility23, HRgo, w, hr1, hr2, id1, id2,
+                         alpha, beta, xi2, xi3,
+                         c2, c3, c02, c03, 
+                         b1, b2, b3)  
+      }
       if(Strategy==4){
         res <- parSapply(cl, D2, utility4, HRgo, w, hr1, hr2, id1, id2,
                             alpha, beta, xi2, xi3,
@@ -232,6 +241,15 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
     n2fkt[, j]     <-  res[10, ]
     n3fkt[, j]     <-  res[11, ]
 
+    if(Strategy==23){
+      pgo2fkt[, j]    <-  res[11, ]
+      d33fkt[, j]     <-  res[12, ]
+      n33fkt[, j]     <-  res[13, ]
+      sp13fkt[, j]    <-  res[14, ]
+      sp23fkt[, j]    <-  res[15, ]
+      sp33fkt[, j]    <-  res[16, ]
+    }
+ 
     }
 
     ind   <-  which(ufkt  ==  max(ufkt), arr.ind <-  TRUE)
@@ -251,6 +269,17 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
     n2    <- n2fkt[I,J]
     n3    <- n3fkt[I,J]
 
+    if(Strategy==23){
+      d33    <- d33fkt[I, J]
+      pg3    <- pgo3fkt[I, J]
+      prob13 <- sp13fkt[I, J]
+      prob23 <- sp23fkt[I, J]
+      prob33 <- sp33fkt[I, J]
+      n23    <- n23fkt[I,J]
+      n33    <- n33fkt[I,J]
+    }
+    
+    
     close(pb)
     
     if(!fixed){
@@ -278,6 +307,20 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
                             c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma))
     }
     
+    if(Strategy==23){
+      result23 <-  rbind(result23, data.frame(Case = case, Strategy = Strategy, 
+                                          u = round(Eud,2), HRgo = HRGO[J], d2 = D2[I], d3 = d3, d = D2[I] + d3,
+                                          n2 = n2, n3 = n3, n = n2 + n3,
+                                          pgo = round(pg,2), sProg = round(prob,2),
+                                          w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
+                                          K2 = round(k2), K3 = round(k3),
+                                          sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
+                                          pgo3 = round(pg3,2), d33= d33,
+                                          sProg13 = round(prob13,2), sProg23 = round(prob23,2), sProg33 = round(prob33,2),
+                                          alpha = alpha, beta = beta, xi2 = xi2, xi3 = xi3, c02 = c02,
+                                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3))
+    }
+    
     comment(result) <-   c("\noptimization sequence HRgo:", HRGO,
                   "\noptimization sequence d2:", D2,
                   "\nset on date:", as.character(date),
@@ -291,6 +334,6 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
   print(result)
   cat("", fill = TRUE)
   
-  return(result)
+  return(list(result,result23))
   
 }
