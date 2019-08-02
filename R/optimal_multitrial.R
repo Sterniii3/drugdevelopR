@@ -242,7 +242,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
     n3fkt[, j]     <-  res[11, ]
 
     if(Strategy==23){
-      pgo2fkt[, j]    <-  res[11, ]
+      pgo3fkt[, j]    <-  res[11, ]
       d33fkt[, j]     <-  res[12, ]
       n33fkt[, j]     <-  res[13, ]
       sp13fkt[, j]    <-  res[14, ]
@@ -275,15 +275,21 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
       prob13 <- sp13fkt[I, J]
       prob23 <- sp23fkt[I, J]
       prob33 <- sp33fkt[I, J]
-      n23    <- n23fkt[I,J]
       n33    <- n33fkt[I,J]
+    }else{
+      d33    <- 0
+      pg3    <- 0
+      prob13 <- 0
+      prob23 <- 0
+      prob33 <- 0
+      n33    <- 0
     }
     
     
     close(pb)
     
     if(!fixed){
-      
+
       result <-  rbind(result, data.frame(Case = case, Strategy = Strategy, 
                             u = round(Eud,2), HRgo = HRGO[J], d2 = D2[I], d3 = d3, d = D2[I] + d3,
                             n2 = n2, n3 = n3, n = n2 + n3,
@@ -292,9 +298,12 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
                             K = K, N = N, S = S, K2 = round(k2), K3 = round(k3),
                             sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
                             steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
+                            pgo3 = round(pg3,2), d33= d33,n33 = n33,
+                            sProg13 = round(prob13,2), sProg23 = round(prob23,2), sProg33 = round(prob33,2),
                             alpha = alpha, beta = beta, xi2 = xi2, xi3 = xi3, c02 = c02,
                             c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma))
     }else{
+    
       result <-  rbind(result, data.frame(Case = case, Strategy = Strategy, 
                             u = round(Eud,2), HRgo = HRGO[J], d2 = D2[I], d3 = d3, d = D2[I] + d3,
                             n2 = n2, n3 = n3, n = n2 + n3,
@@ -307,19 +316,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
                             c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma))
     }
     
-    if(Strategy==23){
-      result23 <-  rbind(result23, data.frame(Case = case, Strategy = Strategy, 
-                                          u = round(Eud,2), HRgo = HRGO[J], d2 = D2[I], d3 = d3, d = D2[I] + d3,
-                                          n2 = n2, n3 = n3, n = n2 + n3,
-                                          pgo = round(pg,2), sProg = round(prob,2),
-                                          w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                                          K2 = round(k2), K3 = round(k3),
-                                          sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
-                                          pgo3 = round(pg3,2), d33= d33,
-                                          sProg13 = round(prob13,2), sProg23 = round(prob23,2), sProg33 = round(prob33,2),
-                                          alpha = alpha, beta = beta, xi2 = xi2, xi3 = xi3, c02 = c02,
-                                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3))
-    }
+
     
     comment(result) <-   c("\noptimization sequence HRgo:", HRGO,
                   "\noptimization sequence d2:", D2,
@@ -334,6 +331,6 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
   print(result)
   cat("", fill = TRUE)
   
-  return(list(result,result23))
+  return(result)
   
 }

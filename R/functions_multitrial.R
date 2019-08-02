@@ -647,7 +647,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                   dnorm(y, 
                         mean = x, 
                         sd = sqrt(4/d2)) * 
-                  prior_tte(x, w, 0.69, 0.88, (4/210), (4/420))
+                  prior_tte(x, w, hr1, hr2, id1, id2)
               })
             },  - log(HRgo), Inf)$value   
           })
@@ -686,7 +686,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                   dnorm(y, 
                         mean = x, 
                         sd = sqrt(4/d2)) * 
-                  prior_tte(x, w, 0.69, 0.88, (4/210), (4/420)) 
+                  prior_tte(x, w, hr1, hr2, id1, id2) 
               })
             },  - log(HRgo), Inf)$value
           })
@@ -720,7 +720,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                   dnorm(y, 
                         mean = x, 
                         sd = sqrt(4/d2)) * 
-                  prior_tte(x, w, 0.69, 0.88, (4/210), (4/420)) 
+                  prior_tte(x, w, hr1, hr2, id1, id2) 
               })
             },  - log(HRgo), Inf)$value
           })
@@ -762,7 +762,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                   dnorm(y, 
                         mean = x, 
                         sd = sqrt(4/d2)) * 
-                  prior_tte(x, w, 0.69, 0.88, (4/210), (4/420)) 
+                  prior_tte(x, w, hr1, hr2, id1, id2) 
               })
             },  - log(HRgo), Inf)$value
           })
@@ -801,7 +801,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                   dnorm(y, 
                         mean = x, 
                         sd = sqrt(4/d2)) * 
-                  prior_tte(x, w, 0.69, 0.88, (4/210), (4/420)) 
+                  prior_tte(x, w, hr1, hr2, id1, id2) 
               })
             },  - log(HRgo), Inf)$value
           })
@@ -825,7 +825,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                   dnorm(y, 
                         mean = x, 
                         sd = sqrt(4/d2)) * 
-                  prior_tte(x, w, 0.69, 0.88, (4/210), (4/420)) 
+                  prior_tte(x, w, hr1, hr2, id1, id2) 
               })
             },  - log(HRgo), Inf)$value
           })
@@ -1078,7 +1078,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                 dnorm(y, 
                       mean = x, 
                       sd = sqrt(4/d2)) * 
-                prior_tte(x, w, 0.69, 0.88, (4/210), (4/420))
+                prior_tte(x, w, hr1, hr2, id1, id2)
             })
           },  - log(HRgo), Inf)$value   
         })
@@ -1123,7 +1123,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                 dnorm(y, 
                       mean = x, 
                       sd = sqrt(4/d2)) * 
-                prior_tte(x, w, 0.69, 0.88, (4/210), (4/420)) 
+                prior_tte(x, w, hr1, hr2, id1, id2) 
             })
           },  - log(HRgo), Inf)$value
         })
@@ -1163,7 +1163,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                 dnorm(y, 
                       mean = x, 
                       sd = sqrt(4/d2)) * 
-                prior_tte(x, w, 0.69, 0.88, (4/210), (4/420)) 
+                prior_tte(x, w, hr1, hr2, id1, id2) 
             })
           },  - log(HRgo), Inf)$value
         })
