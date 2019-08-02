@@ -1511,7 +1511,7 @@ utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                        alpha = alpha, beta = beta,
                        w = w, hr1 = hr1, hr2 = hr2, 
                        id1 = id1, id2 = id2, 
-                     case = 2, size = "all", ymin = ymin) - prob1 -prob3
+                     case = 2, size = "all", ymin = ymin) - prob1 - prob3
       
         
   # prob to do third phase III trial
@@ -1540,7 +1540,7 @@ utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
   # medium
   prob23   <-  EPsProg23(HRgo = HRgo, d2 = d2, alpha = alpha, beta = beta, 
                          w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
-                         case = 3, size = "all", ymin = ymin)  -  prob1  -  prob3
+                         case = 3, size = "all", ymin = ymin)  -  prob13  -  prob33
   
   K1    <-  c02 + c2 * n2 # cost phase II 
   

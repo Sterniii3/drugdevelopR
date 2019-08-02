@@ -146,7 +146,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
   for(Strategy in STRATEGY){
     
     ufkt <- d3fkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
-      sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- pgo2fkt <- 
+      sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- pgo3fkt <- 
       d33fkt <-  n33fkt<-  sp13fkt   <- sp23fkt   <- sp33fkt <- matrix(0, length(D2), length(HRGO))
     
     cat("", fill = TRUE)
