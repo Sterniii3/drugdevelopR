@@ -242,12 +242,12 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
     n3fkt[, j]     <-  res[11, ]
 
     if(Strategy==23){
-      pgo3fkt[, j]    <-  res[11, ]
-      d33fkt[, j]     <-  res[12, ]
-      n33fkt[, j]     <-  res[13, ]
-      sp13fkt[, j]    <-  res[14, ]
-      sp23fkt[, j]    <-  res[15, ]
-      sp33fkt[, j]    <-  res[16, ]
+      pgo3fkt[, j]    <-  res[12, ]
+      d33fkt[, j]     <-  res[13, ]
+      n33fkt[, j]     <-  res[14, ]
+      sp13fkt[, j]    <-  res[15, ]
+      sp23fkt[, j]    <-  res[16, ]
+      sp33fkt[, j]    <-  res[17, ]
     }
  
     }
@@ -298,7 +298,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
                             K = K, N = N, S = S, K2 = round(k2), K3 = round(k3),
                             sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
                             steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
-                            pgo3 = round(pg3,2), d33= d33,n33 = n33,
+                            pgo3 = round(pg3,2), d33= d33, n33 = n33,
                             sProg13 = round(prob13,2), sProg23 = round(prob23,2), sProg33 = round(prob33,2),
                             alpha = alpha, beta = beta, xi2 = xi2, xi3 = xi3, c02 = c02,
                             c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma))
