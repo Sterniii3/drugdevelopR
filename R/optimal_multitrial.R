@@ -116,7 +116,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
   stepm2  <- stepl1
   stepl2  <- 0
   gamma   <- 0
-  ymin <- 0.8
+  ymin <- -log(0.8)
   
   
   alpha_in <- alpha
