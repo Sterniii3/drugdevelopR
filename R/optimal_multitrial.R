@@ -249,7 +249,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
       sp23fkt[, j]    <-  res[16, ]
       sp33fkt[, j]    <-  res[17, ]
     }
- 
+  
     }
 
     ind   <-  which(ufkt  ==  max(ufkt), arr.ind <-  TRUE)
