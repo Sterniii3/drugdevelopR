@@ -1278,14 +1278,6 @@ Epgo23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
   },  - Inf, Inf)$value
 } 
 
-# Expected number of events for third phase III when going to third phase III
-Ed323 <-  function(HRgo, d2, alpha, beta, w, ymin){
-  
-  ( (4 * (qnorm(1 - alpha) + qnorm(1 - beta))^2)/(ymin^2)) * 
-    Epgo23(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2)
-  
-}
-
 # Expected probability of a successful program
 EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, ymin){
   # Option 2.1: first two phase III trials are successful: no third phase III trial
@@ -1513,7 +1505,6 @@ utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                        id1 = id1, id2 = id2, 
                      case = 2, size = "all", ymin = ymin) - prob1 - prob3
       
-        
   # prob to do third phase III trial
   pg3   <-  Epgo23(HRgo = HRgo, d2 = d2, alpha = alpha, beta = beta, 
                    w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2) 
@@ -1521,10 +1512,10 @@ utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
   # n3 for third phase III trial
   d33   <-  (4 * (qnorm(1 - alpha) + qnorm(1 - beta))^2)/(ymin^2) 
   
-  n33  <- ceiling(d33 * (1/xi3))
-  #if(round(n33/2) != n33 / 2) {n33 <- n33 + 1}
+  n33  <- ceiling(d33 * pg3 * (1/xi3))
+  if(round(n33/2) != n33 / 2) {n33 <- n33 + 1}
   
-  d33  <- ceiling(d33)
+  d33  <- ceiling(d33*pg3)
   
   # probability of a successful program: effect sizes, 
   # for program with third phase III trial
@@ -1548,7 +1539,7 @@ utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
   K2    <-  c03 * pg + c3 * n3
   
   # cost for the third phase III trial in case of third phase III trial
-  K3    <-  pg3 * (c03 + c3 * n33)
+  K3    <-  pg3 * c03 + c3 * n33
   
   G     <-  b1 * prob1 + b2 * prob2 + b3 * prob3 +
     b1 * prob13 + b2 * prob23 + b3 * prob33 # gain
@@ -1558,7 +1549,7 @@ utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
     prob13 + prob23 + prob33
   
   return(
-    c(EU, d3, SP, pg, K2, K3, prob1, prob2, prob3, n2, n3, pg3, d33, n33, prob13, prob23, prob33 )
+    c(EU, 2*d3, SP, pg, 2*K2, K3, prob1, prob2, prob3, n2, 2*n3, pg3, d33, n33, prob13, prob23, prob33 )
   )
   
 }
