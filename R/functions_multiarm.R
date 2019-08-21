@@ -10,7 +10,7 @@
 # 1. Strategy: Only best promising treatment goes to phase III
 # -> Phase III is always 2 arm trial (1:1 sample size allocatiob)
 # 2. Strategy: All promising treatments go to phase III
-# -> Phase III is 2 or 3 arm trial (1:1 or 1:1:1 sample size allocatiob)
+# -> Phase III is 2 or 3 arm trial (1:1 or 1:1:1 sample size allocation)
 
 
 # probability to go to phase III
@@ -116,7 +116,7 @@ ss<-function(alpha,beta,ec,ek,y,l){
   return(((l+1)*(calpha+qnorm(1-beta))^2)/(y^2)*((1/ec)+(1/ek)))
 }
 
-# Expected sample size for phase III when going to phase III
+# expected sample size for phase III when going to phase III
 Ess<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
   
   et1      = 1 - (1-ec)^hr1     # event rate in arm 1
@@ -216,7 +216,7 @@ Ess<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
   
 } 
 
-# Probability of a successful program
+# probability of a successful program
 PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
   
   et1      = 1 - (1-ec)^hr1    # event rate in arm 1
@@ -379,7 +379,7 @@ PsProg<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
   
 } 
 
-#utility function
+# utility function
 utility_multiarm<-function(n2,HRgo,alpha,beta,hr1,hr2,strategy,ec,c2,c02,c3,c03,K,N,S,steps1, stepm1, stepl1,b1, b2, b3){ 
   
   if(strategy==1){

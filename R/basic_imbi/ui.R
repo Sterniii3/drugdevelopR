@@ -1,9 +1,11 @@
 library(shiny)
 library(markdown)
 library(plotly)
-
+library(shinyWidgets)
+library(viridis)
 shinyUI(
    fluidPage(
+     chooseSliderSkin(skin = "Shiny", color = viridis(3,alpha=0.7)[2]),
       titlePanel("drugdevelopR: basic"),
       sidebarLayout(
          sidebarPanel(
@@ -248,15 +250,15 @@ shinyUI(
             selected = 0),
    actionButton("go3", "Go")),
    
-   tags$head(tags$style("#plot{height:200vh !important;}"))),
+   tags$head(tags$style("#plot{height:100vh !important;}"))),
 
    mainPanel(
       conditionalPanel(
          condition="input.Select == 1",
          includeMarkdown("help11.md"),
-         img(src = "trialdesign1.png",width = 900),
+         img(src = "trialdesign11.png",width = 900),
          includeMarkdown("help12.md"),
-         img(src = "CI1.png",width = 450),
+         img(src = "CI11.png",width = 450),
          includeMarkdown("help122.md")),
 
       conditionalPanel(

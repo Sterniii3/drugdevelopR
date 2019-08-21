@@ -3,10 +3,11 @@ library(markdown)
 library(plotly)
 library(viridis)
 library(msm)
-
+library(shinyWidgets)
+library(viridis)
 # Define UI for slider demo application
 shinyUI(fluidPage(
-
+  chooseSliderSkin(skin = "Shiny", color = viridis(3,alpha=0.7)[2]),
      #  Application title
    titlePanel("drugdevelopR: prior"),
      # Sidebar with sliders that demonstrate various available
