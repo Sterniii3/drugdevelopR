@@ -10,8 +10,13 @@ Magirr, D., Jaki, T., and Whitehead, J. (2012). A generalized Dunnett test for m
 
 Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. <i>Biometrika</i> 68(1), 316-319.
 
+#### Further Software
+
+The software drugdevelopR (available via: https://web.imbi.uni-heidelberg.de/drugdevelopR/) includes further Apps and an R package for optimal phase II/III drug development planning. The Code, detailed user manuals and application examples can be found on Github (https://github.com/Sterniii3/drugdevelopR).  
+
+
 #### Maintainer
 Stella Preussler, Institute of Medical Biometry and Informatics, University of Heidelberg, email: Preussler@imbi.uni-heidelberg.de.
 
-Beta version 0.4
+Beta version 0.5
 

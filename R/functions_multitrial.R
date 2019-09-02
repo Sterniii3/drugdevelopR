@@ -1282,7 +1282,7 @@ Epgo23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
 EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, ymin){
   # Option 2.1: first two phase III trials are successful: no third phase III trial
   # Option 2.2: one of the two first phase III trials successful, the treatment
-  #  effect of the other one shows a minimal clinically relevant effect: 
+  #  effect of the other one points in the same direction: 
   #  conduct third phase III trial with N3 = N3(ymin)
   
   SIGMA <-  diag(2)
