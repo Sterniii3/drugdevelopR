@@ -8,7 +8,7 @@ library("cubature")
 library("plotly")
 
 mainPath <- "/opt/shiny-server/samplesizr/basic/"
-mainPath <- ""
+#mainPath <- ""
 # Probability to go to phase III: pgo
 pgof_time <-  function(HRgo, d2, theta){
    pnorm((log(HRgo)+theta)/sqrt(4/d2))
