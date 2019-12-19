@@ -28,10 +28,14 @@ Fisher, L. D. (1999). One large, well-designed, multicenter study as an alternat
 
 Preussler, S., Kieser, M., and Kirchner, M. (2019). Optimal sample size allocation and go/no-go decision rules for phase II/III programs where several phase III trials are performed. <i>Biometrical Journal</i>, 61(2), 357-378.
 
+#### Further Software
+
+The software drugdevelopR (available via: https://web.imbi.uni-heidelberg.de/drugdevelopR/) includes further Apps and an R package for optimal phase II/III drug development planning. The Code, detailed user manuals and application examples can be found on Github (https://github.com/Sterniii3/drugdevelopR).  
+
 
 
 
 #### Maintainer
 Stella Preussler, Institute of Medical Biometry and Informatics, University of Heidelberg, email: Preussler@imbi.uni-heidelberg.de.
 
-Beta version 0.2
+Beta version 0.4

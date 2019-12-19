@@ -1,6 +1,6 @@
 #### Additional Information
-Optimal planning when assuming a prior distribution for the treatment effect can be done withe the help of the following R packages for programs 
-* in the basic setting
+Optimal planning when assuming a prior distribution for the treatment effect can be done withe the help of the R package drugdevelopR (available at: https://github.com/Sterniii3/drugdevelopR). 
+
 
 
 
@@ -8,5 +8,5 @@ Optimal planning when assuming a prior distribution for the treatment effect can
 
 Stella Preussler, Institute of Medical Biometry and Informatics, University of Heidelberg, email: Preussler@imbi.uni-heidelberg.de.
 
-Beta version 0.3
+Beta version 0.4
 

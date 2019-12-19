@@ -482,12 +482,14 @@ shinyServer(function(input, output,session) {
                  load(file=paste0(mainPath, "ufkt1.RData"))
                  load(file=paste0(mainPath, "d2fkt1.RData"))
                  load(file=paste0(mainPath, "HRgofkt1.RData")) 
+                 showplot = "multiplicatively"
               }
               if(Select==2){
 
                  load(file=paste0(mainPath, "ufkt2.RData"))
                  load(file=paste0(mainPath, "d2fkt2.RData"))
-                 load(file=paste0(mainPath, "HRgofkt2.RData"))   
+                 load(file=paste0(mainPath, "HRgofkt2.RData")) 
+                 showplot = "additively"
               }
               if(Select==3){
                  
@@ -500,16 +502,24 @@ shinyServer(function(input, output,session) {
                     
                     load(file=paste0(mainPath, "ufkt1.RData"))
                     load(file=paste0(mainPath, "d2fkt1.RData"))
-                    load(file=paste0(mainPath, "HRgofkt1.RData"))  
+                    load(file=paste0(mainPath, "HRgofkt1.RData")) 
+                    showplot = "multiplicatively"
                  }else{
                     
                     load(file=paste0(mainPath, "ufkt2.RData"))
                     load(file=paste0(mainPath, "d2fkt2.RData"))
                     load(file=paste0(mainPath, "HRgofkt2.RData"))   
+                    showplot = "additively"
                  }
                  
               }
-              plot_ly(x=HRgofkt,y=d2fkt,z=ufkt, type="surface")   
+              plot_ly(x=HRgofkt,y=d2fkt,z=ufkt, type="surface")  %>% 
+                layout(title=
+                         paste0("Optimization region of ", showplot, " adjusted setting"),
+                       scene = list(
+                         xaxis = list(title = "HRgo"),
+                         yaxis = list(title = "d2"),
+                         zaxis = list(title = "expected utility")))  
            }
 
            

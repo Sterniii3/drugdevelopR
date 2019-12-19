@@ -8,7 +8,7 @@ library("cubature")
 library("plotly")
 
 mainPath <- "/opt/shiny-server/samplesizr/basic/"
-
+mainPath <- ""
 # Probability to go to phase III: pgo
 pgof_time <-  function(HRgo, d2, theta){
    pnorm((log(HRgo)+theta)/sqrt(4/d2))
@@ -17,7 +17,7 @@ pgof_time <-  function(HRgo, d2, theta){
 # Expected number of events for phase III
 Ed3f_time <-  function(HRgo, d2, alpha, beta, theta){
    integrate(function(y){
-      ((4*(qnorm(1-alpha/2)+qnorm(1-beta))^2)/(y^2))*
+      ((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(y^2))*
          dnorm(y,
                mean = theta,
                sd = sqrt(4/d2))
@@ -28,13 +28,13 @@ Ed3f_time <-  function(HRgo, d2, alpha, beta, theta){
 EPsProgf_time <-  function(HRgo, d2, alpha, beta, theta, 
                            step1, step2){
    
-   c = (qnorm(1-alpha/2)+qnorm(1-beta))^2
+   c = (qnorm(1-alpha)+qnorm(1-beta))^2
 
    integrate(function(y){
-      ( pnorm(qnorm(1-alpha/2)-log(step2)/(sqrt(y^2/c)),
+      ( pnorm(qnorm(1-alpha)-log(step2)/(sqrt(y^2/c)),
               mean = theta/(sqrt(y^2/c)),
               sd = 1) -
-           pnorm(qnorm(1-alpha/2)-log(step1)/(sqrt(y^2/c)),
+           pnorm(qnorm(1-alpha)-log(step1)/(sqrt(y^2/c)),
                  mean = theta/(sqrt(y^2/c)),
                  sd = 1) )*
          dnorm(y,
@@ -102,7 +102,7 @@ En3f_binary <-  function(RRgo, n2, alpha, beta, p0, p1){
    rho   = -log(p1/p0)
    Var   = (2/n2)*((1-p0)/p0+(1-p1)/p1)
    P     = (p0+p1)/2
-   c     = (qnorm(1-alpha/2)*sqrt(2*(1-P)/P)+
+   c     = (qnorm(1-alpha)*sqrt(2*(1-P)/P)+
                qnorm(1-beta)*sqrt((1-p0)/p0+(1-p1)/p1))^2
 
    ceiling(integrate(function(y){
@@ -122,14 +122,14 @@ EPsProgf_binary <-  function(RRgo, n2, alpha, beta,
    # Phase III
    V     = ((1-p0)/p0+(1-p1)/p1)
    P     = (p0+p1)/2
-   c     = (qnorm(1-alpha/2)*sqrt(2*(1-P)/P)+
+   c     = (qnorm(1-alpha)*sqrt(2*(1-P)/P)+
                qnorm(1-beta)*sqrt((1-p0)/p0+(1-p1)/p1))^2
 
    integrate(function(y){
-      ( pnorm(qnorm(1-alpha/2)-log(step2)/(sqrt(V*y^2/c)),
+      ( pnorm(qnorm(1-alpha)-log(step2)/(sqrt(V*y^2/c)),
               mean = rho/(sqrt(V*y^2/c)),
               sd = 1) -
-           pnorm(qnorm(1-alpha/2)-log(step1)/(sqrt(V*y^2/c)),
+           pnorm(qnorm(1-alpha)-log(step1)/(sqrt(V*y^2/c)),
                  mean = rho/(sqrt(V*y^2/c)),
                  sd = 1) ) *
          dnorm(y,
@@ -191,7 +191,7 @@ pgof_normal <-  function(kappa, n2, Delta){
 # Expected sample size for phase III
 En3f_normal <-  function(kappa, n2, alpha, beta, Delta){
    ceiling(integrate(function(y){
-      ((4*(qnorm(1-alpha/2)+qnorm(1-beta))^2)/y^2) *
+      ((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/y^2) *
          dnorm(y,
                mean = Delta,
                sd = sqrt(4/n2))
@@ -202,13 +202,13 @@ En3f_normal <-  function(kappa, n2, alpha, beta, Delta){
 EPsProgf_normal <-  function(kappa, n2, alpha, beta, 
                              Delta, step1, step2){
 
-   c     <- (qnorm(1-alpha/2)+qnorm(1-beta))^2
+   c     <- (qnorm(1-alpha)+qnorm(1-beta))^2
 
    integrate(function(y){
-      ( pnorm(qnorm(1-alpha/2)+step2/sqrt(y^2/c),
+      ( pnorm(qnorm(1-alpha)+step2/sqrt(y^2/c),
               mean = Delta/sqrt(y^2/c),
               sd = 1) -
-           pnorm(qnorm(1-alpha/2)+step1/sqrt(y^2/c),
+           pnorm(qnorm(1-alpha)+step1/sqrt(y^2/c),
                  mean = Delta/sqrt(y^2/c),
                  sd = 1) ) *
          dnorm(y,
@@ -571,8 +571,39 @@ output$table <- renderTable({
               load(file=paste0(mainPath, "ufkt.RData"))
               load(file=paste0(mainPath, "numfkt.RData"))
               load(file=paste0(mainPath, "tresfkt.RData"))
-
-              plot_ly(x=tresfkt,y=numfkt,z=ufkt, type="surface")
+              
+              if(Select==1){
+              
+              
+              plot_ly(x=tresfkt,y=numfkt,z=ufkt, type="surface") %>% 
+                    layout(title=
+                           paste0("Optimization region"),
+                            scene = list(
+                           xaxis = list(title = "HRgo"),
+                           yaxis = list(title = "d2"),
+                           zaxis = list(title = "expected utility")))
+              }else{
+                
+                if(Select==2){
+                  plot_ly(x=tresfkt,y=numfkt,z=ufkt, type="surface") %>% 
+                    layout(title=
+                             paste0("Optimization region"),
+                           scene = list(
+                             xaxis = list(title = "RRgo"),
+                             yaxis = list(title = "n2"),
+                             zaxis = list(title = "expected utility")))  
+                }else{
+                  plot_ly(x=tresfkt,y=numfkt,z=ufkt, type="surface") %>% 
+                    layout(title=
+                             paste0("Optimization region"),
+                           scene = list(
+                             xaxis = list(title = "kappa"),
+                             yaxis = list(title = "n2"),
+                             zaxis = list(title = "expected utility")))
+                }
+                
+            
+              }
            }
         })
 })

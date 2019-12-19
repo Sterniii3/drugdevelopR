@@ -1,10 +1,11 @@
 library(shiny)
 library(markdown)
 library(plotly)
-
+library(viridis)
+library(shinyWidgets)
 # Define UI for slider demo application
 shinyUI(fluidPage(
-     
+  chooseSliderSkin(skin = "Shiny", color = viridis(3,alpha=0.9)[2]),
      #  Application title
    titlePanel("drugdevelopR: multitrial"),
      # Sidebar with sliders that demonstrate various available
@@ -59,7 +60,7 @@ shinyUI(fluidPage(
                    selected = 1),
        actionButton("go", "Go"),
                
-   tags$head(tags$style("#plot{height:200vh !important;}"))),
+   tags$head(tags$style("#plot{height:75vh !important;}"))),
           
           
           # Show a table summarizing the values entered
@@ -67,7 +68,7 @@ shinyUI(fluidPage(
           includeMarkdown("help51.md"),
           img(src = "cases_strategies1.png",width = 900),
           includeMarkdown("help62.md"),
-          img(src = "vs.png",width = 1150),
+          img(src = "vs2.png",width = 1150),
           includeMarkdown("help63.md"),
           tableOutput("table"),
           includeMarkdown("help64.md"),

@@ -1,10 +1,11 @@
 library(shiny)
 library(markdown)
 library(plotly)
-
+library(shinyWidgets)
+library(viridis)
 # Define UI for slider demo application
 shinyUI(fluidPage(
-     
+  chooseSliderSkin(skin = "Shiny", color = viridis(3,alpha=0.9)[2]),
      #  Application title
    titlePanel("drugdevelopR: bias"),
      # Sidebar with sliders that demonstrate various available
@@ -75,17 +76,17 @@ shinyUI(fluidPage(
                    selected = 1),
        actionButton("go", "Go"),
                
-   tags$head(tags$style("#plot{height:200vh !important;}"))),
+   tags$head(tags$style("#plot{height:75vh !important;}"))),
           
           
           # Show a table summarizing the values entered
           mainPanel(
           includeMarkdown("help51.md"),
-          img(src = "biasdesign.png",width = 800),
+          img(src = "biasdesign1.png",width = 800),
           includeMarkdown("help52.md"),
           tableOutput("table"),
           includeMarkdown("help53.md"),
-          plotlyOutput("plot", height = "30px")
+          plotlyOutput("plot", height = "20px")
           )
      )
 ))

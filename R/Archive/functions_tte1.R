@@ -48,7 +48,7 @@ Ed3_tte <-  function(HRgo, d2, alpha, beta,
     )
   }else{
     return(  
-      cat(comment(DFintegrate(function(y){
+      integrate(function(y){
         ((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(y^2))*
             dnorm(y,
                   mean = -log(hr1),
@@ -62,7 +62,8 @@ Ed3_tte <-  function(HRgo, d2, alpha, beta,
 EPsProg_tte <-  function(HRgo, d2, alpha, beta, 
                          step1, step2, 
                          w, hr1, hr2, id1, id2, 
-                         gamma, fixed){
+                         gamma, fixed, D, N, xi2, xi3,
+                         K, c2, c3, c02, c03){
 
   c = (qnorm(1 - alpha) + qnorm(1 - beta))^2
 
@@ -81,7 +82,7 @@ EPsProg_tte <-  function(HRgo, d2, alpha, beta,
                       mean = x,
                       sd = sqrt(4/d2))*
                     prior_tte(x, w, hr1, hr2, id1, id2)
-          }, -log(HRgo), Inf)$value
+          }, max(-log(HRgo), sqrt((4*c)/(D-d2)), sqrt((4*c)/(xi3*(N-(d2/xi2)))), sqrt((4*c*c03)/(xi3*(K-c02-c03-c2*(d2/xi2)))) ), Inf)$value
         })
       },  - Inf, Inf)$value
     )
@@ -97,7 +98,7 @@ EPsProg_tte <-  function(HRgo, d2, alpha, beta,
               dnorm(y,
                 mean = -log(hr1),
                 sd = sqrt(4/d2)) 
-      },  - log(HRgo), Inf)$value
+      }, max(-log(HRgo), sqrt((4*c)/(D-d2)), sqrt((4*c)/(xi3*(N-(d2/xi2)))), sqrt((4*c*c03)/(xi3*(K-c02-c03-c2*(d2/xi2)))) ), Inf)$value
     )
   }
 }
@@ -148,19 +149,19 @@ utility_tte <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                            step1 = steps1, step2 =  steps2,
                            w = w, hr1 = hr1, hr2 = hr2, 
                            id1 = id1, id2 = id2, 
-                           gamma = gamma, fixed = fixed)
+                           gamma = gamma, fixed = fixed, D = D)
       prob2 <- EPsProg_tte(HRgo = HRgo, d2 = d2, 
                            alpha = alpha, beta = beta,
                            step1 =  stepm1, step2 =  stepm2,
                            w = w, hr1 = hr1, hr2 = hr2, 
                            id1 = id1, id2 = id2, 
-                           gamma = gamma, fixed = fixed)
+                           gamma = gamma, fixed = fixed, D = D)
       prob3 <- EPsProg_tte(HRgo = HRgo, d2 = d2, 
                            alpha = alpha, beta = beta,
                            step1 =  stepl1, step2 = stepl2,
                            w = w, hr1 = hr1, hr2 = hr2, 
                            id1 = id1, id2 = id2, 
-                           gamma = gamma, fixed = fixed)
+                           gamma = gamma, fixed = fixed, D = D)
       
       SP    <-  prob1 + prob2 + prob3
       

@@ -37,5 +37,5 @@ The true underlying treatment effect &theta; can also be modelled by a prior dis
 
 Stella Preussler, Institute of Medical Biometry and Informatics, University of Heidelberg, email: Preussler@imbi.uni-heidelberg.de.
 
-Beta version 0.3
+Beta version 0.4
 

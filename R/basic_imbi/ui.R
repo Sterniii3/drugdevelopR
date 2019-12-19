@@ -1,11 +1,10 @@
 library(shiny)
-library(markdown)
 library(plotly)
 library(shinyWidgets)
 library(viridis)
 shinyUI(
    fluidPage(
-     chooseSliderSkin(skin = "Shiny", color = viridis(3,alpha=0.7)[2]),
+     chooseSliderSkin(skin = "Shiny", color = viridis(3,alpha=0.9)[2]),
       titlePanel("drugdevelopR: basic"),
       sidebarLayout(
          sidebarPanel(
@@ -41,7 +40,7 @@ shinyUI(
       HTML("Event rate for phase III &xi;<sub>3</sub>"),
       min = 0, max = 2, value = 0.7, step= 0.01),
    sliderInput("alpha1", HTML("Significance level &alpha;:"),
-      min = 0.005, max = 0.2, value = 0.05, step= 0.005),
+      min = 0.005, max = 0.2, value = 0.025, step= 0.005),
    sliderInput("beta1", HTML("1 - Power = &beta;:"),
       min = 0.05, max = 0.3, value = 0.1, step= 0.01),
    numericInput("c021", 
@@ -121,7 +120,7 @@ shinyUI(
       HTML("Step size for RR<sub>go</sub>:"),
       min = 0.01, max = 0.1, value = 0.02, step=0.01),
    sliderInput("alpha2", HTML("Significance level &alpha;:"),
-      min = 0.005, max = 0.2, value = 0.05, step= 0.005),
+      min = 0.005, max = 0.2, value = 0.025, step= 0.005),
    sliderInput("beta2", HTML("1 - Power = &beta;:"),
       min = 0.05, max = 0.3, value = 0.1, step= 0.01),
    numericInput("c022", 
@@ -194,7 +193,7 @@ shinyUI(
       HTML("Step size for n<sub>2</sub>:"),
       min = 2, max = 50, value = 10, step=2),
    sliderInput("alpha3", HTML("Significance level &alpha;:"),
-      min = 0.005, max = 0.2, value = 0.05, step= 0.005),
+      min = 0.005, max = 0.2, value = 0.025, step= 0.005),
    sliderInput("beta3", HTML("1 - Power = &beta;:"),
       min = 0.05, max = 0.3, value = 0.1, step= 0.01),
    numericInput("c023", 
@@ -256,7 +255,7 @@ shinyUI(
       conditionalPanel(
          condition="input.Select == 1",
          includeMarkdown("help11.md"),
-         img(src = "trialdesign11.png",width = 900),
+         img(src = "trialdesign111.png",width = 900),
          includeMarkdown("help12.md"),
          img(src = "CI11.png",width = 450),
          includeMarkdown("help122.md")),
@@ -264,17 +263,17 @@ shinyUI(
       conditionalPanel(
          condition="input.Select == 2",
          includeMarkdown("help21.md"),
-         img(src = "trialdesign2.png",width = 900),
+         img(src = "trialdesign222.png",width = 900),
          includeMarkdown("help22.md"),
-         img(src = "CI2.png",width = 450),
+         img(src = "CI22.png",width = 450),
          includeMarkdown("help222.md")),
 
       conditionalPanel(
          condition="input.Select == 3",
          includeMarkdown("help31.md"),
-         img(src = "trialdesign3.png",width = 900),
+         img(src = "trialdesign333.png",width = 900),
          includeMarkdown("help32.md"),
-         img(src = "CI3.png",width = 450),
+         img(src = "CI33.png",width = 450),
          includeMarkdown("help322.md")),
 
          tableOutput("table"),

@@ -718,7 +718,7 @@ shinyServer(function(input, output,session) {
                        scene = list(
                          xaxis = list(title = "HRgo"),
                          yaxis = list(title = "n2"),
-                         zaxis = list(title = "Expected utility")))
+                         zaxis = list(title = "expected utility")))
               
               
            }

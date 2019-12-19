@@ -34,4 +34,4 @@ Wang, S. J., Hung, H. M., & O'Neill, R. T. (2006). Adapting the sample size plan
 #### Maintainer
 Stella Preussler, Institute of Medical Biometry and Informatics, University of Heidelberg, email: Preussler@imbi.uni-heidelberg.de.
 
-Beta version 0.3
+Beta version 0.4
