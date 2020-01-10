@@ -48,7 +48,7 @@ Ed3_tte <-  function(HRgo, d2, alpha, beta,
     )
   }else{
     return(  
-      cat(comment(DFintegrate(function(y){
+      integrate(function(y){
         ((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(y^2))*
             dnorm(y,
                   mean = -log(hr1),
