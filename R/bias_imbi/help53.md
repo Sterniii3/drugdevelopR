@@ -31,7 +31,11 @@ Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comp
 
 Wang, S. J., Hung, H. M., & O'Neill, R. T. (2006). Adapting the sample size planning of a phase III trial based on phase II data. <i>Pharmaceutical Statistics</i> 5(2), 85-97.
 
+
+#### Additional Features
+The true underlying treatment effect &theta; can also be modelled by a prior distribution (https://web.imbi.uni-heidelberg.de/prior/). Optimal planning can then be done with the function optimal_bias() of the R package drugdevelopR available at: https://github.com/Sterniii3/drugdevelopR.
+
 #### Maintainer
 Stella Preussler, Institute of Medical Biometry and Informatics, University of Heidelberg, email: Preussler@imbi.uni-heidelberg.de.
 
-Beta version 0.4
+Beta version 0.5
