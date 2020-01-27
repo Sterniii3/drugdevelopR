@@ -1,6 +1,6 @@
 #' Optimal phase II/III drug development planning when discounting phase II results
 #'
-#' The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results (Preussler et. al, 2019). The assumed true treatment effects can be assumed fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}) or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast computing is enabled by parallel programming.
+#' The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results (Preussler et. al, 2020). The assumed true treatment effects can be assumed fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}) or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast computing is enabled by parallel programming.
 #' 
 #' @name optimal_bias
 #' @param w weight for mixture prior distribution
@@ -13,14 +13,14 @@
 #' @param stepd2 stepsize for the optimization over d2
 #' @param hrgomin minimal threshold value for the go/no-go decision rule
 #' @param hrgomax maximal threshold value for the go/no-go decision rule
-#' @param adj choose type of adjustment: "multiplicative", "additive" or "both"
+#' @param adj choose type of adjustment: "multiplicative", "additive", "both" (or "all")
 #' @param stephrgo stepsize for the optimization over HRgo
-#' @param lambdamin minimal adjustment parameter &lambda;
-#' @param lambdamax maximal adjustment parameter &lambda;
-#' @param steplambda stepsize for the adjustment parameter &lambda;
-#' @param alphaCImin minimal &alpha;<sub>CI<sub/>
-#' @param alphaCImax maximal &alpha;<sub>CI<sub/>
-#' @param stepalphaCI stepsize for &alpha;<sub>CI<sub/>
+#' @param lambdamin minimal adjustment parameter lambda
+#' @param lambdamax maximal adjustment parameter lambda
+#' @param steplambda stepsize for the adjustment parameter lambda
+#' @param alphaCImin minimal alphaCI
+#' @param alphaCImax maximal alphaCI
+#' @param stepalphaCI stepsize for alphaCI
 #' @param beta 1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula
 #' @param alpha one-sided significance level
 #' @param xi2 event rate for phase II
@@ -30,8 +30,8 @@
 #' @param c02 fixed cost for phase II
 #' @param c03 fixed cost for phase III
 #' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
-#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
-#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g., no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g., no constraint
 #' @param steps1 lower boundary for effect size category "small" in HR scale, default: 1
 #' @param stepm1 lower boundary for effect size category "medium" in HR scale = upper boundary for effect size category "small" in HR scale, default: 0.95
 #' @param stepl1 lower boundary for effect size category "large" in HR scale = upper boundary for effect size category "medium" in HR scale, default: 0.85
@@ -47,7 +47,7 @@
 #' \describe{
 #'   \item{Method}{Type of adjustment: multipl. (multiplicative) or add. (additive)}
 #'   \item{u}{maximal expected utility}
-#'   \item{Adj}{optimal adjustment parameter (&lambda; or &alpha;<sub>CI<sub/> according to Method)}
+#'   \item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}
 #'   \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
 #'   \item{d2}{optimal total number of events for phase II}
 #'   \item{d3}{total expected number of events for phase III; rounded to next natural number}
@@ -74,7 +74,7 @@
 #'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,             # define optimization set for HRgo
 #'   adj = "both",                                              # choose type of adjustment
 #'   lambdamin = 0.2, lambdamax = 1, steplambda = 0.05,         # define optimization set for lambda
-#'   alphaCImin = 0.025, alphaCImax = 0.5, stepalphaCI = 0.025, # define optimization set for &alpha;<sub>CI<sub/>
+#'   alphaCImin = 0.025, alphaCImax = 0.5, stepalphaCI = 0.025, # define optimization set for alphaCI
 #'   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,            # drug development planning parameters
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,                   # define fixed and variable costs for phase II and III
 #'   K = Inf, N = Inf, S = -Inf,                                # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
@@ -108,7 +108,7 @@
 #' @references
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 #'
-#'Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. Submitted to peer-review journal.
+#'Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2020). Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. Submitted to peer-review journal.
 #'
 #' Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
 #'
