@@ -27,7 +27,7 @@ shinyServer(function(input, output,session) {
    
 
    output$tabmultiarm <- renderUI({
-      tagList("- with fixed assumed treatment effects:", urlmultiarm)
+      tagList("- with fixed assumed treatment effects:", urlmultiarm, ",", urlpackage)
    })
    
  
