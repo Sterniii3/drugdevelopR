@@ -74,7 +74,7 @@ shinyUI(fluidPage(
                    choices = list("No" = 0,
                                   "Yes" = 1), 
                    selected = 1),
-       actionButton("go", "Go"),
+       actionButton("go", "Double click"),
                
    tags$head(tags$style("#plot{height:75vh !important;}"))),
           
