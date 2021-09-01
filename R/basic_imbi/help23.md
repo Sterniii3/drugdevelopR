@@ -27,10 +27,15 @@ IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Av
 #### Additional Features
 The true underlying risk ratio RR can also be modelled by assuming a prior distribution (https://web.imbi.uni-heidelberg.de/prior/). Optimal planning can then be done with the function optimal_binary() of the R package drugdevelopR available at: https://github.com/Sterniii3/drugdevelopR.
 
+#### Note
+
+If the server is busy, you may need to double click the "Go"-button in order to see the updated plot.
 
 #### Maintainer
 
 Stella Preussler, Institute of Medical Biometry and Informatics, University of Heidelberg, email: Preussler@imbi.uni-heidelberg.de.
 
-Beta version 0.4
+Beta version 0.5
+
+
 

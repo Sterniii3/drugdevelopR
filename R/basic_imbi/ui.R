@@ -95,7 +95,7 @@ shinyUI(
       choices = list("No" = 0,
                 "Yes" = 1),
       selected = 1),
-   actionButton("go1", "Double click")
+   actionButton("go1", "Go")
    ),
 
    conditionalPanel("input.Select==2",
@@ -174,7 +174,7 @@ shinyUI(
                label = h3("Plot optimization region?"),
       choices = list("No" = 0,"Yes" = 1),
       selected = 0),
-   actionButton("go2", "Double click")),
+   actionButton("go2", "Go")),
 
    conditionalPanel("input.Select==3",
    sliderInput("Delta", 
@@ -247,7 +247,7 @@ shinyUI(
                label = h3("Plot optimization region?"),
             choices = list("No" = 0, "Yes" = 1),
             selected = 0),
-   actionButton("go3", "Double click")),
+   actionButton("go3", "Go")),
    
    tags$head(tags$style("#plot{height:100vh !important;}"))),
 

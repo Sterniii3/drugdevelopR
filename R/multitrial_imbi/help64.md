@@ -32,7 +32,9 @@ Preussler, S., Kieser, M., and Kirchner, M. (2019). Optimal sample size allocati
 
 The software drugdevelopR (available via: https://web.imbi.uni-heidelberg.de/drugdevelopR/) includes further Apps and an R package for optimal phase II/III drug development planning. The Code, detailed user manuals and application examples can be found on Github (https://github.com/Sterniii3/drugdevelopR).  
 
+#### Note
 
+If the server is busy, you may need to double click the "Go"-button in order to see the updated plot.
 
 
 #### Maintainer

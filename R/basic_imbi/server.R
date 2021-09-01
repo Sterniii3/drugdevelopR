@@ -567,7 +567,7 @@ output$table <- renderTable({
            Plot = input$Plot3
         }
            if(Plot==1){
-
+              
               load(file=paste0(mainPath, "ufkt.RData"))
               load(file=paste0(mainPath, "numfkt.RData"))
               load(file=paste0(mainPath, "tresfkt.RData"))

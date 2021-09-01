@@ -14,6 +14,9 @@ Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comp
 
 The software drugdevelopR (available via: https://web.imbi.uni-heidelberg.de/drugdevelopR/) includes further Apps and an R package for optimal phase II/III drug development planning. The Code, detailed user manuals and application examples can be found on Github (https://github.com/Sterniii3/drugdevelopR).  
 
+#### Note
+
+If the server is busy, you may need to double click the "Go"-button in order to see the updated plot.
 
 #### Maintainer
 Stella Preussler, Institute of Medical Biometry and Informatics, University of Heidelberg, email: Preussler@imbi.uni-heidelberg.de.

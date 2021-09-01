@@ -35,6 +35,10 @@ Wang, S. J., Hung, H. M., & O'Neill, R. T. (2006). Adapting the sample size plan
 #### Additional Features
 The true underlying treatment effect &theta; can also be modelled by a prior distribution (https://web.imbi.uni-heidelberg.de/prior/). Optimal planning can then be done with the function optimal_bias() of the R package drugdevelopR available at: https://github.com/Sterniii3/drugdevelopR.
 
+#### Note
+
+If the server is busy, you may need to double click the "Go"-button in order to see the updated plot.
+
 #### Maintainer
 Stella Preussler, Institute of Medical Biometry and Informatics, University of Heidelberg, email: Preussler@imbi.uni-heidelberg.de.
 
