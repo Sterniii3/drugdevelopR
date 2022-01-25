@@ -14,15 +14,12 @@
 
 
 # probability to go to phase III
-pgo_normal<-function(kappa,n2,ec,Delta1,Delta2,strategy,case){
-  
-  et1      = 1 - (1-ec)^Delta1     # event rate in arm 1
-  et2      = 1 - (1-ec)^Delta2     # event rate in arm 2
+pgo_normal<-function(kappa,n2,Delta1,Delta2,strategy,case){
   
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
   MEANY    = c(Delta1,Delta2)
-  sigma1   = sqrt((3/n2)*((1/ec)+(1/et1)))   # sd of y1 (equal sample size allocation)
-  sigma2   = sqrt((3/n2)*((1/ec)+(1/et2)))   # sd of y2 (equal sample size allocation)
+  sigma1   = sqrt((6/n2))   # sd of y1 (equal sample size allocation)
+  sigma2   = sqrt((6/n2))   # sd of y2 (equal sample size allocation)
   SIGMAY   = matrix(c(sigma1^2,1/2*sigma1*sigma2,1/2*sigma1*sigma2,sigma2^2), nrow = 2, ncol = 2)
   
   if(case==1){# no go
@@ -108,24 +105,22 @@ pgo_normal<-function(kappa,n2,ec,Delta1,Delta2,strategy,case){
 # total sample size for phase III trial with l treatments and equal allocation ratio
 # l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
 # l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
-ss_normal<-function(alpha,beta,ec,ek,y,l){
+ss_normal<-function(alpha,beta,y,l){
   
   if(l==1){calpha = qnorm(1-alpha)}
   if(l==2){calpha = as.numeric(mvtnorm::qmvnorm(1-alpha, mean=c(0,0), sigma=matrix(c(1,1/2,1/2,1), nrow=2, ncol=2))[1])}
   
-  return(((l+1)*(calpha+qnorm(1-beta))^2)/(y^2)*((1/ec)+(1/ek)))
+  return(((l+1)*(calpha+qnorm(1-beta))^2)/(y^2)*2)
 }
 
 # expected sample size for phase III when going to phase III
-Ess_normal<-function(kappa,n2,alpha,beta,ec,Delta1,Delta2,strategy,case){
+Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
   
-  et1      = 1 - (1-ec)^Delta1     # event rate in arm 1
-  et2      = 1 - (1-ec)^Delta2    # event rate in arm 2
   
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
   MEANY    = c(Delta1,Delta2)
-  sigma1   = sqrt((3/n2)*((1/ec)+(1/et1)))   # sd of y1 (equal sample size allocation)
-  sigma2   = sqrt((3/n2)*((1/ec)+(1/et2)))   # sd of y2 (equal sample size allocation)
+  sigma1   = sqrt((6/n2))   # sd of y1 (equal sample size allocation)
+  sigma2   = sqrt((6/n2))   # sd of y2 (equal sample size allocation)
   SIGMAY   = matrix(c(sigma1^2,1/2*sigma1*sigma2,1/2*sigma1*sigma2,sigma2^2), nrow = 2, ncol = 2)
   
   if(case==1){# no go
@@ -140,7 +135,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,ec,Delta1,Delta2,strategy,case){
       return(integrate(function(y1){
         sapply(y1,function(y1){ 
           integrate(function(y2){
-            ss(alpha,beta,ec,et1,y1,1)*
+            ss(alpha,beta,y1,1)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
@@ -154,7 +149,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,ec,Delta1,Delta2,strategy,case){
       return(integrate(function(y2){
         sapply(y2,function(y2){ 
           integrate(function(y1){
-            ss(alpha,beta,ec,et2,y2,1)*
+            ss(alpha,beta,y2,1)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
@@ -169,7 +164,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,ec,Delta1,Delta2,strategy,case){
     if(case==21){# treatment 1 is promising, treatment 2 is not
       
       f <- function(y){ 
-        ss_normal(alpha,beta,ec,et1,y[1],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
+        ss_normal(alpha,beta,y[1],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
       return(adaptIntegrate(f, lowerLimit = c(kappa, -Inf), upperLimit = c(Inf, kappa))$integral)
@@ -178,7 +173,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,ec,Delta1,Delta2,strategy,case){
     if(case==22){# treatment 2 is promising, treatment 1 is not
       
       f <- function(y){ 
-        ss_normal(alpha,beta,ec,et2,y[2],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
+        ss_normal(alpha,beta,y[2],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
       return(adaptIntegrate(f, lowerLimit = c(-Inf, kappa), upperLimit = c(kappa, Inf))$integral)
@@ -189,7 +184,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,ec,Delta1,Delta2,strategy,case){
       return(integrate(function(y1){
         sapply(y1,function(y1){ 
           integrate(function(y2){
-            ss(alpha,beta,ec,et2,y2,2)*
+            ss(alpha,beta,y2,2)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
@@ -203,7 +198,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,ec,Delta1,Delta2,strategy,case){
       return(integrate(function(y2){
         sapply(y2,function(y2){ 
           integrate(function(y1){
-            ss(alpha,beta,ec,et1,y1,2)*
+            ss(alpha,beta,y1,2)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
@@ -217,15 +212,14 @@ Ess_normal<-function(kappa,n2,alpha,beta,ec,Delta1,Delta2,strategy,case){
 } 
 
 # probability of a successful program
-PsProg_normal<-function(kappa,n2,alpha,beta,ec,Delta1,Delta2,step1,step2,strategy,case){
+PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,case){
   
-  et1      = 1 - (1-ec)^Delta1    # event rate in arm 1
-  et2      = 1 - (1-ec)^Delta2     # event rate in arm 2
+
   
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
   MEANY    = c(Delta1,Delta2)
-  sigma1   = sqrt((3/n2)*((1/ec)+(1/et1)))   # sd of y1 (equal sample size allocation)
-  sigma2   = sqrt((3/n2)*((1/ec)+(1/et2)))   # sd of y2 (equal sample size allocation)
+  sigma1   = sqrt((6/n2))   # sd of y1 (equal sample size allocation)
+  sigma2   = sqrt((6/n2))   # sd of y2 (equal sample size allocation)
   SIGMAY   = matrix(c(sigma1^2,1/2*sigma1*sigma2,1/2*sigma1*sigma2,sigma2^2), nrow = 2, ncol = 2)
   
   if(case==1){# no go
@@ -380,14 +374,14 @@ PsProg_normal<-function(kappa,n2,alpha,beta,ec,Delta1,Delta2,step1,step2,strateg
 } 
 
 # utility function
-utility_multiarm_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2,strategy,ec,c2,c02,c3,c03,K,N,S,steps1, stepm1, stepl1,b1, b2, b3){ 
+utility_multiarm_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2,strategy,c2,c02,c3,c03,K,N,S,steps1, stepm1, stepl1,b1, b2, b3){ 
   
   if(strategy==1){
     
-    n321    = Ess_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+    n321    = Ess_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                   strategy=strategy,case=21)
     
-    n322    = Ess_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+    n322    = Ess_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                   strategy=strategy,case=22)
     
     n3      = ceiling(n321+n322)           # total expected sample size for phase III
@@ -398,7 +392,7 @@ utility_multiarm_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2,strategy,ec,
       
     }else{
       
-      pnogo   = pgo_normal(kappa=kappa,n2=n2,ec=ec,Delta1=Delta1,Delta2=Delta2,strategy=strategy,case=1)
+      pnogo   = pgo_normal(kappa=kappa,n2=n2,Delta1=Delta1,Delta2=Delta2,strategy=strategy,case=1)
       
       K2    <-  c02 + c2 * n2  #cost phase II
       K3    <-  c03 * (1-pnogo) + c3 * n3  #cost phase III
@@ -410,18 +404,18 @@ utility_multiarm_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2,strategy,ec,
         
       }else{
         # probability of a successful program; small, medium, large effect size
-        prob121 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob121 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=steps1,step2=steps2,strategy=strategy,case=21)
-        prob221 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob221 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=stepm1,step2=stepm2,strategy=strategy,case=21)
-        prob321 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob321 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=stepl1,step2=stepl2,strategy=strategy,case=21)
         
-        prob122 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob122 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=steps1,step2=steps2,strategy=strategy,case=22)
-        prob222 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob222 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=stepm1,step2=stepm2,strategy=strategy,case=22)
-        prob322 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob322 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=stepl1,step2=stepl2,strategy=strategy,case=22)
         
         SP    = prob121+prob221+prob321 +                           # probability of a successful program
@@ -450,13 +444,13 @@ utility_multiarm_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2,strategy,ec,
   
   if(strategy==2){
     
-    n321    = Ess_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+    n321    = Ess_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                   strategy=strategy,case=21)
-    n322    = Ess_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+    n322    = Ess_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                   strategy=strategy,case=22)
-    n331    = Ess_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+    n331    = Ess_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                   strategy=strategy,case=31)
-    n332    = Ess_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+    n332    = Ess_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                   strategy=strategy,case=32)
     n3      = ceiling(n321+n322+n331+n332)   # total expected sample size for phase III
     
@@ -466,7 +460,7 @@ utility_multiarm_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2,strategy,ec,
       
     }else{
       
-      pnogo   = pgo_normal(kappa=kappa,n2=n2,ec=ec,Delta1=Delta1,Delta2=Delta2,strategy=strategy,case=1)
+      pnogo   = pgo_normal(kappa=kappa,n2=n2,Delta1=Delta1,Delta2=Delta2,strategy=strategy,case=1)
       
       K2    <-  c02 + c2 * n2  #cost phase II
       K3    <-  c03 * (1-pnogo) + c3 * n3  #cost phase III
@@ -479,32 +473,32 @@ utility_multiarm_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2,strategy,ec,
       }else{
         
         # probability of a successful program; small, medium, large effect size
-        prob121 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob121 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=steps1,step2=steps2,strategy=strategy,case=21)
-        prob221 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob221 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=stepm1,step2=stepm2,strategy=strategy,case=21)
-        prob321 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob321 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=stepl1,step2=stepl2,strategy=strategy,case=21)
         
-        prob122 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob122 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=steps1,step2=steps2,strategy=strategy,case=22)
-        prob222 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob222 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=stepm1,step2=stepm2,strategy=strategy,case=22)
-        prob322 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob322 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=stepl1,step2=stepl2,strategy=strategy,case=22)
         
-        prob131 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob131 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=steps1,step2=steps2,strategy=strategy,case=31)
-        prob231 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob231 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=stepm1,step2=stepm2,strategy=strategy,case=31)
-        prob331 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob331 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=stepl1,step2=stepl2,strategy=strategy,case=31)
         
-        prob132 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob132 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=steps1,step2=steps2,strategy=strategy,case=32)
-        prob232 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob232 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=stepm1,step2=stepm2,strategy=strategy,case=32)
-        prob332 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,ec=ec,Delta1=Delta1,Delta2=Delta2,
+        prob332 = PsProg_normal(kappa=kappa,n2=n2,alpha=alpha,beta=beta,Delta1=Delta1,Delta2=Delta2,
                          step1=stepl1,step2=stepl2,strategy=strategy,case=32)
         
         SP2     = prob121+prob221+prob321 +                   # probability of a successful program with 
