@@ -1,4 +1,4 @@
-optimal_multiarm_binary <- function(p0, p11, p12, ec,
+optimal_multiarm_binary <- function(p0, p11, p12,
                              n2min, n2max, stepn2,
                              rrgomin, rrgomax, steprrgo,
                              alpha, beta,
@@ -48,7 +48,7 @@ optimal_multiarm_binary <- function(p0, p11, p12, ec,
       
       
       res <- parSapply(cl, N2, utility_multiarm_binary, RRgo,
-                       alpha,beta,p0,p11,p12,strategy,ec,
+                       alpha,beta,p0,p11,p12,strategy,
                        c2,c02,c3,c03,K,N,S,
                        steps1, stepm1, stepl1,b1, b2, b3)
       
@@ -82,7 +82,7 @@ optimal_multiarm_binary <- function(p0, p11, p12, ec,
     result <-  rbind(result, data.frame(Strategy = strategy,u = round(Eud,2), RRgo = RRGO[J], n2 = N2[I], 
                                         n3 = n3, n = N2[I] + n3,
                                         pgo = round(pg,2), sProg = round(prob,2),
-                                        p0 = p0, p11 = p11, p12 = p12, ec = ec,
+                                        p0 = p0, p11 = p11, p12 = p12, 
                                         K = K, N = N, S = S, K2 = round(k2), K3 = round(k3),
                                         sProg2 = round(prob2,2), sProg3 = round(prob3,2),
                                         steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
