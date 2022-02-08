@@ -14,15 +14,12 @@
 
 
 # probability to go to phase III
-pgo_binary<-function(RRgo,n2,ec,p0,p11,p12,strategy,case){
-  
-  et1      = 1 - (1-ec)^(p11/p0)     # event rate in arm 1
-  et2      = 1 - (1-ec)^(p12/p0)     # event rate in arm 2
+pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
   
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
   MEANY    = -log(c((p11/p0),(p12/p0)))
-  sigma1   = sqrt((3/n2)*((1/ec)+(1/et1))*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y1 (equal sample size allocation)
-  sigma2   = sqrt((3/n2)*((1/ec)+(1/et2))*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y2 (equal sample size allocation)
+  sigma1   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y1 (equal sample size allocation)
+  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p12)/p12)))   # sd of y2 (equal sample size allocation)
   SIGMAY   = matrix(c(sigma1^2,1/2*sigma1*sigma2,1/2*sigma1*sigma2,sigma2^2), nrow = 2, ncol = 2)
   
   if(case==1){# no go
@@ -108,24 +105,22 @@ pgo_binary<-function(RRgo,n2,ec,p0,p11,p12,strategy,case){
 # total sample size for phase III trial with l treatments and equal allocation ratio
 # l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
 # l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
-ss_binary<-function(alpha,beta,ec,ek,y,l){
+ss_binary<-function(alpha,beta,y,l){
   
   if(l==1){calpha = qnorm(1-alpha)}
   if(l==2){calpha = as.numeric(mvtnorm::qmvnorm(1-alpha, mean=c(0,0), sigma=matrix(c(1,1/2,1/2,1), nrow=2, ncol=2))[1])}
   
-  return(((l+1)*(calpha+qnorm(1-beta))^2)/(y^2)*((1/ec)+(1/ek)))
+  return(((l+1)*(calpha+qnorm(1-beta))^2)/(y^2))
 }
 
 # expected sample size for phase III when going to phase III
-Ess_binary<-function(RRgo,n2,alpha,beta,ec,p0,p11,p12,strategy,case){
-  
-  et1      = 1 - (1-ec)^(p11/p0)     # event rate in arm 1
-  et2      = 1 - (1-ec)^(p12/p0)     # event rate in arm 2
+Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
+ 
   
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
   MEANY    = -log(c((p11/p0),(p12/p0)))
-  sigma1   = sqrt((3/n2)*((1/ec)+(1/et1))*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y1 (equal sample size allocation)
-  sigma2   = sqrt((3/n2)*((1/ec)+(1/et2))*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y2 (equal sample size allocation)
+  sigma1   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y1 (equal sample size allocation)
+  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p12)/p12)))   # sd of y2 (equal sample size allocation)
   SIGMAY   = matrix(c(sigma1^2,1/2*sigma1*sigma2,1/2*sigma1*sigma2,sigma2^2), nrow = 2, ncol = 2)
   
   if(case==1){# no go
@@ -140,7 +135,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,ec,p0,p11,p12,strategy,case){
       return(integrate(function(y1){
         sapply(y1,function(y1){ 
           integrate(function(y2){
-            ss(alpha,beta,ec,et1,y1,1)*
+            ss_binary(alpha,beta,y1,1)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
@@ -154,7 +149,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,ec,p0,p11,p12,strategy,case){
       return(integrate(function(y2){
         sapply(y2,function(y2){ 
           integrate(function(y1){
-            ss(alpha,beta,ec,et2,y2,1)*
+            ss_binary(alpha,beta,y2,1)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
@@ -169,7 +164,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,ec,p0,p11,p12,strategy,case){
     if(case==21){# treatment 1 is promising, treatment 2 is not
       
       f <- function(y){ 
-        ss_binary(alpha,beta,ec,et1,y[1],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
+        ss_binary(alpha,beta,y[1],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
       return(adaptIntegrate(f, lowerLimit = c(-log(RRgo), -Inf), upperLimit = c(Inf, -log(RRgo)))$integral)
@@ -178,7 +173,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,ec,p0,p11,p12,strategy,case){
     if(case==22){# treatment 2 is promising, treatment 1 is not
       
       f <- function(y){ 
-        ss_binary(alpha,beta,ec,et2,y[2],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
+        ss_binary(alpha,beta,y[2],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
       return(adaptIntegrate(f, lowerLimit = c(-Inf, -log(RRgo)), upperLimit = c(-log(RRgo), Inf))$integral)
@@ -189,7 +184,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,ec,p0,p11,p12,strategy,case){
       return(integrate(function(y1){
         sapply(y1,function(y1){ 
           integrate(function(y2){
-            ss(alpha,beta,ec,et2,y2,2)*
+            ss_binary(alpha,beta,y2,2)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
@@ -203,7 +198,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,ec,p0,p11,p12,strategy,case){
       return(integrate(function(y2){
         sapply(y2,function(y2){ 
           integrate(function(y1){
-            ss(alpha,beta,ec,et1,y1,2)*
+            ss_binary(alpha,beta,y1,2)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
@@ -217,16 +212,12 @@ Ess_binary<-function(RRgo,n2,alpha,beta,ec,p0,p11,p12,strategy,case){
 } 
 
 # probability of a successful program
-PsProg_binary<-function(RRgo,n2,alpha,beta,ec,p0,p11,p12,step1,step2,strategy,case){
+PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case){
   
-  et1      = 1 - (1-ec)^(p11/p0)    # event rate in arm 1
-  et2      = 1 - (1-ec)^(p12/p0)     # event rate in arm 2
-  
-  
-  # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
+    # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
   MEANY    = -log(c((p11/p0),(p12/p0)))
-  sigma1   = sqrt((3/n2)*((1/ec)+(1/et1))*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y1 (equal sample size allocation)
-  sigma2   = sqrt((3/n2)*((1/ec)+(1/et2))*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y2 (equal sample size allocation)
+  sigma1   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y1 (equal sample size allocation)
+  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p12)/p12)))   # sd of y2 (equal sample size allocation)
   SIGMAY   = matrix(c(sigma1^2,1/2*sigma1*sigma2,1/2*sigma1*sigma2,sigma2^2), nrow = 2, ncol = 2)
   
   if(case==1){# no go
@@ -257,7 +248,7 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,ec,p0,p11,p12,step1,step2,strategy,ca
     }
     if(case==22){# treatment 2 is promising and better than treatment 1
       
-      c2     <-  (qnorm(1-alpha)*sqrt(2*(1-((p0 + p11)/2))/((p0 + p11)/2)) + qnorm(1-beta)*sqrt(((1-p0)/p0) + ((1-p11)/p11)))^2  
+      c2     <-  (qnorm(1-alpha)*sqrt(2*(1-((p0 + p12)/2))/((p0 + p12)/2)) + qnorm(1-beta)*sqrt(((1-p0)/p0) + ((1-p12)/p12)))^2  
       
       return(integrate(function(y2){ 
         sapply(y2,function(y2){
@@ -300,7 +291,7 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,ec,p0,p11,p12,step1,step2,strategy,ca
     }
     if(case==22){# treatment 2 is promising, treatment 1 is not 
       
-      c2     <-  (qnorm(1-alpha)*sqrt(2*(1-((p0 + p11)/2))/((p0 + p11)/2)) + qnorm(1-beta)*sqrt(((1-p0)/p0) + ((1-p11)/p11)))^2 
+      c2     <-  (qnorm(1-alpha)*sqrt(2*(1-((p0 + p12)/2))/((p0 + p12)/2)) + qnorm(1-beta)*sqrt(((1-p0)/p0) + ((1-p12)/p12)))^2 
       
       f <- function(y){ 
         ( pnorm(qnorm(1-alpha)-log(step2)/(sqrt((((1-p0)/p0) + ((1-p12)/p12))*y[2]^2/c2)),
@@ -381,14 +372,14 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,ec,p0,p11,p12,step1,step2,strategy,ca
 } 
 
 # utility function
-utility_multiarm_binary<-function(n2,RRgo,alpha,beta,p0=p0,p11=p11,p12=p12,strategy,ec,c2,c02,c3,c03,K,N,S,steps1, stepm1, stepl1,b1, b2, b3){ 
+utility_multiarm_binary<-function(n2,RRgo,alpha,beta,p0=p0,p11=p11,p12=p12,strategy,c2,c02,c3,c03,K,N,S,steps1, stepm1, stepl1,b1, b2, b3){ 
   
   if(strategy==1){
     
-    n321    = Ess_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+    n321    = Ess_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                   strategy=strategy,case=21)
     
-    n322    = Ess_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+    n322    = Ess_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                   strategy=strategy,case=22)
     
     n3      = ceiling(n321+n322)           # total expected sample size for phase III
@@ -399,7 +390,7 @@ utility_multiarm_binary<-function(n2,RRgo,alpha,beta,p0=p0,p11=p11,p12=p12,strat
       
     }else{
       
-      pnogo   = pgo_binary(RRgo=RRgo,n2=n2,ec=ec,p0=p0,p11=p11,p12=p12,strategy=strategy,case=1)
+      pnogo   = pgo_binary(RRgo=RRgo,n2=n2,p0=p0,p11=p11,p12=p12,strategy=strategy,case=1)
       
       K2    <-  c02 + c2 * n2  #cost phase II
       K3    <-  c03 * (1-pnogo) + c3 * n3  #cost phase III
@@ -411,18 +402,18 @@ utility_multiarm_binary<-function(n2,RRgo,alpha,beta,p0=p0,p11=p11,p12=p12,strat
         
       }else{
         # probability of a successful program; small, medium, large effect size
-        prob121 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob121 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=steps1,step2=steps2,strategy=strategy,case=21)
-        prob221 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob221 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=stepm1,step2=stepm2,strategy=strategy,case=21)
-        prob321 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob321 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=stepl1,step2=stepl2,strategy=strategy,case=21)
         
-        prob122 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob122 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=steps1,step2=steps2,strategy=strategy,case=22)
-        prob222 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob222 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=stepm1,step2=stepm2,strategy=strategy,case=22)
-        prob322 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob322 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=stepl1,step2=stepl2,strategy=strategy,case=22)
         
         SP    = prob121+prob221+prob321 +                           # probability of a successful program
@@ -451,13 +442,13 @@ utility_multiarm_binary<-function(n2,RRgo,alpha,beta,p0=p0,p11=p11,p12=p12,strat
   
   if(strategy==2){
     
-    n321    = Ess_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+    n321    = Ess_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                   strategy=strategy,case=21)
-    n322    = Ess_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+    n322    = Ess_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                   strategy=strategy,case=22)
-    n331    = Ess_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+    n331    = Ess_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                   strategy=strategy,case=31)
-    n332    = Ess_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+    n332    = Ess_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                   strategy=strategy,case=32)
     n3      = ceiling(n321+n322+n331+n332)   # total expected sample size for phase III
     
@@ -467,7 +458,7 @@ utility_multiarm_binary<-function(n2,RRgo,alpha,beta,p0=p0,p11=p11,p12=p12,strat
       
     }else{
       
-      pnogo   = pgo_binary(RRgo=RRgo,n2=n2,ec=ec,p0=p0,p11=p11,p12=p12,strategy=strategy,case=1)
+      pnogo   = pgo_binary(RRgo=RRgo,n2=n2,p0=p0,p11=p11,p12=p12,strategy=strategy,case=1)
       
       K2    <-  c02 + c2 * n2  #cost phase II
       K3    <-  c03 * (1-pnogo) + c3 * n3  #cost phase III
@@ -480,32 +471,32 @@ utility_multiarm_binary<-function(n2,RRgo,alpha,beta,p0=p0,p11=p11,p12=p12,strat
       }else{
         
         # probability of a successful program; small, medium, large effect size
-        prob121 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob121 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=steps1,step2=steps2,strategy=strategy,case=21)
-        prob221 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob221 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=stepm1,step2=stepm2,strategy=strategy,case=21)
-        prob321 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob321 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=stepl1,step2=stepl2,strategy=strategy,case=21)
         
-        prob122 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob122 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=steps1,step2=steps2,strategy=strategy,case=22)
-        prob222 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob222 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=stepm1,step2=stepm2,strategy=strategy,case=22)
-        prob322 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob322 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=stepl1,step2=stepl2,strategy=strategy,case=22)
         
-        prob131 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob131 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=steps1,step2=steps2,strategy=strategy,case=31)
-        prob231 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob231 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=stepm1,step2=stepm2,strategy=strategy,case=31)
-        prob331 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob331 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=stepl1,step2=stepl2,strategy=strategy,case=31)
         
-        prob132 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob132 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=steps1,step2=steps2,strategy=strategy,case=32)
-        prob232 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob232 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=stepm1,step2=stepm2,strategy=strategy,case=32)
-        prob332 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,p0=p0,p11=p11,p12=p12,
+        prob332 = PsProg_binary(RRgo=RRgo,n2=n2,alpha=alpha,beta=beta,p0=p0,p11=p11,p12=p12,
                          step1=stepl1,step2=stepl2,strategy=strategy,case=32)
         
         SP2     = prob121+prob221+prob321 +                   # probability of a successful program with 
