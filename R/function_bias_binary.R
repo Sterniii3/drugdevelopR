@@ -212,7 +212,7 @@ En3_binary_L2 <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2
               prior_binary(x, w, p11, p12, in1, in2)
           }, - log(RRgo)+qnorm(1-Adj)*sqrt(2/n((1-p0)/p0 +(1-x/x))), Inf)$value
         })
-      }, 0, 1)silent=TRUE)
+      }, 0, 1), silent=TRUE)
          if(inherits(int ,'try-error')){
               warning(as.vector(int))
               integrated <- NA_real_
@@ -528,7 +528,7 @@ En3_binary_R2 <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2
           dnorm(y,
                 mean = -log(p11/p0),
                 sd = sqrt((2/n2)*t1(p11, p0)))
-      }, - log(RRgo)/Adj, Inf),silent=TRUE)
+      }, - log(RRgo)/Adj, Inf), silent=TRUE)
         if(inherits(int ,'try-error')){
           warning(as.vector(int))
           integrated <- NA_real_
@@ -536,7 +536,6 @@ En3_binary_R2 <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2
           integrated <- int$value
         }
         return(integrated)
-  }
   
 } 
   }else{
@@ -551,7 +550,7 @@ En3_binary_R2 <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2
               prior_binary(x, w, p11, p12, in1, in2)
           }, - log(RRgo)/Adj, Inf)$value
         })
-      }, 0, 1),silent=TRUE)
+      }, 0, 1), silent=TRUE)
         if(inherits(int ,'try-error')){
           warning(as.vector(int))
           integrated <- NA_real_
