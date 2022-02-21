@@ -265,7 +265,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                               sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
                               steps1 = steps1, stepm1 = stepm1, stepl1 = stepl1,
                               alpha = alpha, beta = beta, c02 = c02,
-                              c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma)
+                              c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3)
       }else{
         result <-  data.frame(u = round(Eud,2), Adj = Adj, Kappa = KAPPA[J], n2 = N2[I],
                               n3 = n3, n = N2[I] + n3,
@@ -275,7 +275,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                               sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
                               steps1 = steps1, stepm1 = stepm1, stepl1 = stepl1,
                               alpha = alpha, beta = beta, c02 = c02,
-                              c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma)
+                              c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3)
       }
       
       calresults <- rbind(calresults, calresult)
