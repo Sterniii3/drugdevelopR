@@ -36,7 +36,7 @@ En3_normal_L <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, i
   }
 }
 # Expected probability of a successful program: EsP
-EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, gamma, fixed){
+EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   c = (qnorm(1 - alpha) + qnorm(1 - beta))^2
   
@@ -44,10 +44,10 @@ EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
     return(
       integrate(function(y){
         ( pnorm(qnorm(1 - alpha) + step2/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
-                mean = (Delta1+gamma)/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
+                mean = (Delta1)/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
                 sd = 1) -
             pnorm(qnorm(1 - alpha) + step1/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
-                  mean = (Delta1+gamma)/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
+                  mean = (Delta1)/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
                   sd = 1) ) *
           dnorm(y,
                 mean = Delta1,
@@ -60,10 +60,10 @@ EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
         sapply(x, function(x){
           integrate(function(y){
             ( pnorm(qnorm(1 - alpha) + step2/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
-                    mean = (x+gamma)/sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c),
+                    mean = (x)/sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c),
                     sd = 1) -
                 pnorm(qnorm(1 - alpha) + step1/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
-                      mean = (x+gamma)/sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c),
+                      mean = (x)/sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c),
                       sd = 1) ) *
               dnorm(y,
                     mean = x,
@@ -84,7 +84,7 @@ utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
                             K, N, S,
                             steps1, stepm1, stepl1,
                             b1, b2, b3,
-                            gamma, fixed){
+                            fixed){
   
   n3  <-  En3_normal_L(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                      w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
@@ -117,15 +117,15 @@ utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
       prob1 <-  EPsProg_normal_L(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                                step1 = steps1, step2 =  steps2,
                                w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                               gamma = gamma, fixed = fixed)
+                               fixed = fixed)
       prob2 <-  EPsProg_normal_L(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                                step1 =  stepm1, step2 =  stepm2,
                                w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                               gamma = gamma, fixed = fixed)
+                               fixed = fixed)
       prob3 <-  EPsProg_normal_L(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                                step1 =  stepl1, step2 = stepl2,
                                w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                               gamma = gamma, fixed = fixed)
+                               fixed = fixed)
       
       SP    <-  prob1 + prob2 + prob3
       
@@ -168,23 +168,30 @@ Epgo_normal_L2 <-  function(kappa, n2, Adj, w, Delta1, Delta2, in1, in2, a, b, f
           pnorm((x-kappa-qnorm(1-Adj)*sqrt(4/n2))/sqrt(4/n2)) *
             prior_normal(x, w, Delta1, Delta2, in1, in2, a, b)
         })
-      },  - Inf, Inf)$value
+      },  - Inf, Inf)$value 
     )
   }
 }
+
 
 # Expected sample size for phase III when going to phase III: En3
 En3_normal_L2 <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   if(fixed){
-    return(
+    int = try(
       integrate(function(y){
         ((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(y-qnorm(1-Adj)*sqrt(4/n2))^2) *
           dnorm(y,
                 mean = Delta1,
                 sd = sqrt(4/n2))
-      }, kappa+qnorm(1-Adj)*sqrt(4/n2), Inf)$value  
-    )
+      }, kappa+qnorm(1-Adj)*sqrt(4/n2), Inf), silent=TRUE)
+          if(inherits(int ,'try-error')){
+            warning(as.vector(int))
+            integrated <- NA_real_
+          } else {
+            integrated <- int$value
+          }
+          return(integrated)
   }else{
     return(
       integrate(function(x){
@@ -197,13 +204,20 @@ En3_normal_L2 <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, 
               prior_normal(x, w, Delta1, Delta2, in1, in2, a, b)
           }, kappa+qnorm(1-Adj)*sqrt(4/n2), Inf)$value
         })
-      },  - Inf, Inf)$value
-    )
+      },  - Inf, Inf), silent=TRUE)
+          if(inherits(int ,'try-error')){
+            warning(as.vector(int))
+            integrated <- NA_real_
+          } else {
+            integrated <- int$value
+          }
+          return(integrated)
   }
+  
 }
 
 # Expected probability of a successful program: EsP
-EPsProg_normal_L2 <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, gamma, fixed){
+EPsProg_normal_L2 <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   c = (qnorm(1 - alpha) + qnorm(1 - beta))^2
   
@@ -211,10 +225,10 @@ EPsProg_normal_L2 <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, 
     return(
       integrate(function(y){
         ( pnorm(qnorm(1 - alpha) + step2/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
-                mean = (Delta1+gamma)/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
+                mean = (Delta1)/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
                 sd = 1) -
             pnorm(qnorm(1 - alpha) + step1/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
-                  mean = (Delta1+gamma)/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
+                  mean = (Delta1)/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
                   sd = 1) ) *
           dnorm(y,
                 mean = Delta1,
@@ -227,10 +241,10 @@ EPsProg_normal_L2 <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, 
         sapply(x, function(x){
           integrate(function(y){
             ( pnorm(qnorm(1 - alpha) + step2/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
-                    mean = (x+gamma)/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
+                    mean = (x)/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
                     sd = 1) -
                 pnorm(qnorm(1 - alpha) + step1/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
-                      mean = (x+gamma)/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
+                      mean = (x)/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
                       sd = 1) ) *
               dnorm(y,
                     mean = x,
@@ -251,7 +265,7 @@ utility_normal_L2 <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b
                             K, N, S,
                             steps1, stepm1, stepl1,
                             b1, b2, b3,
-                            gamma, fixed){
+                            fixed){
   
   n3  <-  En3_normal_L2(kappa = kappa, Adj=Adj, n2 = n2, alpha = alpha, beta = beta,
                      w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
@@ -284,15 +298,15 @@ utility_normal_L2 <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b
       prob1 <-  EPsProg_normal_L2(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                                step1 = steps1, step2 =  steps2,
                                w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                               gamma = gamma, fixed = fixed)
+                               fixed = fixed)
       prob2 <-  EPsProg_normal_L2(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                                step1 =  stepm1, step2 =  stepm2,
                                w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                               gamma = gamma, fixed = fixed)
+                               fixed = fixed)
       prob3 <-  EPsProg_normal_L2(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                                step1 =  stepl1, step2 = stepl2,
                                w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                               gamma = gamma, fixed = fixed)
+                               fixed = fixed)
       
       SP    <-  prob1 + prob2 + prob3
       
@@ -352,7 +366,7 @@ En3_normal_R <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, i
 }
 
 # Expected probability of a successful program: EsP
-EPsProg_normal_R <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, gamma, fixed){
+EPsProg_normal_R <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   c = (qnorm(1 - alpha) + qnorm(1 - beta))^2
   
@@ -376,10 +390,10 @@ EPsProg_normal_R <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
         sapply(x, function(x){
           integrate(function(y){
             ( pnorm(qnorm(1 - alpha) + step2/sqrt((y*Adj)^2/c),
-                    mean = (x+gamma)/sqrt(y^2/c),
+                    mean = (x)/sqrt(y^2/c),
                     sd = 1) -
                 pnorm(qnorm(1 - alpha) + step1/sqrt((y*Adj)^2/c),
-                      mean = (x+gamma)/sqrt((y*Adj)^2/c),
+                      mean = (x)/sqrt((y*Adj)^2/c),
                       sd = 1) ) *
               dnorm(y,
                     mean = x,
@@ -400,7 +414,7 @@ utility_normal_R <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
                             K, N, S,
                             steps1, stepm1, stepl1,
                             b1, b2, b3,
-                            gamma, fixed){
+                            fixed){
   
   n3  <-  En3_normal_R(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                      w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
@@ -433,15 +447,15 @@ utility_normal_R <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
       prob1 <-  EPsProg_normal_R(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                                step1 = steps1, step2 =  steps2,
                                w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                               gamma = gamma, fixed = fixed)
+                               fixed = fixed)
       prob2 <-  EPsProg_normal_R(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                                step1 =  stepm1, step2 =  stepm2,
                                w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                               gamma = gamma, fixed = fixed)
+                               fixed = fixed)
       prob3 <-  EPsProg_normal_R(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                                step1 =  stepl1, step2 = stepl2,
                                w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                               gamma = gamma, fixed = fixed)
+                               fixed = fixed)
       
       SP    <-  prob1 + prob2 + prob3
       
@@ -493,16 +507,22 @@ Epgo_normal <-  function(kappa, n2, Adj, w, Delta1, Delta2, in1, in2, a, b, fixe
 En3_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   if(fixed){
-    return(
+     int = try(
       integrate(function(y){
         ((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(y*Adj)^2) *
           dnorm(y,
                 mean = Delta1,
                 sd = sqrt(4/n2))
-      }, kappa/Adj, Inf)$value  
-    )
+      }, kappa/Adj, Inf),silent=TRUE)
+    if(inherits(int ,'try-error')){
+      warning(as.vector(int))
+      integrated <- NA_real_
+    } else {
+      integrated <- int$value
+    }
+    return(integrated)
   }else{
-    return(
+     int = try(
       integrate(function(x){
         sapply(x, function(x){
           integrate(function(y){
@@ -513,13 +533,19 @@ En3_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, 
               prior_normal(x, w, Delta1, Delta2, in1, in2, a, b)
           }, kappa/Adj, Inf)$value
         })
-      },  - Inf, Inf)$value
-    )
+      },  - Inf, Inf),silent=TRUE)
+    if(inherits(int ,'try-error')){
+      warning(as.vector(int))
+      integrated <- NA_real_
+    } else {
+      integrated <- int$value
+    }
+    return(integrated)
   }
 }
 
 # Expected probability of a successful program: EsP
-EPsProg_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, gamma, fixed){
+EPsProg_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   c = (qnorm(1 - alpha) + qnorm(1 - beta))^2
   
@@ -527,26 +553,28 @@ EPsProg_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Del
     return(
       integrate(function(y){
         ( pnorm(qnorm(1 - alpha) + step2/sqrt((y*Adj)^2/c),
-                mean = (Delta1+gamma)/sqrt((y*Adj)^2/c),
+                mean = (Delta1)/sqrt((y*Adj)^2/c),
                 sd = 1) -
             pnorm(qnorm(1 - alpha) + step1/sqrt((y*Adj)^2/c),
-                  mean = (Delta1+gamma)/sqrt((y*Adj)^2/c),
+                  mean = (Delta1)/sqrt((y*Adj)^2/c),
                   sd = 1) ) *
           dnorm(y,
                 mean = Delta1,
                 sd = sqrt(4/n2)) 
       }, kappa/Adj, Inf)$value
-    )
+    ) 
+
+  
   }else{
     return(
       integrate(function(x){
         sapply(x, function(x){
           integrate(function(y){
             ( pnorm(qnorm(1 - alpha) + step2/sqrt((y*Adj)^2/c),
-                    mean = (x+gamma)/sqrt(y^2/c),
+                    mean = (x)/sqrt(y^2/c),
                     sd = 1) -
                 pnorm(qnorm(1 - alpha) + step1/sqrt((y*Adj)^2/c),
-                      mean = (x+gamma)/sqrt((y*Adj)^2/c),
+                      mean = (x)/sqrt((y*Adj)^2/c),
                       sd = 1) ) *
               dnorm(y,
                     mean = x,
@@ -555,10 +583,11 @@ EPsProg_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Del
           }, kappa/Adj, Inf)$value
         })
       },  - Inf, Inf)$value
-    )
+    ) 
   }
   
 }
+
 
 # Utility function
 utility_normal_R2 <-  function(n2, kappa, Adj,  w, Delta1, Delta2, in1, in2, a, b,
@@ -567,7 +596,7 @@ utility_normal_R2 <-  function(n2, kappa, Adj,  w, Delta1, Delta2, in1, in2, a, 
                             K, N, S,
                             steps1, stepm1, stepl1,
                             b1, b2, b3,
-                            gamma, fixed){
+                            fixed){
   
   n3  <-  En3_normal_R2(kappa = kappa, Adj = Adj, n2 = n2, alpha = alpha, beta = beta,
                      w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
@@ -600,15 +629,15 @@ utility_normal_R2 <-  function(n2, kappa, Adj,  w, Delta1, Delta2, in1, in2, a, 
       prob1 <-  EPsProg_normal_R2(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                                step1 = steps1, step2 =  steps2,
                                w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                               gamma = gamma, fixed = fixed)
+                               fixed = fixed)
       prob2 <-  EPsProg_normal_R2(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                                step1 =  stepm1, step2 =  stepm2,
                                w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                               gamma = gamma, fixed = fixed)
+                               fixed = fixed)
       prob3 <-  EPsProg_normal_R2(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                                step1 =  stepl1, step2 = stepl2,
                                w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                               gamma = gamma, fixed = fixed)
+                               fixed = fixed)
       
       SP    <-  prob1 + prob2 + prob3
       
