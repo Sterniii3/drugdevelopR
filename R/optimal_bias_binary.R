@@ -260,7 +260,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
                           steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
                           alpha = alpha, beta = beta, c02 = c02,
-                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma)  
+                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3)  
   }else{
     result <-  data.frame(u = round(Eud,2), Adj = Adj, RRgo = HRGO[J], n2 = N2[I],
                           n3 = n3, n = N2[I] + n3,
@@ -270,7 +270,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
                           steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
                           alpha = alpha, beta = beta, c02 = c02,
-                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma)
+                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3)
   }
   
   calresults <- rbind(calresults, calresult)
