@@ -160,21 +160,21 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
               sapply(y, function(y){
                 ( pmvnorm(lower = c(0, 
                                     0), 
-                          upper = c(qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c),
-                                    qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
-                          mean = c(x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                          upper = c(qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c),
+                                    qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
                           sigma = SIGMA) - 
                     pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
-                            mean = c(x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
                             sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
-                        sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) * 
+                        sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-x)/x)))) * 
                   prior_binary(x, w, p11, p12, in1, in2)  
               })
             },  - log(RRgo), Inf)$value  
@@ -190,21 +190,21 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                     0), 
                           upper = c(Inf, 
                                     Inf), 
-                          mean = c(x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
                           sigma = SIGMA) - 
                     pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
                                       qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
-                            mean = c(x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
                             sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
-                        sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) * 
+                        sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-x)/x)))) * 
                   prior_binary(x, w, p11, p12, in1, in2)  
               })
             },  - log(RRgo), Inf)$value  
@@ -220,19 +220,19 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                     0), 
                           upper = c(Inf, 
                                     Inf), 
-                          mean = c(x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
                           sigma = SIGMA) - 
                     pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
-                            mean = c(x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
                             sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
-                        sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) * 
+                        sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-x)/x)))) * 
                   prior_binary(x, w, p11, p12, in1, in2)  
               })
             },  - log(RRgo), Inf)$value  
@@ -249,26 +249,26 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                 ( pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
                           upper = c(qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
                                     qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
-                          mean = c(x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
                           sigma = SIGMA) - 
                     pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                        log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                        log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
                                       qnorm(1 - alpha) - 
-                                        log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                                        log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
                             upper = c(qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
                                       qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
-                            mean = c(x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
                             sigma = SIGMA)) * 
                   dnorm(y, 
                         mean = x, 
-                        sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) * 
+                        sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-x)/x)))) * 
                   prior_binary(x, w, p11, p12, in1, in2) 
               })
             },  - log(RRgo), Inf)$value
@@ -281,17 +281,17 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
             integrate(function(y){
               sapply(y, function(y){
                 ( pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
                                     qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
                           upper = c(Inf, 
                                     Inf), 
-                          mean = c(x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
                           sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
-                        sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) * 
+                        sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-x)/x)))) * 
                   prior_binary(x, w, p11, p12, in1, in2) 
               })
             },  - log(RRgo), Inf)$value
@@ -307,12 +307,12 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                     qnorm(1 - alpha)), 
                           upper = c(Inf, 
                                     Inf), 
-                          mean = c(x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   x/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
                           sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
-                        sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) * 
+                        sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-x)/x)))) * 
                   prior_binary(x, w, p11, p12, in1, in2) 
               })
             },  - log(RRgo), Inf)$value
