@@ -81,7 +81,7 @@ optimal_multitrial <- function(w, p0, p11, p12, in1, in2,
                           "EPsProg_binary", "EPsProg2_binary", "EPsProg3_binary", "EPsProg4_binary", "EPsProg23_binary",
                           "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                          "K", "N", "S", "gamma", "fixed",
+                          "K", "N", "S", "fixed",
                           "c2", "c3", "c02", "c03",
                           "b1", "b2", "b3", "w", "RRgo",
                           "p0", "p11", "p12", "in1", "in2"), envir = environment())
@@ -92,7 +92,7 @@ optimal_multitrial <- function(w, p0, p11, p12, in1, in2,
                          c2, c3, c02, c03, K, N, S,
                          steps1, stepm1, stepl1,
                          b1, b2, b3,
-                         gamma, fixed)  
+                         fixed)  
       }
       if(Strategy==2){
         res <- parSapply(cl, D2, utility2_binary, RRgo, w, p0, p11, p12, in1, in2,
@@ -194,7 +194,7 @@ optimal_multitrial <- function(w, p0, p11, p12, in1, in2,
                                           pgo3 = round(pg3,2), d33= d33, n33 = n33,
                                           sProg13 = round(prob13,2), sProg23 = round(prob23,2), sProg33 = round(prob33,2),
                                           alpha = alpha, beta = beta, c02 = c02,
-                                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma))
+                                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3))
     }else{
       
       result <-  rbind(result, data.frame(Case = case, Strategy = Strategy, 
@@ -206,7 +206,7 @@ optimal_multitrial <- function(w, p0, p11, p12, in1, in2,
                                           sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
                                           steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
                                           alpha = alpha, beta = beta, c02 = c02,
-                                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma))
+                                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3))
     }
     
     
