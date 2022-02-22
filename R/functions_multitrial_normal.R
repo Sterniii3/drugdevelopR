@@ -367,15 +367,15 @@ utility2_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
       prob1 <-  EPsProg2_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
                          step1 = steps1, step2 =  steps2,
                          w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                         gamma = gamma, case = case, size = "small", fixed = fixed)
+                         case = case, size = "small", fixed = fixed)
       prob3 <-  EPsProg2_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
                          step1 = steps1, step2 =  steps2,
                          w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                         gamma = gamma, case = case, size = "large", fixed = fixed)
+                         case = case, size = "large", fixed = fixed)
       prob2 <-  EPsProg2_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
                          step1 = steps1, step2 =  steps2,
                          w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                         gamma = gamma, case = case, size = "all", fixed = fixed) - prob1 - prob3
+                         case = case, size = "all", fixed = fixed) - prob1 - prob3
       
       SP    <-  prob1 + prob2 + prob3
       
@@ -876,15 +876,15 @@ utility3_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
       prob1 <-  EPsProg3_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
                                 step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                                gamma = gamma, case = case, size = "small", fixed = fixed)
+                                case = case, size = "small", fixed = fixed)
       prob3 <-  EPsProg3_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
                                 step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                                gamma = gamma, case = case, size = "large", fixed = fixed)
+                                case = case, size = "large", fixed = fixed)
       prob2 <-  EPsProg3_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
                                 step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                                gamma = gamma, case = case, size = "all", fixed = fixed) - prob1 - prob3
+                                case = case, size = "all", fixed = fixed) - prob1 - prob3
       
       SP    <-  prob1 + prob2 + prob3
       
@@ -1218,15 +1218,15 @@ utility4_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
       prob1 <-  EPsProg4_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
                                 step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                                gamma = gamma, case = case, size = "small", fixed = fixed)
+                                case = case, size = "small", fixed = fixed)
       prob3 <-  EPsProg4_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
                                 step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                                gamma = gamma, case = case, size = "large", fixed = fixed)
+                                case = case, size = "large", fixed = fixed)
       prob2 <-  EPsProg4_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
                                 step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                                gamma = gamma, case = case, size = "all", fixed = fixed) - prob1 - prob3
+                                case = case, size = "all", fixed = fixed) - prob1 - prob3
       
       SP    <-  prob1 + prob2 + prob3
       
