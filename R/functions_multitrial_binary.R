@@ -1,3 +1,8 @@
+# auxiliary functions
+t1 <- function(x, p0){((1-p0)/p0) + ((1-x)/x)}
+t2 <- function(x, p0){sqrt(2*(1-((p0 + x)/2))/((p0 + x)/2))}
+t3 <- function(x, p0){sqrt(((1-p0)/p0) + ((1-x)/x))}
+
 ########################
 # Two phase III trials #
 ########################
@@ -8,7 +13,7 @@
 EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p12, in1, in2,case, size, fixed){
   
   SIGMA <-  diag(2)
-  c     <-  (qnorm(1-alpha)*sqrt(2*(1-((p0 + p11)/2))/((p0 + p11)/2)) + qnorm(1-beta)*sqrt(((1-p0)/p0) + ((1-p11)/p11)))^2
+  c    <-  (qnorm(1-alpha)*t2(p11, p0) + qnorm(1-beta)*t3(p11, p0))^2
   
   if(fixed){
     
@@ -160,17 +165,17 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
               sapply(y, function(y){
                 ( pmvnorm(lower = c(0, 
                                     0), 
-                          upper = c(qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c),
-                                    qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
-                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                          upper = c(qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2),
+                                    qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
+                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                           sigma = SIGMA) - 
                     pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
-                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                             sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -190,17 +195,17 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                     0), 
                           upper = c(Inf, 
                                     Inf), 
-                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                           sigma = SIGMA) - 
                     pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                       qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
-                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
+                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                             sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -220,15 +225,15 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                     0), 
                           upper = c(Inf, 
                                     Inf), 
-                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                           sigma = SIGMA) - 
                     pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
-                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                             sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -249,22 +254,22 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                 ( pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
                           upper = c(qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                     qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
-                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
+                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                           sigma = SIGMA) - 
                     pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                        log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                        log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                       qnorm(1 - alpha) - 
-                                        log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                        log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                             upper = c(qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                       qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
-                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
+                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                             sigma = SIGMA)) * 
                   dnorm(y, 
                         mean = x, 
@@ -281,13 +286,13 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
             integrate(function(y){
               sapply(y, function(y){
                 ( pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                     qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                      log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                           upper = c(Inf, 
                                     Inf), 
-                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                           sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -307,8 +312,8 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                     qnorm(1 - alpha)), 
                           upper = c(Inf, 
                                     Inf), 
-                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                           sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -404,7 +409,7 @@ utility2_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
 EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p12, in1, in2,case, size, fixed){
   
   SIGMA <-  diag(3)
-  c     <-  (qnorm(1-alpha)*sqrt(2*(1-((p0 + p11)/2))/((p0 + p11)/2)) + qnorm(1-beta)*sqrt(((1-p0)/p0) + ((1-p11)/p11)))^2
+  c    <-  (qnorm(1-alpha)*t2(p11, p0) + qnorm(1-beta)*t3(p11, p0))^2
   
   if(fixed){
     
@@ -610,27 +615,27 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                         qnorm(1 - alpha), 
                                         0), 
                               upper = c(qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                         qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                         qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
-                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
+                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                               sigma = SIGMA) - 
                     2 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
                                           qnorm(1 - alpha)), 
                                 upper = c(qnorm(1 - alpha) - 
-                                            log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                            log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                           qnorm(1 - alpha) - 
-                                            log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                            log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                           qnorm(1 - alpha) - 
-                                            log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
-                                mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                            log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
+                                mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                                 sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -647,29 +652,29 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
             integrate(function(y){
               sapply(y, function(y){
                 ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                         qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                         0), 
                               upper = c(Inf, 
                                         Inf, 
                                         Inf), 
-                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                               sigma = SIGMA) - 
                     2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                            log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                            log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                           qnorm(1 - alpha) - 
-                                            log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                            log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                           qnorm(1 - alpha) - 
-                                            log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                            log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                                 upper = c(Inf, 
                                           Inf, 
                                           Inf), 
-                                mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                                 sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -691,9 +696,9 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                               upper = c(Inf, 
                                         Inf, 
                                         Inf), 
-                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                               sigma = SIGMA) - 
                     2 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
@@ -701,9 +706,9 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                 upper = c(Inf, 
                                           Inf, 
                                           Inf), 
-                                mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                                 sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -725,27 +730,27 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha)), 
                               upper = c(qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                         qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                         qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
-                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
+                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                               sigma = SIGMA) - 
                     2 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
                                           qnorm(1 - alpha)), 
                                 upper = c(qnorm(1 - alpha) - 
-                                            log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                            log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                           qnorm(1 - alpha) - 
-                                            log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                            log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                           qnorm(1 - alpha) - 
-                                            log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
-                                mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                            log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
+                                mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                                 sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -762,29 +767,29 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
             integrate(function(y){
               sapply(y, function(y){
                 ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                         qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                         qnorm(1 - alpha)), 
                               upper = c(Inf, 
                                         Inf, 
                                         Inf), 
-                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                               sigma = SIGMA) - 
                     2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                            log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                            log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                           qnorm(1 - alpha) - 
-                                            log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                            log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                           qnorm(1 - alpha) - 
-                                            log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                            log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                                 upper = c(Inf, 
                                           Inf, 
                                           Inf), 
-                                mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                         x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                                 sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -806,9 +811,9 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                           upper = c(Inf, 
                                     Inf, 
                                     Inf), 
-                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                          mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                   x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                           sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -902,7 +907,7 @@ utility3_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
 EPsProg4_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p12, in1, in2,case, size, fixed){
   
   SIGMA <-  diag(4)
-  c     <-  (qnorm(1-alpha)*sqrt(2*(1-((p0 + p11)/2))/((p0 + p11)/2)) + qnorm(1-beta)*sqrt(((1-p0)/p0) + ((1-p11)/p11)))^2
+  c    <-  (qnorm(1-alpha)*t2(p11, p0) + qnorm(1-beta)*t3(p11, p0))^2
   
   if(fixed){
     
@@ -1031,31 +1036,31 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       0), 
-                            upper = c(qnorm(1 - alpha) - log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                      qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                      qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                      qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
-                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                            upper = c(qnorm(1 - alpha) - log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                      qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                      qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                      qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
+                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                             sigma = SIGMA)  - 
                   3 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha)), 
                               upper = c(qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                         qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                         qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                         qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
-                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                          log(0.95)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
+                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                               sigma = SIGMA) ) * 
                 dnorm(y, 
                       mean = x, 
@@ -1072,35 +1077,35 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
           integrate(function(y){
             sapply(y, function(y){
               ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                      qnorm(1 - alpha) - log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                      qnorm(1 - alpha) - log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                        log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                      qnorm(1 - alpha) - log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                      qnorm(1 - alpha) - log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                       0), 
                             upper = c(Inf, 
                                       Inf, 
                                       Inf, 
                                       Inf), 
-                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                             sigma = SIGMA)  - 
                   3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                         qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                         qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
+                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
                                         qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                                          log(0.85)/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                               upper = c(Inf, 
                                         Inf, 
                                         Inf, 
                                         Inf), 
-                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                               sigma = SIGMA) ) * 
                 dnorm(y, 
                       mean = x, 
@@ -1124,10 +1129,10 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                       Inf, 
                                       Inf, 
                                       Inf), 
-                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                            mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                     x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                             sigma = SIGMA) - 
                   3 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
@@ -1137,10 +1142,10 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                         Inf, 
                                         Inf, 
                                         Inf), 
-                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c), 
-                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/c)), 
+                              mean = c(x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2), 
+                                       x/sqrt((((1-p0)/p0) + ((1-x)/x))*y^2/(qnorm(1-alpha)*t2(x, p0) + qnorm(1-beta)*t3(x, p0))^2)), 
                               sigma = SIGMA) ) * 
                 dnorm(y, 
                       mean = x, 
@@ -1233,7 +1238,7 @@ EPsProg23_binary <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case
   
   SIGMA <-  diag(2)
   SIGMA3<-  diag(3)
-  c  <- (qnorm(1-alpha)*sqrt(2*(1-((p0 + p11)/2))/((p0 + p11)/2)) + qnorm(1-beta)*sqrt(((1-p0)/p0) + ((1-p11)/p11)))^2
+  c    <-  (qnorm(1-alpha)*t2(p11, p0) + qnorm(1-beta)*t3(p11, p0))^2
   
   if(case == 2){ # Option 2.1
     if(size == "small"){
