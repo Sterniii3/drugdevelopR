@@ -81,7 +81,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                           "EPsProg_normal", "EPsProg2_normal", "EPsProg3_normal", "EPsProg4_normal", "EPsProg23_normal",
                           "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                          "K", "N", "S","gamma", "fixed", "case", "Strategy",
+                          "K", "N", "S", "fixed", "case", "Strategy",
                           "b1", "b2", "b3", "w", "kappa",
                           "Delta1", "Delta2", "ymin", "in1", "in2", "a", "b" ), envir = environment())
       
@@ -92,7 +92,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                          K, N, S,
                          steps1, stepm1, stepl1,
                          b1, b2, b3,
-                         gamma, fixed)  
+                         fixed)  
       }
       if(Strategy==2){
         res <- parSapply(cl, D2, utility2_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
@@ -193,7 +193,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                                           pgo3 = round(pg3,2), d33= d33, n33 = n33,
                                           sProg13 = round(prob13,2), sProg23 = round(prob23,2), sProg33 = round(prob33,2),
                                           alpha = alpha, beta = beta, c02 = c02,
-                                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma))
+                                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3))
     }else{
       
       result <-  rbind(result, data.frame(Case = case, Strategy = Strategy, 
@@ -205,7 +205,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                                           sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
                                           steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
                                           alpha = alpha, beta = beta, c02 = c02,
-                                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma))
+                                          c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3))
     }
     
     
