@@ -103,10 +103,6 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                         gamma = 0,  fixed = FALSE,
                         skipII = FALSE,  num_cl = 1){
 
-  steps2 <- stepm1
-  stepm2 <- stepl1
-  stepl2 <- 0
-
   date <- Sys.time()
 
   if(skipII==TRUE){
@@ -127,9 +123,9 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                               b1 = b1, b2 = b2, b3 = b3,
                               median_prior = median_prior,
                               K = K, N = N, S = S,
-                              steps1 = steps1, steps2 = steps2,
-                              stepm1 = stepm1, stepm2 = stepm2,
-                              stepl1 = stepl1, stepl2 = stepl2,
+                              steps1 = steps1, 
+                              stepm1 = stepm1, 
+                              stepl1 = stepl1, 
                               w = w, hr1 = hr1, hr2 = hr2, 
                               id1 = id1, id2 = id2,
                               gamma = gamma, fixed = fixed)
@@ -205,8 +201,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
     clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", 
                         "Epgo_tte", "Ed3_tte",
                         "EPsProg_tte", "alpha", "beta",
-                        "steps1", "steps2", "stepm1", 
-                        "stepm2", "stepl1", "stepl2",
+                        "steps1", "stepm1", "stepl1", 
                         "K", "N", "S", "gamma", "fixed",
                         "xi2", "xi3", "c2", "c3", "c02", "c03",
                         "b1", "b2", "b3", "w", "HRgo",

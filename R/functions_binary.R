@@ -120,6 +120,9 @@ utility_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                             b1, b2, b3,
                             gamma, fixed){
 
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
 
   n3  <-  En3_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
                        p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, fixed = fixed)
@@ -225,9 +228,13 @@ EPsProg_skipII_binary <-function(alpha, beta, step1, step2, p0, median_prior, w,
 #utility function
 utility_skipII_binary <-function(alpha, beta, c03, c3, b1, b2, b3, p0, median_prior, 
                                 K, N, S,
-                                steps1, steps2, stepm1, stepm2, stepl1, stepl2,
+                                steps1, stepm1,  stepl1, 
                                 w, p11, p12, in1, in2, gamma, fixed){
 
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
+  
   n3  <- n3_skipII_binary(alpha = alpha, beta = beta, p0 = p0, median_prior = median_prior)
   
   n3  <- ceiling(n3)

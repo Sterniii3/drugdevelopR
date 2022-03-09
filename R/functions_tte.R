@@ -111,6 +111,10 @@ utility_tte <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                          b1, b2, b3,
                          gamma, fixed){
 
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
+  
   d3  <- Ed3_tte(HRgo = HRgo, d2 = d2, alpha = alpha, 
                  beta = beta, w = w, hr1 = hr1, hr2 = hr2,
                  id1 = id1, id2 = id2, fixed = fixed)
@@ -232,12 +236,14 @@ EPsProg_skipII_tte <-function(alpha, beta, step1, step2,
 utility_skipII_tte <-function(alpha, beta, xi3, c03, c3, 
                               b1, b2, b3, median_prior,
                               K, N, S, 
-                              steps1, steps2, 
-                              stepm1, stepm2, 
-                              stepl1, stepl2,
+                              steps1, stepm1, stepl1,
                               w, hr1, hr2, id1, id2, 
                               gamma, fixed){
 
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
+  
   d3  <- d3_skipII_tte(alpha = alpha, beta = beta, 
                        median_prior = median_prior)
 
