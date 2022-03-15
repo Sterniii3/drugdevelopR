@@ -177,7 +177,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,ca
                             upper = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
                             mean = c(x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
-                                     x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
+                                     x/sqrt(t1(x, p0)*y^2/c(x, p0))), 
                             sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -207,7 +207,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,ca
                                       qnorm(1 - alpha) - 
                                         log(0.85)/sqrt(t1(x, p0)*y^2/c(x, p0))), 
                             mean = c(x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
-                                     x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
+                                     x/sqrt(t1(x, p0)*y^2/c(x, p0))), 
                             sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -275,7 +275,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,ca
                             sigma = SIGMA)) * 
                   dnorm(y, 
                         mean = x, 
-                        sd = sqrt(((2/n2))*(t1(x, p0))) * 
+                        sd = sqrt(((2/n2))*t1(x, p0))) * 
                   prior_binary(x, w, p11, p12, in1, in2) 
               })
             },  - log(RRgo), Inf)$value
@@ -290,11 +290,11 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,ca
                 ( pmvnorm(lower = c(qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(t1(x, p0)*y^2/c(x, p0)), 
                                     qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(t1(x, p0)*y^2/c(x, p0)), 
+                                      log(0.85)/sqrt(t1(x, p0)*y^2/c(x, p0))), 
                           upper = c(Inf, 
                                     Inf), 
                           mean = c(x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
-                                   x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
+                                   x/sqrt(t1(x, p0)*y^2/c(x, p0))), 
                           sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -315,7 +315,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,ca
                           upper = c(Inf, 
                                     Inf), 
                           mean = c(x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
-                                   x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
+                                   x/sqrt(t1(x, p0)*y^2/c(x, p0))), 
                           sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -622,7 +622,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,ca
                                           log(0.95)/sqrt(t1(x, p0)*y^2/c(x, p0)), 
                               mean = c(x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
                                        x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
-                                       x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
+                                       x/sqrt(t1(x, p0)*y^2/c(x, p0))), 
                               sigma = SIGMA) - 
                     2 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
@@ -635,7 +635,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,ca
                                             log(0.95)/sqrt(t1(x, p0)*y^2/c(x, p0))), 
                                 mean = c(x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
                                          x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
-                                         x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
+                                         x/sqrt(t1(x, p0)*y^2/c(x, p0))), 
                                 sigma = SIGMA) ) * 
                   dnorm(y, 
                         mean = x, 
@@ -1346,7 +1346,7 @@ EPsProg23_binary <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case
                               sigma = SIGMA3)) * 
                 dnorm(y, 
                       mean = x, 
-                      sd = sqrt(((2/n2))*(t1(x, p0))) * 
+                      sd = sqrt(((2/n2))*t1(x, p0))) * 
                 prior_binary(x, w, p11, p12, in1, in2) 
             })
           },  - log(RRgo), Inf)$value
@@ -1396,7 +1396,7 @@ EPsProg23_binary <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case
                             sigma = SIGMA3) ) * 
                 dnorm(y, 
                       mean = x, 
-                      sd = sqrt(((2/n2))*(t1(x, p0))) * 
+                      sd = sqrt(((2/n2))*t1(x, p0))) * 
                 prior_binary(x, w, p11, p12, in1, in2) 
             })
           },  - log(RRgo), Inf)$value
