@@ -60,7 +60,7 @@ shinyUI(fluidPage(
                    choices = list("No" = 0,
                                   "Yes" = 1), 
                    selected = 1),
-       actionButton("go", "Double click"),
+       actionButton("go", "Go"),
                
    tags$head(tags$style("#plot{height:75vh !important;}"))),
           
@@ -72,8 +72,8 @@ shinyUI(fluidPage(
           includeMarkdown("help52.md"),
           tableOutput("table"),
           includeMarkdown("help53.md"),
-          plotlyOutput("plot", height = "30px"),
-          includeMarkdown("help54.md")
+          includeMarkdown("help54.md"),
+          plotlyOutput("plot", height = "30px")
           )
      )
 ))

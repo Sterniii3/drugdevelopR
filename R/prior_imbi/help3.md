@@ -8,7 +8,7 @@ Rufibach, K., Jordan, P., and Abt, M. (2016). Sequentially updating the likeliho
 
 #### Maintainer
 
-Stella Preussler, Institute of Medical Biometry and Informatics, University of Heidelberg, email: Preussler@imbi.uni-heidelberg.de.
+Stella Erdmann, Institute of Medical Biometry, University of Heidelberg, email: erdmann@imbi.uni-heidelberg.de.
 
-Beta version 0.4
+Beta version 0.5
 

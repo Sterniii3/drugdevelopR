@@ -1,6 +1,6 @@
 ### Optimal Designs for Phase II/III Drug Development Programs including methods for discounting of phase II results
 
-Further reading: Stella Preussler, Marietta Kirchner, Heiko Goette, Meinhard Kieser. Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. Submitted to peer-review journal.
+Further reading: Stella Preussler, Marietta Kirchner, Heiko Goette, Meinhard Kieser. Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. BMC medical research methodology, 20(1), 253. https://doi.org/10.1186/s12874-020-01093-w.
 
 #### Summary
 This shiny App is a tool for phase II/III drug development planning aiming to optimize the sample size allocation and go/no-go decision rule with respect to the maximal expected utility. The approach is based on a utility function taking into account, e.g., fixed and variable costs of the program (c<sub>02</sub>, c<sub>03</sub>, c<sub>2</sub> , c<sub>3</sub>), expected benefits after successful market launch (b<sub>1</sub>, b<sub>2</sub>, b<sub>3</sub>), assumed true hazard rate (HR), and event rates in phase II and III (&xi;<sub>i</sub>, i=2,3). The considered drug development program consists of one phase II trial possibly followed (in case of a go-decision after phase II) by a phase III trial.
