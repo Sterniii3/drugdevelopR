@@ -124,7 +124,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
   stepl2 <- 0
   
   
-  HRGO <- seq(rrgomin, rrgomax, steprrgo)
+  RRGO <- seq(rrgomin, rrgomax, steprrgo)
   N2   <- seq(n2min, n2max, stepn2)
   
   if(adj=="both"){
@@ -164,13 +164,13 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
       Adj <- ADJ[a]
   
       ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
-        sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- matrix(0, length(N2), length(HRGO))
+        sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- matrix(0, length(N2), length(RRGO))
   
   
   
-  for(j in 1:length(HRGO)){
+  for(j in 1:length(RRGO)){
     
-    RRgo <- HRGO[j]
+    RRgo <- RRGO[j]
     
     cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
     
@@ -256,7 +256,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
   prob3 <- sp3fkt[I, J]
   
   if(fixed){
-    result <-  data.frame(u = round(Eud,2), Adj = Adj, RRgo = HRGO[J], n2 = N2[I],
+    result <-  data.frame(u = round(Eud,2), Adj = Adj, RRgo = RRGO[J], n2 = N2[I],
                           n3 = n3, n = N2[I] + n3,
                           pgo = round(pg,2), sProg = round(prob,2),
                           p0 = p0, p1 = p11, 
@@ -266,7 +266,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
                           alpha = alpha, beta = beta, c02 = c02,
                           c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3)  
   }else{
-    result <-  data.frame(u = round(Eud,2), Adj = Adj, RRgo = HRGO[J], n2 = N2[I],
+    result <-  data.frame(u = round(Eud,2), Adj = Adj, RRgo = RRGO[J], n2 = N2[I],
                           n3 = n3, n = N2[I] + n3,
                           pgo = round(pg,2), sProg = round(prob,2),
                           w = w, p0 = p0, p11 = p11, p12 = p12, in1 = in1, in2 = in2,
@@ -287,7 +287,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
   }
   
   
-  comment(result) <-   c("\noptimization sequence RRgo:", HRGO,
+  comment(result) <-   c("\noptimization sequence RRgo:", RRGO,
                          "\noptimization sequence n2:", N2,
                          "\nset on date:", as.character(date),
                          "\nfinish date:", as.character(Sys.time()))
