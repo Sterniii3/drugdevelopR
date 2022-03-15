@@ -5,7 +5,7 @@
 # Case 2: Strategy 2/2; both trials significant 
 
 # Expected probability of a successful program
-EPsProg2_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, case, size, fixed){
+EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, case, size, fixed){
   
   SIGMA <-  diag(2)
   c     <-  (qnorm(1 - alpha) + qnorm(1 - beta))^2
@@ -18,8 +18,8 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
           sapply(y, function(y){
             ( pmvnorm(lower = c(0, 
                                 0), 
-                      upper = c(qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c),
-                                qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c)), 
+                      upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c),
+                                qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                       mean = c((Delta1)/sqrt(y^2/c), 
                                (Delta1)/sqrt(y^2/c)), 
                       sigma = SIGMA) - 
@@ -48,10 +48,8 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                       sigma = SIGMA) - 
                 pmvnorm(lower = c(0, 
                                   0), 
-                        upper = c(qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(y^2/c), 
-                                  qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(y^2/c)), 
+                        upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                  qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                         mean = c((Delta1)/sqrt(y^2/c), 
                                  (Delta1)/sqrt(y^2/c)), 
                         sigma = SIGMA) ) * 
@@ -91,21 +89,15 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
           sapply(y, function(y){
             ( pmvnorm(lower = c(qnorm(1 - alpha), 
                                 qnorm(1 - alpha)), 
-                      upper = c(qnorm(1 - alpha) - 
-                                  log(0.85)/sqrt(y^2/c), 
-                                qnorm(1 - alpha) - 
-                                  log(0.85)/sqrt(y^2/c)), 
+                      upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                       mean = c((Delta1)/sqrt(y^2/c), 
                                (Delta1)/sqrt(y^2/c)), 
                       sigma = SIGMA) - 
-                pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                    log(0.95)/sqrt(y^2/c), 
-                                  qnorm(1 - alpha) - 
-                                    log(0.95)/sqrt(y^2/c)), 
-                        upper = c(qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(y^2/c), 
-                                  qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(y^2/c)), 
+                pmvnorm(lower = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                  qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
+                        upper = c(qnorm(1 - alpha) + 0.8)/sqrt(y^2/c), 
+                                  qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                         mean = c((Delta1)/sqrt(y^2/c), 
                                  (Delta1)/sqrt(y^2/c)), 
                         sigma = SIGMA)) * 
@@ -118,10 +110,8 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
       if(size == "large"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                  log(0.85)/sqrt(y^2/c), 
-                                qnorm(1 - alpha) - 
-                                  log(0.85)/sqrt(y^2/c)), 
+            ( pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                       upper = c(Inf, 
                                 Inf), 
                       mean = c((Delta1)/sqrt(y^2/c), 
@@ -160,8 +150,8 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
               sapply(y, function(y){
                 ( pmvnorm(lower = c(0, 
                                     0), 
-                          upper = c(qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c),
-                                    qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c)), 
+                          upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c),
+                                    qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                           mean = c(x/sqrt(y^2/c), 
                                    x/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
@@ -195,10 +185,8 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                           sigma = SIGMA) - 
                     pmvnorm(lower = c(0, 
                                       0), 
-                            upper = c(qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(y^2/c)), 
+                            upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                             mean = c(x/sqrt(y^2/c), 
                                      x/sqrt(y^2/c)), 
                             sigma = SIGMA) ) * 
@@ -248,21 +236,15 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
               sapply(y, function(y){
                 ( pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
-                          upper = c(qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c)), 
+                          upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                           mean = c(x/sqrt(y^2/c), 
                                    x/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                    pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                        log(0.95)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - 
-                                        log(0.95)/sqrt(y^2/c)), 
-                            upper = c(qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(y^2/c)), 
+                    pmvnorm(lower = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
+                            upper = c(qnorm(1 - alpha) + 0.8)/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                             mean = c(x/sqrt(y^2/c), 
                                      x/sqrt(y^2/c)), 
                             sigma = SIGMA)) * 
@@ -280,10 +262,8 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c)), 
+                ( pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                           upper = c(Inf, 
                                     Inf), 
                           mean = c(x/sqrt(y^2/c), 
@@ -365,15 +345,12 @@ utility2_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
     }else{
       # probability of a successful program; small, medium, large effect size
       prob1 <-  EPsProg2_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                         step1 = steps1, step2 =  steps2,
                          w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                          case = case, size = "small", fixed = fixed)
       prob3 <-  EPsProg2_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                         step1 = steps1, step2 =  steps2,
                          w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                          case = case, size = "large", fixed = fixed)
       prob2 <-  EPsProg2_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                         step1 = steps1, step2 =  steps2,
                          w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                          case = case, size = "all", fixed = fixed) - prob1 - prob3
       
@@ -412,7 +389,7 @@ utility2_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
 # Case 3: Strategy 3/3; all trials significant
 
 # Expected probability of a successful program
-EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, case, size, fixed){
+EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, case, size, fixed){
   
   SIGMA <-  diag(3)
   c     <-  (qnorm(1 - alpha) + qnorm(1 - beta))^2
@@ -427,12 +404,9 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
             ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     0), 
-                          upper = c(qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.95)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.95)/sqrt(y^2/c)), 
+                          upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                           mean = c(Delta1/sqrt(y^2/c), 
                                    Delta1/sqrt(y^2/c), 
                                    Delta1/sqrt(y^2/c)), 
@@ -440,12 +414,9 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                 2 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
-                            upper = c(qnorm(1 - alpha) - 
-                                        log(0.95)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - 
-                                        log(0.95)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - 
-                                        log(0.95)/sqrt(y^2/c)), 
+                            upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                             mean = c(Delta1/sqrt(y^2/c), 
                                      Delta1/sqrt(y^2/c), 
                                      Delta1/sqrt(y^2/c)), 
@@ -459,10 +430,8 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
       if(size == "large"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c), 
+            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                     0), 
                           upper = c(Inf, 
                                     Inf, 
@@ -471,12 +440,9 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                                    Delta1/sqrt(y^2/c), 
                                    Delta1/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(y^2/c)), 
+                2 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                             upper = c(Inf, 
                                       Inf, 
                                       Inf), 
@@ -527,12 +493,9 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
             ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
-                          upper = c(qnorm(1 - alpha) - 
-                                      log(0.95)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.95)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c)), 
+                          upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                           mean = c(Delta1/sqrt(y^2/c), 
                                    Delta1/sqrt(y^2/c), 
                                    Delta1/sqrt(y^2/c)), 
@@ -540,12 +503,9 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                 2 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
-                            upper = c(qnorm(1 - alpha) - 
-                                        log(0.95)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - 
-                                        log(0.95)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - 
-                                        log(0.95)/sqrt(y^2/c)), 
+                            upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                             mean = c(Delta1/sqrt(y^2/c), 
                                      Delta1/sqrt(y^2/c), 
                                      Delta1/sqrt(y^2/c)), 
@@ -559,10 +519,8 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
       if(size == "large"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c), 
+            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                     qnorm(1 - alpha)), 
                           upper = c(Inf, 
                                     Inf, 
@@ -571,12 +529,9 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                                    Delta1/sqrt(y^2/c), 
                                    Delta1/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(y^2/c)), 
+                2 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.8)/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                             upper = c(Inf, 
                                       Inf, 
                                       Inf), 
@@ -621,12 +576,9 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                 ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         0), 
-                              upper = c(qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt(y^2/c), 
-                                        qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt(y^2/c), 
-                                        qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt(y^2/c)), 
+                              upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                        qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                        qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                               mean = c(x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c)), 
@@ -634,12 +586,9 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                     2 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
                                           qnorm(1 - alpha)), 
-                                upper = c(qnorm(1 - alpha) - 
-                                            log(0.95)/sqrt(y^2/c), 
-                                          qnorm(1 - alpha) - 
-                                            log(0.95)/sqrt(y^2/c), 
-                                          qnorm(1 - alpha) - 
-                                            log(0.95)/sqrt(y^2/c)), 
+                                upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                          qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                          qnorm(1 - alpha) + 0.5)/sqrt(y^2/c)), 
                                 mean = c(x/sqrt(y^2/c), 
                                          x/sqrt(y^2/c), 
                                          x/sqrt(y^2/c)), 
@@ -658,10 +607,8 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt(y^2/c), 
-                                        qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt(y^2/c), 
+                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                        qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                         0), 
                               upper = c(Inf, 
                                         Inf, 
@@ -670,12 +617,9 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c)), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                            log(0.85)/sqrt(y^2/c), 
-                                          qnorm(1 - alpha) - 
-                                            log(0.85)/sqrt(y^2/c), 
-                                          qnorm(1 - alpha) - 
-                                            log(0.85)/sqrt(y^2/c)), 
+                    2 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                          qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                          qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                                 upper = c(Inf, 
                                           Inf, 
                                           Inf), 
@@ -736,12 +680,9 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                 ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha)), 
-                              upper = c(qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt(y^2/c), 
-                                        qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt(y^2/c), 
-                                        qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt(y^2/c)), 
+                              upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                        qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                        qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                               mean = c(x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c)), 
@@ -749,12 +690,9 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                     2 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
                                           qnorm(1 - alpha)), 
-                                upper = c(qnorm(1 - alpha) - 
-                                            log(0.95)/sqrt(y^2/c), 
-                                          qnorm(1 - alpha) - 
-                                            log(0.95)/sqrt(y^2/c), 
-                                          qnorm(1 - alpha) - 
-                                            log(0.95)/sqrt(y^2/c)), 
+                                upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                          qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                          qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                                 mean = c(x/sqrt(y^2/c), 
                                          x/sqrt(y^2/c), 
                                          x/sqrt(y^2/c)), 
@@ -773,10 +711,8 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt(y^2/c), 
-                                        qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt(y^2/c), 
+                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                        qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                         qnorm(1 - alpha)), 
                               upper = c(Inf, 
                                         Inf, 
@@ -785,12 +721,9 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c)), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                            log(0.85)/sqrt(y^2/c), 
-                                          qnorm(1 - alpha) - 
-                                            log(0.85)/sqrt(y^2/c), 
-                                          qnorm(1 - alpha) - 
-                                            log(0.85)/sqrt(y^2/c)), 
+                    2 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                          qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                          qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                                 upper = c(Inf, 
                                           Inf, 
                                           Inf), 
@@ -874,11 +807,9 @@ utility3_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
     }else{
       # probability of a successful program; small, medium, large effect size
       prob1 <-  EPsProg3_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                                step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                                 case = case, size = "small", fixed = fixed)
       prob3 <-  EPsProg3_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                                step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                                 case = case, size = "large", fixed = fixed)
       prob2 <-  EPsProg3_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
@@ -922,7 +853,7 @@ utility3_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
 # of the other one at least showing in the same direction
 
 # Expected probability of a successful program
-EPsProg4_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, case, size,fixed){
+EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, case, size,fixed){
   
   SIGMA <-  diag(4)
   c     <-  (qnorm(1 - alpha) + qnorm(1 - beta))^2
@@ -936,10 +867,10 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                                   qnorm(1 - alpha), 
                                   qnorm(1 - alpha), 
                                   0), 
-                        upper = c(qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
-                                  qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c), 
-                                  qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c), 
-                                  qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c)), 
+                        upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                  qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                  qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                  qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                         mean = c(Delta1/sqrt(y^2/c), 
                                  Delta1/sqrt(y^2/c), 
                                  Delta1/sqrt(y^2/c), 
@@ -949,14 +880,10 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
-                          upper = c(qnorm(1 - alpha) - 
-                                      log(0.95)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.95)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.95)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.95)/sqrt(y^2/c)), 
+                          upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                           mean = c(Delta1/sqrt(y^2/c), 
                                    Delta1/sqrt(y^2/c), 
                                    Delta1/sqrt(y^2/c), 
@@ -971,10 +898,9 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
     if(size == "large"){
       return(integrate(function(y){
         sapply(y, function(y){
-          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(y^2/c), 
-                                  qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
-                                  qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
+          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                  qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                  qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                   0), 
                         upper = c(Inf, 
                                   Inf, 
@@ -985,14 +911,10 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                                  Delta1/sqrt(y^2/c), 
                                  Delta1/sqrt(y^2/c)), 
                         sigma = SIGMA)  - 
-              3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c)), 
+              3 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                           upper = c(Inf, 
                                     Inf, 
                                     Inf, 
@@ -1054,10 +976,10 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       0), 
-                            upper = c(qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c)), 
+                            upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                             mean = c(x/sqrt(y^2/c), 
                                      x/sqrt(y^2/c), 
                                      x/sqrt(y^2/c), 
@@ -1067,14 +989,10 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha)), 
-                              upper = c(qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt(y^2/c), 
-                                        qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt(y^2/c), 
-                                        qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt(y^2/c), 
-                                        qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt(y^2/c)), 
+                              upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                        qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                        qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                        qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                               mean = c(x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c), 
@@ -1094,10 +1012,9 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
+              ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       0), 
                             upper = c(Inf, 
                                       Inf, 
@@ -1108,14 +1025,10 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, De
                                      x/sqrt(y^2/c), 
                                      x/sqrt(y^2/c)), 
                             sigma = SIGMA)  - 
-                  3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt(y^2/c), 
-                                        qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt(y^2/c), 
-                                        qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt(y^2/c), 
-                                        qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt(y^2/c)), 
+                  3 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                        qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                        qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                        qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                               upper = c(Inf, 
                                         Inf, 
                                         Inf, 
@@ -1216,15 +1129,12 @@ utility4_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
     }else{
       # probability of a successful program; small, medium, large effect size
       prob1 <-  EPsProg4_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                                step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                                 case = case, size = "small", fixed = fixed)
       prob3 <-  EPsProg4_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                                step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                                 case = case, size = "large", fixed = fixed)
       prob2 <-  EPsProg4_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                                step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                                 case = case, size = "all", fixed = fixed) - prob1 - prob3
       
@@ -1288,7 +1198,7 @@ Epgo23_normal <-  function(kappa, n2, w, Delta1, Delta2, in1, in2, a, b, fixed){
 } 
 
 # Expected probability of a successful program
-EPsProg23_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, case, size, ymin){
+EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, case, size, ymin){
   # Option 2.1: first two phase III trials are successful: no third phase III trial
   # Option 2.2: one of the two first phase III trials successful, the treatment
   #  effect of the other one points in the same direction: 
@@ -1306,21 +1216,15 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, D
             sapply(y, function(y){
               ( pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
-                        upper = c(qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(y^2/c), 
-                                  qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(y^2/c)), 
+                        upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                  qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                         mean = c(x/sqrt(y^2/c), 
                                  x/sqrt(y^2/c)), 
                         sigma = SIGMA)  - 
-                  pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                      log(0.95)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.95)/sqrt(y^2/c)), 
-                          upper = c(qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c)), 
+                  pmvnorm(lower = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
+                          upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                           mean = c(x/sqrt(y^2/c), 
                                    x/sqrt(y^2/c)), 
                           sigma = SIGMA)) * 
@@ -1338,10 +1242,8 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, D
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(y^2/c), 
-                                  qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(y^2/c)), 
+              ( pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                                  qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                         upper = c(Inf, Inf), 
                         mean = c(x/sqrt(y^2/c), 
                                  x/sqrt(y^2/c)), 
@@ -1386,25 +1288,19 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, D
               2 * ( pmvnorm(lower = c(qnorm(1 - alpha), 
                                       0, 
                                       qnorm(1 - alpha)), 
-                            upper = c(qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(y^2/c), 
+                            upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       qnorm(1 - alpha), 
-                                      qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(ymin^2/c)), 
+                                      qnorm(1 - alpha) + 0.8/sqrt(ymin^2/c)), 
                             mean = c(x/sqrt(y^2/c), 
                                      x/sqrt(y^2/c), 
                                      x/sqrt(ymin^2/c)), 
                             sigma = SIGMA3)  - 
-                      pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt(y^2/c), 
+                      pmvnorm(lower = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
                                         0, 
-                                        qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt(ymin^2/c)), 
-                              upper = c(qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt(y^2/c), 
+                                        qnorm(1 - alpha) + 0.5/sqrt(ymin^2/c)), 
+                              upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                         qnorm(1 - alpha), 
-                                        qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt(ymin^2/c)), 
+                                        qnorm(1 - alpha) + 0.8/sqrt(ymin^2/c)), 
                               mean = c(x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c), 
                                        x/sqrt(ymin^2/c)), 
@@ -1423,11 +1319,9 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, D
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              2 * ( pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(y^2/c), 
+              2 * ( pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       0, 
-                                      qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(ymin^2/c)), 
+                                      qnorm(1 - alpha) + 0.8/sqrt(ymin^2/c)), 
                             upper = c(Inf, 
                                       qnorm(1 - alpha), 
                                       Inf), 
@@ -1497,15 +1391,12 @@ utility23_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
   # probability of a successful program:
   # small, medium and large effect size
   prob1 <- EPsProg23_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                            step1 = steps1, step2 =  steps2,
                             w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b, 
                             case = 2, size = "small", ymin = ymin)
   prob3 <- EPsProg23_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                            step1 = steps1, step2 =  steps2,
                             w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b, 
                             case = 2, size = "large", ymin = ymin)
   prob2 <- EPsProg23_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                            step1 = steps1, step2 =  steps2,
                             w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b, 
                             case = 2, size = "all", ymin = ymin) - prob1 - prob3
   
@@ -1527,17 +1418,14 @@ utility23_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
   
   # small 
   prob13   <-  EPsProg23_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                                step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b, 
                                 case = 3, size = "small", ymin = ymin) 
   # large
   prob33   <-  EPsProg23_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                                step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b, 
                                 case = 3, size = "large", ymin = ymin) 
   # medium
   prob23   <-  EPsProg23_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                                step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b, 
                                 case = 3, size = "all", ymin = ymin) - prob13 - prob33
   
