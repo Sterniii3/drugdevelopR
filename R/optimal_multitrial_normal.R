@@ -188,7 +188,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                           "Delta1", "Delta2", "ymin", "in1", "in2", "a", "b" ), envir = environment())
       
       if(Strategy==1){
-        res <- parSapply(cl, D2, utility_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
+        res <- parSapply(cl, N2, utility_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
                          alpha, beta, 
                          c2, c3, c02, c03, 
                          K, N, S,
@@ -197,7 +197,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                          fixed)  
       }
       if(Strategy==2){
-        res <- parSapply(cl, D2, utility2_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
+        res <- parSapply(cl, N2, utility2_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
                          alpha, beta, 
                          c2, c3, c02, c03, 
                          K, N, S,
@@ -205,7 +205,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                          case, fixed)  
       }
       if(Strategy==3){
-        res <- parSapply(cl, D2, utility3_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
+        res <- parSapply(cl, N2, utility3_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
                          alpha, beta, 
                          c2, c3, c02, c03, 
                          K, N, S,
@@ -213,13 +213,13 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                          case, fixed)  
       }
       if(Strategy==23){
-        res <- parSapply(cl, D2, utility23_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
+        res <- parSapply(cl, N2, utility23_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
                          alpha, beta, 
                          c2, c3, c02, c03, 
                          b1, b2, b3)  
       }
       if(Strategy==4){
-        res <- parSapply(cl, D2, utility4_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
+        res <- parSapply(cl, N2, utility4_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
                          alpha, beta, 
                          c2, c3, c02, c03, 
                          K, N, S,
