@@ -96,7 +96,7 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                       sigma = SIGMA) - 
                 pmvnorm(lower = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
                                   qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
-                        upper = c(qnorm(1 - alpha) + 0.8)/sqrt(y^2/c), 
+                        upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                   qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                         mean = c((Delta1)/sqrt(y^2/c), 
                                  (Delta1)/sqrt(y^2/c)), 
@@ -243,7 +243,7 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                           sigma = SIGMA) - 
                     pmvnorm(lower = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
                                       qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
-                            upper = c(qnorm(1 - alpha) + 0.8)/sqrt(y^2/c), 
+                            upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                             mean = c(x/sqrt(y^2/c), 
                                      x/sqrt(y^2/c)), 
@@ -530,7 +530,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                    Delta1/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
                 2 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
-                                      qnorm(1 - alpha) + 0.8)/sqrt(y^2/c), 
+                                      qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                             upper = c(Inf, 
                                       Inf, 
@@ -588,7 +588,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                           qnorm(1 - alpha)), 
                                 upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
                                           qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
-                                          qnorm(1 - alpha) + 0.5)/sqrt(y^2/c)), 
+                                          qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                                 mean = c(x/sqrt(y^2/c), 
                                          x/sqrt(y^2/c), 
                                          x/sqrt(y^2/c)), 
