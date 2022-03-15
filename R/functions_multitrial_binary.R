@@ -10,12 +10,14 @@ t3 <- function(x, p0){sqrt(((1-p0)/p0) + ((1-x)/x))}
 # Case 2: Strategy 2/2; both trials significant 
 
 # Expected probability of a successful program
-EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p12, in1, in2,case, size, fixed){
+EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,case, size, fixed){
   
   SIGMA <-  diag(2)
   c    <-  (qnorm(1-alpha)*t2(p11, p0) + qnorm(1-beta)*t3(p11, p0))^2
   
   if(fixed){
+    
+    rho <- -log(p11/p0)
     
     if(case == 1){
       if(size == "small"){
@@ -25,18 +27,18 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                 0), 
                       upper = c(qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c),
                                 qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
-                      mean = c((-log((p11)/p0))/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                               -log((p11)/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                      mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                               rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                       sigma = SIGMA) - 
                 pmvnorm(lower = c(0, 
                                   0), 
                         upper = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
-                        mean = c((-log((p11)/p0))/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                 -log((p11)/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                        mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                 rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                         sigma = SIGMA) ) * 
               dnorm(y, 
-                    mean = -log(p11/p0), 
+                    mean = rho, 
                     sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) 
           })
         },  - log(RRgo), Inf)$value)  
@@ -48,8 +50,8 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                 0), 
                       upper = c(Inf, 
                                 Inf), 
-                      mean = c((-log((p11)/p0))/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                               (-log((p11)/p0))/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                      mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                               rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                       sigma = SIGMA) - 
                 pmvnorm(lower = c(0, 
                                   0), 
@@ -57,11 +59,11 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                     log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
                                   qnorm(1 - alpha) - 
                                     log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
-                        mean = c((-log((p11)/p0))/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                 (-log((p11)/p0))/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                        mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                 rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                         sigma = SIGMA) ) * 
               dnorm(y, 
-                    mean = -log(p11/p0), 
+                    mean = rho, 
                     sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) 
           })
         },  - log(RRgo), Inf)$value)  
@@ -73,18 +75,18 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                 0), 
                       upper = c(Inf, 
                                 Inf), 
-                      mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                               -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                      mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                               rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                       sigma = SIGMA) - 
                 pmvnorm(lower = c(0, 
                                   0), 
                         upper = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
-                        mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                 -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                        mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                 rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                         sigma = SIGMA) ) * 
               dnorm(y, 
-                    mean = -log(p11/p0), 
+                    mean = rho, 
                     sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11))))
           })
         },  - log(RRgo), Inf)$value)     
@@ -100,8 +102,8 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                   log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
                                 qnorm(1 - alpha) - 
                                   log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
-                      mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                               -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                      mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                               rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                       sigma = SIGMA) - 
                 pmvnorm(lower = c(qnorm(1 - alpha) - 
                                     log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
@@ -111,11 +113,11 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                     log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
                                   qnorm(1 - alpha) - 
                                     log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
-                        mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                 -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                        mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                 rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                         sigma = SIGMA)) * 
               dnorm(y, 
-                    mean = -log(p11/p0), 
+                    mean = rho, 
                     sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) 
           })
         },  - log(RRgo), Inf)$value) 
@@ -129,11 +131,11 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                   log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                       upper = c(Inf, 
                                 Inf), 
-                      mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                               -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                      mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                               rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                       sigma = SIGMA) ) * 
               dnorm(y, 
-                    mean = -log(p11/p0), 
+                    mean = rho, 
                     sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) 
           })
         },  - log(RRgo), Inf)$value)    
@@ -145,11 +147,11 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                 qnorm(1 - alpha)), 
                       upper = c(Inf, 
                                 Inf), 
-                      mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                               -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                      mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                               rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                       sigma = SIGMA) ) * 
               dnorm(y, 
-                    mean = -log(p11/p0), 
+                    mean = rho, 
                     sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) 
           })
         },  - log(RRgo), Inf)$value)    
@@ -366,15 +368,12 @@ utility2_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
     }else{
       # probability of a successful program; small, medium, large effect size
       prob1 <-  EPsProg2_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                               step1 = steps1, step2 =  steps2,
                                p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                                case = case, size = "small", fixed = fixed)
       prob3 <-  EPsProg2_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                               step1 =  stepm1, step2 =  stepm2,
                                p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                                case = case, size = "large", fixed = fixed)
       prob2 <-  EPsProg2_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                               step1 =  stepl1, step2 = stepl2,
                                p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                                case = case, size = "all", fixed = fixed) - prob1 - prob3
       
@@ -406,12 +405,14 @@ utility2_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
 # Case 3: Strategy 3/3; all trials significant
 
 # Expected probability of a successful program
-EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p12, in1, in2,case, size, fixed){
+EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,case, size, fixed){
   
   SIGMA <-  diag(3)
   c    <-  (qnorm(1-alpha)*t2(p11, p0) + qnorm(1-beta)*t3(p11, p0))^2
   
   if(fixed){
+    
+    rho <- -log(p11/p0)
     
     if(case == 2){
       if(size == "small"){
@@ -426,9 +427,9 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                       log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
                                     qnorm(1 - alpha) - 
                                       log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
-                          mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                          mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                           sigma = SIGMA) - 
                 2 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
@@ -439,12 +440,12 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                         log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
                                       qnorm(1 - alpha) - 
                                         log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
-                            mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                     -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                     -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                            mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                     rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                     rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                             sigma = SIGMA) ) * 
               dnorm(y, 
-                    mean = -log(p11/p0), 
+                    mean = rho, 
                     sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) 
           })
         },  - log(RRgo), Inf)$value)
@@ -460,9 +461,9 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                           upper = c(Inf, 
                                     Inf, 
                                     Inf), 
-                          mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                          mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                           sigma = SIGMA) - 
                 2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
                                         log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
@@ -473,12 +474,12 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                             upper = c(Inf, 
                                       Inf, 
                                       Inf), 
-                            mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                     -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                     -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                            mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                     rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                     rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                             sigma = SIGMA) ) * 
               dnorm(y, 
-                    mean = -log(p11/p0), 
+                    mean = rho, 
                     sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) 
           })
         },  - log(RRgo), Inf)$value)
@@ -492,9 +493,9 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                           upper = c(Inf, 
                                     Inf, 
                                     Inf), 
-                          mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                          mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                           sigma = SIGMA) - 
                 2 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
@@ -502,12 +503,12 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                             upper = c(Inf, 
                                       Inf, 
                                       Inf), 
-                            mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                     -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                     -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                            mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                     rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                     rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                             sigma = SIGMA) ) * 
               dnorm(y, 
-                    mean = -log(p11/p0), 
+                    mean = rho, 
                     sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11))))  
           })
         },  - log(RRgo), Inf)$value)
@@ -526,9 +527,9 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                       log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
                                     qnorm(1 - alpha) - 
                                       log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
-                          mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                          mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                           sigma = SIGMA) - 
                 2 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
@@ -539,12 +540,12 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                         log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
                                       qnorm(1 - alpha) - 
                                         log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
-                            mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                     -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                     -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                            mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                     rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                     rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                             sigma = SIGMA) ) * 
               dnorm(y, 
-                    mean = -log(p11/p0), 
+                    mean = rho, 
                     sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11))))
           })
         },  - log(RRgo), Inf)$value)
@@ -560,9 +561,9 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                           upper = c(Inf, 
                                     Inf, 
                                     Inf), 
-                          mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                          mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                           sigma = SIGMA) - 
                 2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
                                         log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
@@ -573,12 +574,12 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                             upper = c(Inf, 
                                       Inf, 
                                       Inf), 
-                            mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                     -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                     -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                            mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                     rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                     rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                             sigma = SIGMA) ) * 
               dnorm(y, 
-                    mean = -log(p11/p0), 
+                    mean = rho, 
                     sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) 
           })
         },  - log(RRgo), Inf)$value)
@@ -592,12 +593,12 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                       upper = c(Inf, 
                                 Inf, 
                                 Inf), 
-                      mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                               -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                               -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                      mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                               rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                               rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                       sigma = SIGMA) ) * 
               dnorm(y, 
-                    mean = -log(p11/p0), 
+                    mean = rho, 
                     sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) 
           })
         },  - log(RRgo), Inf)$value)
@@ -864,15 +865,12 @@ utility3_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
     }else{
       # probability of a successful program; small, medium, large effect size
       prob1 <-  EPsProg3_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                               step1 = steps1, step2 =  steps2,
                                p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                                case = case, size = "small", fixed = fixed)
       prob3 <-  EPsProg3_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                               step1 =  stepm1, step2 =  stepm2,
                                p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                                case = case, size = "large", fixed = fixed)
       prob2 <-  EPsProg3_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                               step1 =  stepl1, step2 = stepl2,
                                p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                                case = case, size = "all", fixed = fixed) - prob1 - prob3 
       
@@ -904,12 +902,14 @@ utility3_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
 # of the other one at least showing in the same direction
 
 # Expected probability of a successful program
-EPsProg4_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p12, in1, in2,case, size, fixed){
+EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,case, size, fixed){
   
   SIGMA <-  diag(4)
   c    <-  (qnorm(1-alpha)*t2(p11, p0) + qnorm(1-beta)*t3(p11, p0))^2
   
   if(fixed){
+    
+    rho <- -log(p11/p0)
     
     if(size == "small"){
       return(integrate(function(y){
@@ -922,10 +922,10 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                   qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
                                   qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
                                   qnorm(1 - alpha) - log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
-                        mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                 -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                 -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                 -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                        mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                 rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                 rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                 rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                         sigma = SIGMA)  - 
               3 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
@@ -939,13 +939,13 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                       log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
                                     qnorm(1 - alpha) - 
                                       log(0.95)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
-                          mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                          mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                           sigma = SIGMA) ) * 
             dnorm(y, 
-                  mean = -log(p11/p0), 
+                  mean = rho, 
                   sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) 
         })
       },  - log(RRgo), Inf)$value)
@@ -962,10 +962,10 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                   Inf, 
                                   Inf, 
                                   Inf), 
-                        mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                 -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                 -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                 -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                        mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                 rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                 rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                 rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                         sigma = SIGMA)  - 
               3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
                                       log(0.85)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
@@ -979,13 +979,13 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                     Inf, 
                                     Inf, 
                                     Inf), 
-                          mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                          mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                           sigma = SIGMA) ) * 
             dnorm(y, 
-                  mean = -log(p11/p0), 
+                  mean = rho, 
                   sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) 
         })
       },  - log(RRgo), Inf)$value)
@@ -1001,10 +1001,10 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                   Inf, 
                                   Inf, 
                                   Inf), 
-                        mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                 -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                 -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                 -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                        mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                 rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                 rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                 rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                         sigma = SIGMA) - 
               3 * pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
@@ -1014,13 +1014,13 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, step1, step2, p0, w, p11, p1
                                     Inf, 
                                     Inf, 
                                     Inf), 
-                          mean = c(-log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
-                                   -log(p11/p0)/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
+                          mean = c(rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c), 
+                                   rho/sqrt((((1-p0)/p0) + ((1-p11)/p11))*y^2/c)), 
                           sigma = SIGMA) ) * 
             dnorm(y, 
-                  mean = -log(p11/p0), 
+                  mean = rho, 
                   sd = sqrt(((2/n2))*(((1-p0)/p0) + ((1-p11)/p11)))) 
         })
       },  - log(RRgo), Inf)$value)
@@ -1198,15 +1198,12 @@ utility4_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
     }else{
       # probability of a successful program; small, medium, large effect size
       prob1 <-  EPsProg4_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                                step1 = steps1, step2 =  steps2,
                                 p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                                 case = case, size = "small", fixed = fixed)
       prob3 <-  EPsProg4_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                                step1 =  stepm1, step2 =  stepm2,
                                 p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                                 case = case, size = "large", fixed = fixed)
       prob2 <-  EPsProg4_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                                step1 =  stepl1, step2 = stepl2,
                                 p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                                 case = case, size = "all", fixed = fixed) - prob1 - prob3
       
@@ -1423,7 +1420,7 @@ utility23_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                              c2, c3, c02, c03,
                              b1, b2, b3){
   
-  pg    <-  Epgo_binary(RRgo = RRgo, n2 = n2, p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, fixed=fixed)
+  pg    <-  Epgo_binary(RRgo = RRgo, n2 = n2, p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, fixed = fixed)
   
   
   n3  <-  En3_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
@@ -1434,15 +1431,12 @@ utility23_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
   
   prob1 <-  EPsProg23_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                            step1 = steps1, step2 =  steps2,
                             p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                             case = 2, size = "small", ymin = ymin)
   prob3 <-  EPsProg23_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                            step1 =  stepm1, step2 =  stepm2,
                             p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                             case = 2, size = "large", ymin = ymin)
   prob2 <-  EPsProg23_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                            step1 =  stepl1, step2 = stepl2,
                             p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                             case = 2, size = "all", ymin = ymin) - prob1 - prob3
   
@@ -1457,15 +1451,12 @@ utility23_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
   if(round(n33/2) != n33 / 2) {n33 <- n33 + 1}
   
   prob13 <-  EPsProg23_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                             step1 = steps1, step2 =  steps2,
                              p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                              case = 3, size = "small", ymin = ymin)
   prob33 <-  EPsProg23_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                             step1 =  stepm1, step2 =  stepm2,
                              p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                              case = 3, size = "large", ymin = ymin)
   prob23 <-  EPsProg23_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
-                             step1 =  stepl1, step2 = stepl2,
                              p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, 
                              case = 3, size = "all", ymin = ymin) - prob1 - prob3
   
