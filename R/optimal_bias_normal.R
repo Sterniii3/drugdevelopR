@@ -17,6 +17,12 @@
 #' @param kappamax maximal threshold value for the go/no-go decision rule
 #' @param adj choose type of adjustment: "multiplicative", "additive", "both" (or "all")
 #' @param stepkappa stepsize for the optimization over kappa
+#' @param lambdamin minimal adjustment parameter lambda
+#' @param lambdamax maximal adjustment parameter lambda
+#' @param steplambda stepsize for the adjustment parameter lambda
+#' @param alphaCImin minimal alphaCI
+#' @param alphaCImax maximal alphaCI
+#' @param stepalphaCI stepsize for alphaCI
 #' @param beta 1-beta power for calculation of sample size for phase III
 #' @param alpha significance level
 #' @param c2 variable per-patient cost for phase II
@@ -37,7 +43,7 @@
 #' @param skipII choose if skipping phase II is an option, default: FASLE
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
-#' The output of the function \code{\link{optimal_normal}} is a data.frame containing the optimization results:
+#' The output of the function \code{\link{optimal_bias_normal}} is a data.frame containing the optimization results:
 #' \describe{
 #'   \item{Method}{Type of adjustment: multipl. (multiplicative) or add. (additive)}
 #'   \item{u}{maximal expected utility}#'   
@@ -59,7 +65,7 @@
 #'
 #' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' @examples
-#' res <- optimal_normal(w=0.3,                                 # define parameters for prior
+#' res <- optimal_bias_normal(w=0.3,                                 # define parameters for prior
 #'   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,          # (https://web.imbi.uni-heidelberg.de/prior/)
 #'   a = 0.25, b = 0.75,
 #'   n2min = 20, n2max = 100, stepn2 = 4,                       # define optimization set for n2
@@ -74,7 +80,6 @@
 #'   stepm1 = 0.5,                                              # "medium"
 #'   stepl1 = 0.8,                                              # and "large" treatment effect size categories as proposed by e.g. Cohen (1988)
 #'   b1 = 3000, b2 = 8000, b3 = 10000,                          # define expected benefit for a "small", "medium" and "large" treatment effect
-#'   gamma = 0,                                                 # assume different/same population structures in phase II and III
 #'   fixed = FALSE,                                             # choose if true treatment effects are fixed or random
 #'   num_cl = 1)                                                # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 #' res
@@ -289,7 +294,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
   
   
   
-  comment(result) <-   c("\noptimization sequence kappa:", Kappa,
+  comment(result) <-   c("\noptimization sequence kappa:", KAPPA,
                          "\noptimization sequence n2:", N2,
                          "\nset on date:", as.character(date),
                          "\nfinish date:", as.character(Sys.time()))
