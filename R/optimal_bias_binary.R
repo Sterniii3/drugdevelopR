@@ -175,7 +175,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
     
     clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary","Epgo_binary", "En3_binary_L",
-                        "EPsProg_binary_L","Epgo_L2", "En3_binary_L2",
+                        "EPsProg_binary_L","Epgo_binary_L2", "En3_binary_L2",
                         "EPsProg_binary_L2","En3_binary_R", "EPsProg_binary_R", "Epgo_binary_R2", "En3_binary_R2",
                         "EPsProg_binary_R2", "t1", "t2", "t3", "alpha", "beta",
                         "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
