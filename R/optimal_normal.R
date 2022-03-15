@@ -108,10 +108,6 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                         gamma = 0,  fixed = FALSE,
                         skipII = FALSE,  num_cl = 1){
 
-  steps2 <- stepm1
-  stepm2 <- stepl1
-  stepl2 <- Inf
-
    date <- Sys.time()
 
    if(skipII){
@@ -130,9 +126,9 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                             b1 = b1, b2 = b2, b3 = b3,
                             median_prior = median_prior,
                             K = K, N = N, S = S,
-                            steps1 = steps1, steps2 = steps2,
-                            stepm1 = stepm1, stepm2 = stepm2,
-                            stepl1 = stepl1, stepl2 = stepl2,
+                            steps1 = steps1,
+                            stepm1 = stepm1,
+                            stepl1 = stepl1, 
                             w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                             gamma = gamma, fixed = fixed)
       # c(EU, n3, SP, K3, prob1, prob2, prob3)
@@ -201,7 +197,7 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
 
       clusterExport(cl, c("pmvnorm", "dmvnorm","dtnorm", "prior_normal", "Epgo_normal", "En3_normal",
                           "EPsProg_normal", "alpha", "beta",
-                          "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
+                          "steps1", "stepm1", "stepl1", 
                           "K", "N", "S", "gamma", "fixed",
                           "c2", "c3", "c02", "c03",
                           "b1", "b2", "b3", "w", "kappa",

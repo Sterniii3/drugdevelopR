@@ -109,6 +109,10 @@ utility_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                             b1, b2, b3,
                             gamma, fixed){
 
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- Inf
+  
   n3  <-  En3_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
                       w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                       fixed = fixed)
@@ -216,9 +220,13 @@ EPsProg_skipII_normal <-function(alpha, beta, step1, step2, median_prior,
 
 #utility function
 utility_skipII_normal <-function(alpha, beta, c03, c3, b1, b2, b3, median_prior, 
-                                K, N, S, steps1, steps2, stepm1, stepm2, stepl1, stepl2,
+                                K, N, S, steps1, stepm1, stepl1,
                                 w, Delta1, Delta2, in1, in2, a, b, gamma, fixed){
 
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- Inf
+  
   n3  <- n3_skipII_normal(alpha = alpha, beta = beta, median_prior = median_prior)
 
   n3  <- ceiling(n3)
