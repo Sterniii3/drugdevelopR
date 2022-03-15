@@ -1370,7 +1370,7 @@ utility23_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                        alpha, beta, 
                        c2, c3, c02, c03, 
                        steps1, stepm1, stepl1,
-                       b1, b2, b3,){ 
+                       b1, b2, b3){ 
   
   pg    <-  Epgo_normal(kappa = kappa, n2 = n2, 
                         w = w , Delta1 = Delta1, Delta2 = Delta2 , 
