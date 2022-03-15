@@ -345,7 +345,7 @@ utility2_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
   
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
   
-  if(n2+n3>N){
+  if(n2+ 2*n3>N){
     
     return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
     
@@ -854,7 +854,7 @@ utility3_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
   
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
   
-  if(n2+n3>N){
+  if(n2+ 3*n3>N){
     
     return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
     
@@ -1475,7 +1475,6 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, D
 utility23_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                        alpha, beta, 
                        c2, c3, c02, c03, 
-                       K, N, S,
                        steps1, stepm1, stepl1,
                        b1, b2, b3,){ 
   
@@ -1558,7 +1557,7 @@ utility23_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
       prob13 + prob23 + prob33
   
   return(
-    c(EU, 2*n3, SP, pg, 2*K2, K3, prob1, prob2, prob3, 2*n3, pg3, n33, prob13, prob23, prob33 )
+    c(EU, 2*n3, SP, pg, 2*K2, K3, prob1, prob2, prob3, pg3, n33, prob13, prob23, prob33 )
   )
   
 }
