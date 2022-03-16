@@ -619,7 +619,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,ca
                                         qnorm(1 - alpha) - 
                                           log(0.95)/sqrt(t1(x, p0)*y^2/c(x, p0)), 
                                         qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt(t1(x, p0)*y^2/c(x, p0)), 
+                                          log(0.95)/sqrt(t1(x, p0)*y^2/c(x, p0))), 
                               mean = c(x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
                                        x/sqrt(t1(x, p0)*y^2/c(x, p0)), 
                                        x/sqrt(t1(x, p0)*y^2/c(x, p0))), 
