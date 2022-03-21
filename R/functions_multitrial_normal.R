@@ -813,7 +813,6 @@ utility3_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                                 case = case, size = "large", fixed = fixed)
       prob2 <-  EPsProg3_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
-                                step1 = steps1, step2 =  steps2,
                                 w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                                 case = case, size = "all", fixed = fixed) - prob1 - prob3
       
