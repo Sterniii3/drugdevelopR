@@ -312,7 +312,6 @@ utility2_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                       alpha, beta, 
                       c2, c3, c02, c03, 
                       K, N, S,
-                      steps1, stepm1, stepl1,
                       b1, b2, b3,
                       case, fixed){ 
   
@@ -775,7 +774,6 @@ utility3_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                              alpha, beta, 
                              c2, c3, c02, c03, 
                              K, N, S,
-                             steps1, stepm1, stepl1,
                              b1, b2, b3,
                              case, fixed){ 
   
@@ -1096,7 +1094,6 @@ utility4_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                              alpha, beta, 
                              c2, c3, c02, c03, 
                              K, N, S,
-                             steps1, stepm1, stepl1,
                              b1, b2, b3,
                              case, fixed){ 
   
@@ -1368,7 +1365,6 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
 utility23_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                        alpha, beta, 
                        c2, c3, c02, c03, 
-                       steps1, stepm1, stepl1,
                        b1, b2, b3){ 
   
   pg    <-  Epgo_normal(kappa = kappa, n2 = n2, 
