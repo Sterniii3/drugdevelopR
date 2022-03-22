@@ -103,7 +103,7 @@ utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
                             fixed){
   
   
-  n3  <-  En3_bias_binary(RRgo = RRgo, n2 = n2, Adj=Adj, alpha = alpha, beta = beta,
+  n3  <-  En3_binary_L(RRgo = RRgo, n2 = n2, Adj=Adj, alpha = alpha, beta = beta,
                      p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, fixed = fixed)
   
   n3  <- ceiling(n3)
@@ -192,7 +192,7 @@ En3_binary_L2 <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2
           dnorm(y,
                 mean = -log(p11/p0),
                 sd = sqrt((2/n2)*t1(p11, p0)))
-      }, - log(RRgo)+qnorm(1-Adj)*sqrt(2/n((1-p0)/p0 +(1-p11/p11))), silent=TRUE)
+      }, - log(RRgo)+qnorm(1-Adj)*sqrt(2/n((1-p0)/p0 +(1-p11/p11))), Inf), silent=TRUE)
         if(inherits(int ,'try-error')){
           warning(as.vector(int))
           integrated <- NA_real_
@@ -536,8 +536,7 @@ En3_binary_R2 <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2
           integrated <- int$value
         }
         return(integrated)
-  
-} 
+   
   }else{
     int = try(
       integrate(function(x){
