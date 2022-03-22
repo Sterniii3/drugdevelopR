@@ -191,7 +191,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                          K, N, S,
                          steps1, stepm1, stepl1,
                          b1, b2, b3,
-                         fixed)  
+                         gamma, fixed)  
       }
       if(Strategy==2){
         res <- parSapply(cl, N2, utility2_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
@@ -286,7 +286,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                                           n3 = n3, n = N2[I] + n3,
                                           pgo = round(pg,2), sProg = round(prob,2),
                                           w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
-                                          K = K, K2 = round(k2), K3 = round(k3),
+                                          K = K, N = N, S = S, K2 = round(k2), K3 = round(k3),
                                           sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
                                           steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
                                           pgo3 = round(pg3,2), d33= d33, n33 = n33,
