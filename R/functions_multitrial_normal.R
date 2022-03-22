@@ -355,9 +355,6 @@ utility2_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
       
       SP    <-  prob1 + prob2 + prob3
       
-      if(SP<S){
-        
-        return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
         
         if(SP<S){
           
@@ -373,7 +370,7 @@ utility2_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
           #output: expected utility Eud, En3, EsP, Epgo, cost phase II and III
         }
       }
-    }
+    
   }
   
 }
@@ -816,9 +813,6 @@ utility3_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
       
       SP    <-  prob1 + prob2 + prob3
       
-      if(SP<S){
-        
-        return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
         
         if(SP<S){
           
@@ -834,7 +828,7 @@ utility3_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
           #output: expected utility Eud, En3, EsP, Epgo, cost phase II and III
         }
       }
-    }
+    
   }
   
 }
@@ -1136,9 +1130,6 @@ utility4_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
       
       SP    <-  prob1 + prob2 + prob3
       
-      if(SP<S){
-        
-        return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
         
         if(SP<S){
           
@@ -1154,7 +1145,7 @@ utility4_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
           #output: expected utility Eud, En3, EsP, Epgo, cost phase II and III
         }
       }
-    }
+    
   }
   
 }
