@@ -135,7 +135,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
       return(integrate(function(y1){
         sapply(y1,function(y1){ 
           integrate(function(y2){
-            ss(alpha,beta,y1,1)*
+            ss_normal(alpha,beta,y1,1)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
@@ -149,7 +149,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
       return(integrate(function(y2){
         sapply(y2,function(y2){ 
           integrate(function(y1){
-            ss(alpha,beta,y2,1)*
+            ss_normal(alpha,beta,y2,1)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
@@ -184,7 +184,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
       return(integrate(function(y1){
         sapply(y1,function(y1){ 
           integrate(function(y2){
-            ss(alpha,beta,y2,2)*
+            ss_normal(alpha,beta,y2,2)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
@@ -198,7 +198,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
       return(integrate(function(y2){
         sapply(y2,function(y2){ 
           integrate(function(y1){
-            ss(alpha,beta,y1,2)*
+            ss_normal(alpha,beta,y1,2)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
