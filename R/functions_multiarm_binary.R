@@ -184,7 +184,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
       return(integrate(function(y1){
         sapply(y1,function(y1){ 
           integrate(function(y2){
-            ss(alpha,beta,y2,2)*
+            ss_binary(alpha,beta,y2,2)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
