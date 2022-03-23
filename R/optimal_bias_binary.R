@@ -163,8 +163,8 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
       
       Adj <- ADJ[a]
   
-      ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
-        sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- matrix(0, length(N2), length(RRGO))
+      ufkt <- n3fkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
+        sp1fkt <- sp2fkt <- sp3fkt  <- matrix(0, length(N2), length(RRGO))
   
   
   
@@ -228,15 +228,15 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     setTxtProgressBar(title= "i", pb, j)
     stopCluster(cl)
     
-    ufkt[, j]      <-  result[1, ]
-    n3fkt[, j]     <-  result[2, ]
-    spfkt[, j]     <-  result[3, ]
-    pgofkt[, j]    <-  result[4, ]
-    K2fkt[, j]     <-  result[5, ]
-    K3fkt[, j]     <-  result[6, ]
-    sp1fkt[, j]    <-  result[7, ]
-    sp2fkt[, j]    <-  result[8, ]
-    sp3fkt[, j]    <-  result[9, ]
+    ufkt[, j]      <-  res[1, ]
+    n3fkt[, j]     <-  res[2, ]
+    spfkt[, j]     <-  res[3, ]
+    pgofkt[, j]    <-  res[4, ]
+    K2fkt[, j]     <-  res[5, ]
+    K3fkt[, j]     <-  res[6, ]
+    sp1fkt[, j]    <-  res[7, ]
+    sp2fkt[, j]    <-  res[8, ]
+    sp3fkt[, j]    <-  res[9, ]
     
   }
   
@@ -256,7 +256,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
   prob3 <- sp3fkt[I, J]
   
   if(fixed){
-    result <-  data.frame(u = round(Eud,2), Adj = Adj, RRgo = RRGO[J], n2 = N2[I],
+    calresult <-  data.frame(u = round(Eud,2), Adj = Adj, RRgo = RRGO[J], n2 = N2[I],
                           n3 = n3, n = N2[I] + n3,
                           pgo = round(pg,2), sProg = round(prob,2),
                           p0 = p0, p1 = p11, 
@@ -266,7 +266,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
                           alpha = alpha, beta = beta, c02 = c02,
                           c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3)  
   }else{
-    result <-  data.frame(u = round(Eud,2), Adj = Adj, RRgo = RRGO[J], n2 = N2[I],
+    calresult <-  data.frame(u = round(Eud,2), Adj = Adj, RRgo = RRGO[J], n2 = N2[I],
                           n3 = n3, n = N2[I] + n3,
                           pgo = round(pg,2), sProg = round(prob,2),
                           w = w, p0 = p0, p11 = p11, p12 = p12, in1 = in1, in2 = in2,
