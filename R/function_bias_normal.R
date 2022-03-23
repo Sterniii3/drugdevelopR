@@ -11,29 +11,42 @@
 En3_normal_L <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, fixed){
    
   if(fixed){
-    return(
-      integrate(function(y){
-        ((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(y-qnorm(1-Adj)*sqrt(4/n2))^2) *
-          dnorm(y,
-                mean = Delta1,
-                sd = sqrt(4/n2))
-      }, kappa, Inf)$value  
-    )
-  }else{
-    return(
-      integrate(function(x){
-        sapply(x, function(x){
-          integrate(function(y){
-            ((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(y-qnorm(1-Adj)*sqrt(4/n2))^2) *
-              dnorm(y,
-                    mean = x,
-                    sd = sqrt(4/n2))*
-              prior_normal(x, w, Delta1, Delta2, in1, in2, a, b)
-          }, kappa, Inf)$value
-        })
-      },  - Inf, Inf)$value
-    )
+    int   = try(integrate(function(y){
+    sapply(y,function(y){
+      ( (4*(qnorm(1-alpha)+qnorm(1-beta))^2)/((y-qnorm(1-Adj)*sqrt(4/n2))^2))*
+        dnorm(y,
+              mean=Delta1,
+              sd=sqrt(4/n2))
+    })
+  }, kappa,Inf),silent=TRUE)
+  if(inherits(int ,'try-error')){
+    warning(as.vector(int))
+    integrated <- NA_real_
+  } else {
+    integrated <- int$value
   }
+  return(integrated)
+  
+}else{
+  int   = try(integrate(function(x){
+    sapply(x,function(x){
+      integrate(function(y){
+        ( (4*(qnorm(1-alpha)+qnorm(1-beta))^2)/((y-qnorm(1-Adj)*sqrt(4/n2))^2))*
+          dnorm(y,
+                mean=x,
+                sd=sqrt(4/n2))*
+          prior_normal(x, w, Delta1, Delta2, in1, in2, a, b)
+      }, kappa,Inf)$value
+    })
+  }, -Inf, Inf),silent=TRUE)
+  if(inherits(int ,'try-error')){
+    warning(as.vector(int))
+    integrated <- NA_real_
+  } else {
+    integrated <- int$value
+  }
+  return(integrated)
+}
 }
 # Expected probability of a successful program: EsP
 EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, fixed){
@@ -340,28 +353,43 @@ utility_normal_L2 <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b
 En3_normal_R <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   if(fixed){
-    return(
-      integrate(function(y){
-        ((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(y*Adj)^2) *
+    
+    
+    int   = try(integrate(function(y){
+      sapply(y,function(y){
+        ( (4*(qnorm(1-alpha)+qnorm(1-beta))^2)/((y*Adj)^2))*
           dnorm(y,
-                mean = Delta1,
-                sd = sqrt(4/n2))
-      }, kappa, Inf)$value  
-    )
+                mean=Delta1,
+                sd=sqrt(4/n2)) 
+      })
+    }, kappa,Inf),silent=TRUE)
+    if(inherits(int ,'try-error')){
+      warning(as.vector(int))
+      integrated <- NA_real_
+    } else {
+      integrated <- int$value
+    }
+    return(integrated)
+    
   }else{
-    return(
-      integrate(function(x){
-        sapply(x, function(x){
-          integrate(function(y){
-            ((4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(y*Adj)^2) *
-              dnorm(y,
-                    mean = x,
-                    sd = sqrt(4/n2))*
-              prior_normal(x, w, Delta1, Delta2, in1, in2, a, b)
-          }, kappa, Inf)$value
-        })
-      },  - Inf, Inf)$value
-    )
+    int   = try(integrate(function(x){
+      sapply(x,function(x){
+        integrate(function(y){
+          ( (4*(qnorm(1-alpha)+qnorm(1-beta))^2)/((y*Adj)^2))*
+            dnorm(y,
+                  mean=x,
+                  sd=sqrt(4/n2))*
+            prior_normal(x, w, Delta1, Delta2, in1, in2, a, b) 
+        }, kappa,Inf)$value
+      })
+    }, -Inf, Inf),silent=TRUE)
+    if(inherits(int ,'try-error')){
+      warning(as.vector(int))
+      integrated <- NA_real_
+    } else {
+      integrated <- int$value
+    }
+    return(integrated)
   }
 }
 
@@ -374,10 +402,10 @@ EPsProg_normal_R <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
     return(
       integrate(function(y){
         ( pnorm(qnorm(1 - alpha) + step2/sqrt((y*Adj)^2/c),
-                mean = (Delta1+gamma)/sqrt((y*Adj)^2/c),
+                mean = (Delta1)/sqrt((y*Adj)^2/c),
                 sd = 1) -
             pnorm(qnorm(1 - alpha) + step1/sqrt((y*Adj)^2/c),
-                  mean = (Delta1+gamma)/sqrt((y*Adj)^2/c),
+                  mean = (Delta1)/sqrt((y*Adj)^2/c),
                   sd = 1) ) *
           dnorm(y,
                 mean = Delta1,
