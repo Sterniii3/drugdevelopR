@@ -167,8 +167,8 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
       
       Adj <- ADJ[a]
       
-      ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
-        sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- matrix(0, length(N2), length(KAPPA))
+      ufkt <- n3fkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
+        sp1fkt <- sp2fkt <- sp3fkt <- matrix(0, length(N2), length(KAPPA))
       
       for(j in 1:length(KAPPA)){
         
@@ -181,7 +181,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                             "EPsProg_normal_L2","En3_normal_R", "EPsProg_normal_R", "Epgo_normal_R2", "En3_normal_R2",
                             "EPsProg_normal_R2", "alpha", "beta",
                             "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                            "K", "N", "S", "gamma", "fixed",
+                            "K", "N", "S", "fixed",
                             "c2", "c3", "c02", "c03",
                             "b1", "b2", "b3", "w", "kappa", "Adj",
                             "Delta1", "Delta2", "in1", "in2", "a", "b"), envir=environment())
@@ -249,7 +249,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
       J <-  as.vector(ind[1, 2])
       
       Eud   <- ufkt[I, J]
-      n3    <- d3fkt[I, J]
+      n3    <- n3fkt[I, J]
       prob  <- spfkt[I, J]
       pg    <- pgofkt[I, J]
       k2    <- K2fkt[I, J]
