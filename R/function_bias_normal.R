@@ -103,6 +103,11 @@ utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
                      w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                      fixed = fixed)
   
+  if(is.na(n3)){
+    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))  
+  }
+  else{ 
+   
   n3  <- ceiling(n3)
   
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
@@ -157,6 +162,7 @@ utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
       }
     }
   }
+ }
 }
 
 
@@ -283,6 +289,10 @@ utility_normal_L2 <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b
   n3  <-  En3_normal_L2(kappa = kappa, Adj=Adj, n2 = n2, alpha = alpha, beta = beta,
                      w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                      fixed = fixed)
+  if(is.na(n3)){
+    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))  
+  }
+  else{
   
   n3  <- ceiling(n3)
   
@@ -338,6 +348,7 @@ utility_normal_L2 <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b
       }
     }
   }
+ }
 }
 
 # 2.1. conservative sample size calculation: use estimate with retetion factor
@@ -450,6 +461,11 @@ utility_normal_R <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
   
   n3  <- ceiling(n3)
   
+  if(is.na(n3)){
+    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))  
+  }
+  else{
+  
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
   
   if(n2+n3>N){
@@ -502,8 +518,8 @@ utility_normal_R <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
       }
     }
   }
+ }
 }
-
 
 # 2.2. conservative decision rule and sample size calculation: 
 # use estimate with retetion factor
@@ -630,6 +646,11 @@ utility_normal_R2 <-  function(n2, kappa, Adj,  w, Delta1, Delta2, in1, in2, a, 
                      w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                      fixed = fixed)
   
+  if(is.na(n3)){
+    return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))  
+  }
+  else{
+     
   n3  <- ceiling(n3)
   
   if(round(n3/2) != n3 / 2) {n3 = n3 + 1}
@@ -684,5 +705,6 @@ utility_normal_R2 <-  function(n2, kappa, Adj,  w, Delta1, Delta2, in1, in2, a, 
       }
     }
   }
+ }
 }
 
