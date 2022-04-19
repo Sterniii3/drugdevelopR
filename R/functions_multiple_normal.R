@@ -289,7 +289,7 @@ utility_multiple_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2, in1, in2,
                               in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
       probb2 <- POSP - probb1 - probb3
       
-      if (relaxed = "TRUE"){
+      if (relaxed == "TRUE"){
         prob1 <- probb1
         prob2 <- probb2
         prob3 <- probb3
