@@ -18,4 +18,5 @@ Depends:
     foreach,
     iterators,
     cubature
-    
+URL: https://github.com/Sterniii3/drugdevelopR
+BugReports: https://github.com/Sterniii3/drugdevelopR/issues
