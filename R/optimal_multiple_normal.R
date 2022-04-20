@@ -134,7 +134,7 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
       
       cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
-      clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_normal", "Ess_normal",
+      clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_normal", "Ess_multiple_normal",
                           "EPsProg_normal", "posp_normal", "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                           "K", "N", "S",
@@ -145,7 +145,7 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
       
       
       res <- parSapply(cl, N2, utility_multiple_normal, kappa,
-                       alpha,beta, Delta1,Delta2, in1, in2,sigma1, sigma2,
+                       alpha,beta, Delta1,Delta2, in1, in2, sigma1, sigma2,
                        rho,fixed,relaxed,
                        c2,c02,c3,c03,K,N,S,
                        steps1, stepm1, stepl1,b1, b2, b3)
