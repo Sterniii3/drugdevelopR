@@ -67,7 +67,7 @@ pgo_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed,
 }
 
 
-Ess_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
+Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
   
   Sigma <- c(sigma1,sigma2)
   r<-c(4*Sigma[1]^2,4*Sigma[2]^2) #(r1,r2) known constant for endpoint i
@@ -152,7 +152,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1,Delta2, sigma1, sigma2, i
 
 #E(n3|GO)
   
-  expn3go_normal<-Ess_normal(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)/pgo_normal(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)
+  expn3go_normal<-Ess_multiple_normal(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)/pgo_normal(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)
   
 
 
@@ -222,7 +222,7 @@ utility_multiple_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2, in1, in2, s
                                c2,c02,c3,c03,K,N,S,
                                steps1, stepm1, stepl1,b1, b2, b3,fixed,rho,relaxed){ 
   
-  n3 = Ess_normal(kappa = kappa, n2 = n2, alpha = alpha , beta = beta, 
+  n3 = Ess_multiple_normal(kappa = kappa, n2 = n2, alpha = alpha , beta = beta, 
                   Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, 
                   sigma1 = sigma1, sigma2=sigma2, fixed = fixed, rho = rho)
   
