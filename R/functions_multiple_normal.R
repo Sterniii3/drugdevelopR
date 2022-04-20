@@ -152,7 +152,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1,Delta2, sigma1, sigma2, i
 
 #E(n3|GO)
   
-  expn3go_normal<-Ess_multiple_normal(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)/pgo_normal(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)
+#  expn3go_normal<-Ess_multiple_normal(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)/pgo_normal(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)
   
 
 
