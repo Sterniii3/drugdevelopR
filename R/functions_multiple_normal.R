@@ -218,7 +218,7 @@ EPsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2, sigma1, sigma2,
 
 
 
-utility_multiple_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2, in1, in2, sigma1, sigma2
+utility_multiple_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2, in1, in2, sigma1, sigma2,
                                c2,c02,c3,c03,K,N,S,
                                steps1, stepm1, stepl1,b1, b2, b3,fixed,rho,relaxed){ 
   
