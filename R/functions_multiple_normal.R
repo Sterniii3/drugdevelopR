@@ -80,7 +80,7 @@ Ess_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, s
   
    if(fixed)  {
     return(integrate(function(x){ sapply(x,function(x){
-      (4*(qnorm(1-alpha)+qnorm(1-beta))^2/x^2)*fmin(x,Delta1,Delta2,sigma1,sigma2,rho)
+      (4*(qnorm(1-alpha)+qnorm(1-beta))^2/x^2)*fmin(x,Delta1,Delta2,var1,var2,rho)
     })
     },kappa,Inf)$value)
   }
