@@ -258,8 +258,8 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
 #' @param step2 upper boundary for effect size
 #' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
-#' @return the function pgo_binary returns the probability of a successful program
-#' @examples res <- Ess_binary(RRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
+#' @return the function PsProg_binary returns the probability of a successful program
+#' @examples res <- PsProg_binary(RRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             p0 = 0.6, p11 =  0.3, p12 = 0.5, step1 = 1, step2 = 0.95,
 #'                             strategy = 3, case = 31)
 #' @editor Johannes Cepicka
