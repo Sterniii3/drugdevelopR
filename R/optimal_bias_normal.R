@@ -6,8 +6,8 @@
 #' @param w weight for mixture prior distribution
 #' @param Delta1 assumed true treatment effect for standardized difference in means
 #' @param Delta2 assumed true treatment effect for standardized difference in means
-#' @param in1 amount of information for Delta2 in terms of sample size
-#' @param in2 amount of information for Delta1 in terms of sample size
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
 #' @param a lower boundary for the truncation
 #' @param b upper boundary for the truncation
 #' @param n2min minimal total sample size for phase II; must be even number
@@ -38,9 +38,7 @@
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
-#' @param gamma to model different populations in phase II and III choose gamma!=0, default: 0
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect
-#' @param skipII choose if skipping phase II is an option, default: FASLE
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
 #' The output of the function \code{\link{optimal_bias_normal}} is a data.frame containing the optimization results:
@@ -106,7 +104,10 @@
 #' @references
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences.
 #'
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 #' @export
+
 optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                            n2min, n2max, stepn2,
                            kappamin, kappamax, stepkappa,
