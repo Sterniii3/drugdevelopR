@@ -13,7 +13,25 @@ t3 <- function(x, p0){sqrt(((1-p0)/p0) + ((1-x)/x))}
 # expected probability to go to phase III
 # as above
 
-# Expected sample size for phase III when going to phase III: En3
+#' Expected sample size for phase III when going to phase III: En3
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function En3_binary_L is the expected number of participants in phase III 
+#' @examples res <- En3_binary_L(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, p0 = 0.6  w = 0.3,
+#'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
+#'                               fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 En3_binary_L <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2, fixed){
   if(fixed){
       int   = try(integrate(function(y){
@@ -51,7 +69,28 @@ En3_binary_L <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2,
   }
 }
 
-# Expected probability of a successful program: EsP
+#' Expected probability of a successful program: EsP
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function EPsProg_binary_L is the expected probability of a successful program 
+#' @examples res <- EPsProg_binary_L(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, 
+#'                                  step1 = 1, step2 = 0.95, p0 = 0.6  w = 0.3,
+#'                                  p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
+#'                                  fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 EPsProg_binary_L <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p11, p12, in1, in2, fixed){
   
   if(fixed){
@@ -103,7 +142,43 @@ EPsProg_binary_L <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p
   
 }
 
-# Utility function
+#' Utility function
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param steps1 lower boundary for effect size category "small" in RR scale, default: 1
+#' @param stepm1 lower boundary for effect size category "medium" in RR scale = upper boundary for effect size category "small" in RR scale, default: 0.95
+#' @param stepl1 lower boundary for effect size category "large" in RR scale = upper boundary for effect size category "medium" in RR scale, default: 0.85
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function utility_binary_L is the expected utility of the program with conservative sample size calculation: use lower bound of one-sided confidence intervall
+#' @examples res <- utility_binary_L(n2 = 50, RRgo = 0.8, Adj = 0, w = 0.3, 
+#'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
+#'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
+#'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'                                  K = Inf, N = Inf, S = -Inf,
+#'                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
+#'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
+#'                                  fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
                               alpha, beta, 
                               c2, c3, c02, c03, 
@@ -182,6 +257,24 @@ utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 # as above
 
 # Expected probability to go to phase III: Epgo
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function Epgo_binary_L2 is the expected probability to go to phase III
+#' @examples res <- Epgo_binary_L2(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, p0 = 0.6  w = 0.3,
+#'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
+#'                               fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 Epgo_binary_L2 <-  function(RRgo, n2, Adj, p0, w, p11, p12, in1, in2, fixed){
   if(fixed){
     return(
@@ -200,6 +293,24 @@ Epgo_binary_L2 <-  function(RRgo, n2, Adj, p0, w, p11, p12, in1, in2, fixed){
 }
 
 # Expected sample size for phase III when going to phase III: En3
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function En3_binary_L2 is the expexted number of participants in phase III 
+#' @examples res <- En3_binary_L2(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, p0 = 0.6  w = 0.3,
+#'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
+#'                               fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 En3_binary_L2 <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2, fixed){
   if(fixed){
     int = try(
@@ -239,7 +350,28 @@ En3_binary_L2 <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2
   }
 } 
 
-# Expected probability of a successful program: EsP
+#' Expected probability of a successful program: EsP
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function EPsProg_binary_L2 is the expected probability of a successful program 
+#' @examples res <- EPsProg_binary_L2(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, 
+#'                                  step1 = 1, step2 = 0.95, p0 = 0.6  w = 0.3,
+#'                                  p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
+#'                                  fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 EPsProg_binary_L2 <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p11, p12, in1, in2, fixed){
   
   if(fixed){
@@ -291,7 +423,43 @@ EPsProg_binary_L2 <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, 
   
 }
 
-# Utility function
+#' Utility function
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param steps1 lower boundary for effect size category "small" in RR scale, default: 1
+#' @param stepm1 lower boundary for effect size category "medium" in RR scale = upper boundary for effect size category "small" in RR scale, default: 0.95
+#' @param stepl1 lower boundary for effect size category "large" in RR scale = upper boundary for effect size category "medium" in RR scale, default: 0.85
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function utility_binary_L2 is the expected utility of the program with conservative decision rule and sample size calculation: use lower bound of one-sided confidence intervall
+#' @examples res <- utility_binary_L2(n2 = 50, RRgo = 0.8, Adj = 0, w = 0.3, 
+#'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
+#'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
+#'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'                                  K = Inf, N = Inf, S = -Inf,
+#'                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
+#'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
+#'                                  fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 utility_binary_L2 <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
                                alpha, beta, 
                                c2, c3, c02, c03, 
@@ -372,6 +540,24 @@ utility_binary_L2 <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 # as above
 
 # Expected sample size for phase III when going to phase III: En3
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function En3_binary_R is the optimal number of participants in phase III 
+#' @examples res <- En3_binary_R(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, p0 = 0.6  w = 0.3,
+#'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
+#'                               fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 En3_binary_R <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2, fixed){
   if(fixed){
     int   = try(integrate(function(y){
@@ -409,7 +595,28 @@ En3_binary_R <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2,
   }
 }
 
-# Expected probability of a successful program: EsP
+#' Expected probability of a successful program: EsP
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function EPsProg_binary_R is the expected probability of a successful program 
+#' @examples res <- EPsProg_binary_R(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, 
+#'                                  step1 = 1, step2 = 0.95, p0 = 0.6  w = 0.3,
+#'                                  p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
+#'                                  fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 EPsProg_binary_R <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p11, p12, in1, in2, fixed){
   
   if(fixed){
@@ -461,7 +668,43 @@ EPsProg_binary_R <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p
   
 }
 
-# Utility function
+#' Utility function
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param steps1 lower boundary for effect size category "small" in RR scale, default: 1
+#' @param stepm1 lower boundary for effect size category "medium" in RR scale = upper boundary for effect size category "small" in RR scale, default: 0.95
+#' @param stepl1 lower boundary for effect size category "large" in RR scale = upper boundary for effect size category "medium" in RR scale, default: 0.85
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function utility_binary_R is the expected utility of the program with conservative sample size calculation: use retention factor
+#' @examples res <- utility_binary_R(n2 = 50, RRgo = 0.8, Adj = 0, w = 0.3, 
+#'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
+#'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
+#'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'                                  K = Inf, N = Inf, S = -Inf,
+#'                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
+#'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
+#'                                  fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 utility_binary_R <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
                               alpha, beta, 
                               c2, c3, c02, c03, 
@@ -541,6 +784,24 @@ utility_binary_R <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 # as above
 
 # Expected probability to go to phase III: Epgo
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function Epgo_binary_R2 is the expected probability to go to phase III
+#' @examples res <- Epgo_binary_R2(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, p0 = 0.6  w = 0.3,
+#'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
+#'                               fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 Epgo_binary_R2 <-  function(RRgo, n2, Adj, p0, w, p11, p12, in1, in2, fixed){
   if(fixed){
     return(
@@ -558,7 +819,25 @@ Epgo_binary_R2 <-  function(RRgo, n2, Adj, p0, w, p11, p12, in1, in2, fixed){
   }
 }
 
-# Expected sample size for phase III when going to phase III: En3
+#' Expected sample size for phase III when going to phase III: En3
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function En3_binary_R2 is the expected number of participants in phase III 
+#' @examples res <- En3_binary_R2(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, p0 = 0.6  w = 0.3,
+#'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
+#'                               fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 En3_binary_R2 <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2, fixed){
   if(fixed){
     int = try(
@@ -600,7 +879,28 @@ En3_binary_R2 <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2
 
 } 
 
-# Expected probability of a successful program: EsP
+#' Expected probability of a successful program: EsP
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function EPsProg_binary_R2 is the expected probability of a successful program 
+#' @examples res <- EPsProg_binary_R2(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, 
+#'                                  step1 = 1, step2 = 0.95, p0 = 0.6  w = 0.3,
+#'                                  p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
+#'                                  fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 EPsProg_binary_R2 <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p11, p12, in1, in2, fixed){
   
   if(fixed){
@@ -652,7 +952,43 @@ EPsProg_binary_R2 <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, 
   
 }
 
-# Utility function
+#' Utility function
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param steps1 lower boundary for effect size category "small" in RR scale, default: 1
+#' @param stepm1 lower boundary for effect size category "medium" in RR scale = upper boundary for effect size category "small" in RR scale, default: 0.95
+#' @param stepl1 lower boundary for effect size category "large" in RR scale = upper boundary for effect size category "medium" in RR scale, default: 0.85
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function utility_binary_R2 is the expected utility of the program with conservative decision rule sample size calculation: use retention factor
+#' @examples res <- utility_binary_R2(n2 = 50, RRgo = 0.8, Adj = 0, w = 0.3, 
+#'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
+#'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
+#'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'                                  K = Inf, N = Inf, S = -Inf,
+#'                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
+#'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
+#'                                  fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 utility_binary_R2 <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
                                alpha, beta, 
                                c2, c3, c02, c03, 
