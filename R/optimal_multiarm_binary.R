@@ -27,6 +27,7 @@
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
+#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
 #' The output of the function \code{\link{optimal_binary}} is a data.frame containing the optimization results:
@@ -83,6 +84,8 @@
 #' }
 #' @references
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 #' @export
 
 optimal_multiarm_binary <- function(p0, p11, p12, 
@@ -195,3 +198,4 @@ optimal_multiarm_binary <- function(p0, p11, p12,
   return(result)
   
 }
+
