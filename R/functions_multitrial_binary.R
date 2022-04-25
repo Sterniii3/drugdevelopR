@@ -10,8 +10,29 @@ t3 <- function(x, p0){sqrt(((1-p0)/p0) + ((1-x)/x))}
 # Case 1: Strategy 1/2; at least one trial significant, the treatment effect of the other one at least showing in the same direction 
 # Case 2: Strategy 2/2; both trials significant 
 
-# Expected probability of a successful program
-EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,case, size, fixed){
+ #' Expected probability of a successful program: EsP
+ #' @param RRgo threshold value for the go/no-go decision rule
+ #' @param n2 total sample size for phase II; must be even number
+ #' @param alpha significance level
+ #' @param beta 1-beta power for calculation of sample size for phase III
+ #' @param w weight for mixture prior distribution
+ #' @param p0 assumed true rate of control group
+ #' @param p11 assumed true rate of treatment group
+ #' @param p12 assumed true rate of treatment group
+ #' @param in1 amount of information for p11 in terms of sample size
+ #' @param in2 amount of information for p12 in terms of sample size
+ #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
+ #' @param size size category "small", "medium" or "large"
+ #' @param fixed choose if true treatment effects are fixed or random
+ #' @return the output of the the function EPsProg2_binary is the expected probability of a successful program 
+ #' @examples res <- EPsProg2_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
+ #'                                  p0 = 0.6  w = 0.3, p11 =  0.3, p12 = 0.5, 
+ #'                                  in1 = 300, in2 = 600, case = 2, size = "small",
+ #'                                  fixed = FALSE)
+ #' @editor Johannes Cepicka
+ #' @editDate 2022-04-23
+ 
+EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, case, size, fixed){
   
   SIGMA <-  diag(2)
   
@@ -334,7 +355,40 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,ca
   
 }
 
-# Utility function
+
+ #' Utility function
+ #' @param RRgo threshold value for the go/no-go decision rule
+ #' @param n2 total sample size for phase II; must be even number
+ #' @param Adj adjustment parameter
+ #' @param alpha significance level
+ #' @param beta 1-beta power for calculation of sample size for phase III
+ #' @param w weight for mixture prior distribution
+ #' @param p0 assumed true rate of control group
+ #' @param p11 assumed true rate of treatment group
+ #' @param p12 assumed true rate of treatment group
+ #' @param in1 amount of information for p11 in terms of sample size
+ #' @param in2 amount of information for p12 in terms of sample size
+ #' @param c2 variable per-patient cost for phase II
+ #' @param c3 variable per-patient cost for phase III
+ #' @param c02 fixed cost for phase II
+ #' @param c03 fixed cost for phase III
+ #' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+ #' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+ #' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+ #' @param b1 expected gain for effect size category "small"
+ #' @param b2 expected gain for effect size category "medium"
+ #' @param b3 expected gain for effect size category "large"
+ #' @param fixed choose if true treatment effects are fixed or random
+ #' @return the output of the the function utility2_binary is the expected utility of the program with conservative decision rule and sample size calculation: use lower bound of one-sided confidence intervall
+ #' @examples res <- utility2_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
+ #'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
+ #'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
+ #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+ #'                                  K = Inf, N = Inf, S = -Inf,
+ #'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
+ #'                                  case = 2, fixed = FALSE)
+ #' @editor Johannes Cepicka
+ #' @editDate 2022-04-23
 utility2_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                             alpha, beta, 
                             c2, c3, c02, c03, 
@@ -404,8 +458,28 @@ utility2_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
 # of the other one at least showing in the same direction
 # Case 3: Strategy 3/3; all trials significant
 
-# Expected probability of a successful program
-EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,case, size, fixed){
+#' Expected probability of a successful program: EsP
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
+#' @param size size category "small", "medium" or "large"
+#' @param fixed choose if true treatment effects are fixed or random
+#' @return the output of the the function EPsProg3_binary is the expected probability of a successful program 
+#' @examples res <- EPsProg3_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
+#'                                  p0 = 0.6  w = 0.3, p11 =  0.3, p12 = 0.5, 
+#'                                  in1 = 300, in2 = 600, case = 2, size = "small",
+#'                                  fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, case, size, fixed){
   
   SIGMA <-  diag(3)
   
@@ -830,6 +904,39 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,ca
   
 }
 
+#' Utility function
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @param fixed choose if true treatment effects are fixed or random
+#' @return the output of the the function utility3_binary is the expected utility of the program with conservative decision rule and sample size calculation: use lower bound of one-sided confidence intervall
+#' @examples res <- utility3_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
+#'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
+#'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
+#'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'                                  K = Inf, N = Inf, S = -Inf,
+#'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
+#'                                  case = 2, fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 
 utility3_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                             alpha, beta, 
@@ -900,8 +1007,28 @@ utility3_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
 # Case 3: Strategy 3/4; at least three trials significant, the treatment effect 
 # of the other one at least showing in the same direction
 
-# Expected probability of a successful program
-EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,case, size, fixed){
+#' Expected probability of a successful program: EsP
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
+#' @param size size category "small", "medium" or "large"
+#' @param fixed choose if true treatment effects are fixed or random
+#' @return the output of the the function EPsProg4_binary is the expected probability of a successful program 
+#' @examples res <- EPsProg4_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
+#'                                  p0 = 0.6  w = 0.3, p11 =  0.3, p12 = 0.5, 
+#'                                  in1 = 300, in2 = 600, case = 3, size = "small",
+#'                                  fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, case, size, fixed){
   
   SIGMA <-  diag(4)
   
@@ -1161,7 +1288,39 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2,ca
 
 
 
-# Utility function
+#' Utility function
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @param fixed choose if true treatment effects are fixed or random
+#' @return the output of the the function utility4_binary is the expected utility of the program with conservative decision rule and sample size calculation: use lower bound of one-sided confidence intervall
+#' @examples res <- utility4_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
+#'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
+#'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
+#'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'                                  K = Inf, N = Inf, S = -Inf,
+#'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
+#'                                  case = 3, fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 utility4_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                              alpha, beta, 
                              c2, c3, c02, c03, 
@@ -1223,8 +1382,28 @@ utility4_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
 }
 
 
+#' Expected probability of a successful program: EsP
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
+#' @param size size category "small", "medium" or "large"
+#' @return the output of the the function EPsProg23_binary is the expected probability of a successful program 
+#' @examples res <- EPsProg23_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
+#'                                  w = 0.6  p0 = 0.3, p11 =  0.3, p12 = 0.5, 
+#'                                  in1 = 300, in2 = 600, case = 2, size = "small",
+#'                                  ymin = 0.5)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 
-EPsProg23_binary <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, ymin){
+EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, id1, id2, case, size, ymin){
   # Option 2.1: first two phase III trials are successful: no third phase III trial
   # Option 2.2: one of the two first phase III trials successful, the treatment
   #  effect of the other one points in the same direction: 
@@ -1410,7 +1589,38 @@ EPsProg23_binary <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case
 
 
 
-# Utility function
+#' Utility function
+#' @param RRgo threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
+#' @param p12 assumed true rate of treatment group
+#' @param in1 amount of information for p11 in terms of sample size
+#' @param in2 amount of information for p12 in terms of sample size
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @param fixed choose if true treatment effects are fixed or random
+#' @return the output of the the function utility23_binary is the expected utility of the program with conservative decision rule and sample size calculation: use lower bound of one-sided confidence intervall
+#' @examples res <- utility23_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
+#'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
+#'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
+#'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'                                  b1 = 1000, b2 = 2000, b3 = 3000)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+
 utility23_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                              alpha, beta, 
                              c2, c3, c02, c03,
