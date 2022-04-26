@@ -198,3 +198,4 @@ optimal_multiarm_binary <- function(p0, p11, p12,
   return(result)
   
 }
+

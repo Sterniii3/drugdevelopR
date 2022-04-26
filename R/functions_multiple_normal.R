@@ -40,8 +40,8 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 
 pgo_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
   
-  sigma <- c(sigma1,sigma2)
-  r<-c(4*sigma[1]^2,4*sigma[2]^2) #(r1,r2) known constant for endpoint i
+  Sigma <- c(sigma1,sigma2)
+  r<-c(4*Sigma[1]^2,4*Sigma[2]^2) #(r1,r2) known constant for endpoint i
   var1<-r[1]/n2 #variance of effect for endpoint 1
   var2<-r[2]/n2 #variance of effect for endpoint 2
   covmat<-matrix(c(var1, rho*sqrt(var1)*sqrt(var2), rho*sqrt(var1)*sqrt(var2), var2), ncol=2) #covariance-Matrix of c(true1,true2)
@@ -67,10 +67,10 @@ pgo_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed,
 }
 
 
-Ess_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
+Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
   
-  sigma <- c(sigma1,sigma2)
-  r<-c(4*sigma[1]^2,4*sigma[2]^2) #(r1,r2) known constant for endpoint i
+  Sigma <- c(sigma1,sigma2)
+  r<-c(4*Sigma[1]^2,4*Sigma[2]^2) #(r1,r2) known constant for endpoint i
   var1<-r[1]/n2 #variance of effect for endpoint 1
   var2<-r[2]/n2 #variance of effect for endpoint 2
   covmat<-matrix(c(var1, rho*sqrt(var1)*sqrt(var2), rho*sqrt(var1)*sqrt(var2), var2), ncol=2) #covariance-Matrix of c(true1,true2)
@@ -80,7 +80,7 @@ Ess_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, s
   
    if(fixed)  {
     return(integrate(function(x){ sapply(x,function(x){
-      (4*(qnorm(1-alpha)+qnorm(1-beta))^2/x^2)*fmin(x,Delta1,Delta2,sigma1,sigma2,rho)
+      (4*(qnorm(1-alpha)+qnorm(1-beta))^2/x^2)*fmin(x,Delta1,Delta2,var1,var2,rho)
     })
     },kappa,Inf)$value)
   }
@@ -105,8 +105,8 @@ Ess_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, s
 
 posp_normal <- function(kappa, n2, alpha, beta, Delta1,Delta2, sigma1, sigma2, in1, in2, fixed, rho){
   
-  sigma <- c(sigma1,sigma2)
-  r<-c(4*sigma[1]^2,4*sigma[2]^2) #(r1,r2) known constant for endpoint i
+  Sigma <- c(sigma1,sigma2)
+  r<-c(4*Sigma[1]^2,4*Sigma[2]^2) #(r1,r2) known constant for endpoint i
   var1<-r[1]/n2 #variance of effect for endpoint 1
   var2<-r[2]/n2 #variance of effect for endpoint 2
   covmat<-matrix(c(var1, rho*sqrt(var1)*sqrt(var2), rho*sqrt(var1)*sqrt(var2), var2), ncol=2) #covariance-Matrix of c(true1,true2)
@@ -152,7 +152,9 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1,Delta2, sigma1, sigma2, i
 
 #E(n3|GO)
   
-  # expn3go_normal<-Ess_normal(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)/pgo_normal(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)
+
+#  expn3go_normal<-Ess_multiple_normal(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)/pgo_normal(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)
+
   
 
 
@@ -164,8 +166,8 @@ EPsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2, sigma1, sigma2,
                       step11, step12, step21, step22, 
                       in1, in2, fixed,rho){
   
-  sigma <- c(sigma1,sigma2)
-  r<-c(4*sigma[1]^2,4*sigma[2]^2) #(r1,r2) known constant for endpoint i
+  Sigma <- c(sigma1,sigma2)
+  r<-c(4*Sigma[1]^2,4*Sigma[2]^2) #(r1,r2) known constant for endpoint i
   var1<-r[1]/n2 #variance of effect for endpoint 1
   var2<-r[2]/n2 #variance of effect for endpoint 2
   covmat<-matrix(c(var1, rho*sqrt(var1)*sqrt(var2), rho*sqrt(var1)*sqrt(var2), var2), ncol=2) #covariance-Matrix of c(true1,true2)
@@ -222,7 +224,7 @@ utility_multiple_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2, in1, in2, s
                                c2,c02,c3,c03,K,N,S,
                                steps1, stepm1, stepl1,b1, b2, b3,fixed,rho,relaxed){ 
   
-  n3 = Ess_normal(kappa = kappa, n2 = n2, alpha = alpha , beta = beta, 
+  n3 = Ess_multiple_normal(kappa = kappa, n2 = n2, alpha = alpha , beta = beta, 
                   Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, 
                   sigma1 = sigma1, sigma2=sigma2, fixed = fixed, rho = rho)
   
