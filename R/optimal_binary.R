@@ -106,10 +106,6 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
 
   date <- Sys.time()
 
-  steps2 <- stepm1
-  stepm2 <- stepl1
-  stepl2 <- 0
-
    if(skipII==TRUE){
 
      if(fixed){
@@ -126,9 +122,9 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                                   b1 = b1, b2 = b2, b3 = b3,
                                   p0 = p0, median_prior = median_prior,
                                   K = K, N = N, S = S,
-                                  steps1 = steps1, steps2 = steps2,
-                                  stepm1 = stepm1, stepm2 = stepm2,
-                                  stepl1 = stepl1, stepl2 = stepl2,
+                                  steps1 = steps1, 
+                                  stepm1 = stepm1, 
+                                  stepl1 = stepl1, 
                                   w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2,
                                   gamma = gamma, fixed = fixed)
 
@@ -196,7 +192,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
       
       parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "En3_binary",
                           "EPsProg_binary","t1", "t2", "t3", "alpha", "beta",
-                          "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
+                          "steps1", "stepm1",  "stepl1", 
                           "K", "N", "S", "gamma", "fixed",
                           "c2", "c3", "c02", "c03",
                           "b1", "b2", "b3", "w", "RRgo",

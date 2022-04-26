@@ -4,10 +4,39 @@
 \alias{optimal_binary}
 \title{Optimal phase II/III drug development planning with binary endpoint}
 \usage{
-optimal_binary(w, p0, p11, p12, in1, in2, n2min, n2max, stepn2, rrgomin,
-  rrgomax, steprrgo, alpha, beta, c2, c3, c02, c03, K = Inf, N = Inf,
-  S = -Inf, steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, b1, b2, b3,
-  gamma = 0, fixed = FALSE, skipII = FALSE, num_cl = 1)
+optimal_binary(
+  w,
+  p0,
+  p11,
+  p12,
+  in1,
+  in2,
+  n2min,
+  n2max,
+  stepn2,
+  rrgomin,
+  rrgomax,
+  steprrgo,
+  alpha,
+  beta,
+  c2,
+  c3,
+  c02,
+  c03,
+  K = Inf,
+  N = Inf,
+  S = -Inf,
+  steps1 = 1,
+  stepm1 = 0.95,
+  stepl1 = 0.85,
+  b1,
+  b2,
+  b3,
+  gamma = 0,
+  fixed = FALSE,
+  skipII = FALSE,
+  num_cl = 1
+)
 }
 \arguments{
 \item{w}{weight for mixture prior distribution}

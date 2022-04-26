@@ -4,10 +4,40 @@
 \alias{optimal_normal}
 \title{Optimal phase II/III drug development planning with normally distributed endpoint}
 \usage{
-optimal_normal(w, Delta1, Delta2, in1, in2, a, b, n2min, n2max, stepn2,
-  kappamin, kappamax, stepkappa, alpha, beta, c2, c3, c02, c03, K = Inf,
-  N = Inf, S = -Inf, steps1 = 0, stepm1 = 0.5, stepl1 = 0.8, b1,
-  b2, b3, gamma = 0, fixed = FALSE, skipII = FALSE, num_cl = 1)
+optimal_normal(
+  w,
+  Delta1,
+  Delta2,
+  in1,
+  in2,
+  a,
+  b,
+  n2min,
+  n2max,
+  stepn2,
+  kappamin,
+  kappamax,
+  stepkappa,
+  alpha,
+  beta,
+  c2,
+  c3,
+  c02,
+  c03,
+  K = Inf,
+  N = Inf,
+  S = -Inf,
+  steps1 = 0,
+  stepm1 = 0.5,
+  stepl1 = 0.8,
+  b1,
+  b2,
+  b3,
+  gamma = 0,
+  fixed = FALSE,
+  skipII = FALSE,
+  num_cl = 1
+)
 }
 \arguments{
 \item{w}{weight for mixture prior distribution}
