@@ -8,4 +8,3 @@ if(!require(devtools)) { install.packages("devtools"); require(devtools)}
 devtools::install_github("Sterniii3/drugdevelopR")
 ````
 and access the drugdevelopR App via [https://web.imbi.uni-heidelberg.de/drugdevelopR/](https://web.imbi.uni-heidelberg.de/drugdevelopR/).
-

@@ -4,12 +4,45 @@
 \alias{optimal_bias}
 \title{Optimal phase II/III drug development planning when discounting phase II results}
 \usage{
-optimal_bias(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin, hrgomax,
-  stephrgo, adj = "both", lambdamin = NULL, lambdamax = NULL,
-  steplambda = NULL, alphaCImin = NULL, alphaCImax = NULL,
-  stepalphaCI = NULL, alpha, beta, xi2, xi3, c2, c3, c02, c03, K = Inf,
-  N = Inf, S = -Inf, steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
-  b1, b2, b3, fixed = FALSE, num_cl = 1)
+optimal_bias(
+  w,
+  hr1,
+  hr2,
+  id1,
+  id2,
+  d2min,
+  d2max,
+  stepd2,
+  hrgomin,
+  hrgomax,
+  stephrgo,
+  adj = "both",
+  lambdamin = NULL,
+  lambdamax = NULL,
+  steplambda = NULL,
+  alphaCImin = NULL,
+  alphaCImax = NULL,
+  stepalphaCI = NULL,
+  alpha,
+  beta,
+  xi2,
+  xi3,
+  c2,
+  c3,
+  c02,
+  c03,
+  K = Inf,
+  N = Inf,
+  S = -Inf,
+  steps1 = 1,
+  stepm1 = 0.95,
+  stepl1 = 0.85,
+  b1,
+  b2,
+  b3,
+  fixed = FALSE,
+  num_cl = 1
+)
 }
 \arguments{
 \item{w}{weight for mixture prior distribution}
@@ -34,19 +67,19 @@ optimal_bias(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin, hrgomax,
 
 \item{stephrgo}{stepsize for the optimization over HRgo}
 
-\item{adj}{choose type of adjustment: "multiplicative", "additive" or "both"}
+\item{adj}{choose type of adjustment: "multiplicative", "additive", "both" (or "all")}
 
-\item{lambdamin}{minimal adjustment parameter &lambda;}
+\item{lambdamin}{minimal adjustment parameter lambda}
 
-\item{lambdamax}{maximal adjustment parameter &lambda;}
+\item{lambdamax}{maximal adjustment parameter lambda}
 
-\item{steplambda}{stepsize for the adjustment parameter &lambda;}
+\item{steplambda}{stepsize for the adjustment parameter lambda}
 
-\item{alphaCImin}{minimal &alpha;<sub>CI<sub/>}
+\item{alphaCImin}{minimal alphaCI}
 
-\item{alphaCImax}{maximal &alpha;<sub>CI<sub/>}
+\item{alphaCImax}{maximal alphaCI}
 
-\item{stepalphaCI}{stepsize for &alpha;<sub>CI<sub/>}
+\item{stepalphaCI}{stepsize for alphaCI}
 
 \item{alpha}{one-sided significance level}
 
@@ -66,9 +99,9 @@ optimal_bias(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin, hrgomax,
 
 \item{K}{constraint on the costs of the program, default: Inf, e.g. no constraint}
 
-\item{N}{constraint on the total expected sample size of the program, default: Inf, e.g. no constraint}
+\item{N}{constraint on the total expected sample size of the program, default: Inf, e.g., no constraint}
 
-\item{S}{constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint}
+\item{S}{constraint on the expected probability of a successful program, default: -Inf, e.g., no constraint}
 
 \item{steps1}{lower boundary for effect size category "small" in HR scale, default: 1}
 
@@ -95,7 +128,7 @@ The output of the function \code{\link{optimal_bias}} is a data.frame containing
 \describe{
   \item{Method}{Type of adjustment: multipl. (multiplicative) or add. (additive)}
   \item{u}{maximal expected utility}
-  \item{Adj}{optimal adjustment parameter (&lambda; or &alpha;<sub>CI<sub/> according to Method)}
+  \item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}
   \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
   \item{d2}{optimal total number of events for phase II}
   \item{d3}{total expected number of events for phase III; rounded to next natural number}
@@ -117,7 +150,7 @@ and further input parameters.
 Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 }
 \description{
-The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results (Preussler et. al, 2019). The assumed true treatment effects can be assumed fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}) or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast computing is enabled by parallel programming.
+The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results (Preussler et. al, 2020). The assumed true treatment effects can be assumed fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}) or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast computing is enabled by parallel programming.
 }
 \section{drugdevelopR functions}{
 
@@ -148,7 +181,7 @@ res <- optimal_bias(w = 0.3,                                 # define parameters
   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,             # define optimization set for HRgo
   adj = "both",                                              # choose type of adjustment
   lambdamin = 0.2, lambdamax = 1, steplambda = 0.05,         # define optimization set for lambda
-  alphaCImin = 0.025, alphaCImax = 0.5, stepalphaCI = 0.025, # define optimization set for &alpha;<sub>CI<sub/>
+  alphaCImin = 0.025, alphaCImax = 0.5, stepalphaCI = 0.025, # define optimization set for alphaCI
   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,            # drug development planning parameters
   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,                   # define fixed and variable costs for phase II and III
   K = Inf, N = Inf, S = -Inf,                                # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
@@ -164,7 +197,7 @@ cat(comment(res))                                            # displays the opti
 \references{
 IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 
-Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. Submitted to peer-review journal.
+Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2020). Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. Submitted to peer-review journal.
 
 Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
 }

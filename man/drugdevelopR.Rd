@@ -3,7 +3,6 @@
 \docType{package}
 \name{drugdevelopR}
 \alias{drugdevelopR}
-\alias{drugdevelopR-package}
 \title{Utility based optimal phase II/III drug development planning}
 \usage{
 drugdevelopR()

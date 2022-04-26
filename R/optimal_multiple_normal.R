@@ -57,7 +57,7 @@
 #' res
 #' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' @examples
-#' res <- optimal_multiarm(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs and control arm event rate
+#' res <- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs and control arm event rate
 #'   in1=300, in2=600, sigma1 = 8, sigma2= 12,
 #'   n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
 #'   kappamin = 0.7, kappamax = 0.9, stepkappa = 0.05,         # define optimization set for HRgo
@@ -96,6 +96,8 @@
 #'Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal Designs for Multi-Arm Phase II/III Drug Development Programs. Submitted to peer-review journal.
 #'
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 #' @export
 
 optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,

@@ -152,7 +152,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1,Delta2, sigma1, sigma2, i
 
 #E(n3|GO)
   
-  expn3go_normal<-Ess_normal(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)/pgo_normal(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)
+  # expn3go_normal<-Ess_normal(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)/pgo_normal(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)
   
 
 
@@ -218,7 +218,7 @@ EPsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2, sigma1, sigma2,
 
 
 
-utility_multiple_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2, in1, in2,
+utility_multiple_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2, in1, in2, sigma1, sigma2,
                                c2,c02,c3,c03,K,N,S,
                                steps1, stepm1, stepl1,b1, b2, b3,fixed,rho,relaxed){ 
   
@@ -289,7 +289,7 @@ utility_multiple_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2, in1, in2,
                               in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
       probb2 <- POSP - probb1 - probb3
       
-      if (relaxed = "TRUE"){
+      if (relaxed == "TRUE"){
         prob1 <- probb1
         prob2 <- probb2
         prob3 <- probb3

@@ -13,7 +13,17 @@
 # -> Phase III is 2 or 3 arm trial (1:1 or 1:1:1 sample size allocation)
 
 
-# probability to go to phase III
+#' probability to go to phase III
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
+#' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
+#' @return the function pgo_normal returns the probability to go to phase III
+#' @examples res <- pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625, strategy = 3, case = 31)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 pgo_normal<-function(kappa,n2,Delta1,Delta2,strategy,case){
   
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
@@ -102,9 +112,17 @@ pgo_normal<-function(kappa,n2,Delta1,Delta2,strategy,case){
   
 }
 
-# total sample size for phase III trial with l treatments and equal allocation ratio
-# l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
-# l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
+#' total sample size for phase III trial with l treatments and equal allocation ratio
+#'  l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
+#'  l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
+#'  @param alpha significance level
+#'  @param beta  1-beta power for calculation of sample size for phase III
+#'  @param y hat_theta_2; estimator in phase II
+#'  @param l l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II;  l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
+#'  @return the function ss_normal returns the total sample size for phase III trial with l treatments and equal allocation ratio
+#'  @examples res <- ss_normal(alpha = 0.05, beta = 0.1, y = 0.5, l=1,)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 ss_normal<-function(alpha,beta,y,l){
   
   if(l==1){calpha = qnorm(1-alpha)}
@@ -113,7 +131,21 @@ ss_normal<-function(alpha,beta,y,l){
   return(((l+1)*(calpha+qnorm(1-beta))^2)/(y^2)*2)
 }
 
-# expected sample size for phase III when going to phase III
+#' expected sample size for phase III when going to phase III
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta  1-beta power for calculation of sample size for phase III
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
+#' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
+#' @return the function pgo_normal returns the expected sample size for phase III when going to phase III
+#' @examples res <- Ess_normal(kappa = 0.1 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
+#'                             Delta1 = 0.375, Delta2 = 0.625, strategy = 3, case = 31)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+
 Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
   
   
@@ -211,7 +243,24 @@ Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
   
 } 
 
-# probability of a successful program
+#' probability of a successful program
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta  1-beta power for calculation of sample size for phase III
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
+#' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
+#' @return the function PsProg_normal returns the probability of a successful program
+#' @examples res <- PsProg_normal(kappa = 0.1 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
+#'                             Delta1 = 0.375, Delta2 = 0.625,  step1 = 0, step2 = 0.5,
+#'                             strategy = 3, case = 31)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+
 PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,case){
   
 
@@ -373,8 +422,41 @@ PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,c
   
 } 
 
-# utility function
-utility_multiarm_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2,strategy,c2,c02,c3,c03,K,N,S,steps1, stepm1, stepl1,b1, b2, b3){ 
+#' utility function
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta  1-beta power for calculation of sample size for phase III
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param steps1 lower boundary for effect size category "small", default: 0
+#' @param stepm1 lower boundary for effect size category "medium" = upper boundary for effect size category "small" default: 0.5
+#' @param stepl1 lower boundary for effect size category "large" = upper boundary for effect size category "medium", default: 0.8
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @return the output of the the function utility_multiarm_normal is the expected utility of the program
+#' @examples res <- utility_multiarm_normal(n2 = 50 ,kappa = 0.8 ,alpha = 0.05, beta = 0.1,
+#'                             Delta1 = 0.375, Delta2 = 0.625, strategy = 3
+#'                             c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'                             K = Inf, N = Inf, S = -Inf,  
+#'                             steps1 = 0, stepm1 = 0.5,   stepl1 = 0.8,
+#'                             b1 = 1000, b2 = 2000, b3 = 3000,)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+
+utility_multiarm_normal<-function(n2,kappa,alpha,beta,
+                                  Delta1,Delta2,strategy,
+                                  c2,c02,c3,c03,K,N,S,
+                                  steps1, stepm1, stepl1,b1, b2, b3){ 
   
   if(strategy==1){
     

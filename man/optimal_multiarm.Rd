@@ -4,10 +4,34 @@
 \alias{optimal_multiarm}
 \title{Optimal phase II/III drug development planning for multi-arm programs}
 \usage{
-optimal_multiarm(hr1, hr2, ec, n2min, n2max, stepn2, hrgomin, hrgomax,
-  stephrgo, alpha, beta, c2, c3, c02, c03, K = Inf, N = Inf,
-  S = -Inf, steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, b1, b2, b3,
-  strategy, num_cl = 1)
+optimal_multiarm(
+  hr1,
+  hr2,
+  ec,
+  n2min,
+  n2max,
+  stepn2,
+  hrgomin,
+  hrgomax,
+  stephrgo,
+  alpha,
+  beta,
+  c2,
+  c3,
+  c02,
+  c03,
+  K = Inf,
+  N = Inf,
+  S = -Inf,
+  steps1 = 1,
+  stepm1 = 0.95,
+  stepl1 = 0.85,
+  b1,
+  b2,
+  b3,
+  strategy,
+  num_cl = 1
+)
 }
 \arguments{
 \item{hr1}{assumed true treatment effect on HR scale for treatment 1}

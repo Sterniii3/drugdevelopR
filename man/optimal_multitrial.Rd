@@ -4,10 +4,37 @@
 \alias{optimal_multitrial}
 \title{Optimal phase II/III drug development planning where several phase III trials are performed}
 \usage{
-optimal_multitrial(w, hr1, hr2, id1, id2, d2min, d2max, stepd2, hrgomin,
-  hrgomax, stephrgo, alpha, beta, xi2, xi3, c2, c3, c02, c03, K = Inf,
-  N = Inf, S = -Inf, b1, b2, b3, case, strategy = TRUE,
-  fixed = FALSE, num_cl = 1)
+optimal_multitrial(
+  w,
+  hr1,
+  hr2,
+  id1,
+  id2,
+  d2min,
+  d2max,
+  stepd2,
+  hrgomin,
+  hrgomax,
+  stephrgo,
+  alpha,
+  beta,
+  xi2,
+  xi3,
+  c2,
+  c3,
+  c02,
+  c03,
+  K = Inf,
+  N = Inf,
+  S = -Inf,
+  b1,
+  b2,
+  b3,
+  case,
+  strategy = TRUE,
+  fixed = FALSE,
+  num_cl = 1
+)
 }
 \arguments{
 \item{w}{weight for mixture prior distribution}

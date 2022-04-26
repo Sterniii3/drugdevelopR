@@ -94,7 +94,10 @@
 #' }
 #' @references
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 #' @export
+
 optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                                n2min, n2max, stepn2,
                                rrgomin, rrgomax, steprrgo,

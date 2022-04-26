@@ -7,7 +7,27 @@
 # expected probability to go to phase III
 # as above
 
-# Expected sample size for phase III when going to phase III: En3
+#' Expected  size for phase III when going to phase III: En3_normal_L
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param a lower boundary for the truncation
+#' @param b upper boundary for the truncation
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function En3_normal_L is the expected number of participants in phase III 
+#' @examples res <- En3_normal_L(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                               a = 0.25, b = 0.75, fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+
 En3_normal_L <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, fixed){
    
   if(fixed){
@@ -48,7 +68,31 @@ En3_normal_L <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, i
   return(integrated)
 }
 }
-# Expected probability of a successful program: EsP
+
+#' Expected probability of a successful program: EsP
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param w weight for mixture prior distribution
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param a lower boundary for the truncation
+#' @param b upper boundary for the truncation
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function EPsProg_normal_L is the expected probability of a successful program 
+#' @examples res <- EPsProg_normal_L(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                  step1 = 0, step2 = 0.5,
+#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                  a = 0.25, b = 0.75, fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+
 EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   c = (qnorm(1 - alpha) + qnorm(1 - beta))^2
@@ -90,7 +134,47 @@ EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
   
 }
 
-# Utility function
+#' Utility function
+#' @param n2 total sample size for phase II; must be even number
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param w weight for mixture prior distribution
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param a lower boundary for the truncation
+#' @param b upper boundary for the truncation
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param steps1 lower boundary for effect size category "small", default: 0
+#' @param stepm1 lower boundary for effect size category "medium" = upper boundary for effect size category "small" default: 0.5
+#' @param stepl1 lower boundary for effect size category "large" = upper boundary for effect size category "medium", default: 0.8
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function utility_normal_L is the expected utility of the program with conservative sample size calculation: use lower bound of one-sided confidence intervall
+#' @examples res <- utility_normal_L(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                  step1 = 0, step2 = 0.5,
+#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                  a = 0.25, b = 0.75, 
+#'                                  K = Inf, N = Inf, S = -Inf, 
+#'                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
+#'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
+#'                                  fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+
 utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
                             alpha, beta, 
                             c2, c3, c02, c03, 
@@ -173,7 +257,27 @@ utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
 # prior distribution
 # as above
 
-# Expected probability to go to phase III: Epgo
+
+#' Expected probability to go to phase III: Epgo
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param a lower boundary for the truncation
+#' @param b upper boundary for the truncation
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function Epgo_normal_L2 is the expected number of participants in phase III with conservative decision rule and sample size calculation:  use lower bound of one-sided confidence intervall
+#' @examples res <- Epgo_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                a = 0.25, b = 0.75, fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 Epgo_normal_L2 <-  function(kappa, n2, Adj, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   if(fixed){
@@ -193,7 +297,27 @@ Epgo_normal_L2 <-  function(kappa, n2, Adj, w, Delta1, Delta2, in1, in2, a, b, f
 }
 
 
-# Expected sample size for phase III when going to phase III: En3
+#' Expected  size for phase III when going to phase III: En3_normal_L2
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param a lower boundary for the truncation
+#' @param b upper boundary for the truncation
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function En3_normal_L2 is the expected number of participants in phase III 
+#' @examples res <- En3_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                               a = 0.25, b = 0.75, fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+
 En3_normal_L2 <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   if(fixed){
@@ -235,7 +359,29 @@ En3_normal_L2 <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, 
   
 }
 
-# Expected probability of a successful program: EsP
+#' Expected probability of a successful program: EsP
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param w weight for mixture prior distribution
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param a lower boundary for the truncation
+#' @param b upper boundary for the truncation
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function EPsProg_normal_L2 is the expected probability of a successful program 
+#' @examples res <- EPsProg_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                    step1 = 0, step2 = 0.5,
+#'                                    Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                    a = 0.25, b = 0.75, fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 EPsProg_normal_L2 <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   c = (qnorm(1 - alpha) + qnorm(1 - beta))^2
@@ -277,7 +423,46 @@ EPsProg_normal_L2 <-  function(kappa, n2, alpha, beta, step1, step2, w, Delta1, 
   
 }
 
-# Utility function
+#' Utility function
+#' @param n2 total sample size for phase II; must be even number
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param w weight for mixture prior distribution
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param a lower boundary for the truncation
+#' @param b upper boundary for the truncation
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param steps1 lower boundary for effect size category "small", default: 0
+#' @param stepm1 lower boundary for effect size category "medium" = upper boundary for effect size category "small" default: 0.5
+#' @param stepl1 lower boundary for effect size category "large" = upper boundary for effect size category "medium", default: 0.8
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function utility_normal_L2 is the expected utility of the program with conservative decision rule and sample size calculation: use lower bound of one-sided confidence intervall
+#' @examples res <- utility_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                  step1 = 0, step2 = 0.5,
+#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                  a = 0.25, b = 0.75, 
+#'                                  K = Inf, N = Inf, S = -Inf, 
+#'                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
+#'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
+#'                                  fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 utility_normal_L2 <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
                             alpha, beta, 
                             c2, c3, c02, c03, 
@@ -360,7 +545,27 @@ utility_normal_L2 <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b
 # expected probability to go to phase III
 # as above
 
-# Expected sample size for phase III when going to phase III: En3
+#' Expected  size for phase III when going to phase III: En3_normal_R
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param a lower boundary for the truncation
+#' @param b upper boundary for the truncation
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function En3_normal_R is the expected number of participants in phase III 
+#' @examples res <- En3_normal_R(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                               a = 0.25, b = 0.75, fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+
 En3_normal_R <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   if(fixed){
@@ -404,7 +609,29 @@ En3_normal_R <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, i
   }
 }
 
-# Expected probability of a successful program: EsP
+#' Expected probability of a successful program: EsP
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param w weight for mixture prior distribution
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param a lower boundary for the truncation
+#' @param b upper boundary for the truncation
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function EPsProg_normal_R is the expected probability of a successful program 
+#' @examples res <- EPsProg_normal_R(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                  step1 = 0, step2 = 0.5,
+#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                  a = 0.25, b = 0.75, fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 EPsProg_normal_R <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   c = (qnorm(1 - alpha) + qnorm(1 - beta))^2
@@ -446,7 +673,46 @@ EPsProg_normal_R <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
   
 }
 
-# Utility function
+#' Utility function
+#' @param n2 total sample size for phase II; must be even number
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param w weight for mixture prior distribution
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param a lower boundary for the truncation
+#' @param b upper boundary for the truncation
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param steps1 lower boundary for effect size category "small", default: 0
+#' @param stepm1 lower boundary for effect size category "medium" = upper boundary for effect size category "small" default: 0.5
+#' @param stepl1 lower boundary for effect size category "large" = upper boundary for effect size category "medium", default: 0.8
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function utility_normal_R is the expected utility of the program with conservative sample size calculation: use estimate with retetion factor
+#' @examples res <- utility_normal_R(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                  step1 = 0, step2 = 0.5,
+#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                  a = 0.25, b = 0.75, 
+#'                                  K = Inf, N = Inf, S = -Inf, 
+#'                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
+#'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
+#'                                  fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 utility_normal_R <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
                             alpha, beta, 
                             c2, c3, c02, c03, 
@@ -528,8 +794,27 @@ utility_normal_R <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
 # prior distribution
 # as above
 
-# Expected probability to go to phase III: Epgo
-Epgo_normal <-  function(kappa, n2, Adj, w, Delta1, Delta2, in1, in2, a, b, fixed){
+#' Expected probability to go to phase III: Epgo
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param a lower boundary for the truncation
+#' @param b upper boundary for the truncation
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function Epgo_normal_R2 is the expected number of participants in phase III with conservative decision rule and sample size calculation: use estimate with retetion factor
+#' @examples res <- Epgo_normal_R2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                a = 0.25, b = 0.75, fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+Epgo_normal_R2 <-  function(kappa, n2, Adj, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   if(fixed){
     return(
@@ -547,7 +832,26 @@ Epgo_normal <-  function(kappa, n2, Adj, w, Delta1, Delta2, in1, in2, a, b, fixe
   }
 }
 
-# Expected sample size for phase III when going to phase III: En3
+#' Expected  size for phase III when going to phase III: En3_normal_R2
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param a lower boundary for the truncation
+#' @param b upper boundary for the truncation
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function En3_normal_R2 is the expected number of participants in phase III 
+#' @examples res <- En3_normal_R2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                               a = 0.25, b = 0.75, fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 En3_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   if(fixed){
@@ -588,7 +892,29 @@ En3_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, 
   }
 }
 
-# Expected probability of a successful program: EsP
+#' Expected probability of a successful program: EsP
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param n2 total sample size for phase II; must be even number
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param w weight for mixture prior distribution
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param a lower boundary for the truncation
+#' @param b upper boundary for the truncation
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function EPsProg_normal_R2 is the expected probability of a successful program 
+#' @examples res <- EPsProg_normal_R2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                  step1 = 0, step2 = 0.5,
+#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                  a = 0.25, b = 0.75, fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 EPsProg_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   c = (qnorm(1 - alpha) + qnorm(1 - beta))^2
@@ -633,7 +959,46 @@ EPsProg_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Del
 }
 
 
-# Utility function
+#' Utility function
+#' @param n2 total sample size for phase II; must be even number
+#' @param kappa threshold value for the go/no-go decision rule
+#' @param Adj adjustment parameter
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param w weight for mixture prior distribution
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param a lower boundary for the truncation
+#' @param b upper boundary for the truncation
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param steps1 lower boundary for effect size category "small", default: 0
+#' @param stepm1 lower boundary for effect size category "medium" = upper boundary for effect size category "small" default: 0.5
+#' @param stepl1 lower boundary for effect size category "large" = upper boundary for effect size category "medium", default: 0.8
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @return the output of the the function utility_normal_R2 is the expected utility of the program with conservative decision rule and sample size calculation:  use estimate with retetion factor
+#' @examples res <- utility_normal_R2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                  step1 = 0, step2 = 0.5,
+#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                  a = 0.25, b = 0.75, 
+#'                                  K = Inf, N = Inf, S = -Inf, 
+#'                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
+#'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
+#'                                  fixed = FALSE)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 utility_normal_R2 <-  function(n2, kappa, Adj,  w, Delta1, Delta2, in1, in2, a, b,
                             alpha, beta, 
                             c2, c3, c02, c03, 
