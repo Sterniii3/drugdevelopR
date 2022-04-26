@@ -20,11 +20,11 @@
 #' @references
 #' Kirchner, M., Kieser, M., Goette, H., & Schueler, A. (2016). Utility-based optimization of phase II/III programs. Statistics in Medicine, 35(2), 305-316.
 #' 
-#'Preussler, S., Kieser, M., and Kirchner, M. (2019). Optimal sample size allocation and go/no-go decision rules for phase II/III programs where several phase III trials are performed. Biometrical Journal, 61(2), 357-378.
+#' Preussler, S., Kieser, M., and Kirchner, M. (2019). Optimal sample size allocation and go/no-go decision rules for phase II/III programs where several phase III trials are performed. Biometrical Journal, 61(2), 357-378.
 #'
 #' Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. Submitted to peer-review journal.
 #' 
-#'Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal designs for multi-arm Phase II/III drug development programs. Submitted to peer-review journal.
+#' Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal designs for multi-arm Phase II/III drug development programs. Submitted to peer-review journal.
 #'
 #' 
 #'@export
