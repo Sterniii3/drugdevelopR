@@ -15,30 +15,69 @@ library(MASS)
 library(doParallel)
 library(parallel)
 
-#load functions
-#density for minimum of two normally distributed, random variables
-#Z=min(X,Y) with X~N(mu1,sigma1^2),Y~N(mu2,sigma2^2)
-#f(z)=f1(z)+f2(z)
-#function fmin will return the value of f(z)
+
+#'density for minimum of two normally distributed, random variables
+#'Z=min(X,Y) with X~N(mu1,sigma1^2),Y~N(mu2,sigma2^2)
+#'f(z)=f1(z)+f2(z)
+#'@param y integral variable
+#'@param mu1 mean of second endpoint 
+#'@param mu2 mean of first endpoint
+#'@param sigma1 standard deviation of first endpoint
+#'@param sigma2 standard deviation of second endpoint
+#'@param rho correlation between the two endpoints
+#'@return function fmin will return the value of f(z)
+#'@examples res <- fmin(y = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
+#'@editor Johannes Cepicka
+#'@editDate 2022-04-23
+
 fmin<-function (y,mu1,mu2,sigma1,sigma2,rho)
-{t1<-dnorm(y,mean=mu1,sd=sigma1)
-tt<-rho*(y-mu1)/(sigma1*sqrt(1-rho*rho))
-tt<-tt-(y-mu2)/(sigma2*sqrt(1-rho*rho))
-t1<-t1*pnorm(tt)
-t2<-dnorm(y,mean=mu2,sd=sigma2)
-tt<-rho*(y-mu2)/(sigma2*sqrt(1-rho*rho))
-tt<-tt-(y-mu1)/(sigma1*sqrt(1-rho*rho))
-t2<-t2*pnorm(tt)
+    {t1<-dnorm(y,mean=mu1,sd=sigma1)
+      tt<-rho*(y-mu1)/(sigma1*sqrt(1-rho*rho))
+      tt<-tt-(y-mu2)/(sigma2*sqrt(1-rho*rho))
+        t1<-t1*pnorm(tt)
+        t2<-dnorm(y,mean=mu2,sd=sigma2)
+      tt<-rho*(y-mu2)/(sigma2*sqrt(1-rho*rho))
+      tt<-tt-(y-mu1)/(sigma1*sqrt(1-rho*rho))
+        t2<-t2*pnorm(tt)
 return(t1+t2)}
 
-#density of bivariate normal distribution
+#'density of bivariate normal distribution
+#'@param x integral variable
+#'@param y integral variable
+#'@param mu1 mean of second endpoint 
+#'@param mu2 mean of first endpoint
+#'@param sigma1 standard deviation of first endpoint
+#'@param sigma2 standard deviation of second endpoint
+#'@param rho correlation between the two endpoints
+#'@return function dbivanrom will return the density of bivariate normal distribution
+#'@examples res <- fmin(x = 0.5, y = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
+#'@editor Johannes Cepicka
+#'@editDate 2022-04-23
 dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){ 
   covariancemat <- matrix(c(sigma1,rho*sqrt(sigma1)*sqrt(sigma2), rho*sqrt(sigma1)*sqrt(sigma2),sigma2),ncol=2)
   ff <- dmvnorm(cbind(x,y), mean=c(mu1,mu2),sigma=covariancemat)
   return(ff)
 }
 
-pgo_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
+
+#' probability to go to phase III: pgo
+#' @param kappa threshold value for the go/no-go decision rule; vector for both endpoints 
+#' @param n2 total sample size for phase II; must be even number
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param sigma1 standard deviation of first endpoint
+#' @param sigma2 standard deviation of second endpoint
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @param rho correlation between the two endpoints
+#' @return the output of the the function pgo_multiple_normal is the probability to go to phase III
+#' @examples res <- pgo_multiple_normal(kappa = c(0.1,0.1), n2 = 50,
+#'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
   
   Sigma <- c(sigma1,sigma2)
   r<-c(4*Sigma[1]^2,4*Sigma[2]^2) #(r1,r2) known constant for endpoint i
@@ -66,6 +105,26 @@ pgo_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed,
   
 }
 
+
+#' expected sample size for phase III
+#' @param kappa threshold value for the go/no-go decision rule; vector for both endpoints
+#' @param n2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param sigma1 standard deviation of first endpoint
+#' @param sigma2 standard deviation of second endpoint
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @param rho correlation between the two endpoints
+#' @return the output of the the function Ess_multiple_normal is the expected number of participants in phase III
+#' @examples res <- Ess_multiple_normal(kappa = c(0.1,0.1), n2 = 50, alpha = 0.025, beta = 0.1,
+#'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 
 Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
   
@@ -103,7 +162,27 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
   }
 }
 
-posp_normal <- function(kappa, n2, alpha, beta, Delta1,Delta2, sigma1, sigma2, in1, in2, fixed, rho){
+#' probability of a succesfull program, when going to phase III
+#' @param kappa threshold value for the go/no-go decision rule; vector for both endpoints
+#' @param n2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param sigma1 standard deviation of first endpoint
+#' @param sigma2 standard deviation of second endpoint
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @param rho correlation between the two endpoints
+#' @return the output of the the function posp_normal is the probability of a succesfull program, when going to phase III
+#' @examples res <- posp_normal(kappa = c(0.1,0.1), n2 = 50, alpha = 0.025, beta = 0.1,
+#'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+
+posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, in1, in2, fixed, rho){
   
   Sigma <- c(sigma1,sigma2)
   r<-c(4*Sigma[1]^2,4*Sigma[2]^2) #(r1,r2) known constant for endpoint i
@@ -151,18 +230,37 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1,Delta2, sigma1, sigma2, i
 }
 
 #E(n3|GO)
-  
-
-#  expn3go_normal<-Ess_multiple_normal(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)/pgo_normal(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)
+  #  expn3go_normal<-Ess_multiple_normal(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)/pgo_normal(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)
 
   
 
 
+#' expected probability of a successful program
+#' @param kappa threshold value for the go/no-go decision rule; vector for both endpoints
+#' @param n2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param sigma1 standard deviation of first endpoint
+#' @param sigma2 standard deviation of second endpoint
+#' @param step11 lower boundary for effect size for first endpoint
+#' @param step12 lower boundary for effect size for second endpoint
+#' @param step21 upper boundary for effect size for first endpoint
+#' @param step22 upper boundary for effect size for second endpoint
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @param rho correlation between the two endpoints
+#' @return the output of the the function EPsProg_multiple_normal is the expected probability of a successfull program, when going to phase III
+#' @examples res <- EPsProg_multiple_normal(kappa = c(0.1,0.1), n2 = 50, alpha = 0.025, beta = 0.1,
+#'                                Delta1 = 0.375, Delta2 = 0.625, sigma1 = 8, sigma2 = 4,
+#'                                step11 = 0, step12 = 0, step21 = 0.5, step22 = 0.5, 
+#'                                in1 = 300, in2 = 600, fixed = FALSE, rho = 0.3)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 
-
-# probability of a successful program
-
-EPsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2, sigma1, sigma2,
+EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2,
                       step11, step12, step21, step22, 
                       in1, in2, fixed,rho){
   
@@ -218,11 +316,49 @@ EPsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2, sigma1, sigma2,
   }
 }
 
+#' utility function
+#' @param kappa threshold value for the go/no-go decision rule; vector for both endpoints
+#' @param n2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param Delta1 assumed true treatment effect for standardized difference in means
+#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param in1 amount of information for Delta1 in terms of sample size
+#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param sigma1 standard deviation of first endpoint
+#' @param sigma2 standard deviation of second endpoint
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint 
+#' @param steps1 lower boundary for effect size category "small" in HR scale, default: 1
+#' @param stepm1 lower boundary for effect size category "medium" in HR scale = upper boundary for effect size category "small" in HR scale, default: 0.95
+#' @param stepl1 lower boundary for effect size category "large" in HR scale = upper boundary for effect size category "medium" in HR scale, default: 0.85
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
+#' @param rho correlation between the two endpoints
+#' @param relaxed relaxed or strict decision rule
+#' @return the output of the the function utility_multiple_normal is the expected probability of a successfull program, when going to phase III
+#' @examples res <- utility_multiple_normal(kappa = c(0.1,0.1), n2 = 50, alpha = 0.025, beta = 0.1,
+#'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, sigma1 = 8, sigma2 = 4,
+#'                                c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'                                K = Inf, N = Inf, S = -Inf,
+#'                                steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
+#'                                b1 = 1000, b2 = 2000, b3 = 3000, 
+#'                                fixed = FALSE, rho = 0.3, relaxed = "TRUE")
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 
-
-utility_multiple_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2, in1, in2, sigma1, sigma2,
-                               c2,c02,c3,c03,K,N,S,
-                               steps1, stepm1, stepl1,b1, b2, b3,fixed,rho,relaxed){ 
+utility_multiple_normal<-function(kappa, n2, alpha, beta, 
+                                  Delta1, Delta2, in1, in2, sigma1, sigma2,
+                                  c2, c02, c3, c03, K, N, S,
+                                  steps1, stepm1, stepl1, 
+                                  b1, b2, b3, fixed, rho, relaxed){ 
   
   n3 = Ess_multiple_normal(kappa = kappa, n2 = n2, alpha = alpha , beta = beta, 
                   Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, 
@@ -239,7 +375,7 @@ utility_multiple_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2, in1, in2, s
     
   }else{
     
-    pnogo   = pgo_normal(kappa=kappa, n2=n2, Delta1=Delta1, Delta2=Delta2, in1=in1, in2=in2, sigma1 = sigma1, sigma2 = sigma2, fixed=fixed, rho=rho)
+    pnogo   = pgo_multiple_normal( kappa=kappa, n2=n2, Delta1=Delta1, Delta2=Delta2, in1=in1, in2=in2, sigma1 = sigma1, sigma2 = sigma2, fixed=fixed, rho=rho)
     
     K2    <-  c02 + c2 * n2  #cost phase II
     K3    <-  c03 * (1-pnogo) + c3 * n3  #cost phase III
@@ -251,41 +387,41 @@ utility_multiple_normal<-function(n2,kappa,alpha,beta,Delta1,Delta2, in1, in2, s
       
     }else{
       # probability of a successful program; small, medium, large effect size
-      prob11 = EPsProg_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
+      prob11 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                            sigma1 = sigma1, sigma2 = sigma2,
                            step11 = steps1 , step12 = stepm1  , step21 = stepm1, step22 = Inf, 
                            in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
-      prob21 = EPsProg_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
+      prob21 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                               sigma1 = sigma1, sigma2 = sigma2,
                               step11 = stepm1, step12 = steps1 , step21 = Inf , step22 = stepm1,
                               in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
-      prob31 = EPsProg_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
+      prob31 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                               sigma1 = sigma1, sigma2 = sigma2,
                               step11 = steps1, step12 = steps1, step21 = stepm1, step22 = stepm1,
                               in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
       
       proba1 <- prob11 + prob21 + prob31
-      proba3 = EPsProg_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
+      proba3 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                               sigma1 = sigma1, sigma2 = sigma2,
                               step11 = stepl1, step12 = stepl1, step21 = Inf, step22 = Inf,
                               in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
       proba2 <- POSP - proba1 - proba3
       
-      prob13 = EPsProg_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
+      prob13 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                               sigma1 = sigma1, sigma2 = sigma2,
                               step11 = stepl1, step12 = steps1, step21 = Inf, step22 = stepl1,
                               in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
-      prob23 = EPsProg_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
+      prob23 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                               sigma1 = sigma1, sigma2 = sigma2,
                               step11 = steps1, step12 = stepl1, step21 = stepl1, step22 = Inf,
                               in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
-      prob33 = EPsProg_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
+      prob33 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                               sigma1 = sigma1, sigma2 = sigma2,
                               step11 = stepl1, step12 = stepl1, step21 = Inf, step22 = Inf,
                               in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
       
       probb3 <- prob13 + prob23 + prob33
-      probb1 = EPsProg_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
+      probb1 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                               sigma1 = sigma1, sigma2 = sigma2,
                               step11 = steps1, step12 = steps1, step21 = stepm1, step22 = stepm1,
                               in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
