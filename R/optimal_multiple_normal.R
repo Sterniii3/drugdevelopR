@@ -11,7 +11,7 @@
 #' @param sigma2 variance of endpoint 1
 #' @param rho correlation between the two endpoints
 #' @param fixed assumed fixed treatment effect 
-#' @param relaxed relaxed or strict rule 
+#' @param relaxed relaxed or strict decision rule 
 #' @param n2min minimal total sample size in phase II, must be divisible by 3
 #' @param n2max maximal total sample size in phase II, must be divisible by 3
 #' @param stepn2 stepsize for the optimization over n2, must be divisible by 3

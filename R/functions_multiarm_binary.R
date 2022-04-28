@@ -117,14 +117,14 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
 
 
 #' total sample size for phase III trial with l treatments and equal allocation ratio
-#'  l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
-#'  l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
-#'  @param alpha significance level
-#'  @param beta  1-beta power for calculation of sample size for phase III
-#'  @param y hat_theta_2; estimator in phase II
-#'  @param l l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II;  l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
-#'  @return the function ss_binary returns the total sample size for phase III trial with l treatments and equal allocation ratio
-#'  @examples res <- ss_binary(alpha = 0.05, beta = 0.1, y = 0.5, l=1,)
+#' l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
+#' l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
+#' @param alpha significance level
+#' @param beta  1-beta power for calculation of sample size for phase III
+#' @param y hat_theta_2; estimator in phase II
+#' @param l l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II;  l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
+#' @return the function ss_binary returns the total sample size for phase III trial with l treatments and equal allocation ratio
+#' @examples res <- ss_binary(alpha = 0.05, beta = 0.1, y = 0.5, l=1,)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
  
