@@ -31,7 +31,7 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
   MEANY    = -log(c((p11/p0),(p12/p0)))
   sigma1   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y1 (equal sample size allocation)
-  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y2 (equal sample size allocation)
+  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p12)/p12)))   # sd of y2 (equal sample size allocation)
   SIGMAY   = matrix(c(sigma1^2,1/2*sigma1*sigma2,1/2*sigma1*sigma2,sigma2^2), nrow = 2, ncol = 2)
   
   if(case==1){# no go
@@ -155,7 +155,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
   MEANY    = -log(c((p11/p0),(p12/p0)))
   sigma1   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y1 (equal sample size allocation)
-  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y2 (equal sample size allocation)
+  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p12)/p12)))   # sd of y2 (equal sample size allocation)
   SIGMAY   = matrix(c(sigma1^2,1/2*sigma1*sigma2,1/2*sigma1*sigma2,sigma2^2), nrow = 2, ncol = 2)
   
   if(case==1){# no go
@@ -272,7 +272,7 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
   MEANY    = -log(c((p11/p0),(p12/p0)))
   sigma1   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y1 (equal sample size allocation)
-  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y2 (equal sample size allocation)
+  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p12)/p12)))   # sd of y2 (equal sample size allocation)
   SIGMAY   = matrix(c(sigma1^2,1/2*sigma1*sigma2,1/2*sigma1*sigma2,sigma2^2), nrow = 2, ncol = 2)
   
   if(case==1){# no go
