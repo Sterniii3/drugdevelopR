@@ -26,12 +26,13 @@
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 
+
 pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
   
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
   MEANY    = -log(c((p11/p0),(p12/p0)))
   sigma1   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y1 (equal sample size allocation)
-  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y2 (equal sample size allocation)
+  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p12)/p12)))   # sd of y2 (equal sample size allocation)
   SIGMAY   = matrix(c(sigma1^2,1/2*sigma1*sigma2,1/2*sigma1*sigma2,sigma2^2), nrow = 2, ncol = 2)
   
   if(case==1){# no go
@@ -114,6 +115,7 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
   
 }
 
+
 #' total sample size for phase III trial with l treatments and equal allocation ratio
 #'  l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
 #'  l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
@@ -150,12 +152,11 @@ ss_binary<-function(alpha,beta,y,l){
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
-  
-  
+   
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
   MEANY    = -log(c((p11/p0),(p12/p0)))
   sigma1   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y1 (equal sample size allocation)
-  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y2 (equal sample size allocation)
+  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p12)/p12)))   # sd of y2 (equal sample size allocation)
   SIGMAY   = matrix(c(sigma1^2,1/2*sigma1*sigma2,1/2*sigma1*sigma2,sigma2^2), nrow = 2, ncol = 2)
   
   if(case==1){# no go
@@ -266,13 +267,12 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
 #' @editDate 2022-04-23
 
 PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case){
+
   
-  
-  
-  # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
+    # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
   MEANY    = -log(c((p11/p0),(p12/p0)))
   sigma1   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y1 (equal sample size allocation)
-  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p11)/p11)))   # sd of y2 (equal sample size allocation)
+  sigma2   = sqrt((3/n2)*(((1-p0)/p0) + ((1-p12)/p12)))   # sd of y2 (equal sample size allocation)
   SIGMAY   = matrix(c(sigma1^2,1/2*sigma1*sigma2,1/2*sigma1*sigma2,sigma2^2), nrow = 2, ncol = 2)
   
   if(case==1){# no go
@@ -426,6 +426,7 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
   
 } 
 
+
 #' utility function
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
@@ -547,7 +548,7 @@ utility_multiarm_binary<-function(n2,RRgo,alpha,beta,
       
     }else{
       
-      pnogo   = pgo_binary(RRgo=RRgo,n2=n2,ec=ec,p0=p0,p11=p11,p12=p12,strategy=strategy,case=1)
+      pnogo   = pgo_binary(RRgo=RRgo,n2=n2,p0=p0,p11=p11,p12=p12,strategy=strategy,case=1)
       
       K2    <-  c02 + c2 * n2  #cost phase II
       K3    <-  c03 * (1-pnogo) + c3 * n3  #cost phase III
