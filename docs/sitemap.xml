@@ -52,6 +52,9 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_binary_R2.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multiple_normal.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_normal_L.html</loc>
   </url>
   <url>
@@ -64,7 +67,16 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_normal_R2.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_tte.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/En3_binary_L.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/En3_binary_L2.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/En3_binary_R.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/En3_binary_R2.html</loc>
@@ -82,6 +94,15 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/En3_normal_R2.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo23_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_binary_L2.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_binary_R2.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_normal_L2.html</loc>
   </url>
   <url>
@@ -89,6 +110,12 @@
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_binary.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_multiple_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_multiple_tte.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_normal.html</loc>
@@ -100,7 +127,16 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/PsProg_normal.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/dbivanorm.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/drugdevelopR.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/fmax.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/fmin.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/index.html</loc>
@@ -148,10 +184,25 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_tte.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/os_tte.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/pgo_binary.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/pgo_multipe_tte.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/pgo_multiple_normal.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/pgo_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/posp_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/pw.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/ss_binary.html</loc>
@@ -200,6 +251,12 @@
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multiarm_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multiple_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multiple_tte.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_normal_L.html</loc>
