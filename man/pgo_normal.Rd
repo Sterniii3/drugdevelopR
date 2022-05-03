@@ -4,7 +4,7 @@
 \alias{pgo_normal}
 \title{probability to go to phase III}
 \usage{
-pgo_normal(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho)
+pgo_normal(kappa, n2, Delta1, Delta2, strategy, case)
 }
 \arguments{
 \item{kappa}{threshold value for the go/no-go decision rule}

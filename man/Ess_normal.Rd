@@ -4,20 +4,7 @@
 \alias{Ess_normal}
 \title{expected sample size for phase III when going to phase III}
 \usage{
-Ess_normal(
-  kappa,
-  n2,
-  alpha,
-  beta,
-  Delta1,
-  Delta2,
-  in1,
-  in2,
-  sigma1,
-  sigma2,
-  fixed,
-  rho
-)
+Ess_normal(kappa, n2, alpha, beta, Delta1, Delta2, strategy, case)
 }
 \arguments{
 \item{kappa}{threshold value for the go/no-go decision rule}

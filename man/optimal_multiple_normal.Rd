@@ -97,7 +97,7 @@ optimal_multiple_normal(
 
 \item{fixed}{assumed fixed treatment effect}
 
-\item{relaxed}{relaxed or strict rule}
+\item{relaxed}{relaxed or strict decision rule}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }

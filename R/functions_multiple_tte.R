@@ -13,10 +13,20 @@ library(MASS)
 
 #load functions
 
-#density for maximum of two normally distributed, random variables
-#Z=max(X,Y) with X~N(mu1,sigma1^2),Y~N(mu2,sigma2^2)
-#f(z)=f1(-z)+f2(-z)
-#function fmax will return the value of f(z)
+#'density for minimum of two normally distributed, random variables
+#'Z=min(X,Y) with X~N(mu1,sigma1^2),Y~N(mu2,sigma2^2)
+#'f(z)=f1(z)+f2(z)
+#'@param y integral variable
+#'@param mu1 mean of second endpoint 
+#'@param mu2 mean of first endpoint
+#'@param sigma1 standard deviation of first endpoint
+#'@param sigma2 standard deviation of second endpoint
+#'@param rho correlation between the two endpoints
+#'@return function fmin will return the value of f(z)
+#'@examples res <- fmin(z = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
+#'@editor Johannes Cepicka
+#'@editDate 2022-04-23
+#'
 fmax<-function (z,mu1,mu2,sigma1,sigma2,rho){ 
   t1<-dnorm(-z,mean=-mu1,sd=sigma1)
   tt<-rho*(mu1-z)/(sigma1*sqrt(1-rho*rho))
@@ -29,7 +39,18 @@ fmax<-function (z,mu1,mu2,sigma1,sigma2,rho){
   return(t1+t2)
 }
 
-#density of bivariate normal distribution
+#'density of bivariate normal distribution
+#'@param x integral variable
+#'@param y integral variable
+#'@param mu1 mean of second endpoint 
+#'@param mu2 mean of first endpoint
+#'@param sigma1 standard deviation of first endpoint
+#'@param sigma2 standard deviation of second endpoint
+#'@param rho correlation between the two endpoints
+#'@return function dbivanrom will return the density of bivariate normal distribution
+#'@examples res <- fmin(x = 0.5, y = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
+#'@editor Johannes Cepicka
+#'@editDate 2022-04-23
 dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){ 
   covariancemat <- matrix(c(sigma1,rho*sqrt(sigma1)*sqrt(sigma2), rho*sqrt(sigma1)*sqrt(sigma2),sigma2),ncol=2)
   ff <- dmvnorm(cbind(x,y), mean=c(mu1,mu2),sigma=covariancemat)
@@ -37,8 +58,23 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 }
 
 
-# probability to go to phase III
-pgo_tte<-function(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho){
+#' probability to go to phase III: pgo
+#' @param HRgo threshold value for the go/no-go decision rule; 
+#' @param n2 total sample size for phase II; must be even number
+#' @param hr1 assumed true treatment effect on HR scale for treatment 1
+#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param ec control arm event rate for phase II and III
+#' @param id1 amount of information for hr1 in terms of number of events
+#' @param id2 amount of information for hr2 in terms of number of events
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect
+#' @param rho correlation between the two endpoints
+#' @return the output of the the function pgo_multiple_tte is the probability to go to phase III
+#' @examples res <- pgo_multiple_tte(HRgo = 0.8, n2 = 50, ec = 0.6,
+#'                                hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
+#'                                fixed = FALSE, rho = 0.3)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+pgo_multipe_tte<-function(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho){
   
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
   e22<-hr2*n2 # number of events phase II for endpoint 2 (OS)
@@ -76,8 +112,26 @@ pgo_tte<-function(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho){
 }
 
 
-# expected sample size for phase III when going to phase III
-Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
+#' expected sample size for phase III when going to phase III
+#' @param HRgo threshold value for the go/no-go decision rule; 
+#' @param n2 total sample size for phase II; must be even number
+#' @param beta 1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula
+#' @param alpha one- sided significance level
+#' @param hr1 assumed true treatment effect on HR scale for treatment 1
+#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param ec control arm event rate for phase II and III
+#' @param id1 amount of information for hr1 in terms of number of events
+#' @param id2 amount of information for hr2 in terms of number of events
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect
+#' @param rho correlation between the two endpoints
+#' @return the output of the the function Ess_multiple_tte is the expected number of participants in phase III
+#' @examples res <- Ess_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
+#'                                ec = 0.6,hr1 = 0.75, hr2 = 0.80, 
+#'                                id1 = 300, id2 = 600, 
+#'                                fixed = FALSE, rho = 0.3)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
+Ess_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
 
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
   e22<-hr2*n2 # number of events phase II for endpoint 2 (OS)
@@ -112,6 +166,23 @@ Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
     
   }
 }
+
+#' probabilty that P(x>y)=P(x-y>0)
+#' Z=X-Y is normally distributed with expectation mux-muy and variance sigmax+sigmay-2 rho sdx sdy
+#' @param n2 total sample size for phase II; must be even number
+#' @param hr1 assumed true treatment effect on HR scale for treatment 1
+#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param ec control arm event rate for phase II and III
+#' @param id1 amount of information for hr1 in terms of number of events
+#' @param id2 amount of information for hr2 in terms of number of events
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect
+#' @param rho correlation between the two endpoints
+#' @return the output of the the function pw is the the probabilty that endpoint 1 has a better result than endpoint two
+#' @examples res <- pw(n2 = 50, ec = 0.6,
+#'                     hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
+#'                     fixed = FALSE, rho = 0.3)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 
 pw <- function(n2,ec,hr1,hr2,id1,id2,fixed,rho){
   
@@ -151,8 +222,28 @@ expn3go_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
   }
   
   
-  
-# probability of a successful program
+#' expected probability of a successful program
+#' @param HRgo threshold value for the go/no-go decision rule; 
+#' @param n2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param ec control arm event rate for phase II and III
+#' @param hr1 assumed true treatment effect on HR scale for treatment 1
+#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param id1 amount of information for hr1 in terms of sample size
+#' @param id2 amount of information for hr2 in terms of sample size
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect
+#' @param rho correlation between the two endpoints
+#' @return the output of the the function EPsProg_tte is the expected probability of a successfull program, when going to phase III
+#' @examples res <- EPsProg_tte(HRgo = 0.8, n2 = 50, alpha = 0.025, beta = 0.1,
+#'                                ec = 0.6, hr1 = 0.75, hr2 = 0.80,
+#'                                id1 = 300, id2 = 600, 
+#'                                step1 = 1, step2 = 0.95,
+#'                                fixed = FALSE, rho = 0.3)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 
 EPsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2,fixed,rho){
  
@@ -203,7 +294,25 @@ EPsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2,fixed,rh
 }
 
 
-#propability endpoint OS significant
+#' propability endpoint OS significant
+#' @param HRgo threshold value for the go/no-go decision rule; 
+#' @param n2 total sample size for phase II; must be even number
+#' @param beta 1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula
+#' @param alpha one- sided significance level
+#' @param hr1 assumed true treatment effect on HR scale for treatment 1
+#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param ec control arm event rate for phase II and III
+#' @param id1 amount of information for hr1 in terms of number of events
+#' @param id2 amount of information for hr2 in terms of number of events
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect
+#' @param rho correlation between the two endpoints
+#' @return the output of the the function os_tte is the propability that endpoint OS significant
+#' @examples res <- os_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
+#'                                ec = 0.6,hr1 = 0.75, hr2 = 0.80, 
+#'                                id1 = 300, id2 = 600, 
+#'                                fixed = FALSE, rho = 0.3)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 
 os_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
   
@@ -267,13 +376,49 @@ os_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 }
 
 
-  
+
+#' expected probability of a successful program
+#' @param HRgo threshold value for the go/no-go decision rule; 
+#' @param n2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param ec control arm event rate for phase II and III
+#' @param hr1 assumed true treatment effect on HR scale for treatment 1
+#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param id1 amount of information for hr1 in terms of sample size
+#' @param id2 amount of information for hr2 in terms of sample size
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param steps1 lower boundary for effect size category "small" in HR scale, default: 1
+#' @param stepm1 lower boundary for effect size category "medium" in HR scale = upper boundary for effect size category "small" in HR scale, default: 0.95
+#' @param stepl1 lower boundary for effect size category "large" in HR scale = upper boundary for effect size category "medium" in HR scale, default: 0.85
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect
+#' @param rho correlation between the two endpoints
+#' @return the output of the the function utility_multiple_tte is the expected probability of a successfull program, when going to phase III
+#' @examples res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
+#'                                hr1 = 0.75, hr2 = 0.80,
+#'                                id1 = 300, id2 = 600, ec = 0.6,
+#'                                c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               
+#'                                K = Inf, N = Inf, S = -Inf, 
+#'                                steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
+#'                                b1 = 1000, b2 = 2000, b3 = 3000,
+#'                                fixed = FALSE, rho = 0.3)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23  
 
 utility_multiple_tte<-function(n2,HRgo,alpha,beta,hr1,hr2,id1,id2,ec,
                                c2,c02,c3,c03,K,N,S,
-                               steps1, stepm1, stepl1,b1, b2, b3,fixed,rho){ 
+                               steps1, stepm1, stepl1, b1, b2, b3,fixed,rho){ 
 
-   n3 <- Ess_tte(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
+   n3 <- Ess_multiple_tte(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
    OS <- os_tte(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
    pw <- pw(n2=n2,ec=ec,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
    
@@ -283,7 +428,7 @@ utility_multiple_tte<-function(n2,HRgo,alpha,beta,hr1,hr2,id1,id2,ec,
      
    }else{
      
-     pnogo   = pgo_tte(HRgo=HRgo,n2=n2,ec=ec,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
+     pnogo   = pgo_multiple_tte(HRgo=HRgo,n2=n2,ec=ec,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
      
      K2    <-  c02 + c2 * n2  #cost phase II
      K3    <-  c03 * (1-pnogo) + c3 * n3  #cost phase III

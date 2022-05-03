@@ -256,7 +256,7 @@ utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 # prior distribution
 # as above
 
-# Expected probability to go to phase III: Epgo
+#' Expected probability to go to phase III: Epgo
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param Adj adjustment parameter
@@ -292,7 +292,7 @@ Epgo_binary_L2 <-  function(RRgo, n2, Adj, p0, w, p11, p12, in1, in2, fixed){
   }
 }
 
-# Expected sample size for phase III when going to phase III: En3
+#' Expected sample size for phase III when going to phase III: En3
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param Adj adjustment parameter
@@ -539,7 +539,7 @@ utility_binary_L2 <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 # expected probability to go to phase III
 # as above
 
-# Expected sample size for phase III when going to phase III: En3
+#' Expected sample size for phase III when going to phase III: En3
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param Adj adjustment parameter
@@ -783,7 +783,7 @@ utility_binary_R <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 # prior distribution
 # as above
 
-# Expected probability to go to phase III: Epgo
+#' Expected probability to go to phase III: Epgo
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param Adj adjustment parameter

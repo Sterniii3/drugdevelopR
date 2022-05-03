@@ -1328,7 +1328,7 @@ utility4_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
 # Case 2: Strategy 2/2( + 1); at least two trials significant (and the 
 # treatment effect of the other one at least showing in the same direction)
 
-# Expected probability to do third phase III trial: Epgo3
+#' Expected probability to do third phase III trial: Epgo3
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param w weight for mixture prior distribution
