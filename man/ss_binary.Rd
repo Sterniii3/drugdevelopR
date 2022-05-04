@@ -2,9 +2,7 @@
 % Please edit documentation in R/functions_multiarm_binary.R
 \name{ss_binary}
 \alias{ss_binary}
-\title{total sample size for phase III trial with l treatments and equal allocation ratio
-l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
-l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)}
+\title{total sample size for phase III trial with l treatments and equal allocation ratio}
 \usage{
 ss_binary(alpha, beta, y, l)
 }
@@ -21,7 +19,6 @@ ss_binary(alpha, beta, y, l)
 the function ss_binary returns the total sample size for phase III trial with l treatments and equal allocation ratio
 }
 \description{
-total sample size for phase III trial with l treatments and equal allocation ratio
 l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
 l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
 }
