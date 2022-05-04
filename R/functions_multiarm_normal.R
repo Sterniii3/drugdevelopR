@@ -113,6 +113,7 @@ pgo_normal<-function(kappa,n2,Delta1,Delta2,strategy,case){
 }
 
 #' total sample size for phase III trial with l treatments and equal allocation ratio
+#'
 #'  l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
 #'  l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
 #'  @param alpha significance level
