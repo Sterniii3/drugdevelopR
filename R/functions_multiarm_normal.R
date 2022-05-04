@@ -132,7 +132,11 @@ ss_normal<-function(alpha,beta,y,l){
   return(((l+1)*(calpha+qnorm(1-beta))^2)/(y^2)*2)
 }
 
-#' expected sample size for phase III when going to phase III
+#' Expected sample size for phase III for multiarm programs (normally distributed outcomes)
+#' 
+#' Given phase II results are promising enough to get the "go"-decision to go to phase III this function now calculates the expected sample size for phase III given the cases and strategies listed below.
+#' The results of this function are necessary for calculating the utility of the program, which is then in a further step maximized by the optimal_multiarm_normal.R function 
+#' 
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
@@ -141,7 +145,7 @@ ss_normal<-function(alpha,beta,y,l){
 #' @param Delta2 assumed true treatment effect for standardized difference in means
 #' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
-#' @return the function pgo_normal returns the expected sample size for phase III when going to phase III
+#' @return The function Ess_normal returns the expected sample size for phase III when going to phase III when outcomes are normally distributed and we consider multiarm programs, i.e. several phase III trials with different doses or different treatments are performed
 #' @examples res <- Ess_normal(kappa = 0.1 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             Delta1 = 0.375, Delta2 = 0.625, strategy = 3, case = 31)
 #' @editor Johannes Cepicka

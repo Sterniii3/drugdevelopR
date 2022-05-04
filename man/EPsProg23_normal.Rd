@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multitrial_normal.R
 \name{EPsProg23_normal}
 \alias{EPsProg23_normal}
-\title{Expected probability of a successful program: EsP}
+\title{Expected probability of a successful program, when 2 or 3 phase phase III trials are performed (outcomes normally distributed)}
 \usage{
 EPsProg23_normal(
   kappa,
@@ -46,7 +46,7 @@ EPsProg23_normal(
 
 \item{case}{choose case: "at least 1, 2 or 3 significant trials needed for approval"}
 
-\item{size}{size category "small", "medium" or "large"}
+\item{size}{effect size category "small", "medium", "large" or "all"}
 
 \item{fixed}{choose if true treatment effects are fixed or random}
 }
@@ -54,7 +54,10 @@ EPsProg23_normal(
 the output of the the function EPsProg23_normal is the expected probability of a successful program
 }
 \description{
-Expected probability of a successful program: EsP
+Option 2.1: first two phase III trials are successful: no third phase III trial
+Option 2.2: one of the two first phase III trials successful, the treatment
+effect of the other one points in the same direction: 
+conduct third phase III trial with N3 = N3(ymin)
 }
 \examples{
 res <- EPsProg23_normal(kappa = 0.1, n2 = 50 alpha = 0.025, beta = 0.1, w = 0.3,
