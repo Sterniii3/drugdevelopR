@@ -48,7 +48,7 @@ EPsProg23_normal(
 
 \item{size}{effect size category; possible values are \code{"small"}, \code{"medium"}, \code{"large"} and \code{"all"}}
 
-\item{fixed}{choose if true treatment effects are fixed or random (\strong{TODO: Der Parameter ist gar kein Parameter
+\item{fixed}{choose whether true treatment effects are fixed or random (\strong{TODO: Der Parameter ist gar kein Parameter
 der Funktion, dafür fehlt der Parameter \code{ymin}})}
 }
 \value{
@@ -57,13 +57,19 @@ the output of the function \code{EPsProg23_normal()} is the expected probability
 \description{
 The function \code{EPsProg23_normal()} calculates the expected probability of a successful program
 with a normally distributed outcome. This function follows a special decision rule in order to determine
-whether two or three phase III trials should be conducted. First, two phase III trials are performed.
-If both trials are successful, no third phase III trial will be conducted. However, if only one of the two
-phase III trials is successful and the other trial has a treatment effect that points in the same direction,
+whether two or three phase III trials should be conducted. First, two phase III trials are performed. Depending
+on their success, the decision for a third phase III trial is made:
+\itemize{
+\item If both trials are successful, no third phase III trial will be conducted.
+\item If only one of the two trials is successful and the other trial has a treatment effect that points in the same direction,
 a third phase III trial will be conducted with a sample size of N3 = N3(ymin). \strong{(TODO: Was bedeutet N3(ymin)?
 Ist das eine Formel oder handelt es sich hierbei um Programmcode? Wenn ersteres: Kann man noch
 darauf verweisen, woher diese Formel, Funktion o.ä. kommt? Wenn zweiteres: Vielleicht auf den
 Code verweisen, und dann auf jeden Fall in Akzenten, also: \code{N3(ymin)})}.
+\item If one of the two two trials is successful but the treatment effect of the other points in opposite direction,
+then ... \strong{TODO: What happens?}
+\item If none of the two trials is successful, then ... \strong{TODO: What happens?}
+}
 }
 \examples{
 res <- EPsProg23_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
