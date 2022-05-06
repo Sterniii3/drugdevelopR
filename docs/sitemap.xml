@@ -4,76 +4,22 @@
     <loc>https://sterniii3.github.io/drugdevelopR/404.html</loc>
   </url>
   <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/LICENSE-text.html</loc>
-  </url>
-  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/authors.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/index.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/LICENSE-text.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/news/index.html</loc>
   </url>
   <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg23_binary.html</loc>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/dbivanorm.html</loc>
   </url>
   <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg23_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg2_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg2_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg3_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg3_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg4_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg4_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_binary_L.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_binary_L2.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_binary_R.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_binary_R2.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multiarm_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multiple_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multitrial_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_normal_L.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_normal_L2.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_normal_R.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_normal_R2.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_tte.html</loc>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/drugdevelopR.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/En3_binary_L.html</loc>
@@ -115,6 +61,63 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_normal_R2.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg23_binary.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg23_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg2_binary.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg2_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg3_binary.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg3_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg4_binary.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg4_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_binary_L.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_binary_L2.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_binary_R.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_binary_R2.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multiple_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multitrial_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_normal_L.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_normal_L2.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_normal_R.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_normal_R2.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_tte.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_binary.html</loc>
   </url>
   <url>
@@ -125,18 +128,6 @@
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/PsProg_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/PsProg_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/dbivanorm.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/drugdevelopR.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/fmax.html</loc>
@@ -206,6 +197,12 @@
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/posp_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/PsProg_binary.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/PsProg_normal.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/pw.html</loc>

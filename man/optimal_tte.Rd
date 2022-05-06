@@ -147,46 +147,46 @@ optimal_tte(
 \value{
 The output of the function \code{\link{optimal_tte}} is a data.frame containing the optimization results:
 \describe{
-  \item{u}{maximal expected utility}
-  \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
-  \item{d2}{optimal total number of events for phase II}
-  \item{d3}{total expected number of events for phase III; rounded to next natural number}
-  \item{d}{total expected number of events in the program; d = d2 + d3}
-  \item{n2}{total sample size for phase II; rounded to the next even natural number}
-  \item{n3}{total sample size for phase III; rounded to the next even natural number}
-  \item{n}{total sample size in the program; n = n2 + n3}
-  \item{K}{maximal costs of the program}
-  \item{pgo}{probability to go to phase III}
-  \item{sProg}{probability of a successful program}
-  \item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-  \item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-  \item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
-  \item{K2}{expected costs for phase II}
-  \item{K3}{expected costs for phase III}
-  }
+\item{u}{maximal expected utility}
+\item{HRgo}{optimal threshold value for the decision rule to go to phase III}
+\item{d2}{optimal total number of events for phase II}
+\item{d3}{total expected number of events for phase III; rounded to next natural number}
+\item{d}{total expected number of events in the program; d = d2 + d3}
+\item{n2}{total sample size for phase II; rounded to the next even natural number}
+\item{n3}{total sample size for phase III; rounded to the next even natural number}
+\item{n}{total sample size in the program; n = n2 + n3}
+\item{K}{maximal costs of the program}
+\item{pgo}{probability to go to phase III}
+\item{sProg}{probability of a successful program}
+\item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
+\item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
+\item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
+\item{K2}{expected costs for phase II}
+\item{K3}{expected costs for phase III}
+}
 and further input parameters.
 
 Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 
 The output of the function \code{\link{optimal_tte}} is a data.frame containing the optimization results:
 \describe{
-  \item{u}{maximal expected utility}
-  \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
-  \item{d2}{optimal total number of events for phase II}
-  \item{d3}{total expected number of events for phase III; rounded to next natural number}
-  \item{d}{total expected number of events in the program; d = d2 + d3}
-  \item{n2}{total sample size for phase II; rounded to the next even natural number}
-  \item{n3}{total sample size for phase III; rounded to the next even natural number}
-  \item{n}{total sample size in the program; n = n2 + n3}
-  \item{K}{maximal costs of the program}
-  \item{pgo}{probability to go to phase III}
-  \item{sProg}{probability of a successful program}
-  \item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-  \item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-  \item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
-  \item{K2}{expected costs for phase II}
-  \item{K3}{expected costs for phase III}
-  }
+\item{u}{maximal expected utility}
+\item{HRgo}{optimal threshold value for the decision rule to go to phase III}
+\item{d2}{optimal total number of events for phase II}
+\item{d3}{total expected number of events for phase III; rounded to next natural number}
+\item{d}{total expected number of events in the program; d = d2 + d3}
+\item{n2}{total sample size for phase II; rounded to the next even natural number}
+\item{n3}{total sample size for phase III; rounded to the next even natural number}
+\item{n}{total sample size in the program; n = n2 + n3}
+\item{K}{maximal costs of the program}
+\item{pgo}{probability to go to phase III}
+\item{sProg}{probability of a successful program}
+\item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
+\item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
+\item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
+\item{K2}{expected costs for phase II}
+\item{K3}{expected costs for phase III}
+}
 and further input parameters.
 
 Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.

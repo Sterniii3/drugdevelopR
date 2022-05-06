@@ -1356,33 +1356,40 @@ Epgo23_normal <-  function(kappa, n2, w, Delta1, Delta2, in1, in2, a, b){
   },  - Inf, Inf)$value
 } 
 
-#' Expected probability of a successful program, when 2 or 3 phase phase III trials are performed (outcomes normally distributed)
+#' Expected probability of a successful program deciding between two or three phase III trials for a normally distributed outcome
 #'
-#' Option 2.1: first two phase III trials are successful: no third phase III trial
-#' Option 2.2: one of the two first phase III trials successful, the treatment
-#' effect of the other one points in the same direction: 
-#' conduct third phase III trial with N3 = N3(ymin)
+#' The function `EPsProg23_normal()` calculates the expected probability of a successful program
+#' with a normally distributed outcome. This function follows a special decision rule in order to determine
+#' whether two or three phase III trials should be conducted. First, two phase III trials are performed.
+#' If both trials are successful, no third phase III trial will be conducted. However, if only one of the two
+#' phase III trials is successful and the other trial has a treatment effect that points in the same direction,
+#' a third phase III trial will be conducted with a sample size of N3 = N3(ymin). **(TODO: Was bedeutet N3(ymin)?
+#' Ist das eine Formel oder handelt es sich hierbei um Programmcode? Wenn ersteres: Kann man noch
+#' darauf verweisen, woher diese Formel, Funktion o.ä. kommt? Wenn zweiteres: Vielleicht auf den 
+#' Code verweisen, und dann auf jeden Fall in Akzenten, also: `N3(ymin)`)**.
+#' 
 #' @param kappa threshold value for the go/no-go decision rule
-#' @param n2 total sample size for phase II; must be even number
+#' @param n2 total sample size for phase II; must be an even number
 #' @param alpha significance level
-#' @param beta 1-beta power for calculation of sample size for phase III
-#' @param w weight for mixture prior distribution
-#' @param Delta1 assumed true treatment effect for standardized difference in means
-#' @param Delta2 assumed true treatment effect for standardized difference in means
-#' @param in1 amount of information for Delta1 in terms of sample size
-#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param beta type II error rate; this means that 1 - `beta` is the power for calculating the sample size for phase III
+#' @param w weight for the mixture prior distribution
+#' @param Delta1 assumed true treatment effect for the standardized difference in means
+#' @param Delta2 assumed true treatment effect for the standardized difference in means
+#' @param in1 amount of information for `Delta1` in terms of sample size
+#' @param in2 amount of information for `Delta2` in terms of sample size
 #' @param a lower boundary for the truncation
 #' @param b upper boundary for the truncation
-#' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
-#' @param size effect size category "small", "medium", "large" or "all"
-#' @param fixed choose if true treatment effects are fixed or random
-#' @return the output of the the function EPsProg23_normal is the expected probability of a successful program 
-#' @examples res <- EPsProg23_normal(kappa = 0.1, n2 = 50 alpha = 0.025, beta = 0.1, w = 0.3,
+#' @param case number of significant trials needed for approval; possible values are 2 and 3 for this function
+#' @param size effect size category; possible values are `"small"`, `"medium"`, `"large"` and `"all"`
+#' @param fixed choose if true treatment effects are fixed or random (**TODO: Der Parameter ist gar kein Parameter
+#' der Funktion, dafür fehlt der Parameter `ymin`**)
+#' @return the output of the function `EPsProg23_normal()` is the expected probability of a successful program 
+#' @examples res <- EPsProg23_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
 #'                                  case = 2, size = "small", ymin = 0.5)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
+#' @editor Johannes Cepicka, Lukas D. Sauer
+#' @editDate 2022-05-06
 EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, case, size, ymin){
   # Option 2.1: first two phase III trials are successful: no third phase III trial
   # Option 2.2: one of the two first phase III trials successful, the treatment

@@ -19,7 +19,7 @@ ss_binary(alpha, beta, y, l)
 the function ss_binary returns the total sample size for phase III trial with l treatments and equal allocation ratio
 }
 \description{
-l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
+l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II;
 l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
 }
 \examples{

@@ -95,22 +95,22 @@ optimal_multiple_tte(
 \value{
 The output of the function \code{\link{optimal_multiple_tte}} is a data.frame containing the optimization results:
 \describe{
-  \item{Strategy}{Strategy, 1: "only best promising" or 2: "all promising"}
-  \item{u}{maximal expected utility}
-  \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
-  \item{n2}{optimal total sample size in phase II}
-  \item{n3}{total expected sample size for phase III; rounded to next natural number}
-  \item{n}{total sample size in the program; n = n2 + n3}
-  \item{K}{maximal costs of the program}
-  \item{pgo}{probability to go to phase III}
-  \item{sProg}{probability of a successful program}
-  \item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-  \item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-  \item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
-  \item{K2}{expected costs for phase II}
-  \item{K3}{expected costs for phase III}
-  \item{OP}{probability that one endpoint is significant}
-  }
+\item{Strategy}{Strategy, 1: "only best promising" or 2: "all promising"}
+\item{u}{maximal expected utility}
+\item{HRgo}{optimal threshold value for the decision rule to go to phase III}
+\item{n2}{optimal total sample size in phase II}
+\item{n3}{total expected sample size for phase III; rounded to next natural number}
+\item{n}{total sample size in the program; n = n2 + n3}
+\item{K}{maximal costs of the program}
+\item{pgo}{probability to go to phase III}
+\item{sProg}{probability of a successful program}
+\item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
+\item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
+\item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
+\item{K2}{expected costs for phase II}
+\item{K3}{expected costs for phase III}
+\item{OP}{probability that one endpoint is significant}
+}
 and further input parameters.
 res
 Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
@@ -122,21 +122,21 @@ The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package enab
 
 The drugdevelopR package provides the functions
 \itemize{
-  \item \code{\link{optimal_tte}},
-  \item \code{\link{optimal_binary}} and
-  \item \code{\link{optimal_normal}}
+\item \code{\link{optimal_tte}},
+\item \code{\link{optimal_binary}} and
+\item \code{\link{optimal_normal}}
 }
 to plan optimal phase II/III drug development programs with
 \itemize{
-  \item time-to-event (treatment effect measured by hazard ratio (HR)),
-  \item binary (treatment effect measured by risk ratio (RR)) or
-  \item normally distributed (treatment effect measured by standardized difference in means (Delta))
+\item time-to-event (treatment effect measured by hazard ratio (HR)),
+\item binary (treatment effect measured by risk ratio (RR)) or
+\item normally distributed (treatment effect measured by standardized difference in means (Delta))
 }
-endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are 
+endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are
 \itemize{
-  \item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
-  \item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-  \item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
+\item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
+\item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
+\item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
 }
 }
 

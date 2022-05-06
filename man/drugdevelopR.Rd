@@ -14,15 +14,15 @@ The drugdevelopR package enables utility based planning of phase II/III drug dev
 
 The drugdevelopR package provides the functions to plan optimal phase II/III drug development programs with
 \itemize{
-  \item time-to-event endpoint (\code{\link{optimal_tte}}),
-  \item binary endpoint (\code{\link{optimal_binary}}) and
-  \item normally distributed endpoint (\code{\link{optimal_normal}}),
+\item time-to-event endpoint (\code{\link{optimal_tte}}),
+\item binary endpoint (\code{\link{optimal_binary}}) and
+\item normally distributed endpoint (\code{\link{optimal_normal}}),
 }
-where the treatment effect is assumed fixed or modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. In these settings, optimal phase II/III drug development planning with fixed assumed treatment effects can also be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions to the basic setting are 
+where the treatment effect is assumed fixed or modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. In these settings, optimal phase II/III drug development planning with fixed assumed treatment effects can also be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions to the basic setting are
 \itemize{
-  \item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
-  \item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-  \item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}). 
+\item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
+\item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
+\item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
 }
 The R Shiny App \href{https://web.imbi.uni-heidelberg.de/drugdevelopR/}{drugdevelopR} serves as homepage, navigating the different parts of drugdevelopR via links.
 }
