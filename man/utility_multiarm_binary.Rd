@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiarm_binary.R
 \name{utility_multiarm_binary}
 \alias{utility_multiarm_binary}
-\title{utility function}
+\title{Utility function for multiarm programs with binary distributed outcomes}
 \usage{
 utility_multiarm_binary(
   n2,
@@ -72,16 +72,17 @@ utility_multiarm_binary(
 \item{b3}{expected gain for effect size category "large"}
 }
 \value{
-the output of the the function utility_multiarm_binary is the expected utility of the program
+The output of the the function \code{utility_multiarm_binary()} is the expected utility of the program
 }
 \description{
-utility function
+The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the the sample size and expected probability of a successful program.
+The utility is in further step maximized by the \code{optimal_multiarm_binary()} function.
 }
 \examples{
-res <- utility_multiarm_binary(n2 = 50 ,RRgo = 0.8 ,alpha = 0.05, beta = 0.1,
-                            p0 = 0.6, p11 =  0.3, p12 = 0.5, strategy = 3
+res <- utility_multiarm_binary(n2 = 50, RRgo = 0.8, alpha = 0.05, beta = 0.1,
+                            p0 = 0.6, p11 =  0.3, p12 = 0.5, strategy = 3,
                             c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                             K = Inf, N = Inf, S = -Inf,  
                             steps1 = 1, stepm1 = 0.95,   stepl1 = 0.85,
-                            b1 = 1000, b2 = 2000, b3 = 3000,)
+                            b1 = 1000, b2 = 2000, b3 = 3000)
 }

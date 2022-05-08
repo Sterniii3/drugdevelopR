@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiarm_normal.R
 \name{Ess_normal}
 \alias{Ess_normal}
-\title{Expected sample size for phase III for multiarm programs (normally distributed outcomes)}
+\title{Expected sample size for phase III for multiarm programs with normally distributed outcomes}
 \usage{
 Ess_normal(kappa, n2, alpha, beta, Delta1, Delta2, strategy, case)
 }
@@ -24,11 +24,11 @@ Ess_normal(kappa, n2, alpha, beta, Delta1, Delta2, strategy, case)
 \item{case}{different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)}
 }
 \value{
-The function Ess_normal returns the expected sample size for phase III when going to phase III when outcomes are normally distributed and we consider multiarm programs, i.e. several phase III trials with different doses or different treatments are performed
+The function Ess_normal() returns the expected sample size for phase III when going to phase III when outcomes are normally distributed and we consider multiarm programs, i.e. several phase III trials with different doses or different treatments are performed
 }
 \description{
 Given phase II results are promising enough to get the "go"-decision to go to phase III this function now calculates the expected sample size for phase III given the cases and strategies listed below.
-The results of this function are necessary for calculating the utility of the program, which is then in a further step maximized by the optimal_multiarm_normal.R function
+The results of this function are necessary for calculating the utility of the program, which is then in a further step maximized by the \code{optimal_multiarm_normal()} function
 }
 \examples{
 res <- Ess_normal(kappa = 0.1 ,n2 = 50 ,alpha = 0.05, beta = 0.1,

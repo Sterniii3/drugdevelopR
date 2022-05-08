@@ -2,14 +2,14 @@
 % Please edit documentation in R/functions_multiarm_normal.R
 \name{pgo_normal}
 \alias{pgo_normal}
-\title{probability to go to phase III}
+\title{Probability to go to phase III for multiarm programs with normal distributed outcomes}
 \usage{
 pgo_normal(kappa, n2, Delta1, Delta2, strategy, case)
 }
 \arguments{
 \item{kappa}{threshold value for the go/no-go decision rule}
 
-\item{n2}{total sample size for phase II; must be even number}
+\item{n2}{total sample size for phase II; must be an even number}
 
 \item{Delta1}{assumed true treatment effect for standardized difference in means}
 
@@ -20,10 +20,16 @@ pgo_normal(kappa, n2, Delta1, Delta2, strategy, case)
 \item{case}{different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)}
 }
 \value{
-the function pgo_normal returns the probability to go to phase III
+The function pgo_normal() returns the probability to go to phase III for multiarm programs with normally distributed outcomes
 }
 \description{
-probability to go to phase III
+Given our parameters this function calculates the probability to go to phase III after the second phase was conducted. The considered strategies are as follows:
+\itemize{
+\item 
+\enumerate{
+\item Strategy: Only best promising treatment goes to phase III
+}
+}
 }
 \examples{
 res <- pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625, strategy = 3, case = 31)

@@ -8,22 +8,28 @@
 # n3: total sample size in phase III
 
 # 1. Strategy: Only best promising treatment goes to phase III
-# -> Phase III is always 2 arm trial (1:1 sample size allocatiob)
+# -> Phase III is always 2 arm trial (1:1 sample size allocation)
 # 2. Strategy: All promising treatments go to phase III
 # -> Phase III is 2 or 3 arm trial (1:1 or 1:1:1 sample size allocation)
 
 
-#' probability to go to phase III
+#' Probability to go to phase III for multiarm programs with normal distributed outcomes 
+#' 
+#' Given our parameters this function calculates the probability to go to phase III after the second phase was conducted. The considered strategies are as follows:
+#' - 1. Strategy: Only best promising treatment goes to phase III
+#    -> Phase III is always two-arm trial (1:1 sample size allocation)
+#  - 2. Strategy: All promising treatments go to phase III
+#    -> Phase III is two- or three-arm trial (1:1 or 1:1:1 sample size allocation)
 #' @param kappa threshold value for the go/no-go decision rule
-#' @param n2 total sample size for phase II; must be even number
+#' @param n2 total sample size for phase II; must be an even number
 #' @param Delta1 assumed true treatment effect for standardized difference in means
 #' @param Delta2 assumed true treatment effect for standardized difference in means
 #' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
-#' @return the function pgo_normal returns the probability to go to phase III
+#' @return The function pgo_normal() returns the probability to go to phase III for multiarm programs with normally distributed outcomes 
 #' @examples res <- pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625, strategy = 3, case = 31)
 #' @editor Johannes Cepicka
-#' @editDate 2022-04-23
+#' @editDate 2022-05-08
 pgo_normal<-function(kappa,n2,Delta1,Delta2,strategy,case){
   
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
@@ -112,18 +118,23 @@ pgo_normal<-function(kappa,n2,Delta1,Delta2,strategy,case){
   
 }
 
-#' total sample size for phase III trial with l treatments and equal allocation ratio
+#' Total sample size for phase III trial with l treatments and equal allocation ratio for normally distributed outcomes
 #'
+#'  Depending on the results of phase II and our strategy ,i.e. whether we proceed only with the best promising treatment (l = 1) or with all promising treatments (l = 2), this program calculates the number of participants in phase III.
+#'  
 #'  l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
+#'  
 #'  l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
-#'  @param alpha significance level
-#'  @param beta  1-beta power for calculation of sample size for phase III
-#'  @param y hat_theta_2; estimator in phase II
-#'  @param l l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II;  l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
-#'  @return the function ss_normal returns the total sample size for phase III trial with l treatments and equal allocation ratio
-#'  @examples res <- ss_normal(alpha = 0.05, beta = 0.1, y = 0.5, l=1,)
+#' @param alpha significance level
+#' @param beta  1-'beta' power for calculation of sample size for phase III
+#' @param y  y_hat_theta_2; estimator in phase II
+#' @param l number of treatments in phase III:
+#' - l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II;  
+#' - l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
+#' @return the function ss_normal() returns the total sample size for phase III trial with l treatments and equal allocation ratio
+#' @examples res <- ss_normal(alpha = 0.05, beta = 0.1, y = 0.5, l = 1)
 #' @editor Johannes Cepicka
-#' @editDate 2022-04-23
+#' @editDate 2022-05-08
 ss_normal<-function(alpha,beta,y,l){
   
   if(l==1){calpha = qnorm(1-alpha)}
@@ -132,10 +143,10 @@ ss_normal<-function(alpha,beta,y,l){
   return(((l+1)*(calpha+qnorm(1-beta))^2)/(y^2)*2)
 }
 
-#' Expected sample size for phase III for multiarm programs (normally distributed outcomes)
+#' Expected sample size for phase III for multiarm programs with normally distributed outcomes
 #' 
 #' Given phase II results are promising enough to get the "go"-decision to go to phase III this function now calculates the expected sample size for phase III given the cases and strategies listed below.
-#' The results of this function are necessary for calculating the utility of the program, which is then in a further step maximized by the optimal_multiarm_normal.R function 
+#' The results of this function are necessary for calculating the utility of the program, which is then in a further step maximized by the `optimal_multiarm_normal()` function 
 #' 
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
@@ -145,11 +156,11 @@ ss_normal<-function(alpha,beta,y,l){
 #' @param Delta2 assumed true treatment effect for standardized difference in means
 #' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
-#' @return The function Ess_normal returns the expected sample size for phase III when going to phase III when outcomes are normally distributed and we consider multiarm programs, i.e. several phase III trials with different doses or different treatments are performed
+#' @return The function Ess_normal() returns the expected sample size for phase III when going to phase III when outcomes are normally distributed and we consider multiarm programs, i.e. several phase III trials with different doses or different treatments are performed
 #' @examples res <- Ess_normal(kappa = 0.1 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             Delta1 = 0.375, Delta2 = 0.625, strategy = 3, case = 31)
 #' @editor Johannes Cepicka
-#' @editDate 2022-04-23
+#' @editDate 2022-05-08
 
 Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
   
@@ -248,7 +259,9 @@ Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
   
 } 
 
-#' probability of a successful program
+#' Probability of a successful program for multiarm programs with normally distributed outcomes 
+#' 
+#' Given we get the "go"-decision in phase II, this functions now calculates the probability that the results of the confirmatory trial (phase III) are significant, i.e. we have a statistically relevant positive effect of the treatment.
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
@@ -259,7 +272,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
 #' @param step2 upper boundary for effect size
 #' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
-#' @return the function PsProg_normal returns the probability of a successful program
+#' @return The function PsProg_normal() returns the probability of a successful program.
 #' @examples res <- PsProg_normal(kappa = 0.1 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             Delta1 = 0.375, Delta2 = 0.625,  step1 = 0, step2 = 0.5,
 #'                             strategy = 3, case = 31)
@@ -427,7 +440,11 @@ PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,c
   
 } 
 
-#' utility function
+#' Utility function for multiarm programs with normally distributed outcomes
+#' 
+#' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the the sample size and expected probability of a successful program. 
+#' The utility is in further step maximized by the `optimal_multiarm_normal()` function.
+#' 
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
@@ -448,15 +465,15 @@ PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,c
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
-#' @return the output of the the function utility_multiarm_normal is the expected utility of the program
-#' @examples res <- utility_multiarm_normal(n2 = 50 ,kappa = 0.8 ,alpha = 0.05, beta = 0.1,
-#'                             Delta1 = 0.375, Delta2 = 0.625, strategy = 3
+#' @return The output of the the function `utility_multiarm_normal()` is the expected utility of the program.
+#' @examples res <- utility_multiarm_normal(n2 = 50, kappa = 0.8, alpha = 0.05, beta = 0.1,
+#'                             Delta1 = 0.375, Delta2 = 0.625, strategy = 3,
 #'                             c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                             K = Inf, N = Inf, S = -Inf,  
 #'                             steps1 = 0, stepm1 = 0.5,   stepl1 = 0.8,
-#'                             b1 = 1000, b2 = 2000, b3 = 3000,)
+#'                             b1 = 1000, b2 = 2000, b3 = 3000)
 #' @editor Johannes Cepicka
-#' @editDate 2022-04-23
+#' @editDate 2022-05-08
 
 utility_multiarm_normal<-function(n2,kappa,alpha,beta,
                                   Delta1,Delta2,strategy,

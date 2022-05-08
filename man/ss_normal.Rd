@@ -2,17 +2,33 @@
 % Please edit documentation in R/functions_multiarm_normal.R
 \name{ss_normal}
 \alias{ss_normal}
-\title{total sample size for phase III trial with l treatments and equal allocation ratio}
+\title{Total sample size for phase III trial with l treatments and equal allocation ratio for normally distributed outcomes}
 \usage{
 ss_normal(alpha, beta, y, l)
 }
+\arguments{
+\item{alpha}{significance level}
+
+\item{beta}{1-'beta' power for calculation of sample size for phase III}
+
+\item{y}{y_hat_theta_2; estimator in phase II}
+
+\item{l}{number of treatments in phase III:
+\itemize{
+\item l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II;
+\item l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
+}}
+}
+\value{
+the function ss_normal() returns the total sample size for phase III trial with l treatments and equal allocation ratio
+}
 \description{
+Depending on the results of phase II and our strategy ,i.e. whether we proceed only with the best promising treatment (l = 1) or with all promising treatments (l = 2), this program calculates the number of participants in phase III.
+
 l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II;
+
 l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
-@param alpha significance level
-@param beta  1-beta power for calculation of sample size for phase III
-@param y hat_theta_2; estimator in phase II
-@param l l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II;  l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
-@return the function ss_normal returns the total sample size for phase III trial with l treatments and equal allocation ratio
-@examples res <- ss_normal(alpha = 0.05, beta = 0.1, y = 0.5, l=1,)
+}
+\examples{
+res <- ss_normal(alpha = 0.05, beta = 0.1, y = 0.5, l = 1)
 }

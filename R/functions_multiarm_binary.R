@@ -8,12 +8,18 @@
 # n3: total sample size in phase III
 
 # 1. Strategy: Only best promising treatment goes to phase III
-# -> Phase III is always 2 arm trial (1:1 sample size allocatiob)
+# -> Phase III is always 2 arm trial (1:1 sample size allocation)
 # 2. Strategy: All promising treatments go to phase III
 # -> Phase III is 2 or 3 arm trial (1:1 or 1:1:1 sample size allocation)
 
 
-#' probability to go to phase III
+#' Probability to go to phase III for multiarm programs with binary distributed outcomes 
+#' 
+#' Given our parameters this function calculates the probability to go to phase III after the second phase was conducted. The considered strategies are as follows:
+#' - 1. Strategy: Only best promising treatment goes to phase III
+#    -> Phase III is always two-arm trial (1:1 sample size allocation)
+#  - 2. Strategy: All promising treatments go to phase III
+#    -> Phase III is two- or three-arm trial (1:1 or 1:1:1 sample size allocation)
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param p0 assumed true rate of control group
@@ -21,7 +27,7 @@
 #' @param p12 assumed true rate of treatment group
 #' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
-#' @return the function pgo_binary returns the probability to go to phase III
+#' @return The function pgo_binary() returns the probability to go to phase III.
 #' @examples res <- pgo_binary(RRgo = 0.8 ,n2 = 50 ,p0 = 0.6, p11 =  0.3, p12 = 0.5,strategy = 3, case = 31)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
@@ -116,18 +122,23 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
 }
 
 
-#' total sample size for phase III trial with l treatments and equal allocation ratio
-#' 
-#' l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
-#' l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
+#' Total sample size for phase III trial with l treatments and equal allocation ratio for binary outcomes 
+#'
+#'  Depending on the results of phase II and our strategy ,i.e. whether we proceed only with the best promising treatment (l = 1) or with all promising treatments (l = 2), this program calculates the number of participants in phase III.
+#'  
+#'  l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II; 
+#'  
+#'  l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
 #' @param alpha significance level
 #' @param beta  1-beta power for calculation of sample size for phase III
 #' @param y hat_theta_2; estimator in phase II
-#' @param l l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II;  l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
-#' @return the function ss_binary returns the total sample size for phase III trial with l treatments and equal allocation ratio
-#' @examples res <- ss_binary(alpha = 0.05, beta = 0.1, y = 0.5, l=1,)
+#' @param l number of treatments in phase III:
+#' - l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II;  
+#' - l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
+#' @return the function ss_binary() returns the total sample size for phase III trial with l treatments and equal allocation ratio
+#' @examples res <- ss_binary(alpha = 0.05, beta = 0.1, y = 0.5, l=1)
 #' @editor Johannes Cepicka
-#' @editDate 2022-04-23
+#' @editDate 2022-05-08
  
 ss_binary<-function(alpha,beta,y,l){
   
@@ -137,7 +148,11 @@ ss_binary<-function(alpha,beta,y,l){
   return(((l+1)*(calpha*sqrt(2*(1-((p0 + p11)/2))/((p0 + p11)/2))+qnorm(1-beta)*sqrt(((1-p0)/p0) + ((1-p11)/p11)))^2)/(y^2))
 }
 
-#' expected sample size for phase III when going to phase III
+#' Expected sample size for phase III for multiarm programs with binary distributed outcomes
+#' 
+#' Given phase II results are promising enough to get the "go"-decision to go to phase III this function now calculates the expected sample size for phase III given the cases and strategies listed below.
+#' The results of this function are necessary for calculating the utility of the program, which is then in a further step maximized by the `optimal_multiarm_binary()` function 
+#' 
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
@@ -147,11 +162,11 @@ ss_binary<-function(alpha,beta,y,l){
 #' @param p12 assumed true rate of treatment group
 #' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
-#' @return the function pgo_binary returns the expected sample size for phase III when going to phase III
+#' @return the function Ess_binary() returns the expected sample size for phase III when going to phase III
 #' @examples res <- Ess_binary(RRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             p0 = 0.6, p11 =  0.3, p12 = 0.5,strategy = 3, case = 31)
 #' @editor Johannes Cepicka
-#' @editDate 2022-04-23
+#' @editDate 2022-05-08
 Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
    
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
@@ -248,7 +263,9 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
   
 } 
 
-#' probability of a successful program
+#' Probability of a successful program for multiarm programs with binary distributed outcomes 
+#' 
+#' Given we get the "go"-decision in phase II, this functions now calculates the probability that the results of the confirmatory trial (phase III) are significant, i.e. we have a statistically relevant positive effect of the treatment.
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
@@ -260,12 +277,12 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
 #' @param step2 upper boundary for effect size
 #' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
-#' @return the function PsProg_binary returns the probability of a successful program
+#' @return The function PsProg_binary() returns the probability of a successful program
 #' @examples res <- PsProg_binary(RRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             p0 = 0.6, p11 =  0.3, p12 = 0.5, step1 = 1, step2 = 0.95,
 #'                             strategy = 3, case = 31)
 #' @editor Johannes Cepicka
-#' @editDate 2022-04-23
+#' @editDate 2022-05-08
 
 PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case){
 
@@ -428,7 +445,11 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
 } 
 
 
-#' utility function
+#' Utility function for multiarm programs with binary distributed outcomes
+#' 
+#' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the the sample size and expected probability of a successful program. 
+#' The utility is in further step maximized by the `optimal_multiarm_binary()` function.
+#' 
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
@@ -450,15 +471,15 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
-#' @return the output of the the function utility_multiarm_binary is the expected utility of the program
-#' @examples res <- utility_multiarm_binary(n2 = 50 ,RRgo = 0.8 ,alpha = 0.05, beta = 0.1,
-#'                             p0 = 0.6, p11 =  0.3, p12 = 0.5, strategy = 3
+#' @return The output of the the function `utility_multiarm_binary()` is the expected utility of the program
+#' @examples res <- utility_multiarm_binary(n2 = 50, RRgo = 0.8, alpha = 0.05, beta = 0.1,
+#'                             p0 = 0.6, p11 =  0.3, p12 = 0.5, strategy = 3,
 #'                             c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                             K = Inf, N = Inf, S = -Inf,  
 #'                             steps1 = 1, stepm1 = 0.95,   stepl1 = 0.85,
-#'                             b1 = 1000, b2 = 2000, b3 = 3000,)
+#'                             b1 = 1000, b2 = 2000, b3 = 3000)
 #' @editor Johannes Cepicka
-#' @editDate 2022-04-23
+#' @editDate 2022-05-08
 
 utility_multiarm_binary<-function(n2,RRgo,alpha,beta,
                                   p0=p0,p11=p11,p12=p12,strategy,

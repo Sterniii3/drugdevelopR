@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiarm_binary.R
 \name{pgo_binary}
 \alias{pgo_binary}
-\title{probability to go to phase III}
+\title{Probability to go to phase III for multiarm programs with binary distributed outcomes}
 \usage{
 pgo_binary(RRgo, n2, p0, p11, p12, strategy, case)
 }
@@ -22,10 +22,16 @@ pgo_binary(RRgo, n2, p0, p11, p12, strategy, case)
 \item{case}{different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)}
 }
 \value{
-the function pgo_binary returns the probability to go to phase III
+The function pgo_binary() returns the probability to go to phase III.
 }
 \description{
-probability to go to phase III
+Given our parameters this function calculates the probability to go to phase III after the second phase was conducted. The considered strategies are as follows:
+\itemize{
+\item 
+\enumerate{
+\item Strategy: Only best promising treatment goes to phase III
+}
+}
 }
 \examples{
 res <- pgo_binary(RRgo = 0.8 ,n2 = 50 ,p0 = 0.6, p11 =  0.3, p12 = 0.5,strategy = 3, case = 31)

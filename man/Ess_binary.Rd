@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiarm_binary.R
 \name{Ess_binary}
 \alias{Ess_binary}
-\title{expected sample size for phase III when going to phase III}
+\title{Expected sample size for phase III for multiarm programs with binary distributed outcomes}
 \usage{
 Ess_binary(RRgo, n2, alpha, beta, p0, p11, p12, strategy, case)
 }
@@ -26,10 +26,11 @@ Ess_binary(RRgo, n2, alpha, beta, p0, p11, p12, strategy, case)
 \item{case}{different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)}
 }
 \value{
-the function pgo_binary returns the expected sample size for phase III when going to phase III
+the function Ess_binary() returns the expected sample size for phase III when going to phase III
 }
 \description{
-expected sample size for phase III when going to phase III
+Given phase II results are promising enough to get the "go"-decision to go to phase III this function now calculates the expected sample size for phase III given the cases and strategies listed below.
+The results of this function are necessary for calculating the utility of the program, which is then in a further step maximized by the \code{optimal_multiarm_binary()} function
 }
 \examples{
 res <- Ess_binary(RRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiarm_normal.R
 \name{utility_multiarm_normal}
 \alias{utility_multiarm_normal}
-\title{utility function}
+\title{Utility function for multiarm programs with normally distributed outcomes}
 \usage{
 utility_multiarm_normal(
   n2,
@@ -69,16 +69,17 @@ utility_multiarm_normal(
 \item{b3}{expected gain for effect size category "large"}
 }
 \value{
-the output of the the function utility_multiarm_normal is the expected utility of the program
+The output of the the function \code{utility_multiarm_normal()} is the expected utility of the program.
 }
 \description{
-utility function
+The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the the sample size and expected probability of a successful program.
+The utility is in further step maximized by the \code{optimal_multiarm_normal()} function.
 }
 \examples{
-res <- utility_multiarm_normal(n2 = 50 ,kappa = 0.8 ,alpha = 0.05, beta = 0.1,
-                            Delta1 = 0.375, Delta2 = 0.625, strategy = 3
+res <- utility_multiarm_normal(n2 = 50, kappa = 0.8, alpha = 0.05, beta = 0.1,
+                            Delta1 = 0.375, Delta2 = 0.625, strategy = 3,
                             c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                             K = Inf, N = Inf, S = -Inf,  
                             steps1 = 0, stepm1 = 0.5,   stepl1 = 0.8,
-                            b1 = 1000, b2 = 2000, b3 = 3000,)
+                            b1 = 1000, b2 = 2000, b3 = 3000)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiarm_normal.R
 \name{PsProg_normal}
 \alias{PsProg_normal}
-\title{probability of a successful program}
+\title{Probability of a successful program for multiarm programs with normally distributed outcomes}
 \usage{
 PsProg_normal(
   kappa,
@@ -39,10 +39,10 @@ PsProg_normal(
 \item{case}{different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)}
 }
 \value{
-the function PsProg_normal returns the probability of a successful program
+The function PsProg_normal() returns the probability of a successful program.
 }
 \description{
-probability of a successful program
+Given we get the "go"-decision in phase II, this functions now calculates the probability that the results of the confirmatory trial (phase III) are significant, i.e. we have a statistically relevant positive effect of the treatment.
 }
 \examples{
 res <- PsProg_normal(kappa = 0.1 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
