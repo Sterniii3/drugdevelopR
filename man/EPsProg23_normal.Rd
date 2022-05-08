@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multitrial_normal.R
 \name{EPsProg23_normal}
 \alias{EPsProg23_normal}
-\title{Expected probability of a successful program, when 2 or 3 phase phase III trials are performed (outcomes normally distributed)}
+\title{Expected probability of a successful program deciding between two or three phase III trials for a normally distributed outcome}
 \usage{
 EPsProg23_normal(
   kappa,
@@ -24,43 +24,55 @@ EPsProg23_normal(
 \arguments{
 \item{kappa}{threshold value for the go/no-go decision rule}
 
-\item{n2}{total sample size for phase II; must be even number}
+\item{n2}{total sample size for phase II; must be an even number}
 
 \item{alpha}{significance level}
 
-\item{beta}{1-beta power for calculation of sample size for phase III}
+\item{beta}{type II error rate; this means that 1 - \code{beta} is the power for calculating the sample size for phase III}
 
-\item{w}{weight for mixture prior distribution}
+\item{w}{weight for the mixture prior distribution}
 
-\item{Delta1}{assumed true treatment effect for standardized difference in means}
+\item{Delta1}{assumed true treatment effect for the standardized difference in means}
 
-\item{Delta2}{assumed true treatment effect for standardized difference in means}
+\item{Delta2}{assumed true treatment effect for the standardized difference in means}
 
-\item{in1}{amount of information for Delta1 in terms of sample size}
+\item{in1}{amount of information for \code{Delta1} in terms of sample size}
 
-\item{in2}{amount of information for Delta2 in terms of sample size}
+\item{in2}{amount of information for \code{Delta2} in terms of sample size}
 
 \item{a}{lower boundary for the truncation}
 
 \item{b}{upper boundary for the truncation}
 
-\item{case}{choose case: "at least 1, 2 or 3 significant trials needed for approval"}
+\item{case}{number of significant trials needed for approval; possible values are 2 and 3 for this function}
 
-\item{size}{effect size category "small", "medium", "large" or "all"}
+\item{size}{effect size category; possible values are \code{"small"}, \code{"medium"}, \code{"large"} and \code{"all"}}
 
-\item{fixed}{choose if true treatment effects are fixed or random}
+\item{fixed}{choose whether true treatment effects are fixed or random (\strong{TODO: Der Parameter ist gar kein Parameter
+der Funktion, dafür fehlt der Parameter \code{ymin}})}
 }
 \value{
-the output of the the function EPsProg23_normal is the expected probability of a successful program
+the output of the function \code{EPsProg23_normal()} is the expected probability of a successful program
 }
 \description{
-Option 2.1: first two phase III trials are successful: no third phase III trial
-Option 2.2: one of the two first phase III trials successful, the treatment
-effect of the other one points in the same direction: 
-conduct third phase III trial with N3 = N3(ymin)
+The function \code{EPsProg23_normal()} calculates the expected probability of a successful program
+with a normally distributed outcome. This function follows a special decision rule in order to determine
+whether two or three phase III trials should be conducted. First, two phase III trials are performed. Depending
+on their success, the decision for a third phase III trial is made:
+\itemize{
+\item If both trials are successful, no third phase III trial will be conducted.
+\item If only one of the two trials is successful and the other trial has a treatment effect that points in the same direction,
+a third phase III trial will be conducted with a sample size of N3 = N3(ymin). \strong{(TODO: Was bedeutet N3(ymin)?
+Ist das eine Formel oder handelt es sich hierbei um Programmcode? Wenn ersteres: Kann man noch
+darauf verweisen, woher diese Formel, Funktion o.ä. kommt? Wenn zweiteres: Vielleicht auf den
+Code verweisen, und dann auf jeden Fall in Akzenten, also: \code{N3(ymin)})}.
+\item If one of the two two trials is successful but the treatment effect of the other points in opposite direction,
+then ... \strong{TODO: What happens?}
+\item If none of the two trials is successful, then ... \strong{TODO: What happens?}
+}
 }
 \examples{
-res <- EPsProg23_normal(kappa = 0.1, n2 = 50 alpha = 0.025, beta = 0.1, w = 0.3,
+res <- EPsProg23_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
                                  case = 2, size = "small", ymin = 0.5)

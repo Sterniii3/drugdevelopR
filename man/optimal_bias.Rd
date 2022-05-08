@@ -126,25 +126,25 @@ optimal_bias(
 \value{
 The output of the function \code{\link{optimal_bias}} is a data.frame containing the optimization results:
 \describe{
-  \item{Method}{Type of adjustment: multipl. (multiplicative) or add. (additive)}
-  \item{u}{maximal expected utility}
-  \item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}
-  \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
-  \item{d2}{optimal total number of events for phase II}
-  \item{d3}{total expected number of events for phase III; rounded to next natural number}
-  \item{d}{total expected number of events in the program; d = d2 + d3}
-  \item{n2}{total sample size for phase II; rounded to the next even natural number}
-  \item{n3}{total sample size for phase III; rounded to the next even natural number}
-  \item{n}{total sample size in the program; n = n2 + n3}
-  \item{K}{maximal costs of the program}
-  \item{pgo}{probability to go to phase III}
-  \item{sProg}{probability of a successful program}
-  \item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-  \item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-  \item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
-  \item{K2}{expected costs for phase II}
-  \item{K3}{expected costs for phase III}
-  }
+\item{Method}{Type of adjustment: multipl. (multiplicative) or add. (additive)}
+\item{u}{maximal expected utility}
+\item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}
+\item{HRgo}{optimal threshold value for the decision rule to go to phase III}
+\item{d2}{optimal total number of events for phase II}
+\item{d3}{total expected number of events for phase III; rounded to next natural number}
+\item{d}{total expected number of events in the program; d = d2 + d3}
+\item{n2}{total sample size for phase II; rounded to the next even natural number}
+\item{n3}{total sample size for phase III; rounded to the next even natural number}
+\item{n}{total sample size in the program; n = n2 + n3}
+\item{K}{maximal costs of the program}
+\item{pgo}{probability to go to phase III}
+\item{sProg}{probability of a successful program}
+\item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
+\item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
+\item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
+\item{K2}{expected costs for phase II}
+\item{K3}{expected costs for phase III}
+}
 and further input parameters.
 
 Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
@@ -156,21 +156,21 @@ The function \code{\link{optimal_bias}} of the drugdevelopR package enables plan
 
 The drugdevelopR package provides the functions
 \itemize{
-  \item \code{\link{optimal_tte}},
-  \item \code{\link{optimal_binary}} and
-  \item \code{\link{optimal_normal}}
+\item \code{\link{optimal_tte}},
+\item \code{\link{optimal_binary}} and
+\item \code{\link{optimal_normal}}
 }
 to plan optimal phase II/III drug development programs with
 \itemize{
-  \item time-to-event (treatment effect measured by hazard ratio (HR)),
-  \item binary (treatment effect measured by risk ratio (RR)) or
-  \item normally distributed (treatment effect measured by standardized difference in means (Delta))
+\item time-to-event (treatment effect measured by hazard ratio (HR)),
+\item binary (treatment effect measured by risk ratio (RR)) or
+\item normally distributed (treatment effect measured by standardized difference in means (Delta))
 }
-endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are 
+endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are
 \itemize{
-  \item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
-  \item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-  \item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
+\item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
+\item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
+\item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
 }
 }
 
