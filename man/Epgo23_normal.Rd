@@ -2,9 +2,9 @@
 % Please edit documentation in R/functions_multitrial_normal.R
 \name{Epgo23_normal}
 \alias{Epgo23_normal}
-\title{Expected probability to do third phase III trial: Epgo3}
+\title{Expected probability to do third phase III trial}
 \usage{
-Epgo23_normal(kappa, n2, w, Delta1, Delta2, in1, in2, a, b)
+Epgo23_normal(kappa, n2, w, Delta1, Delta2, in1, in2)
 }
 \arguments{
 \item{kappa}{threshold value for the go/no-go decision rule}
@@ -17,22 +17,18 @@ Epgo23_normal(kappa, n2, w, Delta1, Delta2, in1, in2, a, b)
 
 \item{Delta2}{assumed true treatment effect for standardized difference in means}
 
-\item{in1}{amount of information for Delta1 in terms of sample size}
+\item{in1}{amount of information for \code{Delta1} in terms of sample size}
 
-\item{in2}{amount of information for Delta2 in terms of sample size}
-
-\item{a}{lower boundary for the truncation}
-
-\item{b}{upper boundary for the truncation}
+\item{in2}{amount of information for \code{Delta2} in terms of sample size}
 }
 \value{
-the output of the the function Epgo23_normal is the expected number of participants in phase III with conservative decision rule and sample size calculation:  use lower bound of one-sided confidence intervall
+The output of the the function \code{Epgo23_normal()} is the probability to to a third phase III trial.
 }
 \description{
-Expected probability to do third phase III trial: Epgo3
+In the setting of Case 2: Strategy 2/2( + 1); at least two trials significant (and the
+treatment effect of the other one at least showing in the same direction) this function calculates the probability that a third phase III trial is necessary.
 }
 \examples{
 res <- Epgo23_normal(kappa = 0.1, n2 = 50, w = 0.3,
-                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-                               a = 0.25, b = 0.75)
+                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600)
 }

@@ -5,13 +5,11 @@ whether two or three phase III trials should be conducted. First, two phase III 
 on their success, the decision for a third phase III trial is made:
 If both trials are successful, no third phase III trial will be conducted.
 If only one of the two trials is successful and the other trial has a treatment effect that points in the same direction,
-a third phase III trial will be conducted with a sample size of N3 = N3(ymin). (TODO: Was bedeutet N3(ymin)?
-Ist das eine Formel oder handelt es sich hierbei um Programmcode? Wenn ersteres: Kann man noch
-darauf verweisen, woher diese Formel, Funktion o.ä. kommt? Wenn zweiteres: Vielleicht auf den
-Code verweisen, und dann auf jeden Fall in Akzenten, also: N3(ymin)).
-If one of the two two trials is successful but the treatment effect of the other points in opposite direction,
-then ... TODO: What happens?
-If none of the two trials is successful, then ... TODO: What happens?
+a third phase III trial will be conducted with a sample size of N3 = N3(ymin), which depends on an assumed minimal clinical relevant effect (ymin).
+The third trial then has to be significant at level alpha
+If only one of the two trials is successful and the treatment effect of the other points in opposite direction or
+if none of the two trials are successful, then no third trial is performed and the drug development development program is not successful.
+In the utility function, this will lead to a utility of -9999.
 
 "><title>Expected probability of a successful program deciding between two or three phase III trials for a normally distributed outcome — EPsProg23_normal • drugdevelopR</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Expected probability of a successful program deciding between two or three phase III trials for a normally distributed outcome — EPsProg23_normal"><meta property="og:description" content="The function EPsProg23_normal() calculates the expected probability of a successful program
 with a normally distributed outcome. This function follows a special decision rule in order to determine
@@ -19,13 +17,11 @@ whether two or three phase III trials should be conducted. First, two phase III 
 on their success, the decision for a third phase III trial is made:
 If both trials are successful, no third phase III trial will be conducted.
 If only one of the two trials is successful and the other trial has a treatment effect that points in the same direction,
-a third phase III trial will be conducted with a sample size of N3 = N3(ymin). (TODO: Was bedeutet N3(ymin)?
-Ist das eine Formel oder handelt es sich hierbei um Programmcode? Wenn ersteres: Kann man noch
-darauf verweisen, woher diese Formel, Funktion o.ä. kommt? Wenn zweiteres: Vielleicht auf den
-Code verweisen, und dann auf jeden Fall in Akzenten, also: N3(ymin)).
-If one of the two two trials is successful but the treatment effect of the other points in opposite direction,
-then ... TODO: What happens?
-If none of the two trials is successful, then ... TODO: What happens?
+a third phase III trial will be conducted with a sample size of N3 = N3(ymin), which depends on an assumed minimal clinical relevant effect (ymin).
+The third trial then has to be significant at level alpha
+If only one of the two trials is successful and the treatment effect of the other points in opposite direction or
+if none of the two trials are successful, then no third trial is performed and the drug development development program is not successful.
+In the utility function, this will lead to a utility of -9999.
 
 "><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -79,13 +75,11 @@ with a normally distributed outcome. This function follows a special decision ru
 whether two or three phase III trials should be conducted. First, two phase III trials are performed. Depending
 on their success, the decision for a third phase III trial is made:</p><ul><li><p>If both trials are successful, no third phase III trial will be conducted.</p></li>
 <li><p>If only one of the two trials is successful and the other trial has a treatment effect that points in the same direction,
-a third phase III trial will be conducted with a sample size of N3 = N3(ymin). <strong>(TODO: Was bedeutet N3(ymin)?
-Ist das eine Formel oder handelt es sich hierbei um Programmcode? Wenn ersteres: Kann man noch
-darauf verweisen, woher diese Formel, Funktion o.ä. kommt? Wenn zweiteres: Vielleicht auf den
-Code verweisen, und dann auf jeden Fall in Akzenten, also: <code>N3(ymin)</code>)</strong>.</p></li>
-<li><p>If one of the two two trials is successful but the treatment effect of the other points in opposite direction,
-then ... <strong>TODO: What happens?</strong></p></li>
-<li><p>If none of the two trials is successful, then ... <strong>TODO: What happens?</strong></p></li>
+a third phase III trial will be conducted with a sample size of N3 = N3(ymin), which depends on an assumed minimal clinical relevant effect (<code>ymin</code>).
+The third trial then has to be significant at level <code>alpha</code></p></li>
+<li><p>If only one of the two trials is successful and the treatment effect of the other points in opposite direction or
+if none of the two trials are successful, then no third trial is performed and the drug development development program is not successful.
+In the utility function, this will lead to a utility of -9999.</p></li>
 </ul></div>
 
     <div class="section level2">
@@ -136,13 +130,12 @@ then ... <strong>TODO: What happens?</strong></p></li>
 <dd><p>number of significant trials needed for approval; possible values are 2 and 3 for this function</p></dd>
 <dt>size</dt>
 <dd><p>effect size category; possible values are <code>"small"</code>, <code>"medium"</code>, <code>"large"</code> and <code>"all"</code></p></dd>
-<dt>fixed</dt>
-<dd><p>choose whether true treatment effects are fixed or random (<strong>TODO: Der Parameter ist gar kein Parameter
-der Funktion, dafür fehlt der Parameter <code>ymin</code></strong>)</p></dd>
+<dt>ymin</dt>
+<dd><p>assumed minimal clinical relevant effect</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>the output of the function <code>EPsProg23_normal()</code> is the expected probability of a successful program</p>
+    <p>The output of the function <code>EPsProg23_normal()</code> is the expected probability of a successful program.</p>
     </div>
 
     <div class="section level2">

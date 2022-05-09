@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multitrial_binary.R
 \name{utility23_binary}
 \alias{utility23_binary}
-\title{Utility function}
+\title{Utility function for multitrial programs deciding between two or three phase III trials for a binary distributed outcome}
 \usage{
 utility23_binary(
   n2,
@@ -37,13 +37,13 @@ utility23_binary(
 
 \item{p12}{assumed true rate of treatment group}
 
-\item{in1}{amount of information for p11 in terms of sample size}
+\item{in1}{amount of information for \code{p11} in terms of sample size}
 
-\item{in2}{amount of information for p12 in terms of sample size}
+\item{in2}{amount of information for \code{p12} in terms of sample size}
 
 \item{alpha}{significance level}
 
-\item{beta}{1-beta power for calculation of sample size for phase III}
+\item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
 \item{c2}{variable per-patient cost for phase II}
 
@@ -53,27 +53,22 @@ utility23_binary(
 
 \item{c03}{fixed cost for phase III}
 
-\item{b1}{expected gain for effect size category "small"}
+\item{b1}{expected gain for effect size category \code{"small"}}
 
-\item{b2}{expected gain for effect size category "medium"}
+\item{b2}{expected gain for effect size category \code{"medium"}}
 
-\item{b3}{expected gain for effect size category "large"}
+\item{b3}{expected gain for effect size category \code{"large"}}
 
 \item{Adj}{adjustment parameter}
-
-\item{K}{constraint on the costs of the program, default: Inf, e.g. no constraint}
-
-\item{N}{constraint on the total expected sample size of the program, default: Inf, e.g. no constraint}
-
-\item{S}{constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint}
 
 \item{fixed}{choose if true treatment effects are fixed or random}
 }
 \value{
-the output of the the function utility23_binary is the expected utility of the program with conservative decision rule and sample size calculation: use lower bound of one-sided confidence intervall
+The output of the the function \code{utility23_binary()} is the expected utility of the program depending on whether two or three phase III trials are performed.
 }
 \description{
-Utility function
+The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program.
+The utility is in further step maximized by the \code{optimal_multitrial_binary()} function.
 }
 \examples{
 res <- utility23_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multitrial_normal.R
 \name{utility23_normal}
 \alias{utility23_normal}
-\title{Utility function}
+\title{Utility function for multitrial programs deciding between two or three phase III trials for a normally distributed outcome}
 \usage{
 utility23_normal(
   n2,
@@ -36,9 +36,9 @@ utility23_normal(
 
 \item{Delta2}{assumed true treatment effect for standardized difference in means}
 
-\item{in1}{amount of information for Delta1 in terms of sample size}
+\item{in1}{amount of information for \code{Delta1} in terms of sample size}
 
-\item{in2}{amount of information for Delta2 in terms of sample size}
+\item{in2}{amount of information for \code{Delta2} in terms of sample size}
 
 \item{a}{lower boundary for the truncation}
 
@@ -46,7 +46,7 @@ utility23_normal(
 
 \item{alpha}{significance level}
 
-\item{beta}{1-beta power for calculation of sample size for phase III}
+\item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
 \item{c2}{variable per-patient cost for phase II}
 
@@ -56,24 +56,25 @@ utility23_normal(
 
 \item{c03}{fixed cost for phase III}
 
-\item{b1}{expected gain for effect size category "small"}
+\item{b1}{expected gain for effect size category \code{"small"}}
 
-\item{b2}{expected gain for effect size category "medium"}
+\item{b2}{expected gain for effect size category \code{"medium"}}
 
-\item{b3}{expected gain for effect size category "large"}
+\item{b3}{expected gain for effect size category \code{"large"}}
 
 \item{step1}{lower boundary for effect size}
 
 \item{step2}{upper boundary for effect size}
 }
 \value{
-the output of the the function utility23_normal is the expected utility of the program with conservative sample size calculation: use lower bound of one-sided confidence intervall
+The output of the the function utility23_normal() is the expected utility of the program depending on whether two or three phase III trials are performed.
 }
 \description{
-Utility function
+The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program.
+The utility is in further step maximized by the \code{optimal_multitrial_normal()} function.
 }
 \examples{
-res <- utility23_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
+res <- utility23_normal(n2 = 50, kappa = 0.2, w = 0.3,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multitrial_binary.R
 \name{EPsProg23_binary}
 \alias{EPsProg23_binary}
-\title{Expected probability of a successful program: EsP}
+\title{Expected probability of a successful program deciding between two or three phase III trials for a binary distributed outcome}
 \usage{
 EPsProg23_binary(
   RRgo,
@@ -27,7 +27,7 @@ EPsProg23_binary(
 
 \item{alpha}{significance level}
 
-\item{beta}{1-beta power for calculation of sample size for phase III}
+\item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
 \item{w}{weight for mixture prior distribution}
 
@@ -39,21 +39,33 @@ EPsProg23_binary(
 
 \item{case}{choose case: "at least 1, 2 or 3 significant trials needed for approval"}
 
-\item{size}{size category "small", "medium" or "large"}
+\item{size}{size category \code{"small"}, \code{"medium"} or \code{"large"}}
 
-\item{in1}{amount of information for p11 in terms of sample size}
+\item{in1}{amount of information for \code{p11} in terms of sample size}
 
-\item{in2}{amount of information for p12 in terms of sample size}
+\item{in2}{amount of information for \code{p12} in terms of sample size}
 }
 \value{
-the output of the the function EPsProg23_binary is the expected probability of a successful program
+The output of the the function \code{EPsProg23_binary()} is the expected probability of a successful program.
 }
 \description{
-Expected probability of a successful program: EsP
+The function \code{EPsProg23_binary()} calculates the expected probability of a successful program
+with a normally distributed outcome. This function follows a special decision rule in order to determine
+whether two or three phase III trials should be conducted. First, two phase III trials are performed. Depending
+on their success, the decision for a third phase III trial is made:
+\itemize{
+\item If both trials are successful, no third phase III trial will be conducted.
+\item If only one of the two trials is successful and the other trial has a treatment effect that points in the same direction,
+a third phase III trial will be conducted with a sample size of N3 = N3(ymin), which depends on an assumed minimal clinical relevant effect (\code{ymin}).
+The third trial then has to be significant at level \code{alpha}
+\item If only one of the two trials is successful and the treatment effect of the other points in opposite direction or
+if none of the two trials are successful, then no third trial is performed and the drug development development program is not successful.
+In the utility function, this will lead to a utility of -9999.
+}
 }
 \examples{
 res <- EPsProg23_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
-                                 w = 0.6  p0 = 0.3, p11 =  0.3, p12 = 0.5, 
+                                 w = 0.6,  p0 = 0.3, p11 =  0.3, p12 = 0.5, 
                                  in1 = 300, in2 = 600, case = 2, size = "small",
                                  ymin = 0.5)
 }

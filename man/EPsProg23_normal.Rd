@@ -48,11 +48,10 @@ EPsProg23_normal(
 
 \item{size}{effect size category; possible values are \code{"small"}, \code{"medium"}, \code{"large"} and \code{"all"}}
 
-\item{fixed}{choose whether true treatment effects are fixed or random (\strong{TODO: Der Parameter ist gar kein Parameter
-der Funktion, dafür fehlt der Parameter \code{ymin}})}
+\item{ymin}{assumed minimal clinical relevant effect}
 }
 \value{
-the output of the function \code{EPsProg23_normal()} is the expected probability of a successful program
+The output of the function \code{EPsProg23_normal()} is the expected probability of a successful program.
 }
 \description{
 The function \code{EPsProg23_normal()} calculates the expected probability of a successful program
@@ -62,13 +61,11 @@ on their success, the decision for a third phase III trial is made:
 \itemize{
 \item If both trials are successful, no third phase III trial will be conducted.
 \item If only one of the two trials is successful and the other trial has a treatment effect that points in the same direction,
-a third phase III trial will be conducted with a sample size of N3 = N3(ymin). \strong{(TODO: Was bedeutet N3(ymin)?
-Ist das eine Formel oder handelt es sich hierbei um Programmcode? Wenn ersteres: Kann man noch
-darauf verweisen, woher diese Formel, Funktion o.ä. kommt? Wenn zweiteres: Vielleicht auf den
-Code verweisen, und dann auf jeden Fall in Akzenten, also: \code{N3(ymin)})}.
-\item If one of the two two trials is successful but the treatment effect of the other points in opposite direction,
-then ... \strong{TODO: What happens?}
-\item If none of the two trials is successful, then ... \strong{TODO: What happens?}
+a third phase III trial will be conducted with a sample size of N3 = N3(ymin), which depends on an assumed minimal clinical relevant effect (\code{ymin}).
+The third trial then has to be significant at level \code{alpha}
+\item If only one of the two trials is successful and the treatment effect of the other points in opposite direction or
+if none of the two trials are successful, then no third trial is performed and the drug development development program is not successful.
+In the utility function, this will lead to a utility of -9999.
 }
 }
 \examples{

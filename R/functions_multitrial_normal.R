@@ -4,8 +4,21 @@
 # Case 1: Strategy 1/2; at least one trial significant, the treatment effect of the other one at least showing in the same direction 
 # Case 2: Strategy 2/2; both trials significant 
 
-#' Expected probability of a successful program: EsP
+#' Expected probability of a successful program for multitrial programs with normally distributed outcomes
 #' 
+#' These functions calculate the expected probability of a successful program given the parameters. 
+#' Each function represents a specific strategy, e.g. the function EpsProg3_normal() calculates the expected probability if three phase III trials are performed. 
+#' The parameter case specifies how many of the trials have to be successful, i.e. how many trials show a significantly relevant positive treatment effect.
+#' 
+#' The following cases can be investigated by the software:
+#' - Two phase III trials
+#'   -  Case 1: Strategy 1/2; at least one trial significant, the treatment effect of the other one at least showing in the same direction 
+#'   - Case 2: Strategy 2/2; both trials significant
+#' - Three phase III trials 
+#'   - Case 2: Strategy 2/3; at least two trials significant, the treatment effect of the other one at least showing in the same direction
+#'   - Case 3: Strategy 3/3; all trials significant 
+#' - Four phase III trials 
+#'   - Case 3: Strategy 3/4; at least three trials significant, the treatment effect of the other one at least showing in the same direction
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
@@ -13,14 +26,14 @@
 #' @param w weight for mixture prior distribution
 #' @param Delta1 assumed true treatment effect for standardized difference in means
 #' @param Delta2 assumed true treatment effect for standardized difference in means
-#' @param in1 amount of information for Delta1 in terms of sample size
-#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param in1 amount of information for `Delta1` in terms of sample size
+#' @param in2 amount of information for `Delta2` in terms of sample size
 #' @param a lower boundary for the truncation
 #' @param b upper boundary for the truncation
 #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
-#' @param size size category "small", "medium" or "large"
+#' @param size size category `"small"`, `"medium"` or `"large"`
 #' @param fixed choose if true treatment effects are fixed or random
-#' @return the output of the the function EPsProg2_normal, EPsProg3_normal is the expected probability of a successful program when performing several phase III trials (2 or 3 respectively)
+#' @return The output of the the function EPsProg2_normal(), EPsProg3_normal() and EPsProg4_normal() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively).
 #' @examples res <- EPsProg2_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
@@ -29,6 +42,10 @@
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
 #'                                  case = 2, size = "small", fixed = FALSE)
+#'           res <- EPsProg4_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                  a = 0.25, b = 0.75, 
+#'                                  case = 3, size = "small", fixed = FALSE)                      
 #' @name EPsProg_multitrial_normal                                  
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
@@ -334,18 +351,21 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
   
 }
 
-#' Utility function
+#' Utility function for multitrial programs with normally distributed outcomes
+#' 
+#' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program. 
+#' The utility is in further step maximized by the `optimal_multitrial_normal()` function.
 #' @param n2 total sample size for phase II; must be even number
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param alpha significance level
-#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param beta `1-beta` power for calculation of sample size for phase III
 #' @param step1 lower boundary for effect size
 #' @param step2 upper boundary for effect size
 #' @param w weight for mixture prior distribution
 #' @param Delta1 assumed true treatment effect for standardized difference in means
 #' @param Delta2 assumed true treatment effect for standardized difference in means
-#' @param in1 amount of information for Delta1 in terms of sample size
-#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param in1 amount of information for `Delta1` in terms of sample size
+#' @param in2 amount of information for `Delta2` in terms of sample size
 #' @param a lower boundary for the truncation
 #' @param b upper boundary for the truncation
 #' @param c2 variable per-patient cost for phase II
@@ -355,12 +375,12 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
 #' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
 #' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
 #' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
-#' @param b1 expected gain for effect size category "small"
-#' @param b2 expected gain for effect size category "medium"
-#' @param b3 expected gain for effect size category "large"
+#' @param b1 expected gain for effect size category `"small"`
+#' @param b2 expected gain for effect size category `"medium"`
+#' @param b3 expected gain for effect size category `"large"`
 #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
 #' @param fixed choose if true treatment effects are fixed or random
-#' @return the output of the the function utility2_normal is the expected utility of the program with conservative sample size calculation: use lower bound of one-sided confidence intervall
+#' @return The output of the the functions utility2_normal(), utility3_normal() and utility4_normal() is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
 #' @examples res <- utility2_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  step1 = 0, step2 = 0.5,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
@@ -369,6 +389,23 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
 #'                                  K = Inf, N = Inf, S = -Inf, 
 #'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
 #'                                  case = 2, fixed = FALSE)
+#'           res <- utility3_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                  step1 = 0, step2 = 0.5,
+#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                  a = 0.25, b = 0.75, 
+#'                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
+#'                                  K = Inf, N = Inf, S = -Inf, 
+#'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
+#'                                  case = 2, fixed = FALSE)                        
+#'           res <- utility4_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                  step1 = 0, step2 = 0.5,
+#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                  a = 0.25, b = 0.75, 
+#'                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
+#'                                  K = Inf, N = Inf, S = -Inf, 
+#'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
+#'                                  case = 3, fixed = FALSE)
+#' @name utility_multitrial_normal                           
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 utility2_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
@@ -830,43 +867,8 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
   
 }
 
-#' Utility function
-#' @param n2 total sample size for phase II; must be even number
-#' @param kappa threshold value for the go/no-go decision rule
-#' @param alpha significance level
-#' @param beta 1-beta power for calculation of sample size for phase III
-#' @param step1 lower boundary for effect size
-#' @param step2 upper boundary for effect size
-#' @param w weight for mixture prior distribution
-#' @param Delta1 assumed true treatment effect for standardized difference in means
-#' @param Delta2 assumed true treatment effect for standardized difference in means
-#' @param in1 amount of information for Delta1 in terms of sample size
-#' @param in2 amount of information for Delta2 in terms of sample size
-#' @param a lower boundary for the truncation
-#' @param b upper boundary for the truncation
-#' @param c2 variable per-patient cost for phase II
-#' @param c3 variable per-patient cost for phase III
-#' @param c02 fixed cost for phase II
-#' @param c03 fixed cost for phase III
-#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
-#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
-#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
-#' @param b1 expected gain for effect size category "small"
-#' @param b2 expected gain for effect size category "medium"
-#' @param b3 expected gain for effect size category "large"
-#' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
-#' @param fixed choose if true treatment effects are fixed or random
-#' @return the output of the the function utility3_normal is the expected utility of the program with conservative sample size calculation: use lower bound of one-sided confidence intervall
-#' @examples res <- utility3_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
-#'                                  step1 = 0, step2 = 0.5,
-#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'                                  a = 0.25, b = 0.75, 
-#'                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
-#'                                  K = Inf, N = Inf, S = -Inf, 
-#'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
-#'                                  case = 2, fixed = FALSE)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
+#' @rdname utility_multitrial_normal 
+#' @export
 utility3_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                              alpha, beta, 
                              c2, c3, c02, c03, 
@@ -943,28 +945,8 @@ utility3_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
 # Case 3: Strategy 3/4; at least three trials significant, the treatment effect 
 # of the other one at least showing in the same direction
 
-#' Expected probability of a successful program: EsP
-#' @param kappa threshold value for the go/no-go decision rule
-#' @param n2 total sample size for phase II; must be even number
-#' @param alpha significance level
-#' @param beta 1-beta power for calculation of sample size for phase III
-#' @param w weight for mixture prior distribution
-#' @param Delta1 assumed true treatment effect for standardized difference in means
-#' @param Delta2 assumed true treatment effect for standardized difference in means
-#' @param in1 amount of information for Delta1 in terms of sample size
-#' @param in2 amount of information for Delta2 in terms of sample size
-#' @param a lower boundary for the truncation
-#' @param b upper boundary for the truncation
-#' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
-#' @param size size category "small", "medium" or "large"
-#' @param fixed choose if true treatment effects are fixed or random
-#' @return the output of the the function EPsProg2_normal is the expected probability of a successful program 
-#' @examples res <- EPsProg2_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
-#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'                                  a = 0.25, b = 0.75, 
-#'                                  case = 3, size = "small", fixed = FALSE)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
+#' @rdname EPsProg_multitrial_normal 
+#' @export
 EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, case, size,fixed){
   
   SIGMA <-  diag(4)
@@ -1204,43 +1186,8 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
   
 }
 
-#' Utility function
-#' @param n2 total sample size for phase II; must be even number
-#' @param kappa threshold value for the go/no-go decision rule
-#' @param alpha significance level
-#' @param beta 1-beta power for calculation of sample size for phase III
-#' @param step1 lower boundary for effect size
-#' @param step2 upper boundary for effect size
-#' @param w weight for mixture prior distribution
-#' @param Delta1 assumed true treatment effect for standardized difference in means
-#' @param Delta2 assumed true treatment effect for standardized difference in means
-#' @param in1 amount of information for Delta1 in terms of sample size
-#' @param in2 amount of information for Delta2 in terms of sample size
-#' @param a lower boundary for the truncation
-#' @param b upper boundary for the truncation
-#' @param c2 variable per-patient cost for phase II
-#' @param c3 variable per-patient cost for phase III
-#' @param c02 fixed cost for phase II
-#' @param c03 fixed cost for phase III
-#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
-#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
-#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
-#' @param b1 expected gain for effect size category "small"
-#' @param b2 expected gain for effect size category "medium"
-#' @param b3 expected gain for effect size category "large"
-#' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
-#' @param fixed choose if true treatment effects are fixed or random
-#' @return the output of the the function utility4_normal is the expected utility of the program with conservative sample size calculation: use lower bound of one-sided confidence intervall
-#' @examples res <- utility4_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
-#'                                  step1 = 0, step2 = 0.5,
-#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'                                  a = 0.25, b = 0.75, 
-#'                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
-#'                                  K = Inf, N = Inf, S = -Inf, 
-#'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
-#'                                  case = 3, fixed = FALSE)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
+#' @rdname utility_multitrial_normal 
+#' @export
 utility4_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                              alpha, beta, 
                              c2, c3, c02, c03, 
@@ -1314,23 +1261,23 @@ utility4_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
 # Case 2: Strategy 2/2( + 1); at least two trials significant (and the 
 # treatment effect of the other one at least showing in the same direction)
 
-#' Expected probability to do third phase III trial: Epgo3
+#' Expected probability to do third phase III trial
+#' 
+#' In the setting of Case 2: Strategy 2/2( + 1); at least two trials significant (and the 
+#' treatment effect of the other one at least showing in the same direction) this function calculates the probability that a third phase III trial is necessary.
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param w weight for mixture prior distribution
 #' @param Delta1 assumed true treatment effect for standardized difference in means
 #' @param Delta2 assumed true treatment effect for standardized difference in means
-#' @param in1 amount of information for Delta1 in terms of sample size
-#' @param in2 amount of information for Delta2 in terms of sample size
-#' @param a lower boundary for the truncation
-#' @param b upper boundary for the truncation
-#' @return the output of the the function Epgo23_normal is the expected number of participants in phase III with conservative decision rule and sample size calculation:  use lower bound of one-sided confidence intervall
+#' @param in1 amount of information for `Delta1` in terms of sample size
+#' @param in2 amount of information for `Delta2` in terms of sample size
+#' @return The output of the the function `Epgo23_normal()` is the probability to to a third phase III trial.
 #' @examples res <- Epgo23_normal(kappa = 0.1, n2 = 50, w = 0.3,
-#'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'                                a = 0.25, b = 0.75)
+#'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-Epgo23_normal <-  function(kappa, n2, w, Delta1, Delta2, in1, in2, a, b){
+Epgo23_normal <-  function(kappa, n2, w, Delta1, Delta2, in1, in2){
   
   SIGMA <-  diag(2)
   c     <-  (qnorm(1 - alpha) + qnorm(1 - beta))^2
@@ -1349,7 +1296,7 @@ Epgo23_normal <-  function(kappa, n2, w, Delta1, Delta2, in1, in2, a, b){
             dnorm(y, 
                   mean = x, 
                   sd = sqrt(4/n2)) * 
-            prior_normal(x, w, Delta1, Delta2, in1, in2, a, b)
+            prior_normal(x, w, Delta1, Delta2, in1, in2)
         })
       },  kappa, Inf)$value
     })
@@ -1364,13 +1311,11 @@ Epgo23_normal <-  function(kappa, n2, w, Delta1, Delta2, in1, in2, a, b){
 #' on their success, the decision for a third phase III trial is made:
 #' - If both trials are successful, no third phase III trial will be conducted.
 #' - If only one of the two trials is successful and the other trial has a treatment effect that points in the same direction,
-#' a third phase III trial will be conducted with a sample size of N3 = N3(ymin). **(TODO: Was bedeutet N3(ymin)?
-#' Ist das eine Formel oder handelt es sich hierbei um Programmcode? Wenn ersteres: Kann man noch
-#' darauf verweisen, woher diese Formel, Funktion o.ä. kommt? Wenn zweiteres: Vielleicht auf den 
-#' Code verweisen, und dann auf jeden Fall in Akzenten, also: `N3(ymin)`)**.
-#' - If one of the two two trials is successful but the treatment effect of the other points in opposite direction,
-#'   then ... **TODO: What happens?**
-#' - If none of the two trials is successful, then ... **TODO: What happens?**
+#' a third phase III trial will be conducted with a sample size of N3 = N3(ymin), which depends on an assumed minimal clinical relevant effect (`ymin`).
+#' The third trial then has to be significant at level `alpha`
+#' - If only one of the two trials is successful and the treatment effect of the other points in opposite direction or 
+#' if none of the two trials are successful, then no third trial is performed and the drug development development program is not successful. 
+#' In the utility function, this will lead to a utility of -9999.
 #' 
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be an even number
@@ -1385,9 +1330,8 @@ Epgo23_normal <-  function(kappa, n2, w, Delta1, Delta2, in1, in2, a, b){
 #' @param b upper boundary for the truncation
 #' @param case number of significant trials needed for approval; possible values are 2 and 3 for this function
 #' @param size effect size category; possible values are `"small"`, `"medium"`, `"large"` and `"all"`
-#' @param fixed choose whether true treatment effects are fixed or random (**TODO: Der Parameter ist gar kein Parameter
-#' der Funktion, dafür fehlt der Parameter `ymin`**)
-#' @return the output of the function `EPsProg23_normal()` is the expected probability of a successful program 
+#' @param ymin assumed minimal clinical relevant effect
+#' @return The output of the function `EPsProg23_normal()` is the expected probability of a successful program. 
 #' @examples res <- EPsProg23_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
@@ -1562,29 +1506,32 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
   
 }
 
-#' Utility function
+#' Utility function for multitrial programs deciding between two or three phase III trials for a normally distributed outcome
+#'
+#' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program. 
+#' The utility is in further step maximized by the `optimal_multitrial_normal()` function.
 #' @param n2 total sample size for phase II; must be even number
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param alpha significance level
-#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param beta `1-beta` power for calculation of sample size for phase III
 #' @param step1 lower boundary for effect size
 #' @param step2 upper boundary for effect size
 #' @param w weight for mixture prior distribution
 #' @param Delta1 assumed true treatment effect for standardized difference in means
 #' @param Delta2 assumed true treatment effect for standardized difference in means
-#' @param in1 amount of information for Delta1 in terms of sample size
-#' @param in2 amount of information for Delta2 in terms of sample size
+#' @param in1 amount of information for `Delta1` in terms of sample size
+#' @param in2 amount of information for `Delta2` in terms of sample size
 #' @param a lower boundary for the truncation
 #' @param b upper boundary for the truncation
 #' @param c2 variable per-patient cost for phase II
 #' @param c3 variable per-patient cost for phase III
 #' @param c02 fixed cost for phase II
 #' @param c03 fixed cost for phase III
-#' @param b1 expected gain for effect size category "small"
-#' @param b2 expected gain for effect size category "medium"
-#' @param b3 expected gain for effect size category "large"
-#' @return the output of the the function utility23_normal is the expected utility of the program with conservative sample size calculation: use lower bound of one-sided confidence intervall
-#' @examples res <- utility23_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
+#' @param b1 expected gain for effect size category `"small"`
+#' @param b2 expected gain for effect size category `"medium"`
+#' @param b3 expected gain for effect size category `"large"`
+#' @return The output of the the function utility23_normal() is the expected utility of the program depending on whether two or three phase III trials are performed.
+#' @examples res <- utility23_normal(n2 = 50, kappa = 0.2, w = 0.3,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
 #'                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
@@ -1627,7 +1574,7 @@ utility23_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
   # prob to do third phase III trial
   pg3   <-  Epgo23_normal(kappa = kappa, n2 = n2, 
                           w = w, Delta1 = Delta1, Delta2 = Delta2,
-                          in1, in2, a, b) 
+                          in1, in2) 
   
   # n3 for third phase III trial
   n33   <-  (4 * (qnorm(1 - alpha) + qnorm(1 - beta))^2)/(ymin^2) 
