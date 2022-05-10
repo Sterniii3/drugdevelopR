@@ -354,7 +354,7 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
 #' Utility function for multitrial programs with normally distributed outcomes
 #' 
 #' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program. 
-#' The utility is in further step maximized by the `optimal_multitrial_normal()` function.
+#' The utility is in a further step maximized by the `optimal_multitrial_normal()` function.
 #' @param n2 total sample size for phase II; must be even number
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param alpha significance level
@@ -1509,7 +1509,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
 #' Utility function for multitrial programs deciding between two or three phase III trials for a normally distributed outcome
 #'
 #' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program. 
-#' The utility is in further step maximized by the `optimal_multitrial_normal()` function.
+#' The utility is in a further step maximized by the `optimal_multitrial_normal()` function.
 #' @param n2 total sample size for phase II; must be even number
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param alpha significance level

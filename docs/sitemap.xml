@@ -40,6 +40,12 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg4_normal.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_bias_binary.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_bias_normal.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_binary_L.html</loc>
   </url>
   <url>
@@ -79,6 +85,12 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_tte.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/En3_bias_binary.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/En3_bias_normal.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/En3_binary_L.html</loc>
   </url>
   <url>
@@ -107,6 +119,12 @@
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo23_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_bias_binary.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_bias_normal.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_binary_L2.html</loc>
@@ -245,6 +263,12 @@
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/utility4_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_bias_binary.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_bias_normal.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_binary_L.html</loc>

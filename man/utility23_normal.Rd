@@ -71,7 +71,7 @@ The output of the the function utility23_normal() is the expected utility of the
 }
 \description{
 The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program.
-The utility is in further step maximized by the \code{optimal_multitrial_normal()} function.
+The utility is in a further step maximized by the \code{optimal_multitrial_normal()} function.
 }
 \examples{
 res <- utility23_normal(n2 = 50, kappa = 0.2, w = 0.3,
