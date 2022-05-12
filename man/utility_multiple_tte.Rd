@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiple_tte.R
 \name{utility_multiple_tte}
 \alias{utility_multiple_tte}
-\title{expected probability of a successful program}
+\title{Utility function for multiple endpoints in a time-to-event-setting}
 \usage{
 utility_multiple_tte(
   n2,
@@ -38,15 +38,15 @@ utility_multiple_tte(
 
 \item{alpha}{significance level}
 
-\item{beta}{1-beta power for calculation of sample size for phase III}
+\item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
 \item{hr1}{assumed true treatment effect on HR scale for treatment 1}
 
 \item{hr2}{assumed true treatment effect on HR scale for treatment 2}
 
-\item{id1}{amount of information for hr1 in terms of sample size}
+\item{id1}{amount of information for \code{hr1} in terms of sample size}
 
-\item{id2}{amount of information for hr2 in terms of sample size}
+\item{id2}{amount of information for \code{hr2} in terms of sample size}
 
 \item{ec}{control arm event rate for phase II and III}
 
@@ -64,27 +64,28 @@ utility_multiple_tte(
 
 \item{S}{constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint}
 
-\item{steps1}{lower boundary for effect size category "small" in HR scale, default: 1}
+\item{steps1}{lower boundary for effect size category \code{"small"} in HR scale, default: 1}
 
-\item{stepm1}{lower boundary for effect size category "medium" in HR scale = upper boundary for effect size category "small" in HR scale, default: 0.95}
+\item{stepm1}{lower boundary for effect size category \code{"medium"} in HR scale = upper boundary for effect size category \code{"small"} in HR scale, default: 0.95}
 
-\item{stepl1}{lower boundary for effect size category "large" in HR scale = upper boundary for effect size category "medium" in HR scale, default: 0.85}
+\item{stepl1}{lower boundary for effect size category \code{"large"} in HR scale = upper boundary for effect size category \code{"medium"} in HR scale, default: 0.85}
 
-\item{b1}{expected gain for effect size category "small"}
+\item{b1}{expected gain for effect size category \code{"small"}}
 
-\item{b2}{expected gain for effect size category "medium"}
+\item{b2}{expected gain for effect size category \code{"medium"}}
 
-\item{b3}{expected gain for effect size category "large"}
+\item{b3}{expected gain for effect size category \code{"large"}}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
 
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-the output of the the function utility_multiple_tte is the expected probability of a successfull program, when going to phase III
+The output of the the function \code{utility_multiple_tte()} is the expected utility of the program.
 }
 \description{
-expected probability of a successful program
+The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program.
+The utility is in a further step maximized by the \code{optimal_multiple_tte()} function.
 }
 \examples{
 res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,

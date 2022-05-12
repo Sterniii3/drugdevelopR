@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiarm_normal.R
 \name{pgo_normal}
 \alias{pgo_normal}
-\title{Probability to go to phase III for multiarm programs with normal distributed outcomes}
+\title{Probability to go to phase III for multiarm programs with normally distributed outcomes}
 \usage{
 pgo_normal(kappa, n2, Delta1, Delta2, strategy, case)
 }

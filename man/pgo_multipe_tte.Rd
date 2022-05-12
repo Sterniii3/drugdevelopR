@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiple_tte.R
 \name{pgo_multipe_tte}
 \alias{pgo_multipe_tte}
-\title{probability to go to phase III: pgo}
+\title{Probability to go to phase III for multiple endpoints in the time-to-event setting}
 \usage{
 pgo_multipe_tte(HRgo, n2, ec, hr1, hr2, id1, id2, fixed, rho)
 }
@@ -17,19 +17,20 @@ pgo_multipe_tte(HRgo, n2, ec, hr1, hr2, id1, id2, fixed, rho)
 
 \item{hr2}{assumed true treatment effect on HR scale for treatment 2}
 
-\item{id1}{amount of information for hr1 in terms of number of events}
+\item{id1}{amount of information for \code{hr1} in terms of number of events}
 
-\item{id2}{amount of information for hr2 in terms of number of events}
+\item{id2}{amount of information for \code{hr2} in terms of number of events}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
 
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-the output of the the function pgo_multiple_tte is the probability to go to phase III
+The output of the the function \code{pgo_multiple_tte()} is the probability to go to phase III.
 }
 \description{
-probability to go to phase III: pgo
+This function calculated the probability that we go to phase III, i.e. that results of phase II are promising enough to
+get a successful drug development program. Successful means that at least one endpoint show a statistically significant positive treatment effect in phase III.
 }
 \examples{
 res <- pgo_multiple_tte(HRgo = 0.8, n2 = 50, ec = 0.6,

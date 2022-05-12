@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiple_normal.R
 \name{EPsProg_multiple_normal}
 \alias{EPsProg_multiple_normal}
-\title{expected probability of a successful program}
+\title{Expected probability of a successful program for multiple endpoints and normally distributed outcomes}
 \usage{
 EPsProg_multiple_normal(
   kappa,
@@ -24,13 +24,11 @@ EPsProg_multiple_normal(
 )
 }
 \arguments{
-\item{kappa}{threshold value for the go/no-go decision rule; vector for both endpoints}
-
 \item{n2}{total sample size for phase II; must be even number}
 
 \item{alpha}{significance level}
 
-\item{beta}{1-beta power for calculation of sample size for phase III}
+\item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
 \item{Delta1}{assumed true treatment effect for standardized difference in means}
 
@@ -48,19 +46,20 @@ EPsProg_multiple_normal(
 
 \item{step22}{upper boundary for effect size for second endpoint}
 
-\item{in1}{amount of information for Delta1 in terms of sample size}
+\item{in1}{amount of information for \code{Delta1} in terms of sample size}
 
-\item{in2}{amount of information for Delta2 in terms of sample size}
+\item{in2}{amount of information for \code{Delta2} in terms of sample size}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random, if TRUE then \code{Delta1} is used as fixed effect}
 
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-the output of the the function EPsProg_multiple_normal is the expected probability of a successfull program, when going to phase III
+The output of the the function \code{EPsProg_multiple_normal()} is the expected probability of a successfull program, when going to phase III.
 }
 \description{
-expected probability of a successful program
+This function calculates the probability that our drug development program is successful.
+Successful is defined as both endpoints showing a statistically significant positive treatment effect in phase III.
 }
 \examples{
 res <- EPsProg_multiple_normal(kappa = c(0.1,0.1), n2 = 50, alpha = 0.025, beta = 0.1,

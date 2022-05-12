@@ -65,7 +65,7 @@ EPsProg4_normal(
 
 \item{alpha}{significance level}
 
-\item{beta}{1-beta power for calculation of sample size for phase III}
+\item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
 \item{w}{weight for mixture prior distribution}
 
@@ -88,11 +88,11 @@ EPsProg4_normal(
 \item{fixed}{choose if true treatment effects are fixed or random}
 }
 \value{
-The output of the the function EPsProg2_normal(), EPsProg3_normal() and EPsProg4_normal() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively).
+The output of the the function \code{EPsProg2_normal()}, \code{EPsProg3_normal()} and \code{EPsProg4_normal()} is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively).
 }
 \description{
 These functions calculate the expected probability of a successful program given the parameters.
-Each function represents a specific strategy, e.g. the function EpsProg3_normal() calculates the expected probability if three phase III trials are performed.
+Each function represents a specific strategy, e.g. the function \code{EpsProg3_normal()} calculates the expected probability if three phase III trials are performed.
 The parameter case specifies how many of the trials have to be successful, i.e. how many trials show a significantly relevant positive treatment effect.
 }
 \details{

@@ -2,9 +2,7 @@
 % Please edit documentation in R/functions_multiple_tte.R
 \name{fmax}
 \alias{fmax}
-\title{density for minimum of two normally distributed, random variables
-Z=min(X,Y) with X~N(mu1,sigma1^2),Y~N(mu2,sigma2^2)
-f(z)=f1(z)+f2(z)}
+\title{Density for the maximum of two normally distributed random variables}
 \usage{
 fmax(z, mu1, mu2, sigma1, sigma2, rho)
 }
@@ -22,13 +20,18 @@ fmax(z, mu1, mu2, sigma1, sigma2, rho)
 \item{y}{integral variable}
 }
 \value{
-function fmin will return the value of f(z)
+The function \code{fmax()} will return the value of f(z), which is the value of the density function of the
+maximum of two normally distributed random variables.
 }
 \description{
-density for minimum of two normally distributed, random variables
-Z=min(X,Y) with X~N(mu1,sigma1^2),Y~N(mu2,sigma2^2)
-f(z)=f1(z)+f2(z)
+The function \code{fmax()} will return the value of f(z), which is the value of the density function of the
+maximum of two normally distributed random variables.
+}
+\details{
+Z = max(X,Y) with X ~ N(mu1,sigma1^2), Y ~ N(mu2,sigma2^2)
+
+f(z)=f1(-z)+f2(-z)
 }
 \examples{
-res <- fmin(z = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
+res <- fmax(z = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
 }

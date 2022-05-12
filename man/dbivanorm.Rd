@@ -3,7 +3,7 @@
 %   R/functions_multiple_tte.R
 \name{dbivanorm}
 \alias{dbivanorm}
-\title{density of bivariate normal distribution}
+\title{Density of the bivariate normal distribution}
 \usage{
 dbivanorm(x, y, mu1, mu2, sigma1, sigma2, rho)
 
@@ -25,14 +25,14 @@ dbivanorm(x, y, mu1, mu2, sigma1, sigma2, rho)
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-function dbivanrom will return the density of bivariate normal distribution
+The Function \code{dbivanrom()} will return the density of a bivariate normal distribution.
 
-function dbivanrom will return the density of bivariate normal distribution
+The Function \code{dbivanrom()} will return the density of a bivariate normal distribution.
 }
 \description{
-density of bivariate normal distribution
+Density of the bivariate normal distribution
 
-density of bivariate normal distribution
+Density of the bivariate normal distribution
 }
 \examples{
 res <- fmin(x = 0.5, y = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )

@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiple_tte.R
 \name{Ess_multiple_tte}
 \alias{Ess_multiple_tte}
-\title{expected sample size for phase III when going to phase III}
+\title{Expected sample size for phase III for multiple endpoints with normally distributed outcomes}
 \usage{
 Ess_multiple_tte(HRgo, n2, alpha, beta, ec, hr1, hr2, id1, id2, fixed, rho)
 }
@@ -13,7 +13,7 @@ Ess_multiple_tte(HRgo, n2, alpha, beta, ec, hr1, hr2, id1, id2, fixed, rho)
 
 \item{alpha}{one- sided significance level}
 
-\item{beta}{1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula}
+\item{beta}{\code{1-beta} power for calculation of the number of events for phase III by Schoenfeld (1981) formula}
 
 \item{ec}{control arm event rate for phase II and III}
 
@@ -21,19 +21,20 @@ Ess_multiple_tte(HRgo, n2, alpha, beta, ec, hr1, hr2, id1, id2, fixed, rho)
 
 \item{hr2}{assumed true treatment effect on HR scale for treatment 2}
 
-\item{id1}{amount of information for hr1 in terms of number of events}
+\item{id1}{amount of information for \code{hr1} in terms of number of events}
 
-\item{id2}{amount of information for hr2 in terms of number of events}
+\item{id2}{amount of information for \code{hr2} in terms of number of events}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
 
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-the output of the the function Ess_multiple_tte is the expected number of participants in phase III
+the output of the the function \code{Ess_multiple_tte()} is the expected number of participants in phase III
 }
 \description{
-expected sample size for phase III when going to phase III
+Given phase II results are promising enough to get the "go"-decision to go to phase III this function now calculates the expected sample size for phase III.
+The results of this function are necessary for calculating the utility of the program, which is then in a further step maximized by the \code{optimal_multiple_tte()} function
 }
 \examples{
 res <- Ess_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,

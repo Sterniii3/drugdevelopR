@@ -13,7 +13,7 @@
 # -> Phase III is 2 or 3 arm trial (1:1 or 1:1:1 sample size allocation)
 
 
-#' Probability to go to phase III for multiarm programs with normal distributed outcomes 
+#' Probability to go to phase III for multiarm programs with normally distributed outcomes 
 #' 
 #' Given our parameters this function calculates the probability to go to phase III after the second phase was conducted. The considered strategies are as follows:
 #' - 1. Strategy: Only best promising treatment goes to phase III

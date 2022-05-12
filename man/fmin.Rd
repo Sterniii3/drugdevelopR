@@ -2,9 +2,7 @@
 % Please edit documentation in R/functions_multiple_normal.R
 \name{fmin}
 \alias{fmin}
-\title{density for minimum of two normally distributed, random variables
-Z=min(X,Y) with X~N(mu1,sigma1^2),Y~N(mu2,sigma2^2)
-f(z)=f1(z)+f2(z)}
+\title{Density for the minimum of two normally distributed random variables}
 \usage{
 fmin(y, mu1, mu2, sigma1, sigma2, rho)
 }
@@ -22,11 +20,16 @@ fmin(y, mu1, mu2, sigma1, sigma2, rho)
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-function fmin will return the value of f(z)
+The function \code{fmin()} will return the value of f(z), which is the value of the density function of the
+minimum of two normally distributed random variables.
 }
 \description{
-density for minimum of two normally distributed, random variables
-Z=min(X,Y) with X~N(mu1,sigma1^2),Y~N(mu2,sigma2^2)
+The function \code{fmin()} will return the value of f(z), which is the value of the density function of the
+minimum of two normally distributed random variables.
+}
+\details{
+Z= min(X,Y) with X ~ N(mu1,sigma1^2), Y ~ N(mu2,sigma2^2)
+
 f(z)=f1(z)+f2(z)
 }
 \examples{

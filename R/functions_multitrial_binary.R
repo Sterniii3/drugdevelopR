@@ -1397,6 +1397,7 @@ Epgo23_binary <-  function(RRgo, n2, p0, w, p11, p12, in1, in2){
 #' @param in2 amount of information for `p12` in terms of sample size
 #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
 #' @param size size category `"small"`, `"medium"` or `"large"`
+#' @param ymin assumed minimal clinical relevant effect
 #' @return The output of the the function `EPsProg23_binary()` is the expected probability of a successful program.
 #' @examples res <- EPsProg23_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
 #'                                  w = 0.6,  p0 = 0.3, p11 =  0.3, p12 = 0.5, 

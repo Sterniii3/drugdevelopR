@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiple_normal.R
 \name{posp_normal}
 \alias{posp_normal}
-\title{probability of a succesfull program, when going to phase III}
+\title{Probability of a successful program, when going to phase III for multiple endpoint with normally distributed outcomes}
 \usage{
 posp_normal(
   kappa,
@@ -26,7 +26,7 @@ posp_normal(
 
 \item{alpha}{significance level}
 
-\item{beta}{1-beta power for calculation of sample size for phase III}
+\item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
 \item{Delta1}{assumed true treatment effect for standardized difference in means}
 
@@ -36,19 +36,20 @@ posp_normal(
 
 \item{sigma2}{standard deviation of second endpoint}
 
-\item{in1}{amount of information for Delta1 in terms of sample size}
+\item{in1}{amount of information for \code{Delta1} in terms of sample size}
 
-\item{in2}{amount of information for Delta2 in terms of sample size}
+\item{in2}{amount of information for \code{Delta2} in terms of sample size}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{Delta1} is used as fixed effect}
 
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-the output of the the function posp_normal is the probability of a succesfull program, when going to phase III
+The output of the the function \code{posp_normal()} is the probability of a successful program, when going to phase III.
 }
 \description{
-probability of a succesfull program, when going to phase III
+After getting the "go"-decision to go to phase III, i.e. our results of phase II are over the predefined threshold \code{kappa}, this function
+calculates the probability, that our program is successfull, i.e. that both endpoints show a statistically significant positive treatment effect in phase III.
 }
 \examples{
 res <- posp_normal(kappa = c(0.1,0.1), n2 = 50, alpha = 0.025, beta = 0.1,

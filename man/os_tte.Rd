@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiple_tte.R
 \name{os_tte}
 \alias{os_tte}
-\title{propability endpoint OS significant}
+\title{Probability that endpoint OS significant}
 \usage{
 os_tte(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho)
 }
@@ -19,21 +19,22 @@ os_tte(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho)
 
 \item{hr2}{assumed true treatment effect on HR scale for treatment 2}
 
-\item{id1}{amount of information for hr1 in terms of number of events}
+\item{id1}{amount of information for \code{hr1} in terms of number of events}
 
-\item{id2}{amount of information for hr2 in terms of number of events}
+\item{id2}{amount of information for \code{hr2} in terms of number of events}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
 
 \item{rho}{correlation between the two endpoints}
 
 \item{ec}{control arm event rate for phase II and III}
 }
 \value{
-the output of the the function os_tte is the propability that endpoint OS significant
+The output of the the function \code{os_tte()} is the probability that endpoint OS significant.
 }
 \description{
-propability endpoint OS significant
+This function calculate the probability that the endpoint OS is statistically significant.
+In the context of cancer research OS stands for overall survival, a positive treatment effect in this endpoints is thus sufficient for a successful program.
 }
 \examples{
 res <- os_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,

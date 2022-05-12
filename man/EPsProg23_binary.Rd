@@ -41,6 +41,8 @@ EPsProg23_binary(
 
 \item{size}{size category \code{"small"}, \code{"medium"} or \code{"large"}}
 
+\item{ymin}{assumed minimal clinical relevant effect}
+
 \item{in1}{amount of information for \code{p11} in terms of sample size}
 
 \item{in2}{amount of information for \code{p12} in terms of sample size}

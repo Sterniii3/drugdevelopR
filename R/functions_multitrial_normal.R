@@ -7,12 +7,12 @@
 #' Expected probability of a successful program for multitrial programs with normally distributed outcomes
 #' 
 #' These functions calculate the expected probability of a successful program given the parameters. 
-#' Each function represents a specific strategy, e.g. the function EpsProg3_normal() calculates the expected probability if three phase III trials are performed. 
+#' Each function represents a specific strategy, e.g. the function `EpsProg3_normal()` calculates the expected probability if three phase III trials are performed. 
 #' The parameter case specifies how many of the trials have to be successful, i.e. how many trials show a significantly relevant positive treatment effect.
 #' 
 #' The following cases can be investigated by the software:
 #' - Two phase III trials
-#'   -  Case 1: Strategy 1/2; at least one trial significant, the treatment effect of the other one at least showing in the same direction 
+#'   - Case 1: Strategy 1/2; at least one trial significant, the treatment effect of the other one at least showing in the same direction 
 #'   - Case 2: Strategy 2/2; both trials significant
 #' - Three phase III trials 
 #'   - Case 2: Strategy 2/3; at least two trials significant, the treatment effect of the other one at least showing in the same direction
@@ -22,7 +22,7 @@
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
-#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param beta `1-beta` power for calculation of sample size for phase III
 #' @param w weight for mixture prior distribution
 #' @param Delta1 assumed true treatment effect for standardized difference in means
 #' @param Delta2 assumed true treatment effect for standardized difference in means
@@ -33,7 +33,7 @@
 #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
 #' @param size size category `"small"`, `"medium"` or `"large"`
 #' @param fixed choose if true treatment effects are fixed or random
-#' @return The output of the the function EPsProg2_normal(), EPsProg3_normal() and EPsProg4_normal() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively).
+#' @return The output of the the function `EPsProg2_normal()`, `EPsProg3_normal()` and `EPsProg4_normal()` is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively).
 #' @examples res <- EPsProg2_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 

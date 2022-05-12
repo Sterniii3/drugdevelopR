@@ -2,8 +2,7 @@
 % Please edit documentation in R/functions_multiple_tte.R
 \name{pw}
 \alias{pw}
-\title{probabilty that P(x>y)=P(x-y>0)
-Z=X-Y is normally distributed with expectation mux-muy and variance sigmax+sigmay-2 rho sdx sdy}
+\title{Probabilty that effect in endpoint one larger than in endpoint two}
 \usage{
 pw(n2, ec, hr1, hr2, id1, id2, fixed, rho)
 }
@@ -16,20 +15,22 @@ pw(n2, ec, hr1, hr2, id1, id2, fixed, rho)
 
 \item{hr2}{assumed true treatment effect on HR scale for treatment 2}
 
-\item{id1}{amount of information for hr1 in terms of number of events}
+\item{id1}{amount of information for \code{hr1} in terms of number of events}
 
-\item{id2}{amount of information for hr2 in terms of number of events}
+\item{id2}{amount of information for \code{hr2} in terms of number of events}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
 
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-the output of the the function pw is the the probabilty that endpoint 1 has a better result than endpoint two
+The output of the the function \code{pw()} is the probability that endpoint one has a better result than endpoint two
 }
 \description{
-probabilty that P(x>y)=P(x-y>0)
-Z=X-Y is normally distributed with expectation mux-muy and variance sigmax+sigmay-2 rho sdx sdy
+This function calculated the probability that the treatment effect in endpoint one (or endpoint x) is larger than in endpoint two (or endpoint y), i.e. P(x>y) = P(x-y>0)
+}
+\details{
+Z=X-Y is normally distributed with expectation mu_x - mu_y and variance sigma_x + sigma_y- 2 rho sdx sdy
 }
 \examples{
 res <- pw(n2 = 50, ec = 0.6,

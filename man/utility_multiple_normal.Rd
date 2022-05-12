@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiple_normal.R
 \name{utility_multiple_normal}
 \alias{utility_multiple_normal}
-\title{utility function}
+\title{Utility function for multiple endpoints with normally distributed outcomes.}
 \usage{
 utility_multiple_normal(
   kappa,
@@ -40,15 +40,15 @@ utility_multiple_normal(
 
 \item{alpha}{significance level}
 
-\item{beta}{1-beta power for calculation of sample size for phase III}
+\item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
 \item{Delta1}{assumed true treatment effect for standardized difference in means}
 
 \item{Delta2}{assumed true treatment effect for standardized difference in means}
 
-\item{in1}{amount of information for Delta1 in terms of sample size}
+\item{in1}{amount of information for \code{Delta1} in terms of sample size}
 
-\item{in2}{amount of information for Delta2 in terms of sample size}
+\item{in2}{amount of information for \code{Delta2} in terms of sample size}
 
 \item{sigma1}{standard deviation of first endpoint}
 
@@ -68,29 +68,30 @@ utility_multiple_normal(
 
 \item{S}{constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint}
 
-\item{steps1}{lower boundary for effect size category "small" in HR scale, default: 1}
+\item{steps1}{lower boundary for effect size category \code{"small"} in HR scale, default: 1}
 
-\item{stepm1}{lower boundary for effect size category "medium" in HR scale = upper boundary for effect size category "small" in HR scale, default: 0.95}
+\item{stepm1}{lower boundary for effect size category \code{"medium"} in HR scale = upper boundary for effect size category \code{"small"} in HR scale, default: 0.95}
 
-\item{stepl1}{lower boundary for effect size category "large" in HR scale = upper boundary for effect size category "medium" in HR scale, default: 0.85}
+\item{stepl1}{lower boundary for effect size category \code{"large"} in HR scale = upper boundary for effect size category \code{"medium"} in HR scale, default: 0.85}
 
-\item{b1}{expected gain for effect size category "small"}
+\item{b1}{expected gain for effect size category \code{"small"}}
 
-\item{b2}{expected gain for effect size category "medium"}
+\item{b2}{expected gain for effect size category \code{"medium"}}
 
-\item{b3}{expected gain for effect size category "large"}
+\item{b3}{expected gain for effect size category \code{"large"}}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{Delta1} is used as fixed effect}
 
 \item{rho}{correlation between the two endpoints}
 
 \item{relaxed}{relaxed or strict decision rule}
 }
 \value{
-the output of the the function utility_multiple_normal is the expected probability of a successfull program, when going to phase III
+The output of the the function \code{utility_multiple_normal()} is the expected utility of the program.
 }
 \description{
-utility function
+The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program.
+The utility is in a further step maximized by the \code{optimal_multiple_normal()} function.
 }
 \examples{
 res <- utility_multiple_normal(kappa = c(0.1,0.1), n2 = 50, alpha = 0.025, beta = 0.1,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiple_normal.R
 \name{pgo_multiple_normal}
 \alias{pgo_multiple_normal}
-\title{probability to go to phase III: pgo}
+\title{Probability to go to phase III for multiple endpoints with normally distributed outcomes}
 \usage{
 pgo_multiple_normal(
   kappa,
@@ -39,10 +39,11 @@ pgo_multiple_normal(
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-the output of the the function pgo_multiple_normal is the probability to go to phase III
+The output of the the function \code{pgo_multiple_normal()} is the probability to go to phase III.
 }
 \description{
-probability to go to phase III: pgo
+This function calculated the probability that we go to phase III, i.e. that results of phase II are promising enough to
+get a successful drug development program. Successful means that both endpoints show a statistically significant positive treatment effect in phase III.
 }
 \examples{
 res <- pgo_multiple_normal(kappa = c(0.1,0.1), n2 = 50,

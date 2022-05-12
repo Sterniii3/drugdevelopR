@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiple_normal.R
 \name{Ess_multiple_normal}
 \alias{Ess_multiple_normal}
-\title{expected sample size for phase III}
+\title{Expected sample size for phase III for multiple endpoints with normally distributed outcomes}
 \usage{
 Ess_multiple_normal(
   kappa,
@@ -48,7 +48,8 @@ Ess_multiple_normal(
 the output of the the function Ess_multiple_normal is the expected number of participants in phase III
 }
 \description{
-expected sample size for phase III
+Given phase II results are promising enough to get the "go"-decision to go to phase III this function now calculates the expected sample size for phase III.
+The results of this function are necessary for calculating the utility of the program, which is then in a further step maximized by the \code{optimal_multiple_normal()} function
 }
 \examples{
 res <- Ess_multiple_normal(kappa = c(0.1,0.1), n2 = 50, alpha = 0.025, beta = 0.1,
