@@ -359,8 +359,6 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
-#' @param step1 lower boundary for effect size
-#' @param step2 upper boundary for effect size
 #' @param w weight for mixture prior distribution
 #' @param Delta1 assumed true treatment effect for standardized difference in means
 #' @param Delta2 assumed true treatment effect for standardized difference in means
@@ -382,7 +380,6 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
 #' @param fixed choose if true treatment effects are fixed or random
 #' @return The output of the the functions utility2_normal(), utility3_normal() and utility4_normal() is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
 #' @examples res <- utility2_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
-#'                                  step1 = 0, step2 = 0.5,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
 #'                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
@@ -390,7 +387,6 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
 #'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
 #'                                  case = 2, fixed = FALSE)
 #'           res <- utility3_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
-#'                                  step1 = 0, step2 = 0.5,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
 #'                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
@@ -398,7 +394,6 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
 #'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
 #'                                  case = 2, fixed = FALSE)                        
 #'           res <- utility4_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
-#'                                  step1 = 0, step2 = 0.5,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
 #'                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,

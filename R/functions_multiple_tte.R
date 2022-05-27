@@ -45,18 +45,8 @@ fmax<-function (z,mu1,mu2,sigma1,sigma2,rho){
   return(t1+t2)
 }
 
-#'Density of the bivariate normal distribution
-#'@param x integral variable
-#'@param y integral variable
-#'@param mu1 mean of second endpoint 
-#'@param mu2 mean of first endpoint
-#'@param sigma1 standard deviation of first endpoint
-#'@param sigma2 standard deviation of second endpoint
-#'@param rho correlation between the two endpoints
-#'@return The Function `dbivanrom()` will return the density of a bivariate normal distribution.
-#'@examples res <- fmin(x = 0.5, y = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
-#'@editor Johannes Cepicka
-#'@editDate 2022-04-23
+#'@rdname dbivanorm
+#'@export
 dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){ 
   covariancemat <- matrix(c(sigma1,rho*sqrt(sigma1)*sqrt(sigma2), rho*sqrt(sigma1)*sqrt(sigma2),sigma2),ncol=2)
   ff <- dmvnorm(cbind(x,y), mean=c(mu1,mu2),sigma=covariancemat)
