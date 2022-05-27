@@ -40,10 +40,10 @@
 #'           res <- En3_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
 #'                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                               a = 0.25, b = 0.75, fixed = FALSE)
-#'           res <- En3_normal_R(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'           res <- En3_normal_R(kappa = 0.1, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, w = 0.3,
 #'                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                               a = 0.25, b = 0.75, fixed = FALSE)
-#'           res <- En3_normal_R2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'           res <- En3_normal_R2(kappa = 0.1, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, w = 0.3,
 #'                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                               a = 0.25, b = 0.75, fixed = FALSE)
 #' @name En3_bias_normal                           
@@ -127,11 +127,11 @@ En3_normal_L <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, i
 #'                                  step1 = 0, step2 = 0.5,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, fixed = FALSE)
-#'           res <- EPsProg_normal_R(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'           res <- EPsProg_normal_R(kappa = 0.1, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  step1 = 0, step2 = 0.5,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, fixed = FALSE)
-#'           res <- EPsProg_normal_R2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'           res <- EPsProg_normal_R2(kappa = 0.1, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  step1 = 0, step2 = 0.5,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, fixed = FALSE)
@@ -214,7 +214,6 @@ EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
 #' @return The output of the the functions `utility_normal_L()`, `utility_normal_L2()`, `utility_normal_R()` and `utility_normal_R2()` is the expected utility of the program.
 #' @examples res <- utility_normal_L(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
-#'                                  step1 = 0, step2 = 0.5,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
 #'                                  K = Inf, N = Inf, S = -Inf, 
@@ -222,23 +221,20 @@ EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
 #'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
 #'                                  fixed = FALSE)
 #'           res <- utility_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
-#'                                  step1 = 0, step2 = 0.5,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
 #'                                  K = Inf, N = Inf, S = -Inf, 
 #'                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
 #'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
 #'                                  fixed = FALSE)
-#'           res <- utility_normal_R(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
-#'                                  step1 = 0, step2 = 0.5,
+#'           res <- utility_normal_R(kappa = 0.1, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
 #'                                  K = Inf, N = Inf, S = -Inf, 
 #'                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
 #'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
 #'                                  fixed = FALSE)
-#'           res <- utility_normal_R2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
-#'                                  step1 = 0, step2 = 0.5,
+#'           res <- utility_normal_R2(kappa = 0.1, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
 #'                                  K = Inf, N = Inf, S = -Inf, 
@@ -352,10 +348,10 @@ utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
 #' @param b upper boundary for the truncation
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
 #' @return The output of the the functions `Epgo_normal_L2` and `Epgo_normal_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
-#' @examples res <- Epgo_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#' @examples res <- Epgo_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, w = 0.3,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                a = 0.25, b = 0.75, fixed = FALSE)
-#'           res <- Epgo_normal_R2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+#'           res <- Epgo_normal_R2(kappa = 0.1, n2 = 50, Adj = 1, w = 0.3,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                a = 0.25, b = 0.75, fixed = FALSE)
 #' @name Epgo_bias_normal                              
