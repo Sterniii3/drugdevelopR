@@ -32,7 +32,6 @@
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 
-
 pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
   
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
@@ -267,7 +266,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
 #' 
 #' Given we get the "go"-decision in phase II, this functions now calculates the probability that the results of the confirmatory trial (phase III) are significant, i.e. we have a statistically relevant positive effect of the treatment.
 #' @param RRgo threshold value for the go/no-go decision rule
-#' @param n2 total sample size for phase II; must be even number
+#' @param n2 total sample size for phase II; must be divisible by three
 #' @param alpha significance level
 #' @param beta  1-beta power for calculation of sample size for phase III
 #' @param p0 assumed true rate of control group

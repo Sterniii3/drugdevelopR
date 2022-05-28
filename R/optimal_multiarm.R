@@ -129,8 +129,8 @@ optimal_multiarm <- function(hr1, hr2, ec,
       
       cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
-      clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo", "ss", "Ess",
-                          "PsProg", "alpha", "beta",
+      clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_tte", "ss_tte", "Ess_tte",
+                          "PsProg_tte", "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                           "K", "N", "S", "strategy",
                           "c2", "c3", "c02", "c03",
