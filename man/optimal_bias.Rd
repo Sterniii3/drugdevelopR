@@ -119,8 +119,6 @@ optimal_bias(
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 
-\item{gamma}{to model different populations in phase II and III choose gamma!=0, default: 0}
-
 \item{skipII}{choose if skipping phase II is an option, default: FASLE}
 }
 \value{

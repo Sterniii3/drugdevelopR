@@ -190,7 +190,6 @@ The utility is in a further step maximized by the \code{optimal_bias_normal()} f
 }
 \examples{
 res <- utility_normal_L(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
-                                 step1 = 0, step2 = 0.5,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
                                  K = Inf, N = Inf, S = -Inf, 
@@ -198,23 +197,20 @@ res <- utility_normal_L(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
                                  fixed = FALSE)
           res <- utility_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
-                                 step1 = 0, step2 = 0.5,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
                                  K = Inf, N = Inf, S = -Inf, 
                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
                                  fixed = FALSE)
-          res <- utility_normal_R(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
-                                 step1 = 0, step2 = 0.5,
+          res <- utility_normal_R(kappa = 0.1, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, w = 0.3,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
                                  K = Inf, N = Inf, S = -Inf, 
                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
                                  fixed = FALSE)
-          res <- utility_normal_R2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
-                                 step1 = 0, step2 = 0.5,
+          res <- utility_normal_R2(kappa = 0.1, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, w = 0.3,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
                                  K = Inf, N = Inf, S = -Inf, 

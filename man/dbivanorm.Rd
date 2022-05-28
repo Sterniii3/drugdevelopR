@@ -26,15 +26,10 @@ dbivanorm(x, y, mu1, mu2, sigma1, sigma2, rho)
 }
 \value{
 The Function \code{dbivanrom()} will return the density of a bivariate normal distribution.
-
-The Function \code{dbivanrom()} will return the density of a bivariate normal distribution.
 }
 \description{
 Density of the bivariate normal distribution
-
-Density of the bivariate normal distribution
 }
 \examples{
-res <- fmin(x = 0.5, y = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
-res <- fmin(x = 0.5, y = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
+res <- dbivanorm(x = 0.5, y = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
 }

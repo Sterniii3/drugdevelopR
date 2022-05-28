@@ -386,7 +386,6 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
  #' The utility is in further step maximized by the `optimal_multitrial_binary()` function.
  #' @param RRgo threshold value for the go/no-go decision rule
  #' @param n2 total sample size for phase II; must be even number
- #' @param Adj adjustment parameter
  #' @param alpha significance level
  #' @param beta `1-beta` power for calculation of sample size for phase III
  #' @param w weight for mixture prior distribution
@@ -406,7 +405,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
  #' @param b2 expected gain for effect size category `"medium"`
  #' @param b3 expected gain for effect size category `"large"`
  #' @param fixed choose if true treatment effects are fixed or random
- #' @return The output of the the `functions utility2_normal()`, `utility3_normal()` and `utility4_normal()` is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
+ #' @return The output of the the `functions utility2_binary()`, `utility3_binary()` and `utility4_binary()` is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
  #' @examples res <- utility2_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
  #'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
  #'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
@@ -1605,7 +1604,6 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, id1, id2, 
 #' The utility is in further step maximized by the `optimal_multitrial_binary()` function.
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
-#' @param Adj adjustment parameter
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
 #' @param w weight for mixture prior distribution

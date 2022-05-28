@@ -38,7 +38,6 @@
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
-#' @param gamma to model different populations in phase II and III choose gamma!=0, default: 0
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect
 #' @param skipII choose if skipping phase II is an option, default: FASLE
 #' @param num_cl number of clusters used for parallel computing, default: 1
@@ -112,6 +111,8 @@
 #'
 #' Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
 #'
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 #' @export
 optimal_bias <- function(w, hr1, hr2, id1, id2,
                         d2min, d2max, stepd2,

@@ -131,10 +131,6 @@ utility4_normal(
 \item{case}{choose case: "at least 1, 2 or 3 significant trials needed for approval"}
 
 \item{fixed}{choose if true treatment effects are fixed or random}
-
-\item{step1}{lower boundary for effect size}
-
-\item{step2}{upper boundary for effect size}
 }
 \value{
 The output of the the functions utility2_normal(), utility3_normal() and utility4_normal() is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
@@ -145,7 +141,6 @@ The utility is in a further step maximized by the \code{optimal_multitrial_norma
 }
 \examples{
 res <- utility2_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
-                                 step1 = 0, step2 = 0.5,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
@@ -153,7 +148,6 @@ res <- utility2_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
                                  case = 2, fixed = FALSE)
           res <- utility3_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
-                                 step1 = 0, step2 = 0.5,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
@@ -161,7 +155,6 @@ res <- utility2_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
                                  case = 2, fixed = FALSE)                        
           res <- utility4_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
-                                 step1 = 0, step2 = 0.5,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,

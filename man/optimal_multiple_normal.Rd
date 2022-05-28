@@ -104,7 +104,6 @@ optimal_multiple_normal(
 \value{
 The output of the function \code{\link{optimal_multiple_tte}} is a data.frame containing the optimization results:
 \describe{
-\item{Strategy}{Strategy, 1: "only best promising" or 2: "all promising"}
 \item{u}{maximal expected utility}
 \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
 \item{n2}{optimal total sample size in phase II}
@@ -118,7 +117,6 @@ The output of the function \code{\link{optimal_multiple_tte}} is a data.frame co
 \item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
 \item{K2}{expected costs for phase II}
 \item{K3}{expected costs for phase III}
-\item{OP}{probability that one endpoint is significant}
 }
 and further input parameters.
 res

@@ -5,7 +5,49 @@
 # Case 1: Strategy 1/2; at least one trial significant, the treatment effect of the other one at least showing in the same direction 
 # Case 2: Strategy 2/2; both trials significant 
 
-# Expected probability of a successful program
+#' Expected probability of a successful program for multitrial programs in a time-to-event setting
+#' 
+#' These functions calculate the expected probability of a successful program given the parameters. 
+#' Each function represents a specific strategy, e.g. the function EpsProg3() calculates the expected probability if three phase III trials are performed. 
+#' The parameter case specifies how many of the trials have to be successful, i.e. how many trials show a significantly relevant positive treatment effect.
+#' 
+#' The following cases can be investigated by the software:
+#' - Two phase III trials
+#'   -  Case 1: Strategy 1/2; at least one trial significant, the treatment effect of the other one at least showing in the same direction 
+#'   - Case 2: Strategy 2/2; both trials significant
+#' - Three phase III trials 
+#'   - Case 2: Strategy 2/3; at least two trials significant, the treatment effect of the other one at least showing in the same direction
+#'   - Case 3: Strategy 3/3; all trials significant 
+#' - Four phase III trials 
+#'   - Case 3: Strategy 3/4; at least three trials significant, the treatment effect of the other one at least showing in the same direction
+#' @param HRgo threshold value for the go/no-go decision rule
+#' @param d2 total number of events in phase II
+#' @param alpha significance level
+#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param hr1 first assumed true treatment effect on HR scale for prior distribution
+#' @param hr2 second assumed true treatment effect on HR scale for prior distribution
+#' @param id1 amount of information for hr1 in terms of number of events
+#' @param id2 amount of information for hr2 in terms of number of events
+#' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
+#' @param size size category "small", "medium" or "large"
+#' @param fixed choose if true treatment effects are fixed or random
+#' @return The output of the the function EPsProg2(), EPsProg3() and EPsProg4() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively)
+#' @examples res <- EPsProg2(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
+#'                                  w = 0.3, hr1 =  0.69, hr1 = 0.81, 
+#'                                  id1 = 210, id2 = 420, case = 2, size = "small",
+#'                                  fixed = FALSE)
+#'           res <- EPsProg3(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
+#'                                  w = 0.3, hr1 =  0.69, hr1 = 0.81, 
+#'                                  id1 = 210, id2 = 420, case = 2, size = "small",
+#'                                  fixed = FALSE)
+#'           res <- EPsProg4(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
+#'                                  w = 0.3, hr1 =  0.69, hr1 = 0.81, 
+#'                                  id1 = 210, id2 = 420, case = 3, size = "small",
+#'                                  fixed = FALSE)
+#' @name EPsProg_multitrial                                 
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, fixed){
   
   SIGMA <-  diag(2)
@@ -330,7 +372,55 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
   
 }
 
-# Utility function
+#' Utility function for multitrial programs in a time-to-event setting
+#' 
+#' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program. 
+#' The utility is in further step maximized by the `optimal_multitrial()` function.
+#' @param HRgo threshold value for the go/no-go decision rule
+#' @param d2 total number of events in phase II
+#' @param alpha significance level
+#' @param beta `1-beta` power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param hr1 first assumed true treatment effect on HR scale for prior distribution
+#' @param hr2 second assumed true treatment effect on HR scale for prior distribution
+#' @param id1 amount of information for `hr1` in terms of number of events
+#' @param id2 amount of information for `hr2` in terms of number of events
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param b1 expected gain for effect size category `"small"`
+#' @param b2 expected gain for effect size category `"medium"`
+#' @param b3 expected gain for effect size category `"large"`
+#' @param fixed choose if true treatment effects are fixed or random
+#' @return The output of the the functions `utility2()`, `utility3()` and `utility4()` is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
+#' @examples res <- utility(d2 = 50, HRgo = 0.8,  w = 0.3, 
+#'                                  hr1 =  0.69, hr1 = 0.81, 
+#'                                  id1 = 210, id2 = 420, alpha = 0.025, beta = 0.1,
+#'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'                                  K = Inf, N = Inf, S = -Inf,
+#'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
+#'                                  case = 2, fixed = FALSE)
+#'           res <- utility3(d2 = 50, HRgo = 0.8,  w = 0.3, 
+#'                                  hr1 =  0.69, hr1 = 0.81, 
+#'                                  id1 = 210, id2 = 420, alpha = 0.025, beta = 0.1,
+#'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'                                  K = Inf, N = Inf, S = -Inf,
+#'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
+#'                                  case = 2, fixed = FALSE)
+#'          res <- utility4(d2 = 50, HRgo = 0.8,  w = 0.3, 
+#'                                  hr1 =  0.69, hr1 = 0.81, 
+#'                                  id1 = 210, id2 = 420, alpha = 0.025, beta = 0.1,
+#'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'                                  K = Inf, N = Inf, S = -Inf,
+#'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
+#'                                  case = 3, fixed = FALSE)
+#' @name utility_multitrial                                 
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 utility2 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                       alpha, beta, xi2, xi3,
                       c2, c3, c02, c03, 
@@ -410,7 +500,8 @@ utility2 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 # of the other one at least showing in the same direction
 # Case 3: Strategy 3/3; all trials significant
 
-# Expected probability of a successful program
+#' @rdname EPsProg_multitrial 
+#' @export
 EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, fixed){
   
   SIGMA <-  diag(3)
@@ -837,7 +928,8 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
 
 }
 
-# Utility function
+#' @rdname utility_multitrial 
+#' @export
 utility3 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                       alpha, beta, xi2, xi3,
                       c2, c3, c02, c03, 
@@ -915,7 +1007,8 @@ utility3 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 # Case 3: Strategy 3/4; at least three trials significant, the treatment effect 
 # of the other one at least showing in the same direction
 
-# Expected probability of a successful program
+#' @rdname EPsProg_multitrial_binary 
+#' @export
 EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, fixed){
   
   SIGMA <-  diag(4)
@@ -1175,6 +1268,8 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
 }
 
 # Utility function
+#' @rdname utility_multitrial 
+#' @export
 utility4 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                       alpha, beta, xi2, xi3,
                       c2, c3, c02, c03, 
@@ -1251,7 +1346,23 @@ utility4 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 # Case 2: Strategy 2/2( + 1); at least two trials significant (and the 
 # treatment effect of the other one at least showing in the same direction)
 
-# Expected probability to do third phase III trial: Epgo3
+#' Expected probability to do third phase III trial
+#' 
+#' In the setting of Case 2: Strategy 2/2( + 1); at least two trials significant (and the 
+#' treatment effect of the other one at least showing in the same direction) this function calculates the probability that a third phase III trial is necessary.
+#' @param HRgo threshold value for the go/no-go decision rule
+#' @param d2 total number of events in phase II
+#' @param w weight for mixture prior distribution
+#' @param p0 assumed true rate of control group
+#' @param hr1 first assumed true treatment effect on HR scale for prior distribution
+#' @param hr2 second assumed true treatment effect on HR scale for prior distribution
+#' @param id1 amount of information for `hr1` in terms of number of events
+#' @param id2 amount of information for `hr2` in terms of number of events
+#' @return The output of the the function `Epgo23()` is the probability to to a third phase III trial.
+#' @examples res <- Epgo23(HRgo = 0.8, d2 = 50,  w = 0.3,
+#'                                hr1 =  0.69, hr2 = 0.81, id1 = 280, id2 = 420)
+#' @editor Johannes Cepicka
+#' @editDate 2022-05-09
 Epgo23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
   
   SIGMA <-  diag(2)
@@ -1278,7 +1389,39 @@ Epgo23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
   },  - Inf, Inf)$value
 } 
 
-# Expected probability of a successful program
+#' Expected probability of a successful program deciding between two or three phase III trials in a time-to-event setting
+#'
+#' The function `EPsProg23()` calculates the expected probability of a successful program
+#' in a time-to-event setting. This function follows a special decision rule in order to determine
+#' whether two or three phase III trials should be conducted. First, two phase III trials are performed. Depending
+#' on their success, the decision for a third phase III trial is made:
+#' - If both trials are successful, no third phase III trial will be conducted.
+#' - If only one of the two trials is successful and the other trial has a treatment effect that points in the same direction,
+#' a third phase III trial will be conducted with a sample size of N3 = N3(ymin), which depends on an assumed minimal clinical relevant effect (`ymin`).
+#' The third trial then has to be significant at level `alpha`
+#' - If only one of the two trials is successful and the treatment effect of the other points in opposite direction or 
+#' if none of the two trials are successful, then no third trial is performed and the drug development development program is not successful. 
+#' In the utility function, this will lead to a utility of -9999.
+#' 
+#' @param HRgo threshold value for the go/no-go decision rule
+#' @param d2 total number of events in phase II
+#' @param alpha significance level
+#' @param beta `1-beta` power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param hr1 first assumed true treatment effect on HR scale for prior distribution
+#' @param hr2 second assumed true treatment effect on HR scale for prior distribution
+#' @param id1 amount of information for `hr1` in terms of number of events
+#' @param id2 amount of information for `hr2` in terms of number of events
+#' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
+#' @param size size category `"small"`, `"medium"` or `"large"`
+#' @param ymin assumed minimal clinical relevant effect
+#' @return The output of the the function `EPsProg23()` is the expected probability of a successful program.
+#' @examples res <- EPsProg23(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
+#'                                  w = 0.3, hr1 =  0.69, hr2 = 0.81, 
+#'                                  id1 = 280, id2 = 420, case = 2, size = "small",
+#'                                  ymin = 0.5)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, ymin){
   # Option 2.1: first two phase III trials are successful: no third phase III trial
   # Option 2.2: one of the two first phase III trials successful, the treatment
@@ -1461,7 +1604,35 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
   }
   
 }
-# Utility function
+#' Utility function for multitrial programs deciding between two or three phase III trials in a time-to-event setting
+#'
+#' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program. 
+#' The utility is in further step maximized by the `optimal_multitrial()` function.
+#' @param HRgo threshold value for the go/no-go decision rule
+#' @param d2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta `1-beta` power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param hr1 first assumed true treatment effect on HR scale for prior distribution
+#' @param hr2 second assumed true treatment effect on HR scale for prior distribution
+#' @param id1 amount of information for `hr1` in terms of number of events
+#' @param id2 amount of information for `hr2` in terms of number of events
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param b1 expected gain for effect size category `"small"`
+#' @param b2 expected gain for effect size category `"medium"`
+#' @param b3 expected gain for effect size category `"large"`
+#' @param fixed choose if true treatment effects are fixed or random
+#' @return The output of the the function `utility23()` is the expected utility of the program depending on whether two or three phase III trials are performed.
+#' @examples res <- utility23(d2 = 50, HRgo = 0.8,  w = 0.3, 
+#'                                  p0 = 0.6, hr1 =  0.69, hr2 = 0.81, 
+#'                                  id1 = 280, id2 = 420, alpha = 0.025, beta = 0.1,
+#'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'                                  b1 = 1000, b2 = 2000, b3 = 3000)
+#' @editor Johannes Cepicka
+#' @editDate 2022-04-23
 utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                        alpha, beta, xi2, xi3,
                        c2, c3, c02, c03, 

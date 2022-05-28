@@ -45,10 +45,10 @@ The function \code{Epgo_binary_L2} uses an additive adjustment parameter (i.e ad
 the function \code{Epgo_binary_R2} uses a multiplicative adjustment parameter (i.e. use estimate with a retention factor)
 }
 \examples{
-res <- Epgo_binary_L2(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, p0 = 0.6,  w = 0.3,
+res <- Epgo_binary_L2(RRgo = 0.8, n2 = 50, Adj = 0,  p0 = 0.6,  w = 0.3,
                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
                               fixed = FALSE)
-          res <- Epgo_binary_R2(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, p0 = 0.6,  w = 0.3,
+          res <- Epgo_binary_R2(RRgo = 0.8, n2 = 50, Adj = 1,  p0 = 0.6,  w = 0.3,
                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
                               fixed = FALSE)
 }

@@ -59,8 +59,6 @@ utility23_binary(
 
 \item{b3}{expected gain for effect size category \code{"large"}}
 
-\item{Adj}{adjustment parameter}
-
 \item{fixed}{choose if true treatment effects are fixed or random}
 }
 \value{
