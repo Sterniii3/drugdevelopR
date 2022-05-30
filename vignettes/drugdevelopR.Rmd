@@ -1,0 +1,89 @@
+---
+title: "drugdevelopR"
+author: "Johannes Cepicka"
+date: "22/05/29"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{drugdevelopR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# "Introduction to planning phase II and phase III-trials with drugdevelopR"
+
+This document serves as a short introduction into the R-package drugdevelopR. Specifically it shows how to work in the basic setting, i.e. when the drug development program consists of a single exploratory phase II trial which is, in case of promising results, followed by one confirmatory phase III trial testing the superiority of an experimental treatment over a control treatment. For this introduction we consider normally distributed endpoints. Note, that in the drugdevelopR package functions to evaluate binary distributed or time-to-event endpoints are also implemented.
+The theoretical foundations were laid in the dissertation  "Integrated Planning of Pilot and Subsequent Confirmatory Study in Clinical Research – Finding Optimal Designs in a Utility-Based Framework"  by Stella Erdmann at the Institute of Medical Biometry at the University of Heidelberg. 
+
+The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. For normally distributed endpoints the treatment effect is measured by the standardized difference in means (Delta). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
+
+You can install the development version of the package directly from [GitHub](https://github.com/) with:
+```{r, eval = FALSE}
+if(!require(devtools)) { install.packages("devtools"); require(devtools)} 
+
+devtools::install_github("Sterniii3/drugdevelopR")
+```
+and access the drugdevelopR App via [https://web.imbi.uni-heidelberg.de/drugdevelopR/](https://web.imbi.uni-heidelberg.de/drugdevelopR/).
+
+After loading the drugevelopR framework by
+```{r}
+# library(drugdevelopR)
+```
+you can now start working with the package.
+
+## The Parameters 
+
+At first it is recommendable to familiarize with the the parameters. The  parameter `Delta1` serves as assumed true treatment effect and is given as standardized differences in means between the the treatment arm and the control arm. If treatment effects are assumed to be fixed (by setting the parameter `fixed` = `"TRUE"`), `Delta1` is the only relevant parameter for the treatment effect. However, when using an estimation with a prior distribution (by setting `fixed` = `"False"`), a second parameter `Delta2` for the assumed true treatment effect becomes relevant. The prior distribution models the true assumed treatment effect as the weighted sum over two normally distributed variables, where `Delta1` and `Delta2` serve as means. The variances are given by the parameters `4/in1` and `4/in2`. Here, `in1`and `in2` are considered to be the amount of information for `Delta1`and `Delta2` in terms of sample size, i.e. for larger sample sizes the variances shrink. The parameter `w` serves as a weight for the mixture of the prior distribution and `a` and `b` are the boundaries for the truncation of the prior distribution.
+
+Further important input values are the significance level `alpha` and the 1-beta power for the calculation of the sample size for phase III `beta`.
+
+In order to find the solution with the highest utility, the optimization region has to be declared. This is done by setting mininum `n2min` and maximum `n2max` values for the sample size, i.e. the number of participants in phase II and the stepsize for the optimization `stepn2`. All of this numbers have to be even in the basic setting. 
+The same now has to be done for the threshold value to go to phase III by entering values for `kappamin`, `kappamax` and `stepkappa`.
+
+Finally the costs and expected gains of the drug development program have to be set. The fixed costs for phase II and III are denoted by the parameter `c2` and `c3`, the variable costs per participant by `c02` and  `c03`, respectively. For each effect size category small, medium or large expected gains can be declared by setting values for `b1`, `b2` and `b3`.
+
+Running the program with some realistic parameter values results in:
+```{r}
+# res <- optimal_normal(w=0.3, Delta1 = 0.375, Delta2 = 0.625, 
+#                       in1=300, in2=600,  a = 0.25, b = 0.75,  
+#                       n2min = 20, n2max = 100, stepn2 = 4,
+#                       kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,      #                       alpha = 0.05, beta = 0.1,  
+#                       c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,  
+#                       b1 = 3000, b2 = 8000, b3 = 10000) 
+```
+
+Besides this basic input parameters, further already preset parameters can be changed. First of all, the lower boundaries for the different effect size categories can be changed by choosing values for `steps1`, `stepm1` and `stepl1`. Furthermore, optimization constraints can be introduced by setting maximum costs `K`, the total exptected sample size of the program `N` and the minimum expected probability of a successful program `S`.
+
+Another important feature is whether the assumed treatment effects are fixed or not (parameter `fixed`). The default value for this parameter is `"False"`.
+
+For specific purposes it can also interesting to investigate differences in the population structures of the participants of phase II and III. This can be done by changing the value for the parameter `gamma`. Furthermore, if skipping of phase II is an option this can be done by changing the parameter `skipII` from its default value `False` to `True`.
+
+Last but not least, parallel computing is enabled by choosing the number of clusters by changing the parameter `num_cl`.
+
+Thus the optimal_normal function with all additional input parameters set to default looks like:
+```{r}
+# res <- optimal_normal(w, Delta1, Delta2, in1, in2, a, b,
+#                       n2min, n2max, stepn2,
+#                       kappamin, kappamax, stepkappa,
+#                       alpha, beta, 
+#                       c2, c3, c02, c03, 
+#                       K = Inf, N = Inf, S = -Inf,
+#                       steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
+#                       b1, b2, b3,
+#                       gamma = 0,  fixed = FALSE,
+#                       skipII = FALSE,  num_cl = 1) 
+```
+
+## The Output 
+
+After setting all these input parameters we no take a closer look at the output of the program. The program returns a total of 13 values, which will no be explained in a bit more detail. The most important returns are the maximal expected utility of the program `u` and the optimal sample sizes for phase II and III `n2` and `n3`, as well as the optimal threshold value to go to phase III `kappa`.
+
+Further output parameters are the total sample size `n`= `n2`+`n3` and the maximum costs of the program `K`, as well as the total costs for phase II and phase III, `K2` and `K3`, respectively. 
+
+Additionally the program returns the probability to go to phase III `pgo` and the total expected probability of a successful program `sProg`. The value for `sProg` is the sum of the expected probabilities of a successful program for small, medium or large treatment effects. These values are also returned and are given by `sProg1`, `sProg2` and `sProg3`.
