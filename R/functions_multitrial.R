@@ -34,15 +34,15 @@
 #' @param fixed choose if true treatment effects are fixed or random
 #' @return The output of the the function EPsProg2(), EPsProg3() and EPsProg4() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively)
 #' @examples res <- EPsProg2(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
-#'                                  w = 0.3, hr1 =  0.69, hr1 = 0.81, 
+#'                                  w = 0.3, hr1 =  0.69, hr2 = 0.81, 
 #'                                  id1 = 210, id2 = 420, case = 2, size = "small",
 #'                                  fixed = FALSE)
 #'           res <- EPsProg3(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
-#'                                  w = 0.3, hr1 =  0.69, hr1 = 0.81, 
+#'                                  w = 0.3, hr1 =  0.69, hr2 = 0.81, 
 #'                                  id1 = 210, id2 = 420, case = 2, size = "small",
 #'                                  fixed = FALSE)
 #'           res <- EPsProg4(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
-#'                                  w = 0.3, hr1 =  0.69, hr1 = 0.81, 
+#'                                  w = 0.3, hr1 =  0.69, hr2 = 0.81, 
 #'                                  id1 = 210, id2 = 420, case = 3, size = "small",
 #'                                  fixed = FALSE)
 #' @name EPsProg_multitrial                                 
@@ -398,21 +398,21 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
 #' @param fixed choose if true treatment effects are fixed or random
 #' @return The output of the the functions `utility2()`, `utility3()` and `utility4()` is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
 #' @examples res <- utility(d2 = 50, HRgo = 0.8,  w = 0.3, 
-#'                                  hr1 =  0.69, hr1 = 0.81, 
+#'                                  hr1 =  0.69, hr2 = 0.81, 
 #'                                  id1 = 210, id2 = 420, alpha = 0.025, beta = 0.1,
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                  K = Inf, N = Inf, S = -Inf,
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
 #'                                  case = 2, fixed = FALSE)
 #'           res <- utility3(d2 = 50, HRgo = 0.8,  w = 0.3, 
-#'                                  hr1 =  0.69, hr1 = 0.81, 
+#'                                  hr1 =  0.69, hr2 = 0.81, 
 #'                                  id1 = 210, id2 = 420, alpha = 0.025, beta = 0.1,
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                  K = Inf, N = Inf, S = -Inf,
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
 #'                                  case = 2, fixed = FALSE)
 #'          res <- utility4(d2 = 50, HRgo = 0.8,  w = 0.3, 
-#'                                  hr1 =  0.69, hr1 = 0.81, 
+#'                                  hr1 =  0.69, hr2 = 0.81, 
 #'                                  id1 = 210, id2 = 420, alpha = 0.025, beta = 0.1,
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                  K = Inf, N = Inf, S = -Inf,

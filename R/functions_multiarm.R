@@ -165,7 +165,7 @@ ss_tte<-function(alpha,beta,ec,ek,y,l){
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
 #' @return the function Ess_tte() returns the expected sample size for phase III when going to phase III
 #' @examples res <- Ess_tte(HRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
-#'                             ec = 0.6, hr1 = 0.7, hr2 = 0.8, strategy = 3, case = 31)
+#'                             ec = 0.6, hr1 = 0.7, hr2 = 0.8, strategy = 2, case = 21)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
 Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
@@ -284,7 +284,7 @@ Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
 #' @return The function PsProg_tte() returns the probability of a successful program
 #' @examples res <- PsProg_tte(HRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             ec = 0.6, hr1 = 0.7, hr2 = 0.8, step1 = 1, step2 = 0.95,
-#'                             strategy = 3, case = 31)
+#'                             strategy = 2, case = 21)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
 PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){

@@ -66,7 +66,7 @@
 #'   stepm1 = 0.95,                                         # "medium"
 #'   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
 #'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
-#'   rho = 1/2, relaxed = "TRUE"                            # relaxed "TRUE"
+#'   rho = 1/2, relaxed = TRUE,                             # relaxed "TRUE"
 #'   fixed = TRUE,                                          #   treatment effect
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 #' res
@@ -135,7 +135,7 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
       cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
       clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_normal", "Ess_multiple_normal",
-                          "EPsProg_normal", "posp_normal", "alpha", "beta",
+                          "EPsProg_normal", "posp_normal", "fmin", "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                           "K", "N", "S",
                           "c2", "c3", "c02", "c03",
