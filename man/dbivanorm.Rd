@@ -25,7 +25,7 @@ dbivanorm(x, y, mu1, mu2, sigma1, sigma2, rho)
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-The Function \code{dbivanrom()} will return the density of a bivariate normal distribution.
+The Function \code{dbivanorm()} will return the density of a bivariate normal distribution.
 }
 \description{
 Density of the bivariate normal distribution

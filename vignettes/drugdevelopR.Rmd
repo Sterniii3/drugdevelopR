@@ -33,13 +33,13 @@ and access the drugdevelopR App via [https://web.imbi.uni-heidelberg.de/drugdeve
 
 After loading the drugevelopR framework by
 ```{r}
-# library(drugdevelopR)
+ # library(drugdevelopR)
 ```
 you can now start working with the package.
 
 ## The Parameters 
 
-At first it is recommendable to familiarize with the the parameters. The  parameter `Delta1` serves as assumed true treatment effect and is given as standardized differences in means between the the treatment arm and the control arm. If treatment effects are assumed to be fixed (by setting the parameter `fixed` = `"TRUE"`), `Delta1` is the only relevant parameter for the treatment effect. However, when using an estimation with a prior distribution (by setting `fixed` = `"False"`), a second parameter `Delta2` for the assumed true treatment effect becomes relevant. The prior distribution models the true assumed treatment effect as the weighted sum over two normally distributed variables, where `Delta1` and `Delta2` serve as means. The variances are given by the parameters `4/in1` and `4/in2`. Here, `in1`and `in2` are considered to be the amount of information for `Delta1`and `Delta2` in terms of sample size, i.e. for larger sample sizes the variances shrink. The parameter `w` serves as a weight for the mixture of the prior distribution and `a` and `b` are the boundaries for the truncation of the prior distribution.
+At first it is recommendable to familiarize with the the parameters. The  parameter `Delta1` serves as assumed true treatment effect and is given as standardized differences in means between the the treatment arm and the control arm. If treatment effects are assumed to be fixed (by setting the parameter `fixed` = `"TRUE"`), `Delta1` is the only relevant parameter for the treatment effect. However, when using an estimation with a prior distribution (by setting `fixed` = `"False"`), a second parameter `Delta2` for the assumed true treatment effect becomes relevant. The prior distribution models the true assumed treatment effect as the weighted sum over two normally distributed variables, where `Delta1` and `Delta2` serve as means. The variances are given by the parameters `4/in1` and `4/in2`. Here, `in1` and `in2` are considered to be the amount of information for `Delta1` and `Delta2` in terms of sample size, i.e. for larger sample sizes the variances shrink. The parameter `w` serves as a weight for the mixture of the prior distribution and `a` and `b` are the boundaries for the truncation of the prior distribution.
 
 Further important input values are the significance level `alpha` and the 1-beta power for the calculation of the sample size for phase III `beta`.
 
@@ -66,7 +66,7 @@ For specific purposes it can also interesting to investigate differences in the 
 
 Last but not least, parallel computing is enabled by choosing the number of clusters by changing the parameter `num_cl`.
 
-Thus the optimal_normal function with all additional input parameters set to default looks like:
+Thus the optimal_normal function with all additional input parameters set to their default values looks like:
 ```{r}
 # res <- optimal_normal(w, Delta1, Delta2, in1, in2, a, b,
 #                       n2min, n2max, stepn2,
@@ -82,7 +82,7 @@ Thus the optimal_normal function with all additional input parameters set to def
 
 ## The Output 
 
-After setting all these input parameters we no take a closer look at the output of the program. The program returns a total of 13 values, which will no be explained in a bit more detail. The most important returns are the maximal expected utility of the program `u` and the optimal sample sizes for phase II and III `n2` and `n3`, as well as the optimal threshold value to go to phase III `kappa`.
+After setting all these input parameters we now take a closer look at the output of the program. The program returns a total of 13 values, which will now be explained in a bit more detail. The most important returns are the maximal expected utility of the program `u` and the optimal sample sizes for phase II and III `n2` and `n3`, as well as the optimal threshold value to go to phase III `kappa`.
 
 Further output parameters are the total sample size `n`= `n2`+`n3` and the maximum costs of the program `K`, as well as the total costs for phase II and phase III, `K2` and `K3`, respectively. 
 

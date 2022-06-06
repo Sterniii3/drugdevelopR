@@ -159,7 +159,7 @@ res <- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed
   stepm1 = 0.95,                                         # "medium"
   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
-  rho = 1/2, relaxed = "TRUE"                            # relaxed "TRUE"
+  rho = 1/2, relaxed = TRUE,                             # relaxed "TRUE"
   fixed = TRUE,                                          #   treatment effect
   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 res
