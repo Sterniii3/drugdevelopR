@@ -57,7 +57,7 @@
 #' @examples
 #' res <- optimal_multiple_tte(hr1 = 0.75, hr2 = 0.80, ec = 0.6,# define assumed true HRs and control arm event rate
 #'   id1 = 210, id2 = 420,
-#'   n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
+#'   d2min = 30, d2max = 90, stepd2 = 6,                    # define optimization set for n2
 #'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
 #'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
@@ -113,7 +113,7 @@ stepl2 <- 0
 date <- Sys.time()
 
 HRGO <- seq(hrgomin, hrgomax, stephrgo)
-N2   <- seq(n2min, n2max, stepn2)
+N2   <- seq(d2min, d2max, stepd2)
 
 
 result <- NULL
