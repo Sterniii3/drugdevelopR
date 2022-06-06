@@ -164,9 +164,9 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
     cat("", fill = TRUE)
     pb <- txtProgressBar(min = 0, max = length(ADJ), style = 3, label = "Optimization progess")
     
-    for(a in 1:length(ADJ)){
+    for(t in 1:length(ADJ)){
       
-      Adj <- ADJ[a]
+      Adj <- ADJ[t]
       
       ufkt <- n3fkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
         sp1fkt <- sp2fkt <- sp3fkt <- matrix(0, length(N2), length(KAPPA))
@@ -228,7 +228,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                            fixed)  
         }
         
-        setTxtProgressBar(title= "i", pb, a)
+        setTxtProgressBar(title= "i", pb, t)
         stopCluster(cl)
         
         ufkt[, j]      <-  res[1, ]

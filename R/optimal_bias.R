@@ -1,6 +1,9 @@
 #' Optimal phase II/III drug development planning when discounting phase II results
 #'
-#' The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results (Preussler et. al, 2020). The assumed true treatment effects can be assumed fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}) or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast computing is enabled by parallel programming.
+#' The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results (Preussler et. al, 2020). 
+#' The assumed true treatment effects can be assumed fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}) or modelled by a prior distribution.
+#' The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. 
+#' Fast computing is enabled by parallel programming.
 #' 
 #' @name optimal_bias
 #' @param w weight for mixture prior distribution
@@ -111,8 +114,6 @@
 #'
 #' Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
 #'
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @export
 optimal_bias <- function(w, hr1, hr2, id1, id2,
                         d2min, d2max, stepd2,
