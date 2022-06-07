@@ -49,7 +49,7 @@ In order to apply the package to the setting from our example, we need to specif
 * `n2min` and `n2max` specify the minimal and maximal number of participants for the phase II trial. The package will search for the optimal sample size within this region. For now, we want the program to search for the optimal sample size in the interval between 20 and 100 participants. In addition, we will tell the program to search this region in steps of four participants at a time by setting `stepn2 = 4`.
 * `kappamin` and `kappamax` specify the minimal and maximal threshold value for the go/no-go decision rule. The package will search for the optimal threshold value within this region. For now, we want the program to search in the interval between 0.02 and 0.2 while going in steps of `stepkappa = 0.02`.
 * `c2` and `c3` are fixed maximal costs for phase II and phase III respectively. We will set the phase II costs to 0.675 and the phase III costs to 0.72. (TODO: Stimmt es, dass es sich hierbei um die festen maximalen Kosten handelt? Ich fände es schön, wenn es hier noch eine Interpretation gäbe. Sind mit diesem Kommazahlen der Anteil an einer Gesamtsumme gemeint, also z.B. 0.675 =67.5% der Gesamtkosten? Oder handelt es sich um Millionen Euro, also 0.675 = 675 000€?)
-* `c02` and `c03` are the maximal costs in phase II and phase III per patient. We will set them to be 15 in phase II and 20 in phase III. (TODO: Stimmt das? Was ist die Interpretation hiervon von diesen Kosten? Euro?)
+* `c02` and `c03` are the maximal costs in phase II and phase III per patient. We will set them to be 15 in phase II and 20 in phase III. (TODO: Stimmt es, dass es sich hierbei um maximale Kosten handelt? Was ist die Interpretation hiervon von diesen Kosten? Euro?)
 * `b1`, `b2` and `b3` are the expected small, medium and large gains for the patients for each effect size category. We will define a small benefit of 3000, a medium benefit of 8000, and a large benefit of 10000. (TODO: Was sind "effect size categories"? Können wir den Begriff erklären? Was sind "gains"? Können wir den Begriff erklären? Vielleicht wäre "benefit" hier ein besserer Begriff. Dann sollten wir aber auch erklären, inwiefern diese Zahlen die Vorzüge für die Patient*in darstellen.)
 * `alpha` is the specified significance level. We will set `alpha = 0.05`.
 * 1 - `beta` is the minimal power that we require for our drug development program. We will set `beta = 0.1`, meaning that we require a power of 90%.
@@ -89,7 +89,7 @@ Additionally the program returns the probability to go to phase III `pgo` and th
 
 # Where to go from here
 
-This tutorial only covered drugdevelopR's basic setting. Luckily, its functionality extends to a multitude of different settings. If the example above doesn't suit your needs, you can adapt it to your specific setting:
+This tutorial only covered drugdevelopR's basic setting. Luckily, the package's functionality extends to a multitude of different settings. If the example above doesn't suit your needs, you can adapt it to your specific setting:
 
 * *Different outcomes:* Apply it to binary endpoints and time-to-event endpoints.
 * *Interpreting the rest of the output:* Obtain further details on your drug development program.

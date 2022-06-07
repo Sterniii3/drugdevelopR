@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# drugdevelopR: Utility based optimal phase II/III drug development planning.
+# drugdevelopR: Utility-based optimal phase II/III drug development planning.
 
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.com/Sterniii3/drugdevelopR.svg?branch=master)](https://travis-ci.com/Sterniii3/drugdevelopR)
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 The drugdevelopR package enables you to plan phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. The assumed true treatment effects can be fixed or modelled by a prior distribution. The corresponding [R Shiny application](https://web.imbi.uni-heidelberg.de/drugdevelopR/) has a graphic user interface for the package and thus makes it accessible for users without prior knowledge of R. Fast computing is made possible by parallel programming. The theoretical foundations for this package were laid in the dissertation  "Integrated Planning of Pilot and Subsequent Confirmatory Study in Clinical Research – Finding Optimal Designs in a Utility-Based Framework"  by Stella Erdmann at the Institute of Medical Biometry at the University of Heidelberg.
 
-On our webpage, we supply [full documentation]() of all functions as well as a [tutorial for getting started](https://sterniii3.github.io/drugdevelopR/vignettes/this-link-is-not-yet-working) with drugdevelopR.
+On our webpage, we supply [full documentation](https://sterniii3.github.io/drugdevelopR/references/index.html) of all functions as well as a [tutorial for getting started](https://sterniii3.github.io/drugdevelopR/vignettes/this-link-is-not-yet-working) with drugdevelopR.
 
 ## Installation
 
