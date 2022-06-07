@@ -98,7 +98,7 @@ optimal_normal(
 
 \item{gamma}{to model different populations in phase II and III choose gamma!=0, default: 0}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect}
 
 \item{skipII}{choose if skipping phase II is an option, default: FASLE}
 

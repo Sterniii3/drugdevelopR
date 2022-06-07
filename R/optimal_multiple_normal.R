@@ -62,11 +62,11 @@
 #'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
 #'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
-#'   steps1 = 1,                                            # define lower boundary for "small"
-#'   stepm1 = 0.95,                                         # "medium"
-#'   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
+#'   steps1 = 0,                                            # define lower boundary for "small"
+#'   stepm1 = 0.5,                                         # "medium"
+#'   stepl1 = 0.88,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
 #'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
-#'   rho = 1/2, relaxed = "TRUE"                            # relaxed "TRUE"
+#'   rho = 0.5, relaxed = TRUE,                             # relaxed "TRUE"
 #'   fixed = TRUE,                                          #   treatment effect
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 #' res
@@ -135,7 +135,7 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
       cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
       clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_normal", "Ess_multiple_normal",
-                          "EPsProg_normal", "posp_normal", "alpha", "beta",
+                          "EPsProg_normal", "posp_normal", "fmin", "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                           "K", "N", "S",
                           "c2", "c3", "c02", "c03",

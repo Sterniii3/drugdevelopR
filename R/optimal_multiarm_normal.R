@@ -49,7 +49,7 @@
 #'
 #' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' @examples
-#' res <- optimal_normal(Delta1 = 0.375, Delta2 = 0.625,     
+#' res <- optimal_multiarm_normal(Delta1 = 0.375, Delta2 = 0.625,     
 #'   n2min = 20, n2max = 100, stepn2 = 4,                   # define optimization set for n2
 #'   kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,     # define optimization set for kappa
 #'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
@@ -59,6 +59,7 @@
 #'   stepm1 = 0.5,                                          # "medium"
 #'   stepl1 = 0.8,                                          # and "large" treatment effect size categories as proposed by e.g. Cohen (1988)
 #'   b1 = 3000, b2 = 8000, b3 = 10000,                      # define expected benefit for a "small", "medium" and "large" treatment effect
+#'   strategy = 1,
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 #' res
 #' cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.

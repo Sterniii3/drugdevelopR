@@ -18,7 +18,10 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item">
+      <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/drugdevelopR.html">Get started</a>
+</li>
+<li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item">
@@ -235,12 +238,45 @@ Taking cat(comment()) of the data.frame object lists the used optimization seque
 <span class="r-in">  case <span class="op">=</span> <span class="fl">1</span>, strategy <span class="op">=</span> <span class="cn">TRUE</span>,                             <span class="co"># chose Case and Strategy</span></span>
 <span class="r-in">  fixed <span class="op">=</span> <span class="cn">TRUE</span>,                                          <span class="co"># choose if true treatment effects are fixed or random</span></span>
 <span class="r-in">  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                            <span class="co"># set number of cores used for parallelized computing (check maximum number possible with detectCores())</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in qnorm(1 - alpha):</span> object 'alpha' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Case  1 : Optimization progess for Strategy  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Case  1 : Optimization progess for Strategy  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Case Strategy       u Kappa  n2  n3   n  pgo sProg Delta   K   N    S K2  K3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    1        1 1890.94  0.10 100 376 476 0.92  0.74 0.375 Inf Inf -Inf 82 289</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    1        2 1928.79  0.12 100 656 756 0.90  0.82 0.375 Inf Inf -Inf 82 508</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03    c2   c3   b1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.74   0.01      0      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   0.81   0.01      0      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     b2    b3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 8000 10000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 8000 10000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="va">res</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'res' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Case Strategy       u Kappa  n2  n3   n  pgo sProg Delta   K   N    S K2  K3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    1        1 1890.94  0.10 100 376 476 0.92  0.74 0.375 Inf Inf -Inf 82 289</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    1        2 1928.79  0.12 100 656 756 0.90  0.82 0.375 Inf Inf -Inf 82 508</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03    c2   c3   b1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.74   0.01      0      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   0.81   0.01      0      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     b2    b3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 8000 10000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 8000 10000</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/comment.html" class="external-link">comment</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span>                                        <span class="co"># displays the optimization sequence, start and finish date of the optimization procedure.</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in comment(res):</span> object 'res' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence kappa: 0.02 0.04 0.06 0.08 0.1 0.12 0.14 0.16 0.18 0.2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence n2: 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2022-06-06 13:59:24 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2022-06-06 13:59:57</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

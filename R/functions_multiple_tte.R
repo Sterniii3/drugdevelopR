@@ -319,7 +319,7 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
 #' @param rho correlation between the two endpoints
 #' @return The output of the the function `os_tte()` is the probability that endpoint OS significant.
 #' @examples res <- os_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
-#'                                ec = 0.6,hr1 = 0.75, hr2 = 0.80, 
+#'                                hr1 = 0.75, hr2 = 0.80, 
 #'                                id1 = 300, id2 = 600, 
 #'                                fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka

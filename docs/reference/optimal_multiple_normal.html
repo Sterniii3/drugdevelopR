@@ -18,7 +18,10 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item">
+      <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/drugdevelopR.html">Get started</a>
+</li>
+<li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item">
@@ -153,10 +156,7 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>The output of the function <code><a href="optimal_multiple_tte.html">optimal_multiple_tte</a></code> is a data.frame containing the optimization results:</p><dl><dt>Strategy</dt>
-<dd><p>Strategy, 1: "only best promising" or 2: "all promising"</p></dd>
-
-<dt>u</dt>
+    <p>The output of the function <code><a href="optimal_multiple_tte.html">optimal_multiple_tte</a></code> is a data.frame containing the optimization results:</p><dl><dt>u</dt>
 <dd><p>maximal expected utility</p></dd>
 
 <dt>HRgo</dt>
@@ -195,9 +195,6 @@
 <dt>K3</dt>
 <dd><p>expected costs for phase III</p></dd>
 
-<dt>OP</dt>
-<dd><p>probability that one endpoint is significant</p></dd>
-
 
 </dl><p>and further input parameters.
 res
@@ -225,7 +222,29 @@ Taking cat(comment()) of the data.frame object lists the used optimization seque
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">optimal_multiple_normal</span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.75</span>, Delta2 <span class="op">=</span> <span class="fl">0.80</span>,    <span class="co"># define assumed true HRs and control arm event rate</span></span>
+<span class="r-in">  in1<span class="op">=</span><span class="fl">300</span>, in2<span class="op">=</span><span class="fl">600</span>, sigma1 <span class="op">=</span> <span class="fl">8</span>, sigma2<span class="op">=</span> <span class="fl">12</span>,</span>
+<span class="r-in">  n2min <span class="op">=</span> <span class="fl">30</span>, n2max <span class="op">=</span> <span class="fl">90</span>, stepn2 <span class="op">=</span> <span class="fl">6</span>,                    <span class="co"># define optimization set for n2</span></span>
+<span class="r-in">  kappamin <span class="op">=</span> <span class="fl">0.7</span>, kappamax <span class="op">=</span> <span class="fl">0.9</span>, stepkappa <span class="op">=</span> <span class="fl">0.05</span>,         <span class="co"># define optimization set for HRgo</span></span>
+<span class="r-in">  alpha <span class="op">=</span> <span class="fl">0.05</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                              <span class="co"># drug development planning parameters</span></span>
+<span class="r-in">  c2 <span class="op">=</span> <span class="fl">0.75</span>, c3 <span class="op">=</span> <span class="fl">1</span>, c02 <span class="op">=</span> <span class="fl">100</span>, c03 <span class="op">=</span> <span class="fl">150</span>,               <span class="co"># define fixed and variable costs for phase II and III</span></span>
+<span class="r-in">  K <span class="op">=</span> <span class="cn">Inf</span>, N <span class="op">=</span> <span class="cn">Inf</span>, S <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>,                            <span class="co"># set maximal costs/ expected sample size for the program or minimal expected probability of a successful program</span></span>
+<span class="r-in">  steps1 <span class="op">=</span> <span class="fl">1</span>,                                            <span class="co"># define lower boundary for "small"</span></span>
+<span class="r-in">  stepm1 <span class="op">=</span> <span class="fl">0.95</span>,                                         <span class="co"># "medium"</span></span>
+<span class="r-in">  stepl1 <span class="op">=</span> <span class="fl">0.85</span>,                                         <span class="co"># and "large" treatment effect size categories as proposed by IQWiG (2016)</span></span>
+<span class="r-in">  b1 <span class="op">=</span> <span class="fl">1000</span>, b2 <span class="op">=</span> <span class="fl">2000</span>, b3 <span class="op">=</span> <span class="fl">3000</span>,                       <span class="co"># define expected benefit for a "small", "medium" and "large" treatment effect</span></span>
+<span class="r-in">  rho <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span>, relaxed <span class="op">=</span> <span class="cn">TRUE</span>,                             <span class="co"># relaxed "TRUE"</span></span>
+<span class="r-in">  fixed <span class="op">=</span> <span class="cn">TRUE</span>,                                          <span class="co">#   treatment effect</span></span>
+<span class="r-in">  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                            <span class="co"># set number of cores used for parallelized computing (check maximum number possible with detectCores())</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization progress:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in checkForRemoteErrors(val):</span> one node produced an error: non-finite function value</span>
+<span class="r-in"><span class="va">res</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'res' not found</span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/comment.html" class="external-link">comment</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span>                                        <span class="co"># displays the optimization sequence, start and finish date of the optimization procedure.</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in comment(res):</span> object 'res' not found</span>
+</code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
