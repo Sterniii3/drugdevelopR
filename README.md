@@ -25,10 +25,10 @@ Confirmatory Study in Clinical Research – Finding Optimal Designs in a
 Utility-Based Framework” by Stella Erdmann at the Institute of Medical
 Biometry at the University of Heidelberg.
 
-On our webpage, we supply [full
-documentation](https://sterniii3.github.io/drugdevelopR/references/index.html)
+On the package webpage, we supply [full
+documentation](https://sterniii3.github.io/drugdevelopR/reference/index.html)
 of all functions as well as a [tutorial for getting
-started](https://sterniii3.github.io/drugdevelopR/vignettes/this-link-is-not-yet-working)
+started](https://sterniii3.github.io/drugdevelopR/vignettes/introduction-to-drugdevelopr.html)
 with drugdevelopR.
 
 ## Installation
