@@ -18,18 +18,19 @@ knitr::opts_chunk$set(
 )
 ```
 
-Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
+Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our  drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
 
 The drugdevelopR package enables us to plan such programs. Specifically, it calculates
 
 * the optimal sample size for phase II and the resulting sample size for phase III, as well as
 * the optimal go/no-go decision rule.
 
-The decision rule is the optimal threshold for deciding whether we should proceed to phase III based on the results of phase II. Optimization is performed with respect to a utility function which takes the program's cost, its success probability and its benefit for the patient into account. (TODO: Stimmt das?)
+The decision rule is the optimal threshold for deciding whether we should proceed to phase III based on the results of phase II. Optimization is performed with respect to a utility function which takes the program's cost, its success probability and its benefit for the patient into account. (TODO: Stimmt das? Gains oder benefit? Lass uns überall den gleichen Begriff verwenden.)
 
 But now, let's get started with a hands-on example.
 
 # The example setting
+
 Suppose we are developing a new tumor treatment, *exper*. The patient variable that we want to investigate is the difference in tumor width between the one-year visit and baseline. This is a normally distributed outcome variable.
 
 Within our drug development program, we will compare our experimental treatment *exper* to the control treatment *contro*. Building on available data, we expect that the mean tumor difference amounts to $11.1±1.1 \mathrm{mm}$ for *contro* and $99.9.±9.9 \mathrm{mm}$ for *exper*. (TODO: Ändere die Zahlenwerte hier so wie es passt) (TODO: Wie berechnet sich der standartisierte Behandlungsunterschied?) Thus, we obtain a standardized treatment difference of $\Delta_1 = 0.999$. (TODO: Ändere hier den Zahlenwert)
@@ -79,13 +80,21 @@ Now that we have defined all parameters needed for our example, we are ready to 
 
 ## Interpreting the output
 
-(TODO: Das müsste noch überarbeitet werden. Hier auch nur die drei Basics erklären.)
+(TODO: Wie machen wir das mit der Ausgabe der Funktion oben? Vorschlag: Wir unterdrücken das Ausführen des obigen R-Chunks mit `eval = FALSE`. Dann führst du den Code einmal bei dir auf dem Computer aus und speicherst das Objekt `res` als .RDS-Datei im vignettes/-Unterordner ab, am Besten mit selbsterklärendem Namen wie `introduction-to-drugdevelopR-example.RDS`. Dann können wir das in einem unsichtbaren R-Chunk (`include=FALSE`) in dieser Vignette in das Objekt `res` laden und anschließend im nächsten Code-Chunk aufrufen.)
 
-After setting all these input parameters we now take a closer look at the output of the program. The program returns a total of 13 values, which will now be explained in a bit more detail. The most important returns are the maximal expected utility of the program `u` and the optimal sample sizes for phase II and III `n2` and `n3`, as well as the optimal threshold value to go to phase III `kappa`.
+After setting all these input parameters and running the function, let's take a look at the output of the program.
 
-Further output parameters are the total sample size `n`= `n2`+`n3` and the maximum costs of the program `K`, as well as the total costs for phase II and phase III, `K2` and `K3`, respectively. 
+```{r}
+# res
+```
 
-Additionally the program returns the probability to go to phase III `pgo` and the total expected probability of a successful program `sProg`. The value for `sProg` is the sum of the expected probabilities of a successful program for small, medium or large treatment effects. These values are also returned and are given by `sProg1`, `sProg2` and `sProg3`.
+
+The program returns a total of thirteen values. For now, we will only look at the most important ones:
+
+* `res$n2` is the optimal sample size for phase II and `res$n3` the resulting sample size for phase III. We see that the optimal scenario requires 111 participants in phase II and 999 participants in phase III. (TODO: Zahlenwerte ändern.)
+* `res$kappa` is the optimal threshold value for the go/no-go decision rule. We see that we need a treatment effect of more than 0.99 in phase II in order to proceed to phase III. (TODO: Zahlenwerte ändern.)
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 999. (TODO: Zahlenwerte ändern.)
+
 
 # Where to go from here
 
