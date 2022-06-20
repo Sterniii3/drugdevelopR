@@ -25,7 +25,8 @@ BugReports: https://github.com/Sterniii3/drugdevelopR/issues
 Suggests: 
     rmarkdown,
     knitr,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    covr
 VignetteBuilder: knitr
 Imports: 
     valtools
