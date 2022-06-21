@@ -73,7 +73,7 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #'                                fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-pgo_multipe_tte<-function(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho){
+pgo_multiple_tte<-function(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho){
   
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
   e22<-hr2*n2 # number of events phase II for endpoint 2 (OS)
@@ -245,7 +245,7 @@ expn3go_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
 #' @return The output of the the function `EPsProg_multiple_tte()` is the expected probability of a successful program, when going to phase III.
-#' @examples res <- EPsProg_tte(HRgo = 0.8, n2 = 50, alpha = 0.025, beta = 0.1,
+#' @examples res <- EPsProg_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                ec = 0.6, hr1 = 0.75, hr2 = 0.80,
 #'                                id1 = 300, id2 = 600, 
 #'                                step1 = 1, step2 = 0.95,
