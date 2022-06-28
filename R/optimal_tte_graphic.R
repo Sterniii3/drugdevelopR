@@ -90,7 +90,7 @@
 #' @seealso \code{\link{optimal_binary}}, \code{\link{optimal_normal}}, \code{\link{optimal_bias}}, \code{\link{optimal_multitrial}} and \code{\link{optimal_multiarm}}
 #'
 #' @export
-optimal_tte <- function(w,  hr1, hr2, id1, id2,
+optimal_tte_graphic <- function(w,  hr1, hr2, id1, id2,
                         d2min, d2max, stepd2,
                         hrgomin, hrgomax, stephrgo,
                         alpha, beta, xi2, xi3,

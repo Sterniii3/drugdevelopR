@@ -10,6 +10,8 @@ status](https://travis-ci.com/Sterniii3/drugdevelopR.svg?branch=master)](https:/
 [![CRAN
 status](https://www.r-pkg.org/badges/version/drugdevelopR)](https://CRAN.R-project.org/package=drugdevelopR)
 [![R-CMD-check](https://github.com/Sterniii3/drugdevelopR/workflows/R-CMD-check/badge.svg)](https://github.com/Sterniii3/drugdevelopR/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/Sterniii3/drugdevelopR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Sterniii3/drugdevelopR?branch=master)
 <!-- badges: end -->
 
 The drugdevelopR package enables you to plan phase II/III drug
@@ -52,12 +54,12 @@ program with a normally distributed outcome:
 
 ``` r
 library(drugdevelopR)
-#> Loading required package: mvtnorm
-#> Loading required package: doParallel
-#> Loading required package: foreach
-#> Loading required package: iterators
-#> Loading required package: parallel
-#> Loading required package: msm
-#> Loading required package: cubature
+#> Lade nötiges Paket: mvtnorm
+#> Lade nötiges Paket: doParallel
+#> Lade nötiges Paket: foreach
+#> Lade nötiges Paket: iterators
+#> Lade nötiges Paket: parallel
+#> Lade nötiges Paket: msm
+#> Lade nötiges Paket: cubature
 # TODO: Fill example here.
 ```
