@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# drugdevelopR
+# drugdevelopR: Utility-based optimal phase II/III drug development planning.
 
 <!-- badges: start -->
 
@@ -14,50 +14,52 @@ status](https://www.r-pkg.org/badges/version/drugdevelopR)](https://CRAN.R-proje
 coverage](https://codecov.io/gh/Sterniii3/drugdevelopR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Sterniii3/drugdevelopR?branch=master)
 <!-- badges: end -->
 
-The goal of drugdevelopR is to …
+The drugdevelopR package enables you to plan phase II/III drug
+development programs with optimal sample size allocation and go/no-go
+decision rules. The assumed true treatment effects can be fixed or
+modelled by a prior distribution. The corresponding [R Shiny
+application](https://web.imbi.uni-heidelberg.de/drugdevelopR/) has a
+graphic user interface for the package and thus makes it accessible for
+users without prior knowledge of R. Fast computing is made possible by
+parallel programming. The theoretical foundations for this package were
+laid in the dissertation “Integrated Planning of Pilot and Subsequent
+Confirmatory Study in Clinical Research – Finding Optimal Designs in a
+Utility-Based Framework” by Stella Erdmann at the Institute of Medical
+Biometry at the University of Heidelberg.
+
+On the package webpage, we supply [full
+documentation](https://sterniii3.github.io/drugdevelopR/reference/index.html)
+of all functions as well as a [tutorial for getting
+started](https://sterniii3.github.io/drugdevelopR/vignettes/introduction-to-drugdevelopr.html)
+with drugdevelopR.
 
 ## Installation
 
-You can install the development version of drugdevelopR from
-[GitHub](https://github.com/) with:
+Install the development version of the package directly from
+[GitHub](https://github.com/Sterniii3/drugdevelopR/) using the following
+code:
 
 ``` r
-# install.packages("devtools")
+if(!require(devtools)) { install.packages("devtools"); require(devtools)} 
 devtools::install_github("Sterniii3/drugdevelopR")
 ```
 
-## Example
+and access the drugdevelopR App via
+<https://web.imbi.uni-heidelberg.de/drugdevelopR/>.
 
-This is a basic example which shows you how to solve a common problem:
+## Usage
 
-``` r
-#library(drugdevelopR)
-## basic example code
-```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+Here is a basic example for applying drugdevelopR to a drug development
+program with a normally distributed outcome:
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+library(drugdevelopR)
+#> Lade nötiges Paket: mvtnorm
+#> Lade nötiges Paket: doParallel
+#> Lade nötiges Paket: foreach
+#> Lade nötiges Paket: iterators
+#> Lade nötiges Paket: parallel
+#> Lade nötiges Paket: msm
+#> Lade nötiges Paket: cubature
+# TODO: Fill example here.
 ```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
