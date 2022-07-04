@@ -63,7 +63,7 @@
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
 #'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
 #'   steps1 = 0,                                            # define lower boundary for "small"
-#'   stepm1 = 0.5,                                         # "medium"
+#'   stepm1 = 0.5,                                          # "medium"
 #'   stepl1 = 0.88,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
 #'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
 #'   rho = 0.5, relaxed = TRUE,                             # relaxed "TRUE"
