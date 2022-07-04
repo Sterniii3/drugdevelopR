@@ -5,7 +5,7 @@
                               a=0.25,b=0.75, fixed=FALSE),0.8622991)
     })
  
- test_that("Same results for Fixed Effects if irrelevant Input Values differ",{
+ test_that("Same result for fixed effects if irrelevant input values differ",{
           expect_equal(Epgo_normal(kappa=0.2,n2=50,w=0.3,
                                   Delta1=0.625, Delta2=0.325, 
                                   in1=300, in2=600, 
