@@ -201,8 +201,8 @@ optimal_tte_graphic <- function(w,  hr1, hr2, id1, id2,
   for(j in 1:length(HRGO)){
 
     HRgo <- HRGO[j]
-    cl <-  makeCluster(getOption("cl.cores", num_cl)) 
-    clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", 
+    cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) 
+    parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", 
                         "Epgo_tte", "Ed3_tte",
                         "EPsProg_tte", "alpha", "beta",
                         "steps1", "steps2", "stepm1", 
@@ -213,7 +213,7 @@ optimal_tte_graphic <- function(w,  hr1, hr2, id1, id2,
                         "hr1", "hr2", "id1", "id2"), 
                   envir = environment())
 
-    result <- parSapply(cl, D2, utility_tte, 
+    result <- parallel::parSapply(cl, D2, utility_tte, 
                         HRgo, w, hr1, hr2, id1, id2,
                         alpha, beta, xi2, xi3,
                         c2, c3, c02, c03, 
@@ -223,7 +223,7 @@ optimal_tte_graphic <- function(w,  hr1, hr2, id1, id2,
                         gamma, fixed)
 
     setTxtProgressBar(title= "i", pb, j)
-    stopCluster(cl)
+    parallel::stopCluster(cl)
 
     ufkt[, j]      <-  result[1, ]
     d3fkt[, j]     <-  result[2, ]

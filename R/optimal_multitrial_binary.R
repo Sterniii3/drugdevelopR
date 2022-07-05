@@ -155,7 +155,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
       
       RRgo <- RRGO[j]
       
-      cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
+      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
       ###################
       # Strategy 1alpha #
@@ -174,7 +174,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
         alpha <- alpha_in
       }
       
-      clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "Epgo23_binary", "En3_binary",
+      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "Epgo23_binary", "En3_binary",
                           "EPsProg_binary", "EPsProg2_binary", "EPsProg3_binary", "EPsProg4_binary", "EPsProg23_binary",
                           "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
@@ -184,7 +184,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                           "p0", "p11", "p12", "in1", "in2"), envir = environment())
       
       if(Strategy==1){
-        res <- parSapply(cl, N2, utility_binary, RRgo, w, p0, p11, p12, in1, in2,
+        res <- parallel::parSapply(cl, N2, utility_binary, RRgo, w, p0, p11, p12, in1, in2,
                          alpha, beta, 
                          c2, c3, c02, c03, K, N, S,
                          steps1, stepm1, stepl1,
@@ -192,7 +192,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                          fixed)  
       }
       if(Strategy==2){
-        res <- parSapply(cl, N2, utility2_binary, RRgo, w, p0, p11, p12, in1, in2,
+        res <- parallel::parSapply(cl, N2, utility2_binary, RRgo, w, p0, p11, p12, in1, in2,
                          alpha, beta, 
                          c2, c3, c02, c03, 
                          K, N, S,
@@ -200,7 +200,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                          case, fixed)  
       }
       if(Strategy==3){
-        res <- parSapply(cl, N2, utility3_binary, RRgo, w, p0, p11, p12, in1, in2,
+        res <- parallel::parSapply(cl, N2, utility3_binary, RRgo, w, p0, p11, p12, in1, in2,
                          alpha, beta, 
                          c2, c3, c02, c03,
                          K, N, S,
@@ -208,13 +208,13 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                          case, fixed)  
       }
       if(Strategy==23){
-        res <- parSapply(cl, N2, utility23_binary, RRgo, w, p0, p11, p12, in1, in2,
+        res <- parallel::parSapply(cl, N2, utility23_binary, RRgo, w, p0, p11, p12, in1, in2,
                          alpha, beta, 
                          c2, c3, c02, c03, 
                          b1, b2, b3)  
       }
       if(Strategy==4){
-        res <- parSapply(cl, N2, utility4_binary, RRgo, w, p0, p11, p12, in1, in2,
+        res <- parallel::parSapply(cl, N2, utility4_binary, RRgo, w, p0, p11, p12, in1, in2,
                          alpha, beta, 
                          c2, c3, c02, c03, 
                          K, N, S,
@@ -223,7 +223,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
       }
       
       setTxtProgressBar(title= "i", pb, j)
-      stopCluster(cl)
+      parallel::stopCluster(cl)
       
       ufkt[, j]      <-  res[1, ]
       n3fkt[, j]     <-  res[2, ]

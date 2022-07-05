@@ -181,9 +181,9 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
         
         HRgo <- HRGO[j]
         
-        cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
+        cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
         
-        clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte","Epgo_tte", "Ed3_L",
+        parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte","Epgo_tte", "Ed3_L",
                             "EPsProg_L","Epgo_L2", "Ed3_L2",
                             "EPsProg_L2","Ed3_R", "EPsProg_R", "Epgo_R2", "Ed3_R2",
                             "EPsProg_R2", "alpha", "beta",
@@ -195,7 +195,7 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
         
         if(strategy == 1){
           strat = "multipl."
-          res <- parSapply(cl, D2, utility_R, HRgo, Adj, w, hr1, hr2, id1, id2,
+          res <- parallel::parSapply(cl, D2, utility_R, HRgo, Adj, w, hr1, hr2, id1, id2,
                               alpha, beta, xi2, xi3,
                               c2, c3, c02, c03, 
                               K, N, S,
@@ -205,7 +205,7 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
         }
         if(strategy == 2){
           strat = "add."
-          res <- parSapply(cl, D2, utility_L, HRgo, Adj, w, hr1, hr2, id1, id2,
+          res <- parallel::parSapply(cl, D2, utility_L, HRgo, Adj, w, hr1, hr2, id1, id2,
                            alpha, beta, xi2, xi3,
                            c2, c3, c02, c03, 
                            K, N, S,
@@ -215,7 +215,7 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
         }
         if(strategy == 3){
           strat = "multipl2."
-          res <- parSapply(cl, D2, utility_R2, HRgo, Adj, w, hr1, hr2, id1, id2,
+          res <- parallel::parSapply(cl, D2, utility_R2, HRgo, Adj, w, hr1, hr2, id1, id2,
                            alpha, beta, xi2, xi3,
                            c2, c3, c02, c03, 
                            K, N, S,
@@ -225,7 +225,7 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
         }
         if(strategy == 4){
           strat = "add2."
-          res <- parSapply(cl, D2, utility_L2, HRgo, Adj, w, hr1, hr2, id1, id2,
+          res <- parallel::parSapply(cl, D2, utility_L2, HRgo, Adj, w, hr1, hr2, id1, id2,
                            alpha, beta, xi2, xi3,
                            c2, c3, c02, c03, 
                            K, N, S,
@@ -235,7 +235,7 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
         }
 
         setTxtProgressBar(title= "i", pb, a)
-        stopCluster(cl)
+        parallel::stopCluster(cl)
         
         ufkt[, j]      <-  res[1, ]
         d3fkt[, j]     <-  res[2, ]

@@ -158,7 +158,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
       
       HRgo <- HRGO[j]
       
-      cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
+      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
     
       ###################
       # Strategy 1alpha #
@@ -177,7 +177,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
         alpha <- alpha_in
       }
 
-      clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", "Epgo_tte", "Epgo23", "Ed3_tte",
+      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", "Epgo_tte", "Epgo23", "Ed3_tte",
                           "EPsProg_tte", "EPsProg2", "EPsProg3", "EPsProg4", "EPsProg23",
                           "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
@@ -187,7 +187,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
                           "hr1", "hr2", "id1", "id2"), envir = environment())
       
       if(Strategy==1){
-        res <- parSapply(cl, D2, utility_tte, HRgo, w, hr1, hr2, id1, id2,
+        res <- parallel::parSapply(cl, D2, utility_tte, HRgo, w, hr1, hr2, id1, id2,
                             alpha, beta, xi2, xi3,
                             c2, c3, c02, c03, 
                             K, N, S,
@@ -196,7 +196,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
                             gamma, fixed)  
       }
       if(Strategy==2){
-        res <- parSapply(cl, D2, utility2, HRgo, w, hr1, hr2, id1, id2,
+        res <- parallel::parSapply(cl, D2, utility2, HRgo, w, hr1, hr2, id1, id2,
                             alpha, beta, xi2, xi3,
                             c2, c3, c02, c03, 
                             K, N, S,
@@ -204,7 +204,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
                             case, fixed)  
       }
       if(Strategy==3){
-        res <- parSapply(cl, D2, utility3, HRgo, w, hr1, hr2, id1, id2,
+        res <- parallel::parSapply(cl, D2, utility3, HRgo, w, hr1, hr2, id1, id2,
                             alpha, beta, xi2, xi3,
                             c2, c3, c02, c03, 
                             K, N, S,
@@ -212,13 +212,13 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
                             case, fixed)  
       }
       if(Strategy==23){
-        res <- parSapply(cl, D2, utility23, HRgo, w, hr1, hr2, id1, id2,
+        res <- parallel::parSapply(cl, D2, utility23, HRgo, w, hr1, hr2, id1, id2,
                          alpha, beta, xi2, xi3,
                          c2, c3, c02, c03, 
                          b1, b2, b3)  
       }
       if(Strategy==4){
-        res <- parSapply(cl, D2, utility4, HRgo, w, hr1, hr2, id1, id2,
+        res <- parallel::parSapply(cl, D2, utility4, HRgo, w, hr1, hr2, id1, id2,
                             alpha, beta, xi2, xi3,
                             c2, c3, c02, c03, 
                             K, N, S,
@@ -227,7 +227,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
       }
     
     setTxtProgressBar(title= "i", pb, j)
-    stopCluster(cl)
+    parallel::stopCluster(cl)
   
     ufkt[, j]      <-  res[1, ]
     d3fkt[, j]     <-  res[2, ]

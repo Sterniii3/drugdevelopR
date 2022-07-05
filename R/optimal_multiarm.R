@@ -127,9 +127,9 @@ optimal_multiarm <- function(hr1, hr2, ec,
       
       HRgo <- HRGO[j]
       
-      cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
+      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
-      clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_tte", "ss_tte", "Ess_tte",
+      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_tte", "ss_tte", "Ess_tte",
                           "PsProg_tte", "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                           "K", "N", "S", "strategy",
@@ -138,13 +138,13 @@ optimal_multiarm <- function(hr1, hr2, ec,
                           "hr1", "hr2", "ec"), envir = environment())
       
       
-      res <- parSapply(cl, N2, utility_multiarm, HRgo,
+      res <- parallel::parSapply(cl, N2, utility_multiarm, HRgo,
                        alpha,beta,hr1,hr2,strategy,ec,
                        c2,c02,c3,c03,K,N,S,
                        steps1, stepm1, stepl1,b1, b2, b3)
       
       setTxtProgressBar(title= "i", pb, j)
-      stopCluster(cl)
+      parallel::stopCluster(cl)
       
       ufkt[, j]     <-  res[1, ]
       n3fkt[, j]    <-  res[2, ]

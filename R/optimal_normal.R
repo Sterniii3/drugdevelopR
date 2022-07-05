@@ -195,9 +195,9 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
 
       kappa <- KAPPA[j]
 
-      cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
+      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
 
-      clusterExport(cl, c("pmvnorm", "dmvnorm","dtnorm", "prior_normal", "Epgo_normal", "En3_normal",
+      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","dtnorm", "prior_normal", "Epgo_normal", "En3_normal",
                           "EPsProg_normal", "alpha", "beta",
                           "steps1", "stepm1", "stepl1", 
                           "K", "N", "S", "gamma", "fixed",
@@ -205,7 +205,7 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                           "b1", "b2", "b3", "w", "kappa",
                           "Delta1", "Delta2", "in1", "in2", "a", "b"), envir=environment())
 
-      result <- parSapply(cl, N2, utility_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
+      result <- parallel::parSapply(cl, N2, utility_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
                           alpha, beta, 
                           c2, c3, c02, c03, 
                           K, N, S,
@@ -214,7 +214,7 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                           gamma, fixed)
       
       setTxtProgressBar(title= "i", pb, j)
-      stopCluster(cl)
+      parallel::stopCluster(cl)
 
       ufkt[, j]      <-  result[1, ]
       n3fkt[, j]     <-  result[2, ]

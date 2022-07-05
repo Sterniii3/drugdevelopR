@@ -174,9 +174,9 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     
     RRgo <- RRGO[j]
     
-    cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
+    cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
     
-    clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary","Epgo_binary", "En3_binary_L",
+    parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary","Epgo_binary", "En3_binary_L",
                         "EPsProg_binary_L","Epgo_binary_L2", "En3_binary_L2",
                         "EPsProg_binary_L2","En3_binary_R", "EPsProg_binary_R", "Epgo_binary_R2", "En3_binary_R2",
                         "EPsProg_binary_R2", "t1", "t2", "t3", "alpha", "beta",
@@ -188,7 +188,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     
     if(strategy == 1){
       strat = "multipl."
-      res <- parSapply(cl, N2, utility_binary_R, RRgo, Adj, w, p0, p11, p12, in1, in2,
+      res <- parallel::parSapply(cl, N2, utility_binary_R, RRgo, Adj, w, p0, p11, p12, in1, in2,
                        alpha, beta, 
                        c2, c3, c02, c03, 
                        K, N, S,
@@ -198,7 +198,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     }
     if(strategy == 2){
       strat = "add."
-      res <- parSapply(cl, N2, utility_binary_L, RRgo, Adj, w, p0, p11, p12, in1, in2,
+      res <- parallel::parSapply(cl, N2, utility_binary_L, RRgo, Adj, w, p0, p11, p12, in1, in2,
                        alpha, beta, 
                        c2, c3, c02, c03, 
                        K, N, S,
@@ -208,7 +208,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     }
     if(strategy == 3){
       strat = "multipl2."
-      res <- parSapply(cl, N2, utility_binary_R2, RRgo, Adj, w, p0, p11, p12, in1, in2,
+      res <- parallel::parSapply(cl, N2, utility_binary_R2, RRgo, Adj, w, p0, p11, p12, in1, in2,
                        alpha, beta, 
                        c2, c3, c02, c03, 
                        K, N, S,
@@ -218,7 +218,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     }
     if(strategy == 4){
       strat = "add2."
-      res <- parSapply(cl, N2, utility_binary_L2, RRgo, Adj, w, p0, p11, p12, in1, in2,
+      res <- parallel::parSapply(cl, N2, utility_binary_L2, RRgo, Adj, w, p0, p11, p12, in1, in2,
                        alpha, beta, 
                        c2, c3, c02, c03, 
                        K, N, S,
@@ -228,7 +228,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     }
     
     setTxtProgressBar(title= "i", pb, j)
-    stopCluster(cl)
+    parallel::stopCluster(cl)
     
     ufkt[, j]      <-  res[1, ]
     n3fkt[, j]     <-  res[2, ]

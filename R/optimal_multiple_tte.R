@@ -130,9 +130,9 @@ result <- NULL
     
     HRgo <- HRGO[j]
     
-    cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
+    cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
     
-    clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_tte", "Ess_tte",
+    parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_tte", "Ess_tte",
                         "EPsProg_tte", "os_tte", "alpha", "beta",
                         "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                         "K", "N", "S",
@@ -141,13 +141,13 @@ result <- NULL
                         "hr1", "hr2", "id1", "id2", "ec", "rho", "fixed"), envir = environment())
     
     
-    res <- parSapply(cl, N2, utility_multiple_tte, HRgo,
+    res <- parallel::parSapply(cl, N2, utility_multiple_tte, HRgo,
                      alpha,beta,hr1,hr2,id1,id2,ec,rho,fixed,
                      c2,c02,c3,c03,K,N,S,
                      steps1, stepm1, stepl1,b1, b2, b3)
     
     setTxtProgressBar(title= "i", pb, j)
-    stopCluster(cl)
+    parallel::stopCluster(cl)
     
     ufkt[, j]     <-  res[1, ]
     n3fkt[, j]    <-  res[2, ]
