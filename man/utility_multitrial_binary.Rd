@@ -155,3 +155,11 @@ res <- utility2_binary(n2 = 50, RRgo = 0.8,  w = 0.3,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 
                                  case = 3, fixed = FALSE)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

@@ -52,3 +52,11 @@ res <- Epgo_binary_L2(RRgo = 0.8, n2 = 50, Adj = 0,  p0 = 0.6,  w = 0.3,
                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
                               fixed = FALSE)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

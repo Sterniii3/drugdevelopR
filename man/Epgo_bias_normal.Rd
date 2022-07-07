@@ -54,3 +54,11 @@ res <- Epgo_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, w = 0.3,
                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                a = 0.25, b = 0.75, fixed = FALSE)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

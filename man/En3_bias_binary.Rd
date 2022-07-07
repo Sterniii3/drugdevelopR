@@ -74,3 +74,11 @@ res <- En3_binary_L(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, p0 
                               fixed = FALSE)
                               
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

@@ -143,7 +143,7 @@ endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni
 \examples{
 res <- optimal_multiple_tte(hr1 = 0.75, hr2 = 0.80, ec = 0.6,# define assumed true HRs and control arm event rate
   id1 = 210, id2 = 420,
-  n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
+  d2min = 30, d2max = 90, stepd2 = 6,                    # define optimization set for n2
   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
@@ -152,7 +152,7 @@ res <- optimal_multiple_tte(hr1 = 0.75, hr2 = 0.80, ec = 0.6,# define assumed tr
   stepm1 = 0.95,                                         # "medium"
   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
-  rho = 0.5, fixed = TRUE,                                # correlation and treatment effect
+  rho = 0.5, fixed = TRUE,                               # correlation and treatment effect
   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 res
 cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
@@ -162,3 +162,11 @@ Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal Designs for 
 
 IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

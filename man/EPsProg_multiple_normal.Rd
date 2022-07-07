@@ -62,8 +62,16 @@ This function calculates the probability that our drug development program is su
 Successful is defined as both endpoints showing a statistically significant positive treatment effect in phase III.
 }
 \examples{
-res <- EPsProg_multiple_normal(kappa = c(0.1,0.1), n2 = 50, alpha = 0.025, beta = 0.1,
+res <- EPsProg_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
                                Delta1 = 0.375, Delta2 = 0.625, sigma1 = 8, sigma2 = 4,
                                step11 = 0, step12 = 0, step21 = 0.5, step22 = 0.5, 
                                in1 = 300, in2 = 600, fixed = FALSE, rho = 0.3)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

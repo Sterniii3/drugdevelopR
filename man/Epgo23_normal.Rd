@@ -32,3 +32,11 @@ treatment effect of the other one at least showing in the same direction) this f
 res <- Epgo23_normal(kappa = 0.1, n2 = 50, w = 0.3,
                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

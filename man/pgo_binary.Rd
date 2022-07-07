@@ -36,3 +36,11 @@ Given our parameters this function calculates the probability to go to phase III
 \examples{
 res <- pgo_binary(RRgo = 0.8 ,n2 = 50 ,p0 = 0.6, p11 =  0.3, p12 = 0.5,strategy = 3, case = 31)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

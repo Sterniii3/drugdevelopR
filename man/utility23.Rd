@@ -74,3 +74,11 @@ res <- utility23(d2 = 50, HRgo = 0.8,  w = 0.3,
                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                                  b1 = 1000, b2 = 2000, b3 = 3000)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

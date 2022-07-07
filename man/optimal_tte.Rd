@@ -2,6 +2,7 @@
 % Please edit documentation in R/optimal_tte.R, R/optimal_tte_graphic.R
 \name{optimal_tte}
 \alias{optimal_tte}
+\alias{optimal_tte_graphic}
 \title{Optimal phase II/III drug development planning with time-to-event endpoint}
 \format{
 data.frame containing the optimization results (see Value)
@@ -44,7 +45,7 @@ optimal_tte(
   num_cl = 1
 )
 
-optimal_tte(
+optimal_tte_graphic(
   w,
   hr1,
   hr2,

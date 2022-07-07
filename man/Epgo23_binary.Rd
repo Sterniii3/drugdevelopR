@@ -34,3 +34,11 @@ treatment effect of the other one at least showing in the same direction) this f
 res <- Epgo23_binary(RRgo = 0.8, n2 = 50,  p0 = 0.3, w = 0.3,
                                p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-05-09
+}
+

@@ -42,3 +42,11 @@ res <- Ess_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
                                id1 = 300, id2 = 600, 
                                fixed = FALSE, rho = 0.3)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

@@ -34,3 +34,11 @@ treatment effect of the other one at least showing in the same direction) this f
 res <- Epgo23(HRgo = 0.8, d2 = 50,  w = 0.3,
                                hr1 =  0.69, hr2 = 0.81, id1 = 280, id2 = 420)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-05-09
+}
+

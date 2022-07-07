@@ -37,3 +37,11 @@ res <- pw(n2 = 50, ec = 0.6,
                     hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
                     fixed = FALSE, rho = 0.3)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+
