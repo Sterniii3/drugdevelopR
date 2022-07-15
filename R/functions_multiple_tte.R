@@ -411,9 +411,12 @@ os_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #' @param steps1 lower boundary for effect size category `"small"` in HR scale, default: 1
 #' @param stepm1 lower boundary for effect size category `"medium"` in HR scale = upper boundary for effect size category `"small"` in HR scale, default: 0.95
 #' @param stepl1 lower boundary for effect size category `"large"` in HR scale = upper boundary for effect size category `"medium"` in HR scale, default: 0.85
-#' @param b1 expected gain for effect size category `"small"`
-#' @param b2 expected gain for effect size category `"medium"`
-#' @param b3 expected gain for effect size category `"large"`
+#' @param b11 expected gain for effect size category `"small"` if endpoint OS is significant
+#' @param b21 expected gain for effect size category `"medium"`if endpoint OS is significant
+#' @param b31 expected gain for effect size category `"large"` if endpoint OS is significant 
+#' @param b12 expected gain for effect size category `"small"` if endpoint OS is not significant
+#' @param b22 expected gain for effect size category `"medium"`if endpoint OS is not significant
+#' @param b32 expected gain for effect size category `"large"` if endpoint OS is not significant
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
 #' @return The output of the the function `utility_multiple_tte()` is the expected utility of the program.
@@ -423,7 +426,8 @@ os_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #'                                c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               
 #'                                K = Inf, N = Inf, S = -Inf, 
 #'                                steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
-#'                                b1 = 1000, b2 = 2000, b3 = 3000,
+#'                                b11 = 1000, b21 = 2000, b31 = 3000,
+#'                                b12 = 1000, b22 = 1500, b32 = 2000, 
 #'                                fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23  
@@ -482,7 +486,7 @@ utility_multiple_tte<-function(n2,HRgo,alpha,beta,hr1,hr2,id1,id2,ec,
          
        }else{
          
-         G     = b1*prob1+b2*prob2+b3*prob3                   # gain
+         G     = (b11*prob1+b21*prob2+b31*prob3)*OS + (b12*prob1+b22*prob2+b32*prob3)*(1-OS)                 # gain
                              
          EU    = -K2-K3+G                                            # total expected utility
          

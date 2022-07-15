@@ -28,9 +28,12 @@
 #' @param steps1 lower boundary for effect size category "small" in HR scale, default: 1
 #' @param stepm1 lower boundary for effect size category "medium" in HR scale = upper boundary for effect size category "small" in HR scale, default: 0.95
 #' @param stepl1 lower boundary for effect size category "large" in HR scale = upper boundary for effect size category "medium" in HR scale, default: 0.85
-#' @param b1 expected gain for effect size category "small"
-#' @param b2 expected gain for effect size category "medium"
-#' @param b3 expected gain for effect size category "large"
+#' @param b11 expected gain for effect size category `"small"` if endpoint OS is significant
+#' @param b21 expected gain for effect size category `"medium"`if endpoint OS is significant
+#' @param b31 expected gain for effect size category `"large"` if endpoint OS is significant 
+#' @param b12 expected gain for effect size category `"small"` if endpoint OS is not significant
+#' @param b22 expected gain for effect size category `"medium"`if endpoint OS is not significant
+#' @param b32 expected gain for effect size category `"large"` if endpoint OS is not significant
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
 #' The output of the function \code{\link{optimal_multiple_tte}} is a data.frame containing the optimization results:
@@ -103,7 +106,7 @@ optimal_multiple_tte <- function(hr1, hr2, id1, id2, ec,
                                alpha, beta,
                                c2, c3, c02, c03, 
                                K = Inf, N = Inf, S = -Inf,
-                               b1, b2, b3,
+                               b11, b21, b31, b12, b22, b32,
                                rho, fixed,  num_cl = 1){
   
 steps2 <- stepm1
@@ -137,14 +140,14 @@ result <- NULL
                         "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                         "K", "N", "S",
                         "c2", "c3", "c02", "c03",
-                        "b1", "b2", "b3", "HRgo",
+                        "b11", "b21", "b31","b12","b22","b32", "HRgo",
                         "hr1", "hr2", "id1", "id2", "ec", "rho", "fixed"), envir = environment())
     
     
     res <- parallel::parSapply(cl, N2, utility_multiple_tte, HRgo,
                      alpha,beta,hr1,hr2,id1,id2,ec,rho,fixed,
                      c2,c02,c3,c03,K,N,S,
-                     steps1, stepm1, stepl1,b1, b2, b3)
+                     steps1, stepm1, stepl1,b11,b21,b31,b12,b22,b32)
     
     setTxtProgressBar(title= "i", pb, j)
     parallel::stopCluster(cl)
@@ -186,7 +189,7 @@ result <- NULL
                                         steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
                                         alpha = alpha, beta = beta, 
                                         c02 = c02, c03 = c03, c2 = c2, c3 = c3, 
-                                        b1 = b1, b2 = b2, b3 = b3))
+                                        b11 = b11, b21 = b21, b31 = b31, b12 = b12, b22 = b22, b32 = b32))
   }else{
     
     result <-  rbind(result, data.frame(u = round(Eud,2), HRgo = HRGO[J], n2 = N2[I], 
@@ -198,7 +201,7 @@ result <- NULL
                                         steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
                                         alpha = alpha, beta = beta, 
                                         c02 = c02, c03 = c03, c2 = c2, c3 = c3, 
-                                        b1 = b1, b2 = b2, b3 = b3))
+                                        b11 = b11, b21 = b21, b31 = b31, b12 = b12, b22 = b22, b32 = b32))
   }
 
 
