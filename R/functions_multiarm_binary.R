@@ -29,6 +29,7 @@
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
 #' @return The function pgo_binary() returns the probability to go to phase III.
 #' @examples res <- pgo_binary(RRgo = 0.8 ,n2 = 50 ,p0 = 0.6, p11 =  0.3, p12 = 0.5,strategy = 3, case = 31)
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 
@@ -135,7 +136,8 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
 #' - l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II;  
 #' - l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
 #' @return the function ss_binary() returns the total sample size for phase III trial with l treatments and equal allocation ratio
-#' @examples res <- ss_binary(alpha = 0.05, beta = 0.1, y = 0.5, l=1)
+#' @examples res <- ss_binary(alpha = 0.05, beta = 0.1, y = 0.5, l = 1)
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
  
@@ -164,6 +166,7 @@ ss_binary<-function(alpha,beta,y,l){
 #' @return the function Ess_binary() returns the expected sample size for phase III when going to phase III
 #' @examples res <- Ess_binary(RRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             p0 = 0.6, p11 =  0.3, p12 = 0.5,strategy = 3, case = 31)
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
 Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
@@ -280,6 +283,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
 #' @examples res <- PsProg_binary(RRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             p0 = 0.6, p11 =  0.3, p12 = 0.5, step1 = 1, step2 = 0.95,
 #'                             strategy = 3, case = 31)
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
 
@@ -479,7 +483,7 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
 #'                             b1 = 1000, b2 = 2000, b3 = 3000)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
-
+#' @export
 utility_multiarm_binary<-function(n2,RRgo,alpha,beta,
                                   p0=p0,p11=p11,p12=p12,strategy,
                                   c2,c02,c3,c03,K,N,S,

@@ -56,6 +56,7 @@
 #'                               in1 = 300, in2 = 600, 
 #'                               a = 0.25, b = 0.75, fixed = FALSE)
 #' @name En3_bias_normal                           
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 
@@ -128,7 +129,7 @@ En3_normal_L <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, i
 #' @param b upper boundary for the truncation
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
 #' @return The output of the the functions `EPsProg_normal_L()`, `EPsProg_normal_L2()`, `EPsProg_normal_R()` and `EPsProg_normal_R2()` is the expected probability of a successful program.
-#' @importFrom stats qnorm integrate dnorm
+#' @importFrom stats qnorm integrate dnorm pnorm
 #' @examples res <- EPsProg_normal_L(kappa = 0.1, n2 = 50, Adj = 0, 
 #'                                  alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  step1 = 0, step2 = 0.5,
@@ -154,6 +155,7 @@ En3_normal_L <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, i
 #'                                  in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, fixed = FALSE)
 #' @name EPsProg_bias_normal                                
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 
@@ -181,10 +183,10 @@ EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
         sapply(x, function(x){
           integrate(function(y){
             ( pnorm(qnorm(1 - alpha) + step2/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
-                    mean = (x)/sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c),
+                    mean = (x)/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
                     sd = 1) -
                 pnorm(qnorm(1 - alpha) + step1/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
-                      mean = (x)/sqrt((y-qnorm(1-Adj)*sqrt(4/d2))^2/c),
+                      mean = (x)/sqrt((y-qnorm(1-Adj)*sqrt(4/n2))^2/c),
                       sd = 1) ) *
               dnorm(y,
                     mean = x,
@@ -266,6 +268,7 @@ EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
 #'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
 #'                                  fixed = FALSE)
 #' @name utility_bias_normal                               
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 
@@ -378,6 +381,7 @@ utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                a = 0.25, b = 0.75, fixed = FALSE)
 #' @name Epgo_bias_normal                              
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 Epgo_normal_L2 <-  function(kappa, n2, Adj, w, Delta1, Delta2, in1, in2, a, b, fixed){

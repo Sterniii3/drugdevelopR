@@ -1352,6 +1352,7 @@ utility4_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
 #'                                p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-09
+#' @export
 Epgo23_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2){
   
   SIGMA <-  diag(2)
@@ -1412,7 +1413,7 @@ Epgo23_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2){
 #'                                  ymin = 0.5)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, case, size, ymin){
   # Option 2.1: first two phase III trials are successful: no third phase III trial
   # Option 2.2: one of the two first phase III trials successful, the treatment
@@ -1432,21 +1433,15 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
             sapply(y, function(y){
               ( pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
-                        upper = c(qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
-                                  qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0))), 
+                        upper = c(qnorm(1 - alpha) - log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
+                                  qnorm(1 - alpha) - log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                         mean = c(x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                  x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                         sigma = SIGMA)  - 
-                  pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                      log(0.95)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.95)/sqrt(t1(x, p0)*y^2/const(x, p0))), 
-                          upper = c(qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0))), 
+                  pmvnorm(lower = c(qnorm(1 - alpha) - log(0.95)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
+                                    qnorm(1 - alpha) - log(0.95)/sqrt(t1(x, p0)*y^2/const(x, p0))), 
+                          upper = c(qnorm(1 - alpha) - log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
+                                    qnorm(1 - alpha) - log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                           mean = c(x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                    x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                           sigma = SIGMA)) * 
@@ -1457,7 +1452,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
             })
           },  - log(RRgo), Inf)$value
         })
-      },  - Inf, Inf)$value) 
+      },  0, 1)$value) 
     }
     if(size == "large"){
       return(integrate(function(x){
@@ -1479,7 +1474,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
             })
           },  - log(RRgo), Inf)$value
         })
-      },  - Inf, Inf)$value)    
+      },  0, 1)$value)    
     }
     if(size == "all"){
       return(integrate(function(x){
@@ -1500,7 +1495,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
             })
           },  - log(RRgo), Inf)$value
         })
-      },  - Inf, Inf)$value)    
+      },  0, 1)$value)    
     }
   }
   if(case == 3){# Option 2.2
@@ -1542,7 +1537,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
             })
           },  - log(RRgo), Inf)$value
         })
-      },  - Inf, Inf)$value) 
+      },  0, 1)$value) 
     }
     if(size == "large"){
       return(integrate(function(x){
@@ -1568,7 +1563,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
             })
           },  - log(RRgo), Inf)$value
         })
-      },  - Inf, Inf)$value)    
+      },  0, 1)$value)    
     }
     if(size == "all"){
       return(integrate(function(x){
@@ -1592,7 +1587,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
             })
           },  - log(RRgo), Inf)$value
         })
-      },  - Inf, Inf)$value)    
+      },  0, 1)$value)    
     }
   }
   
@@ -1630,7 +1625,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 utility23_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                              alpha, beta, 
                              c2, c3, c02, c03,

@@ -30,6 +30,7 @@
 #' @examples res <- pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625, strategy = 3, case = 31)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
+#' @export
 pgo_normal<-function(kappa,n2,Delta1,Delta2,strategy,case){
   
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
@@ -135,6 +136,7 @@ pgo_normal<-function(kappa,n2,Delta1,Delta2,strategy,case){
 #' @examples res <- ss_normal(alpha = 0.05, beta = 0.1, y = 0.5, l = 1)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
+#' @export
 ss_normal<-function(alpha,beta,y,l){
   
   if(l==1){calpha = qnorm(1-alpha)}
@@ -161,7 +163,7 @@ ss_normal<-function(alpha,beta,y,l){
 #'                             Delta1 = 0.375, Delta2 = 0.625, strategy = 3, case = 31)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
-
+#' @export
 Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
   
   
@@ -278,7 +280,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
 #'                             strategy = 3, case = 31)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,case){
   
 
@@ -474,7 +476,7 @@ PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,c
 #'                             b1 = 1000, b2 = 2000, b3 = 3000)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
-
+#' @export
 utility_multiarm_normal<-function(n2,kappa,alpha,beta,
                                   Delta1,Delta2,strategy,
                                   c2,c02,c3,c03,K,N,S,

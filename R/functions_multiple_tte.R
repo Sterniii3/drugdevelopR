@@ -28,7 +28,7 @@
 #'@examples res <- fmax(z = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
 #'@editor Johannes Cepicka
 #'@editDate 2022-04-23
-#'
+#' @export
 fmax<-function (z,mu1,mu2,sigma1,sigma2,rho){ 
   t1<-dnorm(-z,mean=-mu1,sd=sigma1)
   tt<-rho*(mu1-z)/(sigma1*sqrt(1-rho*rho))
@@ -69,6 +69,7 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #'                                fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @export
 pgo_multiple_tte<-function(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho){
   
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
@@ -129,6 +130,7 @@ pgo_multiple_tte<-function(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho){
 #'                                fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @export
 Ess_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
 
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
@@ -184,7 +186,7 @@ Ess_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
 #'                     fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 pw <- function(n2,ec,hr1,hr2,id1,id2,fixed,rho){
   
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
@@ -248,7 +250,7 @@ expn3go_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
 #'                                fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2,fixed,rho){
  
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
@@ -320,7 +322,7 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
 #'                                fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 os_tte<-function(HRgo, n2, alpha, beta, ec,hr1, hr2, id1, id2, fixed, rho){
   
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
@@ -430,7 +432,7 @@ os_tte<-function(HRgo, n2, alpha, beta, ec,hr1, hr2, id1, id2, fixed, rho){
 #'                                fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23  
-
+#' @export
 utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2, ec,
                                c2, c02, c3, c03, K, N, S,
                                steps1, stepm1, stepl1, 

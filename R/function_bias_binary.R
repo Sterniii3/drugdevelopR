@@ -58,6 +58,7 @@ t3 <- function(x, p0){sqrt(((1-p0)/p0) + ((1-x)/x))}
 #'                               fixed = FALSE)
 #'                               
 #' @name En3_bias_binary                             
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 En3_binary_L <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2, fixed){
@@ -146,6 +147,7 @@ En3_binary_L <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2,
 #'                                  p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
 #'                                  fixed = FALSE)
 #' @name EPsProg_bias_binary                               
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 EPsProg_binary_L <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p11, p12, in1, in2, fixed){
@@ -266,6 +268,7 @@ EPsProg_binary_L <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
 #'                                  fixed = FALSE)
 #' @name utility_bias_binary                                 
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
@@ -370,6 +373,7 @@ utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 #'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
 #'                               fixed = FALSE)
 #' @name Epgo_bias_binary 
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 Epgo_binary_L2 <-  function(RRgo, n2, Adj, p0, w, p11, p12, in1, in2, fixed){

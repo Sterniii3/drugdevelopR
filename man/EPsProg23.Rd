@@ -51,9 +51,9 @@ In the utility function, this will lead to a utility of -9999.
 }
 \examples{
 res <- EPsProg23(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
-                                 w = 0.3, hr1 =  0.69, hr2 = 0.81, 
-                                 id1 = 280, id2 = 420, case = 2, size = "small",
-                                 ymin = 0.5)
+                                  w = 0.3, hr1 =  0.69, hr2 = 0.81, 
+                                  id1 = 280, id2 = 420, case = 2, size = "small",
+                                  ymin = 0.5)
 }
 \section{Last Edited By}{
 Johannes Cepicka

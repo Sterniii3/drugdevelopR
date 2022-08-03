@@ -30,7 +30,7 @@ l=1: according to Schoenfeld to guarantee power for the log rank test to detect 
 l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
 }
 \examples{
-res <- ss_binary(alpha = 0.05, beta = 0.1, y = 0.5, l=1)
+res <- ss_binary(alpha = 0.05, beta = 0.1, y = 0.5, l = 1)
 }
 \section{Last Edited By}{
 Johannes Cepicka

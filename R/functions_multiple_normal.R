@@ -35,7 +35,7 @@ library(parallel)
 #'@examples res <- fmin(y = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
 #'@editor Johannes Cepicka
 #'@editDate 2022-04-23
-
+#' @export
 fmin<-function (y,mu1,mu2,sigma1,sigma2,rho)
     {t1<-dnorm(y,mean=mu1,sd=sigma1)
       tt<-rho*(y-mu1)/(sigma1*sqrt(1-rho*rho))
@@ -60,6 +60,7 @@ return(t1+t2)}
 #'@name dbivanorm
 #'@editor Johannes Cepicka
 #'@editDate 2022-04-23
+#' @export
 dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){ 
   covariancemat <- matrix(c(sigma1, rho*sqrt(sigma1)*sqrt(sigma2), rho*sqrt(sigma1)*sqrt(sigma2), sigma2),ncol=2)
   ff <- dmvnorm(cbind(x,y), mean=c(mu1,mu2),sigma=covariancemat)
@@ -87,6 +88,7 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #'                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @export
 pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
   
   Sigma <- c(sigma1,sigma2)
@@ -138,7 +140,7 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
 #'                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
   
   Kappa <- c(kappa*sigma1,kappa*sigma2)
@@ -198,7 +200,7 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
 #'                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, in1, in2, fixed, rho){
   
   Kappa <- c(kappa*sigma1,kappa*sigma2)
@@ -280,7 +282,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
 #'                                in1 = 300, in2 = 600, fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2,
                       step11, step12, step21, step22, 
                       in1, in2, fixed,rho){
@@ -380,7 +382,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
 #'                                fixed = FALSE, rho = 0.3, relaxed = "TRUE")
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 utility_multiple_normal<-function(kappa, n2, alpha, beta, 
                                   Delta1, Delta2, in1, in2, sigma1, sigma2,
                                   c2, c02, c3, c03, K, N, S,

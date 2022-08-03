@@ -46,6 +46,7 @@
 #'                                  id1 = 210, id2 = 420, case = 3, size = "small",
 #'                                  fixed = FALSE)
 #' @name EPsProg_multitrial                                 
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, fixed){
@@ -424,7 +425,8 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
 #'                                  K = Inf, N = Inf, S = -Inf,
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
 #'                                  case = 3, fixed = FALSE)
-#' @name utility_multitrial                                 
+#' @name utility_multitrial 
+#' @export                                
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 utility2 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
@@ -1368,6 +1370,7 @@ utility4 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 #' @return The output of the the function `Epgo23()` is the probability to to a third phase III trial.
 #' @examples res <- Epgo23(HRgo = 0.8, d2 = 50,  w = 0.3, alpha = 0.025, beta = 0.1,
 #'                                hr1 =  0.69, hr2 = 0.81, id1 = 280, id2 = 420)
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-09
 Epgo23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
@@ -1427,6 +1430,7 @@ Epgo23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
 #'                                   w = 0.3, hr1 =  0.69, hr2 = 0.81, 
 #'                                   id1 = 280, id2 = 420, case = 2, size = "small",
 #'                                   ymin = 0.5)
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, ymin){
@@ -1633,6 +1637,7 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
 #' @param b1 expected gain for effect size category `"small"`
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
+#' @importFrom mvtnorm pmvnorm
 #' @return The output of the the function `utility23()` is the expected utility of the program depending on whether two or three phase III trials are performed.
 #' @examples res <- utility23(d2 = 50, HRgo = 0.8,  w = 0.3, 
 #'                                  p0 = 0.6, hr1 =  0.69, hr2 = 0.81, 
@@ -1642,6 +1647,7 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @export
 utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                        alpha, beta, xi2, xi3,
                        c2, c3, c02, c03, 
