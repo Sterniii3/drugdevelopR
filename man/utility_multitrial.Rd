@@ -104,6 +104,10 @@ utility4(
 
 \item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
+\item{xi2}{event rate for phase II}
+
+\item{xi3}{event rate for phase III}
+
 \item{c2}{variable per-patient cost for phase II}
 
 \item{c3}{variable per-patient cost for phase III}
@@ -124,6 +128,8 @@ utility4(
 
 \item{b3}{expected gain for effect size category \code{"large"}}
 
+\item{case}{choose case: "at least 1, 2 or 3 significant trials needed for approval"}
+
 \item{fixed}{choose if true treatment effects are fixed or random}
 }
 \value{
@@ -134,23 +140,26 @@ The utility function calculates the expected utility of our drug development pro
 The utility is in further step maximized by the \code{optimal_multitrial()} function.
 }
 \examples{
-res <- utility(d2 = 50, HRgo = 0.8,  w = 0.3, 
+res <- utility2(d2 = 50, HRgo = 0.8,  w = 0.3, 
                                  hr1 =  0.69, hr2 = 0.81, 
-                                 id1 = 210, id2 = 420, alpha = 0.025, beta = 0.1,
+                                 id1 = 210, id2 = 420, 
+                                 alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,
                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                                  K = Inf, N = Inf, S = -Inf,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 
                                  case = 2, fixed = FALSE)
           res <- utility3(d2 = 50, HRgo = 0.8,  w = 0.3, 
                                  hr1 =  0.69, hr2 = 0.81, 
-                                 id1 = 210, id2 = 420, alpha = 0.025, beta = 0.1,
+                                 id1 = 210, id2 = 420, 
+                                 alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,
                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                                  K = Inf, N = Inf, S = -Inf,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 
                                  case = 2, fixed = FALSE)
          res <- utility4(d2 = 50, HRgo = 0.8,  w = 0.3, 
                                  hr1 =  0.69, hr2 = 0.81, 
-                                 id1 = 210, id2 = 420, alpha = 0.025, beta = 0.1,
+                                 id1 = 210, id2 = 420, 
+                                 alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,
                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                                  K = Inf, N = Inf, S = -Inf,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 

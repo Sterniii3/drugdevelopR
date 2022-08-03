@@ -7,6 +7,8 @@
 fmax(z, mu1, mu2, sigma1, sigma2, rho)
 }
 \arguments{
+\item{z}{integral variable}
+
 \item{mu1}{mean of second endpoint}
 
 \item{mu2}{mean of first endpoint}
@@ -16,8 +18,6 @@ fmax(z, mu1, mu2, sigma1, sigma2, rho)
 \item{sigma2}{standard deviation of second endpoint}
 
 \item{rho}{correlation between the two endpoints}
-
-\item{y}{integral variable}
 }
 \value{
 The function \code{fmax()} will return the value of f(z), which is the value of the density function of the

@@ -13,8 +13,8 @@ EPsProg23_binary(
   p0,
   p11,
   p12,
-  id1,
-  id2,
+  in1,
+  in2,
   case,
   size,
   ymin
@@ -37,15 +37,15 @@ EPsProg23_binary(
 
 \item{p12}{assumed true rate of treatment group}
 
+\item{in1}{amount of information for \code{p11} in terms of sample size}
+
+\item{in2}{amount of information for \code{p12} in terms of sample size}
+
 \item{case}{choose case: "at least 1, 2 or 3 significant trials needed for approval"}
 
 \item{size}{size category \code{"small"}, \code{"medium"} or \code{"large"}}
 
 \item{ymin}{assumed minimal clinical relevant effect}
-
-\item{in1}{amount of information for \code{p11} in terms of sample size}
-
-\item{in2}{amount of information for \code{p12} in terms of sample size}
 }
 \value{
 The output of the the function \code{EPsProg23_binary()} is the expected probability of a successful program.

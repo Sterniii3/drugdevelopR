@@ -405,6 +405,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
  #' @param b2 expected gain for effect size category `"medium"`
  #' @param b3 expected gain for effect size category `"large"`
  #' @param fixed choose if true treatment effects are fixed or random
+ #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
  #' @return The output of the the `functions utility2_binary()`, `utility3_binary()` and `utility4_binary()` is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
  #' @examples res <- utility2_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
  #'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
@@ -1338,6 +1339,8 @@ utility4_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
 #' treatment effect of the other one at least showing in the same direction) this function calculates the probability that a third phase III trial is necessary.
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta `1-beta` power for calculation of sample size for phase III
 #' @param w weight for mixture prior distribution
 #' @param p0 assumed true rate of control group
 #' @param p11 assumed true rate of treatment group
@@ -1345,11 +1348,11 @@ utility4_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
 #' @param in1 amount of information for `p11` in terms of sample size
 #' @param in2 amount of information for `p12` in terms of sample size
 #' @return The output of the the function `Epgo23_binary()` is the probability to to a third phase III trial.
-#' @examples res <- Epgo23_binary(RRgo = 0.8, n2 = 50,  p0 = 0.3, w = 0.3,
+#' @examples res <- Epgo23_binary(RRgo = 0.8, n2 = 50,  p0 = 0.3, w = 0.3, alpha = 0.025, beta = 0.1,
 #'                                p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-09
-Epgo23_binary <-  function(RRgo, n2, p0, w, p11, p12, in1, in2){
+Epgo23_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2){
   
   SIGMA <-  diag(2)
   const     <-  (qnorm(1 - alpha) + qnorm(1 - beta))^2
@@ -1410,7 +1413,7 @@ Epgo23_binary <-  function(RRgo, n2, p0, w, p11, p12, in1, in2){
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 
-EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, id1, id2, case, size, ymin){
+EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, case, size, ymin){
   # Option 2.1: first two phase III trials are successful: no third phase III trial
   # Option 2.2: one of the two first phase III trials successful, the treatment
   #  effect of the other one points in the same direction: 
@@ -1619,7 +1622,6 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, id1, id2, 
 #' @param b1 expected gain for effect size category `"small"`
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
-#' @param fixed choose if true treatment effects are fixed or random
 #' @return The output of the the function `utility23_binary()` is the expected utility of the program depending on whether two or three phase III trials are performed.
 #' @examples res <- utility23_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
 #'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 

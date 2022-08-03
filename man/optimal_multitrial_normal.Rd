@@ -94,12 +94,6 @@ optimal_multitrial_normal(
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
-
-\item{steps1}{lower boundary for effect size category "small", default: 0}
-
-\item{stepm1}{lower boundary for effect size category "medium" = upper boundary for effect size category "small" default: 0.5}
-
-\item{stepl1}{lower boundary for effect size category "large" = upper boundary for effect size category "medium", default: 0.8}
 }
 \value{
 The output of the function \code{\link{optimal_multitrial_normal}} is a data.frame containing the optimization results:
@@ -157,14 +151,14 @@ res <- optimal_multitrial_normal(w=0.3,                             # define par
   kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,     # define optimization set for kappa
   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
   c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,             # define fixed and variable costs for phase II and III
-  K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
+  K = Inf, N = Inf, S = -Inf,                            # set constraints
   b1 = 3000, b2 = 8000, b3 = 10000,                      # define expected benefit for a "small", "medium" and "large" treatment effect                                             # assume different/same population structures in phase II and III
   case = 1, strategy = TRUE,                             # chose Case and Strategy
   fixed = TRUE,                                          # choose if true treatment effects are fixed or random
-  num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
+  num_cl = 1)                                            # set number of cores used for parallelized computing
 res
 
-cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+cat(comment(res))                                        # displays the optimization sequence, start/ finish date of procedure.
 }
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences.

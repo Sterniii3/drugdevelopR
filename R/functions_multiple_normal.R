@@ -180,7 +180,7 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
 #' 
 #' After getting the "go"-decision to go to phase III, i.e. our results of phase II are over the predefined threshold `kappa`, this function 
 #' calculates the probability, that our program is successfull, i.e. that both endpoints show a statistically significant positive treatment effect in phase III.
-#' @param kappa threshold value for the go/no-go decision rule; vector for both endpoints
+#' @param kappa threshold value for the go/no-go decision rule; 
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
@@ -257,6 +257,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
 #' 
 #' This function calculates the probability that our drug development program is successful.
 #' Successful is defined as both endpoints showing a statistically significant positive treatment effect in phase III. 
+#' @param kappa threshold value for the go/no-go decision rule;
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
@@ -368,8 +369,10 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
 #' @param rho correlation between the two endpoints
 #' @param relaxed relaxed or strict decision rule
 #' @return The output of the the function `utility_multiple_normal()` is the expected utility of the program.
-#' @examples res <- utility_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
-#'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, sigma1 = 8, sigma2 = 4,
+#' @examples res <- utility_multiple_normal(kappa = 0.1, n2 = 50, 
+#'                                alpha = 0.025, beta = 0.1,
+#'                                Delta1 = 0.375, Delta2 = 0.625, 
+#'                                in1 = 300, in2 = 600, sigma1 = 8, sigma2 = 4,
 #'                                c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                K = Inf, N = Inf, S = -Inf,
 #'                                steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,

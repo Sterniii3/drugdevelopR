@@ -30,10 +30,6 @@ Epgo_binary_R2(RRgo, n2, Adj, p0, w, p11, p12, in1, in2, fixed)
 \item{in2}{amount of information for \code{p12} in terms of sample size}
 
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{p11} is used as fixed effect}
-
-\item{alpha}{significance level}
-
-\item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 }
 \value{
 The output of the the functions \code{Epgo_normal_L2} and \code{Epgo_normal_R2} is the expected number of participants in phase III with conservative decision rule and sample size calculation.

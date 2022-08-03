@@ -31,6 +31,9 @@ optimal_multiple_tte(
   b12,
   b22,
   b32,
+  steps1,
+  stepm1,
+  stepl1,
   rho,
   fixed,
   num_cl = 1
@@ -46,6 +49,12 @@ optimal_multiple_tte(
 \item{id2}{amount of information for hr2 in terms of number of events}
 
 \item{ec}{control arm event rate for phase II and III}
+
+\item{d2min}{minimal number of events for phase II, must be divisible by 3}
+
+\item{d2max}{maximal number of events for phase II, must be divisible by 3}
+
+\item{stepd2}{stepsize for the optimization over d2, must be divisible by 3}
 
 \item{hrgomin}{minimal threshold value for the go/no-go decision rule}
 
@@ -65,11 +74,11 @@ optimal_multiple_tte(
 
 \item{c03}{fixed cost for phase III}
 
-\item{K}{constraint on the costs of the program, default: Inf, e.g. no constraint}
+\item{K}{constraint on the maximal costs of the program, default: Inf, e.g. no constraint}
 
 \item{N}{constraint on the total expected sample size of the program, default: Inf, e.g. no constraint}
 
-\item{S}{constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint}
+\item{S}{constraint on the expected minimal probability of a successful program, default: -Inf, e.g. no constraint}
 
 \item{b11}{expected gain for effect size category \code{"small"} if endpoint OS is significant}
 
@@ -83,23 +92,17 @@ optimal_multiple_tte(
 
 \item{b32}{expected gain for effect size category \code{"large"} if endpoint OS is not significant}
 
-\item{rho}{correlation between the two endpoints}
-
-\item{fixed}{assumed fixed treatment effect}
-
-\item{num_cl}{number of clusters used for parallel computing, default: 1}
-
-\item{n2min}{minimal total sample size in phase II, must be divisible by 3}
-
-\item{n2max}{maximal total sample size in phase II, must be divisible by 3}
-
-\item{stepn2}{stepsize for the optimization over n2, must be divisible by 3}
-
 \item{steps1}{lower boundary for effect size category "small" in HR scale, default: 1}
 
 \item{stepm1}{lower boundary for effect size category "medium" in HR scale = upper boundary for effect size category "small" in HR scale, default: 0.95}
 
 \item{stepl1}{lower boundary for effect size category "large" in HR scale = upper boundary for effect size category "medium" in HR scale, default: 0.85}
+
+\item{rho}{correlation between the two endpoints}
+
+\item{fixed}{assumed fixed treatment effect}
+
+\item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
 \value{
 The output of the function \code{\link{optimal_multiple_tte}} is a data.frame containing the optimization results:
@@ -151,21 +154,22 @@ endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni
 }
 
 \examples{
-res <- optimal_multiple_tte(hr1 = 0.75, hr2 = 0.80, ec = 0.6,# define assumed true HRs and control arm event rate
+res <- optimal_multiple_tte(hr1 = 0.75, hr2 = 0.80, 
+  ec = 0.6,                                         # define assumed true HRs and control arm event rate
   id1 = 210, id2 = 420,
-  d2min = 30, d2max = 90, stepd2 = 6,                    # define optimization set for n2
-  hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
-  alpha = 0.05, beta = 0.1,                              # drug development planning parameters
-  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
-  K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
-  steps1 = 1,                                            # define lower boundary for "small"
-  stepm1 = 0.95,                                         # "medium"
-  stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
-  b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
-  rho = 0.5, fixed = TRUE,                               # correlation and treatment effect
-  num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
+  d2min = 30, d2max = 90, stepd2 = 6,               # define optimization set for n2
+  hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,    # define optimization set for HRgo
+  alpha = 0.05, beta = 0.1,                         # drug development planning parameters
+  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,          # define fixed and variable costs for phase II and III
+  K = Inf, N = Inf, S = -Inf,                       # set constraints
+  steps1 = 1,                                       # define lower boundary for "small"
+  stepm1 = 0.95,                                    # "medium"
+  stepl1 = 0.85,                                    # and "large" treatment effect size categories as proposed by IQWiG (2016)
+  b1 = 1000, b2 = 2000, b3 = 3000,                  # define expected benefit for a "small", "medium" and "large" treatment effect
+  rho = 0.5, fixed = TRUE,                          # correlation and treatment effect
+  num_cl = 1)                                       # set number of cores used for parallelized computing 
 res
-cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+cat(comment(res))                                   # displays the optimization sequence, start and finish date of the optimization 
 }
 \references{
 Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal Designs for Multi-Arm Phase II/III Drug Development Programs. Submitted to peer-review journal.

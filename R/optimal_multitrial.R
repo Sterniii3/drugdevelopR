@@ -64,13 +64,13 @@
 #'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
 #'   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,       # drug development planning parameters
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
-#'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
+#'   K = Inf, N = Inf, S = -Inf,                            # set constraints
 #'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
 #'   case = 1, strategy = TRUE,                             # chose Case and Strategy
 #'   fixed = TRUE,                                          # choose if true treatment effects are fixed or random
-#'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
+#'   num_cl = 1)                                            # set number of cores used for parallelized computing 
 #' res
-#' cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+#' cat(comment(res))                                        # displays the optimization sequence, start/ finish date of procedure.
 #' @section drugdevelopR functions:
 #' The drugdevelopR package provides the functions
 #' \itemize{

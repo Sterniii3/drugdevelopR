@@ -58,8 +58,6 @@ utility23_binary(
 \item{b2}{expected gain for effect size category \code{"medium"}}
 
 \item{b3}{expected gain for effect size category \code{"large"}}
-
-\item{fixed}{choose if true treatment effects are fixed or random}
 }
 \value{
 The output of the the function \code{utility23_binary()} is the expected utility of the program depending on whether two or three phase III trials are performed.

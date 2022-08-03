@@ -24,6 +24,8 @@ EPsProg_multiple_normal(
 )
 }
 \arguments{
+\item{kappa}{threshold value for the go/no-go decision rule;}
+
 \item{n2}{total sample size for phase II; must be even number}
 
 \item{alpha}{significance level}

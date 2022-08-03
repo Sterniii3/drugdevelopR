@@ -32,10 +32,6 @@ Epgo_normal_R2(kappa, n2, Adj, w, Delta1, Delta2, in1, in2, a, b, fixed)
 \item{b}{upper boundary for the truncation}
 
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{Delta1} is used as fixed effect}
-
-\item{alpha}{significance level}
-
-\item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 }
 \value{
 The output of the the functions \code{Epgo_normal_L2} and \code{Epgo_normal_R2} is the expected number of participants in phase III with conservative decision rule and sample size calculation.

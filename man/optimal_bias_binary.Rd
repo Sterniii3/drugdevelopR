@@ -68,6 +68,8 @@ optimal_bias_binary(
 
 \item{steprrgo}{stepsize for the optimization over RRgo}
 
+\item{adj}{type of adjustment, \code{"additive"}, \code{"multiplicative"} or \code{"both"}}
+
 \item{lambdamin}{minimal adjustment parameter lambda}
 
 \item{lambdamax}{maximal adjustment parameter lambda}
@@ -113,8 +115,6 @@ optimal_bias_binary(
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
-
-\item{gamma}{to model different populations in phase II and III choose gamma!=0, default: 0}
 }
 \value{
 The output of the function \code{\link{optimal_binary}} is a data.frame containing the optimization results:

@@ -4,12 +4,16 @@
 \alias{Epgo23_binary}
 \title{Expected probability to do third phase III trial}
 \usage{
-Epgo23_binary(RRgo, n2, p0, w, p11, p12, in1, in2)
+Epgo23_binary(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2)
 }
 \arguments{
 \item{RRgo}{threshold value for the go/no-go decision rule}
 
 \item{n2}{total sample size for phase II; must be even number}
+
+\item{alpha}{significance level}
+
+\item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
 \item{p0}{assumed true rate of control group}
 
@@ -31,7 +35,7 @@ In the setting of Case 2: Strategy 2/2( + 1); at least two trials significant (a
 treatment effect of the other one at least showing in the same direction) this function calculates the probability that a third phase III trial is necessary.
 }
 \examples{
-res <- Epgo23_binary(RRgo = 0.8, n2 = 50,  p0 = 0.3, w = 0.3,
+res <- Epgo23_binary(RRgo = 0.8, n2 = 50,  p0 = 0.3, w = 0.3, alpha = 0.025, beta = 0.1,
                                p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600)
 }
 \section{Last Edited By}{

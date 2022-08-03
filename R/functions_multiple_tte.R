@@ -17,7 +17,7 @@
 #'  Z = max(X,Y) with X ~ N(mu1,sigma1^2), Y ~ N(mu2,sigma2^2)
 #' 
 #' f(z)=f1(-z)+f2(-z)
-#'@param y integral variable
+#'@param z integral variable
 #'@param mu1 mean of second endpoint 
 #'@param mu2 mean of first endpoint
 #'@param sigma1 standard deviation of first endpoint
@@ -217,7 +217,7 @@ else {
 #E(n3|GO)
 expn3go_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
   
-  expe3go_tte<-Ess_tte(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho)/pgo_tte(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho)
+  expe3go_tte<-Ess_multiple_tte(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho)/pgo_multiple_tte(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho)
   
   return(expe3go_tte/hr[1])*pw(n2,ec,hr1,hr2,id1,id2,fixed,rho)+(expe3go_tte/hr[2])*(1-pw(n2,ec,hr1,hr2,id1,id2,fixed,rho))
   }
@@ -321,7 +321,7 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 
-os_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
+os_tte<-function(HRgo, n2, alpha, beta, ec,hr1, hr2, id1, id2, fixed, rho){
   
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
   e22<-hr2*n2 # number of events phase II for endpoint 2 (OS)
@@ -431,12 +431,17 @@ os_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23  
 
-utility_multiple_tte<-function(n2,HRgo,alpha,beta,hr1,hr2,id1,id2,ec,
-                               c2,c02,c3,c03,K,N,S,
-                               steps1, stepm1, stepl1, b1, b2, b3,fixed,rho){ 
+utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2, ec,
+                               c2, c02, c3, c03, K, N, S,
+                               steps1, stepm1, stepl1, 
+                               b11, b21, b31, b12, b22, b32, fixed, rho){ 
 
    n3 <- Ess_multiple_tte(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
-   OS <- os_tte(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
+   
+   OS <- os_tte(HRgo = HRgo, n2 = n2, alpha = alpha, beta = beta,
+                ec = ec, hr1 = hr1, hr2 = hr2,
+                id1 = id1, id2 = id2, fixed = fixed, rho = rho)
+  
    pw <- pw(n2=n2,ec=ec,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
    
    if(n2+n3>N){

@@ -25,9 +25,6 @@
 #' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
 #' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
 #' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
-#' @param steps1 lower boundary for effect size category "small", default: 0
-#' @param stepm1 lower boundary for effect size category "medium" = upper boundary for effect size category "small" default: 0.5
-#' @param stepl1 lower boundary for effect size category "large" = upper boundary for effect size category "medium", default: 0.8
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
@@ -65,14 +62,14 @@
 #'   kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,     # define optimization set for kappa
 #'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
 #'   c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,             # define fixed and variable costs for phase II and III
-#'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
+#'   K = Inf, N = Inf, S = -Inf,                            # set constraints
 #'   b1 = 3000, b2 = 8000, b3 = 10000,                      # define expected benefit for a "small", "medium" and "large" treatment effect                                             # assume different/same population structures in phase II and III
 #'   case = 1, strategy = TRUE,                             # chose Case and Strategy
 #'   fixed = TRUE,                                          # choose if true treatment effects are fixed or random
-#'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
+#'   num_cl = 1)                                            # set number of cores used for parallelized computing
 #' res
 #'
-#' cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+#' cat(comment(res))                                        # displays the optimization sequence, start/ finish date of procedure.
 #' @section drugdevelopR functions:
 #' The drugdevelopR package provides the functions
 #' \itemize{

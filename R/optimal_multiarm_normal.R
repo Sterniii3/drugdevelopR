@@ -27,6 +27,7 @@
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
+#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
 #' The output of the function \code{\link{optimal_normal}} is a data.frame containing the optimization results:

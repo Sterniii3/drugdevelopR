@@ -91,12 +91,6 @@ optimal_multitrial_binary(
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
-
-\item{steps1}{lower boundary for effect size category "small" in RR scale, default: 1}
-
-\item{stepm1}{lower boundary for effect size category "medium" in RR scale = upper boundary for effect size category "small" in RR scale, default: 0.95}
-
-\item{stepl1}{lower boundary for effect size category "large" in RR scale = upper boundary for effect size category "medium" in RR scale, default: 0.85}
 }
 \value{
 The output of the function \code{\link{optimal_binary}} is a data.frame containing the optimization results:
@@ -153,12 +147,12 @@ res <- optimal_multitrial_binary(w = 0.3,                # define parameters for
   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,         # define optimization set for RRgo
   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III,
-  K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
+  K = Inf, N = Inf, S = -Inf,                            # set constraints
   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
   fixed = FALSE,                                         # choose if true treatment effects are fixed or random
-  num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
+  num_cl = 1)                                            # set number of cores used for parallelized computing 
 res
-cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+cat(comment(res))                                        # displays the optimization sequence, start/finish date of procedure
 }
 \references{
 IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.

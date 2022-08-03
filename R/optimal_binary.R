@@ -32,6 +32,7 @@
 #' @param b3 expected gain for effect size category "large"
 #' @param gamma to model different populations in phase II and III choose gamma!=0, default: 0
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1
+#' @param skipII choose if skipping phase II is an option, default: FALSE
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
 #' The output of the function \code{\link{optimal_binary}} is a data.frame containing the optimization results:

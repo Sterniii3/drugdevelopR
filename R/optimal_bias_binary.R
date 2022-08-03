@@ -21,6 +21,7 @@
 #' @param alphaCImin minimal alphaCI
 #' @param alphaCImax maximal alphaCI
 #' @param stepalphaCI stepsize for alphaCI
+#' @param adj type of adjustment, `"additive"`, `"multiplicative"` or `"both"`
 #' @param beta 1-beta power for calculation of sample size for phase III
 #' @param alpha significance level
 #' @param c2 variable per-patient cost for phase II
@@ -36,7 +37,6 @@
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
-#' @param gamma to model different populations in phase II and III choose gamma!=0, default: 0
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return

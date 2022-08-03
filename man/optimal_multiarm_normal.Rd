@@ -79,6 +79,8 @@ optimal_multiarm_normal(
 
 \item{b3}{expected gain for effect size category "large"}
 
+\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)}
+
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
 \value{

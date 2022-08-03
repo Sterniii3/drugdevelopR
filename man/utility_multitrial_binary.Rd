@@ -123,6 +123,8 @@ utility4_binary(
 
 \item{b3}{expected gain for effect size category \code{"large"}}
 
+\item{case}{choose case: "at least 1, 2 or 3 significant trials needed for approval"}
+
 \item{fixed}{choose if true treatment effects are fixed or random}
 }
 \value{

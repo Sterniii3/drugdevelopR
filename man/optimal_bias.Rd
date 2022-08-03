@@ -118,8 +118,6 @@ optimal_bias(
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
-
-\item{skipII}{choose if skipping phase II is an option, default: FASLE}
 }
 \value{
 The output of the function \code{\link{optimal_bias}} is a data.frame containing the optimization results:

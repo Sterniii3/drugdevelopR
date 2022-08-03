@@ -24,9 +24,12 @@ utility_multiple_tte(
   steps1,
   stepm1,
   stepl1,
-  b1,
-  b2,
-  b3,
+  b11,
+  b21,
+  b31,
+  b12,
+  b22,
+  b32,
   fixed,
   rho
 )
@@ -70,10 +73,6 @@ utility_multiple_tte(
 
 \item{stepl1}{lower boundary for effect size category \code{"large"} in HR scale = upper boundary for effect size category \code{"medium"} in HR scale, default: 0.85}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
-
-\item{rho}{correlation between the two endpoints}
-
 \item{b11}{expected gain for effect size category \code{"small"} if endpoint OS is significant}
 
 \item{b21}{expected gain for effect size category \code{"medium"}if endpoint OS is significant}
@@ -85,6 +84,10 @@ utility_multiple_tte(
 \item{b22}{expected gain for effect size category \code{"medium"}if endpoint OS is not significant}
 
 \item{b32}{expected gain for effect size category \code{"large"} if endpoint OS is not significant}
+
+\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
+
+\item{rho}{correlation between the two endpoints}
 }
 \value{
 The output of the the function \code{utility_multiple_tte()} is the expected utility of the program.

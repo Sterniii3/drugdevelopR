@@ -209,7 +209,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
         }
         if(strategy == 3){
           strat = "multipl2."
-          res <- parallel::parSapply(cl, D2, utility_normal_R2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b, 
+          res <- parallel::parSapply(cl, N2, utility_normal_R2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b, 
                            alpha, beta,
                            c2, c3, c02, c03, 
                            K, N, S,

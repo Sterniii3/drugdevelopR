@@ -4,11 +4,14 @@
 \alias{EPsProg_multitrial}
 \alias{EPsProg2}
 \alias{EPsProg3}
+\alias{EPsProg4}
 \title{Expected probability of a successful program for multitrial programs in a time-to-event setting}
 \usage{
 EPsProg2(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, fixed)
 
 EPsProg3(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, fixed)
+
+EPsProg4(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, fixed)
 }
 \arguments{
 \item{HRgo}{threshold value for the go/no-go decision rule}

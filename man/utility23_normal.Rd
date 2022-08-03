@@ -61,10 +61,6 @@ utility23_normal(
 \item{b2}{expected gain for effect size category \code{"medium"}}
 
 \item{b3}{expected gain for effect size category \code{"large"}}
-
-\item{step1}{lower boundary for effect size}
-
-\item{step2}{upper boundary for effect size}
 }
 \value{
 The output of the the function utility23_normal() is the expected utility of the program depending on whether two or three phase III trials are performed.

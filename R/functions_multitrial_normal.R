@@ -1262,17 +1262,19 @@ utility4_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
 #' treatment effect of the other one at least showing in the same direction) this function calculates the probability that a third phase III trial is necessary.
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
+#' @param alpha significance level
+#' @param beta `1-beta` power for calculation of sample size for phase III
 #' @param w weight for mixture prior distribution
 #' @param Delta1 assumed true treatment effect for standardized difference in means
 #' @param Delta2 assumed true treatment effect for standardized difference in means
 #' @param in1 amount of information for `Delta1` in terms of sample size
 #' @param in2 amount of information for `Delta2` in terms of sample size
 #' @return The output of the the function `Epgo23_normal()` is the probability to to a third phase III trial.
-#' @examples res <- Epgo23_normal(kappa = 0.1, n2 = 50, w = 0.3,
+#' @examples res <- Epgo23_normal(kappa = 0.1, n2 = 50, w = 0.3, alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-Epgo23_normal <-  function(kappa, n2, w, Delta1, Delta2, in1, in2){
+Epgo23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2){
   
   SIGMA <-  diag(2)
   c     <-  (qnorm(1 - alpha) + qnorm(1 - beta))^2
@@ -1509,8 +1511,6 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
-#' @param step1 lower boundary for effect size
-#' @param step2 upper boundary for effect size
 #' @param w weight for mixture prior distribution
 #' @param Delta1 assumed true treatment effect for standardized difference in means
 #' @param Delta2 assumed true treatment effect for standardized difference in means
