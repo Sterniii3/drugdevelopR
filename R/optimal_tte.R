@@ -1,6 +1,9 @@
 #' Optimal phase II/III drug development planning with time-to-event endpoint
 #'
-#' The function \code{\link{optimal_tte}} of the \code{\link{drugdevelopR}} package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules for time-to-event endpoints (Kirchner et al., 2016). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. When assuming fixed true tratment effects, planning can also be done with the user friendly R Shiny App \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. The App \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast computing is enabled by parallel programming.
+#' The function \code{\link{optimal_tte}} of the \code{\link{drugdevelopR}} package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules for time-to-event endpoints (Kirchner et al., 2016). 
+#' The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. When assuming fixed true tratment effects, planning can also be done with the user friendly R Shiny App \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. 
+#' The App \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. 
+#' Fast computing is enabled by parallel programming.
 #' 
 #' @name optimal_tte
 #' @param w weight for mixture prior distribution
@@ -77,7 +80,7 @@
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 #' res
 #' cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
-#' @section drugdevelopR package and R Shiny App
+#' @section drugdevelopR package and R Shiny App:
 #' The \code{\link{drugdevelopR}} package provides functions to plan optimal phase II/III drug development programs in variuos scenarios. The App \href{https://web.imbi.uni-heidelberg.de/drugdevelopR/}{drugdevelopR} serves as homepage, navigating the different parts of the drugdevelopR framework via links.
 #' 
 #' @references

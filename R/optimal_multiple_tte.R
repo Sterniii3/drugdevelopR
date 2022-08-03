@@ -1,6 +1,7 @@
 #' Optimal phase II/III drug development planning for programs with multiple endpoints
 #'
-#' The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules (Preussler et. al, 2019).  (planning is also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}). Fast coputing is enabled by parallel programming.
+#' The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules (Preussler et. al, 2019). 
+#' Fast computing is enabled by parallel programming.
 #' 
 #' @name optimal_multiple_tte
 #' @param hr1 assumed true treatment effect on HR scale for treatment 1

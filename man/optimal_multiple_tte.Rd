@@ -25,9 +25,12 @@ optimal_multiple_tte(
   K = Inf,
   N = Inf,
   S = -Inf,
-  b1,
-  b2,
-  b3,
+  b11,
+  b21,
+  b31,
+  b12,
+  b22,
+  b32,
   rho,
   fixed,
   num_cl = 1
@@ -68,11 +71,17 @@ optimal_multiple_tte(
 
 \item{S}{constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint}
 
-\item{b1}{expected gain for effect size category "small"}
+\item{b11}{expected gain for effect size category \code{"small"} if endpoint OS is significant}
 
-\item{b2}{expected gain for effect size category "medium"}
+\item{b21}{expected gain for effect size category \code{"medium"}if endpoint OS is significant}
 
-\item{b3}{expected gain for effect size category "large"}
+\item{b31}{expected gain for effect size category \code{"large"} if endpoint OS is significant}
+
+\item{b12}{expected gain for effect size category \code{"small"} if endpoint OS is not significant}
+
+\item{b22}{expected gain for effect size category \code{"medium"}if endpoint OS is not significant}
+
+\item{b32}{expected gain for effect size category \code{"large"} if endpoint OS is not significant}
 
 \item{rho}{correlation between the two endpoints}
 
@@ -116,7 +125,8 @@ res
 Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 }
 \description{
-The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules (Preussler et. al, 2019).  (planning is also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}). Fast coputing is enabled by parallel programming.
+The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules (Preussler et. al, 2019).
+Fast computing is enabled by parallel programming.
 }
 \section{drugdevelopR functions}{
 

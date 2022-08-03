@@ -7,10 +7,6 @@
 # Date: 25.01.2017
 ################################################################################
 
-#load packages
-library(mvtnorm)
-library(MASS)
-
 #load functions
 
 #' Density for the maximum of two normally distributed random variables
@@ -391,7 +387,10 @@ os_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #' Utility function for multiple endpoints in a time-to-event-setting
 #'
 #' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program. 
-#' The utility is in a further step maximized by the `optimal_multiple_tte()` function.
+#' The utility is in a further step maximized by the `optimal_multiple_tte()` function. 
+#' Note, that for calculating the utility of the program, two different benefit triples are necessary: 
+#'  - one triple for the case that the more important endpoint overall survival (OS) shows a significant positive treatment effect 
+#'  - one triple when only the endpoint progression-free survival (PFS) shows a significant positive treatment effect
 #' @param HRgo threshold value for the go/no-go decision rule; 
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
