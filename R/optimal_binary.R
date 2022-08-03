@@ -32,6 +32,7 @@
 #' @param b3 expected gain for effect size category "large"
 #' @param gamma to model different populations in phase II and III choose gamma!=0, default: 0
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1
+#' @param skipII choose if skipping phase II is an option, default: FALSE
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
 #' The output of the function \code{\link{optimal_binary}} is a data.frame containing the optimization results:
@@ -188,7 +189,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
 
       RRgo <- HRGO[j]
 
-      cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
+      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
       parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "En3_binary",
                           "EPsProg_binary","t1", "t2", "t3", "alpha", "beta",
@@ -198,7 +199,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           "b1", "b2", "b3", "w", "RRgo",
                           "p0", "p11", "p12", "in1", "in2"), envir=environment())
       
-      result <- parSapply(cl, N2, utility_binary, RRgo, w, p0, p11, p12, in1, in2,
+      result <- parallel::parSapply(cl, N2, utility_binary, RRgo, w, p0, p11, p12, in1, in2,
                           alpha, beta, 
                           c2, c3, c02, c03, K, N, S,
                           steps1, stepm1, stepl1,
@@ -206,7 +207,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           gamma, fixed)
 
       setTxtProgressBar(title= "i", pb, j)
-      stopCluster(cl)
+      parallel::stopCluster(cl)
 
       ufkt[, j]      <-  result[1, ]
       n3fkt[, j]     <-  result[2, ]

@@ -35,7 +35,7 @@ library(parallel)
 #'@examples res <- fmin(y = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
 #'@editor Johannes Cepicka
 #'@editDate 2022-04-23
-
+#' @export
 fmin<-function (y,mu1,mu2,sigma1,sigma2,rho)
     {t1<-dnorm(y,mean=mu1,sd=sigma1)
       tt<-rho*(y-mu1)/(sigma1*sqrt(1-rho*rho))
@@ -60,6 +60,7 @@ return(t1+t2)}
 #'@name dbivanorm
 #'@editor Johannes Cepicka
 #'@editDate 2022-04-23
+#' @export
 dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){ 
   covariancemat <- matrix(c(sigma1, rho*sqrt(sigma1)*sqrt(sigma2), rho*sqrt(sigma1)*sqrt(sigma2), sigma2),ncol=2)
   ff <- dmvnorm(cbind(x,y), mean=c(mu1,mu2),sigma=covariancemat)
@@ -87,6 +88,7 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #'                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @export
 pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
   
   Sigma <- c(sigma1,sigma2)
@@ -138,7 +140,7 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
 #'                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
   
   Kappa <- c(kappa*sigma1,kappa*sigma2)
@@ -180,7 +182,7 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
 #' 
 #' After getting the "go"-decision to go to phase III, i.e. our results of phase II are over the predefined threshold `kappa`, this function 
 #' calculates the probability, that our program is successfull, i.e. that both endpoints show a statistically significant positive treatment effect in phase III.
-#' @param kappa threshold value for the go/no-go decision rule; vector for both endpoints
+#' @param kappa threshold value for the go/no-go decision rule; 
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
@@ -198,7 +200,7 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
 #'                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, in1, in2, fixed, rho){
   
   Kappa <- c(kappa*sigma1,kappa*sigma2)
@@ -257,6 +259,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
 #' 
 #' This function calculates the probability that our drug development program is successful.
 #' Successful is defined as both endpoints showing a statistically significant positive treatment effect in phase III. 
+#' @param kappa threshold value for the go/no-go decision rule;
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
@@ -279,7 +282,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
 #'                                in1 = 300, in2 = 600, fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2,
                       step11, step12, step21, step22, 
                       in1, in2, fixed,rho){
@@ -368,8 +371,10 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
 #' @param rho correlation between the two endpoints
 #' @param relaxed relaxed or strict decision rule
 #' @return The output of the the function `utility_multiple_normal()` is the expected utility of the program.
-#' @examples res <- utility_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
-#'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, sigma1 = 8, sigma2 = 4,
+#' @examples res <- utility_multiple_normal(kappa = 0.1, n2 = 50, 
+#'                                alpha = 0.025, beta = 0.1,
+#'                                Delta1 = 0.375, Delta2 = 0.625, 
+#'                                in1 = 300, in2 = 600, sigma1 = 8, sigma2 = 4,
 #'                                c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                K = Inf, N = Inf, S = -Inf,
 #'                                steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
@@ -377,7 +382,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
 #'                                fixed = FALSE, rho = 0.3, relaxed = "TRUE")
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 utility_multiple_normal<-function(kappa, n2, alpha, beta, 
                                   Delta1, Delta2, in1, in2, sigma1, sigma2,
                                   c2, c02, c3, c03, K, N, S,

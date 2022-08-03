@@ -68,7 +68,7 @@ shinyUI(fluidPage(
           # Show a table summarizing the values entered
           mainPanel(
           includeMarkdown("help51.md"),
-          img(src = "Trial Design_small5.png",width = 1200),
+          img(src = "Trial_Design_small5.png",width = 1200),
           includeMarkdown("help52.md"),
           tableOutput("table"),
           includeMarkdown("help53.md"),

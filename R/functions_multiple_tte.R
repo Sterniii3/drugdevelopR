@@ -7,10 +7,6 @@
 # Date: 25.01.2017
 ################################################################################
 
-#load packages
-library(mvtnorm)
-library(MASS)
-
 #load functions
 
 #' Density for the maximum of two normally distributed random variables
@@ -21,7 +17,7 @@ library(MASS)
 #'  Z = max(X,Y) with X ~ N(mu1,sigma1^2), Y ~ N(mu2,sigma2^2)
 #' 
 #' f(z)=f1(-z)+f2(-z)
-#'@param y integral variable
+#'@param z integral variable
 #'@param mu1 mean of second endpoint 
 #'@param mu2 mean of first endpoint
 #'@param sigma1 standard deviation of first endpoint
@@ -32,7 +28,7 @@ library(MASS)
 #'@examples res <- fmax(z = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
 #'@editor Johannes Cepicka
 #'@editDate 2022-04-23
-#'
+#' @export
 fmax<-function (z,mu1,mu2,sigma1,sigma2,rho){ 
   t1<-dnorm(-z,mean=-mu1,sd=sigma1)
   tt<-rho*(mu1-z)/(sigma1*sqrt(1-rho*rho))
@@ -73,6 +69,7 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #'                                fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @export
 pgo_multiple_tte<-function(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho){
   
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
@@ -133,6 +130,7 @@ pgo_multiple_tte<-function(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho){
 #'                                fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @export
 Ess_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
 
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
@@ -188,7 +186,7 @@ Ess_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
 #'                     fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 pw <- function(n2,ec,hr1,hr2,id1,id2,fixed,rho){
   
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
@@ -221,7 +219,7 @@ else {
 #E(n3|GO)
 expn3go_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
   
-  expe3go_tte<-Ess_tte(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho)/pgo_tte(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho)
+  expe3go_tte<-Ess_multiple_tte(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho)/pgo_multiple_tte(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho)
   
   return(expe3go_tte/hr[1])*pw(n2,ec,hr1,hr2,id1,id2,fixed,rho)+(expe3go_tte/hr[2])*(1-pw(n2,ec,hr1,hr2,id1,id2,fixed,rho))
   }
@@ -252,7 +250,7 @@ expn3go_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
 #'                                fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
+#' @export
 EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2,fixed,rho){
  
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
@@ -324,8 +322,8 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
 #'                                fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-
-os_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
+#' @export
+os_tte<-function(HRgo, n2, alpha, beta, ec,hr1, hr2, id1, id2, fixed, rho){
   
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
   e22<-hr2*n2 # number of events phase II for endpoint 2 (OS)
@@ -391,7 +389,10 @@ os_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #' Utility function for multiple endpoints in a time-to-event-setting
 #'
 #' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program. 
-#' The utility is in a further step maximized by the `optimal_multiple_tte()` function.
+#' The utility is in a further step maximized by the `optimal_multiple_tte()` function. 
+#' Note, that for calculating the utility of the program, two different benefit triples are necessary: 
+#'  - one triple for the case that the more important endpoint overall survival (OS) shows a significant positive treatment effect 
+#'  - one triple when only the endpoint progression-free survival (PFS) shows a significant positive treatment effect
 #' @param HRgo threshold value for the go/no-go decision rule; 
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
@@ -411,9 +412,12 @@ os_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #' @param steps1 lower boundary for effect size category `"small"` in HR scale, default: 1
 #' @param stepm1 lower boundary for effect size category `"medium"` in HR scale = upper boundary for effect size category `"small"` in HR scale, default: 0.95
 #' @param stepl1 lower boundary for effect size category `"large"` in HR scale = upper boundary for effect size category `"medium"` in HR scale, default: 0.85
-#' @param b1 expected gain for effect size category `"small"`
-#' @param b2 expected gain for effect size category `"medium"`
-#' @param b3 expected gain for effect size category `"large"`
+#' @param b11 expected gain for effect size category `"small"` if endpoint OS is significant
+#' @param b21 expected gain for effect size category `"medium"`if endpoint OS is significant
+#' @param b31 expected gain for effect size category `"large"` if endpoint OS is significant 
+#' @param b12 expected gain for effect size category `"small"` if endpoint OS is not significant
+#' @param b22 expected gain for effect size category `"medium"`if endpoint OS is not significant
+#' @param b32 expected gain for effect size category `"large"` if endpoint OS is not significant
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
 #' @return The output of the the function `utility_multiple_tte()` is the expected utility of the program.
@@ -423,17 +427,23 @@ os_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #'                                c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               
 #'                                K = Inf, N = Inf, S = -Inf, 
 #'                                steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
-#'                                b1 = 1000, b2 = 2000, b3 = 3000,
+#'                                b11 = 1000, b21 = 2000, b31 = 3000,
+#'                                b12 = 1000, b22 = 1500, b32 = 2000, 
 #'                                fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23  
-
-utility_multiple_tte<-function(n2,HRgo,alpha,beta,hr1,hr2,id1,id2,ec,
-                               c2,c02,c3,c03,K,N,S,
-                               steps1, stepm1, stepl1, b1, b2, b3,fixed,rho){ 
+#' @export
+utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2, ec,
+                               c2, c02, c3, c03, K, N, S,
+                               steps1, stepm1, stepl1, 
+                               b11, b21, b31, b12, b22, b32, fixed, rho){ 
 
    n3 <- Ess_multiple_tte(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
-   OS <- os_tte(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
+   
+   OS <- os_tte(HRgo = HRgo, n2 = n2, alpha = alpha, beta = beta,
+                ec = ec, hr1 = hr1, hr2 = hr2,
+                id1 = id1, id2 = id2, fixed = fixed, rho = rho)
+  
    pw <- pw(n2=n2,ec=ec,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
    
    if(n2+n3>N){
@@ -482,7 +492,7 @@ utility_multiple_tte<-function(n2,HRgo,alpha,beta,hr1,hr2,id1,id2,ec,
          
        }else{
          
-         G     = b1*prob1+b2*prob2+b3*prob3                   # gain
+         G     = (b11*prob1+b21*prob2+b31*prob3)*OS + (b12*prob1+b22*prob2+b32*prob3)*(1-OS)                 # gain
                              
          EU    = -K2-K3+G                                            # total expected utility
          

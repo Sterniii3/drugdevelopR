@@ -52,7 +52,15 @@ Given phase II results are promising enough to get the "go"-decision to go to ph
 The results of this function are necessary for calculating the utility of the program, which is then in a further step maximized by the \code{optimal_multiple_normal()} function
 }
 \examples{
-res <- Ess_multiple_normal(kappa = c(0.1,0.1), n2 = 50, alpha = 0.025, beta = 0.1,
+res <- Ess_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

@@ -4,7 +4,7 @@
 \alias{os_tte}
 \title{Probability that endpoint OS significant}
 \usage{
-os_tte(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho)
+os_tte(HRgo, n2, alpha, beta, ec, hr1, hr2, id1, id2, fixed, rho)
 }
 \arguments{
 \item{HRgo}{threshold value for the go/no-go decision rule;}
@@ -14,6 +14,8 @@ os_tte(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho)
 \item{alpha}{one- sided significance level}
 
 \item{beta}{1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula}
+
+\item{ec}{control arm event rate for phase II and III}
 
 \item{hr1}{assumed true treatment effect on HR scale for treatment 1}
 
@@ -26,8 +28,6 @@ os_tte(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho)
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
 
 \item{rho}{correlation between the two endpoints}
-
-\item{ec}{control arm event rate for phase II and III}
 }
 \value{
 The output of the the function \code{os_tte()} is the probability that endpoint OS significant.
@@ -42,3 +42,11 @@ res <- os_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
                                id1 = 300, id2 = 600, 
                                fixed = FALSE, rho = 0.3)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

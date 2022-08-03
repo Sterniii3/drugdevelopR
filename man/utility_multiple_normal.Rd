@@ -94,11 +94,21 @@ The utility function calculates the expected utility of our drug development pro
 The utility is in a further step maximized by the \code{optimal_multiple_normal()} function.
 }
 \examples{
-res <- utility_multiple_normal(kappa = c(0.1,0.1), n2 = 50, alpha = 0.025, beta = 0.1,
-                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, sigma1 = 8, sigma2 = 4,
+res <- utility_multiple_normal(kappa = 0.1, n2 = 50, 
+                               alpha = 0.025, beta = 0.1,
+                               Delta1 = 0.375, Delta2 = 0.625, 
+                               in1 = 300, in2 = 600, sigma1 = 8, sigma2 = 4,
                                c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                                K = Inf, N = Inf, S = -Inf,
                                steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                b1 = 1000, b2 = 2000, b3 = 3000, 
                                fixed = FALSE, rho = 0.3, relaxed = "TRUE")
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

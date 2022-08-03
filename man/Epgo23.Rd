@@ -11,6 +11,10 @@ Epgo23(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2)
 
 \item{d2}{total number of events in phase II}
 
+\item{alpha}{significance level}
+
+\item{beta}{\code{1-beta} power for calculation of sample size for phase III}
+
 \item{w}{weight for mixture prior distribution}
 
 \item{hr1}{first assumed true treatment effect on HR scale for prior distribution}
@@ -20,8 +24,6 @@ Epgo23(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2)
 \item{id1}{amount of information for \code{hr1} in terms of number of events}
 
 \item{id2}{amount of information for \code{hr2} in terms of number of events}
-
-\item{p0}{assumed true rate of control group}
 }
 \value{
 The output of the the function \code{Epgo23()} is the probability to to a third phase III trial.
@@ -31,6 +33,14 @@ In the setting of Case 2: Strategy 2/2( + 1); at least two trials significant (a
 treatment effect of the other one at least showing in the same direction) this function calculates the probability that a third phase III trial is necessary.
 }
 \examples{
-res <- Epgo23(HRgo = 0.8, d2 = 50,  w = 0.3,
+res <- Epgo23(HRgo = 0.8, d2 = 50,  w = 0.3, alpha = 0.025, beta = 0.1,
                                hr1 =  0.69, hr2 = 0.81, id1 = 280, id2 = 420)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-05-09
+}
+

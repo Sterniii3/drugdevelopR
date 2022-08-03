@@ -50,3 +50,11 @@ res <- pgo_multiple_normal(kappa = c(0.1,0.1), n2 = 50,
                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

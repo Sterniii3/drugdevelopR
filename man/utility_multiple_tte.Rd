@@ -24,9 +24,12 @@ utility_multiple_tte(
   steps1,
   stepm1,
   stepl1,
-  b1,
-  b2,
-  b3,
+  b11,
+  b21,
+  b31,
+  b12,
+  b22,
+  b32,
   fixed,
   rho
 )
@@ -70,11 +73,17 @@ utility_multiple_tte(
 
 \item{stepl1}{lower boundary for effect size category \code{"large"} in HR scale = upper boundary for effect size category \code{"medium"} in HR scale, default: 0.85}
 
-\item{b1}{expected gain for effect size category \code{"small"}}
+\item{b11}{expected gain for effect size category \code{"small"} if endpoint OS is significant}
 
-\item{b2}{expected gain for effect size category \code{"medium"}}
+\item{b21}{expected gain for effect size category \code{"medium"}if endpoint OS is significant}
 
-\item{b3}{expected gain for effect size category \code{"large"}}
+\item{b31}{expected gain for effect size category \code{"large"} if endpoint OS is significant}
+
+\item{b12}{expected gain for effect size category \code{"small"} if endpoint OS is not significant}
+
+\item{b22}{expected gain for effect size category \code{"medium"}if endpoint OS is not significant}
+
+\item{b32}{expected gain for effect size category \code{"large"} if endpoint OS is not significant}
 
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
 
@@ -86,6 +95,11 @@ The output of the the function \code{utility_multiple_tte()} is the expected uti
 \description{
 The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program.
 The utility is in a further step maximized by the \code{optimal_multiple_tte()} function.
+Note, that for calculating the utility of the program, two different benefit triples are necessary:
+\itemize{
+\item one triple for the case that the more important endpoint overall survival (OS) shows a significant positive treatment effect
+\item one triple when only the endpoint progression-free survival (PFS) shows a significant positive treatment effect
+}
 }
 \examples{
 res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
@@ -94,6 +108,15 @@ res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
                                c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               
                                K = Inf, N = Inf, S = -Inf, 
                                steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
-                               b1 = 1000, b2 = 2000, b3 = 3000,
+                               b11 = 1000, b21 = 2000, b31 = 3000,
+                               b12 = 1000, b22 = 1500, b32 = 2000, 
                                fixed = FALSE, rho = 0.3)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

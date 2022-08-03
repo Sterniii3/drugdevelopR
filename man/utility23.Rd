@@ -44,6 +44,10 @@ utility23(
 
 \item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
+\item{xi2}{event rate for phase II}
+
+\item{xi3}{event rate for phase III}
+
 \item{c2}{variable per-patient cost for phase II}
 
 \item{c3}{variable per-patient cost for phase III}
@@ -57,8 +61,6 @@ utility23(
 \item{b2}{expected gain for effect size category \code{"medium"}}
 
 \item{b3}{expected gain for effect size category \code{"large"}}
-
-\item{fixed}{choose if true treatment effects are fixed or random}
 }
 \value{
 The output of the the function \code{utility23()} is the expected utility of the program depending on whether two or three phase III trials are performed.
@@ -70,7 +72,16 @@ The utility is in further step maximized by the \code{optimal_multitrial()} func
 \examples{
 res <- utility23(d2 = 50, HRgo = 0.8,  w = 0.3, 
                                  p0 = 0.6, hr1 =  0.69, hr2 = 0.81, 
-                                 id1 = 280, id2 = 420, alpha = 0.025, beta = 0.1,
+                                 id1 = 280, id2 = 420, 
+                                 alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,
                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                                  b1 = 1000, b2 = 2000, b3 = 3000)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

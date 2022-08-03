@@ -176,10 +176,6 @@ utility_normal_R2(
 \item{b3}{expected gain for effect size category \code{"large"}}
 
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect}
-
-\item{step1}{lower boundary for effect size}
-
-\item{step2}{upper boundary for effect size}
 }
 \value{
 The output of the the functions \code{utility_normal_L()}, \code{utility_normal_L2()}, \code{utility_normal_R()} and \code{utility_normal_R2()} is the expected utility of the program.
@@ -189,32 +185,48 @@ The utility function calculates the expected utility of our drug development pro
 The utility is in a further step maximized by the \code{optimal_bias_normal()} function.
 }
 \examples{
-res <- utility_normal_L(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
-                                 Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+res <- utility_normal_L(kappa = 0.1, n2 = 50, Adj = 0, 
+                                 alpha = 0.025, beta = 0.1, w = 0.3,
+                                 Delta1 = 0.375, Delta2 = 0.625, 
+                                 in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
                                  K = Inf, N = Inf, S = -Inf, 
                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
                                  fixed = FALSE)
-          res <- utility_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
-                                 Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+          res <- utility_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, 
+                                 alpha = 0.025, beta = 0.1, w = 0.3,
+                                 Delta1 = 0.375, Delta2 = 0.625, 
+                                 in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
                                  K = Inf, N = Inf, S = -Inf, 
                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
                                  fixed = FALSE)
-          res <- utility_normal_R(kappa = 0.1, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, w = 0.3,
-                                 Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+          res <- utility_normal_R(kappa = 0.1, n2 = 50, Adj = 1, 
+                                 alpha = 0.025, beta = 0.1, w = 0.3,
+                                 Delta1 = 0.375, Delta2 = 0.625, 
+                                 in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
                                  K = Inf, N = Inf, S = -Inf, 
                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
                                  fixed = FALSE)
-          res <- utility_normal_R2(kappa = 0.1, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, w = 0.3,
-                                 Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+          res <- utility_normal_R2(kappa = 0.1, n2 = 50, Adj = 1, 
+                                 alpha = 0.025, beta = 0.1, w = 0.3,
+                                 Delta1 = 0.375, Delta2 = 0.625, 
+                                 in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
                                  K = Inf, N = Inf, S = -Inf, 
                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
                                  fixed = FALSE)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

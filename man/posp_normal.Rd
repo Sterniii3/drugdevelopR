@@ -20,7 +20,7 @@ posp_normal(
 )
 }
 \arguments{
-\item{kappa}{threshold value for the go/no-go decision rule; vector for both endpoints}
+\item{kappa}{threshold value for the go/no-go decision rule;}
 
 \item{n2}{total sample size for phase II; must be even number}
 
@@ -52,7 +52,15 @@ After getting the "go"-decision to go to phase III, i.e. our results of phase II
 calculates the probability, that our program is successfull, i.e. that both endpoints show a statistically significant positive treatment effect in phase III.
 }
 \examples{
-res <- posp_normal(kappa = c(0.1,0.1), n2 = 50, alpha = 0.025, beta = 0.1,
+res <- posp_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

@@ -31,6 +31,7 @@
 #' @examples res <- pgo_tte(HRgo = 0.8, d2 = 50 , ec = 0.6, hr1 = 0.7, hr2 = 0.8, strategy = 3, case = 31)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @export
 pgo_tte<-function(HRgo,n2,ec,hr1,hr2,strategy,case){
   
   et1      = 1 - (1-ec)^hr1     # event rate in arm 1
@@ -141,6 +142,7 @@ pgo_tte<-function(HRgo,n2,ec,hr1,hr2,strategy,case){
 #' @examples res <- ss_tte(alpha = 0.05, beta = 0.1, ec = 0.6, ek = 0.8, y = 0.5, l=1)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
+#' @export
 ss_tte<-function(alpha,beta,ec,ek,y,l){
 
   if(l==1){calpha = qnorm(1-alpha)}
@@ -163,11 +165,13 @@ ss_tte<-function(alpha,beta,ec,ek,y,l){
 #' @param ec control arm event rate for phase II and III
 #' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
+#' @importFrom cubature adaptIntegrate
 #' @return the function Ess_tte() returns the expected sample size for phase III when going to phase III
 #' @examples res <- Ess_tte(HRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             ec = 0.6, hr1 = 0.7, hr2 = 0.8, strategy = 2, case = 21)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
+#' @export
 Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
   
   et1      = 1 - (1-ec)^hr1     # event rate in arm 1
@@ -287,6 +291,7 @@ Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
 #'                             strategy = 2, case = 21)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
+#' @export
 PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
   
   et1      = 1 - (1-ec)^hr1    # event rate in arm 1
@@ -484,7 +489,7 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
 #'                             b1 = 1000, b2 = 2000, b3 = 3000)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
-
+#' @export
 utility_multiarm<-function(n2,HRgo,alpha,beta,hr1,hr2,strategy,ec,c2,c02,c3,c03,K,N,S,steps1, stepm1, stepl1,b1, b2, b3){ 
   
   if(strategy==1){

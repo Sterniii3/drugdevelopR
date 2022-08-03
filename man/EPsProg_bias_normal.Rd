@@ -29,6 +29,7 @@ EPsProg_normal_L(
 EPsProg_normal_L2(
   kappa,
   n2,
+  Adj,
   alpha,
   beta,
   step1,
@@ -128,20 +129,36 @@ when the go-decision is also affected by the bias adjustment
 }
 }
 \examples{
-res <- EPsProg_normal_L(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+res <- EPsProg_normal_L(kappa = 0.1, n2 = 50, Adj = 0, 
+                                 alpha = 0.025, beta = 0.1, w = 0.3,
                                  step1 = 0, step2 = 0.5,
-                                 Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+                                 Delta1 = 0.375, Delta2 = 0.625, 
+                                 in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, fixed = FALSE)
-          res <- EPsProg_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, w = 0.3,
+          res <- EPsProg_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, 
+                                 alpha = 0.025, beta = 0.1, w = 0.3,
                                  step1 = 0, step2 = 0.5,
-                                 Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+                                 Delta1 = 0.375, Delta2 = 0.625, 
+                                 in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, fixed = FALSE)
-          res <- EPsProg_normal_R(kappa = 0.1, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, w = 0.3,
+          res <- EPsProg_normal_R(kappa = 0.1, n2 = 50, Adj = 1, 
+                                 alpha = 0.025, beta = 0.1, w = 0.3,
                                  step1 = 0, step2 = 0.5,
-                                 Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+                                 Delta1 = 0.375, Delta2 = 0.625, 
+                                 in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, fixed = FALSE)
-          res <- EPsProg_normal_R2(kappa = 0.1, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, w = 0.3,
+          res <- EPsProg_normal_R2(kappa = 0.1, n2 = 50, Adj = 1, 
+                                 alpha = 0.025, beta = 0.1, w = 0.3,
                                  step1 = 0, step2 = 0.5,
-                                 Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+                                 Delta1 = 0.375, Delta2 = 0.625, 
+                                 in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, fixed = FALSE)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

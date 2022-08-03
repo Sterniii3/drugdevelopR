@@ -24,9 +24,6 @@
 #' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
 #' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
 #' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
-#' @param steps1 lower boundary for effect size category "small" in RR scale, default: 1
-#' @param stepm1 lower boundary for effect size category "medium" in RR scale = upper boundary for effect size category "small" in RR scale, default: 0.95
-#' @param stepl1 lower boundary for effect size category "large" in RR scale = upper boundary for effect size category "medium" in RR scale, default: 0.85
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
@@ -63,13 +60,13 @@
 #'   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,         # define optimization set for RRgo
 #'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III,
-#'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
+#'   K = Inf, N = Inf, S = -Inf,                            # set constraints
 #'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
 #    case = 1, strategy = TRUE,                             # chose Case and Strategy                                   
 #'   fixed = FALSE,                                         # choose if true treatment effects are fixed or random
-#'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
+#'   num_cl = 1)                                            # set number of cores used for parallelized computing 
 #' res
-#' cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+#' cat(comment(res))                                        # displays the optimization sequence, start/finish date of procedure
 #' @section drugdevelopR functions:
 #' The drugdevelopR package provides the functions
 #' \itemize{
@@ -155,7 +152,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
       
       RRgo <- RRGO[j]
       
-      cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
+      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
       ###################
       # Strategy 1alpha #
@@ -174,7 +171,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
         alpha <- alpha_in
       }
       
-      clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "Epgo23_binary", "En3_binary",
+      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "Epgo23_binary", "En3_binary",
                           "EPsProg_binary", "EPsProg2_binary", "EPsProg3_binary", "EPsProg4_binary", "EPsProg23_binary",
                           "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
@@ -184,7 +181,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                           "p0", "p11", "p12", "in1", "in2"), envir = environment())
       
       if(Strategy==1){
-        res <- parSapply(cl, N2, utility_binary, RRgo, w, p0, p11, p12, in1, in2,
+        res <- parallel::parSapply(cl, N2, utility_binary, RRgo, w, p0, p11, p12, in1, in2,
                          alpha, beta, 
                          c2, c3, c02, c03, K, N, S,
                          steps1, stepm1, stepl1,
@@ -192,7 +189,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                          fixed)  
       }
       if(Strategy==2){
-        res <- parSapply(cl, N2, utility2_binary, RRgo, w, p0, p11, p12, in1, in2,
+        res <- parallel::parSapply(cl, N2, utility2_binary, RRgo, w, p0, p11, p12, in1, in2,
                          alpha, beta, 
                          c2, c3, c02, c03, 
                          K, N, S,
@@ -200,7 +197,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                          case, fixed)  
       }
       if(Strategy==3){
-        res <- parSapply(cl, N2, utility3_binary, RRgo, w, p0, p11, p12, in1, in2,
+        res <- parallel::parSapply(cl, N2, utility3_binary, RRgo, w, p0, p11, p12, in1, in2,
                          alpha, beta, 
                          c2, c3, c02, c03,
                          K, N, S,
@@ -208,13 +205,13 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                          case, fixed)  
       }
       if(Strategy==23){
-        res <- parSapply(cl, N2, utility23_binary, RRgo, w, p0, p11, p12, in1, in2,
+        res <- parallel::parSapply(cl, N2, utility23_binary, RRgo, w, p0, p11, p12, in1, in2,
                          alpha, beta, 
                          c2, c3, c02, c03, 
                          b1, b2, b3)  
       }
       if(Strategy==4){
-        res <- parSapply(cl, N2, utility4_binary, RRgo, w, p0, p11, p12, in1, in2,
+        res <- parallel::parSapply(cl, N2, utility4_binary, RRgo, w, p0, p11, p12, in1, in2,
                          alpha, beta, 
                          c2, c3, c02, c03, 
                          K, N, S,
@@ -223,7 +220,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
       }
       
       setTxtProgressBar(title= "i", pb, j)
-      stopCluster(cl)
+      parallel::stopCluster(cl)
       
       ufkt[, j]      <-  res[1, ]
       n3fkt[, j]     <-  res[2, ]

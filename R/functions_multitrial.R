@@ -46,6 +46,7 @@
 #'                                  id1 = 210, id2 = 420, case = 3, size = "small",
 #'                                  fixed = FALSE)
 #' @name EPsProg_multitrial                                 
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, fixed){
@@ -380,6 +381,8 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
 #' @param d2 total number of events in phase II
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
+#' @param xi2 event rate for phase II
+#' @param xi3 event rate for phase III
 #' @param w weight for mixture prior distribution
 #' @param hr1 first assumed true treatment effect on HR scale for prior distribution
 #' @param hr2 second assumed true treatment effect on HR scale for prior distribution
@@ -395,30 +398,35 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
 #' @param b1 expected gain for effect size category `"small"`
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
+#' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
 #' @param fixed choose if true treatment effects are fixed or random
 #' @return The output of the the functions `utility2()`, `utility3()` and `utility4()` is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
-#' @examples res <- utility(d2 = 50, HRgo = 0.8,  w = 0.3, 
+#' @examples res <- utility2(d2 = 50, HRgo = 0.8,  w = 0.3, 
 #'                                  hr1 =  0.69, hr2 = 0.81, 
-#'                                  id1 = 210, id2 = 420, alpha = 0.025, beta = 0.1,
+#'                                  id1 = 210, id2 = 420, 
+#'                                  alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                  K = Inf, N = Inf, S = -Inf,
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
 #'                                  case = 2, fixed = FALSE)
 #'           res <- utility3(d2 = 50, HRgo = 0.8,  w = 0.3, 
 #'                                  hr1 =  0.69, hr2 = 0.81, 
-#'                                  id1 = 210, id2 = 420, alpha = 0.025, beta = 0.1,
+#'                                  id1 = 210, id2 = 420, 
+#'                                  alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                  K = Inf, N = Inf, S = -Inf,
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
 #'                                  case = 2, fixed = FALSE)
 #'          res <- utility4(d2 = 50, HRgo = 0.8,  w = 0.3, 
 #'                                  hr1 =  0.69, hr2 = 0.81, 
-#'                                  id1 = 210, id2 = 420, alpha = 0.025, beta = 0.1,
+#'                                  id1 = 210, id2 = 420, 
+#'                                  alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                  K = Inf, N = Inf, S = -Inf,
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
 #'                                  case = 3, fixed = FALSE)
-#' @name utility_multitrial                                 
+#' @name utility_multitrial 
+#' @export                                
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 utility2 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
@@ -1007,7 +1015,7 @@ utility3 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 # Case 3: Strategy 3/4; at least three trials significant, the treatment effect 
 # of the other one at least showing in the same direction
 
-#' @rdname EPsProg_multitrial_binary 
+#' @rdname EPsProg_multitrial 
 #' @export
 EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, fixed){
   
@@ -1352,15 +1360,17 @@ utility4 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 #' treatment effect of the other one at least showing in the same direction) this function calculates the probability that a third phase III trial is necessary.
 #' @param HRgo threshold value for the go/no-go decision rule
 #' @param d2 total number of events in phase II
+#' @param alpha significance level
+#' @param beta `1-beta` power for calculation of sample size for phase III
 #' @param w weight for mixture prior distribution
-#' @param p0 assumed true rate of control group
 #' @param hr1 first assumed true treatment effect on HR scale for prior distribution
 #' @param hr2 second assumed true treatment effect on HR scale for prior distribution
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @return The output of the the function `Epgo23()` is the probability to to a third phase III trial.
-#' @examples res <- Epgo23(HRgo = 0.8, d2 = 50,  w = 0.3,
+#' @examples res <- Epgo23(HRgo = 0.8, d2 = 50,  w = 0.3, alpha = 0.025, beta = 0.1,
 #'                                hr1 =  0.69, hr2 = 0.81, id1 = 280, id2 = 420)
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-09
 Epgo23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
@@ -1417,9 +1427,10 @@ Epgo23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
 #' @param ymin assumed minimal clinical relevant effect
 #' @return The output of the the function `EPsProg23()` is the expected probability of a successful program.
 #' @examples res <- EPsProg23(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
-#'                                  w = 0.3, hr1 =  0.69, hr2 = 0.81, 
-#'                                  id1 = 280, id2 = 420, case = 2, size = "small",
-#'                                  ymin = 0.5)
+#'                                   w = 0.3, hr1 =  0.69, hr2 = 0.81, 
+#'                                   id1 = 280, id2 = 420, case = 2, size = "small",
+#'                                   ymin = 0.5)
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, ymin){
@@ -1612,6 +1623,8 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
 #' @param d2 total sample size for phase II; must be even number
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
+#' @param xi2 event rate for phase II
+#' @param xi3 event rate for phase III
 #' @param w weight for mixture prior distribution
 #' @param hr1 first assumed true treatment effect on HR scale for prior distribution
 #' @param hr2 second assumed true treatment effect on HR scale for prior distribution
@@ -1624,15 +1637,17 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
 #' @param b1 expected gain for effect size category `"small"`
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
-#' @param fixed choose if true treatment effects are fixed or random
+#' @importFrom mvtnorm pmvnorm
 #' @return The output of the the function `utility23()` is the expected utility of the program depending on whether two or three phase III trials are performed.
 #' @examples res <- utility23(d2 = 50, HRgo = 0.8,  w = 0.3, 
 #'                                  p0 = 0.6, hr1 =  0.69, hr2 = 0.81, 
-#'                                  id1 = 280, id2 = 420, alpha = 0.025, beta = 0.1,
+#'                                  id1 = 280, id2 = 420, 
+#'                                  alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @export
 utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                        alpha, beta, xi2, xi3,
                        c2, c3, c02, c03, 

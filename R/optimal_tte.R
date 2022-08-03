@@ -1,6 +1,9 @@
 #' Optimal phase II/III drug development planning with time-to-event endpoint
 #'
-#' The function \code{\link{optimal_tte}} of the \code{\link{drugdevelopR}} package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules for time-to-event endpoints (Kirchner et al., 2016). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. When assuming fixed true tratment effects, planning can also be done with the user friendly R Shiny App \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. The App \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast computing is enabled by parallel programming.
+#' The function \code{\link{optimal_tte}} of the \code{\link{drugdevelopR}} package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules for time-to-event endpoints (Kirchner et al., 2016). 
+#' The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. When assuming fixed true tratment effects, planning can also be done with the user friendly R Shiny App \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. 
+#' The App \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. 
+#' Fast computing is enabled by parallel programming.
 #' 
 #' @name optimal_tte
 #' @param w weight for mixture prior distribution
@@ -77,7 +80,7 @@
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 #' res
 #' cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
-#' @section drugdevelopR package and R Shiny App
+#' @section drugdevelopR package and R Shiny App:
 #' The \code{\link{drugdevelopR}} package provides functions to plan optimal phase II/III drug development programs in variuos scenarios. The App \href{https://web.imbi.uni-heidelberg.de/drugdevelopR/}{drugdevelopR} serves as homepage, navigating the different parts of the drugdevelopR framework via links.
 #' 
 #' @references
@@ -197,8 +200,8 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
   for(j in 1:length(HRGO)){
 
     HRgo <- HRGO[j]
-    cl <-  makeCluster(getOption("cl.cores", num_cl)) 
-    clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", 
+    cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) 
+    parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", 
                         "Epgo_tte", "Ed3_tte",
                         "EPsProg_tte", "alpha", "beta",
                         "steps1", "stepm1", "stepl1", 
@@ -208,7 +211,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                         "hr1", "hr2", "id1", "id2"), 
                   envir = environment())
 
-    result <- parSapply(cl, D2, utility_tte, 
+    result <- parallel::parSapply(cl, D2, utility_tte, 
                         HRgo, w, hr1, hr2, id1, id2,
                         alpha, beta, xi2, xi3,
                         c2, c3, c02, c03, 
@@ -218,7 +221,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                         gamma, fixed)
 
     setTxtProgressBar(title= "i", pb, j)
-    stopCluster(cl)
+    parallel::stopCluster(cl)
 
     ufkt[, j]      <-  result[1, ]
     d3fkt[, j]     <-  result[2, ]

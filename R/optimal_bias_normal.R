@@ -175,9 +175,9 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
         
         kappa <- KAPPA[j]
         
-        cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
+        cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
         
-        clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_normal","Epgo_normal", "En3_normal_L",
+        parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_normal","Epgo_normal", "En3_normal_L",
                             "EPsProg_normal_L","Epgo_normal_L2", "En3_normal_L2",
                             "EPsProg_normal_L2","En3_normal_R", "EPsProg_normal_R", "Epgo_normal_R2", "En3_normal_R2",
                             "EPsProg_normal_R2", "alpha", "beta",
@@ -189,7 +189,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
         
         if(strategy == 1){
           strat = "multipl."
-          res <- parSapply(cl, N2, utility_normal_R, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
+          res <- parallel::parSapply(cl, N2, utility_normal_R, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
                            alpha, beta, 
                            c2, c3, c02, c03, 
                            K, N, S,
@@ -199,7 +199,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
         }
         if(strategy == 2){
           strat = "add."
-          res <- parSapply(cl, N2, utility_normal_L, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
+          res <- parallel::parSapply(cl, N2, utility_normal_L, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
                            alpha, beta, 
                            c2, c3, c02, c03, 
                            K, N, S,
@@ -209,7 +209,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
         }
         if(strategy == 3){
           strat = "multipl2."
-          res <- parSapply(cl, D2, utility_normal_R2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b, 
+          res <- parallel::parSapply(cl, N2, utility_normal_R2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b, 
                            alpha, beta,
                            c2, c3, c02, c03, 
                            K, N, S,
@@ -219,7 +219,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
         }
         if(strategy == 4){
           strat = "add2."
-          res <- parSapply(cl, N2, utility_normal_L2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
+          res <- parallel::parSapply(cl, N2, utility_normal_L2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
                            alpha, beta, 
                            c2, c3, c02, c03, 
                            K, N, S,
@@ -229,7 +229,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
         }
         
         setTxtProgressBar(title= "i", pb, t)
-        stopCluster(cl)
+        parallel::stopCluster(cl)
         
         ufkt[, j]      <-  res[1, ]
         n3fkt[, j]     <-  res[2, ]

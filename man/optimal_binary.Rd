@@ -97,6 +97,8 @@ optimal_binary(
 
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1}
 
+\item{skipII}{choose if skipping phase II is an option, default: FALSE}
+
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
 \value{

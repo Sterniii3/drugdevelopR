@@ -86,3 +86,11 @@ res <- utility_multiarm(n2 = 50, HRgo = 0.8, alpha = 0.05, beta = 0.1,
                             steps1 = 1, stepm1 = 0.95,  stepl1 = 0.85,
                             b1 = 1000, b2 = 2000, b3 = 3000)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-05-08
+}
+

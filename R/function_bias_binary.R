@@ -39,20 +39,26 @@ t3 <- function(x, p0){sqrt(((1-p0)/p0) + ((1-x)/x))}
 #' @param in2 amount of information for `p12` in terms of sample size
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `p11` is used as fixed effect
 #' @return The output of the the functions `En3_binary_L`, `En3_binary_L2`, `En3_binary_R` and `En3_binary_R2` is the expected number of participants in phase III. 
-#' @examples res <- En3_binary_L(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, p0 = 0.6,  w = 0.3,
+#' @importFrom stats qnorm integrate dnorm
+#' @examples res <- En3_binary_L(RRgo = 0.8, n2 = 50, Adj = 0, 
+#'                               alpha = 0.025, beta = 0.1, p0 = 0.6,  w = 0.3,
 #'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
 #'                               fixed = FALSE)
-#'           res <-  En3_binary_L2(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, p0 = 0.6,  w = 0.3,
+#'           res <-  En3_binary_L2(RRgo = 0.8, n2 = 50, Adj = 0, 
+#'                               alpha = 0.025, beta = 0.1, p0 = 0.6,  w = 0.3,
 #'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
 #'                               fixed = FALSE)
-#'           res <- En3_binary_R(RRgo = 0.8, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, p0 = 0.6,  w = 0.3,
+#'           res <- En3_binary_R(RRgo = 0.8, n2 = 50, Adj = 1, 
+#'                               alpha = 0.025, beta = 0.1, p0 = 0.6,  w = 0.3,
 #'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
 #'                               fixed = FALSE)
-#'           res <- En3_binary_R2(RRgo = 0.8, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, p0 = 0.6,  w = 0.3,
+#'           res <- En3_binary_R2(RRgo = 0.8, n2 = 50, Adj = 1, 
+#'                               alpha = 0.025, beta = 0.1, p0 = 0.6,  w = 0.3,
 #'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
 #'                               fixed = FALSE)
 #'                               
 #' @name En3_bias_binary                             
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 En3_binary_L <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2, fixed){
@@ -119,23 +125,29 @@ En3_binary_L <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2,
 #' @param in2 amount of information for `p12` in terms of sample size
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `p11` is used as fixed effect
 #' @return  The output of the the functions `EPsProg_binary_L()`, `EPsProg_binary_L2()`, `EPsProg_binary_R()` and `EPsProg_binary_R2()` is the expected probability of a successful program.
-#' @examples res <- EPsProg_binary_L(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, 
+#' @importFrom stats qnorm integrate dnorm
+#' @examples res <- EPsProg_binary_L(RRgo = 0.8, n2 = 50, Adj = 0, 
+#'                                  alpha = 0.025, beta = 0.1, 
 #'                                  step1 = 1, step2 = 0.95, p0 = 0.6,  w = 0.3,
 #'                                  p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
 #'                                  fixed = FALSE)
-#'           res <- EPsProg_binary_L2(RRgo = 0.8, n2 = 50, Adj = 0, alpha = 0.025, beta = 0.1, 
+#'           res <- EPsProg_binary_L2(RRgo = 0.8, n2 = 50, Adj = 0, 
+#'                                  alpha = 0.025, beta = 0.1, 
 #'                                  step1 = 1, step2 = 0.95, p0 = 0.6,  w = 0.3,
 #'                                  p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
 #'                                  fixed = FALSE)
-#'           res <- EPsProg_binary_R(RRgo = 0.8, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, 
+#'           res <- EPsProg_binary_R(RRgo = 0.8, n2 = 50, Adj = 1, 
+#'                                  alpha = 0.025, beta = 0.1, 
 #'                                  step1 = 1, step2 = 0.95, p0 = 0.6,  w = 0.3,
 #'                                  p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
 #'                                  fixed = FALSE)
-#'           res <- EPsProg_binary_R2(RRgo = 0.8, n2 = 50, Adj = 1, alpha = 0.025, beta = 0.1, 
+#'           res <- EPsProg_binary_R2(RRgo = 0.8, n2 = 50, Adj = 1, 
+#'                                  alpha = 0.025, beta = 0.1, 
 #'                                  step1 = 1, step2 = 0.95, p0 = 0.6,  w = 0.3,
 #'                                  p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
 #'                                  fixed = FALSE)
 #' @name EPsProg_bias_binary                               
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 EPsProg_binary_L <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p11, p12, in1, in2, fixed){
@@ -221,7 +233,8 @@ EPsProg_binary_L <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p
 #' @return The output of the the functions `utility_binary_L()`, `utility_binary_L2()`, `utility_binary_R()` and `utility_binary_R2()` is the expected utility of the program.
 #' @examples res <- utility_binary_L(n2 = 50, RRgo = 0.8, Adj = 0, w = 0.3, 
 #'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
-#'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
+#'                                  in1 = 300, in2 = 600, 
+#'                                  alpha = 0.025, beta = 0.1,
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                  K = Inf, N = Inf, S = -Inf,
 #'                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
@@ -229,7 +242,8 @@ EPsProg_binary_L <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p
 #'                                  fixed = FALSE)
 #'          res <- utility_binary_L2(n2 = 50, RRgo = 0.8, Adj = 0, w = 0.3, 
 #'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
-#'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
+#'                                  in1 = 300, in2 = 600, 
+#'                                  alpha = 0.025, beta = 0.1,
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                  K = Inf, N = Inf, S = -Inf,
 #'                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
@@ -237,7 +251,8 @@ EPsProg_binary_L <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p
 #'                                  fixed = FALSE)
 #'          res <- utility_binary_R(n2 = 50, RRgo = 0.8, Adj = 1, w = 0.3, 
 #'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
-#'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
+#'                                  in1 = 300, in2 = 600, 
+#'                                  alpha = 0.025, beta = 0.1,
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                  K = Inf, N = Inf, S = -Inf,
 #'                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
@@ -245,13 +260,15 @@ EPsProg_binary_L <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p
 #'                                  fixed = FALSE)
 #'          res <- utility_binary_R2(n2 = 50, RRgo = 0.8, Adj = 1, w = 0.3, 
 #'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
-#'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
+#'                                  in1 = 300, in2 = 600, 
+#'                                  alpha = 0.025, beta = 0.1,
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                  K = Inf, N = Inf, S = -Inf,
 #'                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
 #'                                  fixed = FALSE)
 #' @name utility_bias_binary                                 
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
@@ -340,8 +357,6 @@ utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
 #' @param Adj adjustment parameter
-#' @param alpha significance level
-#' @param beta `1-beta` power for calculation of sample size for phase III
 #' @param w weight for mixture prior distribution
 #' @param p0 assumed true rate of control group
 #' @param p11 assumed true rate of treatment group
@@ -350,6 +365,7 @@ utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 #' @param in2 amount of information for `p12` in terms of sample size
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `p11` is used as fixed effect
 #' @return The output of the the functions `Epgo_normal_L2` and `Epgo_normal_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
+#' @importFrom stats qnorm integrate dnorm
 #' @examples res <- Epgo_binary_L2(RRgo = 0.8, n2 = 50, Adj = 0,  p0 = 0.6,  w = 0.3,
 #'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
 #'                               fixed = FALSE)
@@ -357,6 +373,7 @@ utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 #'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
 #'                               fixed = FALSE)
 #' @name Epgo_bias_binary 
+#' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 Epgo_binary_L2 <-  function(RRgo, n2, Adj, p0, w, p11, p12, in1, in2, fixed){

@@ -68,6 +68,8 @@ optimal_bias_binary(
 
 \item{steprrgo}{stepsize for the optimization over RRgo}
 
+\item{adj}{type of adjustment, \code{"additive"}, \code{"multiplicative"} or \code{"both"}}
+
 \item{lambdamin}{minimal adjustment parameter lambda}
 
 \item{lambdamax}{maximal adjustment parameter lambda}
@@ -113,8 +115,6 @@ optimal_bias_binary(
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
-
-\item{gamma}{to model different populations in phase II and III choose gamma!=0, default: 0}
 }
 \value{
 The output of the function \code{\link{optimal_binary}} is a data.frame containing the optimization results:
@@ -187,3 +187,11 @@ cat(comment(res))                                        # displays the optimiza
 \references{
 IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

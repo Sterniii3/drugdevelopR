@@ -21,6 +21,7 @@
 #' @param alphaCImin minimal alphaCI
 #' @param alphaCImax maximal alphaCI
 #' @param stepalphaCI stepsize for alphaCI
+#' @param adj type of adjustment, `"additive"`, `"multiplicative"` or `"both"`
 #' @param beta 1-beta power for calculation of sample size for phase III
 #' @param alpha significance level
 #' @param c2 variable per-patient cost for phase II
@@ -36,7 +37,6 @@
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
-#' @param gamma to model different populations in phase II and III choose gamma!=0, default: 0
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
@@ -174,9 +174,9 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     
     RRgo <- RRGO[j]
     
-    cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
+    cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
     
-    clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary","Epgo_binary", "En3_binary_L",
+    parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary","Epgo_binary", "En3_binary_L",
                         "EPsProg_binary_L","Epgo_binary_L2", "En3_binary_L2",
                         "EPsProg_binary_L2","En3_binary_R", "EPsProg_binary_R", "Epgo_binary_R2", "En3_binary_R2",
                         "EPsProg_binary_R2", "t1", "t2", "t3", "alpha", "beta",
@@ -188,7 +188,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     
     if(strategy == 1){
       strat = "multipl."
-      res <- parSapply(cl, N2, utility_binary_R, RRgo, Adj, w, p0, p11, p12, in1, in2,
+      res <- parallel::parSapply(cl, N2, utility_binary_R, RRgo, Adj, w, p0, p11, p12, in1, in2,
                        alpha, beta, 
                        c2, c3, c02, c03, 
                        K, N, S,
@@ -198,7 +198,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     }
     if(strategy == 2){
       strat = "add."
-      res <- parSapply(cl, N2, utility_binary_L, RRgo, Adj, w, p0, p11, p12, in1, in2,
+      res <- parallel::parSapply(cl, N2, utility_binary_L, RRgo, Adj, w, p0, p11, p12, in1, in2,
                        alpha, beta, 
                        c2, c3, c02, c03, 
                        K, N, S,
@@ -208,7 +208,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     }
     if(strategy == 3){
       strat = "multipl2."
-      res <- parSapply(cl, N2, utility_binary_R2, RRgo, Adj, w, p0, p11, p12, in1, in2,
+      res <- parallel::parSapply(cl, N2, utility_binary_R2, RRgo, Adj, w, p0, p11, p12, in1, in2,
                        alpha, beta, 
                        c2, c3, c02, c03, 
                        K, N, S,
@@ -218,7 +218,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     }
     if(strategy == 4){
       strat = "add2."
-      res <- parSapply(cl, N2, utility_binary_L2, RRgo, Adj, w, p0, p11, p12, in1, in2,
+      res <- parallel::parSapply(cl, N2, utility_binary_L2, RRgo, Adj, w, p0, p11, p12, in1, in2,
                        alpha, beta, 
                        c2, c3, c02, c03, 
                        K, N, S,
@@ -228,7 +228,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     }
     
     setTxtProgressBar(title= "i", pb, j)
-    stopCluster(cl)
+    parallel::stopCluster(cl)
     
     ufkt[, j]      <-  res[1, ]
     n3fkt[, j]     <-  res[2, ]

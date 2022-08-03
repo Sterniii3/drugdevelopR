@@ -127,9 +127,9 @@ optimal_multiarm_binary <- function(p0, p11, p12,
       
       RRgo <- RRGO[j]
       
-      cl <-  makeCluster(getOption("cl.cores", num_cl)) #define cluster
+      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
-      clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_binary", "ss_binary", "Ess_binary",
+      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_binary", "ss_binary", "Ess_binary",
                           "PsProg_binary", "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                           "K", "N", "S", "strategy",
@@ -138,13 +138,13 @@ optimal_multiarm_binary <- function(p0, p11, p12,
                           "p0", "p11", "p12"), envir = environment())
       
       
-      res <- parSapply(cl, N2, utility_multiarm_binary, RRgo,
+      res <- parallel::parSapply(cl, N2, utility_multiarm_binary, RRgo,
                        alpha,beta,p0,p11,p12,strategy,
                        c2,c02,c3,c03,K,N,S,
                        steps1, stepm1, stepl1,b1, b2, b3)
       
       setTxtProgressBar(title= "i", pb, j)
-      stopCluster(cl)
+      parallel::stopCluster(cl)
       
       ufkt[, j]     <-  res[1, ]
       n3fkt[, j]    <-  res[2, ]
