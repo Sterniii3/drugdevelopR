@@ -28,8 +28,9 @@ Suggests:
     rmarkdown,
     knitr,
     testthat (>= 3.0.0),
-    covr
+    covr,
+    valtools
 VignetteBuilder: knitr
 Imports: 
-    valtools,
+    
 Config/testthat/edition: 3
