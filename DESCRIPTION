@@ -32,5 +32,4 @@ Suggests:
     valtools
 VignetteBuilder: knitr
 Additional_repositories: https://github.com/phuse-org/valtools 
-VignetteBuilder: knitr
 Config/testthat/edition: 3
