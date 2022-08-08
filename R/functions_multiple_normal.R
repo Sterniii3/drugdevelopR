@@ -83,7 +83,7 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
 #' @param rho correlation between the two endpoints
 #' @return The output of the the function `pgo_multiple_normal()` is the probability to go to phase III.
-#' @examples res <- pgo_multiple_normal(kappa = c(0.1,0.1), n2 = 50,
+#' @examples res <- pgo_multiple_normal(kappa = 0.1, n2 = 50,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                sigma1 = 8, sigma2 = 4, fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
@@ -91,6 +91,7 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #' @export
 pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
   
+  Kappa <- c(kappa*sigma1,kappa*sigma2)
   Sigma <- c(sigma1,sigma2)
   r<-c(4*Sigma[1]^2,4*Sigma[2]^2) #(r1,r2) known constant for endpoint i
   var1<-r[1]/n2 #variance of effect for endpoint 1
@@ -379,7 +380,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
 #'                                K = Inf, N = Inf, S = -Inf,
 #'                                steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
 #'                                b1 = 1000, b2 = 2000, b3 = 3000, 
-#'                                fixed = FALSE, rho = 0.3, relaxed = "TRUE")
+#'                                fixed = TRUE, rho = 0.3, relaxed = "TRUE")
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export

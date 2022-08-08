@@ -102,7 +102,7 @@ res <- utility_multiple_normal(kappa = 0.1, n2 = 50,
                                K = Inf, N = Inf, S = -Inf,
                                steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                b1 = 1000, b2 = 2000, b3 = 3000, 
-                               fixed = FALSE, rho = 0.3, relaxed = "TRUE")
+                               fixed = TRUE, rho = 0.3, relaxed = "TRUE")
 }
 \section{Last Edited By}{
 Johannes Cepicka

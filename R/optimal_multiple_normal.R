@@ -55,7 +55,7 @@
 #' res
 #' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' @examples
-#' res <- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs and control arm event rate
+#' \dontrun{res <- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs and control arm event rate
 #'   in1=300, in2=600, sigma1 = 8, sigma2= 12,
 #'   n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
 #'   kappamin = 0.7, kappamax = 0.9, stepkappa = 0.05,         # define optimization set for HRgo
@@ -68,9 +68,9 @@
 #'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
 #'   rho = 0.5, relaxed = TRUE,                             # relaxed "TRUE"
 #'   fixed = TRUE,                                          #   treatment effect
-#'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
-#' res
-#' cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+#'   num_cl = 1)}                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
+#' #res
+#' 'cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
 #' @section drugdevelopR functions:
 #' The drugdevelopR package provides the functions
 #' \itemize{
@@ -134,8 +134,8 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
       
       cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
-      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_normal", "Ess_multiple_normal",
-                          "EPsProg_normal", "posp_normal", "fmin", "alpha", "beta",
+      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_multiple_normal", "Ess_multiple_normal",
+                          "EPsProg_multiple_normal", "posp_normal", "fmin", "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                           "K", "N", "S",
                           "c2", "c3", "c02", "c03",

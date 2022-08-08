@@ -46,7 +46,7 @@ This function calculated the probability that we go to phase III, i.e. that resu
 get a successful drug development program. Successful means that both endpoints show a statistically significant positive treatment effect in phase III.
 }
 \examples{
-res <- pgo_multiple_normal(kappa = c(0.1,0.1), n2 = 50,
+res <- pgo_multiple_normal(kappa = 0.1, n2 = 50,
                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                sigma1 = 8, sigma2 = 4, fixed = TRUE, rho = 0.3)
 }
