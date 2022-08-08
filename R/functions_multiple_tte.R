@@ -66,7 +66,7 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #' @return The output of the the function `pgo_multiple_tte()` is the probability to go to phase III.
 #' @examples res <- pgo_multiple_tte(HRgo = 0.8, n2 = 50, ec = 0.6,
 #'                                hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
-#'                                fixed = FALSE, rho = 0.3)
+#'                                fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export
@@ -127,7 +127,7 @@ pgo_multiple_tte<-function(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho){
 #' @examples res <- Ess_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
 #'                                ec = 0.6,hr1 = 0.75, hr2 = 0.80, 
 #'                                id1 = 300, id2 = 600, 
-#'                                fixed = FALSE, rho = 0.3)
+#'                                fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export
@@ -158,7 +158,7 @@ Ess_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
                     sapply(x,function(x){
                       (((4*(qnorm(1 - alpha) + qnorm(1 - beta))^2)/x^2)*fmax(x,u,v,sqrt(var1),sqrt(var2),rho))*(dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho))
                     })
-                  },-log(HRgo),Inf)$value #devide value by pgo to get E(e3|GO)
+                  },-log(HRgo),Inf)$value #divide value by pgo to get E(e3|GO)
                 })
               },-Inf,Inf)$value
             })
@@ -256,8 +256,8 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
   e22<-hr2*n2 # number of events phase II for endpoint 2 (OS)
   hr <- c(hr1,hr2)
-  var1<-4/e21
-  var2<-4/e22
+  var1 <- 4/e21
+  var2 <- 4/e22
   vartrue1 <- sqrt(4/id1)
   vartrue2 <- sqrt(4/id2)
   covmat<-matrix(c(var1, rho*sqrt(var1)*sqrt(var2), rho*sqrt(var1)*sqrt(var2), var2), ncol=2) #covariance-Matrix of c(true1,true2) 
@@ -268,7 +268,7 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
           sapply(x,function(x){ 
             integrate(function(y){ 
               sapply(y,function(y){
-                fmax(y,hr1/sqrt((x^2/c)*(hr[ec]/hr[1])),hr2/sqrt((x^2/c)*(hr[ec]/hr[2])),1,1,rho)*fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)
+                fmax(y,-log(hr1)/sqrt((x^2/c)*(ec/hr[1])),-log(hr2)/sqrt((x^2/c)*(ec/hr[2])),1,1,rho)*fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)
               })
             },qnorm(1-alpha)+step1/sqrt((x^2/c)),qnorm(1-alpha)+step2/sqrt((x^2/c)))$value
           })
