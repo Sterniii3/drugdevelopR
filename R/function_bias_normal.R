@@ -44,7 +44,7 @@
 #'                               alpha = 0.025, beta = 0.1, w = 0.3,
 #'                               Delta1 = 0.375, Delta2 = 0.625, 
 #'                               in1 = 300, in2 = 600, 
-#'                               a = 0.25, b = 0.75, fixed = FALSE)
+#'                               a = 0.25, b = 0.75, fixed = TRUE)
 #'           res <- En3_normal_R(kappa = 0.1, n2 = 50, Adj = 1, 
 #'                               alpha = 0.025, beta = 0.1, w = 0.3,
 #'                               Delta1 = 0.375, Delta2 = 0.625, 

@@ -73,11 +73,11 @@ res <- EPsProg2(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1,
           res <- EPsProg3(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
                                  w = 0.3, hr1 =  0.69, hr2 = 0.81, 
                                  id1 = 210, id2 = 420, case = 2, size = "small",
-                                 fixed = FALSE)
+                                 fixed = TRUE)
           res <- EPsProg4(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
                                  w = 0.3, hr1 =  0.69, hr2 = 0.81, 
                                  id1 = 210, id2 = 420, case = 3, size = "small",
-                                 fixed = FALSE)
+                                 fixed = TRUE)
 }
 \section{Last Edited By}{
 Johannes Cepicka

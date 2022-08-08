@@ -51,7 +51,8 @@ t3 <- function(x, p0){sqrt(((1-p0)/p0) + ((1-x)/x))}
  #'                                  p0 = 0.6,  w = 0.3, p11 =  0.3, p12 = 0.5, 
  #'                                  in1 = 300, in2 = 600, case = 3, size = "small",
  #'                                  fixed = FALSE)
- #' @name EPsProg_multitrial_binary                                 
+ #' @export                                 
+ #' @name EPsProg_multitrial_binary  
  #' @editor Johannes Cepicka
  #' @editDate 2022-04-23
  
@@ -261,7 +262,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
               })
             },  - log(RRgo), Inf)$value  
           })
-        },  - Inf, Inf)$value)  
+        },  0, 1)$value)  
       }
       if(size == "all"){
         return(  integrate(function(x){
@@ -325,7 +326,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
               })
             },  - log(RRgo), Inf)$value
           })
-        },  - Inf, Inf)$value) 
+        },  0, 1)$value) 
       }
       if(size == "large"){
         return(integrate(function(x){
@@ -348,7 +349,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
               })
             },  - log(RRgo), Inf)$value
           })
-        },  - Inf, Inf)$value)    
+        },  0, 1)$value)    
       }
       if(size == "all"){
         return(integrate(function(x){
@@ -369,7 +370,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
               })
             },  - log(RRgo), Inf)$value
           })
-        },  - Inf, Inf)$value)    
+        },  0, 1)$value)    
       }
     }
     
@@ -743,7 +744,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
               })
             },  - log(RRgo), Inf)$value   
           })
-        },  - Inf, Inf)$value)
+        },  0, 1)$value)
       }
       if(size == "large"){
         return(integrate(function(x){
@@ -782,7 +783,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
               })
             },  - log(RRgo), Inf)$value
           })
-        },  - Inf, Inf)$value)
+        },  0, 1)$value)
       }
       if(size == "all"){
         return(integrate(function(x){
@@ -816,7 +817,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
               })
             },  - log(RRgo), Inf)$value
           })
-        },  - Inf, Inf)$value)
+        },  0, 1)$value)
       }
     }
     if(case == 3){
@@ -858,7 +859,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
               })
             },  - log(RRgo), Inf)$value
           })
-        },  - Inf, Inf)$value)
+        },  0, 1)$value)
       }
       if(size == "large"){
         return(integrate(function(x){
@@ -897,7 +898,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
               })
             },  - log(RRgo), Inf)$value
           })
-        },  - Inf, Inf)$value)
+        },  0, 1)$value)
       }
       if(size == "all"){
         return(integrate(function(x){
@@ -921,7 +922,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
               })
             },  - log(RRgo), Inf)$value
           })
-        },  - Inf, Inf)$value)
+        },  0, 1)$value)
       }
     }  
     
@@ -1170,7 +1171,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
             })
           },  - log(RRgo), Inf)$value   
         })
-      },  - Inf, Inf)$value)
+      },  0, 1)$value)
     }
     if(size == "large"){
       return(integrate(function(x){
@@ -1214,7 +1215,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
             })
           },  - log(RRgo), Inf)$value
         })
-      },  - Inf, Inf)$value)
+      },  0, 1)$value)
     }
     if(size == "all"){
       return(integrate(function(x){
@@ -1254,7 +1255,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
             })
           },  - log(RRgo), Inf)$value
         })
-      },  - Inf, Inf)$value)
+      },  0, 1)$value)
     }
     
   }
