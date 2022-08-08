@@ -29,7 +29,6 @@ Suggests:
     knitr,
     testthat (>= 3.0.0),
     covr,
-    valtools
 VignetteBuilder: knitr
 Additional_repositories: https://github.com/phuse-org/valtools 
 Config/testthat/edition: 3
