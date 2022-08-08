@@ -85,7 +85,7 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #' @return The output of the the function `pgo_multiple_normal()` is the probability to go to phase III.
 #' @examples res <- pgo_multiple_normal(kappa = c(0.1,0.1), n2 = 50,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
+#'                                sigma1 = 8, sigma2 = 4, fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export
@@ -137,7 +137,7 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
 #' @return the output of the the function Ess_multiple_normal is the expected number of participants in phase III
 #' @examples res <- Ess_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
+#'                                sigma1 = 8, sigma2 = 4, fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export
@@ -197,7 +197,7 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
 #' @return The output of the the function `posp_normal()` is the probability of a successful program, when going to phase III.
 #' @examples res <- posp_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'                                sigma1 = 8, sigma2 = 4, fixed = FALSE, rho = 0.3)
+#'                                sigma1 = 8, sigma2 = 4, fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export
@@ -279,7 +279,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
 #' @examples res <- EPsProg_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, sigma1 = 8, sigma2 = 4,
 #'                                step11 = 0, step12 = 0, step21 = 0.5, step22 = 0.5, 
-#'                                in1 = 300, in2 = 600, fixed = FALSE, rho = 0.3)
+#'                                in1 = 300, in2 = 600, fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export

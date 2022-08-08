@@ -59,7 +59,7 @@ res <- EPsProg_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.025, beta = 0.1,
                                ec = 0.6, hr1 = 0.75, hr2 = 0.80,
                                id1 = 300, id2 = 600, 
                                step1 = 1, step2 = 0.95,
-                               fixed = FALSE, rho = 0.3)
+                               fixed = TRUE, rho = 0.3)
 }
 \section{Last Edited By}{
 Johannes Cepicka

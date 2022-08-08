@@ -35,7 +35,7 @@ get a successful drug development program. Successful means that at least one en
 \examples{
 res <- pgo_multiple_tte(HRgo = 0.8, n2 = 50, ec = 0.6,
                                hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
-                               fixed = FALSE, rho = 0.3)
+                               fixed = TRUE, rho = 0.3)
 }
 \section{Last Edited By}{
 Johannes Cepicka
