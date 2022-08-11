@@ -150,7 +150,7 @@ res <- optimal_multitrial_binary(w = 0.3,                # define parameters for
   K = Inf, N = Inf, S = -Inf,                            # set constraints
   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
   case = 1, strategy = TRUE,                             # chose Case and Strategy                                   
-  fixed = FALSE,                                         # choose if true treatment effects are fixed or random
+  fixed = TRUE,                                          # choose if true treatment effects are fixed or random
   num_cl = 1)                                            # set number of cores used for parallelized computing 
 res
 cat(comment(res))                                        # displays the optimization sequence, start/finish date of procedure

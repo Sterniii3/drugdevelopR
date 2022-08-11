@@ -63,7 +63,7 @@
 #'   K = Inf, N = Inf, S = -Inf,                            # set constraints
 #'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
 #'   case = 1, strategy = TRUE,                             # chose Case and Strategy                                   
-#'   fixed = FALSE,                                         # choose if true treatment effects are fixed or random
+#'   fixed = TRUE,                                          # choose if true treatment effects are fixed or random
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing 
 #' res
 #' cat(comment(res))                                        # displays the optimization sequence, start/finish date of procedure
@@ -186,7 +186,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                          c2, c3, c02, c03, K, N, S,
                          steps1, stepm1, stepl1,
                          b1, b2, b3,
-                         fixed)  
+                         gamma, fixed)  
       }
       if(Strategy==2){
         res <- parallel::parSapply(cl, N2, utility2_binary, RRgo, w, p0, p11, p12, in1, in2,
