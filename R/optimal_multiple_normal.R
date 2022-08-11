@@ -54,21 +54,21 @@
 #' and further input parameters.
 #' res
 #' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
-#' \dontrun{@examples
-#' \dontrun{res <- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs and control arm event rate
-#'   in1=300, in2=600, sigma1 = 8, sigma2= 12,
-#'   n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
-#'   kappamin = 0.7, kappamax = 0.9, stepkappa = 0.05,         # define optimization set for HRgo
-#'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
-#'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
-#'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
-#'   steps1 = 0,                                            # define lower boundary for "small"
-#'   stepm1 = 0.5,                                          # "medium"
-#'   stepl1 = 0.88,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
-#'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
-#'   rho = 0.5, relaxed = TRUE,                             # relaxed "TRUE"
-#'   fixed = TRUE,                                          #   treatment effect
-#'   num_cl = 1)} }                                           # set number of cores used for parallelized computing (check maximum number possible with detectCores())
+#' @examples
+#' \dontrun{ #res <- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs and control arm event rate
+#'  # in1=300, in2=600, sigma1 = 8, sigma2= 12,
+#'  # n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
+#'  # kappamin = 0.7, kappamax = 0.9, stepkappa = 0.05,         # define optimization set for HRgo
+#'  # alpha = 0.05, beta = 0.1,                              # drug development planning parameters
+#'  # c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
+#'  # K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
+#'  # steps1 = 0,                                            # define lower boundary for "small"
+#'  # stepm1 = 0.5,                                          # "medium"
+#'  # stepl1 = 0.88,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
+#' #  b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
+#'  # rho = 0.5, relaxed = TRUE,                             # relaxed "TRUE"
+#'  # fixed = TRUE,                                          #   treatment effect
+#'  # num_cl = 1)}                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 #' #res
 #' #cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
 #' @section drugdevelopR functions:
