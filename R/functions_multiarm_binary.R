@@ -136,12 +136,12 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
 #' - l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II;  
 #' - l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
 #' @return the function ss_binary() returns the total sample size for phase III trial with l treatments and equal allocation ratio
-#' @examples res <- ss_binary(alpha = 0.05, beta = 0.1, y = 0.5, l = 1)
+#' @examples res <- ss_binary(alpha = 0.05, beta = 0.1, p0 = 0.6, p11 = 0.3, y = 0.5, l = 1)
 #' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
  
-ss_binary<-function(alpha,beta,y,l){
+ss_binary<-function(alpha,beta, p0,p11,y,l){
   
   if(l==1){calpha = qnorm(1-alpha)}
   if(l==2){calpha = as.numeric(mvtnorm::qmvnorm(1-alpha, mean=c(0,0), sigma=matrix(c(1,1/2,1/2,1), nrow=2, ncol=2))[1])}

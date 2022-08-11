@@ -4,7 +4,7 @@
 \alias{ss_binary}
 \title{Total sample size for phase III trial with l treatments and equal allocation ratio for binary outcomes}
 \usage{
-ss_binary(alpha, beta, y, l)
+ss_binary(alpha, beta, p0, p11, y, l)
 }
 \arguments{
 \item{alpha}{significance level}
@@ -30,7 +30,7 @@ l=1: according to Schoenfeld to guarantee power for the log rank test to detect 
 l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
 }
 \examples{
-res <- ss_binary(alpha = 0.05, beta = 0.1, y = 0.5, l = 1)
+res <- ss_binary(alpha = 0.05, beta = 0.1, p0 = 0.6, p11 = 0.3, y = 0.5, l = 1)
 }
 \section{Last Edited By}{
 Johannes Cepicka
