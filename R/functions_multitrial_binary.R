@@ -1619,11 +1619,11 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
 #' @return The output of the the function `utility23_binary()` is the expected utility of the program depending on whether two or three phase III trials are performed.
-#' @examples res <- utility23_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
-#'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
-#'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
-#'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
-#'                                  b1 = 1000, b2 = 2000, b3 = 3000)
+#' @examples #res <- utility23_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
+#'           #                       p0 = 0.6, p11 =  0.3, p12 = 0.5, 
+#'           #                       in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
+#'           #                       c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'           #                       b1 = 1000, b2 = 2000, b3 = 3000)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export

@@ -67,11 +67,11 @@ The utility function calculates the expected utility of our drug development pro
 The utility is in further step maximized by the \code{optimal_multitrial_binary()} function.
 }
 \examples{
-res <- utility23_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
-                                 p0 = 0.6, p11 =  0.3, p12 = 0.5, 
-                                 in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
-                                 c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
-                                 b1 = 1000, b2 = 2000, b3 = 3000)
+#res <- utility23_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
+          #                       p0 = 0.6, p11 =  0.3, p12 = 0.5, 
+          #                       in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
+          #                       c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+          #                       b1 = 1000, b2 = 2000, b3 = 3000)
 }
 \section{Last Edited By}{
 Johannes Cepicka

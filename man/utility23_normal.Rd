@@ -70,11 +70,11 @@ The utility function calculates the expected utility of our drug development pro
 The utility is in a further step maximized by the \code{optimal_multitrial_normal()} function.
 }
 \examples{
-res <- utility23_normal(n2 = 50, kappa = 0.2, w = 0.3,
-                                 Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-                                 a = 0.25, b = 0.75, 
-                                 c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
-                                 b1 = 3000, b2 = 8000, b3 = 10000)
+#res <- utility23_normal(n2 = 50, kappa = 0.2, w = 0.3,
+      #                           Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+      #                           a = 0.25, b = 0.75, 
+     #                            c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
+     #                            b1 = 3000, b2 = 8000, b3 = 10000)
 }
 \section{Last Edited By}{
 Johannes Cepicka

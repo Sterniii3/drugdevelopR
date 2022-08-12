@@ -1530,11 +1530,11 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
 #' @return The output of the the function utility23_normal() is the expected utility of the program depending on whether two or three phase III trials are performed.
-#' @examples res <- utility23_normal(n2 = 50, kappa = 0.2, w = 0.3,
-#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'                                  a = 0.25, b = 0.75, 
-#'                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
-#'                                  b1 = 3000, b2 = 8000, b3 = 10000)
+#' @examples #res <- utility23_normal(n2 = 50, kappa = 0.2, w = 0.3,
+#'       #                           Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'       #                           a = 0.25, b = 0.75, 
+#'      #                            c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
+#'      #                            b1 = 3000, b2 = 8000, b3 = 10000)
 #' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
