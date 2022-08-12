@@ -1653,7 +1653,7 @@ utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                        c2, c3, c02, c03, 
                        b1, b2, b3){ 
   
-  pg    <-  Epgo23(HRgo = HRgo, d2 = d2, 
+  pg    <-  Epgo23(HRgo = HRgo, d2 = d2, alpha=alpha, beta=beta,
                      w = w, hr1 = hr1, hr2 = hr2, 
                      id1 = id1, id2 = id2)
   
