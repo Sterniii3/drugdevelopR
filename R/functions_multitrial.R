@@ -1659,7 +1659,7 @@ utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
   
   d3  <- Ed3_tte(HRgo = HRgo, d2 = d2, alpha = alpha, 
                  beta = beta, w = w, hr1 = hr1, hr2 = hr2,
-                 id1 = id1, id2 = id2, fixed = fixed)
+                 id1 = id1, id2 = id2, fixed = FALSE)
 
   # sample size is rounded up to next even natural number
   n2  <- ceiling(d2*(1/xi2))
