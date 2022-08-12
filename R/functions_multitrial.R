@@ -1640,7 +1640,7 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
 #' @importFrom mvtnorm pmvnorm
 #' @return The output of the the function `utility23()` is the expected utility of the program depending on whether two or three phase III trials are performed.
 #' @examples res <- utility23(d2 = 50, HRgo = 0.8,  w = 0.3, 
-#'                                  p0 = 0.6, hr1 =  0.69, hr2 = 0.81, 
+#'                                  hr1 =  0.69, hr2 = 0.81, 
 #'                                  id1 = 280, id2 = 420, 
 #'                                  alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
