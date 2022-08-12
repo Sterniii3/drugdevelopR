@@ -131,6 +131,8 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
 #'  l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
 #' @param alpha significance level
 #' @param beta  1-beta power for calculation of sample size for phase III
+#' @param p0 assumed true rate of control group
+#' @param p11 assumed true rate of treatment group
 #' @param y hat_theta_2; estimator in phase II
 #' @param l number of treatments in phase III:
 #' - l=1: according to Schoenfeld to guarantee power for the log rank test to detect treatment effect of phase II;  
@@ -141,7 +143,7 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
  
-ss_binary<-function(alpha,beta, p0,p11,y,l){
+ss_binary<-function(alpha,beta, p0, p11,y,l){
   
   if(l==1){calpha = qnorm(1-alpha)}
   if(l==2){calpha = as.numeric(mvtnorm::qmvnorm(1-alpha, mean=c(0,0), sigma=matrix(c(1,1/2,1/2,1), nrow=2, ncol=2))[1])}
@@ -189,7 +191,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
       return(integrate(function(y1){
         sapply(y1,function(y1){ 
           integrate(function(y2){
-            ss_binary(alpha,beta,y1,1)*
+            ss_binary(alpha,beta,p0,p11,y1,1)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
@@ -203,7 +205,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
       return(integrate(function(y2){
         sapply(y2,function(y2){ 
           integrate(function(y1){
-            ss_binary(alpha,beta,y2,1)*
+            ss_binary(alpha,beta,p0,p11,y2,1)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
@@ -218,7 +220,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
     if(case==21){# treatment 1 is promising, treatment 2 is not
       
       f <- function(y){ 
-        ss_binary(alpha,beta,y[1],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
+        ss_binary(alpha,beta,p0,p11,y[1],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
       return(adaptIntegrate(f, lowerLimit = c(-log(RRgo), -Inf), upperLimit = c(Inf, -log(RRgo)))$integral)
@@ -227,7 +229,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
     if(case==22){# treatment 2 is promising, treatment 1 is not
       
       f <- function(y){ 
-        ss_binary(alpha,beta,y[2],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
+        ss_binary(alpha,beta,p0,p11,y[2],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
       return(adaptIntegrate(f, lowerLimit = c(-Inf, -log(RRgo)), upperLimit = c(-log(RRgo), Inf))$integral)
@@ -238,7 +240,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
       return(integrate(function(y1){
         sapply(y1,function(y1){ 
           integrate(function(y2){
-            ss_binary(alpha,beta,y2,2)*
+            ss_binary(alpha,beta,p0,p11,y2,2)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
@@ -252,7 +254,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
       return(integrate(function(y2){
         sapply(y2,function(y2){ 
           integrate(function(y1){
-            ss_binary(alpha,beta,y1,2)*
+            ss_binary(alpha,beta,p0,p11,y1,2)*
               dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)

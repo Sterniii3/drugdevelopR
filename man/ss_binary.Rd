@@ -11,6 +11,10 @@ ss_binary(alpha, beta, p0, p11, y, l)
 
 \item{beta}{1-beta power for calculation of sample size for phase III}
 
+\item{p0}{assumed true rate of control group}
+
+\item{p11}{assumed true rate of treatment group}
+
 \item{y}{hat_theta_2; estimator in phase II}
 
 \item{l}{number of treatments in phase III:
