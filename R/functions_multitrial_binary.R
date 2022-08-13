@@ -429,7 +429,8 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
  #'                                  K = Inf, N = Inf, S = -Inf,
  #'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
  #'                                  case = 3, fixed = TRUE)
- #' @name utility_multitrial_binary                                 
+ #' @name utility_multitrial_binary 
+ #' @export                                
  #' @editor Johannes Cepicka
  #' @editDate 2022-04-23
 utility2_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
