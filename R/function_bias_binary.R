@@ -279,6 +279,10 @@ utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
                               b1, b2, b3,
                               fixed){
   
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
+  
   
   n3  <-  En3_binary_L(RRgo = RRgo, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                           p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, fixed = fixed)
@@ -497,6 +501,10 @@ utility_binary_L2 <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
                                b1, b2, b3,
                                fixed){
   
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
+  
   
   n3  <-  En3_binary_L2(RRgo = RRgo, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                         p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, fixed = fixed)
@@ -671,7 +679,9 @@ utility_binary_R <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
                               b1, b2, b3,
                               fixed){
   
- 
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
   
   n3  <-  En3_binary_R(RRgo = RRgo, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                        p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, fixed = fixed)
@@ -867,7 +877,9 @@ utility_binary_R2 <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
                                fixed){
   
  
-  
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
   
   n3  <-  En3_binary_R2(RRgo = RRgo, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                         p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, fixed = fixed)

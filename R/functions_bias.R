@@ -110,6 +110,10 @@ utility_L <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
                          steps1, stepm1, stepl1,
                          b1, b2, b3,
                          fixed){
+  
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
 
   d3    <-  Ed3_L(HRgo = HRgo, d2 = d2, Adj = Adj,
                   alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
@@ -310,6 +314,10 @@ utility_L2 <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
                        b1, b2, b3,
                        fixed){
   
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
+  
   d3    <-  Ed3_L2(HRgo = HRgo, d2 = d2, Adj = Adj,
                   alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
                   fixed = fixed)
@@ -489,6 +497,10 @@ utility_R <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
                        steps1, stepm1, stepl1,
                        b1, b2, b3,
                        fixed){
+  
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
   
   d3    <-  Ed3_R(HRgo = HRgo, d2 = d2, Adj = Adj,
                   alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,
@@ -686,6 +698,10 @@ utility_R2 <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
                        steps1, stepm1, stepl1,
                        b1, b2, b3,
                        fixed){
+  
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
   
   d3    <-  Ed3_R2(HRgo = HRgo, d2 = d2, Adj = Adj,
                   alpha = alpha, beta = beta, w = w, hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,

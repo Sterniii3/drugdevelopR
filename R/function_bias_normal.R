@@ -280,6 +280,10 @@ utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
                             b1, b2, b3,
                             fixed){
   
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 1
+  
   n3  <-  En3_normal_L(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                      w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                      fixed = fixed)
@@ -500,6 +504,10 @@ utility_normal_L2 <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b
                             b1, b2, b3,
                             fixed){
   
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 1
+  
   n3  <-  En3_normal_L2(kappa = kappa, Adj=Adj, n2 = n2, alpha = alpha, beta = beta,
                      w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                      fixed = fixed)
@@ -672,6 +680,10 @@ utility_normal_R <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
                             steps1, stepm1, stepl1,
                             b1, b2, b3,
                             fixed){
+  
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 1
   
   n3  <-  En3_normal_R(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                      w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
@@ -863,6 +875,10 @@ utility_normal_R2 <-  function(n2, kappa, Adj,  w, Delta1, Delta2, in1, in2, a, 
                             steps1, stepm1, stepl1,
                             b1, b2, b3,
                             fixed){
+  
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 1
   
   n3  <-  En3_normal_R2(kappa = kappa, Adj = Adj, n2 = n2, alpha = alpha, beta = beta,
                      w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
