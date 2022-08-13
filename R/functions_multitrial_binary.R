@@ -148,8 +148,8 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                   log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                 qnorm(1 - alpha) - 
                                   log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
-                      mean = c(rho/sqrt(t1(p11, p0)*y^2/c), 
-                               rho/sqrt(t1(p11, p0)*y^2/c)), 
+                      mean = c(rho/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
+                               rho/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
                       sigma = SIGMA) - 
                 pmvnorm(lower = c(qnorm(1 - alpha) - 
                                     log(0.95)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
