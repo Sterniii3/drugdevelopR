@@ -387,20 +387,20 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
 #'                                  K = Inf, N = Inf, S = -Inf, 
 #'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
 #'                                  case = 2, fixed = TRUE)
-#'           res <- utility3_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
-#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'                                  a = 0.25, b = 0.75, 
-#'                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
-#'                                  K = Inf, N = Inf, S = -Inf, 
-#'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
-#'                                  case = 2, fixed = TRUE)                        
-#'           res <- utility4_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
-#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'                                  a = 0.25, b = 0.75, 
-#'                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
-#'                                  K = Inf, N = Inf, S = -Inf, 
-#'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
-#'                                  case = 3, fixed = TRUE)
+#'  #         res <- utility3_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
+#'  #                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'  #                                a = 0.25, b = 0.75, 
+#'  #                                c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
+#'  #                                K = Inf, N = Inf, S = -Inf, 
+#'  #                                b1 = 3000, b2 = 8000, b3 = 10000, 
+#'  #                                case = 2, fixed = TRUE)                        
+#'  #         res <- utility4_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
+#'  #                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'  #                                a = 0.25, b = 0.75, 
+#'  #                                c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
+#'  #                                K = Inf, N = Inf, S = -Inf, 
+#'  #                                b1 = 3000, b2 = 8000, b3 = 10000, 
+#'  #                                case = 3, fixed = TRUE)
 #' @name utility_multitrial_normal                           
 #' @export
 #' @editor Johannes Cepicka

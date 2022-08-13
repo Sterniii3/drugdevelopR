@@ -1067,8 +1067,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
     if(size == "large"){
       return(integrate(function(y){
         sapply(y, function(y){
-          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(y^2/c), 
+          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
                                   qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
                                   qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
                                   0), 
