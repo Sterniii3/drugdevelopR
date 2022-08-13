@@ -179,7 +179,7 @@ The utility function calculates the expected utility of our drug development pro
 The utility is in a further step maximized by the \code{optimal_bias_binary()} function.
 }
 \examples{
-res <- utility_binary_L(n2 = 50, RRgo = 0.8, Adj = 0, w = 0.3, 
+res <- utility_binary_L(n2 = 50, RRgo = 0.8, Adj = 0.1, w = 0.3, 
                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
                                  in1 = 300, in2 = 600, 
                                  alpha = 0.025, beta = 0.1,
@@ -188,7 +188,7 @@ res <- utility_binary_L(n2 = 50, RRgo = 0.8, Adj = 0, w = 0.3,
                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 
                                  fixed = TRUE)
-         res <- utility_binary_L2(n2 = 50, RRgo = 0.8, Adj = 0, w = 0.3, 
+         res <- utility_binary_L2(n2 = 50, RRgo = 0.8, Adj = 0.1, w = 0.3, 
                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
                                  in1 = 300, in2 = 600, 
                                  alpha = 0.025, beta = 0.1,
@@ -197,7 +197,7 @@ res <- utility_binary_L(n2 = 50, RRgo = 0.8, Adj = 0, w = 0.3,
                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 
                                  fixed = TRUE)
-         res <- utility_binary_R(n2 = 50, RRgo = 0.8, Adj = 1, w = 0.3, 
+         res <- utility_binary_R(n2 = 50, RRgo = 0.8, Adj = 0.9, w = 0.3, 
                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
                                  in1 = 300, in2 = 600, 
                                  alpha = 0.025, beta = 0.1,
@@ -206,7 +206,7 @@ res <- utility_binary_L(n2 = 50, RRgo = 0.8, Adj = 0, w = 0.3,
                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 
                                  fixed = TRUE)
-         res <- utility_binary_R2(n2 = 50, RRgo = 0.8, Adj = 1, w = 0.3, 
+         res <- utility_binary_R2(n2 = 50, RRgo = 0.8, Adj = 0.9, w = 0.3, 
                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
                                  in1 = 300, in2 = 600, 
                                  alpha = 0.025, beta = 0.1,
