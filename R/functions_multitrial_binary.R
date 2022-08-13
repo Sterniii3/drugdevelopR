@@ -1056,8 +1056,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
     if(size == "large"){
       return(integrate(function(y){
         sapply(y, function(y){
-          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(t1(p11, p0)*y^2/c(p11, p0)), 
+          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) - log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                   qnorm(1 - alpha) - log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                   qnorm(1 - alpha) - log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                   0), 
