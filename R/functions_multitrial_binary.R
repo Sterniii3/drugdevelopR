@@ -414,21 +414,21 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
  #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
  #'                                  K = Inf, N = Inf, S = -Inf,
  #'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
- #'                                  case = 2, fixed = FALSE)
+ #'                                  case = 2, fixed = TRUE)
  #'           res <- utility3_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
  #'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
  #'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
  #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
  #'                                  K = Inf, N = Inf, S = -Inf,
  #'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
- #'                                  case = 2, fixed = FALSE)
+ #'                                  case = 2, fixed = TRUE)
  #'          res <- utility4_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
  #'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
  #'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
  #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
  #'                                  K = Inf, N = Inf, S = -Inf,
  #'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
- #'                                  case = 3, fixed = FALSE)
+ #'                                  case = 3, fixed = TRUE)
  #' @name utility_multitrial_binary                                 
  #' @editor Johannes Cepicka
  #' @editDate 2022-04-23

@@ -147,7 +147,7 @@ res <- utility2(d2 = 50, HRgo = 0.8,  w = 0.3,
                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                                  K = Inf, N = Inf, S = -Inf,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 
-                                 case = 2, fixed = FALSE)
+                                 case = 2, fixed = TRUE)
           res <- utility3(d2 = 50, HRgo = 0.8,  w = 0.3, 
                                  hr1 =  0.69, hr2 = 0.81, 
                                  id1 = 210, id2 = 420, 
@@ -155,7 +155,7 @@ res <- utility2(d2 = 50, HRgo = 0.8,  w = 0.3,
                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                                  K = Inf, N = Inf, S = -Inf,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 
-                                 case = 2, fixed = FALSE)
+                                 case = 2, fixed = TRUE)
          res <- utility4(d2 = 50, HRgo = 0.8,  w = 0.3, 
                                  hr1 =  0.69, hr2 = 0.81, 
                                  id1 = 210, id2 = 420, 
@@ -163,7 +163,7 @@ res <- utility2(d2 = 50, HRgo = 0.8,  w = 0.3,
                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                                  K = Inf, N = Inf, S = -Inf,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 
-                                 case = 3, fixed = FALSE)
+                                 case = 3, fixed = TRUE)
 }
 \section{Last Edited By}{
 Johannes Cepicka
