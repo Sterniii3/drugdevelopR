@@ -194,7 +194,7 @@ res <- utility_normal_L(kappa = 0.1, n2 = 50, Adj = 0,
                                  K = Inf, N = Inf, S = -Inf, 
                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
-                                 fixed = FALSE)
+                                 fixed = TRUE)
           res <- utility_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, 
                                  alpha = 0.025, beta = 0.1, w = 0.3,
                                  Delta1 = 0.375, Delta2 = 0.625, 
@@ -204,7 +204,7 @@ res <- utility_normal_L(kappa = 0.1, n2 = 50, Adj = 0,
                                  K = Inf, N = Inf, S = -Inf, 
                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
-                                 fixed = FALSE)
+                                 fixed = TRUE)
           res <- utility_normal_R(kappa = 0.1, n2 = 50, Adj = 1, 
                                  alpha = 0.025, beta = 0.1, w = 0.3,
                                  Delta1 = 0.375, Delta2 = 0.625, 
@@ -214,7 +214,7 @@ res <- utility_normal_L(kappa = 0.1, n2 = 50, Adj = 0,
                                  K = Inf, N = Inf, S = -Inf, 
                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
-                                 fixed = FALSE)
+                                 fixed = TRUE)
           res <- utility_normal_R2(kappa = 0.1, n2 = 50, Adj = 1, 
                                  alpha = 0.025, beta = 0.1, w = 0.3,
                                  Delta1 = 0.375, Delta2 = 0.625, 
@@ -224,7 +224,7 @@ res <- utility_normal_L(kappa = 0.1, n2 = 50, Adj = 0,
                                  K = Inf, N = Inf, S = -Inf, 
                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
-                                 fixed = FALSE)
+                                 fixed = TRUE)
 }
 \section{Last Edited By}{
 Johannes Cepicka

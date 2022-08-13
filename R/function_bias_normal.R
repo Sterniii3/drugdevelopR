@@ -240,7 +240,7 @@ EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
 #'                                  K = Inf, N = Inf, S = -Inf, 
 #'                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
 #'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
-#'                                  fixed = FALSE)
+#'                                  fixed = TRUE)
 #'           res <- utility_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, 
 #'                                  alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, 
@@ -250,7 +250,7 @@ EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
 #'                                  K = Inf, N = Inf, S = -Inf, 
 #'                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
 #'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
-#'                                  fixed = FALSE)
+#'                                  fixed = TRUE)
 #'           res <- utility_normal_R(kappa = 0.1, n2 = 50, Adj = 1, 
 #'                                  alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, 
@@ -260,7 +260,7 @@ EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
 #'                                  K = Inf, N = Inf, S = -Inf, 
 #'                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
 #'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
-#'                                  fixed = FALSE)
+#'                                  fixed = TRUE)
 #'           res <- utility_normal_R2(kappa = 0.1, n2 = 50, Adj = 1, 
 #'                                  alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, 
@@ -270,7 +270,7 @@ EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
 #'                                  K = Inf, N = Inf, S = -Inf, 
 #'                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
 #'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
-#'                                  fixed = FALSE)
+#'                                  fixed = TRUE)
 #' @name utility_bias_normal                               
 #' @export
 #' @editor Johannes Cepicka
@@ -530,7 +530,7 @@ utility_normal_L2 <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b
     
   }else{
     
-    pg    <-  Epgo_normal_L2(kappa = kappa, n2 = n2,
+    pg    <-  Epgo_normal_L2(kappa = kappa, n2 = n2, Adj=Adj,
                           w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
                           fixed = fixed)
     
