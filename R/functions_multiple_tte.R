@@ -429,7 +429,7 @@ os_tte<-function(HRgo, n2, alpha, beta, ec,hr1, hr2, id1, id2, fixed, rho){
 #'                                steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
 #'                                b11 = 1000, b21 = 2000, b31 = 3000,
 #'                                b12 = 1000, b22 = 1500, b32 = 2000, 
-#'                                fixed = FALSE, rho = 0.3)
+#'                                fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23  
 #' @export
@@ -437,6 +437,10 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2, ec,
                                c2, c02, c3, c03, K, N, S,
                                steps1, stepm1, stepl1, 
                                b11, b21, b31, b12, b22, b32, fixed, rho){ 
+  
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
 
    n3 <- Ess_multiple_tte(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
    
@@ -479,9 +483,9 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2, ec,
                                      step1=stepl1,step2=stepl2,fixed=fixed,rho=rho)
        
        
-        prob1 <- prob11*pw + prob12(1-pw)
-        prob2 <- prob21*pw + prob22(1-pw)
-        prob3 <- prob31*pw + prob32(1-pw)
+        prob1 <- prob11*pw + prob12*(1-pw)
+        prob2 <- prob21*pw + prob22*(1-pw)
+        prob3 <- prob31*pw + prob32*(1-pw)
        
         SP    = (prob11+prob21+prob31)*pw + (prob12+prob22+prob32)*(1-pw)                         # probability of a successful program
           

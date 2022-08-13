@@ -110,7 +110,7 @@ res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
                                steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                                b11 = 1000, b21 = 2000, b31 = 3000,
                                b12 = 1000, b22 = 1500, b32 = 2000, 
-                               fixed = FALSE, rho = 0.3)
+                               fixed = TRUE, rho = 0.3)
 }
 \section{Last Edited By}{
 Johannes Cepicka
