@@ -6,7 +6,7 @@ Authors@R: person("Stella", "Preussler", email = "preussler@imbi.uni-heidelberg.
                   role = c("aut", "cre"))
 Maintainer: The package maintainer <preussler@imbi.uni-heidelberg.de>
 Description: The R package drugdevelopR is a tool to plan optimal sample size allocation and go/no-go decision rules for phase II/III drug development programs with time-to-event (measured by hazard ratio, HR), binary (measured by risk ratio, RR) or normally distributed (measured by standardized difference in means, Delta) endpoints when assuming fixed treatment effects or a prior distribution for the treatment effect. Optimal is in the sense of maximal expected utility, where the utility is calculated with the help of a utility function taking into account the costs and expected benefits of the program.
-License: MIT + file License
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
