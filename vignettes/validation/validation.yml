@@ -3,5 +3,14 @@ working_dir: vignettes
 output_dir: inst
 report_rmd_name: validation.Rmd
 report_naming_format: Validation_Report_{package}_v{version}_{date}
-usernames: []
-validation_files: []
+usernames:
+  johannescepicka:
+    name: Johannes Cepicka
+    title: BSc
+    role: Responsible for Validation
+validation_files:
+- BasicSetting_01.md
+- BiasAdjustment_02.md
+- Multitrial_03.md
+- Multiarm_04.md
+- MultipleEndpoints_05.md
