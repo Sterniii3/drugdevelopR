@@ -1,4 +1,4 @@
-#' @title BiasAdjustment_02
+#' @title 02_BiasAdjustment
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @riskAssessment

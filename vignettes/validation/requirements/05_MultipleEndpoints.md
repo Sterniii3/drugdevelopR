@@ -1,4 +1,4 @@
-#' @title MultipleEndpoints_05
+#' @title 05_MultipleEndpoints
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @riskAssessment
