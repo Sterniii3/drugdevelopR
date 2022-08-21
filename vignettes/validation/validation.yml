@@ -7,11 +7,10 @@ usernames:
   johannescepicka:
     name: Johannes Cepicka
     title: BSc
-    role: Responsible for Validation
+    role: Validation Lead, Responsible for Validation
 validation_files:
-- BasicSetting_01.md
-- BiasAdjustment_02.md
-- Multitrial_03.md
-- Multiarm_04.md
-- MultipleEndpoints_05.md
-- MultpleEndpoints_05.md
+- 01_BasicSetting.md
+- 02_BiasAdjustment.md
+- 03_Multitrial.md
+- 04_Multiarm.md
+- 05_MultipleEndpoints.md
