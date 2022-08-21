@@ -10,20 +10,35 @@
 01. Test cases for the basic setting
 
 01.01 (shows that req. 01.03, 01.06, 01.12 and 01.15 are met): Use the function `optimal_tte()`. Supply the following input values to the function:
-* a significance level of 0.025,
-* a power of 0.9, i.e. $\beta$ of 0.1,
-* assumed true treatment effects of 0.8 and 0.65,
-* event rates of 0.7 for both phase II and phase III,
-* the optimization region {10, 11, …, 400} for the number of participants in phase II,
-* the optimization region {-log(0.95), -log(0.94),…, -log(0.70)} for the threshold values,
-* boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
-* expected gains of 100,000,000$, 300,000,000$, and 500,000,000$ for each effect size, respectively,
-* three clusters for parallel computing,
-* fixed costs of 10,000,000$ in phase II and of 15,000,000$ in phase III,
-* variable costs of 75,000$ in phase II and 100,000$ in phase III,
-* “fixed=FALSE”, i.e. set the function to use a prior distribution,
-* weight of 0.3 for the prior distribution,
-* amount of information for prior true treatment effect given by 210 expected events in phase II and 420 events in phase III.
+  
+  * a significance level of 0.025,
+ 
+  * a power of 0.9, i.e. $\beta$ of 0.1,
+ 
+  * assumed true treatment effects of 0.8 and 0.65,
+  
+  * event rates of 0.7 for both phase II and phase III,
+ 
+  * the optimization region {10, 11, …, 400} for the number of participants in phase II,
+ 
+  * the optimization region {-log(0.95), -log(0.94),…, -log(0.70)} for the threshold values,
+ 
+  * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
+ 
+  * expected gains of 100,000,000$, 300,000,000$, and 500,000,000$ for each effect size, respectively,
+ 
+  * three clusters for parallel computing,
+ 
+  * fixed costs of 10,000,000$ in phase II and of 15,000,000$ in phase III,
+ 
+  * variable costs of 75,000$ in phase II and 100,000$ in phase III,
+ 
+  * “fixed=FALSE”, i.e. set the function to use a prior distribution,
+ 
+  * weight of 0.3 for the prior distribution,
+
+  * amount of information for prior true treatment effect given by 210 expected events in phase II and 420 events in phase III.
+
 Verify that the function calculates an optimal sample size of 206 in phase II and 354 in phase III (i.e. a total of 560 participants), an expected utility of 432, and an optimal threshold value of 0.84 as suggested by Stella Erdmann [2]. Furthermore, verify that one can expect 144 events in phase II and 248 events in phase III (i.e. 392 in total).
 
 01.02 (shows that req. 01.03., 01.05., 01.14 and 01.16 are met): Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following: Set the parameter “fixed” to be TRUE, thus using fixed assumed treatment effects. Set the weight for the prior distribution to be NULL and the number of events to be NULL and NULL. 

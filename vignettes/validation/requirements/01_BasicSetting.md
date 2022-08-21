@@ -1,4 +1,4 @@
-#' @title BasicSetting_01
+#' @title 01_BasicSetting
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @riskAssessment
