@@ -10,9 +10,9 @@ optimal_multiple_tte(
   id1,
   id2,
   ec,
-  d2min,
-  d2max,
-  stepd2,
+  n2min,
+  n2max,
+  stepn2,
   hrgomin,
   hrgomax,
   stephrgo,
@@ -50,11 +50,11 @@ optimal_multiple_tte(
 
 \item{ec}{control arm event rate for phase II and III}
 
-\item{d2min}{minimal number of events for phase II, must be divisible by 3}
+\item{n2min}{minimal number of events for phase II, must be divisible by 3}
 
-\item{d2max}{maximal number of events for phase II, must be divisible by 3}
+\item{n2max}{maximal number of events for phase II, must be divisible by 3}
 
-\item{stepd2}{stepsize for the optimization over d2, must be divisible by 3}
+\item{stepn2}{stepsize for the optimization over d2, must be divisible by 3}
 
 \item{hrgomin}{minimal threshold value for the go/no-go decision rule}
 
@@ -156,17 +156,17 @@ endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni
 \examples{
 #res <- optimal_multiple_tte(hr1 = 0.75, hr2 = 0.80, 
 #  ec = 0.6,                                         # define assumed true HRs and control arm event rate
-# id1 = 210, id2 = 420,
-#  d2min = 30, d2max = 90, stepd2 = 6,               # define optimization set for n2
+#  id1 = 210, id2 = 420,
+#  n2min = 30, n2max = 90, stepn2 = 6,               # define optimization set for n2
 #  hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,    # define optimization set for HRgo
 #  alpha = 0.05, beta = 0.1,                         # drug development planning parameters
 #  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,          # define fixed and variable costs for phase II and III
 #  K = Inf, N = Inf, S = -Inf,                       # set constraints
 #  steps1 = 1,                                       # define lower boundary for "small"
 #  stepm1 = 0.95,                                    # "medium"
-# stepl1 = 0.85,                                    # and "large" treatment effect size categories as proposed by IQWiG (2016)
+#  stepl1 = 0.85,                                    # and "large" treatment effect size categories as proposed by IQWiG (2016)
 #  b11 = 1000, b21 = 2000, b31 = 3000,
-#   b12 = 1000, b22 = 1500, b32 = 2000,               # define expected benefit for a "small", "medium" and "large" treatment effect
+#  b12 = 1000, b22 = 1500, b32 = 2000,               # define expected benefit for a "small", "medium" and "large" treatment effect
 #  rho = 0.5, fixed = TRUE,                          # correlation and treatment effect
 #  num_cl = 1)                                       # set number of cores used for parallelized computing 
 # res

@@ -2,8 +2,27 @@
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @riskAssessment
-#' REQUIREMENT: ASSESSMENT
-
+#' 03.01: Medium Risk, High Impact
+#' 03.02: Medium Risk, High Impact
+#' 03.03: Low Risk, High Impact
+#' 03.04: Medium Risk, High Impact
+#' 03.05: High Risk, High Impact
+#' 03.06: Low Risk, High Impact
+#' 03.07: Low Risk, High Impact
+#' 03.08: Low Risk, High Impact
+#' 03.09: High Risk, Low Impact
+#' 03.10: Medium Risk, High Impact
+#' 03.11: Medium Risk, High Impact
+#' 03.12: High Risk, Low Impact
+#' 03.13: Low Risk, Low Impact
+#' 03.14: Very High Risk, Medium Impact
+#' 03.15: Medium Risk, Medium Impact
+#' 03.16: Low Risk, Medium Impact
+#' 03.17: Low Risk, Medium Impact
+#' 03.18: Low Risk, Medium Impact
+#' 03.19: Low Risk, Medium Impact
+#' 03.20: Low Risk, Medium Impact
+#' 03.21: Low Risk, Medium Impact
 
 ## 03. Programs with several phase III trials (“multitrial”)
 

@@ -2,7 +2,27 @@
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @riskAssessment
-#' REQUIREMENT: ASSESSMENT
+#' 02.01: Medium Risk, High Impact
+#' 02.02: Medium Risk, High Impact
+#' 02.03: Low Risk, High Impact
+#' 02.04: Medium Risk, High Impact
+#' 02.05: High Risk, High Impact
+#' 02.06: Medium Risk, High Impact
+#' 02.07: Medium Risk, High Impact
+#' 02.08: Medium Risk, High Impact
+#' 02.09: High Risk, Low Impact
+#' 02.10: Medium Risk, High Impact
+#' 02.11: Medium Risk, High Impact
+#' 02.12: Medium Risk, High Impact
+#' 02.13: Medium Risk, High Impact
+#' 02.14: Medium Risk, Medium Impact
+#' 02.15: Medium Risk, Medium Impact
+#' 02.16: Low Risk, Medium Impact
+#' 02.17: Low Risk, Medium Impact
+#' 02.18: Low Risk, Medium Impact
+#' 02.19: Low Risk, Medium Impact
+#' 02.20: Low Risk, Medium Impact
+
 
 
 ## 02. Discounting phase II results (“bias”)

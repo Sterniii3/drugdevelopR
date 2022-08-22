@@ -2,7 +2,21 @@
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @riskAssessment
-#' REQUIREMENT: ASSESSMENT
+#' 05.01: High Risk, High Impact
+#' 05.02: High Risk, High Impact
+#' 05.03: High Risk, High Impact
+#' 05.04: Very High Risk, High Impact
+#' 05.05: Low Risk, High Impact
+#' 05.06: Low Risk, High Impact
+#' 05.07: Low Risk, High Impact
+#' 05.08: High Risk, Low Impact
+#' 05.09: Low Risk, Medium Impact
+#' 05.10: Low Risk, Medium Impact
+#' 05.11: Low Risk, Medium Impact
+#' 05.12: Low Risk, Medium Impact
+#' 05.13: High Risk, High Impact
+#' 05.14: High Risk, High Impact
+#' 05.15: High Risk, High Impact
 
 
 ## 05. Programs with multiple endpoints (“multiple”)

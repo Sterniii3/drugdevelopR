@@ -2,8 +2,20 @@
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @riskAssessment
-#' REQUIREMENT: ASSESSMENT
-
+#' 04.01: Medium Risk, High Impact
+#' 04.02: Medium Risk, High Impact
+#' 04.03: Low Risk, High Impact
+#' 04.04: Low Risk, High Impact
+#' 04.05: Low Risk, High Impact
+#' 04.06: Low Risk, High Impact
+#' 04.07: High Risk, Low Impact
+#' 04.08: Medium Risk, High Impact
+#' 04.09: Medium Risk, High Impact
+#' 04.10: Low Risk, Medium Impact
+#' 04.11: Low Risk, Medium Impact
+#' 04.12: Low Risk, Medium Impact
+#' 04.13: Low Risk, Medium Impact
+#' 04.14: Low Risk, Medium Impact
 
 ## 04. Multi-arm programs (“multiarm”)
 A further extension implemented are multi-arm trials. So far, only three-arm trials with two experimental treatments and one control are implemented: Assume that two new treatments, e.g. two doses of the same drug, are tested at the same time and that the same control group is included in phase II and phase III. The aim of the phase II/III drug development program is to demonstrate efficacy for at least one of the experimental treatments. In this setting, the user should be able to supply the following parameters in addition to the parameters from the basic setting:

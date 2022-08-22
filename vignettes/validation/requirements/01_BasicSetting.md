@@ -2,22 +2,22 @@
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @riskAssessment
-#' 01.01: ASSESSMENT
-#' 01.02: ASSESSMENT
-#' 01.03: ASSESSMENT
-#' 01.04: ASSESSMENT
-#' 01.05: ASSESSMENT
-#' 01.06: ASSESSMENT
-#' 01.07: ASSESSMENT
-#' 01.08: ASSESSMENT
-#' 01.09: ASSESSMENT
-#' 01.10: ASSESSMENT
-#' 01.11: ASSESSMENT
-#' 01.12: ASSESSMENT
-#' 01.13: ASSESSMENT
-#' 01.14: ASSESSMENT
-#' 01.15: ASSESSMENT
-#' 01.16: ASSESSMENT
+#' 01.01: Low Risk, Very High Impact
+#' 01.02: Low Risk, Very High Impact
+#' 01.03: Low Risk, Very High Impact
+#' 01.04: Medium Risk, Low Impact
+#' 01.05: Low Risk, High Impact
+#' 01.06: Medium Risk, High Impact
+#' 01.07: Low Risk, Low Impact
+#' 01.08: High Risk, Low Impact
+#' 01.09: Low Risk, High Impact
+#' 01.10: Low Risk, High Impact
+#' 01.11: Low Risk, High Impact
+#' 01.12: Low Risk, High Impact
+#' 01.13: Low Risk, Medium Impact
+#' 01.14: Low Risk, Medium Impact
+#' 01.15: Low Risk, Medium Impact
+#' 01.16: Low Risk, Medium Impact
 
 
 
