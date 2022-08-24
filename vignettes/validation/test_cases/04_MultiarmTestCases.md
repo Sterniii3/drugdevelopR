@@ -1,4 +1,4 @@
-#' @title Multiarm_04
+#' @title 04_MultiarmTestCases
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @coverage

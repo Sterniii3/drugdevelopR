@@ -1,4 +1,4 @@
-#' @title MultpleEndpoints_05
+#' @title 05_MultpleEndpointsTestCases
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @coverage

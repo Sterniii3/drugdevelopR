@@ -1,4 +1,4 @@
-#' @title 02_BiasAdjustmentTestCases
+#' @title MultpleEndpoints_05
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @coverage

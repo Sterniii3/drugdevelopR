@@ -1,4 +1,4 @@
-#' @title 02_BiasAdjustmentTestCases
+#' @title Multiarm_04
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @coverage

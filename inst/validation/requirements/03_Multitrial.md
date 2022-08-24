@@ -1,4 +1,4 @@
-#' @title 03_Multitrial
+#' @title Multitrial_03
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @riskAssessment

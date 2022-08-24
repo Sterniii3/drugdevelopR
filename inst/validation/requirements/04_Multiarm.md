@@ -1,4 +1,4 @@
-#' @title 04_Multiarm
+#' @title Multiarm_04
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @riskAssessment

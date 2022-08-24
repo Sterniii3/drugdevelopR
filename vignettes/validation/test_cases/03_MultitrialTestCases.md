@@ -1,4 +1,4 @@
-#' @title Multitrial_03
+#' @title 03_MultitrialTestCases
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @coverage
