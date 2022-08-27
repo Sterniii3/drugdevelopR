@@ -153,7 +153,7 @@ vt_scrape_risk_assessment() %>%
 
 
 
-```{r child-files-evaluation,eval=FALSE}
+```{r child-files-evaluation}
 child_files <- vt_get_child_files()
 vt_file(vt_path(child_files),dynamic_referencing = FALSE)
 ```
