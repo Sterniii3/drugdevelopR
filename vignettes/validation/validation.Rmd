@@ -150,10 +150,16 @@ vt_scrape_risk_assessment() %>%
 \newpage
 
 # Validation
+# User Requirements Specification
+
+```{r child-files-req-evaluation}
+child_files_req <- vt_get_child_files(validation_order = "requirements")
+vt_file(vt_path(child_files_req),dynamic_referencing = FALSE)
+```
 
 
-
-```{r child-files-evaluation}
-child_files <- vt_get_child_files()
-vt_file(vt_path(child_files),dynamic_referencing = FALSE)
+# Test Cases
+```{r child-files-test-evaluation}
+child_files_test <- vt_get_child_files(validation_order = "test_cases")
+vt_file(vt_path(child_files_test),dynamic_referencing = FALSE)
 ```

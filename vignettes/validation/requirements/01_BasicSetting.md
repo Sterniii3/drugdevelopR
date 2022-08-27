@@ -21,7 +21,7 @@
 
 
 
-### 01. Basic setting
+## 01. Basic setting
 
 In the simplest case, the drug development program consists of a single exploratory phase II trial which is, in case of promising results, followed by one confirmatory phase III trial testing the superiority of an experimental treatment over a control treatment. The package should ask for the following user input values specific to the particular drug development program in consideration:
 
