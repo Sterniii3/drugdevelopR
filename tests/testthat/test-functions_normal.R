@@ -109,6 +109,28 @@ test_that("box normal returns a vector with 100000 realizations", {
  })
  
  
+ test_that("Sample size constraint works",{
+   expect_equal(getElement(utility_normal(n2=100, kappa=0.1, w=0.3, Delta1 = 0.375, Delta2 = 0.625, 
+                                       in1=300, in2=600, a = 0.25, b = 0.75,
+                                       alpha = 0.05, beta = 0.1, 
+                                       c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20, 
+                                       K=Inf, N=90, S=-Inf,
+                                       steps1=0, stepm1=0.5, stepl1=0.8,
+                                       b1=1000, b2=2000, b3=3000,
+                                       gamma=0, fixed=TRUE),1),-9999)
+ })
+ 
+ test_that("Cost constraint works",{
+   expect_equal(getElement(utility_normal(n2=60, kappa=0.1, w=0.3, Delta1 = 0.375, Delta2 = 0.625, 
+                                          in1=300, in2=600, a = 0.25, b = 0.75,
+                                          alpha = 0.05, beta = 0.1, 
+                                          c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20, 
+                                          K=50, N=Inf, S=-Inf,
+                                          steps1=0, stepm1=0.5, stepl1=0.8,
+                                          b1=1000, b2=2000, b3=3000,
+                                          gamma=0, fixed=TRUE),1),-9999)
+ })
+ 
  test_that("Lower treatment effects decrease utility",{
    expect_gt(getElement(utility_normal(n2=60, kappa=0.1, w=0.3, Delta1 = 0.675, Delta2 = 0.825, 
                                        in1=300, in2=600, a = 0.25, b = 0.75,

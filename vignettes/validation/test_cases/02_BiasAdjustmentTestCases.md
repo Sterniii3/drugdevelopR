@@ -5,6 +5,4 @@
 #' TESTCASE: REQUIREMENT
 
 
-+ Setup: DOCUMENT ANY SETUP THAT NEEDS TO BE DONE FOR TESTING
 
-+ Start documenting test case here!
