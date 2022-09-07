@@ -9,7 +9,7 @@ test_that("Optimal normal works", {
                               steps1 = 0,  stepm1 = 0.5,stepl1 = 0.8,  
                               b1 = 3000, b2 = 8000, b3 = 10000,  
                               gamma = 0,  fixed = FALSE, skipII = FALSE,  
-                              num_cl = 3)[1], 
+                              num_cl = 2)[1], 
                data.frame(u=2272.13))
 })
 
@@ -24,7 +24,7 @@ test_that("Parameters for prior distribution are irrelevant if treatment effects
                               steps1 = 0,  stepm1 = 0.5,stepl1 = 0.8,  
                               b1 = 3000, b2 = 8000, b3 = 10000,  
                               gamma = 0,  fixed = TRUE, skipII = FALSE,  
-                              num_cl = 3)[1], 
+                              num_cl = 2)[1], 
                optimal_normal(w=0.3, Delta1 = 0.375, Delta2 = 0.695, 
                               in1=350, in2=700,  a = 0.25, b = 0.75,   
                               n2min = 20, n2max = 100, stepn2 = 4,  
@@ -35,6 +35,6 @@ test_that("Parameters for prior distribution are irrelevant if treatment effects
                               steps1 = 0,  stepm1 = 0.5,stepl1 = 0.8,  
                               b1 = 3000, b2 = 8000, b3 = 10000,  
                               gamma = 0,  fixed = TRUE, skipII = FALSE,  
-                              num_cl = 3)[1])
+                              num_cl = 2)[1])
 })
 
