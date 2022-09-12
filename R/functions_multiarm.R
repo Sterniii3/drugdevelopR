@@ -25,10 +25,10 @@
 #' @param hr1 assumed true treatment effect on HR scale for treatment 1
 #' @param hr2 assumed true treatment effect on HR scale for treatment 2
 #' @param ec control arm event rate for phase II and III
-#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
+#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") 
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
 #' @return The function pgo_tte() returns the probability to go to phase III.
-#' @examples res <- pgo_tte(HRgo = 0.8, n2 = 48 , ec = 0.6, hr1 = 0.7, hr2 = 0.8, strategy = 3, case = 31)
+#' @examples res <- pgo_tte(HRgo = 0.8, n2 = 48 , ec = 0.6, hr1 = 0.7, hr2 = 0.8, strategy = 2, case = 31)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export
