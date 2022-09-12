@@ -192,6 +192,19 @@ test_that("box normal returns a vector with 100000 realizations", {
                             a=0.25,b=0.75, fixed=TRUE, gamma=0))
  }) 
  
+ test_that("Higher Treatment effect increases probability of a success with prior distribution",{
+   expect_lt(EPsProg_skipII_normal(alpha = 0.05, beta = 0.1, w=0.5,
+                                   median_prior = 0.625, step1 = 0.5, step2 = 1,
+                                   Delta1=0.625, Delta2=0.325, 
+                                   in1=300, in2=600, 
+                                   a=0.25,b=0.75, fixed=FALSE, gamma=0),
+             EPsProg_skipII_normal(alpha = 0.05, beta = 0.1, w=0.5,
+                                   median_prior = 0.625,step1 = 0.5, step2 = 1,
+                                   Delta1=0.825, Delta2=0.325, 
+                                   in1=300, in2=600, 
+                                   a=0.25,b=0.75, fixed=FALSE, gamma=0))
+ })
+ 
  test_that("Utility decreases with higher costs",{
    expect_gt(utility_skipII_normal(alpha = 0.05, beta = 0.1, median_prior = 0.625,
                                    c03 = 0.72, c3=20, b1=1000, b2=2000, b3=3000,  
@@ -224,4 +237,16 @@ test_that("box normal returns a vector with 100000 realizations", {
                                    w=0.3, Delta1=0.625, Delta2=0.325,
                                    in1=300, in2=600,a=0.25,b=0.75, 
                                    fixed=TRUE, gamma=0)[1])
+ })
+ 
+ 
+ test_that("Violating constraints leads to negative utility of -9999",{
+   expect_equal(utility_skipII_normal(alpha = 0.05, beta = 0.1, median_prior = 0.625,
+                                   c03 = 0.72, c3=20, b1=1000, b2=2000, b3=3000,  
+                                   K=50, N=50, S=0.8,
+                                   steps1=0, stepm1=0.5, stepl1=0.8,
+                                   w=0.3, Delta1=0.625, Delta2=0.325,
+                                   in1=300, in2=600,a=0.25,b=0.75, 
+                                   fixed=TRUE, gamma=0)[1],
+             -9999)
  })
