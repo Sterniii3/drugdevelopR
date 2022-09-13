@@ -195,4 +195,13 @@ child_files_test <- vt_get_child_files(validation_order = "test_cases")
 vt_file(vt_path(child_files_test),dynamic_referencing = FALSE)
 ```
 
+# Test Results {-}
+
+```{r}
+#vt_file(vt_path(c("test_code/01_02_test.R",
+#                  "test_code/01_02_test.R")),
+#        dynamic_referencing = FALSE)
+```
+
+
 # References {-}

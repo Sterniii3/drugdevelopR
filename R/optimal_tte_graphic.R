@@ -4,6 +4,10 @@
 #' `optimal_tte_graphic`.
 #' 
 #' @name optimal_tte
+#' 
+#' @examples
+#' # Schreibe hier ein Beispiel für die Verwendung von optimal_tte_graphic.
+#' 
 #' @export
 optimal_tte_graphic <- function(w,  hr1, hr2, id1, id2,
                         d2min, d2max, stepd2,
