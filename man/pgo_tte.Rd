@@ -17,7 +17,7 @@ pgo_tte(HRgo, n2, ec, hr1, hr2, strategy, case)
 
 \item{hr2}{assumed true treatment effect on HR scale for treatment 2}
 
-\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)}
+\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising")}
 
 \item{case}{different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)}
 }
@@ -34,7 +34,7 @@ Given our parameters this function calculates the probability to go to phase III
 }
 }
 \examples{
-res <- pgo_tte(HRgo = 0.8, n2 = 48 , ec = 0.6, hr1 = 0.7, hr2 = 0.8, strategy = 3, case = 31)
+res <- pgo_tte(HRgo = 0.8, n2 = 48 , ec = 0.6, hr1 = 0.7, hr2 = 0.8, strategy = 2, case = 31)
 }
 \section{Last Edited By}{
 Johannes Cepicka

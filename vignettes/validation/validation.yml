@@ -8,9 +8,14 @@ usernames:
     name: Johannes Cepicka
     title: BSc
     role: Validation Lead, Responsible for Validation
+  lukasdsauer:
+    name: Lukas D Sauer
+    title: MSc
+    role: Programmer of test cases
 validation_files:
 - 01_BasicSetting.md
 - 02_BiasAdjustment.md
 - 03_Multitrial.md
 - 04_Multiarm.md
 - 05_MultipleEndpoints.md
+- Test_01_01.R

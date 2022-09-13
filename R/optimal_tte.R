@@ -1,9 +1,16 @@
 #' Optimal phase II/III drug development planning with time-to-event endpoint
 #'
-#' The function \code{\link{optimal_tte}} of the \code{\link{drugdevelopR}} package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules for time-to-event endpoints (Kirchner et al., 2016). 
-#' The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. When assuming fixed true tratment effects, planning can also be done with the user friendly R Shiny App \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. 
-#' The App \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. 
-#' Fast computing is enabled by parallel programming.
+#' The function \code{\link{optimal_tte}} of the \code{\link{drugdevelopR}}
+#' package enables planning of phase II/III drug development programs with optimal
+#' sample size allocation and go/no-go decision rules for time-to-event endpoints
+#' (Kirchner et al., 2016). The assumed true treatment effects can be assumed to
+#' be fixed or modelled by
+#' a prior distribution. When assuming fixed true treatment effects, planning can
+#' also be done with the user-friendly R Shiny app
+#' \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. 
+#' The app \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes
+#' the prior distributions used in this package. Fast computing is enabled by
+#'parallel programming.
 #' 
 #' @name optimal_tte
 #' @param w weight for mixture prior distribution
@@ -61,7 +68,8 @@
 #'   }
 #' and further input parameters.
 #' 
-#' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+#' Taking `cat(comment())` of the data.frame object lists the used optimization sequences
+#' as well as start and finish date of the optimization procedure.
 #' @examples
 #' res <- optimal_tte(w = 0.3,                              # define parameters for prior
 #'   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,          # (https://web.imbi.uni-heidelberg.de/prior/)

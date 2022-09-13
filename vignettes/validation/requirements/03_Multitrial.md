@@ -1,4 +1,4 @@
-#' @title 03_Multitrial
+#' @title 03. Multitrial
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @riskAssessment
@@ -24,7 +24,7 @@
 #' 03.20: Low Risk, Medium Impact
 #' 03.21: Low Risk, Medium Impact
 
-## 03. Programs with several phase III trials (“multitrial”)
+## 03. Multitrial -- Programs with several phase III trials {-}
 
 The program should also implement a framework developed for phase II/III drug development programs where several phase III trials are performed. This is of particular relevance as regulatory agencies often require statistical significance in two or more phase III trials. Different cases, defined by the number of significant trials needed for approval, should be implemented in the package. For each case, different strategies, defined by the number of phase III trials to be conducted in order to reach the goal of the case, should be implemented. For the success of the drug development program, it is necessary that the treatment effects of all phase III trials point in the same direction. For example, if we select case 3 and strategy 4, we require four phase III trials, where three need to be significant at level $\alpha$ and the treatment effect of the fourth must point in the same direction.
 Hence, in addition to the parameters from the basic setting, the user should be allowed to provide the following parameters:
