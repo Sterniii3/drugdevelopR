@@ -1,4 +1,4 @@
-#' @title 01_BasicSettingTestCases
+#' @title 01. Basic setting test cases
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @coverage
@@ -16,9 +16,9 @@
 #' 01.12: 01.08
 
 
-## 01. Test cases for the basic setting
+## 01. Basic setting test cases {-}
 
-### 01.01 (shows that req. 01.03, 01.06, 01.12 and 01.15 are met): 
+### 01.01 (shows that req. 01.03, 01.06, 01.12 and 01.15 are met):  {-}
 Use the function `optimal_tte()`. Supply the following input values to the function:
   
   * a significance level of 0.025,
@@ -38,32 +38,32 @@ Use the function `optimal_tte()`. Supply the following input values to the funct
 
 Verify that the function calculates an optimal sample size of 206 in phase II and 354 in phase III (i.e. a total of 560 participants), an expected utility of 432, and an optimal threshold value of 0.84 as suggested by Stella Erdmann [2]. Furthermore, verify that one can expect 144 events in phase II and 248 events in phase III (i.e. 392 in total).
 
-### 01.02 (shows that req. 01.03., 01.05., 01.14 and 01.16 are met): 
+### 01.02 (shows that req. 01.03., 01.05., 01.14 and 01.16 are met):  {-}
 Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following: Set the parameter “fixed” to be TRUE, thus using fixed assumed treatment effects. Set the weight for the prior distribution to be NULL and the number of events to be NULL and NULL. 
 Verify that the function calculates an optimal sample size of 240, an expected utility of 352 and an optimal threshold value of 0.88 as suggested by Stella Erdmann [2]. Furthermore, verify that the probability to go to phase III is given by 0.73 and the expected number of events in phase III and III is 168 and 546, respectively (714 in total).
 
-### 01.03 (shows that req. 01.10 and 01.12 are met): 
+### 01.03 (shows that req. 01.10 and 01.12 are met):  {-}
 Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following changes and additions: Set the weight for the prior distribution to be 0.6 and set a cost constraint of K=750.
 Verify that the function calculates an optimal sample size of 228, an expected utility of 996 and an optimal threshold value of 0.84 as suggested by Stella Erdmann [2]. Furthermore, verify that the cost constraint is returned and that the total costs in phase II and III are 271 and 530.
 
-### 01.04 (shows that req. 01.09 and 01.13 are met): 
+### 01.04 (shows that req. 01.09 and 01.13 are met):  {-}
 Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following changes and additions: 
 Set the weight for the prior distribution to be 0.6  and set a sample size constraint of N=500.
 Verify that the function calculates an optimal sample size of 170 in phase II and 328 in phase III (i.e. a total sample size of 498), an expected utility of 956 and an optimal threshold value of 0.83 as suggested by Stella Erdmann [2].
 
-### 01.05 (shows that req. 01.11, 01.14 and 01.15 met): 
+### 01.05 (shows that req. 01.11, 01.14 and 01.15 met):  {-}
 Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following changes and additions: Set the weight for the prior distribution to be 0.6 and set a constraint on the minimal probability of a successful program of S=0.6.
 Verify that the function calculates an optimal sample size of 470, an expected utility of 899 and an optimal threshold value of 0.89 as suggested by Stella Erdmann [2]. Furthermore, verify, that the probability to go phase III is given by 0.77 and the probability of a successful program is given by 0.6.
 
-### 01.06 (shows that req. 01.04 is met): 
+### 01.06 (shows that req. 01.04 is met):  {-}
 Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following changes and additions: Set the weight for the prior distribution to be 0.6 and use the option to skip phase II.
 Verify that the function calculates an optimal sample size of 824, an expected utility of 1706 and an optimal threshold value of 0.76 as suggested by Stella Erdmann [2].
 
-### 01.07 (shows that req. 01.07 is met): 
+### 01.07 (shows that req. 01.07 is met):  {-}
 Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following changes and additions: Set the weight for the prior distribution to be 0.6 and use the option to model different population structures and set the parameter $\gamma$ to 0.025.
 Verify that the function calculates an optimal sample size of 310, an expected utility of 1207 and an optimal threshold value of 0.86 as suggested by Stella Erdmann [2].
 
-### 01.08 (shows that req. 01.02, 01.05 and 01.12 are met): 
+### 01.08 (shows that req. 01.02, 01.05 and 01.12 are met):  {-}
 Use the function ` optimal_binary()`. Supply the following input values to the function:
 
   * a significance level of 0.025,
@@ -82,11 +82,11 @@ Use the function ` optimal_binary()`. Supply the following input values to the f
 
 Verify that the function calculates an optimal sample size of 204, an expected utility of 299 and an optimal threshold value of 0.90 as suggested by Stella Erdmann [2]. Furthermore, verify that the programs returns the cost constraint (Inf in this case) as well as the total costs in phase II and III, 253 and 810, respectively.
 
-### 01.09 (shows that req. 01.02 and 01.06 are met): 
+### 01.09 (shows that req. 01.02 and 01.06 are met):  {-}
 Use the function `optimal_binary()`. Supply the same input values as in test case 01.08 to the function except for the following changes and additions: Set the parameter “fixed” to be FALSE. Set the weight for the prior distribution to be 0.4 and the number of events to be 30 and 60. 
 Verify that the function calculates an optimal sample size of 224, an expected utility of 1542 and an optimal threshold value of 0.89 as suggested by Stella Erdmann [2].
 
-### 01.10 (shows that req. 01.01 and 01.06 are met):
+### 01.10 (shows that req. 01.01 and 01.06 are met): {-}
 Use the function `optimal_normal()`. Supply the following input values to the function:
 
   * a significance level of 0.025,
@@ -106,11 +106,11 @@ Use the function `optimal_normal()`. Supply the following input values to the fu
 
 Verify that the function calculates an optimal sample size of 86, an expected utility of 337 and an optimal threshold value of 0.19 as suggested by Stella Erdmann [2].
 
-### 01.11 (shows that req. 01.01, 01.05 and 01.15 are met):
+### 01.11 (shows that req. 01.01, 01.05 and 01.15 are met): {-}
 Use the function `optimal_normal()`. Supply the same input values as in test case 01.10 to the function except for the following changes and additions: Set the parameter “fixed” to be TRUE. Set the weight for the prior distribution to be NULL, the number of events to be NULL and NULL and the truncation values to be a = NULL and b = NULL.
 Verify that the function calculates an optimal sample size of 78, an expected utility of 944 and an optimal threshold value of 0.12 as suggested by Stella Erdmann [2]. Furthermore, verify that the probability of a successful program is given by 0.83, which is the sum of the probabilities of a small (0.51), medium (0.30) or large (0.02) treatment effect.
 
-### 01.12 (shows that req. 01.08 is met):
+### 01.12 (shows that req. 01.08 is met): {-}
 Use the `function optimal_tte`. Supply the same input values as in test case 01.02 to the function except for the following change: Set the number of cores for parallel computing to 1. Verify that the computation time will increase compared to the setting in 01.02.
 
 

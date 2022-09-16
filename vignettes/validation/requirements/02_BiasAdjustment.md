@@ -1,4 +1,4 @@
-#' @title 02_BiasAdjustment
+#' @title 02. Bias adjustment
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @riskAssessment
@@ -25,7 +25,7 @@
 
 
 
-## 02. Discounting phase II results (“bias”)
+## 02. Bias adjustment -- Discounting phase II results {-}
 
 As the drug development programs only continue to the next stage when preceding trials are successful, estimated treatment effects may be systematically too optimistic. The program should extend the basic setting by implementing bias adjustment . As in the basic setting, the drug development program consists of a single exploratory phase II trial which is, in case of a promising result, followed by one confirmatory phase III trial. The same time-to-event, binary, or normally distributed endpoint is used in phase II and III, respectively. In addition to the general parameters specified in the section on the basic setting, the user should be able to provide the following additional parameters:
 

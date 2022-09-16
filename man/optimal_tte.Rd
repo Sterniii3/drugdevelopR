@@ -6,8 +6,6 @@
 \title{Optimal phase II/III drug development planning with time-to-event endpoint}
 \format{
 data.frame containing the optimization results (see Value)
-
-data.frame containing the optimization results (see Value)
 }
 \usage{
 optimal_tte(
@@ -167,68 +165,33 @@ The output of the function \code{\link{optimal_tte}} is a data.frame containing 
 }
 and further input parameters.
 
-Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
-
-The output of the function \code{\link{optimal_tte}} is a data.frame containing the optimization results:
-\describe{
-\item{u}{maximal expected utility}
-\item{HRgo}{optimal threshold value for the decision rule to go to phase III}
-\item{d2}{optimal total number of events for phase II}
-\item{d3}{total expected number of events for phase III; rounded to next natural number}
-\item{d}{total expected number of events in the program; d = d2 + d3}
-\item{n2}{total sample size for phase II; rounded to the next even natural number}
-\item{n3}{total sample size for phase III; rounded to the next even natural number}
-\item{n}{total sample size in the program; n = n2 + n3}
-\item{K}{maximal costs of the program}
-\item{pgo}{probability to go to phase III}
-\item{sProg}{probability of a successful program}
-\item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-\item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-\item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
-\item{K2}{expected costs for phase II}
-\item{K3}{expected costs for phase III}
-}
-and further input parameters.
-
-Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+Taking \code{cat(comment())} of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 }
 \description{
-The function \code{\link{optimal_tte}} of the \code{\link{drugdevelopR}} package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules for time-to-event endpoints (Kirchner et al., 2016).
-The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. When assuming fixed true tratment effects, planning can also be done with the user friendly R Shiny App \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}.
-The App \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package.
-Fast computing is enabled by parallel programming.
+The function \code{\link{optimal_tte}} of the \code{\link{drugdevelopR}}
+package enables planning of phase II/III drug development programs with optimal
+sample size allocation and go/no-go decision rules for time-to-event endpoints
+(Kirchner et al., 2016).
 
-The function \code{\link{optimal_tte}} of the \code{\link{drugdevelopR}} package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules for time-to-event endpoints (Kirchner et al., 2016).
-The assumed true treatment effects can be assumed fixed or modelled by a prior distribution.
-When assuming fixed true tratment effects, planning can also be done with the user friendly R Shiny App \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. The App \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package.
+TODO: Erkläre hier den Unterschied zwischen den beiden Funktionen \code{optimal_tte} und
+\code{optimal_tte_graphic}.
+}
+\details{
+The assumed true treatment effects can be assumed to be fixed or modelled by
+a prior distribution. When assuming fixed true treatment effects, planning can
+also be done with the user-friendly R Shiny app
+\href{https://web.imbi.uni-heidelberg.de/basic/}{basic}.
+The app \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes
+the prior distributions used in this package.
+
 Fast computing is enabled by parallel programming.
 }
 \section{drugdevelopR package and R Shiny App}{
 
 The \code{\link{drugdevelopR}} package provides functions to plan optimal phase II/III drug development programs in variuos scenarios. The App \href{https://web.imbi.uni-heidelberg.de/drugdevelopR/}{drugdevelopR} serves as homepage, navigating the different parts of the drugdevelopR framework via links.
-
-
-The \code{\link{drugdevelopR}} package provides functions to plan optimal phase II/III drug development programs in variuos scenarios. The App \href{https://web.imbi.uni-heidelberg.de/drugdevelopR/}{drugdevelopR} serves as homepage, navigating the different parts of the drugdevelopR framework via links.
 }
 
 \examples{
-res <- optimal_tte(w = 0.3,                              # define parameters for prior
-  hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,          # (https://web.imbi.uni-heidelberg.de/prior/)
-  d2min = 20, d2max = 100, stepd2 = 5,                   # define optimization set for d2
-  hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
-  alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,        # drug development planning parameters
-  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
-  K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
-  steps1 = 1,                                            # define lower boundary for "small"
-  stepm1 = 0.95,                                         # "medium"
-  stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
-  b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
-  gamma = 0,                                             # assume different/same population structures in phase II and III
-  fixed = FALSE,                                         # choose if true treatment effects are fixed or random
-  skipII = FALSE,                                        # choose if skipping phase II would be an option
-  num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
-res
-cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
 res <- optimal_tte(w = 0.3,                              # define parameters for prior
   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,          # (https://web.imbi.uni-heidelberg.de/prior/)
   d2min = 20, d2max = 100, stepd2 = 5,                   # define optimization set for d2
@@ -253,15 +216,7 @@ Kirchner, M., Kieser, M., Goette, H., & Schueler, A. (2016). Utility-based optim
 IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 
 Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
-
-Kirchner, M., Kieser, M., Goette, H., & Schueler, A. (2016). Utility-based optimization of phase II/III programs. Statistics in Medicine, 35(2), 305-316.
-
-IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
-
-Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
 }
 \seealso{
-\code{\link{optimal_binary}}, \code{\link{optimal_normal}}, \code{\link{optimal_bias}}, \code{\link{optimal_multitrial}} and \code{\link{optimal_multiarm}}
-
 \code{\link{optimal_binary}}, \code{\link{optimal_normal}}, \code{\link{optimal_bias}}, \code{\link{optimal_multitrial}} and \code{\link{optimal_multiarm}}
 }

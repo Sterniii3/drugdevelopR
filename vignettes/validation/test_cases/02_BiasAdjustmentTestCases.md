@@ -1,8 +1,8 @@
-#' @title 02_BiasAdjustmentTestCases
+#' @title 02. Bias adjustment test cases
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @coverage
-#' TESTCASE: REQUIREMENT
+#' 02.01: 02.01
 
 
-
+## 02. Bias adjustment test cases {-}

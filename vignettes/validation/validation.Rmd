@@ -18,6 +18,7 @@ header-includes:
   - \usepackage{multirow}
   - \usepackage{longtable}
   - \usepackage{booktabs}
+bibliography: references.bib
 ---
 
 
@@ -54,9 +55,9 @@ all_sig <- vt_scrape_sig_table()
 
 \newpage
 
-# Certifications
+# Certifications {-}
 
-## Signatures
+## Signatures  {-}
 
 **AUTHOR** My signature designates authorship of this document.
 
@@ -80,18 +81,38 @@ The effective date of this document is the last date of signature.
 
 \newpage
 
-# Release details
+# General introduction and validation plan {-}
 
-## Package Information
+In the planning of confirmatory studies, the determination of the sample size is essential, as it has a significant impact on the chances of achieving the study objective. Based on the work of Götte et al. [1], methods for optimal sample size and go/no-go decision rules for the example of phase II/III drug development programs within a utility-based, Bayesian-frequentist framework were developed, which was improved by Preussler in her dissertation “Integrated Planning of Pilot and Subsequent Confirmatory Study in Clinical Research - Finding Optimal Designs in a Utility-Based Framework” [@preussler2020] to include further extensions. Additionally, methods for multiple endpoints were implemented [3]. In order to facilitate the practical application of these approaches, R Shiny applications for a basic setting as well as for three extensions were implemented. The extension of this project to a fully functional software product was funded by the German Research Organisation DFG within a project entitled "Integrated Planning of Drug Development Programs - drugdevelopR". The package was developed at the Institute of Medical Biometry (IMBI) in Heidelberg, Germany.
 
-### Change Log
+In order to assure unchanging scientific quality, in order to document that the package’s user requirements were met and in order to provide evidence of the package’s validity to the general public, we supply the following human-readable validation report. Within this report, we present the results of a validation suite developed at IMBI specifically for this package. The validation suite comprises several benchmark/testing scenarios of optimal drug development planning as presented in published work with scientific quality assurance. Published results are compared with the results of the software. The validation plan aims for full coverage of all package methods.
+
+The validation suite was programmed using the *valtools* R package [4] and the report was generated using the same package together with the *bookdown* R package. We closely followed the R package validation framework [5] of the PHUSE Working Group on “Data Visualisation & Open Source Technology”.
+
+With the aim of avoiding confusion, it should be noted that the framework makes a clear distinction between testing (unit testing) and validating a package. Testing on the one hand means checking the program from the software developer’s perspective. The so-called unit tests usually cover small sections of the program, each checking one specific part of the software, e.g. a function. With their help, the programmer assures that the code works as intended. Unit tests aim for a code coverage close to one-hundred percent. Validation on the other hand means checking the program from the end user’s point of view. By checking larger parts of software within one test case, the validation process provides evidence that the program will deliver the expected results in a production environment.
+
+Both unit tests and a validation suite were implemented for the drugdevelopR package. However, this report only covers validation. Whenever we refer to test cases or test code within this document, we mean tests for validation and not unit tests.
+
+In the following, we supply a brief introduction to this validation framework. The framework comprises four distinct steps:
+
+1.	Requirements: Programmers, subject matter experts and end users formulate clear, general expectations of the program’s functionality. (In our case, subject matter experts and end users coincide. Hence, the requirements were discussed between the programmer and two experts.) The requirements are readable by any expert without any programming experience. Neither program code nor function names are defined within this part of the validation framework. Risk assessments for the likelihood of errors within each requirement and for the impact of possible errors are documented for each requirement.
+2.	Test cases: For each of the requirements, the programmer writes one or several test cases. These are concise plain-text descriptions of how to verify that the requirement has been met by the package. It clearly specifies program input, the function names of the functions to be used, and expected program output. However, no program code is supplied. Each test case usually covers a use case that could be expected in a real-life application of the program.
+3.	Test code: Another programmer, who is not involved in the package code development, will then implement the test cases in R. The test code is clearly structured and thereby demonstrates that it follows the corresponding test case. The external programmer writes the test code solely using the description of the test cases and the package’s documentation, without deeper insight into the package’s code. This has the advantage that misunderstandings, poor documentation and other pitfalls will be discovered by an independent user before software release.
+4.	Validation report: As the last step, the primary programmer generates a human-readable validation report. Within this report, requirements and test cases will be listed and the results of the test code are presented. Thus, the whole validation process and its outcome are available to anyone who wants to verify the package’s validity. After changes to the program, the validation report can be easily generated (possibly after adding additional test cases for new functionality).
+
+
+# Release details {-}
+
+## Package Information  {-}
+
+### Change Log  {-}
 
 ```{r change-log-table}
 vt_scrape_change_log() %>% 
   vt_kable_change_log()
 ```
 
-### Validation Environment
+### Validation Environment  {-}
 
 ```{r env-table}
 vt_scrape_val_env() %>% 
@@ -99,17 +120,18 @@ vt_scrape_val_env() %>%
 ```
 
 
-## Authors
+## Authors  {-}
 
-### Requirements 
+### Requirements   {-}
 
 
 ```{r req-authors}
 vt_scrape_requirement_editors() %>% 
-  vt_kable_requirement_editors()
+  vt_kable_requirement_editors() %>%
+  kable_styling(latex_options = "HOLD_position")
 ```
 
-### Functions
+### Functions  {-}
 
 ```{r func-authors, eval=FALSE}
 vt_scrape_function_editors(tags = c("editor", "editDate")) %>%
@@ -117,21 +139,22 @@ vt_scrape_function_editors(tags = c("editor", "editDate")) %>%
 
 ```
 
-### Test Case Authors
+### Test Case Authors  {-}
 
 ```{r test-case-authors}
 vt_scrape_test_case_editors() %>%
- vt_kable_test_case_editors()
+ vt_kable_test_case_editors() %>%
+  kable_styling(latex_options = "HOLD_position")
 ```
 
-### Test Code Authors
+### Test Code Authors  {-}
 
-```{r test-code-authors,eval=FALSE}
+```{r test-code-authors, eval=FALSE}
 vt_scrape_test_code_editors() %>%
  vt_kable_test_code_editors()
 ```
 
-## Traceability
+## Traceability  {-}
 
 ```{r traceability}
 vt_scrape_coverage_matrix() %>% 
@@ -140,7 +163,7 @@ vt_scrape_coverage_matrix() %>%
 
 \clearpage
 
-# Risk Assessment
+# Risk Assessment {-}
 
 ```{r risk}
 vt_scrape_risk_assessment() %>% 
@@ -149,8 +172,15 @@ vt_scrape_risk_assessment() %>%
 
 \newpage
 
-# Validation
-# User Requirements Specification
+# User Requirement Specification {-}
+
+In the following section, we will specify functionality that the end user can expect from the *drugdevelopR* package. We will use the following terms in the text (following the definitions in [@preussler2020]):
+
+*	In the most basic setting, a *drug development program* consists of a single exploratory phase II trial which is, in case of promising results, followed by one confirmatory phase III trial testing the superiority of an experimental treatment over a control treatment. The phase II trial and the phase III trial are two-arm randomized studies, each with balanced sample size allocation. They are performed independently with the same primary endpoint. Both trials draw from the same population. More complex drug development programs will be defined throughout the text.
+*	A drug development program is called a *successful program* if it proceeds from phase II to phase III and if there is a statistically significant positive treatment effect in phase III of the program.
+*	The *utility function* of a drug development program calculates the difference between costs and gains of the program. The costs are composed of fixed costs and variable costs which depend on the number of participants in the program. The gains are given as the expected revenue of a successful program and depend on the size of the treatment effect. The idea is that treatments with bigger effect yield bigger revenue on the market. To this end, the user will be asked to specify three effect size categories as well as expected gains for each category.
+*	The *optimal sample size* of a drug development program is the number of participants in phase II that maximizes the utility function. The maximum of the utility function is calculated on the optimization set as defined by the user.
+
 
 ```{r child-files-req-evaluation}
 child_files_req <- vt_get_child_files(validation_order = "requirements")
@@ -158,8 +188,20 @@ vt_file(vt_path(child_files_req),dynamic_referencing = FALSE)
 ```
 
 
-# Test Cases
+# Test Cases {-}
+
 ```{r child-files-test-evaluation}
 child_files_test <- vt_get_child_files(validation_order = "test_cases")
 vt_file(vt_path(child_files_test),dynamic_referencing = FALSE)
 ```
+
+# Test Results {-}
+
+```{r}
+#vt_file(vt_path(c("test_code/01_02_test.R",
+#                  "test_code/01_02_test.R")),
+#        dynamic_referencing = FALSE)
+```
+
+
+# References {-}

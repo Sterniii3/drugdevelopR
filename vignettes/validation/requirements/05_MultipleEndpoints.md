@@ -1,4 +1,4 @@
-#' @title 05_MultipleEndpoints
+#' @title 05. Multiple endpoints
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @riskAssessment
@@ -19,7 +19,7 @@
 #' 05.15: High Risk, High Impact
 
 
-## 05. Programs with multiple endpoints (“multiple”)
+## 05. Multiple endpoints {-}
 
 The program should also provide methods for drug development programs with multiple endpoints. For now, this means that the program provides methods for two endpoints. For now, only normally distributed and time-to-event endpoints are implemented in the multiple endpoint setting. (Further extensions may be implemented in the future.) The definition of treatment success is different for the two endpoints:
 
