@@ -1,12 +1,28 @@
 #' Optimal phase II/III drug development planning with time-to-event endpoint
 #' 
-#' TODO: Erkläre hier den Unterschied zwischen den beiden Funktionen `optimal_tte` und
-#' `optimal_tte_graphic`.
+#' The functions `optimal_tte` and `optimal_tte_graphic` return the same output (given the same input values).
+#' However, `optimal_tte_graphic` further returns graphical output to accompany the results.
 #' 
 #' @name optimal_tte
 #' 
 #' @examples
-#' # Schreibe hier ein Beispiel für die Verwendung von optimal_tte_graphic.
+#'  # res <- optimal_tte_graphic(w = 0.3,                     # define parameters for prior
+#'  # hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,          # (https://web.imbi.uni-heidelberg.de/prior/)
+#'  # d2min = 20, d2max = 100, stepd2 = 5,                   # define optimization set for d2
+#'  # hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
+#'  # alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,        # drug development planning parameters
+#'  # c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
+#'  # K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
+#'  # steps1 = 1,                                            # define lower boundary for "small"
+#'  # stepm1 = 0.95,                                         # "medium"
+#'  # stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
+#'  # b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
+#'  # gamma = 0,                                             # assume different/same population structures in phase II and III
+#'  # fixed = FALSE,                                         # choose if true treatment effects are fixed or random
+#'  # skipII = FALSE,                                        # choose if skipping phase II would be an option
+#'  # num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
+#' # res
+#' # cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimi
 #' 
 #' @export
 optimal_tte_graphic <- function(w,  hr1, hr2, id1, id2,
