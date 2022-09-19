@@ -109,13 +109,13 @@ optimal_tte_graphic(
 
 \item{xi3}{event rate for phase III}
 
-\item{c2}{variable per-patient cost for phase II}
+\item{c2}{variable per-patient cost for phase II in 10^5 $.}
 
-\item{c3}{variable per-patient cost for phase III}
+\item{c3}{variable per-patient cost for phase III in 10^5 $.}
 
-\item{c02}{fixed cost for phase II}
+\item{c02}{fixed cost for phase II in 10^5 $.}
 
-\item{c03}{fixed cost for phase III}
+\item{c03}{fixed cost for phase III in 10^5 $.}
 
 \item{K}{constraint on the costs of the program, default: Inf, e.g. no constraint}
 
@@ -146,7 +146,7 @@ optimal_tte_graphic(
 \value{
 The output of the function \code{\link{optimal_tte}} is a data.frame containing the optimization results:
 \describe{
-\item{u}{maximal expected utility}
+\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}
 \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
 \item{d2}{optimal total number of events for phase II}
 \item{d3}{total expected number of events for phase III; rounded to next natural number}

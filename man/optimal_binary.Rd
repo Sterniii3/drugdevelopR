@@ -67,13 +67,13 @@ optimal_binary(
 
 \item{beta}{1-beta power for calculation of sample size for phase III}
 
-\item{c2}{variable per-patient cost for phase II}
+\item{c2}{variable per-patient cost for phase II in 10^5 $}
 
-\item{c3}{variable per-patient cost for phase III}
+\item{c3}{variable per-patient cost for phase III in 10^5 $}
 
-\item{c02}{fixed cost for phase II}
+\item{c02}{fixed cost for phase II in 10^5 $}
 
-\item{c03}{fixed cost for phase III}
+\item{c03}{fixed cost for phase III in 10^5 $}
 
 \item{K}{constraint on the costs of the program, default: Inf, e.g. no constraint}
 
@@ -104,7 +104,7 @@ optimal_binary(
 \value{
 The output of the function \code{\link{optimal_binary}} is a data.frame containing the optimization results:
 \describe{
-\item{u}{maximal expected utility}
+\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}
 \item{RRgo}{optimal threshold value for the decision rule to go to phase III}
 \item{n2}{total sample size for phase II}
 \item{n3}{total sample size for phase III; rounded to the next even natural number}

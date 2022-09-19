@@ -28,10 +28,10 @@
 #' @param alpha significance level
 #' @param xi2 event rate for phase II
 #' @param xi3 event rate for phase III
-#' @param c2 variable per-patient cost for phase II
-#' @param c3 variable per-patient cost for phase III
-#' @param c02 fixed cost for phase II
-#' @param c03 fixed cost for phase III
+#' @param c2 variable per-patient cost for phase II in 10^5 $.
+#' @param c3 variable per-patient cost for phase III in 10^5 $.
+#' @param c02 fixed cost for phase II in 10^5 $.
+#' @param c03 fixed cost for phase III in 10^5 $.
 #' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
 #' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
 #' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
@@ -49,7 +49,7 @@
 #' @return
 #' The output of the function \code{\link{optimal_tte}} is a data.frame containing the optimization results:
 #' \describe{
-#'   \item{u}{maximal expected utility}
+#'   \item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}
 #'   \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
 #'   \item{d2}{optimal total number of events for phase II}
 #'   \item{d3}{total expected number of events for phase III; rounded to next natural number}
