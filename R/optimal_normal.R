@@ -36,6 +36,7 @@
 #' @param gamma to model different populations in phase II and III choose `gamma`!=0, default: 0
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
 #' @param skipII choose if skipping phase II is an option, default: FASLE
+#' If true, the program calculates the expected utility for the case when phase II is skipped and compares it to the situation when phase II is not skipped.
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
 #' The output of the function \code{\link{optimal_normal}} is a data.frame containing the optimization results:

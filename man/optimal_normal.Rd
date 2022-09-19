@@ -100,7 +100,8 @@ optimal_normal(
 
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{Delta1} is used as fixed effect}
 
-\item{skipII}{choose if skipping phase II is an option, default: FASLE}
+\item{skipII}{choose if skipping phase II is an option, default: FASLE
+If true, the program calculates the expected utility for the case when phase II is skipped and compares it to the situation when phase II is not skipped.}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
