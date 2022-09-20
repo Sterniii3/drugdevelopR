@@ -18,5 +18,5 @@ validation_files:
 - 03_Multitrial.md
 - 04_Multiarm.md
 - 05_MultipleEndpoints.md
-- 01_01_test.R
-- 01_02_test.R
+- 01_BasicSettingTestCode.R
+- 02_BiasAdjustmentTestCode.R
