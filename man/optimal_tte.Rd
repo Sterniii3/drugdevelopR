@@ -109,13 +109,13 @@ optimal_tte_graphic(
 
 \item{xi3}{event rate for phase III}
 
-\item{c2}{variable per-patient cost for phase II}
+\item{c2}{variable per-patient cost for phase II in 10^5 $.}
 
-\item{c3}{variable per-patient cost for phase III}
+\item{c3}{variable per-patient cost for phase III in 10^5 $.}
 
-\item{c02}{fixed cost for phase II}
+\item{c02}{fixed cost for phase II in 10^5 $.}
 
-\item{c03}{fixed cost for phase III}
+\item{c03}{fixed cost for phase III in 10^5 $.}
 
 \item{K}{constraint on the costs of the program, default: Inf, e.g. no constraint}
 
@@ -139,14 +139,15 @@ optimal_tte_graphic(
 
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
 
-\item{skipII}{choose if skipping phase II is an option, default: FASLE}
+\item{skipII}{choose if skipping phase II is an option, default: FASLE;
+If true, the program calculates the expected utility for the case when phase II is skipped and compares it to the situation when phase II is not skipped.}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
 \value{
 The output of the function \code{\link{optimal_tte}} is a data.frame containing the optimization results:
 \describe{
-\item{u}{maximal expected utility}
+\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}
 \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
 \item{d2}{optimal total number of events for phase II}
 \item{d3}{total expected number of events for phase III; rounded to next natural number}
@@ -165,26 +166,24 @@ The output of the function \code{\link{optimal_tte}} is a data.frame containing 
 }
 and further input parameters.
 
-Taking \code{cat(comment())} of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+Taking \code{cat(comment())} of the data.frame object lists the used optimization sequences
+as well as start and finish date of the optimization procedure.
 }
 \description{
 The function \code{\link{optimal_tte}} of the \code{\link{drugdevelopR}}
 package enables planning of phase II/III drug development programs with optimal
 sample size allocation and go/no-go decision rules for time-to-event endpoints
-(Kirchner et al., 2016).
-
-TODO: Erkläre hier den Unterschied zwischen den beiden Funktionen \code{optimal_tte} und
-\code{optimal_tte_graphic}.
-}
-\details{
-The assumed true treatment effects can be assumed to be fixed or modelled by
+(Kirchner et al., 2016). The assumed true treatment effects can be assumed to
+be fixed or modelled by
 a prior distribution. When assuming fixed true treatment effects, planning can
 also be done with the user-friendly R Shiny app
 \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}.
 The app \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes
-the prior distributions used in this package.
+the prior distributions used in this package. Fast computing is enabled by
+parallel programming.
 
-Fast computing is enabled by parallel programming.
+The functions \code{optimal_tte} and \code{optimal_tte_graphic} return the same output (given the same input values).
+However, \code{optimal_tte_graphic} further returns graphical output to accompany the results.
 }
 \section{drugdevelopR package and R Shiny App}{
 
@@ -209,6 +208,24 @@ res <- optimal_tte(w = 0.3,                              # define parameters for
   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 res
 cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+ # res <- optimal_tte_graphic(w = 0.3,                     # define parameters for prior
+ # hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,          # (https://web.imbi.uni-heidelberg.de/prior/)
+ # d2min = 20, d2max = 100, stepd2 = 5,                   # define optimization set for d2
+ # hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
+ # alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,        # drug development planning parameters
+ # c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
+ # K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
+ # steps1 = 1,                                            # define lower boundary for "small"
+ # stepm1 = 0.95,                                         # "medium"
+ # stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
+ # b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
+ # gamma = 0,                                             # assume different/same population structures in phase II and III
+ # fixed = FALSE,                                         # choose if true treatment effects are fixed or random
+ # skipII = FALSE,                                        # choose if skipping phase II would be an option
+ # num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
+# res
+# cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimi
+
 }
 \references{
 Kirchner, M., Kieser, M., Goette, H., & Schueler, A. (2016). Utility-based optimization of phase II/III programs. Statistics in Medicine, 35(2), 305-316.

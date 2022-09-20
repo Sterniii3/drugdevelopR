@@ -37,22 +37,22 @@
 #' @return
 #' The output of the function \code{\link{optimal_multiple_tte}} is a data.frame containing the optimization results:
 #' \describe{
-#'   \item{u}{maximal expected utility}
-#'   \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
-#'   \item{n2}{optimal total sample size in phase II}
-#'   \item{n3}{total expected sample size for phase III; rounded to next natural number}
-#'   \item{n}{total sample size in the program; n = n2 + n3}
-#'   \item{K}{maximal costs of the program}
-#'   \item{pgo}{probability to go to phase III}
-#'   \item{sProg}{probability of a successful program}
-#'   \item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-#'   \item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-#'   \item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
-#'   \item{K2}{expected costs for phase II}
-#'   \item{K3}{expected costs for phase III}
-#'   }
+#'  \item{u}{maximal expected utility}
+#'  \item{kappa}{optimal threshold value for the decision rule to go to phase III}
+#'  \item{n2}{total sample size for phase II}
+#'  \item{n3}{total sample size for phase III; rounded to the next even natural number}
+#'  \item{n}{total sample size in the program; n = n2 + n3}
+#'  \item{K}{maximal costs of the program}
+#'  \item{pgo}{probability to go to phase III}
+#'  \item{sProg}{probability of a successful program}
+#'  \item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
+#'  \item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
+#'  \item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
+#'  \item{K2}{expected costs for phase II}
+#'  \item{K3}{expected costs for phase III}
+#' }
 #' and further input parameters.
-#' res
+#' 
 #' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #'  @examples
 #'  #res <- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs and control arm event rate

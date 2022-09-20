@@ -8,3 +8,5 @@
 ^pkgdown$
 ^codecov\.yml$
 ^LICENSE\.md$
+^vignettes/validation/validation\.Rmd$
+^vignettes$

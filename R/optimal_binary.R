@@ -17,10 +17,10 @@
 #' @param steprrgo stepsize for the optimization over RRgo
 #' @param beta 1-beta power for calculation of sample size for phase III
 #' @param alpha significance level
-#' @param c2 variable per-patient cost for phase II
-#' @param c3 variable per-patient cost for phase III
-#' @param c02 fixed cost for phase II
-#' @param c03 fixed cost for phase III
+#' @param c2 variable per-patient cost for phase II in 10^5 $
+#' @param c3 variable per-patient cost for phase III in 10^5 $
+#' @param c02 fixed cost for phase II in 10^5 $
+#' @param c03 fixed cost for phase III in 10^5 $
 #' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
 #' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
 #' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
@@ -33,11 +33,12 @@
 #' @param gamma to model different populations in phase II and III choose gamma!=0, default: 0
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1
 #' @param skipII choose if skipping phase II is an option, default: FALSE
+#' If true, the program calculates the expected utility for the case when phase II is skipped and compares it to the situation when phase II is not skipped.
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
 #' The output of the function \code{\link{optimal_binary}} is a data.frame containing the optimization results:
 #' \describe{
-#'   \item{u}{maximal expected utility}
+#'   \item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}
 #'   \item{RRgo}{optimal threshold value for the decision rule to go to phase III}
 #'   \item{n2}{total sample size for phase II}
 #'   \item{n3}{total sample size for phase III; rounded to the next even natural number}
