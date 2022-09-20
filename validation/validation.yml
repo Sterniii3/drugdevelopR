@@ -1,5 +1,5 @@
 package: drugdevelopR
-working_dir: vignettes/validation/
+working_dir: validation/
 output_dir: inst
 report_rmd_name: validation.Rmd
 report_naming_format: Validation_Report_{package}_v{version}_{date}
@@ -18,5 +18,5 @@ validation_files:
 - 03_Multitrial.md
 - 04_Multiarm.md
 - 05_MultipleEndpoints.md
-- 01_01_test.R
-- 01_02_test.R
+- 01_BasicSettingTestCode.R
+- 02_BiasAdjustmentTestCode.R

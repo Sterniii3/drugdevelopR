@@ -29,5 +29,10 @@ test_that("01.01", {
   expect_equal(res$d, 392) # total expected number of events
 })
 
+#' @editor Lukas D Sauer
+#' @editDate 2022-09-13
+test_that("01.02", {
+  expect_true(FALSE)
+})
 
 
