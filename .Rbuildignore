@@ -9,5 +9,4 @@
 ^codecov\.yml$
 ^LICENSE\.md$
 
-^vignettes/validation$
-^*validation\.Rmd$
+^validation$
