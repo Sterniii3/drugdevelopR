@@ -151,19 +151,19 @@
 
 
 <dt>c2</dt>
-<dd><p>variable per-patient cost for phase II</p></dd>
+<dd><p>variable per-patient cost for phase II in 10^5 $</p></dd>
 
 
 <dt>c3</dt>
-<dd><p>variable per-patient cost for phase III</p></dd>
+<dd><p>variable per-patient cost for phase III in 10^5 $</p></dd>
 
 
 <dt>c02</dt>
-<dd><p>fixed cost for phase II</p></dd>
+<dd><p>fixed cost for phase II in 10^5 $</p></dd>
 
 
 <dt>c03</dt>
-<dd><p>fixed cost for phase III</p></dd>
+<dd><p>fixed cost for phase III in 10^5 $</p></dd>
 
 
 <dt>K</dt>
@@ -211,7 +211,8 @@
 
 
 <dt>skipII</dt>
-<dd><p>choose if skipping phase II is an option, default: FALSE</p></dd>
+<dd><p>choose if skipping phase II is an option, default: FALSE
+If true, the program calculates the expected utility for the case when phase II is skipped and compares it to the situation when phase II is not skipped.</p></dd>
 
 
 <dt>num_cl</dt>
@@ -223,7 +224,7 @@
     
 
 <p>The output of the function <code>optimal_binary</code> is a data.frame containing the optimization results:</p><dl><dt>u</dt>
-<dd><p>maximal expected utility</p></dd>
+<dd><p>maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value</p></dd>
 
 <dt>RRgo</dt>
 <dd><p>optimal threshold value for the decision rule to go to phase III</p></dd>
@@ -322,8 +323,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence RRgo: 0.7 0.75 0.8 0.85 0.9 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence n2: 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2022-08-21 10:43:20 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2022-08-21 10:43:32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2022-09-21 14:03:07 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2022-09-21 14:03:18</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

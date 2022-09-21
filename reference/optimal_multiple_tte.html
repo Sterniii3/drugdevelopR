@@ -66,9 +66,9 @@ Fast computing is enabled by parallel programming.</p>
 <span>  <span class="va">id1</span>,</span>
 <span>  <span class="va">id2</span>,</span>
 <span>  <span class="va">ec</span>,</span>
-<span>  <span class="va">d2min</span>,</span>
-<span>  <span class="va">d2max</span>,</span>
-<span>  <span class="va">stepd2</span>,</span>
+<span>  <span class="va">n2min</span>,</span>
+<span>  <span class="va">n2max</span>,</span>
+<span>  <span class="va">stepn2</span>,</span>
 <span>  <span class="va">hrgomin</span>,</span>
 <span>  <span class="va">hrgomax</span>,</span>
 <span>  <span class="va">stephrgo</span>,</span>
@@ -118,15 +118,15 @@ Fast computing is enabled by parallel programming.</p>
 <dd><p>control arm event rate for phase II and III</p></dd>
 
 
-<dt>d2min</dt>
+<dt>n2min</dt>
 <dd><p>minimal number of events for phase II, must be divisible by 3</p></dd>
 
 
-<dt>d2max</dt>
+<dt>n2max</dt>
 <dd><p>maximal number of events for phase II, must be divisible by 3</p></dd>
 
 
-<dt>stepd2</dt>
+<dt>stepn2</dt>
 <dd><p>stepsize for the optimization over d2, must be divisible by 3</p></dd>
 
 
@@ -312,17 +312,17 @@ Taking cat(comment()) of the data.frame object lists the used optimization seque
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#res &lt;- optimal_multiple_tte(hr1 = 0.75, hr2 = 0.80, </span></span></span>
 <span class="r-in"><span><span class="co">#  ec = 0.6,                                         # define assumed true HRs and control arm event rate</span></span></span>
-<span class="r-in"><span><span class="co"># id1 = 210, id2 = 420,</span></span></span>
-<span class="r-in"><span><span class="co">#  d2min = 30, d2max = 90, stepd2 = 6,               # define optimization set for n2</span></span></span>
+<span class="r-in"><span><span class="co">#  id1 = 210, id2 = 420,</span></span></span>
+<span class="r-in"><span><span class="co">#  n2min = 30, n2max = 90, stepn2 = 6,               # define optimization set for n2</span></span></span>
 <span class="r-in"><span><span class="co">#  hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,    # define optimization set for HRgo</span></span></span>
 <span class="r-in"><span><span class="co">#  alpha = 0.05, beta = 0.1,                         # drug development planning parameters</span></span></span>
 <span class="r-in"><span><span class="co">#  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,          # define fixed and variable costs for phase II and III</span></span></span>
 <span class="r-in"><span><span class="co">#  K = Inf, N = Inf, S = -Inf,                       # set constraints</span></span></span>
 <span class="r-in"><span><span class="co">#  steps1 = 1,                                       # define lower boundary for "small"</span></span></span>
 <span class="r-in"><span><span class="co">#  stepm1 = 0.95,                                    # "medium"</span></span></span>
-<span class="r-in"><span><span class="co"># stepl1 = 0.85,                                    # and "large" treatment effect size categories as proposed by IQWiG (2016)</span></span></span>
+<span class="r-in"><span><span class="co">#  stepl1 = 0.85,                                    # and "large" treatment effect size categories as proposed by IQWiG (2016)</span></span></span>
 <span class="r-in"><span><span class="co">#  b11 = 1000, b21 = 2000, b31 = 3000,</span></span></span>
-<span class="r-in"><span><span class="co">#   b12 = 1000, b22 = 1500, b32 = 2000,               # define expected benefit for a "small", "medium" and "large" treatment effect</span></span></span>
+<span class="r-in"><span><span class="co">#  b12 = 1000, b22 = 1500, b32 = 2000,               # define expected benefit for a "small", "medium" and "large" treatment effect</span></span></span>
 <span class="r-in"><span><span class="co">#  rho = 0.5, fixed = TRUE,                          # correlation and treatment effect</span></span></span>
 <span class="r-in"><span><span class="co">#  num_cl = 1)                                       # set number of cores used for parallelized computing </span></span></span>
 <span class="r-in"><span><span class="co"># res</span></span></span>
