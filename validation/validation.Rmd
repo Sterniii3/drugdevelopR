@@ -198,9 +198,13 @@ vt_file(vt_path(child_files_test),dynamic_referencing = FALSE)
 # Test Results {-}
 
 ```{r}
-#vt_file(vt_path(c("test_code/01_02_test.R",
-#                  "test_code/01_02_test.R")),
-#        dynamic_referencing = FALSE)
+# Currently, this code causes a LaTeX error in valtools. This can be manually
+# fixed by installing valtools from source and adapting the source code as
+# described in:
+# https://github.com/phuse-org/valtools/pull/222
+vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R",
+                  "test_code/02_BiasAdjustmentTestCode.R")),
+        dynamic_referencing = FALSE)
 ```
 
 
