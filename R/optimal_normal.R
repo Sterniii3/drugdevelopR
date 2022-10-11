@@ -1,24 +1,39 @@
 #' Optimal phase II/III drug development planning with normally distributed endpoint
 #'
-#' The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. 
-#' For normally distributed endpoints the treatment effect is measured by the standardized difference in means (Delta). 
-#' The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
+#' The function \code{\link{optimal_normal}} of the \code{\link{drugdevelopR}}
+#' package enables planning of phase II/III drug development programs with
+#' optimal sample size allocation and go/no-go decision rules for normally
+#' distributed endpoints. The treatment effect is measured by the standardized
+#' difference in means. The assumed true treatment effects can be assumed to be 
+#' fixed or modeled by a prior distribution. The R Shiny application
+#' \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior
+#' distributions used in this package. Fast computing is enabled by parallel
+#'programming.
 #' 
 #' @name optimal_normal
-#' @param w weight for mixture prior distribution
-#' @param Delta1 assumed true treatment effect for standardized difference in means
-#' @param Delta2 assumed true treatment effect for standardized difference in means
-#' @param in1 amount of information for Delta2 in terms of sample size
-#' @param in2 amount of information for Delta1 in terms of sample size
-#' @param a lower boundary for the truncation
-#' @param b upper boundary for the truncation
-#' @param n2min minimal total sample size for phase II; must be even number
-#' @param n2max maximal total sample size for phase II, must be even number
-#' @param stepn2 stepsize for the optimization over n2; must be even number
+#' @param w weight for
+#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{mixture prior distribution}
+#' @param Delta1 assumed true treatment effect for standardized difference in means, see
+#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+#'   for details
+#' @param Delta2 assumed true treatment effect for standardized difference in means, see
+#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+#'   for details
+#' @param in1 amount of information for Delta2 in terms of sample size, see
+#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+#'   for details
+#' @param in2 amount of information for Delta1 in terms of sample size, see
+#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+#'   for details
+#' @param a lower boundary for the truncation of the \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}
+#' @param b upper boundary for the truncation \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}
+#' @param n2min minimal total sample size for phase II; must be an even number
+#' @param n2max maximal total sample size for phase II, must be an even number
+#' @param stepn2 step size for the optimization over n2; must be an even number
 #' @param kappamin minimal threshold value for the go/no-go decision rule
 #' @param kappamax maximal threshold value for the go/no-go decision rule
-#' @param stepkappa stepsize for the optimization over kappa
-#' @param beta 1-beta power for calculation of sample size for phase III
+#' @param stepkappa step size for the optimization over kappa
+#' @param beta type II error rate; i.e. `1 - beta` is the power for calculation of the number of events for phase III by Schoenfeld's formula (Schoenfeld 1981)
 #' @param alpha significance level
 #' @param c2 variable per-patient cost for phase II in 10^5 $
 #' @param c3 variable per-patient cost for phase III in 10^5 $
@@ -30,13 +45,15 @@
 #' @param steps1 lower boundary for effect size category "small", default: 0
 #' @param stepm1 lower boundary for effect size category "medium" = upper boundary for effect size category "small" default: 0.5
 #' @param stepl1 lower boundary for effect size category "large" = upper boundary for effect size category "medium", default: 0.8
-#' @param b1 expected gain for effect size category `"small"`
-#' @param b2 expected gain for effect size category `"medium"`
-#' @param b3 expected gain for effect size category `"large" `
-#' @param gamma to model different populations in phase II and III choose `gamma`!=0, default: 0
+#' @param b1 expected gain for effect size category "small"
+#' @param b2 expected gain for effect size category "medium"
+#' @param b3 expected gain for effect size category "large"
+#' @param gamma to model different populations in phase II and III choose `gamma != 0`, default: 0, see
+#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+#'   for details
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
-#' @param skipII choose if skipping phase II is an option, default: FASLE
-#' If true, the program calculates the expected utility for the case when phase II is skipped and compares it to the situation when phase II is not skipped.
+#' @param skipII choose if skipping phase II is an option, default: FALSE;
+#' if TRUE, the program calculates the expected utility for the case when phase II is skipped and compares it to the situation when phase II is not skipped.
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
 #' The output of the function \code{\link{optimal_normal}} is a data.frame containing the optimization results:
@@ -49,15 +66,16 @@
 #'   \item{K}{maximal costs of the program}
 #'   \item{pgo}{probability to go to phase III}
 #'   \item{sProg}{probability of a successful program}
-#'   \item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-#'   \item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-#'   \item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
+#'   \item{sProg1}{probability of a successful program with "small" treatment effect in phase III}
+#'   \item{sProg2}{probability of a successful program with "medium" treatment effect in phase III}
+#'   \item{sProg3}{probability of a successful program with "large" treatment effect in phase III }
 #'   \item{K2}{expected costs for phase II}
 #'   \item{K3}{expected costs for phase III}
 #' }
 #' and further input parameters.
 #'
-#' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+#' Taking `cat(comment())` of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+#' 
 #' @examples
 #' res <- optimal_normal(w=0.3,                             # define parameters for prior
 #'   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,      # (https://web.imbi.uni-heidelberg.de/prior/)

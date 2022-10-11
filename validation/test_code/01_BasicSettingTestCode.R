@@ -31,14 +31,16 @@ test_that("01.01", {
   expect_equal(res$d, 392) # total expected number of events
 })
 
+time_elapsed_01_02_num_cl_1 = NULL
 #' @editor Lukas D Sauer
 #' @editDate 2022-10-10
 test_that("01.02", {
+  start_time = Sys.time()
   # Time to event with fixed treatment effects
   res = optimal_tte(
     alpha = 0.025, # significance level
     beta = 0.1, # 1 - power
-    hr1 = 0.69, hr2 = 0.80, # assumed treatment effects
+    hr1 = 0.8, hr2 = NULL, # assumed treatment effects
     xi2 = 0.7, xi3 = 0.7, # event rates
     d2min = 10, d2max = 400, stepd2 = 1, # optimization region for the number of events
     hrgomin = 0.71, hrgomax = 0.95, stephrgo = 0.01, # optimization
@@ -54,8 +56,10 @@ test_that("01.02", {
     id1 = NULL, id2 = NULL, # amount of information (number of events) for prior
     # true treatment effect
   )
+  end_time = Sys.time()
+  time_elapsed_01_02_num_cl_1 = end_time - start_time
   expect_equal(res$n2, 240) # optimal sample size in phase II
-  expect_equal(res$u, 352) # expected utility
+  expect_equal(res$u, 352, tolerance = 0.001) # expected utility
   expect_equal(res$HRgo, 0.88) # threshold for proceeding to phase III
   expect_equal(res$pgo, 0.73) # probability to proceed to phase III
   expect_equal(res$d2, 168) # expected number of events in phase II
@@ -183,10 +187,167 @@ test_that("01.06", {
     # true treatment effect
     skipII = TRUE # skip phase II
   )
-  expect_equal(res$n2, 824) # optimal sample size in phase II
-  expect_equal(res$u, 1706) # expected utility
-  expect_equal(res$HRgo, 0.76) # threshold for proceeding to phase III
+  expect_equal(res[[2]]$n2, 824) # optimal sample size in phase II
+  expect_equal(res[[2]]$u, 1706, tolerance = 0.0001) # expected utility
+  expect_equal(res[[2]]$HRgo, 0.76) # threshold for proceeding to phase III
 })
 
 #' @editor Lukas D Sauer
-#' @editDate 2022-10-10
+#' @editDate 2022-10-11
+test_that("01.07", {
+  # Testing time to event while modeling differing population structures in phase II and III
+  res = optimal_tte(
+    alpha = 0.025, # significance level
+    beta = 0.1, # 1 - power
+    hr1 = 0.69, hr2 = 0.88, # assumed treatment effects
+    xi2 = 0.7, xi3 = 0.7, # event rates
+    d2min = 10, d2max = 400, stepd2 = 1, # optimization region for the number of events
+    hrgomin = 0.71, hrgomax = 0.95, stephrgo = 0.01, # optimization
+    # region for the threshold values
+    steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
+    # categories small, medium and large
+    b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
+    num_cl = 3, # number of clusters
+    c02 = 100, c03 = 150, # fixed cost for phase II and phase III
+    c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
+    fixed = FALSE, # use a prior distribution
+    w = 0.6, # weight for the prior distribution
+    id1 = 210, id2 = 420, # amount of information (number of events) for prior
+    # true treatment effect
+    gamma = 0.025
+  )
+  expect_equal(res$n2, 310) # optimal sample size in phase II
+  expect_equal(res$u, 1207, tolerance = 0.0005) # expected utility
+  expect_equal(res$HRgo, 0.86) # threshold for proceeding to phase III
+})
+
+#' @editor Lukas D Sauer
+#' @editDate 2022-10-11
+test_that("01.08", {
+  # Testing binary endpoints with fixed effects
+  res = optimal_binary(alpha = 0.025,
+                       beta = 0.1,
+                       # TODO: Optimization region muss noch angepasst werden.
+                       )
+})
+
+
+#' @editor Lukas D Sauer
+#' @editDate 2022-10-11
+test_that("01.10", {
+  # Testing normally distributed endpoints with prior distribution on effects
+  res = optimal_normal(
+    alpha = 0.025,
+    beta = 0.1,
+    Delta1 = 0.325, Delta2 = 0.625,
+    n2min = 10, n2max = 500, stepn2 = 2,
+    kappamin = 0.01, kappamax = 0.5, stepkappa = 0.01,
+    steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
+    b1 = 625, b2 = 2000, b3 = 10000,
+    num_cl = 3,
+    c02 = 15, c03 = 20,
+    c2 = 0.675, c3 = 0.72,
+    fixed = FALSE,
+    w = 0.5,
+    in1 = 300, in2 = 600,
+    a = 0, b = 0.75
+  )
+  expect_equal(res$n2, 86) # optimal sample size in phase II
+  expect_equal(res$u, 337) # expected utility
+  expect_equal(res$HRgo, 0.19) # threshold for proceeding to phase III
+})
+
+#' @editor Lukas D Sauer
+#' @editDate 2022-10-11
+test_that("01.11", {
+  # Testing normally distributed endpoints with fixed effects
+  res = optimal_normal(
+    alpha = 0.025,
+    beta = 0.1,
+    Delta1 = 0.325, Delta2 = 0.625,
+    n2min = 10, n2max = 500, stepn2 = 2,
+    kappamin = 0.01, kappamax = 0.5, stepkappa = 0.01,
+    steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
+    b1 = 625, b2 = 2000, b3 = 10000,
+    num_cl = 3,
+    c02 = 15, c03 = 20,
+    c2 = 0.675, c3 = 0.72,
+    fixed = TRUE,
+    w = NULL,
+    # 300 events in phase II and 600 events in phase III, Wo finde ich diese Parameter?
+    # Vielleicht ist folgendes gemeint?
+    in1 = NULL, in2 = NULL,
+    a = NULL, b = NULL
+  )
+  expect_equal(res$n2, 78) # optimal sample size in phase II
+  expect_equal(res$u, 944) # expected utility
+  expect_equal(res$HRgo, 0.12) # threshold for proceeding to phase III
+  expect_equal(res$sProg, 0.83) # probability of a successful program
+  expect_equal(res$sProg1, 0.51) # probability of a successful program with small treatment effect
+  expect_equal(res$sProg2, 0.30) # probability of a successful program with medium treatment effect
+  expect_equal(res$sProg3, 0.02) # probability of a successful program with large treatment effect
+  }
+)
+
+#' @editor Lukas D Sauer
+#' @editDate 2022-10-11
+test_that("01.11", {
+  # Testing normally distributed endpoints with fixed effects
+  res = optimal_normal(
+    alpha = 0.025,
+    beta = 0.1,
+    Delta1 = 0.625, Delta2 = 0.325,
+    n2min = 10, n2max = 500, stepn2 = 2,
+    kappamin = 0.01, kappamax = 0.5, stepkappa = 0.01,
+    steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
+    b1 = 625, b2 = 2000, b3 = 10000,
+    num_cl = 3,
+    c02 = 15, c03 = 20,
+    c2 = 0.675, c3 = 0.72,
+    fixed = TRUE,
+    w = NULL,
+    # 300 events in phase II and 600 events in phase III, Wo finde ich diese Parameter?
+    # Vielleicht ist folgendes gemeint?
+    in1 = NULL, in2 = NULL,
+    a = NULL, b = NULL
+  )
+  expect_equal(res$n2, 78) # optimal sample size in phase II
+  expect_equal(res$u, 944) # expected utility
+  expect_equal(res$HRgo, 0.12) # threshold for proceeding to phase III
+  expect_equal(res$sProg, 0.83) # probability of a successful program
+  expect_equal(res$sProg1, 0.51) # probability of a successful program with small treatment effect
+  expect_equal(res$sProg2, 0.30) # probability of a successful program with medium treatment effect
+  expect_equal(res$sProg3, 0.02) # probability of a successful program with large treatment effect
+}
+)
+
+#' @editor Lukas D Sauer
+#' @editDate 2022-10-11
+test_that("01.12", {
+  # Testing that parallel computing has an effect
+  start_time = Sys.time()
+  # Time to event with fixed treatment effects
+  res = optimal_tte(
+    alpha = 0.025, # significance level
+    beta = 0.1, # 1 - power
+    hr1 = 0.69, hr2 = 0.80, # assumed treatment effects
+    xi2 = 0.7, xi3 = 0.7, # event rates
+    d2min = 10, d2max = 400, stepd2 = 1, # optimization region for the number of events
+    hrgomin = 0.71, hrgomax = 0.95, stephrgo = 0.01, # optimization
+    # region for the threshold values
+    steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
+    # categories small, medium and large
+    b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
+    num_cl = 1, # number of clusters
+    c02 = 100, c03 = 150, # fixed cost for phase II and phase III
+    c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
+    fixed = TRUE, # use a prior distribution
+    w = NULL, # weight for the prior distribution
+    id1 = NULL, id2 = NULL, # amount of information (number of events) for prior
+    # true treatment effect
+  )
+  end_time = Sys.time()
+  time_elapsed_01_02_one_cluster_only = end_time - start_time
+  expect_true(time_elapsed_num_cl_1 > time_elapsed_01_02_num_cl_3)
+}
+)

@@ -57,18 +57,19 @@ Verify that the function calculates an optimal sample size of 470 [TODO: In Phas
 
 ### 01.06 (shows that req. 01.04 is met):  {-}
 Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following changes and additions: Set the weight for the prior distribution to be 0.6 and use the option to skip phase II.
-Verify that the function calculates an optimal sample size of 824 [TODO: In Phase II or total?], an expected utility of 1706 and an optimal threshold value of 0.76 as suggested by Stella Erdmann [2].
+Verify that the function calculates an optimal sample size of 824 [TODO: In most other test cases, I expect you to mean optimal size in phase II. Here, you probably mean optimal size in phase III, as phase II is skipped.], an expected utility of 1706 and an optimal threshold value of 0.76 [TODO: Two questions. 1.) What is the meaning of the threshold
+value HRgo in this case? 2.) The threshold value HRgo is always Inf for skipII, but instead, there is an additional threshold value HR, which does not normally appear in the results list. What is the meaning of this additional threshold value? Is this an error-- should it be HRgo instead?] as suggested by Stella Erdmann [2].
 
 ### 01.07 (shows that req. 01.07 is met):  {-}
 Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following changes and additions: Set the weight for the prior distribution to be 0.6 and use the option to model different population structures and set the parameter $\gamma$ to 0.025.
-Verify that the function calculates an optimal sample size of 310, an expected utility of 1207 and an optimal threshold value of 0.86 as suggested by Stella Erdmann [2].
+Verify that the function calculates an optimal sample size of 310 [TODO: In Phase II or total?], an expected utility of 1207 and an optimal threshold value of 0.86 as suggested by Stella Erdmann [2].
 
 ### 01.08 (shows that req. 01.02, 01.05 and 01.12 are met):  {-}
 Use the function ` optimal_binary()`. Supply the following input values to the function:
 
   * a significance level of 0.025,
   * a power of 0.9, i.e. $\beta$ of 0.1,
-  * assumed true treatment effects of p0=0.6, p1=0.5, p2= 0.3,
+  * assumed true treatment effects of p0 = 0.6, p1 = 0.5, p2 = 0.3,
   * the optimization region of all even numbers {10, 12, …, 500} for the number of participants in phase II,
   * the optimization region {-log(0.95), -log(0.94),…, -log(0.70)} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
@@ -91,7 +92,7 @@ Use the function `optimal_normal()`. Supply the following input values to the fu
 
   * a significance level of 0.025,
   * a power of 0.9, i.e. $\beta$ of 0.1,
-  * assumed true treatment effects of 0.625 and 0.325,
+  * assumed true treatment effects of 0.625 and 0.325 [TODO: Reihenfolge der Zahlen vertauschen?],
   * the optimization region of even numbers {10, 12, …, 500} for the number of participants in phase II,
   * the optimization region {0.01, 0.02,…, 0.5} for the threshold values,
   * boundaries of 0, 0.5 and 0.8 for the effect size categories small, medium and large,
@@ -104,11 +105,11 @@ Use the function `optimal_normal()`. Supply the following input values to the fu
   * 300 events in phase II and 600 events in phase III,
   * truncation values of a = 0 and b = 0.75.
 
-Verify that the function calculates an optimal sample size of 86, an expected utility of 337 and an optimal threshold value of 0.19 as suggested by Stella Erdmann [2].
+Verify that the function calculates an optimal sample size of 86 [TODO: sample size of phase II or total?], an expected utility of 337 and an optimal threshold value of 0.19 as suggested by Stella Erdmann [2].
 
 ### 01.11 (shows that req. 01.01, 01.05 and 01.15 are met): {-}
 Use the function `optimal_normal()`. Supply the same input values as in test case 01.10 to the function except for the following changes and additions: Set the parameter “fixed” to be TRUE. Set the weight for the prior distribution to be NULL, the number of events to be NULL and NULL and the truncation values to be a = NULL and b = NULL.
-Verify that the function calculates an optimal sample size of 78, an expected utility of 944 and an optimal threshold value of 0.12 as suggested by Stella Erdmann [2]. Furthermore, verify that the probability of a successful program is given by 0.83, which is the sum of the probabilities of a small (0.51), medium (0.30) or large (0.02) treatment effect.
+Verify that the function calculates an optimal sample size of 78 [TODO: sample size of phase II or total?], an expected utility of 944 and an optimal threshold value of 0.12 as suggested by Stella Erdmann [2]. Furthermore, verify that the probability of a successful program is given by 0.83, which is the sum of the probabilities of a small (0.51), medium (0.30) or large (0.02) treatment effect.
 
 ### 01.12 (shows that req. 01.08 is met): {-}
 Use the `function optimal_tte`. Supply the same input values as in test case 01.02 to the function except for the following change: Set the number of cores for parallel computing to 1. Verify that the computation time will increase compared to the setting in 01.02.
