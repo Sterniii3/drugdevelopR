@@ -258,7 +258,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
   prob3 <- sp3fkt[I, J]
   
   if(fixed){
-    calresult <-  data.frame(Method= strat
+    calresult <-  data.frame(Method= strat,
                           u = round(Eud,2), Adj = Adj, RRgo = RRGO[J], n2 = N2[I],
                           n3 = n3, n = N2[I] + n3,
                           pgo = round(pg,2), sProg = round(prob,2),
