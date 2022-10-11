@@ -261,7 +261,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
     
       
       
-      if(!fixed){
+      if(fixed){
         
         calresult <-  data.frame(Method= strat,
                               u = round(Eud,2), Adj = Adj, Kappa = KAPPA[J], n2 = N2[I],
@@ -313,3 +313,4 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
   return(result)
   
 }
+
