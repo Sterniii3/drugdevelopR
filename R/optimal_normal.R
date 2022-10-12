@@ -5,7 +5,7 @@
 #' optimal sample size allocation and go/no-go decision rules for normally
 #' distributed endpoints. The treatment effect is measured by the standardized
 #' difference in means. The assumed true treatment effects can be assumed to be 
-#' fixed or modeled by a prior distribution. The R Shiny application
+#' fixed or modelled by a prior distribution. The R Shiny application
 #' \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior
 #' distributions used in this package. Fast computing is enabled by parallel
 #'programming.

@@ -219,15 +219,53 @@ test_that("01.07", {
 })
 
 #' @editor Lukas D Sauer
-#' @editDate 2022-10-11
+#' @editDate 2022-10-12
 test_that("01.08", {
   # Testing binary endpoints with fixed effects
   res = optimal_binary(alpha = 0.025,
                        beta = 0.1,
-                       # TODO: Optimization region muss noch angepasst werden.
+                       p0 = 0.6, p11 = 0.3, p12 = 0.5,
+                       n2min = 10, n2max = 500, stepn2 = 2,
+                       rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
+                       steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
+                       b1 = 1000, b2 = 3000, b3 = 5000,
+                       num_cl = 3,
+                       c02 = 100, c03 = 150,
+                       c2 = 0.75, c3 = 1,
+                       fixed = TRUE,
+                       w = NULL,
+                       in1 = NULL, in2 = NULL
                        )
+  expect_equal(res$n2, 204)
+  expect_equal(res$u, 299, tolerance = 0.0005)
+  expect_equal(res$RRgo, 0.90)
+  expect_equal(res$K, Inf)
+  expect_equal(res$K2, 253)
+  expect_equal(res$K3, 810)
 })
 
+#' @editor Lukas D Sauer
+#' @editDate 2022-10-12
+test_that("01.09", {
+  # Testing binary endpoints with treatment effects modelled on a prior distribution
+  res = optimal_binary(alpha = 0.025,
+                       beta = 0.1,
+                       p0 = 0.6, p11 = 0.3, p12 = 0.5,
+                       n2min = 10, n2max = 500, stepn2 = 2,
+                       rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
+                       steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
+                       b1 = 1000, b2 = 3000, b3 = 5000,
+                       num_cl = 3,
+                       c02 = 100, c03 = 150,
+                       c2 = 0.75, c3 = 1,
+                       fixed = FALSE,
+                       w = 0.4,
+                       in1 = 30, in2 = 60
+  )
+  expect_equal(res$n2, 224)
+  expect_equal(res$u, 1542)
+  expect_equal(res$RRgo, 0.89)
+})
 
 #' @editor Lukas D Sauer
 #' @editDate 2022-10-11
@@ -250,7 +288,7 @@ test_that("01.10", {
     a = 0, b = 0.75
   )
   expect_equal(res$n2, 86) # optimal sample size in phase II
-  expect_equal(res$u, 337) # expected utility
+  expect_equal(res$u, 337, tolerance = 0.0005) # expected utility
   expect_equal(res$Kappa, 0.19) # threshold for proceeding to phase III
 })
 

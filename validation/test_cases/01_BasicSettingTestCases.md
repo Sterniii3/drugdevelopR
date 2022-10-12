@@ -69,17 +69,17 @@ Use the function ` optimal_binary()`. Supply the following input values to the f
 
   * a significance level of 0.025,
   * a power of 0.9, i.e. $\beta$ of 0.1,
-  * assumed true treatment effects of p0 = 0.6, p1 = 0.5, p2 = 0.3,
+  * assumed true treatment rate of 0.6 in the control group and assumed true rates of 0.5 and 0.3 for the prior distribution of the treatment group, [TODO: Here, I replaced the variable names p0, etc. by explanatory phrases. Are you okay with this?]
   * the optimization region of all even numbers {10, 12, …, 500} for the number of participants in phase II,
   * the optimization region {0.7, 0.71, …, 0.9} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
-  * expected gains of 100,000,000, 300,000,000, and 500,000,000 for each effect size, respectively,
+  * expected gains of 100,000,000\$, 300,000,000\$, and 500,000,000\$ for each effect size, respectively,
   * three clusters for parallel computing,
   * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * “fixed=TRUE”, i.e. set the function to use fixed treatment effects not modelled on a prior distribution,
   * weight of NULL for the prior distribution,
-  * NULL events in phase II and NULL events in phase III.
+  * NULL events in phase II and NULL events in phase III [TODO: Are these really the events in phase II and phase III? From the `prior` Shiny app, I understand that in1 and in2 both correspond to phase II.].
 
 Verify that the function calculates an optimal sample size of 204, an expected utility of 299 and an optimal threshold value of 0.90 as suggested by Stella Erdmann [2]. Furthermore, verify that the programs returns the cost constraint (Inf in this case) as well as the total costs in phase II and III, 253 and 810, respectively.
 
@@ -102,7 +102,7 @@ Use the function `optimal_normal()`. Supply the following input values to the fu
   * variable costs of 67,500\$ in phase II and 72,000\$ in phase III,
   * “fixed=FALSE”, i.e. set the function to model the treatment effects on a prior distribution,
   * weight of 0.5 for the prior distribution,
-  * 300 events in phase II and 600 events in phase III,
+  * 300 events in phase II and 600 events in phase III [TODO: Are these really the events in phase II and phase III? From the `prior` Shiny app, I understand that in1 and in2 both correspond to phase II.],
   * truncation values of a = 0 and b = 0.75.
 
 Verify that the function calculates an optimal sample size of 86 [TODO: sample size of phase II or total?], an expected utility of 337 and an optimal threshold value of 0.19 as suggested by Stella Erdmann [2].

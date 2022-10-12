@@ -4,7 +4,7 @@
 #' package enables planning of phase II/III drug development programs with optimal
 #' sample size allocation and go/no-go decision rules for time-to-event endpoints
 #' (Kirchner et al., 2016). The assumed true treatment effects can be assumed to
-#' be fixed or modeled by
+#' be fixed or modelled by
 #' a prior distribution. When assuming fixed true treatment effects, planning can
 #' also be done with the user-friendly R Shiny app
 #' \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. 

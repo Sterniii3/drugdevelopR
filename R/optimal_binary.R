@@ -4,7 +4,7 @@
 #' planning of phase II/III drug development programs with optimal sample size 
 #' allocation and go/no-go decision rules for binary endpoints. In this case,
 #' the treatment effect is measured by the risk ratio (RR). The assumed true
-#' treatment effects can be assumed to be fixed or modeled by a prior
+#' treatment effects can be assumed to be fixed or modelled by a prior
 #' distribution. The R Shiny application
 #' \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior
 #' distributions used in this package. Fast computing is enabled by parallel 
@@ -21,10 +21,10 @@
 #' @param p12 assumed true rate of treatment group, see
 #'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 #'   for details
-#' @param in1 amount of information for p11 in terms of sample size, see
+#' @param in1 amount of information for `p11` in terms of sample size, see
 #'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 #'   for details
-#' @param in2 amount of information for p12 in terms of sample size, see
+#' @param in2 amount of information for `p12` in terms of sample size, see
 #'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 #'   for details
 #' @param n2min minimal total sample size for phase II; must be an even number
