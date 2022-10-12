@@ -319,4 +319,4 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
   
   return(result)
   
-}
+} 

@@ -577,7 +577,7 @@ utility_normal_L2 <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b
  }
 }
 
-# 2.1. conservative sample size calculation: use estimate with retetion factor
+# 2.1. conservative sample size calculation: use estimate with retention factor
 ##############################################################################################
 
 # prior distribution

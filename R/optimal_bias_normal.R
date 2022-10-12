@@ -263,7 +263,8 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
       
       if(fixed){
         
-        calresult <-  data.frame(u = round(Eud,2), Adj = Adj, Kappa = KAPPA[J], n2 = N2[I],
+        calresult <-  data.frame(Method= strat,
+                              u = round(Eud,2), Adj = Adj, Kappa = KAPPA[J], n2 = N2[I],
                               n3 = n3, n = N2[I] + n3,
                               pgo = round(pg,2), sProg = round(prob,2),
                               Delta = Delta1,
@@ -273,7 +274,8 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                               alpha = alpha, beta = beta, c02 = c02,
                               c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3)
       }else{
-        calresult <-  data.frame(u = round(Eud,2), Adj = Adj, Kappa = KAPPA[J], n2 = N2[I],
+        calresult <-  data.frame(Method= strat,
+                              u = round(Eud,2), Adj = Adj, Kappa = KAPPA[J], n2 = N2[I],
                               n3 = n3, n = N2[I] + n3,
                               pgo = round(pg,2), sProg = round(prob,2),
                               w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
@@ -311,3 +313,4 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
   return(result)
   
 }
+

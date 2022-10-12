@@ -258,7 +258,8 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
   prob3 <- sp3fkt[I, J]
   
   if(fixed){
-    calresult <-  data.frame(u = round(Eud,2), Adj = Adj, RRgo = RRGO[J], n2 = N2[I],
+    calresult <-  data.frame(Method= strat,
+                          u = round(Eud,2), Adj = Adj, RRgo = RRGO[J], n2 = N2[I],
                           n3 = n3, n = N2[I] + n3,
                           pgo = round(pg,2), sProg = round(prob,2),
                           p0 = p0, p1 = p11, 
@@ -268,7 +269,8 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
                           alpha = alpha, beta = beta, c02 = c02,
                           c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3)  
   }else{
-    calresult <-  data.frame(u = round(Eud,2), Adj = Adj, RRgo = RRGO[J], n2 = N2[I],
+    calresult <-  data.frame(Method= strat,
+                          u = round(Eud,2), Adj = Adj, RRgo = RRGO[J], n2 = N2[I],
                           n3 = n3, n = N2[I] + n3,
                           pgo = round(pg,2), sProg = round(prob,2),
                           w = w, p0 = p0, p11 = p11, p12 = p12, in1 = in1, in2 = in2,
