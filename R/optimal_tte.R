@@ -13,18 +13,20 @@
 #'parallel programming.
 #' 
 #' @name optimal_tte
-#' @param w weight for mixture prior distribution
-#' @param hr1 first assumed true treatment effect on HR scale for prior distribution
-#' @param hr2 second assumed true treatment effect on HR scale for prior distribution
+#' @param w weight for mixture prior distribution, see
+#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{this Shiny application}
+#'   for the choice of weights
+#' @param hr1 first assumed true treatment effect on HR scale for \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}
+#' @param hr2 second assumed true treatment effect on HR scale for \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}
 #' @param id1 amount of information for hr1 in terms of number of events
 #' @param id2 amount of information for hr2 in terms of number of events
 #' @param d2min minimal number of events for phase II
 #' @param d2max maximal number of events for phase II
-#' @param stepd2 stepsize for the optimization over d2
+#' @param stepd2 step size for the optimization over d2
 #' @param hrgomin minimal threshold value for the go/no-go decision rule
 #' @param hrgomax maximal threshold value for the go/no-go decision rule
-#' @param stephrgo stepsize for the optimization over HRgo
-#' @param beta 1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula
+#' @param stephrgo step size for the optimization over HRgo
+#' @param beta type II error rate; i.e. `1 - beta` is the power for calculation of the number of events for phase III by Schoenfeld's formula (Schoenfeld 1981)
 #' @param alpha significance level
 #' @param xi2 event rate for phase II
 #' @param xi3 event rate for phase III
@@ -41,10 +43,14 @@
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
-#' @param gamma to model different populations in phase II and III choose gamma!=0, default: 0
-#' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect
-#' @param skipII choose if skipping phase II is an option, default: FASLE; 
-#' If true, the program calculates the expected utility for the case when phase II is skipped and compares it to the situation when phase II is not skipped.
+#' @param gamma to model different populations in phase II and III choose `gamma != 0`, default: 0
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as a fixed effect and hr2 is ignored
+#' @param skipII choose if skipping phase II is an option, default: FALSE; 
+#' if TRUE, the program calculates the expected utility for the case when phase
+#'II is skipped and compares it to the situation when phase II is not skipped.
+#' The results are then returned as a list of two results lists, `res[[1]]`
+#' being the results when including phase II and `res[[2]]` when skipping
+#' phase II.
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @format data.frame containing the optimization results (see Value)
 #' @return
@@ -61,9 +67,9 @@
 #'   \item{K}{maximal costs of the program}
 #'   \item{pgo}{probability to go to phase III}
 #'   \item{sProg}{probability of a successful program}
-#'   \item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-#'   \item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-#'   \item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
+#'   \item{sProg1}{probability of a successful program with "small" treatment effect in phase III}
+#'   \item{sProg2}{probability of a successful program with "medium" treatment effect in phase III}
+#'   \item{sProg3}{probability of a successful program with "large" treatment effect in phase III }
 #'   \item{K2}{expected costs for phase II}
 #'   \item{K3}{expected costs for phase III}
 #'   }
