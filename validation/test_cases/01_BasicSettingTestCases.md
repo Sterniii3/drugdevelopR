@@ -39,7 +39,7 @@ Use the function `optimal_tte()`. Supply the following input values to the funct
 Verify that the function calculates an optimal sample size of 206 in phase II and 354 in phase III (i.e. a total of 560 participants), an expected utility of 432, and an optimal threshold value of 0.84 as suggested by Stella Erdmann [2]. Furthermore, verify that one can expect 144 events in phase II and 248 events in phase III (i.e. 392 in total).
 
 ### 01.02 (shows that req. 01.03., 01.05., 01.14 and 01.16 are met):  {-}
-Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following: Set the parameter “fixed” to be TRUE, thus using fixed assumed treatment effects and set the assumed true treatment effect, i.e. the hazard ration to 0.8. Set the weight for the prior distribution to be NULL and the number of events to be NULL and NULL. 
+Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following: Set the parameter “fixed” to be TRUE, thus using fixed assumed treatment effects and set the assumed true treatment effect, i.e. the hazard ratio to 0.8. Set the weight for the prior distribution to be NULL and the number of events to be NULL and NULL. 
 Verify that the function calculates an optimal sample size of 240, an expected utility of 352 and an optimal threshold value of 0.88 as suggested by Stella Erdmann [2]. Furthermore, verify that the probability to go to phase III is given by 0.73 and the expected number of events in phase III and III is 168 and 546, respectively (714 in total).
 
 ### 01.03 (shows that req. 01.10 and 01.12 are met):  {-}
