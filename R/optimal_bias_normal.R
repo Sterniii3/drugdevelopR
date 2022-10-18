@@ -46,7 +46,7 @@
 #'   \item{Method}{Type of adjustment: multipl. (multiplicative) or add. (additive)}
 #'   \item{u}{maximal expected utility}#'   
 #'   \item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}
-#'   \item{kappa}{optimal threshold value for the decision rule to go to phase III}
+#'   \item{Kappa}{optimal threshold value for the decision rule to go to phase III}
 #'   \item{n2}{total sample size for phase II}
 #'   \item{n3}{total sample size for phase III; rounded to the next even natural number}
 #'   \item{n}{total sample size in the program; n = n2 + n3}

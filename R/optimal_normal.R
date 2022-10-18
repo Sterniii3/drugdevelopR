@@ -52,8 +52,11 @@
 #'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 #'   for details
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
-#' @param skipII choose if skipping phase II is an option, default: FALSE;
-#' if TRUE, the program calculates the expected utility for the case when phase II is skipped and compares it to the situation when phase II is not skipped.
+#' @param skipII skipII choose if skipping phase II is an option, default: FALSE; 
+#' if TRUE, the program calculates the expected utility for the case when phase
+#' II is skipped and compares it to the situation when phase II is not skipped.
+#' The results are then returned as a list of two results lists, `res[[1]]`
+#' being the results when including phase II and `res[[2]]` when skipping phase II.
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
 #' The output of the function \code{\link{optimal_normal}} is a data.frame containing the optimization results:

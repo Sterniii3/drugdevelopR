@@ -44,7 +44,7 @@ Verify that the function calculates an optimal sample size of 240 in phase II, a
 
 
 ### 01.03 (shows that req. 01.10 and 01.12 are met):  {-}
-Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following changes and additions: Set the weight for the prior distribution to be 0.6 and set a cost constraint of K=750.
+Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following changes and additions: Set the weight for the prior distribution to be 0.6 and set a cost constraint of K=750 (in 10^5\$).
 Verify that the function calculates an optimal sample size of 228 in phase II, an expected utility of 996 (in 10^5\$) and an optimal threshold value of 0.84 as suggested by Stella Erdmann [2]. Furthermore, verify that the cost constraint is returned and that the total costs in phase II and III are 271 (in 10^5\$) and 478 (in 10^5\$). 
 
 ### 01.04 (shows that req. 01.09 and 01.13 are met):  {-}
