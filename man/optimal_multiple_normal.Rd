@@ -105,7 +105,7 @@ optimal_multiple_normal(
 The output of the function \code{\link{optimal_multiple_tte}} is a data.frame containing the optimization results:
 \describe{
 \item{u}{maximal expected utility}
-\item{kappa}{optimal threshold value for the decision rule to go to phase III}
+\item{Kappa}{optimal threshold value for the decision rule to go to phase III}
 \item{n2}{total sample size for phase II}
 \item{n3}{total sample size for phase III; rounded to the next even natural number}
 \item{n}{total sample size in the program; n = n2 + n3}

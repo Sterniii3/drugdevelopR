@@ -101,7 +101,7 @@ The output of the function \code{\link{optimal_multitrial_normal}} is a data.fra
 \item{Case}{Case: "number of significant trials needed"}
 \item{Strategy}{Strategy: "number of conducted trials"}
 \item{u}{maximal expected utility}
-\item{kappa}{optimal threshold value for the decision rule to go to phase III}
+\item{Kappa}{optimal threshold value for the decision rule to go to phase III}
 \item{n2}{total sample size for phase II}
 \item{n3}{total sample size for phase III; rounded to the next even natural number}
 \item{n}{total sample size in the program; n = n2 + n3}

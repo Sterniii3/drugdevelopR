@@ -79,11 +79,13 @@ optimal_tte_graphic(
 )
 }
 \arguments{
-\item{w}{weight for mixture prior distribution}
+\item{w}{weight for mixture prior distribution, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{this Shiny application}
+for the choice of weights}
 
-\item{hr1}{first assumed true treatment effect on HR scale for prior distribution}
+\item{hr1}{first assumed true treatment effect on HR scale for \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}}
 
-\item{hr2}{second assumed true treatment effect on HR scale for prior distribution}
+\item{hr2}{second assumed true treatment effect on HR scale for \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}}
 
 \item{id1}{amount of information for hr1 in terms of number of events}
 
@@ -93,17 +95,17 @@ optimal_tte_graphic(
 
 \item{d2max}{maximal number of events for phase II}
 
-\item{stepd2}{stepsize for the optimization over d2}
+\item{stepd2}{step size for the optimization over d2}
 
 \item{hrgomin}{minimal threshold value for the go/no-go decision rule}
 
 \item{hrgomax}{maximal threshold value for the go/no-go decision rule}
 
-\item{stephrgo}{stepsize for the optimization over HRgo}
+\item{stephrgo}{step size for the optimization over HRgo}
 
 \item{alpha}{significance level}
 
-\item{beta}{1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula}
+\item{beta}{type II error rate; i.e. \code{1 - beta} is the power for calculation of the number of events for phase III by Schoenfeld's formula (Schoenfeld 1981)}
 
 \item{xi2}{event rate for phase II}
 
@@ -135,12 +137,16 @@ optimal_tte_graphic(
 
 \item{b3}{expected gain for effect size category "large"}
 
-\item{gamma}{to model different populations in phase II and III choose gamma!=0, default: 0}
+\item{gamma}{to model different populations in phase II and III choose \code{gamma != 0}, default: 0}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as a fixed effect and hr2 is ignored}
 
-\item{skipII}{choose if skipping phase II is an option, default: FASLE;
-If true, the program calculates the expected utility for the case when phase II is skipped and compares it to the situation when phase II is not skipped.}
+\item{skipII}{choose if skipping phase II is an option, default: FALSE;
+if TRUE, the program calculates the expected utility for the case when phase
+II is skipped and compares it to the situation when phase II is not skipped.
+The results are then returned as a list of two results lists, \code{res[[1]]}
+being the results when including phase II and \code{res[[2]]} when skipping
+phase II.}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
@@ -158,9 +164,9 @@ The output of the function \code{\link{optimal_tte}} is a data.frame containing 
 \item{K}{maximal costs of the program}
 \item{pgo}{probability to go to phase III}
 \item{sProg}{probability of a successful program}
-\item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-\item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-\item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
+\item{sProg1}{probability of a successful program with "small" treatment effect in phase III}
+\item{sProg2}{probability of a successful program with "medium" treatment effect in phase III}
+\item{sProg3}{probability of a successful program with "large" treatment effect in phase III }
 \item{K2}{expected costs for phase II}
 \item{K3}{expected costs for phase III}
 }

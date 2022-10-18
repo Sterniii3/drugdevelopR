@@ -40,35 +40,44 @@ optimal_normal(
 )
 }
 \arguments{
-\item{w}{weight for mixture prior distribution}
+\item{w}{weight for
+\href{https://web.imbi.uni-heidelberg.de/prior/}{mixture prior distribution}}
 
-\item{Delta1}{assumed true treatment effect for standardized difference in means}
+\item{Delta1}{assumed true treatment effect for standardized difference in means, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{Delta2}{assumed true treatment effect for standardized difference in means}
+\item{Delta2}{assumed true treatment effect for standardized difference in means, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{in1}{amount of information for Delta2 in terms of sample size}
+\item{in1}{amount of information for Delta2 in terms of sample size, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{in2}{amount of information for Delta1 in terms of sample size}
+\item{in2}{amount of information for Delta1 in terms of sample size, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{a}{lower boundary for the truncation}
+\item{a}{lower boundary for the truncation of the \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}}
 
-\item{b}{upper boundary for the truncation}
+\item{b}{upper boundary for the truncation \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}}
 
-\item{n2min}{minimal total sample size for phase II; must be even number}
+\item{n2min}{minimal total sample size for phase II; must be an even number}
 
-\item{n2max}{maximal total sample size for phase II, must be even number}
+\item{n2max}{maximal total sample size for phase II, must be an even number}
 
-\item{stepn2}{stepsize for the optimization over n2; must be even number}
+\item{stepn2}{step size for the optimization over n2; must be an even number}
 
 \item{kappamin}{minimal threshold value for the go/no-go decision rule}
 
 \item{kappamax}{maximal threshold value for the go/no-go decision rule}
 
-\item{stepkappa}{stepsize for the optimization over kappa}
+\item{stepkappa}{step size for the optimization over kappa}
 
 \item{alpha}{significance level}
 
-\item{beta}{1-beta power for calculation of sample size for phase III}
+\item{beta}{type II error rate; i.e. \code{1 - beta} is the power for calculation of the number of events for phase III by Schoenfeld's formula (Schoenfeld 1981)}
 
 \item{c2}{variable per-patient cost for phase II in 10^5 $}
 
@@ -90,18 +99,23 @@ optimal_normal(
 
 \item{stepl1}{lower boundary for effect size category "large" = upper boundary for effect size category "medium", default: 0.8}
 
-\item{b1}{expected gain for effect size category \code{"small"}}
+\item{b1}{expected gain for effect size category "small"}
 
-\item{b2}{expected gain for effect size category \code{"medium"}}
+\item{b2}{expected gain for effect size category "medium"}
 
-\item{b3}{expected gain for effect size category \code{"large" }}
+\item{b3}{expected gain for effect size category "large"}
 
-\item{gamma}{to model different populations in phase II and III choose \code{gamma}!=0, default: 0}
+\item{gamma}{to model different populations in phase II and III choose \code{gamma != 0}, default: 0, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{Delta1} is used as fixed effect}
 
-\item{skipII}{choose if skipping phase II is an option, default: FASLE
-If true, the program calculates the expected utility for the case when phase II is skipped and compares it to the situation when phase II is not skipped.}
+\item{skipII}{skipII choose if skipping phase II is an option, default: FALSE;
+if TRUE, the program calculates the expected utility for the case when phase
+II is skipped and compares it to the situation when phase II is not skipped.
+The results are then returned as a list of two results lists, \code{res[[1]]}
+being the results when including phase II and \code{res[[2]]} when skipping phase II.}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
@@ -109,27 +123,33 @@ If true, the program calculates the expected utility for the case when phase II 
 The output of the function \code{\link{optimal_normal}} is a data.frame containing the optimization results:
 \describe{
 \item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}
-\item{kappa}{optimal threshold value for the decision rule to go to phase III}
+\item{Kappa}{optimal threshold value for the decision rule to go to phase III}
 \item{n2}{total sample size for phase II}
 \item{n3}{total sample size for phase III; rounded to the next even natural number}
 \item{n}{total sample size in the program; n = n2 + n3}
 \item{K}{maximal costs of the program}
 \item{pgo}{probability to go to phase III}
 \item{sProg}{probability of a successful program}
-\item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-\item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-\item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
+\item{sProg1}{probability of a successful program with "small" treatment effect in phase III}
+\item{sProg2}{probability of a successful program with "medium" treatment effect in phase III}
+\item{sProg3}{probability of a successful program with "large" treatment effect in phase III }
 \item{K2}{expected costs for phase II}
 \item{K3}{expected costs for phase III}
 }
 and further input parameters.
 
-Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+Taking \code{cat(comment())} of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 }
 \description{
-The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules.
-For normally distributed endpoints the treatment effect is measured by the standardized difference in means (Delta).
-The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
+The function \code{\link{optimal_normal}} of the \code{\link{drugdevelopR}}
+package enables planning of phase II/III drug development programs with
+optimal sample size allocation and go/no-go decision rules for normally
+distributed endpoints. The treatment effect is measured by the standardized
+difference in means. The assumed true treatment effects can be assumed to be
+fixed or modelled by a prior distribution. The R Shiny application
+\href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior
+distributions used in this package. Fast computing is enabled by parallel
+programming.
 }
 \section{drugdevelopR functions}{
 

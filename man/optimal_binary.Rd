@@ -39,33 +39,43 @@ optimal_binary(
 )
 }
 \arguments{
-\item{w}{weight for mixture prior distribution}
+\item{w}{weight for \href{https://web.imbi.uni-heidelberg.de/prior/}{mixture prior distribution}}
 
-\item{p0}{assumed true rate of control group}
+\item{p0}{assumed true rate of control group, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{p11}{assumed true rate of treatment group}
+\item{p11}{assumed true rate of treatment group, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{p12}{assumed true rate of treatment group}
+\item{p12}{assumed true rate of treatment group, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{in1}{amount of information for p11 in terms of sample size}
+\item{in1}{amount of information for \code{p11} in terms of sample size, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{in2}{amount of information for p12 in terms of sample size}
+\item{in2}{amount of information for \code{p12} in terms of sample size, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{n2min}{minimal total sample size for phase II; must be even number}
+\item{n2min}{minimal total sample size for phase II; must be an even number}
 
-\item{n2max}{maximal total sample size for phase II, must be even number}
+\item{n2max}{maximal total sample size for phase II, must be an even number}
 
-\item{stepn2}{stepsize for the optimization over n2; must be even number}
+\item{stepn2}{step size for the optimization over n2; must be an even number}
 
 \item{rrgomin}{minimal threshold value for the go/no-go decision rule}
 
 \item{rrgomax}{maximal threshold value for the go/no-go decision rule}
 
-\item{steprrgo}{stepsize for the optimization over RRgo}
+\item{steprrgo}{step size for the optimization over RRgo}
 
 \item{alpha}{significance level}
 
-\item{beta}{1-beta power for calculation of sample size for phase III}
+\item{beta}{type II error rate; i.e. \code{1 - beta} is the power for calculation of the number of events for phase III}
 
 \item{c2}{variable per-patient cost for phase II in 10^5 $}
 
@@ -93,12 +103,17 @@ optimal_binary(
 
 \item{b3}{expected gain for effect size category "large"}
 
-\item{gamma}{to model different populations in phase II and III choose gamma!=0, default: 0}
+\item{gamma}{to model different populations in phase II and III choose \code{gamma != 0}, default: 0, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1}
 
-\item{skipII}{choose if skipping phase II is an option, default: FALSE
-If true, the program calculates the expected utility for the case when phase II is skipped and compares it to the situation when phase II is not skipped.}
+\item{skipII}{skipII choose if skipping phase II is an option, default: FALSE;
+if TRUE, the program calculates the expected utility for the case when phase
+II is skipped and compares it to the situation when phase II is not skipped.
+The results are then returned as a list of two results lists, \code{res[[1]]}
+being the results when including phase II and \code{res[[2]]} when skipping phase II.}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
@@ -121,10 +136,18 @@ The output of the function \code{\link{optimal_binary}} is a data.frame containi
 }
 and further input parameters.
 
-Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+Taking \code{cat(comment())} of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 }
 \description{
-The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. For binary endpoints the treatment effect is measured by the risk ratio (RR).The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
+The \code{\link{optimal_binary}} function of the drugdevelopR package enables
+planning of phase II/III drug development programs with optimal sample size
+allocation and go/no-go decision rules for binary endpoints. In this case,
+the treatment effect is measured by the risk ratio (RR). The assumed true
+treatment effects can be assumed to be fixed or modelled by a prior
+distribution. The R Shiny application
+\href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior
+distributions used in this package. Fast computing is enabled by parallel
+programming.
 }
 \section{drugdevelopR functions}{
 
@@ -166,6 +189,7 @@ res <- optimal_binary(w = 0.3,                           # define parameters for
   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 res
 cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+
 }
 \references{
 IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
