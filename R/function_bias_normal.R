@@ -658,7 +658,7 @@ EPsProg_normal_R <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
         sapply(x, function(x){
           integrate(function(y){
             ( pnorm(qnorm(1 - alpha) + step2/sqrt((y*Adj)^2/c),
-                    mean = (x)/sqrt(y^2/c),
+                    mean = (x)/sqrt((y*Adj)^2/c),
                     sd = 1) -
                 pnorm(qnorm(1 - alpha) + step1/sqrt((y*Adj)^2/c),
                       mean = (x)/sqrt((y*Adj)^2/c),
@@ -852,7 +852,7 @@ EPsProg_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Del
         sapply(x, function(x){
           integrate(function(y){
             ( pnorm(qnorm(1 - alpha) + step2/sqrt((y*Adj)^2/c),
-                    mean = (x)/sqrt(y^2/c),
+                    mean = (x)/sqrt((y*Adj)^2/c),
                     sd = 1) -
                 pnorm(qnorm(1 - alpha) + step1/sqrt((y*Adj)^2/c),
                       mean = (x)/sqrt((y*Adj)^2/c),
