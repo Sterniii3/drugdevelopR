@@ -124,7 +124,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
   result <- NULL
   steps2 <- stepm1
   stepm2 <- stepl1
-  stepl2 <- 1
+  stepl2 <- Inf
   
   
   date <- Sys.time()

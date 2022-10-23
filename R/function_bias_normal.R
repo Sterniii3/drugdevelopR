@@ -687,7 +687,7 @@ utility_normal_R <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
   
   steps2 <- stepm1
   stepm2 <- stepl1
-  stepl2 <- 1
+  stepl2 <- Inf
   
   n3  <-  En3_normal_R(kappa = kappa, n2 = n2, Adj = Adj, alpha = alpha, beta = beta,
                      w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
