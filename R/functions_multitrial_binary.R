@@ -1620,6 +1620,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
 #' @param b3 expected gain for effect size category `"large"`
 #' @return The output of the the function `utility23_binary()` is the expected utility of the program depending on whether two or three phase III trials are performed.
 #' @examples #res <- utility23_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
+#'           #                       alpha = 0.05, beta = 0.1,
 #'           #                       p0 = 0.6, p11 =  0.3, p12 = 0.5, 
 #'           #                       in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
 #'           #                       c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
@@ -1632,7 +1633,7 @@ utility23_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                              c2, c3, c02, c03,
                              b1, b2, b3){
   
-  pg    <-  Epgo23_binary(RRgo = RRgo, n2 = n2, p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2)
+  pg    <-  Epgo_binary(RRgo = RRgo, n2 = n2, p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, fixed= FALSE)
   
   
   n3  <-  En3_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
