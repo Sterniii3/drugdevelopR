@@ -177,7 +177,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                           "K", "N", "S", "fixed",
                           "c2", "c3", "c02", "c03",
-                          "b1", "b2", "b3", "w", "RRgo",
+                          "b1", "b2", "b3", "w", "RRgo", "ymin",
                           "p0", "p11", "p12", "in1", "in2"), envir = environment())
       
       if(Strategy==1){
