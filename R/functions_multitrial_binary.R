@@ -1655,7 +1655,8 @@ utility23_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
   
   
     
-  pg3   <-  Epgo23_binary(RRgo = RRgo, n2 = n2, p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2)
+  pg3   <-  Epgo23_binary(RRgo = RRgo, alpha = alpha, beta = beta, n2 = n2, 
+                          p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2)
     
   n33   <-  (4 * (qnorm(1 - alpha) + qnorm(1 - beta))^2)/(ymin^2) 
   
