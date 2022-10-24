@@ -232,7 +232,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
               })
             },  - log(RRgo), Inf)$value  
           })
-        },  - Inf, Inf)$value)
+        },  0, 1)$value)
       }
       if(size == "large"){
         return(  integrate(function(x){
@@ -290,7 +290,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
               })
             },  - log(RRgo), Inf)$value  
           })
-        },  - Inf, Inf)$value)     
+        },  0, 1)$value)     
       }
     }
     if(case == 2){
