@@ -285,7 +285,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                                           K = K, N = N, S = S, K2 = round(k2), K3 = round(k3),
                                           sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
                                           steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
-                                          pgo3 = round(pg3,2), d33= d33, n33 = n33,
+                                          pgo3 = round(pg3,2),  n33 = n33,
                                           sProg13 = round(prob13,2), sProg23 = round(prob23,2), sProg33 = round(prob33,2),
                                           alpha = alpha, beta = beta, c02 = c02,
                                           c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3))
