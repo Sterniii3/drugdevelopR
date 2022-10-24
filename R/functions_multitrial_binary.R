@@ -1632,7 +1632,7 @@ utility23_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                              c2, c3, c02, c03,
                              b1, b2, b3){
   
-  pg    <-  Epgo_binary(RRgo = RRgo, n2 = n2, p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2, fixed = fixed)
+  pg    <-  Epgo23_binary(RRgo = RRgo, n2 = n2, p0 = p0, w = w, p11 = p11, p12 = p12, in1 = in1, in2 = in2)
   
   
   n3  <-  En3_binary(RRgo = RRgo, n2 = n2, alpha = alpha, beta = beta,
