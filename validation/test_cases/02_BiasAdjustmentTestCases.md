@@ -33,7 +33,7 @@ Use the function `optimal_bias()`. Supply the following input values to the func
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * “fixed=FALSE”, i.e. set the function to use a prior distribution,
   * weight of 0.3 for the prior distribution,
-  * amount of information for prior true treatment effect given by 210 expected events in phase II and 420 events in phase III.
+  * amount of information for prior true treatment effect given by 210 and 420 events for each treatment effect in phase II.
 
 Furthermore set the adjustment method to "additive" and set the optimization region for the additive adjustment parameter $\alpha_CI$ to {0.3, 0.325, ..., 0.5}. Set the values for the multiplicative adjustment parameter to NULL.
 
@@ -89,7 +89,7 @@ Use the function `optimal_bias_normal()`. Supply the following input values to t
   * variable costs of 67,500\$ in phase II and 72,000\$ in phase III,
   * “fixed=FALSE”, i.e. set the function to model the treatment effects on a prior distribution,
   * weight of 0.5 for the prior distribution,
-  * 300 events in phase II and 600 events in phase III,
+  * 300 and 600 events for each treatment effect, respectively,
   * truncation values of a = 0.25 and b = 0.75.
   * three chores for parallel computing
 
@@ -120,7 +120,7 @@ Use the function ` optimal_bias_binary()`. Supply the following input values to 
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * “fixed=FALSE”, i.e. set the function to use fixed treatment effects not modeled on a prior distribution,
   * weight of 0.3 for the prior distribution,
-  * 30 events in phase II and 60 events in phase III.
+  * 30 and 60 events for each treatment effect, respectively.
 
 Furthermore, use the adjustment method "additive" and set the optimization region for the adjustment parameter $\alpha_CI$ to {0.1, 0.125, ..., 0.5}.
 
