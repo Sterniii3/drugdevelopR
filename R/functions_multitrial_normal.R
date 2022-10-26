@@ -896,7 +896,7 @@ utility3_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
     
     if(K2+3*K3>K){
       
-      return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+      return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
       
     }else{
       # probability of a successful program; small, medium, large effect size

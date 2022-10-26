@@ -432,7 +432,7 @@ En3_normal_L2 <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, 
           }
           return(integrated)
   }else{
-    return(
+    int = try(
       integrate(function(x){
         sapply(x, function(x){
           integrate(function(y){

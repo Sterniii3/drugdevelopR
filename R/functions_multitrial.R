@@ -1450,21 +1450,15 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
             sapply(y, function(y){
               ( pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
-                        upper = c(qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(y^2/c), 
-                                  qnorm(1 - alpha) - 
-                                    log(0.85)/sqrt(y^2/c)), 
+                        upper = c(qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
+                                  qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c)), 
                         mean = c(x/sqrt(y^2/c), 
                                  x/sqrt(y^2/c)), 
                         sigma = SIGMA)  - 
-                  pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                      log(0.95)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.95)/sqrt(y^2/c)), 
-                          upper = c(qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c), 
-                                    qnorm(1 - alpha) - 
-                                      log(0.85)/sqrt(y^2/c)), 
+                  pmvnorm(lower = c(qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c)), 
+                          upper = c(qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
+                                    qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c)), 
                           mean = c(x/sqrt(y^2/c), 
                                    x/sqrt(y^2/c)), 
                           sigma = SIGMA)) * 
@@ -1529,25 +1523,19 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
               2 * ( pmvnorm(lower = c(qnorm(1 - alpha), 
                                       0, 
                                       qnorm(1 - alpha)), 
-                            upper = c(qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(y^2/c), 
+                            upper = c(qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
                                       qnorm(1 - alpha), 
-                                      qnorm(1 - alpha) - 
-                                        log(0.85)/sqrt(ymin^2/c)), 
+                                      qnorm(1 - alpha) - log(0.85)/sqrt(ymin^2/c)), 
                             mean = c(x/sqrt(y^2/c), 
                                      x/sqrt(y^2/c), 
                                      x/sqrt(ymin^2/c)), 
                             sigma = SIGMA3)  - 
-                      pmvnorm(lower = c(qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt(y^2/c), 
+                      pmvnorm(lower = c(qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c), 
                                         0, 
-                                        qnorm(1 - alpha) - 
-                                          log(0.95)/sqrt(ymin^2/c)), 
-                              upper = c(qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt(y^2/c), 
+                                        qnorm(1 - alpha) - log(0.95)/sqrt(ymin^2/c)), 
+                              upper = c(qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
                                         qnorm(1 - alpha), 
-                                        qnorm(1 - alpha) - 
-                                          log(0.85)/sqrt(ymin^2/c)), 
+                                        qnorm(1 - alpha) - log(0.85)/sqrt(ymin^2/c)), 
                               mean = c(x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c), 
                                        x/sqrt(ymin^2/c)), 
@@ -1652,9 +1640,9 @@ utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                        c2, c3, c02, c03, 
                        b1, b2, b3){ 
   
-  pg    <-  Epgo23(HRgo = HRgo, d2 = d2, alpha=alpha, beta=beta,
+  pg    <-  Epgo_tte(HRgo = HRgo, d2 = d2, alpha=alpha, beta=beta,
                      w = w, hr1 = hr1, hr2 = hr2, 
-                     id1 = id1, id2 = id2)
+                     id1 = id1, id2 = id2, fixed = FALSE)
   
   d3  <- Ed3_tte(HRgo = HRgo, d2 = d2, alpha = alpha, 
                  beta = beta, w = w, hr1 = hr1, hr2 = hr2,
