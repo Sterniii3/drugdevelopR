@@ -30,6 +30,7 @@
 #' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @importFrom utils setTxtProgressBar txtProgressBar
+#' @importFrom mvtnorm dmvnorm
 #' @return
 #' The output of the function \code{\link{optimal_multiarm}} is a data.frame containing the optimization results:
 #' \describe{
