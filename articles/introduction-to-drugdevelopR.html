@@ -70,10 +70,12 @@
 
 
 
-<script src="introduction-to-drugdevelopR_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Introduction to planning phase II and phase III trials with drugdevelopR</h1>
-                        <h4 data-toc-skip class="author">Johannes Cepicka, Lukas D. Sauer</h4>
+                        <h4 data-toc-skip class="author">Johannes
+Cepicka, Lukas D. Sauer</h4>
             
             <h4 data-toc-skip class="date">22/05/29</h4>
       
@@ -83,24 +85,47 @@
 
     
     
-<p>Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.</p>
-<p>The drugdevelopR package enables us to optimally plan such programs using a utility maximizing approach. Specifically, it calculates</p>
+<p>Suppose we are planning a drug development program testing the
+superiority of an experimental treatment over a control treatment. Our
+drug development program consists of an exploratory phase II trial which
+is, in case of promising results, followed by a confirmatory phase III
+trial.</p>
+<p>The drugdevelopR package enables us to optimally plan such programs
+using a utility maximizing approach. Specifically, it calculates</p>
 <ul>
-<li>the optimal sample size for phase II and the resulting sample size for phase III, as well as</li>
+<li>the optimal sample size for phase II and the resulting sample size
+for phase III, as well as</li>
 <li>the optimal go/no-go decision rule.</li>
 </ul>
-<p>The decision rule is the optimal threshold for deciding whether we should proceed to phase III based on the results of phase II. Optimization is performed with respect to a utility function which takes the program’s cost, its success probability and its expected benefit when successfully launching the new drug on the market into account.</p>
+<p>The decision rule is the optimal threshold for deciding whether we
+should proceed to phase III based on the results of phase II.
+Optimization is performed with respect to a utility function which takes
+the program’s cost, its success probability and its expected benefit
+when successfully launching the new drug on the market into account.</p>
 <p>But now, let’s get started with a hands-on example.</p>
 <div class="section level2">
 <h2 id="the-example-setting">The example setting<a class="anchor" aria-label="anchor" href="#the-example-setting"></a>
 </h2>
-<p>Suppose we are developing a new tumor treatment, <em>exper</em>. The patient variable that we want to investigate is the difference in tumor width between the one-year visit and baseline. This is a normally distributed outcome variable.</p>
-<p>Within our drug development program, we will compare our experimental treatment <em>exper</em> to the control treatment <em>contro</em>. Building on available data, we expect that the mean tumor difference amounts to <span class="math inline">\(20±1 \mathrm{mm}\)</span> for <em>contro</em> and <span class="math inline">\(15±1 \mathrm{mm}\)</span> for <em>exper</em>. Furthermore, the variance is assumed to be 8. The treatment effect is given as standardized difference in mean (<span class="math inline">\(\Delta=\frac{\mu_{contro} - \mu_{exper}}{\sigma}\)</span>). Thus, we obtain a standardized treatment difference of <span class="math inline">\(\Delta_1 = 0.625\)</span>.</p>
+<p>Suppose we are developing a new tumor treatment, <em>exper</em>. The
+patient variable that we want to investigate is the difference in tumor
+width between the one-year visit and baseline. This is a normally
+distributed outcome variable.</p>
+<p>Within our drug development program, we will compare our experimental
+treatment <em>exper</em> to the control treatment <em>contro</em>.
+Building on available data, we expect that the mean tumor difference
+amounts to <span class="math inline">\(20±1 \mathrm{mm}\)</span> for
+<em>contro</em> and <span class="math inline">\(15±1
+\mathrm{mm}\)</span> for <em>exper</em>. Furthermore, the variance is
+assumed to be 8. The treatment effect is given as standardized
+difference in mean (<span class="math inline">\(\Delta=\frac{\mu_{contro} -
+\mu_{exper}}{\sigma}\)</span>). Thus, we obtain a standardized treatment
+difference of <span class="math inline">\(\Delta_1 = 0.625\)</span>.</p>
 </div>
 <div class="section level2">
 <h2 id="applying-the-package-to-the-example">Applying the package to the example<a class="anchor" aria-label="anchor" href="#applying-the-package-to-the-example"></a>
 </h2>
-<p>After installing the package according to the <a href="https://sterniii3.github.io/drugdevelopR/#Installation">installation instructions</a>, we can load it using the following code:</p>
+<p>After installing the package according to the <a href="https://sterniii3.github.io/drugdevelopR/#Installation">installation
+instructions</a>, we can load it using the following code:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Sterniii3/drugdevelopR" class="external-link">drugdevelopR</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: mvtnorm</span></span>
@@ -114,26 +139,68 @@
 <div class="section level3">
 <h3 id="defining-all-necessary-parameters">Defining all necessary parameters<a class="anchor" aria-label="anchor" href="#defining-all-necessary-parameters"></a>
 </h3>
-<p>In order to apply the package to the setting from our example, we need to specify the following parameters:</p>
+<p>In order to apply the package to the setting from our example, we
+need to specify the following parameters:</p>
 <ul>
 <li>
-<code>Delta1</code> is the assumed true treatment effect, defined as the standardized difference in means between the treatment arm and the control arm. We will use the value <span class="math inline">\(\Delta_1 = 0.625\)</span> as defined above. For now, we will assume that the treatment effects are fixed and independent of any prior distribution. Thus, we will set <code>fixed = TRUE</code>.</li>
+<code>Delta1</code> is the assumed true treatment effect, defined as
+the standardized difference in means between the treatment arm and the
+control arm. We will use the value <span class="math inline">\(\Delta_1
+= 0.625\)</span> as defined above. For now, we will assume that the
+treatment effects are fixed and independent of any prior distribution.
+Thus, we will set <code>fixed = TRUE</code>.</li>
 <li>
-<code>n2min</code> and <code>n2max</code> specify the minimal and maximal number of participants for the phase II trial. The package will search for the optimal sample size within this region. For now, we want the program to search for the optimal sample size in the interval between 20 and 400 participants. In addition, we will tell the program to search this region in steps of four participants at a time by setting <code>stepn2 = 4</code>.</li>
+<code>n2min</code> and <code>n2max</code> specify the minimal and
+maximal number of participants for the phase II trial. The package will
+search for the optimal sample size within this region. For now, we want
+the program to search for the optimal sample size in the interval
+between 20 and 400 participants. In addition, we will tell the program
+to search this region in steps of four participants at a time by setting
+<code>stepn2 = 4</code>.</li>
 <li>
-<code>kappamin</code> and <code>kappamax</code> specify the minimal and maximal threshold value for the go/no-go decision rule. The package will search for the optimal threshold value within this region. For now, we want the program to search in the interval between 0.02 and 0.2 while going in steps of <code>stepkappa = 0.02</code>.</li>
+<code>kappamin</code> and <code>kappamax</code> specify the minimal
+and maximal threshold value for the go/no-go decision rule. The package
+will search for the optimal threshold value within this region. For now,
+we want the program to search in the interval between 0.02 and 0.2 while
+going in steps of <code>stepkappa = 0.02</code>.</li>
 <li>
-<code>c02</code> and <code>c03</code> are fixed costs for phase II and phase III respectively. We will set the phase II costs to 15 and the phase III costs to 20 (in <span class="math inline">\(10^5\)</span>$), i.e we have fixed costs of 1 500 000$ in phase II and 2 000 000$ in phase III. Note that the currency of the input values does not matter, so an input value for <code>c02</code> of 15 could also be interpreted as fixed costs of 1 500 000€ if necessary.</li>
+<code>c02</code> and <code>c03</code> are fixed costs for phase II
+and phase III respectively. We will set the phase II costs to 15 and the
+phase III costs to 20 (in <span class="math inline">\(10^5\)</span>$),
+i.e we have fixed costs of 1 500 000$ in phase II and 2 000 000$ in
+phase III. Note that the currency of the input values does not matter,
+so an input value for <code>c02</code> of 15 could also be interpreted
+as fixed costs of 1 500 000€ if necessary.</li>
 <li>
-<code>c2</code> and <code>c3</code> are the costs in phase II and phase III per patient. We will set them to be 0.675 in phase II and 0.72 in phase III. Again, these values are given in <span class="math inline">\(10^5\)</span>$, i.e we have per patient costs of 67 500$ in phase II and 72 000$ in phase III.</li>
+<code>c2</code> and <code>c3</code> are the costs in phase II and
+phase III per patient. We will set them to be 0.675 in phase II and 0.72
+in phase III. Again, these values are given in <span class="math inline">\(10^5\)</span>$, i.e we have per patient costs of
+67 500$ in phase II and 72 000$ in phase III.</li>
 <li>
-<code>b1</code>, <code>b2</code> and <code>b3</code> are the expected small, medium and large benefit categories for successfully launching the treatment on the market for each effect size category in <span class="math inline">\(10^5\)</span>$. We will define a small benefit of 3000, a medium benefit of 8000, and a large benefit of 10000. The effect size categories directly correspond to the treatment effect, i.e. if the the treatment effect is between 0 and 0.5 (in standardized differences of mean) we have a small treatment effect, hence yielding expected benefits of the drug development program of 300 000 000$.</li>
+<code>b1</code>, <code>b2</code> and <code>b3</code> are the
+expected small, medium and large benefit categories for successfully
+launching the treatment on the market for each effect size category in
+<span class="math inline">\(10^5\)</span>$. We will define a small
+benefit of 3000, a medium benefit of 8000, and a large benefit of 10000.
+The effect size categories directly correspond to the treatment effect,
+i.e. if the the treatment effect is between 0 and 0.5 (in standardized
+differences of mean) we have a small treatment effect, hence yielding
+expected benefits of the drug development program of 300 000 000$.</li>
 <li>
-<code>alpha</code> is the specified significance level. We will set <code>alpha = 0.05</code>.</li>
-<li>1 - <code>beta</code> is the minimal power that we require for our drug development program. We will set <code>beta = 0.1</code>, meaning that we require a power of 90%.</li>
-<li>Further parameters: In more advanced settings, we would need to pre-specify even more parameters. For now, we can set all remaining parameters to <code>NULL</code>. Their use is explained in the <a href="vignette-parameters.html">vignette on parameters</a>.</li>
+<code>alpha</code> is the specified significance level. We will set
+<code>alpha = 0.05</code>.</li>
+<li>1 - <code>beta</code> is the minimal power that we require for our
+drug development program. We will set <code>beta = 0.1</code>, meaning
+that we require a power of 90%.</li>
+<li>Further parameters: In more advanced settings, we would need to
+pre-specify even more parameters. For now, we can set all remaining
+parameters to <code>NULL</code>. Their use is explained in the <a href="vignette-parameters.html">vignette on parameters</a>.</li>
 </ul>
-<p>Now that we have defined all parameters needed for our example, we are ready to feed them to the package. We will use the function <code><a href="../reference/optimal_normal.html">optimal_normal()</a></code>, which calculates the optimal sample size and the optimal threshold value for a normally distributed outcome variable.</p>
+<p>Now that we have defined all parameters needed for our example, we
+are ready to feed them to the package. We will use the function
+<code><a href="../reference/optimal_normal.html">optimal_normal()</a></code>, which calculates the optimal sample size
+and the optimal threshold value for a normally distributed outcome
+variable.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_normal.html">optimal_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.625</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># treatment effect</span></span>
 <span>                       n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">400</span>, <span class="co"># sample size region</span></span>
@@ -151,41 +218,63 @@
 <div class="section level3">
 <h3 id="interpreting-the-output">Interpreting the output<a class="anchor" aria-label="anchor" href="#interpreting-the-output"></a>
 </h3>
-<p>After setting all these input parameters and running the function, let’s take a look at the output of the program.</p>
+<p>After setting all these input parameters and running the function,
+let’s take a look at the output of the program.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span></span>
 <span><span class="co">#&gt;         u Kappa n2  n3   n pgo sProg Delta   K K2  K3 sProg1 sProg2 sProg3</span></span>
 <span><span class="co">#&gt; 1 3259.83  0.06 84 166 250   1  0.85 0.625 Inf 72 139   0.68   0.17   0.01</span></span>
 <span><span class="co">#&gt;   steps1 stepm1 stepl1 alpha beta c02 c03    c2   c3   b1   b2    b3 gamma</span></span>
 <span><span class="co">#&gt; 1      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000 8000 10000     0</span></span></code></pre></div>
-<p>The program returns a total of thirteen values and the input values. For now, we will only look at the most important ones:</p>
+<p>The program returns a total of thirteen values and the input values.
+For now, we will only look at the most important ones:</p>
 <ul>
 <li>
-<code>res$n2</code> is the optimal sample size for phase II and <code>res$n3</code> the resulting sample size for phase III. We see that the optimal scenario requires 84 participants in phase II and 166 participants in phase III.</li>
+<code>res$n2</code> is the optimal sample size for phase II and
+<code>res$n3</code> the resulting sample size for phase III. We see that
+the optimal scenario requires 84 participants in phase II and 166
+participants in phase III.</li>
 <li>
-<code>res$Kappa</code> is the optimal threshold value for the go/no-go decision rule. We see that we need a treatment effect of more than 0.06 in phase II in order to proceed to phase III.</li>
+<code>res$Kappa</code> is the optimal threshold value for the
+go/no-go decision rule. We see that we need a treatment effect of more
+than 0.06 in phase II in order to proceed to phase III.</li>
 <li>
-<code>res$u</code> is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 3259.83, i.e we have an expected utility of 325 983 000$.</li>
+<code>res$u</code> is the expected utility of the program for the
+optimal sample size and threshold value. In our case it amounts to
+3259.83, i.e we have an expected utility of 325 983 000$.</li>
 </ul>
 </div>
 </div>
 <div class="section level2">
 <h2 id="where-to-go-from-here">Where to go from here<a class="anchor" aria-label="anchor" href="#where-to-go-from-here"></a>
 </h2>
-<p>This tutorial only covered drugdevelopR’s basic setting. Luckily, the package’s functionality extends to a multitude of different settings. If the example above doesn’t suit your needs, you can adapt it to your specific setting:</p>
+<p>This tutorial only covered drugdevelopR’s basic setting. Luckily, the
+package’s functionality extends to a multitude of different settings. If
+the example above doesn’t suit your needs, you can adapt it to your
+specific setting:</p>
 <ul>
 <li>
-<em>Different outcomes:</em> Apply it to binary endpoints and time-to-event endpoints.</li>
+<em>Different outcomes:</em> Apply it to binary endpoints and
+time-to-event endpoints.</li>
 <li>
-<em>Interpreting the rest of the output:</em> Obtain further details on your drug development program.</li>
+<em>Interpreting the rest of the output:</em> Obtain further details
+on your drug development program.</li>
 <li>
-<em>Fixed or prior:</em> Model the assumed treatment effect on a prior distribution.</li>
+<em>Fixed or prior:</em> Model the assumed treatment effect on a
+prior distribution.</li>
 <li>
-<em>More parameters:</em> Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.</li>
+<em>More parameters:</em> Define custom effect size categories. Put
+constraints on the optimization by defining maximum costs, the total
+expected sample size of the program or the minimum expected probability
+of a successful program. Define an expected difference in treatment
+effect between phase II and III. Skip phase II.</li>
 <li>
-<em>Complex drug development programs:</em> Adapt to situations with biased effect estimators, multiple phase III trials, multi-arm trials, or multiple endpoints.</li>
+<em>Complex drug development programs:</em> Adapt to situations with
+biased effect estimators, multiple phase III trials, multi-arm trials,
+or multiple endpoints.</li>
 <li>
-<em>Parallel computing:</em> Be faster at calculating the optimum by using parallel computing.</li>
+<em>Parallel computing:</em> Be faster at calculating the optimum by
+using parallel computing.</li>
 </ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
