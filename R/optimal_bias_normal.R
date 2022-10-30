@@ -177,7 +177,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
         
         cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
         
-        parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_normal","Epgo_normal", "En3_normal_L",
+        parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "dtnorm", "prior_normal","Epgo_normal", "En3_normal_L",
                             "EPsProg_normal_L","Epgo_normal_L2", "En3_normal_L2",
                             "EPsProg_normal_L2","En3_normal_R", "EPsProg_normal_R", "Epgo_normal_R2", "En3_normal_R2",
                             "EPsProg_normal_R2", "alpha", "beta",

@@ -175,7 +175,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
         alpha <- alpha_in
       }
       
-      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_normal", "Epgo_normal", "Epgo23_normal", "En3_normal",
+      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "dtnorm", "prior_normal", "Epgo_normal", "Epgo23_normal", "En3_normal",
                           "EPsProg_normal", "EPsProg2_normal", "EPsProg3_normal", "EPsProg4_normal", "EPsProg23_normal",
                           "alpha", "beta",
                           "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",

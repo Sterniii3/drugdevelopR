@@ -74,7 +74,7 @@ Verify that both adjustment methods and the case with no bias adjustment return 
 Use the function `optimal_bias`. Supply the same input values as in test case 02.01, however change the number of chores for parallel computing to 1. 
 Verify that the computation time will increase compared to the setting in 02.01.
 
-### 02.09 (shows that req. 02.01, 02.04 and 02.11 are met): {-}
+### 02.09 (shows that req. 02.01, 02.05 and 02.11 are met): {-}
 Use the function `optimal_bias_normal()`. Supply the following input values to the function:
 
   * a significance level of 0.05,
@@ -95,16 +95,16 @@ Use the function `optimal_bias_normal()`. Supply the following input values to t
 
 Furthermore, use the adjustment method "multiplicative" and set the optimization region for the adjustment parameter $\lambda$ to {0.7, 0.71, ..., 0.9}.
 
+Verify that the function returns an expected utility of 2779.11 (in 10^5\$) an optimal threshold value of 0.12 and an optimal sample size of 236 in phase II and 548 in phase III (i.e. 784 in total).
 
-
-### 02.10 (shows that req. 02.01, 02.05 and 02.13 are met): {-}
+### 02.10 (shows that req. 02.01, 02.04 and 02.13 are met): {-}
 Use the function `optimal_bias_normal()`. Supply the same input values as in test case 02.09 (including the optimization regions for the multiplicative adjustment parameter), however set the parameter fixed to `"TRUE"`. Furthermore use the adjustment method "all" and provide the following optimization set for the additive adjustment parameter $\alpha_CI$: {0.25, 0.275, ..., 0.5}.
 
 Verify that the program returns the results for both adjustment methods by returning the selected method as well as the calculated adjustment parameter and further returns the results of an additive and a multiplicative adjustment method that not only adjust the treatment effect but also the threshold value for the decision rule. 
 Verify that for the basic method, the program returns an expected overall utility of 4336.42 (in 10^5\$), an adjustment parameter of 0.5 and optimal sample sizes of 102 in phase II and 544 in phase III (i.e. an overall sample size of 646) for the multiplicative method and an expected overall utility of 3871.26 (in 10^5\$), an adjustment parameter of 0.1 and optimal sample sizes of 130 in phase II and 456 in phase III (i.e. an overall sample size of 586) for the additive method.
 Moreover, verify that for the advanced method, the program returns an expected overall utility of 4336.37 (in 10^5\$), an adjustment parameter of 0.5 and optimal sample sizes of 98 in phase II and 536 in phase III (i.e. an overall sample size of 634) for the advanced multiplicative method ("multipl2") and an expected overall utility of 3870.71 (in 10^5\$), an adjustment parameter of 0.1 and optimal sample sizes of 134 in phase II and 426 in phase III (i.e. an overall sample size of 560) for the advanced additive method ("add2").
 
-### 02.11 (shows that req. 02.02, 02.04 and 02.10 are met): {-}
+### 02.11 (shows that req. 02.02, 02.05 and 02.10 are met): {-}
 
 Use the function ` optimal_bias_binary()`. Supply the following input values to the function:
 
@@ -126,7 +126,7 @@ Furthermore, use the adjustment method "additive" and set the optimization regio
 
 Verify that the function calculates an optimal sample size of 158 in phase II and 262 in phase III (i.e. a total of 420 participants), an expected utility of 708.24 (in 10^5\$), and an optimal threshold value of 0.86 as well as an optimal additive adjustment parameter of 0.4.
 
-### 02.12 (shows that req. 02.02, 02.05 and 02.12 are met): {-}
+### 02.12 (shows that req. 02.02, 02.04 and 02.12 are met): {-}
 
 Use the function `optimal_bias_binary()`. Supply the same input values as in test case 02.11 (including the optimization region for the additive adjustment parameter), however set the parameter fixed to `"TRUE"`. Furthermore use the adjustment method "both" and provide the following optimization set for the multiplicative adjustment parameter $\lambda$: {0.5, 0.52, ..., 1}.
 
