@@ -29,8 +29,8 @@ pgo_multiple_tte(HRgo, n2, ec, hr1, hr2, id1, id2, fixed, rho)
 The output of the the function \code{pgo_multiple_tte()} is the probability to go to phase III.
 }
 \description{
-This function calculated the probability that we go to phase III, i.e. that results of phase II are promising enough to
-get a successful drug development program. Successful means that at least one endpoint show a statistically significant positive treatment effect in phase III.
+This function calculates the probability that we go to phase III, i.e. that results of phase II are promising enough to
+get a successful drug development program. Successful means that at least one endpoint shows a statistically significant positive treatment effect in phase III.
 }
 \examples{
 res <- pgo_multiple_tte(HRgo = 0.8, n2 = 50, ec = 0.6,

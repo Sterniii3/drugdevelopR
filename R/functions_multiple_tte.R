@@ -52,8 +52,8 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 
 #' Probability to go to phase III for multiple endpoints in the time-to-event setting
 #' 
-#' This function calculated the probability that we go to phase III, i.e. that results of phase II are promising enough to
-#' get a successful drug development program. Successful means that at least one endpoint show a statistically significant positive treatment effect in phase III. 
+#' This function calculates the probability that we go to phase III, i.e. that results of phase II are promising enough to
+#' get a successful drug development program. Successful means that at least one endpoint shows a statistically significant positive treatment effect in phase III. 
 #' @param HRgo threshold value for the go/no-go decision rule; 
 #' @param n2 total sample size for phase II; must be even number
 #' @param hr1 assumed true treatment effect on HR scale for treatment 1
@@ -167,7 +167,7 @@ Ess_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
   }
 }
 
-#' Probabilty that effect in endpoint one larger than in endpoint two
+#' Probabilty that effect in endpoint one is larger than in endpoint two
 #' 
 #' This function calculated the probability that the treatment effect in endpoint one (or endpoint x) is larger than in endpoint two (or endpoint y), i.e. P(x>y) = P(x-y>0)
 #' 
@@ -290,7 +290,7 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
                     })
                   },qnorm(1-alpha)+step1/sqrt((x^2/c)),qnorm(1-alpha)+step2/sqrt((x^2/c)))$value
                 })
-              },kappa,Inf)$value
+              },-log(HRgo),Inf)$value
             })
           },-Inf,Inf)$value
         })

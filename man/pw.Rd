@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions_multiple_tte.R
 \name{pw}
 \alias{pw}
-\title{Probabilty that effect in endpoint one larger than in endpoint two}
+\title{Probabilty that effect in endpoint one is larger than in endpoint two}
 \usage{
 pw(n2, ec, hr1, hr2, id1, id2, fixed, rho)
 }

@@ -32,7 +32,7 @@ Epgo_binary_R2(RRgo, n2, Adj, p0, w, p11, p12, in1, in2, fixed)
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{p11} is used as fixed effect}
 }
 \value{
-The output of the the functions \code{Epgo_normal_L2} and \code{Epgo_normal_R2} is the expected number of participants in phase III with conservative decision rule and sample size calculation.
+The output of the the functions \code{Epgo_binary_L2} and \code{Epgo_binary_R2} is the expected number of participants in phase III with conservative decision rule and sample size calculation.
 }
 \description{
 In the case we do not only want do discount for overoptimistic results in phase II when calculating the sample size in phase III,

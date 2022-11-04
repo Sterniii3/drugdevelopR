@@ -368,7 +368,7 @@ utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 #' @param in1 amount of information for `p11` in terms of sample size
 #' @param in2 amount of information for `p12` in terms of sample size
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `p11` is used as fixed effect
-#' @return The output of the the functions `Epgo_normal_L2` and `Epgo_normal_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
+#' @return The output of the the functions `Epgo_binary_L2` and `Epgo_binary_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
 #' @importFrom stats qnorm integrate dnorm
 #' @examples res <- Epgo_binary_L2(RRgo = 0.8, n2 = 50, Adj = 0,  p0 = 0.6,  w = 0.3,
 #'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
