@@ -117,22 +117,22 @@ when the go-decision is also affected by the bias adjustment
 }
 }
 \examples{
-res <- EPsProg_L(HRgo = 0.8, n2 = 50, Adj = 0.4, 
+res <- EPsProg_L(HRgo = 0.8, d2 = 50, Adj = 0.4, 
                            alpha = 0.025, beta = 0.1, 
                            step1 = 1, step2 = 0.95, 
                            w = 0.3, hr1 = 0.69, hr2 = 0.81,
                            id1 = 280, id2 = 420, fixed = FALSE)
-          res <- EPsProg_L2(HRgo = 0.8, n2 = 50, Adj = 0.4, 
+          res <- EPsProg_L2(HRgo = 0.8, d2 = 50, Adj = 0.4, 
                            alpha = 0.025, beta = 0.1, 
                            step1 = 1, step2 = 0.95, 
                            w = 0.3, hr1 = 0.69, hr2 = 0.81,
                            id1 = 280, id2 = 420, fixed = FALSE)
-          res <- EPsProg_R(HRgo = 0.8, n2 = 50, Adj = 0.9, 
+          res <- EPsProg_R(HRgo = 0.8, d2 = 50, Adj = 0.9, 
                            alpha = 0.025, beta = 0.1, 
                            step1 = 1, step2 = 0.95, 
                            w = 0.3, hr1 = 0.69, hr2 = 0.81,
                            id1 = 280, id2 = 420, fixed = FALSE)
-          res <- EPsProg_R2(HRgo = 0.8, n2 = 50, Adj = 0.9, 
+          res <- EPsProg_R2(HRgo = 0.8, d2 = 50, Adj = 0.9, 
                            alpha = 0.025, beta = 0.1, 
                            step1 = 1, step2 = 0.95, 
                            w = 0.3, hr1 = 0.69, hr2 = 0.81,

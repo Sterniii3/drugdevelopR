@@ -127,22 +127,22 @@ Ed3_L<-function(HRgo, d2, Adj, alpha, beta, w, hr1, hr2, id1, id2, fixed){
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @return  The output of the the functions `EPsProg_L()`, `EPsProg_L2()`, `EPsProg_R()` and `EPsProg_R2()` is the expected probability of a successful program.
-#' @examples res <- EPsProg_L(HRgo = 0.8, n2 = 50, Adj = 0.4, 
+#' @examples res <- EPsProg_L(HRgo = 0.8, d2 = 50, Adj = 0.4, 
 #'                            alpha = 0.025, beta = 0.1, 
 #'                            step1 = 1, step2 = 0.95, 
 #'                            w = 0.3, hr1 = 0.69, hr2 = 0.81,
 #'                            id1 = 280, id2 = 420, fixed = FALSE)
-#'           res <- EPsProg_L2(HRgo = 0.8, n2 = 50, Adj = 0.4, 
+#'           res <- EPsProg_L2(HRgo = 0.8, d2 = 50, Adj = 0.4, 
 #'                            alpha = 0.025, beta = 0.1, 
 #'                            step1 = 1, step2 = 0.95, 
 #'                            w = 0.3, hr1 = 0.69, hr2 = 0.81,
 #'                            id1 = 280, id2 = 420, fixed = FALSE)
-#'           res <- EPsProg_R(HRgo = 0.8, n2 = 50, Adj = 0.9, 
+#'           res <- EPsProg_R(HRgo = 0.8, d2 = 50, Adj = 0.9, 
 #'                            alpha = 0.025, beta = 0.1, 
 #'                            step1 = 1, step2 = 0.95, 
 #'                            w = 0.3, hr1 = 0.69, hr2 = 0.81,
 #'                            id1 = 280, id2 = 420, fixed = FALSE)
-#'           res <- EPsProg_R2(HRgo = 0.8, n2 = 50, Adj = 0.9, 
+#'           res <- EPsProg_R2(HRgo = 0.8, d2 = 50, Adj = 0.9, 
 #'                            alpha = 0.025, beta = 0.1, 
 #'                            step1 = 1, step2 = 0.95, 
 #'                            w = 0.3, hr1 = 0.69, hr2 = 0.81,
