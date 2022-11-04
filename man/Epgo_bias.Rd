@@ -39,10 +39,10 @@ The function \code{Epgo_L2} uses an additive adjustment parameter (i.e adjust th
 the function \code{Epgo_R2} uses a multiplicative adjustment parameter (i.e. use estimate with a retention factor)
 }
 \examples{
-res <- Epgo_binary_L2(HRgo = 0.8, d2 = 50, Adj = 0.4,  
+res <- Epgo_L2(HRgo = 0.8, d2 = 50, Adj = 0.4,  
                                 w = 0.3, hr1 = 0.69, hr2 = 0.81, 
                                 id1 = 280, id2 = 420, fixed = FALSE)
-          res <- Epgo_binary_R2(HRgo = 0.8, d2 = 50, Adj = 0.9,  
+          res <- Epgo_R2(HRgo = 0.8, d2 = 50, Adj = 0.9,  
                                 w = 0.3, hr1 = 0.69, hr2 = 0.81, 
                                 id1 = 280, id2 = 420, fixed = FALSE)
 }
