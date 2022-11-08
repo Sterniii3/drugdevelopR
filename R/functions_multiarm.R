@@ -466,7 +466,7 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
 #' @param hr1 assumed true treatment effect on HR scale for treatment 1
 #' @param hr2 assumed true treatment effect on HR scale for treatment 2
 #' @param ec control arm event rate for phase II and III
-#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
+#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising")
 #' @param c2 variable per-patient cost for phase II
 #' @param c3 variable per-patient cost for phase III
 #' @param c02 fixed cost for phase II
@@ -491,6 +491,10 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
 #' @editDate 2022-05-08
 #' @export
 utility_multiarm<-function(n2,HRgo,alpha,beta,hr1,hr2,strategy,ec,c2,c02,c3,c03,K,N,S,steps1, stepm1, stepl1,b1, b2, b3){ 
+  
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
   
   if(strategy==1){
     

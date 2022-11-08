@@ -41,7 +41,7 @@ utility_multiarm(
 
 \item{hr2}{assumed true treatment effect on HR scale for treatment 2}
 
-\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)}
+\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising")}
 
 \item{ec}{control arm event rate for phase II and III}
 

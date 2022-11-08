@@ -40,7 +40,7 @@ utility_multiarm_normal(
 
 \item{Delta2}{assumed true treatment effect for standardized difference in means}
 
-\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)}
+\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising")}
 
 \item{c2}{variable per-patient cost for phase II}
 
@@ -77,7 +77,7 @@ The utility is in further step maximized by the \code{optimal_multiarm_normal()}
 }
 \examples{
 res <- utility_multiarm_normal(n2 = 50, kappa = 0.8, alpha = 0.05, beta = 0.1,
-                            Delta1 = 0.375, Delta2 = 0.625, strategy = 3,
+                            Delta1 = 0.375, Delta2 = 0.625, strategy = 1,
                             c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                             K = Inf, N = Inf, S = -Inf,  
                             steps1 = 0, stepm1 = 0.5,   stepl1 = 0.8,

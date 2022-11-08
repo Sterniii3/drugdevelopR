@@ -453,7 +453,7 @@ PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,c
 #' @param beta  1-beta power for calculation of sample size for phase III
 #' @param Delta1 assumed true treatment effect for standardized difference in means
 #' @param Delta2 assumed true treatment effect for standardized difference in means
-#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
+#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") 
 #' @param c2 variable per-patient cost for phase II
 #' @param c3 variable per-patient cost for phase III
 #' @param c02 fixed cost for phase II
@@ -469,7 +469,7 @@ PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,c
 #' @param b3 expected gain for effect size category "large"
 #' @return The output of the the function `utility_multiarm_normal()` is the expected utility of the program.
 #' @examples res <- utility_multiarm_normal(n2 = 50, kappa = 0.8, alpha = 0.05, beta = 0.1,
-#'                             Delta1 = 0.375, Delta2 = 0.625, strategy = 3,
+#'                             Delta1 = 0.375, Delta2 = 0.625, strategy = 1,
 #'                             c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                             K = Inf, N = Inf, S = -Inf,  
 #'                             steps1 = 0, stepm1 = 0.5,   stepl1 = 0.8,
@@ -481,6 +481,10 @@ utility_multiarm_normal<-function(n2,kappa,alpha,beta,
                                   Delta1,Delta2,strategy,
                                   c2,c02,c3,c03,K,N,S,
                                   steps1, stepm1, stepl1,b1, b2, b3){ 
+  
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- Inf
   
   if(strategy==1){
     
