@@ -43,7 +43,7 @@ utility_multiarm_binary(
 
 \item{p12}{assumed true rate of treatment group}
 
-\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)}
+\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising")}
 
 \item{c2}{variable per-patient cost for phase II}
 
@@ -80,7 +80,7 @@ The utility is in further step maximized by the \code{optimal_multiarm_binary()}
 }
 \examples{
 res <- utility_multiarm_binary(n2 = 50, RRgo = 0.8, alpha = 0.05, beta = 0.1,
-                            p0 = 0.6, p11 =  0.3, p12 = 0.5, strategy = 3,
+                            p0 = 0.6, p11 =  0.3, p12 = 0.5, strategy = 1,
                             c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                             K = Inf, N = Inf, S = -Inf,  
                             steps1 = 1, stepm1 = 0.95,   stepl1 = 0.85,

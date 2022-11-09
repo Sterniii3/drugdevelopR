@@ -74,7 +74,7 @@ Verify that the program returns an optimal utility of 1414.44 (in 10^5\$), an op
 ### 04.07 (shows that req. 04.02, 04.06 and 04.11 are met): {-}
 Use the function `optimal_multiarm_binary`. Supply the same input values as in test case 04.05, however set the parameter strategy to 3, and set a constraint for the minimal success probability of 0.85.
 
-Verify that the program returns the results for both strategies, the results for strategy 2 are the same as in test case 04.06. as the constraint is not binding, however, the results strategy 1 change as follows:  The optimal utility changes to -9999, the optimal sample size changes to 133 in phase II and 383 in phase III (i.e. a total of 516) and the optimal threshold value for the go-decision is 0.82.
+Verify that the program returns the results for both strategies, the results for strategy 2 are the same as in test case 04.06. as the constraint is not binding, however, the results strategy 1 change as follows:  The optimal utility changes to -9999, indicating that the constraint can not be fulfilled, within the optimization region.
 
 ### 04.08 (shows that req. 04.01, 04.08 and 04.13 are met): {-}
 Use the function `optimal_multiarm_normal()`. Supply the following input values to the function:

@@ -462,7 +462,7 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
 #' @param p0 assumed true rate of control group
 #' @param p11 assumed true rate of treatment group
 #' @param p12 assumed true rate of treatment group
-#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
+#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") 
 #' @param c2 variable per-patient cost for phase II
 #' @param c3 variable per-patient cost for phase III
 #' @param c02 fixed cost for phase II
@@ -478,7 +478,7 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
 #' @param b3 expected gain for effect size category "large"
 #' @return The output of the the function `utility_multiarm_binary()` is the expected utility of the program
 #' @examples res <- utility_multiarm_binary(n2 = 50, RRgo = 0.8, alpha = 0.05, beta = 0.1,
-#'                             p0 = 0.6, p11 =  0.3, p12 = 0.5, strategy = 3,
+#'                             p0 = 0.6, p11 =  0.3, p12 = 0.5, strategy = 1,
 #'                             c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                             K = Inf, N = Inf, S = -Inf,  
 #'                             steps1 = 1, stepm1 = 0.95,   stepl1 = 0.85,
@@ -490,6 +490,11 @@ utility_multiarm_binary<-function(n2,RRgo,alpha,beta,
                                   p0=p0,p11=p11,p12=p12,strategy,
                                   c2,c02,c3,c03,K,N,S,
                                   steps1, stepm1, stepl1,b1, b2, b3){ 
+  
+  
+  steps2 <- stepm1
+  stepm2 <- stepl1
+  stepl2 <- 0
   
   if(strategy==1){
     
