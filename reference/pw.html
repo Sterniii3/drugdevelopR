@@ -57,17 +57,13 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pw</span><span class="op">(</span><span class="va">n2</span>, <span class="va">ec</span>, <span class="va">hr1</span>, <span class="va">hr2</span>, <span class="va">id1</span>, <span class="va">id2</span>, <span class="va">fixed</span>, <span class="va">rho</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pw</span><span class="op">(</span><span class="va">n2</span>, <span class="va">hr1</span>, <span class="va">hr2</span>, <span class="va">id1</span>, <span class="va">id2</span>, <span class="va">fixed</span>, <span class="va">rho</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>n2</dt>
 <dd><p>total sample size for phase II; must be even number</p></dd>
-
-
-<dt>ec</dt>
-<dd><p>control arm event rate for phase II and III</p></dd>
 
 
 <dt>hr1</dt>
@@ -115,8 +111,7 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">pw</span><span class="op">(</span>n2 <span class="op">=</span> <span class="fl">50</span>, ec <span class="op">=</span> <span class="fl">0.6</span>,</span></span>
-<span class="r-in"><span>                    hr1 <span class="op">=</span> <span class="fl">0.75</span>, hr2 <span class="op">=</span> <span class="fl">0.80</span>, id1 <span class="op">=</span> <span class="fl">300</span>, id2 <span class="op">=</span> <span class="fl">600</span>, </span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">pw</span><span class="op">(</span>n2 <span class="op">=</span> <span class="fl">50</span>,hr1 <span class="op">=</span> <span class="fl">0.75</span>, hr2 <span class="op">=</span> <span class="fl">0.80</span>, id1 <span class="op">=</span> <span class="fl">300</span>, id2 <span class="op">=</span> <span class="fl">600</span>, </span></span>
 <span class="r-in"><span>                    fixed <span class="op">=</span> <span class="cn">FALSE</span>, rho <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
