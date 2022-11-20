@@ -4,12 +4,10 @@
 \alias{pw}
 \title{Probabilty that effect in endpoint one is larger than in endpoint two}
 \usage{
-pw(n2, ec, hr1, hr2, id1, id2, fixed, rho)
+pw(n2, hr1, hr2, id1, id2, fixed, rho)
 }
 \arguments{
 \item{n2}{total sample size for phase II; must be even number}
-
-\item{ec}{control arm event rate for phase II and III}
 
 \item{hr1}{assumed true treatment effect on HR scale for treatment 1}
 
@@ -33,8 +31,7 @@ This function calculated the probability that the treatment effect in endpoint o
 Z=X-Y is normally distributed with expectation mu_x - mu_y and variance sigma_x + sigma_y- 2 rho sdx sdy
 }
 \examples{
-res <- pw(n2 = 50, ec = 0.6,
-                    hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
+res <- pw(n2 = 50,hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
                     fixed = FALSE, rho = 0.3)
 }
 \section{Last Edited By}{

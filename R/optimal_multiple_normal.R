@@ -64,7 +64,7 @@
 #'  # K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
 #'  # steps1 = 0,                                            # define lower boundary for "small"
 #'  # stepm1 = 0.5,                                          # "medium"
-#'  # stepl1 = 0.88,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
+#'  # stepl1 = 0.8,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
 #'  #  b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
 #'  # rho = 0.5, relaxed = TRUE,                             # relaxed "TRUE"
 #'  # fixed = TRUE,                                          #   treatment effect
@@ -108,9 +108,6 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
                                     b1, b2, b3,
                                     rho, fixed, relaxed = FALSE, num_cl = 1){
   
-  steps2 <- stepm1
-  stepm2 <- stepl1
-  stepl2 <- Inf
   
   date <- Sys.time()
   
@@ -134,9 +131,9 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
       
       cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
-      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_multiple_normal", "Ess_multiple_normal",
+      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate","dbivanorm", "pgo_multiple_normal", "Ess_multiple_normal",
                           "EPsProg_multiple_normal", "posp_normal", "fmin", "alpha", "beta",
-                          "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
+                          "steps1", "stepm1", "stepl1",
                           "K", "N", "S",
                           "c2", "c3", "c02", "c03",
                           "b1", "b2", "b3", "KAPPA",

@@ -58,19 +58,18 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #' @param n2 total sample size for phase II; must be even number
 #' @param hr1 assumed true treatment effect on HR scale for treatment 1
 #' @param hr2 assumed true treatment effect on HR scale for treatment 2
-#' @param ec control arm event rate for phase II and III
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
 #' @return The output of the the function `pgo_multiple_tte()` is the probability to go to phase III.
-#' @examples res <- pgo_multiple_tte(HRgo = 0.8, n2 = 50, ec = 0.6,
+#' @examples res <- pgo_multiple_tte(HRgo = 0.8, n2 = 50,
 #'                                hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
 #'                                fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export
-pgo_multiple_tte<-function(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho){
+pgo_multiple_tte<-function(HRgo,n2,hr1,hr2,id1,id2,fixed,rho){
   
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
   e22<-hr2*n2 # number of events phase II for endpoint 2 (OS)
@@ -96,7 +95,7 @@ pgo_multiple_tte<-function(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho){
               integrate(function(x){sapply(x,function(x){
               (fmax(x,u,v,sqrt(var1),sqrt(var2),rho))*(dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho))
             })
-          },kappa,Inf)$value
+          },-log(HRgo),Inf)$value
         })
       },-Inf,Inf )$value
     })
@@ -118,20 +117,19 @@ pgo_multiple_tte<-function(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho){
 #' @param alpha one- sided significance level
 #' @param hr1 assumed true treatment effect on HR scale for treatment 1
 #' @param hr2 assumed true treatment effect on HR scale for treatment 2
-#' @param ec control arm event rate for phase II and III
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
 #' @return the output of the the function `Ess_multiple_tte()` is the expected number of participants in phase III
 #' @examples res <- Ess_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
-#'                                ec = 0.6,hr1 = 0.75, hr2 = 0.80, 
+#'                                hr1 = 0.75, hr2 = 0.80, 
 #'                                id1 = 300, id2 = 600, 
 #'                                fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export
-Ess_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
+Ess_multiple_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
   e22<-hr2*n2 # number of events phase II for endpoint 2 (OS)
@@ -175,19 +173,17 @@ Ess_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
 #' @param n2 total sample size for phase II; must be even number
 #' @param hr1 assumed true treatment effect on HR scale for treatment 1
 #' @param hr2 assumed true treatment effect on HR scale for treatment 2
-#' @param ec control arm event rate for phase II and III
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
 #' @return The output of the the function `pw()` is the probability that endpoint one has a better result than endpoint two
-#' @examples res <- pw(n2 = 50, ec = 0.6,
-#'                     hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
+#' @examples res <- pw(n2 = 50,hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
 #'                     fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export
-pw <- function(n2,ec,hr1,hr2,id1,id2,fixed,rho){
+pw <- function(n2,hr1,hr2,id1,id2,fixed,rho){
   
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
   e22<-hr2*n2 # number of events phase II for endpoint 2 (OS)
@@ -217,11 +213,11 @@ else {
 }
 
 #E(n3|GO)
-expn3go_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho){
+expn3go_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
   
-  expe3go_tte<-Ess_multiple_tte(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,fixed,rho)/pgo_multiple_tte(HRgo,n2,ec,hr1,hr2,id1,id2,fixed,rho)
+  expe3go_tte<-Ess_multiple_tte(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho)/pgo_multiple_tte(HRgo,n2,hr1,hr2,id1,id2,fixed,rho)
   
-  return(expe3go_tte/hr[1])*pw(n2,ec,hr1,hr2,id1,id2,fixed,rho)+(expe3go_tte/hr[2])*(1-pw(n2,ec,hr1,hr2,id1,id2,fixed,rho))
+  return(expe3go_tte/hr[1])*pw(n2,hr1,hr2,id1,id2,fixed,rho)+(expe3go_tte/hr[2])*(1-pw(n2,hr1,hr2,id1,id2,fixed,rho))
   }
   
   
@@ -286,7 +282,8 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
                 sapply(x,function(x){ 
                   integrate(function(y){ 
                     sapply(y,function(y){
-                      (fmax(y,-log(hr1)/sqrt((x^2/c)*(hr[ec]/hr[1])),-log(hr2)/sqrt((x^2/c)*(hr[ec]/hr[2])),1,1,rho)*fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)*dbivanorm(u,v,hr1,hr2,vartrue1,vartrue2,rho))
+                      (fmax(y,-log(hr1)/sqrt((x^2/c)*(hr[ec]/hr[1])),-log(hr2)/sqrt((x^2/c)*(hr[ec]/hr[2])),1,1,rho)
+                       *fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)*dbivanorm(u,v,hr1,hr2,vartrue1,vartrue2,rho))
                     })
                   },qnorm(1-alpha)+step1/sqrt((x^2/c)),qnorm(1-alpha)+step2/sqrt((x^2/c)))$value
                 })
@@ -310,7 +307,6 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
 #' @param alpha one- sided significance level
 #' @param hr1 assumed true treatment effect on HR scale for treatment 1
 #' @param hr2 assumed true treatment effect on HR scale for treatment 2
-#' @param ec control arm event rate for phase II and III
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
@@ -323,7 +319,7 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export
-os_tte<-function(HRgo, n2, alpha, beta, ec,hr1, hr2, id1, id2, fixed, rho){
+os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
   
   e21<-hr1*n2 # number of events phase II for endpoint 1 (PFS) = event rate * sample size
   e22<-hr2*n2 # number of events phase II for endpoint 2 (OS)
@@ -381,7 +377,7 @@ os_tte<-function(HRgo, n2, alpha, beta, ec,hr1, hr2, id1, id2, fixed, rho){
       })
     },-Inf,Inf)$value}
 
-    return(os_tte <- os1_tte*pw(n2,ec,hr1,hr2,id1,id2,fixed,rho) + os2_tte*(1-pw(n2,ec,hr1,hr2,id1,id2,fixed,rho)))
+    return(os_tte <- os1_tte*pw(n2,hr1,hr2,id1,id2,fixed,rho) + os2_tte*(1-pw(n2,hr1,hr2,id1,id2,fixed,rho)))
 }
 
 
@@ -442,13 +438,13 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2, ec,
   stepm2 <- stepl1
   stepl2 <- 0
 
-   n3 <- Ess_multiple_tte(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,ec=ec,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
+   n3 <- Ess_multiple_tte(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
    
    OS <- os_tte(HRgo = HRgo, n2 = n2, alpha = alpha, beta = beta,
-                ec = ec, hr1 = hr1, hr2 = hr2,
+                hr1 = hr1, hr2 = hr2,
                 id1 = id1, id2 = id2, fixed = fixed, rho = rho)
   
-   pw <- pw(n2=n2,ec=ec,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
+   pw <- pw(n2=n2,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
    
    if(n2+n3>N){
      
@@ -456,7 +452,7 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2, ec,
      
    }else{
      
-     pnogo   = pgo_multiple_tte(HRgo=HRgo,n2=n2,ec=ec,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
+     pnogo   = pgo_multiple_tte(HRgo=HRgo,n2=n2,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
      
      K2    <-  c02 + c2 * n2  #cost phase II
      K3    <-  c03 * (1-pnogo) + c3 * n3  #cost phase III

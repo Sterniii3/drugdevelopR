@@ -2,7 +2,21 @@
 #' @editor Johannes Cepicka
 #' @editDate 2022-08-16
 #' @coverage
-#' 03.01: 03.01
+#' 03.01: 03.03, 03.05, 03.11 and 03.20
+#' 03.02: 03.01
+#' 03.03: 03.01
+#' 03.04: 03.01
+#' 03.05: 03.01
+#' 03.06: 03.01
+#' 03.07: 03.01
+#' 03.08: 03.01
+#' 03.09: 03.01
+#' 03.10: 03.01
+#' 03.11: 03.01
+#' 03.12: 03.01
+#' 03.13: 03.01
+#' 03.14: 03.01
+
 
 
 
@@ -28,21 +42,21 @@ Use the function `optimal_multitrial`. Supply the following input values to the 
 
 Furthermore, use Case 2 (i.e. at least two trials have to show a significant positive treatment effect) and use "Strategy = True", hence calculating all implemented strategies for the specified case.
 
-### 03.02 (shows that req. ): {-}
+### 03.02 (shows that req. 03.15): {-}
 
 Use the function `optimal_multitrial`. Supply the same input values as in test case 03.01, however set the parameter case to 3 and the parameter strategy to 1. 
 
-### 03.03 (shows that req. ): {-}
+### 03.03 (shows that req. 03.07): {-}
 Use the function `optimal_multitrial`. Supply the same input values as in test case 03.01, however set a cost constraint of 50,000,000 \$. 
 
 Verify that
 
-### 03.04 (shows that req. ): {-}
+### 03.04 (shows that req. 03.12 ): {-}
 Use the function `optimal_multitrial`. Supply the same input values as in test case 03.01, however change the parameter case to 3 and the parameter strategy to 2. Verify that the program returns an ERROR.
 
-### 03.05 (shows that req. ): {-}
+### 03.05 (shows that req. 03.04 ): {-}
 
-Use the function `optimal_multitrial`. Supply the same input values as in test case 03.01, however set the parameter `fixed` to be "TRUE". Furthermore, change the strategy to 23, thus, if after conducting two trials, only one delivers a significant result and the other trial’s treatment effect points at least in the same direction, a third trial is conducted.
+Use the function `optimal_multitrial`. Supply the same input values as in test case 03.01, however set the parameter `fixed` to be "TRUE". 
 
 
 ### 03.06 (shows that req. 3.13 and 03.20 are met): {-}
@@ -84,7 +98,7 @@ Use the function `optimal_multitrial_binary`. Supply the same input values as in
 
 Verify, that for strategy 1, the program returns an expected utility of 1742.40 (in 10^5\$), an optimal threshold value of 0.88 and an optimal number of participants of 162 in phase II and 160 in phase III (i.e. 322 in total). For strategy 2, the program returns an expected utility of 1878.56 (in 10^5\$), an optimal threshold value of 0.82 and an optimal number of participants of 200 in phase II and 292 (corresponds to two trials with 146 participants) in phase III (i.e. 492 in total).
 
-### 03.10 (shows that req. ): {-}
+### 03.10 (shows that req. 03.10, 03.10 ): {-}
 Use the function `optimal_multitrial_binary`. Supply the same input values as in test case 03.07, however change the parameter fixed to be `"TRUE"` and set the parameter Case to 2 and the parameter strategy to 3. Redo this, however, the second time set a sample size constraint of 600.
 
 Verify, that the expected utility changes from 1332.94 to 1313.11 (in 10^5\$), and the optimal sample size changes from 242 to 186 in phase II and remains at 414 in phase III (in total it changes from 656 to 600).
@@ -109,9 +123,13 @@ Use the function `optimal_multitrial_normal()`. Supply the following input value
 
 Furthermore, use Case 3 (i.e. at least three trials have to show a significant positive treatment effect) and use "Strategy = True", hence calculating all implemented strategies for the specified case.
 
-### 03.12 (shows that req. ): {-} 
+### 03.12 (shows that req. 03.09): {-} 
+Use the function `optimal_multitrial_normal()`. Supply the same input values as in test case 03.11, however change the number of clusters used for parallel computing from 3 to 1.
+Verify that the computation time will increase compared to the setting in 03.11.
 
-### 03.13 (shows that req. ): {-}
+### 03.13 (shows that req. 03.08): {-}
+Use the function `optimal_multitrial_normal()`. Supply the same input values as in test case 03.11, however change the parameter fixed to be `"TRUE"`. Redo this, however, the second time set a minimum success probability of 0.8
 
 ### 03.14 (shows that req. ): {-}
+Use the function `optimal_multitrial_normal()`. Supply the same input values as in test case 03.11, however change the parameter fixed to be `"TRUE"` and use Case 2 (i.e. at least three trials have to show a significant positive treatment effect) and the strategy 3 (i.e three trials are conducted in phase III)
 

@@ -392,7 +392,7 @@ utility_multiple_normal<-function(kappa, n2, alpha, beta,
   
   n3 = Ess_multiple_normal(kappa = kappa, n2 = n2, alpha = alpha , beta = beta, 
                   Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, 
-                  sigma1 = sigma1, sigma2=sigma2, fixed = fixed, rho = rho)
+                  sigma1 = sigma1, sigma2 = sigma2, fixed = fixed, rho = rho)
   
   POSP = posp_normal(kappa = kappa, n2=n2, alpha= alpha, beta=beta, 
                      Delta1 = Delta1, Delta2 = Delta2, in1, in2,

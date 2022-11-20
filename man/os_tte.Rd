@@ -4,7 +4,7 @@
 \alias{os_tte}
 \title{Probability that endpoint OS significant}
 \usage{
-os_tte(HRgo, n2, alpha, beta, ec, hr1, hr2, id1, id2, fixed, rho)
+os_tte(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho)
 }
 \arguments{
 \item{HRgo}{threshold value for the go/no-go decision rule;}
@@ -14,8 +14,6 @@ os_tte(HRgo, n2, alpha, beta, ec, hr1, hr2, id1, id2, fixed, rho)
 \item{alpha}{one- sided significance level}
 
 \item{beta}{1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula}
-
-\item{ec}{control arm event rate for phase II and III}
 
 \item{hr1}{assumed true treatment effect on HR scale for treatment 1}
 
