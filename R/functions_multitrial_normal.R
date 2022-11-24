@@ -694,7 +694,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
               })
             },  kappa, Inf)$value   
           })
-        },  - Inf, Inf)$value)
+        },  0, Inf)$value)
       }
       if(size == "large"){
         return(integrate(function(x){
@@ -728,7 +728,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
               })
             },  kappa, Inf)$value
           })
-        },  - Inf, Inf)$value)
+        },  0, Inf)$value)
       }
       if(size == "all"){
         return(integrate(function(x){
@@ -762,7 +762,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
               })
             },  kappa, Inf)$value
           })
-        },  - Inf, Inf)$value)
+        },  0, Inf)$value)
       }
     }
     if(case == 3){
@@ -798,7 +798,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
               })
             },  kappa, Inf)$value
           })
-        },  - Inf, Inf)$value)
+        },  0, Inf)$value)
       }
       if(size == "large"){
         return(integrate(function(x){
@@ -832,7 +832,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
               })
             },  kappa, Inf)$value
           })
-        },  - Inf, Inf)$value)
+        },  0, Inf)$value)
       }
       if(size == "all"){
         return(integrate(function(x){
@@ -856,7 +856,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
               })
             },  kappa, Inf)$value
           })
-        },  - Inf, Inf)$value)
+        },  0, Inf)$value)
       }
     }  
     
@@ -1096,7 +1096,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
             })
           },  kappa, Inf)$value   
         })
-      },  - Inf, Inf)$value)
+      },  0, Inf)$value)
     }
     if(size == "large"){
       return(integrate(function(x){
@@ -1136,7 +1136,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
             })
           },  kappa, Inf)$value
         })
-      },  - Inf, Inf)$value)
+      },  0, Inf)$value)
     }
     if(size == "all"){
       return(integrate(function(x){
@@ -1176,7 +1176,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
             })
           },  kappa, Inf)$value
         })
-      },  - Inf, Inf)$value)
+      },  0, Inf)$value)
     }
     
   }
@@ -1272,12 +1272,12 @@ utility4_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
 #' @param in1 amount of information for `Delta1` in terms of sample size
 #' @param in2 amount of information for `Delta2` in terms of sample size
 #' @return The output of the the function `Epgo23_normal()` is the probability to to a third phase III trial.
-#' @examples res <- Epgo23_normal(kappa = 0.1, n2 = 50, w = 0.3, alpha = 0.025, beta = 0.1,
+#' @examples res <- Epgo23_normal(kappa = 0.1, n2 = 50, w = 0.3, alpha = 0.025, beta = 0.1, a = 0.25, b=0.75,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600)
 #' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
-Epgo23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2){
+Epgo23_normal <-  function(kappa, n2, alpha, beta, a, b,  w, Delta1, Delta2, in1, in2){
   
   SIGMA <-  diag(2)
   c     <-  (qnorm(1 - alpha) + qnorm(1 - beta))^2
@@ -1296,11 +1296,11 @@ Epgo23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2){
             dnorm(y, 
                   mean = x, 
                   sd = sqrt(4/n2)) * 
-            prior_normal(x, w, Delta1, Delta2, in1, in2, 0,1)
+            prior_normal(x, w, Delta1, Delta2, in1, in2, a, b)
         })
       },  kappa, Inf)$value
     })
-  },  - Inf, Inf)$value
+  },  -Inf, Inf)$value
 } 
 
 #' Expected probability of a successful program deciding between two or three phase III trials for a normally distributed outcome
@@ -1376,7 +1376,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
             })
           },  kappa, Inf)$value
         })
-      },  - Inf, Inf)$value) 
+      },  0, Inf)$value) 
     }
     if(size == "large"){
       return(integrate(function(x){
@@ -1396,7 +1396,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
             })
           },  kappa, Inf)$value
         })
-      },  - Inf, Inf)$value)    
+      },  0, Inf)$value)    
     }
     if(size == "all"){
       return(integrate(function(x){
@@ -1417,7 +1417,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
             })
           },  kappa, Inf)$value
         })
-      },  - Inf, Inf)$value)    
+      },  0, Inf)$value)    
     }
   }
   if(case == 3){# Option 2.2
@@ -1453,7 +1453,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
             })
           },  kappa, Inf)$value
         })
-      },  - Inf, Inf)$value) 
+      },  0, Inf)$value) 
     }
     if(size == "large"){
       return(integrate(function(x){
@@ -1477,7 +1477,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
             })
           },  kappa, Inf)$value
         })
-      },  - Inf, Inf)$value)    
+      },  0, Inf)$value)    
     }
     if(size == "all"){
       return(integrate(function(x){
@@ -1501,7 +1501,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
             })
           },  kappa, Inf)$value
         })
-      },  - Inf, Inf)$value)    
+      },  0, Inf)$value)    
     }
   }
   
@@ -1530,7 +1530,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
 #' @return The output of the the function utility23_normal() is the expected utility of the program depending on whether two or three phase III trials are performed.
-#' @examples #res <- utility23_normal(n2 = 50, kappa = 0.2, w = 0.3,
+#' @examples #res <- utility23_normal(n2 = 50, kappa = 0.2, w = 0.3, alpha = 0.025, beta = 0.1,
 #'       #                           Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'       #                           a = 0.25, b = 0.75, 
 #'      #                            c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
@@ -1546,13 +1546,13 @@ utility23_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
   pg    <-  Epgo_normal(kappa = kappa, n2 = n2, 
                         w = w , Delta1 = Delta1, Delta2 = Delta2 , 
                         in1 = in1, in2 = in2,
-                        a = a, b = b, fixed = fixed)
+                        a = a, b = b, fixed = FALSE)
   
   
   n3  <-  En3_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta,
                      w = w, Delta1 = Delta1, Delta2 = Delta2, 
                      in1 = in1, in2 = in2, 
-                     a = a, b = b, fixed = fixed)
+                     a = a, b = b, fixed = FALSE)
   
   n3  <- ceiling(n3)
   
@@ -1572,8 +1572,8 @@ utility23_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                             case = 2, size = "all", ymin = ymin) - prob1 - prob3
   
   # prob to do third phase III trial
-  pg3   <-  Epgo23_normal(kappa = kappa, n2 = n2, 
-                          w = w, Delta1 = Delta1, Delta2 = Delta2,
+  pg3   <-  Epgo23_normal(kappa = kappa, n2 = n2, alpha = alpha, beta = beta, 
+                          a = a, b = b, w = w, Delta1 = Delta1, Delta2 = Delta2,
                           in1, in2) 
   
   # n3 for third phase III trial

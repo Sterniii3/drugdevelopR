@@ -6,6 +6,4 @@
 
 ##  05. Multiple endpoints test cases {-}
 
-+ Setup: DOCUMENT ANY SETUP THAT NEEDS TO BE DONE FOR TESTING
 
-+ Start documenting test case here!
