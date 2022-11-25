@@ -1640,6 +1640,8 @@ utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                        c2, c3, c02, c03, 
                        b1, b2, b3){ 
   
+  ymin <- -log(0.8)
+  
   pg    <-  Epgo_tte(HRgo = HRgo, d2 = d2, 
                      w = w, hr1 = hr1, hr2 = hr2, 
                      id1 = id1, id2 = id2, fixed = FALSE)
