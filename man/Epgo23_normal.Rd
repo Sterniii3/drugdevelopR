@@ -15,6 +15,10 @@ Epgo23_normal(kappa, n2, alpha, beta, a, b, w, Delta1, Delta2, in1, in2)
 
 \item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
+\item{a}{lower boundary for the truncation}
+
+\item{b}{upper boundary for the truncation}
+
 \item{w}{weight for mixture prior distribution}
 
 \item{Delta1}{assumed true treatment effect for standardized difference in means}

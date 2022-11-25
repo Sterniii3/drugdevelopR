@@ -114,7 +114,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
   stepm2  <- stepl1
   stepl2  <- Inf
   gamma   <- 0
-  ymin <- -log(0.8)
+  ymin <- 0.8
   
   
   alpha_in <- alpha
