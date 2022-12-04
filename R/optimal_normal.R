@@ -51,7 +51,7 @@
 #' @param gamma to model different populations in phase II and III choose `gamma != 0`, default: 0, see
 #'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 #'   for details
-#' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
+#' @param fixed choose if true treatment effects are fixed or following a prior distribution, if TRUE `Delta1` is used as fixed effect
 #' @param skipII skipII choose if skipping phase II is an option, default: FALSE; 
 #' if TRUE, the program calculates the expected utility for the case when phase
 #' II is skipped and compares it to the situation when phase II is not skipped.

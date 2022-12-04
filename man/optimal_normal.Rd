@@ -109,7 +109,7 @@ for details}
 \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 for details}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{Delta1} is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or following a prior distribution, if TRUE \code{Delta1} is used as fixed effect}
 
 \item{skipII}{skipII choose if skipping phase II is an option, default: FALSE;
 if TRUE, the program calculates the expected utility for the case when phase
