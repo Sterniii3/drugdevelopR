@@ -114,7 +114,7 @@ This tutorial only covered drugdevelopR's basic setting. Luckily, the package's 
 
 * *Different outcomes:* Apply it to binary endpoints and time-to-event endpoints.
 * *Interpreting the rest of the output:* Obtain further details on your drug development program.
-* *Fixed or prior:* Model the assumed treatment effect on a prior distribution.
+* *Fixed or prior:* Model the assumed treatment effect on a prior distribution. [click here](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html)
 * *More parameters:* Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.
 * *Complex drug development programs:* Adapt to situations with biased effect estimators, multiple phase III trials, multi-arm trials, or multiple endpoints.
 * *Parallel computing:* Be faster at calculating the optimum by using parallel computing.
