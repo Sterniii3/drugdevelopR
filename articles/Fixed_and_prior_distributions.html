@@ -99,7 +99,7 @@ Optimization is performed with respect to a utility function which takes
 the program’s cost, its success probability and its expected benefit
 when successfully launching the new drug on the market into account.</p>
 <p>Up until now, we presented a very basic example on how the package
-works in <a href="https://sterniii3.github.io/drugdevelopR/#introduction-to-drugdevelopR">Introduction
+works in <a href="https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html">Introduction
 to planning phase II and phase III trials with drugdevelopR</a>. In this
 article, we want to expand the basic setting an want to introduce you to
 modelling the treatment effect by a prior distribution</p>
@@ -160,8 +160,8 @@ the results of the other group are more reliable we reduce the value for
 w, thus putting more weight on <code>Delta2</code>. Note that by
 exchanging the values of <code>Delta1</code> and <code>Delta2</code>
 (and the corresponding values for <code>in1</code> and <code>in2</code>)
-and setting $ w_{new} = 1 - w_{old} $ our results will not change. In
-our case, we want to put more trust on our results and thus set the
+and setting $w_{new} = 1 - w_{old} $ our results will not change. In our
+case, we want to put more trust on our results and thus set the
 parameter <code>w</code> to be 0.6. *Finally, as the prior distribution
 is the sum of two truncated normal distribution we need truncation
 values, <code>a</code> as the lower boundary for the truncation and
@@ -169,8 +169,9 @@ values, <code>a</code> as the lower boundary for the truncation and
 <code>a=0.25</code> and <code>b=0.75</code>.</li>
 </ul>
 <p>The prior distribution for the standardized true difference in means
-is then given by $ ∼ w · ^t_{[0.25,0.75]} (0.625, 4/300) + (1 − w) ·
-^t_{[0.25,0.75]} (0.9, 4/600)$ where <span class="math inline">\(N^t_{[a,b]} (\mu, \sigma^2)\)</span> denotes the
+is then given by <span class="math inline">\(\Delta ∼ w ·
+\mathcal{N}^t_{[0.25,0.75]} (0.625, 4/300) + (1 − w) ·
+\mathcal{N}^t_{[0.25,0.75]} (0.9, 4/600)\)</span> where <span class="math inline">\(N^t_{[a,b]} (\mu, \sigma^2)\)</span> denotes the
 truncated normal distribution with mean <span class="math inline">\(\mu\)</span> variance <span class="math inline">\(\sigma^2\)</span>, truncated below at a and above
 at b. To see how different input values change the prior distribution we
 refer two </p>
@@ -226,7 +227,9 @@ see:</p>
 <ul>
 <li>
 <em>Introduction to drugdevelopR:</em> See how the package works in
-a basic example</li>
+a basic example <a href="https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html">click
+here</a>
+</li>
 <li>
 <em>Different outcomes:</em> Apply it to binary endpoints and
 time-to-event endpoints.</li>
