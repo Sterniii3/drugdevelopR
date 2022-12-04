@@ -2,8 +2,9 @@ pandoc: 2.19.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
+  Fixed_and_prior_distributions: Fixed_and_prior_distributions.html
   introduction-to-drugdevelopR: introduction-to-drugdevelopR.html
-last_built: 2022-11-26T16:29Z
+last_built: 2022-12-04T16:58Z
 urls:
   reference: https://sterniii3.github.io/drugdevelopR/reference
   article: https://sterniii3.github.io/drugdevelopR/articles
