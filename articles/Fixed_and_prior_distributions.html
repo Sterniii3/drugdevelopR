@@ -73,7 +73,10 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Fixed effects and prior distributions</h1>
+                        <h4 data-toc-skip class="author">Johannes
+Cepicka, Lukas D. Sauer</h4>
             
+            <h4 data-toc-skip class="date">22/12/05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/Sterniii3/drugdevelopR/blob/HEAD/vignettes/Fixed_and_prior_distributions.Rmd" class="external-link"><code>vignettes/Fixed_and_prior_distributions.Rmd</code></a></small>
       <div class="d-none name"><code>Fixed_and_prior_distributions.Rmd</code></div>
@@ -101,8 +104,8 @@ when successfully launching the new drug on the market into account.</p>
 <p>Up until now, we presented a very basic example on how the package
 works in <a href="https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html">Introduction
 to planning phase II and phase III trials with drugdevelopR</a>. In this
-article, we want to expand the basic setting an want to introduce you to
-modelling the treatment effect by a prior distribution</p>
+article, we want to expand the basic setting and want to introduce you
+to the modelling of the treatment effect by a prior distribution</p>
 <div class="section level2">
 <h2 id="the-example-setting">The example setting<a class="anchor" aria-label="anchor" href="#the-example-setting"></a>
 </h2>
@@ -115,9 +118,7 @@ outcome variable.</p>
 <code>optimum_normal</code> are the same parameters we also inserted in
 the basic setting, however, this time we set <code>fixed</code> =
 <code>"FALSE"</code>, hence the assumed true treatment effect is not
-fixed but follows a prior distribution. Differing from the baseline
-scenario we now not only one treatment effect, but two
-<code>Delta1</code> and <code>Delta2</code>.</p>
+fixed but follows a prior distribution.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Sterniii3/drugdevelopR" class="external-link">drugdevelopR</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: mvtnorm</span></span>
@@ -131,24 +132,24 @@ scenario we now not only one treatment effect, but two
 <div class="section level3">
 <h3 id="defining-all-necessary-parameters">Defining all necessary parameters<a class="anchor" aria-label="anchor" href="#defining-all-necessary-parameters"></a>
 </h3>
-<p>Additionally to the parameters in the basic setting with fixed
-treatment effects, we now need six more input parameters:</p>
+<p>Additionally to the parameters in the baseline scenario with fixed
+treatment effects, we now need further input parameters:</p>
 <ul>
-<li>Differing from the baseline scenario we now not only one treatment
-effect, but two <code>Delta1</code> and <code>Delta2</code>. The input
-parameter <code>Delta1</code> is the one we got from our own randomized
-control experiment and is given as standardized difference in mean
-(<span class="math inline">\(\Delta=\frac{\mu_{contro} -
+<li>Differing from the baseline scenario we now have not only one
+treatment effect, but two: <code>Delta1</code> and <code>Delta2</code>.
+The input parameter <code>Delta1</code> is the one we got from our own
+randomized control experiment and is given as standardized difference in
+mean (<span class="math inline">\(\Delta=\frac{\mu_{contro} -
 \mu_{exper}}{\sigma}\)</span>) and its value was determined to be 0.625.
 However, we are not so sure about this result, as another research group
 conducted a similar study and got an treatment effect of 0.9, which will
 now be our value for <code>Delta2</code>.</li>
 <li>We now have to add more information about the two experiments which
-is done by the two addiotional parameters <code>in1</code> and
-<code>in2</code>. We call these parameters amount of information and
-they refer to the number of participants which were used in the study to
-determine the treatment effect. If our study was conducted with 300
-participants the value for <code>in1</code> is set to be 300. Let’s
+is done by the two additional parameters <code>in1</code> and
+<code>in2</code>. We call these parameters the “amount of information”
+and they refer to the number of participants which were used in the
+study to determine the treatment effect. If our study was conducted with
+300 participants the value for <code>in1</code> is set to be 300. Let’s
 assume that the study of the other research group was conducted with 600
 participants, so the parameter value for <code>in2</code> is 600.</li>
 <li>Now, a weight parameter <code>w</code> has to be defined, that
@@ -160,11 +161,12 @@ the results of the other group are more reliable we reduce the value for
 w, thus putting more weight on <code>Delta2</code>. Note that by
 exchanging the values of <code>Delta1</code> and <code>Delta2</code>
 (and the corresponding values for <code>in1</code> and <code>in2</code>)
-and setting $w_{new} = 1 - w_{old} $ our results will not change. In our
-case, we want to put more trust on our results and thus set the
-parameter <code>w</code> to be 0.6.</li>
+and setting <span class="math inline">\(w_{new} = 1 - w_{old}\)</span>
+our final results will not change. In our case, we want to put more
+trust on our results and thus set the parameter <code>w</code> to be
+0.6.</li>
 <li>Finally, as the prior distribution is the sum of two truncated
-normal distribution we need truncation values, <code>a</code> as the
+normal distributions we need truncation values, <code>a</code> as the
 lower boundary for the truncation and <code>b</code> as the upper
 boundary. In our case we set <code>a=0.25</code> and
 <code>b=0.75</code>.</li>
@@ -229,7 +231,7 @@ see:</p>
 <ul>
 <li>
 <em>Introduction to drugdevelopR:</em> See how the package works in
-a basic example <a href="https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html">click
+a basic example. <a href="https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html">click
 here</a>
 </li>
 <li>
