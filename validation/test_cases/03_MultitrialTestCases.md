@@ -48,7 +48,7 @@ For strategy 23, the program returns an expected utility of 45.84, optimal sampl
 
 ### 03.02 (shows that req. 03.03, 03.10, 03.15 and 03.18 are met): {-}
 
-Use the function `optimal_multitrial`. Supply the same input values as in test case 03.01, however set the parameter case to 3 and the parameter strategy to 1. 
+Use the function `optimal_multitrial`. Supply the same input values as in test case 03.01, however, set the parameter case to 3 and the parameter strategy to 1. 
 
 Verify that the program returns an optimal sample size of 166 in phase II and 190 in phase III (i.e. a total number of 356 participants), an expected utility of -152.1 and an optimal threshold value of 0.7. Furthermore, verify, that the probability to go to phase III is 0.25 as suggested by Stella Erdmann [2].
 

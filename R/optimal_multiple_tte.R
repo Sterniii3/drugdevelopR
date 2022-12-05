@@ -10,7 +10,6 @@
 #' @param id2 amount of information for hr2 in terms of number of events
 #' @param rho correlation between the two endpoints
 #' @param fixed assumed fixed treatment effect 
-#' @param ec control arm event rate for phase II and III
 #' @param n2min minimal number of events for phase II, must be divisible by 3
 #' @param n2max maximal number of events for phase II, must be divisible by 3
 #' @param stepn2 stepsize for the optimization over d2, must be divisible by 3
@@ -59,8 +58,7 @@
 #' res
 #' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' @examples
-#' #res <- optimal_multiple_tte(hr1 = 0.75, hr2 = 0.80, 
-#' #  ec = 0.6,                                         # define assumed true HRs and control arm event rate
+#' #res <- optimal_multiple_tte(hr1 = 0.75, hr2 = 0.80, # define assumed true HRs
 #' #  id1 = 210, id2 = 420,
 #' #  n2min = 30, n2max = 90, stepn2 = 6,               # define optimization set for n2
 #' #  hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,    # define optimization set for HRgo
@@ -71,8 +69,8 @@
 #' #  stepm1 = 0.95,                                    # "medium"
 #' #  stepl1 = 0.85,                                    # and "large" treatment effect size categories as proposed by IQWiG (2016)
 #' #  b11 = 1000, b21 = 2000, b31 = 3000,
-#' #  b12 = 1000, b22 = 1500, b32 = 2000,               # define expected benefit for a "small", "medium" and "large" treatment effect
-#' #  rho = 0.5, fixed = TRUE,                          # correlation and treatment effect
+#' #  b12 = 1000, b22 = 1500, b32 = 2000,               # define expected benefit for a "small", "medium" and "large" treatment effect (for both categories)
+#' #  rho = 0.6, fixed = TRUE,                          # correlation and treatment effect
 #' #  num_cl = 1)                                       # set number of cores used for parallelized computing 
 #' # res
 #' # cat(comment(res))                                   # displays the optimization sequence, start and finish date of the optimization 
@@ -103,7 +101,7 @@
 #' @editDate 2022-04-23
 #' @export
 
-optimal_multiple_tte <- function(hr1, hr2, id1, id2, ec,
+optimal_multiple_tte <- function(hr1, hr2, id1, id2,
                                n2min, n2max, stepn2,
                                hrgomin, hrgomax, stephrgo,
                                alpha, beta,
@@ -145,7 +143,7 @@ result <- NULL
                         "K", "N", "S",
                         "c2", "c3", "c02", "c03",
                         "b11", "b21", "b31","b12","b22","b32", "HRgo",
-                        "hr1", "hr2", "id1", "id2", "ec", "rho", "fixed"), envir = environment())
+                        "hr1", "hr2", "id1", "id2", "rho", "fixed"), envir = environment())
     
     
     res <- parallel::parSapply(cl, N2, utility_multiple_tte, HRgo,

@@ -22,7 +22,7 @@ Use the function `optimal_multiarm`. Supply the following input values to the fu
   * a significance level of 0.025,
   * a power of 0.9, i.e. $\beta$ of 0.1,
   * assumed true treatment hazard ratios of 0.75 and 0.85,
-  * hazard ration of the control arm of 0.6
+  * hazard ratio of the control arm of 0.6
   * the optimization region {10, 11, …, 200} for the number of participants (events in the time-to-event setting) in phase II,
   * the optimization region {0.71, 0.72, ..., 0.9} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,

@@ -240,7 +240,7 @@ expn3go_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #' @param rho correlation between the two endpoints
 #' @return The output of the the function `EPsProg_multiple_tte()` is the expected probability of a successful program, when going to phase III.
 #' @examples res <- EPsProg_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.025, beta = 0.1,
-#'                                ec = 0.6, hr1 = 0.75, hr2 = 0.80,
+#'                                ec = 1, hr1 = 0.75, hr2 = 0.80,
 #'                                id1 = 300, id2 = 600, 
 #'                                step1 = 1, step2 = 0.95,
 #'                                fixed = TRUE, rho = 0.3)
@@ -260,7 +260,7 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
   
   c     = (qnorm(1-alpha)+qnorm(1-beta))^2 
   
-   if(fixed) {return(  integrate(function(x){ 
+   if(fixed) {return(integrate(function(x){ 
           sapply(x,function(x){ 
             integrate(function(y){ 
               sapply(y,function(y){
@@ -393,7 +393,6 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
-#' @param ec control arm event rate for phase II and III
 #' @param hr1 assumed true treatment effect on HR scale for treatment 1
 #' @param hr2 assumed true treatment effect on HR scale for treatment 2
 #' @param id1 amount of information for `hr1` in terms of sample size
@@ -419,7 +418,7 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
 #' @return The output of the the function `utility_multiple_tte()` is the expected utility of the program.
 #' @examples res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
 #'                                hr1 = 0.75, hr2 = 0.80,
-#'                                id1 = 300, id2 = 600, ec = 0.6,
+#'                                id1 = 300, id2 = 600,
 #'                                c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               
 #'                                K = Inf, N = Inf, S = -Inf, 
 #'                                steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
@@ -429,7 +428,7 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23  
 #' @export
-utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2, ec,
+utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
                                c2, c02, c3, c03, K, N, S,
                                steps1, stepm1, stepl1, 
                                b11, b21, b31, b12, b22, b32, fixed, rho){ 

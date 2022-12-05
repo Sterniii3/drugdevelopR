@@ -55,7 +55,7 @@
 #' 
 #' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #'  @examples
-#'  #res <- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs and control arm event rate
+#'  #res <- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs
 #'  # in1=300, in2=600, sigma1 = 8, sigma2= 12,
 #'  # n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
 #'  # kappamin = 0.7, kappamax = 0.9, stepkappa = 0.05,         # define optimization set for HRgo
