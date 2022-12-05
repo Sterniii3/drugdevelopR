@@ -162,11 +162,12 @@ exchanging the values of <code>Delta1</code> and <code>Delta2</code>
 (and the corresponding values for <code>in1</code> and <code>in2</code>)
 and setting $w_{new} = 1 - w_{old} $ our results will not change. In our
 case, we want to put more trust on our results and thus set the
-parameter <code>w</code> to be 0.6. *Finally, as the prior distribution
-is the sum of two truncated normal distribution we need truncation
-values, <code>a</code> as the lower boundary for the truncation and
-<code>b</code> as the upper boundary. In our case we set
-<code>a=0.25</code> and <code>b=0.75</code>.</li>
+parameter <code>w</code> to be 0.6.</li>
+<li>Finally, as the prior distribution is the sum of two truncated
+normal distribution we need truncation values, <code>a</code> as the
+lower boundary for the truncation and <code>b</code> as the upper
+boundary. In our case we set <code>a=0.25</code> and
+<code>b=0.75</code>.</li>
 </ul>
 <p>The prior distribution for the standardized true difference in means
 is then given by <span class="math inline">\(\Delta ∼ w ·
@@ -174,7 +175,8 @@ is then given by <span class="math inline">\(\Delta ∼ w ·
 \mathcal{N}^t_{[0.25,0.75]} (0.9, 4/600)\)</span> where <span class="math inline">\(N^t_{[a,b]} (\mu, \sigma^2)\)</span> denotes the
 truncated normal distribution with mean <span class="math inline">\(\mu\)</span> variance <span class="math inline">\(\sigma^2\)</span>, truncated below at a and above
 at b. To see how different input values change the prior distribution we
-refer two </p>
+refer to the <a href="https://web.imbi.uni-heidelberg.de/prior/" class="external-link">Shiny
+App</a></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_normal.html">optimal_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.625</span>, Delta2 <span class="op">=</span> <span class="fl">0.8</span> ,fixed <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># treatment effect</span></span>
 <span>                       n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">400</span>, <span class="co"># sample size region</span></span>
