@@ -127,7 +127,7 @@ result <- NULL
 
   
   ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
-    sp2fkt <- sp3fkt <- n3fkt <- matrix(0, length(N2), length(HRGO))
+    sp2fkt <- sp3fkt <- n3fkt <- OSfkt <- matrix(0, length(N2), length(HRGO))
   
   cat("Optimization progress:", fill = TRUE)
   cat("", fill = TRUE)
@@ -149,7 +149,7 @@ result <- NULL
     
     
     res <- parallel::parSapply(cl, N2, utility_multiple_tte, HRgo,
-                     alpha,beta,hr1,hr2,id1,id2,ec,rho,fixed,
+                     alpha,beta,hr1,hr2,id1,id2,rho,fixed,
                      c2,c02,c3,c03,K,N,S,
                      steps1, stepm1, stepl1,b11,b21,b31,b12,b22,b32)
     
@@ -187,7 +187,7 @@ result <- NULL
     result <-  rbind(result, data.frame(u = round(Eud,2), HRgo = HRGO[J], n2 = N2[I], 
                                         n3 = n3, n = N2[I] + n3,
                                         pgo = round(pg,2), sProg = round(prob,2),
-                                        hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,  ec = ec, rho = rho, 
+                                        hr1 = hr1, hr2 = hr2, id1 = id1, id2 = id2,  rho = rho, 
                                         K = K, N = N, S = S, K2 = round(k2), K3 = round(k3),
                                         sProg2 = round(prob2,2), sProg3 = round(prob3,2),
                                         steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
@@ -199,7 +199,7 @@ result <- NULL
     result <-  rbind(result, data.frame(u = round(Eud,2), HRgo = HRGO[J], n2 = N2[I], 
                                         n3 = n3, n = N2[I] + n3,
                                         pgo = round(pg,2), sProg = round(prob,2),
-                                        hr1 = hr1, hr2 = hr2, ec = ec, rho = rho,
+                                        hr1 = hr1, hr2 = hr2,  rho = rho,
                                         K = K, N = N, S = S, K2 = round(k2), K3 = round(k3),
                                         sProg2 = round(prob2,2), sProg3 = round(prob3,2),
                                         steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
