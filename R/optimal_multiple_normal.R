@@ -158,6 +158,8 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
       sp3fkt[, j]   <-  res[6, ]
       K2fkt[, j]    <-  res[7, ]
       K3fkt[, j]    <-  res[8, ]
+      
+    }
     
     ind   <-  which(ufkt  ==  max(ufkt), arr.ind <-  TRUE)
     
@@ -208,7 +210,7 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
                          "\noptimization sequence n2:", N2,
                          "\nset on date:", as.character(date),
                          "\nfinish date:", as.character(Sys.time()))
-  }
+
   close(pb)
   
   cat("", fill = TRUE)
