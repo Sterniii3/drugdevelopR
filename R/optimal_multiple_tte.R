@@ -111,6 +111,8 @@ optimal_multiple_tte <- function(hr1, hr2, id1, id2,
                                steps1, stepm1, stepl1,
                                rho, fixed,  num_cl = 1){
   
+
+  
 steps2 <- stepm1
 stepm2 <- stepl1
 stepl2 <- 0

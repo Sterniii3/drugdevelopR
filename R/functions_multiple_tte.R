@@ -505,4 +505,4 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
    }
    
 }
-   
+

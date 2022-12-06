@@ -13,7 +13,6 @@ utility_multiple_tte(
   hr2,
   id1,
   id2,
-  ec,
   c2,
   c02,
   c3,
@@ -50,8 +49,6 @@ utility_multiple_tte(
 \item{id1}{amount of information for \code{hr1} in terms of sample size}
 
 \item{id2}{amount of information for \code{hr2} in terms of sample size}
-
-\item{ec}{control arm event rate for phase II and III}
 
 \item{c2}{variable per-patient cost for phase II}
 
@@ -104,7 +101,7 @@ Note, that for calculating the utility of the program, two different benefit tri
 \examples{
 res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
                                hr1 = 0.75, hr2 = 0.80,
-                               id1 = 300, id2 = 600, ec = 0.6,
+                               id1 = 300, id2 = 600,
                                c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               
                                K = Inf, N = Inf, S = -Inf, 
                                steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
