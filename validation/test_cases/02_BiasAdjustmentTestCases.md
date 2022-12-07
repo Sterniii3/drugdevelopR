@@ -24,7 +24,7 @@ Use the function `optimal_bias()`. Supply the following input values to the func
   * a power of 0.9, i.e. $\beta$ of 0.1,
   * assumed true treatment effects of 0.69 and 0.88,
   * event rates of 0.7 for both phase II and phase III,
-  * the optimization region {20, 25, …, 100} for the number of participants (events in the time-to-event setting) in phase II,
+  * the optimization region {20, 25, …, 100} for the number of events in phase II,
   * the optimization region {0.7, 0.72, ..., 0.9} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
   * expected gains of 100,000,000\$, 200,000,000\$, and 300,000,000\$ for each effect size, respectively,
@@ -33,9 +33,10 @@ Use the function `optimal_bias()`. Supply the following input values to the func
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * “fixed=FALSE”, i.e. set the function to use a prior distribution,
   * weight of 0.3 for the prior distribution,
-  * amount of information for prior true treatment effect given by 210 and 420 events for each treatment effect in phase II.
-
-Furthermore set the adjustment method to "additive" and set the optimization region for the additive adjustment parameter $\alpha_CI$ to {0.3, 0.325, ..., 0.5}. Set the values for the multiplicative adjustment parameter to NULL.
+  * amount of information for prior true treatment effect given by 210 and 420 events for each treatment effect in phase II,
+  * choice of "additive" bias adjustment method,
+  * the optimization region {0.3, 0.325, ..., 0.5} for the additive adjustment parameter $\alpha_CI$, 
+  * value of NULL for the multiplicative adjustment parameter.
 
 Verify that the function calculates an optimal sample size of 122 in phase II and 200 in phase III (i.e. a total of 322 participants), an expected utility of 78 (in 10^5\$), and an optimal threshold value of 0.78 as suggested by Stella Erdmann [2]. Furthermore, verify that one can expect 85 events in phase II and 140 events in phase III (i.e. 225 in total).
 

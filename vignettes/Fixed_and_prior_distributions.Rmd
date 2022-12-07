@@ -1,7 +1,6 @@
 ---
 title: "Fixed effects and prior distributions"
-author: "Johannes Cepicka, Lukas D. Sauer"
-date: "22/12/05"
+author: "Johannes Cepicka"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Fixed_and_prior_distributions}
@@ -18,38 +17,33 @@ knitr::opts_chunk$set(
 
 Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
 
-The drugdevelopR package enables us to optimally plan such programs using a utility maximizing approach. Specifically, it calculates
-
-* the optimal sample size for phase II and the resulting sample size for phase III, as well as
-* the optimal go/no-go decision rule.
-
-The decision rule is the optimal threshold for deciding whether we should proceed to phase III based on the results of phase II. Optimization is performed with respect to a utility function which takes the program's cost, its success probability and its expected benefit when successfully launching the new drug on the market into account. 
-
-Up until now, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html). In this article, we want to expand the basic setting and want to introduce you to the modelling of the treatment effect by a prior distribution
+The drugdevelopR package enables us to optimally plan such programs using a utility maximizing approach. Up until now, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html). In this article, we want to expand the basic setting and want to introduce you to the modelling of the treatment effect by a prior distribution
 
 # The example setting
 
 We are in the same setting as in the introduction, i.e. we  suppose we are developing a new tumor treatment, *exper*. The patient variable that we want to investigate is the difference in tumor width between the one-year visit and baseline. This is a normally distributed outcome variable.
 
-The parameters we insert into the function `optimum_normal` are the same parameters we also inserted in the basic setting, however, this time we set `fixed` = `"FALSE"`, hence the assumed true treatment effect is not fixed but follows a prior distribution. 
+The parameters we insert into the function `optimum_normal` are the same parameters we also inserted in the basic setting, however, this time we set `fixed` = `"FALSE"`, hence the assumed true treatment effect is not fixed but follows a prior distribution. Again, we start by loading the drugdevelopR package.
 
 
 ```{r setup}
 library(drugdevelopR)
 ```
-## Defining all necessary parameters
+
+## Parameters of the prior distriution
+
 Additionally to the parameters in the baseline scenario with fixed treatment effects, we now need further input parameters:
 
-* Differing from the baseline scenario we now have not only one treatment effect, but two: `Delta1` and `Delta2`. The input parameter `Delta1` is the one we got from our own randomized control experiment and is given as standardized difference in mean ($\Delta=\frac{\mu_{contro} - \mu_{exper}}{\sigma}$) and its value was determined to be 0.625. However, we are not so sure about this result, as another research group conducted a similar study and got an treatment effect of 0.9, which will now be our value for `Delta2`.
+* Differing from the baseline scenario we now have not only one treatment effect, but two: `Delta1` and `Delta2`. The input parameter `Delta1` is the one we got from some randomized controlled pilot trial that our team conducted earlier. Its value is given as the standardized difference in means ($\Delta=\frac{\mu_{contro} - \mu_{exper}}{\sigma}$) and its value was determined to be 0.625. However, we are not so sure about this result, as another research group conducted a similar study and got an treatment effect of 0.9, which will now be our value for `Delta2`. Of course, the choice of $\Delta_1$ and $\Delta_2$ need not be built on two clinical studies, but can also be derived from different sources for forming a prior belief, e.g. clinical experience.
 * We now have to add more information about the two experiments which is done by the two additional parameters `in1` and `in2`. We call these parameters the "amount of information" and they refer to the number of participants which were used in the study to determine the treatment effect. If our study was conducted with 300 participants the value for `in1` is set to be 300. Let's assume that the study of the other research group was conducted with 600 participants, so the parameter value for `in2` is 600.
-* Now, a weight parameter `w` has to be defined, that allows us to weigh the two treatment effects. If we want to trust our results more, than we can set a higher parameter value for w (Note w has to be between 0 and 1, a parameter value of 1 would put all the weight on our results and none on the results of the second study), if we think the results of the other group are more reliable we reduce the value for w, thus putting more weight on `Delta2`. Note that by exchanging the values of `Delta1` and `Delta2` (and the corresponding values for `in1` and `in2`) and setting $w_{new} = 1 - w_{old}$ our final results will not change. In our case, we want to put more trust on our results and thus set the parameter `w` to be 0.6.
-* Finally, as the prior distribution is the sum of two truncated normal distributions we need truncation values, `a` as the lower boundary for the truncation and `b` as the upper boundary. In our case we set `a = 0.25` and `b = 0.75`.
+* Now, a weight parameter `w` has to be defined, that allows us to weigh the two treatment effects. If we want to trust our results more, than we can set a higher parameter value for w (Note w has to be between 0 and 1, a parameter value of 1 would put all the weight on our results and none on the results of the second study), if we think the results of the other group are more reliable we reduce the value for w, thus putting more weight on `Delta2`. Note that by exchanging the values of `Delta1` and `Delta2` (and the corresponding values for `in1` and `in2`) and setting $w_{new} = 1 - w_{old}$ our final results will not change. In our case, we want to put more trust on our results and thus set the parameter `w` to be 0.6. Setting the weight to $1$ would effectively mean ignoring the second treatment effect, which is also possible.
+* The prior distribution used in the package is the sum of two truncated normal distributions. Hence, we need truncation values `a` as the lower boundary for the truncation and `b` as the upper boundary. In our case we set `a = 0.25` and `b = 0.75`.
 
 The prior distribution for the standardized true difference in means is then given by
 $\Delta ∼ w · \mathcal{N}^t_{[0.25,0.75]} (0.625, 4/300) + (1 − w) · \mathcal{N}^t_{[0.25,0.75]} (0.9, 4/600)$
 where $N^t_{[a,b]} (\mu, \sigma^2)$ denotes the truncated normal distribution with mean $\mu$,
 variance $\sigma^2$, truncated below at a and above at b.
-To see how different input values change the prior distribution we refer to the [Shiny App](https://web.imbi.uni-heidelberg.de/prior/)
+To see how different input values change the prior distribution we refer to the [Shiny App](https://web.imbi.uni-heidelberg.de/prior/).
 
 ```{r,eval = FALSE}
  res <- optimal_normal(Delta1 = 0.625, Delta2 = 0.8 ,fixed = FALSE, # treatment effect
@@ -75,8 +69,9 @@ The program returns a total of thirteen values and the input values. Once again 
 * `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 3473.81, i.e we have an expected utility of 347 381 000\$. This is a 6.56\% increase over the scenario without the prior distribution. The increase in the expected utility can be attributed to the additional weight which was put on the second treatment effect `Delta2`, which was more promising than our treatment effect.
 
 # Where to go from here
-This tutorial explains how to correctly interpret and  the parameters needed for the prior distribution when setting the the parameter `fixed` to be `"FALSE"`
-More more information, see:
+This tutorial explains how to use the parameters needed for the prior distribution when setting the parameter `fixed` to be `"FALSE"`.
+
+For more information on how to use the package, see:
 
 * *Introduction to drugdevelopR:* See how the package works in a basic example. [click here](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html)
 * *Different outcomes:* Apply it to binary endpoints and time-to-event endpoints.

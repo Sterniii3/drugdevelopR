@@ -1,7 +1,6 @@
 ---
 title: "Introduction to planning phase II and phase III trials with drugdevelopR"
 author: "Johannes Cepicka, Lukas D. Sauer"
-date: "22/05/29"
 output: rmarkdown::html_vignette
 description: |
   Learn how to use the drugdevelopR package with a hands-on oncological example.
