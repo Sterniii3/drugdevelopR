@@ -1,46 +1,51 @@
 #' Optimal phase II/III drug development planning when discounting phase II results
 #'
 #' The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results (Preussler et. al, 2020). 
+#' [TODO: Why is the function called "_bias"? Add one ore two sentences that make clear what is the difference to the function optimal_normal. For which endpoint distribution?
+#' Is this only for time-to-event endpoints?]
 #' The assumed true treatment effects can be assumed fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}) or modelled by a prior distribution.
 #' The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. 
 #' Fast computing is enabled by parallel programming.
 #' 
 #' @name optimal_bias
 #' @param w weight for mixture prior distribution
-#' @param hr1 first assumed true treatment effect on HR scale for prior distribution
+#' @param hr1 first assumed true treatment effect on HR scale for prior 
+#' distribution, see the \href{https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html}{vignette on priors}
+#'  as well as the \href{https://web.imbi.uni-heidelberg.de/prior/}{Shiny app} for
+#'  more details concerning the definition of a prior distribution.
 #' @param hr2 second assumed true treatment effect on HR scale for prior distribution
-#' @param id1 amount of information for hr1 in terms of number of events
-#' @param id2 amount of information for hr2 in terms of number of events
+#' @param id1 amount of information for \code{hr1} in terms of number of events
+#' @param id2 amount of information for \code{hr2} in terms of number of events
 #' @param d2min minimal number of events for phase II
 #' @param d2max maximal number of events for phase II
-#' @param stepd2 stepsize for the optimization over d2
+#' @param stepd2 stepsize for the optimization over \code{d2}
 #' @param hrgomin minimal threshold value for the go/no-go decision rule
 #' @param hrgomax maximal threshold value for the go/no-go decision rule
-#' @param adj choose type of adjustment: "multiplicative", "additive", "both" (or "all")
+#' @param adj choose type of adjustment: \code{"multiplicative"}, \code{"additive"}, \code{"both"} (or \code{"all"})
 #' @param stephrgo stepsize for the optimization over HRgo
-#' @param lambdamin minimal adjustment parameter lambda
+#' @param lambdamin minimal adjustment parameter lambda [TODO: What is lambda, is this the multiplicative adjustment parameter?]
 #' @param lambdamax maximal adjustment parameter lambda
 #' @param steplambda stepsize for the adjustment parameter lambda
-#' @param alphaCImin minimal alphaCI
+#' @param alphaCImin minimal alphaCI [TODO: What is alphaCI, is this the multiplicative adjustment parameter?]
 #' @param alphaCImax maximal alphaCI
 #' @param stepalphaCI stepsize for alphaCI
 #' @param beta 1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula
 #' @param alpha one-sided significance level
-#' @param xi2 event rate for phase II
+#' @param xi2 event rate for phase II [TODO: I do not really how I would know this value beforehand. Wouldn't I always make the same guess as for HR1 or HR2?]
 #' @param xi3 event rate for phase III
-#' @param c2 variable per-patient cost for phase II
-#' @param c3 variable per-patient cost for phase III
-#' @param c02 fixed cost for phase II
-#' @param c03 fixed cost for phase III
+#' @param c2 variable per-patient cost for phase II in 10^5 $
+#' @param c3 variable per-patient cost for phase III in 10^5 $
+#' @param c02 fixed cost for phase II in 10^5 $
+#' @param c03 fixed cost for phase III in 10^5 $
 #' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
 #' @param N constraint on the total expected sample size of the program, default: Inf, e.g., no constraint
 #' @param S constraint on the expected probability of a successful program, default: -Inf, e.g., no constraint
 #' @param steps1 lower boundary for effect size category "small" in HR scale, default: 1
 #' @param stepm1 lower boundary for effect size category "medium" in HR scale = upper boundary for effect size category "small" in HR scale, default: 0.95
 #' @param stepl1 lower boundary for effect size category "large" in HR scale = upper boundary for effect size category "medium" in HR scale, default: 0.85
-#' @param b1 expected gain for effect size category "small"
-#' @param b2 expected gain for effect size category "medium"
-#' @param b3 expected gain for effect size category "large"
+#' @param b1 expected gain for effect size category "small" in 10^5 $
+#' @param b2 expected gain for effect size category "medium" in 10^5 $
+#' @param b3 expected gain for effect size category "large" in 10^5 $
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return
@@ -67,7 +72,7 @@
 #'   }
 #' and further input parameters.
 #'
-#' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+#' Taking \code{cat(comment())} of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' @examples
 #' res <- optimal_bias(w = 0.3,                                 # define parameters for prior
 #'   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,              # (https://web.imbi.uni-heidelberg.de/prior/)

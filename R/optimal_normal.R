@@ -45,9 +45,9 @@
 #' @param steps1 lower boundary for effect size category "small", default: 0
 #' @param stepm1 lower boundary for effect size category "medium" = upper boundary for effect size category "small" default: 0.5
 #' @param stepl1 lower boundary for effect size category "large" = upper boundary for effect size category "medium", default: 0.8
-#' @param b1 expected gain for effect size category "small"
-#' @param b2 expected gain for effect size category "medium"
-#' @param b3 expected gain for effect size category "large"
+#' @param b1 expected gain for effect size category "small" in 10^5 $
+#' @param b2 expected gain for effect size category "medium" in 10^5 $
+#' @param b3 expected gain for effect size category "large" in 10^5 $
 #' @param gamma to model different populations in phase II and III choose `gamma != 0`, default: 0, see
 #'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 #'   for details
