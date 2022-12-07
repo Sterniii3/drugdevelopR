@@ -112,6 +112,6 @@ Use the function `optimal_normal()`. Supply the same input values as in test cas
 Verify that the function calculates an optimal sample size of 78 in phase II, an expected utility of 944 (in 10^5\$)  and an optimal threshold value of 0.12 as suggested by Stella Erdmann [2]. Furthermore, verify that the probability of a successful program is given by 0.83, which is the sum of the probabilities of a small (0.51), medium (0.30) or large (0.02) treatment effect.
 
 ### 01.12 (shows that req. 01.08 is met): {-}
-Use the `function optimal_tte`. Supply the same input values as in test case 01.01 to the function except for the following change: Set the number of cores for parallel computing to 1. Verify that the computation time will increase compared to the setting in 01.02.
+Use the `function optimal_tte`. Supply the same input values as in test case 01.01 to the function except for the following change: Set the number of cores for parallel computing to 1. Verify that the computation time will increase compared to the setting in 01.01.
 
 
