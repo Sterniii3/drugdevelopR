@@ -74,9 +74,8 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Fixed effects and prior distributions</h1>
                         <h4 data-toc-skip class="author">Johannes
-Cepicka, Lukas D. Sauer</h4>
+Cepicka</h4>
             
-            <h4 data-toc-skip class="date">22/12/05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/Sterniii3/drugdevelopR/blob/HEAD/vignettes/Fixed_and_prior_distributions.Rmd" class="external-link"><code>vignettes/Fixed_and_prior_distributions.Rmd</code></a></small>
       <div class="d-none name"><code>Fixed_and_prior_distributions.Rmd</code></div>
@@ -90,19 +89,8 @@ drug development program consists of an exploratory phase II trial which
 is, in case of promising results, followed by a confirmatory phase III
 trial.</p>
 <p>The drugdevelopR package enables us to optimally plan such programs
-using a utility maximizing approach. Specifically, it calculates</p>
-<ul>
-<li>the optimal sample size for phase II and the resulting sample size
-for phase III, as well as</li>
-<li>the optimal go/no-go decision rule.</li>
-</ul>
-<p>The decision rule is the optimal threshold for deciding whether we
-should proceed to phase III based on the results of phase II.
-Optimization is performed with respect to a utility function which takes
-the program’s cost, its success probability and its expected benefit
-when successfully launching the new drug on the market into account.</p>
-<p>Up until now, we presented a very basic example on how the package
-works in <a href="https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html">Introduction
+using a utility maximizing approach. Up until now, we presented a very
+basic example on how the package works in <a href="https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html">Introduction
 to planning phase II and phase III trials with drugdevelopR</a>. In this
 article, we want to expand the basic setting and want to introduce you
 to the modelling of the treatment effect by a prior distribution</p>
@@ -118,7 +106,8 @@ outcome variable.</p>
 <code>optimum_normal</code> are the same parameters we also inserted in
 the basic setting, however, this time we set <code>fixed</code> =
 <code>"FALSE"</code>, hence the assumed true treatment effect is not
-fixed but follows a prior distribution.</p>
+fixed but follows a prior distribution. Again, we start by loading the
+drugdevelopR package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Sterniii3/drugdevelopR" class="external-link">drugdevelopR</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: mvtnorm</span></span>
@@ -130,20 +119,22 @@ fixed but follows a prior distribution.</p>
 <span><span class="co">#&gt; Loading required package: cubature</span></span>
 <span><span class="co">#&gt; Loading required package: MASS</span></span></code></pre></div>
 <div class="section level3">
-<h3 id="defining-all-necessary-parameters">Defining all necessary parameters<a class="anchor" aria-label="anchor" href="#defining-all-necessary-parameters"></a>
+<h3 id="parameters-of-the-prior-distriution">Parameters of the prior distriution<a class="anchor" aria-label="anchor" href="#parameters-of-the-prior-distriution"></a>
 </h3>
 <p>Additionally to the parameters in the baseline scenario with fixed
 treatment effects, we now need further input parameters:</p>
 <ul>
 <li>Differing from the baseline scenario we now have not only one
 treatment effect, but two: <code>Delta1</code> and <code>Delta2</code>.
-The input parameter <code>Delta1</code> is the one we got from our own
-randomized control experiment and is given as standardized difference in
-mean (<span class="math inline">\(\Delta=\frac{\mu_{contro} -
+The input parameter <code>Delta1</code> is the one we got from some
+randomized controlled pilot trial that our team conducted earlier. Its
+value is given as the standardized difference in means (<span class="math inline">\(\Delta=\frac{\mu_{contro} -
 \mu_{exper}}{\sigma}\)</span>) and its value was determined to be 0.625.
 However, we are not so sure about this result, as another research group
 conducted a similar study and got an treatment effect of 0.9, which will
-now be our value for <code>Delta2</code>.</li>
+now be our value for <code>Delta2</code>. Of course, the choice of <span class="math inline">\(\Delta_1\)</span> and <span class="math inline">\(\Delta_2\)</span> need not be built on two
+clinical studies, but can also be derived from different sources for
+forming a prior belief, e.g. clinical experience.</li>
 <li>We now have to add more information about the two experiments which
 is done by the two additional parameters <code>in1</code> and
 <code>in2</code>. We call these parameters the “amount of information”
@@ -164,12 +155,14 @@ exchanging the values of <code>Delta1</code> and <code>Delta2</code>
 and setting <span class="math inline">\(w_{new} = 1 - w_{old}\)</span>
 our final results will not change. In our case, we want to put more
 trust on our results and thus set the parameter <code>w</code> to be
-0.6.</li>
-<li>Finally, as the prior distribution is the sum of two truncated
-normal distributions we need truncation values, <code>a</code> as the
-lower boundary for the truncation and <code>b</code> as the upper
-boundary. In our case we set <code>a = 0.25</code> and
-<code>b = 0.75</code>.</li>
+0.6. Setting the weight to <span class="math inline">\(1\)</span> would
+effectively mean ignoring the second treatment effect, which is also
+possible.</li>
+<li>The prior distribution used in the package is the sum of two
+truncated normal distributions. Hence, we need truncation values
+<code>a</code> as the lower boundary for the truncation and
+<code>b</code> as the upper boundary. In our case we set
+<code>a = 0.25</code> and <code>b = 0.75</code>.</li>
 </ul>
 <p>The prior distribution for the standardized true difference in means
 is then given by <span class="math inline">\(\Delta ∼ w ·
@@ -178,7 +171,7 @@ is then given by <span class="math inline">\(\Delta ∼ w ·
 truncated normal distribution with mean <span class="math inline">\(\mu\)</span>, variance <span class="math inline">\(\sigma^2\)</span>, truncated below at a and above
 at b. To see how different input values change the prior distribution we
 refer to the <a href="https://web.imbi.uni-heidelberg.de/prior/" class="external-link">Shiny
-App</a></p>
+App</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_normal.html">optimal_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.625</span>, Delta2 <span class="op">=</span> <span class="fl">0.8</span> ,fixed <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># treatment effect</span></span>
 <span>                       n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">400</span>, <span class="co"># sample size region</span></span>
@@ -224,10 +217,10 @@ which was more promising than our treatment effect.</li>
 <div class="section level2">
 <h2 id="where-to-go-from-here">Where to go from here<a class="anchor" aria-label="anchor" href="#where-to-go-from-here"></a>
 </h2>
-<p>This tutorial explains how to correctly interpret and the parameters
-needed for the prior distribution when setting the the parameter
-<code>fixed</code> to be <code>"FALSE"</code> More more information,
-see:</p>
+<p>This tutorial explains how to use the parameters needed for the prior
+distribution when setting the parameter <code>fixed</code> to be
+<code>"FALSE"</code>.</p>
+<p>For more information on how to use the package, see:</p>
 <ul>
 <li>
 <em>Introduction to drugdevelopR:</em> See how the package works in
