@@ -333,7 +333,7 @@ test_that("01.12", {
   res = optimal_tte(
     alpha = 0.025, # significance level
     beta = 0.1, # 1 - power
-    hr1 = 0.8, hr2 = NULL, # assumed treatment effects
+    hr1 = 0.69, hr2 = 0.88, # assumed treatment effects
     xi2 = 0.7, xi3 = 0.7, # event rates
     d2min = 10, d2max = 400, stepd2 = 1, # optimization region for the number of events
     hrgomin = 0.71, hrgomax = 0.95, stephrgo = 0.01, # optimization
@@ -344,19 +344,18 @@ test_that("01.12", {
     num_cl = 3, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
-    fixed = TRUE, # use a prior distribution
-    w = NULL, # weight for the prior distribution
-    id1 = NULL, id2 = NULL, # amount of information (number of events) for prior
+    fixed = FALSE, # use a prior distribution
+    w = 0.3, # weight for the prior distribution
+    id1 = 210, id2 = 420, # amount of information (number of events) for prior
     # true treatment effect
   )
   end_time_3 = Sys.time()
   time_elapsed_01_02_num_cl_3 = end_time_3 - start_time_3
   start_time_1 = Sys.time()
-  # Time to event with fixed treatment effects
   res = optimal_tte(
     alpha = 0.025, # significance level
     beta = 0.1, # 1 - power
-    hr1 = 0.69, hr2 = 0.80, # assumed treatment effects
+    hr1 = 0.69, hr2 = 0.88, # assumed treatment effects
     xi2 = 0.7, xi3 = 0.7, # event rates
     d2min = 10, d2max = 400, stepd2 = 1, # optimization region for the number of events
     hrgomin = 0.71, hrgomax = 0.95, stephrgo = 0.01, # optimization
@@ -367,9 +366,9 @@ test_that("01.12", {
     num_cl = 1, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
-    fixed = TRUE, # use a prior distribution
-    w = NULL, # weight for the prior distribution
-    id1 = NULL, id2 = NULL, # amount of information (number of events) for prior
+    fixed = FALSE, # use a prior distribution
+    w = 0.3, # weight for the prior distribution
+    id1 = 210, id2 = 420, # amount of information (number of events) for prior
     # true treatment effect
   )
   end_time_1 = Sys.time()
