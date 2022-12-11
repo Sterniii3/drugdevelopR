@@ -91,9 +91,8 @@ test_that("01.03", {
   expect_equal(res$n2, 228) # optimal sample size in phase II
   expect_equal(res$u, 996, tolerance = 0.05) # expected utility
   expect_equal(res$HRgo, 0.84)
-  expect_equal(res$K, 750) # expected number of events in phase II
-  expect_equal(res$K2, 271) # expected number of events in phase III
-  expect_equal(res$K3, 530) # total expected number of events
+  expect_equal(res$K2, 271)
+  expect_equal(res$K3, 478)
 })
 
 #' @editor Lukas D Sauer
@@ -184,9 +183,9 @@ test_that("01.06", {
     # true treatment effect
     skipII = TRUE # skip phase II
   )
-  expect_equal(res[[2]]$n2, 824) # optimal sample size in phase II
+  expect_equal(res[[2]]$n3, 824) # optimal sample size in phase III after skipping phase II
   expect_equal(res[[2]]$u, 1706, tolerance = 0.0001) # expected utility
-  expect_equal(res[[2]]$HRgo, 0.76) # threshold for proceeding to phase III
+  expect_equal(res[[2]]$HR, 0.76) # threshold for proceeding to phase III
 })
 
 #' @editor Lukas D Sauer
@@ -224,7 +223,7 @@ test_that("01.08", {
   # Testing binary endpoints with fixed effects
   res = optimal_binary(alpha = 0.025,
                        beta = 0.1,
-                       p0 = 0.6, p11 = 0.3, p12 = 0.5,
+                       p0 = 0.6, p11 = 0.5, p12 = NULL,
                        n2min = 10, n2max = 500, stepn2 = 2,
                        rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
                        steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
@@ -263,7 +262,7 @@ test_that("01.09", {
                        in1 = 30, in2 = 60
   )
   expect_equal(res$n2, 224)
-  expect_equal(res$u, 1542)
+  expect_equal(res$u, 1542, tolerance = 0.0005)
   expect_equal(res$RRgo, 0.89)
 })
 
@@ -274,10 +273,10 @@ test_that("01.10", {
   res = optimal_normal(
     alpha = 0.025,
     beta = 0.1,
-    Delta1 = 0.325, Delta2 = 0.625,
+    Delta1 = 0.375, Delta2 = 0.5,
     n2min = 10, n2max = 500, stepn2 = 2,
     kappamin = 0.01, kappamax = 0.5, stepkappa = 0.01,
-    steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
+    steps1 = 0, stepm1 = 0.375, stepl1 = 0.625,
     b1 = 625, b2 = 2000, b3 = 10000,
     num_cl = 3,
     c02 = 15, c03 = 20,
@@ -288,7 +287,7 @@ test_that("01.10", {
     a = 0, b = 0.75
   )
   expect_equal(res$n2, 86) # optimal sample size in phase II
-  expect_equal(res$u, 337, tolerance = 0.0005) # expected utility
+  expect_equal(res$u, 337, tolerance = 0.001) # expected utility
   expect_equal(res$Kappa, 0.19) # threshold for proceeding to phase III
 })
 
@@ -299,10 +298,10 @@ test_that("01.11", {
   res = optimal_normal(
     alpha = 0.025,
     beta = 0.1,
-    Delta1 = 0.325, Delta2 = 0.625,
+    Delta1 = 0.625, Delta2 = NULL,
     n2min = 10, n2max = 500, stepn2 = 2,
     kappamin = 0.01, kappamax = 0.5, stepkappa = 0.01,
-    steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
+    steps1 = 0, stepm1 = 0.375, stepl1 = 0.625,
     b1 = 625, b2 = 2000, b3 = 10000,
     num_cl = 3,
     c02 = 15, c03 = 20,
@@ -315,7 +314,7 @@ test_that("01.11", {
     a = NULL, b = NULL
   )
   expect_equal(res$n2, 78) # optimal sample size in phase II
-  expect_equal(res$u, 944) # expected utility
+  expect_equal(res$u, 944, tolerance = 0.0001) # expected utility
   expect_equal(res$Kappa, 0.12) # threshold for proceeding to phase III
   expect_equal(res$sProg, 0.83) # probability of a successful program
   expect_equal(res$sProg1, 0.51) # probability of a successful program with small treatment effect
@@ -334,7 +333,7 @@ test_that("01.12", {
   res = optimal_tte(
     alpha = 0.025, # significance level
     beta = 0.1, # 1 - power
-    hr1 = 0.8, hr2 = NULL, # assumed treatment effects
+    hr1 = 0.69, hr2 = 0.88, # assumed treatment effects
     xi2 = 0.7, xi3 = 0.7, # event rates
     d2min = 10, d2max = 400, stepd2 = 1, # optimization region for the number of events
     hrgomin = 0.71, hrgomax = 0.95, stephrgo = 0.01, # optimization
@@ -345,19 +344,18 @@ test_that("01.12", {
     num_cl = 3, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
-    fixed = TRUE, # use a prior distribution
-    w = NULL, # weight for the prior distribution
-    id1 = NULL, id2 = NULL, # amount of information (number of events) for prior
+    fixed = FALSE, # use a prior distribution
+    w = 0.3, # weight for the prior distribution
+    id1 = 210, id2 = 420, # amount of information (number of events) for prior
     # true treatment effect
   )
   end_time_3 = Sys.time()
   time_elapsed_01_02_num_cl_3 = end_time_3 - start_time_3
   start_time_1 = Sys.time()
-  # Time to event with fixed treatment effects
   res = optimal_tte(
     alpha = 0.025, # significance level
     beta = 0.1, # 1 - power
-    hr1 = 0.69, hr2 = 0.80, # assumed treatment effects
+    hr1 = 0.69, hr2 = 0.88, # assumed treatment effects
     xi2 = 0.7, xi3 = 0.7, # event rates
     d2min = 10, d2max = 400, stepd2 = 1, # optimization region for the number of events
     hrgomin = 0.71, hrgomax = 0.95, stephrgo = 0.01, # optimization
@@ -368,9 +366,9 @@ test_that("01.12", {
     num_cl = 1, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
-    fixed = TRUE, # use a prior distribution
-    w = NULL, # weight for the prior distribution
-    id1 = NULL, id2 = NULL, # amount of information (number of events) for prior
+    fixed = FALSE, # use a prior distribution
+    w = 0.3, # weight for the prior distribution
+    id1 = 210, id2 = 420, # amount of information (number of events) for prior
     # true treatment effect
   )
   end_time_1 = Sys.time()
