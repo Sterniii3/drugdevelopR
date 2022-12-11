@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   Fixed_and_prior_distributions: Fixed_and_prior_distributions.html
   introduction-to-drugdevelopR: introduction-to-drugdevelopR.html
-last_built: 2022-12-11T15:11Z
+last_built: 2022-12-11T18:51Z
 urls:
   reference: https://sterniii3.github.io/drugdevelopR/reference
   article: https://sterniii3.github.io/drugdevelopR/articles
