@@ -21,7 +21,10 @@
 #' @param stepd2 stepsize for the optimization over \code{d2}
 #' @param hrgomin minimal threshold value for the go/no-go decision rule
 #' @param hrgomax maximal threshold value for the go/no-go decision rule
-#' @param adj choose type of adjustment: \code{"multiplicative"}, \code{"additive"}, \code{"both"} (or \code{"all"})
+#' @param adj choose type of adjustment: \code{"multiplicative"},
+#'  \code{"additive"}, \code{"both"} or \code{"all"}. When using "both",
+#'  `res[1,]` contains the results using the multiplicative method and `res[2,]`
+#'  contains the results using the additive method.
 #' @param stephrgo stepsize for the optimization over HRgo
 #' @param lambdamin minimal adjustment parameter lambda [TODO: What is lambda, is this the multiplicative adjustment parameter?]
 #' @param lambdamax maximal adjustment parameter lambda
