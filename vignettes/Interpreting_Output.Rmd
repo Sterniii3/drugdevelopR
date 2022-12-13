@@ -1,0 +1,99 @@
+---
+title: "Interpreting the Output"
+author: "Johannes Cepicka"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Interpreting_Output}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
+
+The drugdevelopR package enables us to optimally plan such programs using a utility maximizing approach. To get a brief introduction, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html). As we only discussed the most important results in the introduction, in this article, we now want to interpret the rest of the output.
+
+# The example setting and the input parameters
+
+We are in the same setting as in the introduction, i.e. we  suppose we are developing a new tumor treatment, *exper*. The patient variable that we want to investigate is the difference in tumor width between the one-year visit and baseline. This is a normally distributed outcome variable.
+
+The parameters we insert into the function `optimum_normal` are the same parameters we also inserted in the basic setting. Thus, for more information on the input values we refer to the [Introduction](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html).
+We start by loading the drugdevelopR package.
+
+```{r setup}
+library(drugdevelopR)
+```
+
+Then we insert the input values into the function `optimal_normal`:
+
+```{r,eval = FALSE}
+ res <- optimal_normal(Delta1 = 0.625, fixed = TRUE, # treatment effect
+                       n2min = 20, n2max = 400, # sample size region
+                       stepn2 = 4, # sample size step size
+                       kappamin = 0.02, kappamax = 0.2, # threshold region
+                       stepkappa = 0.02, # threshold step size
+                       c2 = 0.675, c3 = 0.72, # maximal total trial costs
+                       c02 = 15, c03 = 20, # maximal per-patient costs
+                       b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
+                       alpha = 0.05, # significance level
+                       beta = 0.1, # 1 - power
+                       Delta2 = NULL, w = NULL, in1 = NULL, in2 = NULL, 
+                       a = NULL,b = NULL) # setting all unneeded parameters to NULL
+```
+
+```{r, eval=TRUE, include=FALSE}
+# Comment this chunk after running it once
+#  res <- optimal_normal(Delta1 = 0.625, fixed = TRUE, # treatment effect
+#                        n2min = 20, n2max = 400, # sample size region
+#                        stepn2 = 4, # sample size step size
+#                        kappamin = 0.02, kappamax = 0.2, # threshold region
+#                        stepkappa = 0.02, # threshold step size
+#                        c2 = 0.675, c3 = 0.72, # maximal total trial costs
+#                        c02 = 15, c03 = 20, # maximal per-patient costs
+#                        b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
+#                        alpha = 0.05, # significance level
+#                        beta = 0.1, # 1 - power
+#                        Delta2 = NULL, w = NULL, in1 = NULL, in2 = NULL, 
+#                        a = NULL,b = NULL) # setting all unneeded parameters to NULL
+# saveRDS(res, file="optimal_normal_basic_setting.RDS")
+```
+```{r, eval=TRUE, include=FALSE}
+res <- readRDS(file="optimal_normal_basic_setting.RDS")
+```
+
+## Interpreting the output
+
+After setting all these input parameters and running the function, let's take a look at the output of the program.
+
+```{r}
+res
+```
+
+The program returns a total of thirteen values and the input values. We will now take a closer look and explain all output values with the necessary detail:
+
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 3259.83, i.e we have an expected utility of 325 983 000\$. As the function maximizes the expected utility, this is the highest expected utility one can receive given the input parameters.
+* `res$Kappa` is the optimal threshold value for the go/no-go decision rule. We see that we need a treatment effect of more than 0.06 in phase II in order to proceed to phase III. If in phase II we get a treatment effect that is below 0.06, the program is deemed unsuccessful and no phase III trial will be conducted. If we are above the threshold value, we proceed to phase III.
+* `res$n2` is the optimal sample size for phase II and `res$n3` the resulting sample size for phase III. We see that the optimal scenario requires 84 participants in phase II and 166 participants in phase III. `res$n` is the sum of `res$n2` and 
+`res$n3` and refers to the total number of participants. Note, that one can set a maximum number of participants, leading to constrained optimization. For more information, see the article about [further input parameters](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html).
+* `res$pgo` is the probability to go to phase III, which coincides with the probability that the observed treatment effect is above the optimal threshold value. In this case we get a probability of 1, implying that we can expect a treatment effect of above 0.06 in phase II and hence, the trial will proceed to phase III.
+* `res$sProg` is the probability that the program overall is successful, i.e. that we proceed to phase III and observe a positive treatment effect in phase III. In our case the probability of a successful program is 0.85, so a trial with these input parameters will be successful 85\% of times. The probability of a successful program is further subdivided in probabilities for small, medium or large treatment effect. The probability of a small treatment effect `res&sProg1` is 0.68 in our case, for a medium treatment effect the probability `res&sProg2` is 0.17 and for a large treatment effect the probability `res&sProg3` is 0.01. The treatment effects correspond to the benefit categories, so with a probability of 0.68 we receive a benefit of 300,000,000\$ and so on. Due to rounding, the probabilities may not add up exactly to the overall probability of a successful program. Note, that one can set a minimum probability of successful program, leading to constrained optimization. For more information, see the article about [further input parameters](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html).
+* the final output parameters are the costs `res&K2` in phase II and `res$K3` in phase III. The costs in phase II are calculated as $c_{02} + n_2*c_2$ and the costs in phase II are calculated as $(c_{03} + n_3*c_3)p_{go}$, i.e. in phase III the expected costs are returned. In our setting we have costs of 72 in 10^5\$ (i.e. 7,200,000\$) in phase II and costs of 139 in 10^5\$(i.e. 13,900,000\) in phase III. Note, that one can set a maximum cost limit for $K=K_2+K_3$ , leading to constrained optimization. For more information, see the article about [further input parameters](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html).
+
+
+# Where to go from here
+This tutorial explains how we can interpret all of the output generated by our program.
+
+For more information on how to use the package, see:
+
+* [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html) See how the package works in a basic example.
+* *Different outcomes:* Apply it to binary endpoints and time-to-event endpoints.
+* [*Fixed or prior:*](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html) Model the assumed treatment effect on a prior distribution.
+* *More parameters:* Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.
+* *Complex drug development programs:* Adapt to situations with biased effect estimators, multiple phase III trials, multi-arm trials, or multiple endpoints.
+* *Parallel computing:* Be faster at calculating the optimum by using parallel computing.
