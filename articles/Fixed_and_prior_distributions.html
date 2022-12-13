@@ -42,6 +42,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Fixed_and_prior_distributions.html">Fixed effects and prior distributions</a>
+    <a class="dropdown-item" href="../articles/Interpreting_Output.html">Interpreting the Output</a>
     <a class="dropdown-item" href="../articles/introduction-to-drugdevelopR.html">Introduction to planning phase II and phase III trials with drugdevelopR</a>
   </div>
 </li>
@@ -189,6 +190,16 @@ App</a>.</p>
 <div class="section level3">
 <h3 id="interpreting-the-output">Interpreting the output<a class="anchor" aria-label="anchor" href="#interpreting-the-output"></a>
 </h3>
+<p>After setting all these input parameters and running the function,
+let’s take a look at the output of the program.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res</span></span>
+<span><span class="co">#&gt;         u Kappa n2  n3   n  pgo sProg   w Delta1 Delta2 in1 in2    a    b   K</span></span>
+<span><span class="co">#&gt; 1 3473.81  0.06 76 158 234 0.99  0.85 0.6  0.625    0.9 300 600 0.25 0.75 Inf</span></span>
+<span><span class="co">#&gt;   K2  K3 sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03    c2</span></span>
+<span><span class="co">#&gt; 1 66 134   0.64    0.2   0.02      0    0.5    0.8  0.05  0.1  15  20 0.675</span></span>
+<span><span class="co">#&gt;     c3   b1   b2    b3 gamma</span></span>
+<span><span class="co">#&gt; 1 0.72 3000 8000 10000     0</span></span></code></pre></div>
 <p>The program returns a total of thirteen values and the input values.
 Once again we will only focus at the most important ones:</p>
 <ul>
@@ -230,8 +241,9 @@ example.</li>
 <em>Different outcomes:</em> Apply it to binary endpoints and
 time-to-event endpoints.</li>
 <li>
-<em>Interpreting the rest of the output:</em> Obtain further details
-on your drug development program.</li>
+<a href="https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html"><em>Interpreting
+the rest of the output:</em></a> Obtain further details on your drug
+development program.</li>
 <li>
 <em>More parameters:</em> Define custom effect size categories. Put
 constraints on the optimization by defining maximum costs, the total
