@@ -1,6 +1,10 @@
 #' Optimal phase II/III drug development planning when discounting phase II results with normally distributed endpoint
 #'
-#' The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results (Preussler et. al, 2020). For normally distributed endpoints the treatment effect is measured by the standardized difference in means (Delta). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
+#' The function \code{\link{optimal_bias_normal}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results for normally distributed endpoints (Preussler et. al, 2020). 
+#' The discounting may be necessary as programs that proceed to phase III can be overoptimistic about the treatment effect (i.e. they are biased).
+#' The assumed true treatment effects can be assumed fixed or modelled by a prior distribution.
+#' The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. 
+#' Fast computing is enabled by parallel programming.
 #' 
 #' @name optimal_bias_normal
 #' @param w weight for mixture prior distribution
@@ -17,11 +21,11 @@
 #' @param kappamax maximal threshold value for the go/no-go decision rule
 #' @param adj choose type of adjustment: "multiplicative", "additive", "both" (or "all")
 #' @param stepkappa stepsize for the optimization over kappa
-#' @param lambdamin minimal adjustment parameter lambda
-#' @param lambdamax maximal adjustment parameter lambda
+#' @param lambdamin minimal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)
+#' @param lambdamax maximal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)
 #' @param steplambda stepsize for the adjustment parameter lambda
-#' @param alphaCImin minimal alphaCI
-#' @param alphaCImax maximal alphaCI
+#' @param alphaCImin minimal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)
+#' @param alphaCImax maximal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)
 #' @param stepalphaCI stepsize for alphaCI
 #' @param beta 1-beta power for calculation of sample size for phase III
 #' @param alpha significance level

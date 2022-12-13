@@ -73,7 +73,7 @@ This tutorial explains how to use the parameters needed for the prior distributi
 
 For more information on how to use the package, see:
 
-* *Introduction to drugdevelopR:* See how the package works in a basic example. [click here](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html)
+* [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html) See how the package works in a basic example.
 * *Different outcomes:* Apply it to binary endpoints and time-to-event endpoints.
 * *Interpreting the rest of the output:* Obtain further details on your drug development program.
 * *More parameters:* Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.

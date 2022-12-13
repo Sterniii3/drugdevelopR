@@ -1,8 +1,7 @@
 #' Optimal phase II/III drug development planning when discounting phase II results
 #'
-#' The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results (Preussler et. al, 2020). 
-#' [TODO: Why is the function called "_bias"? Add one ore two sentences that make clear what is the difference to the function optimal_normal. For which endpoint distribution?
-#' Is this only for time-to-event endpoints?]
+#' The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results for time-to-event endpoints (Preussler et. al, 2020). 
+#' The discounting may be necessary as programs that proceed to phase III can be overoptimistic about the treatment effect (i.e. they are biased).
 #' The assumed true treatment effects can be assumed fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}) or modelled by a prior distribution.
 #' The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. 
 #' Fast computing is enabled by parallel programming.
@@ -26,11 +25,11 @@
 #'  `res[1,]` contains the results using the multiplicative method and `res[2,]`
 #'  contains the results using the additive method.
 #' @param stephrgo stepsize for the optimization over HRgo
-#' @param lambdamin minimal adjustment parameter lambda [TODO: What is lambda, is this the multiplicative adjustment parameter?]
-#' @param lambdamax maximal adjustment parameter lambda
+#' @param lambdamin minimal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)
+#' @param lambdamax maximal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)
 #' @param steplambda stepsize for the adjustment parameter lambda
-#' @param alphaCImin minimal alphaCI [TODO: What is alphaCI, is this the multiplicative adjustment parameter?]
-#' @param alphaCImax maximal alphaCI
+#' @param alphaCImin minimal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)
+#' @param alphaCImax maximal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)
 #' @param stepalphaCI stepsize for alphaCI
 #' @param beta 1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula
 #' @param alpha one-sided significance level
