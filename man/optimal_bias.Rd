@@ -47,19 +47,22 @@ optimal_bias(
 \arguments{
 \item{w}{weight for mixture prior distribution}
 
-\item{hr1}{first assumed true treatment effect on HR scale for prior distribution}
+\item{hr1}{first assumed true treatment effect on HR scale for prior
+distribution, see the \href{https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html}{vignette on priors}
+as well as the \href{https://web.imbi.uni-heidelberg.de/prior/}{Shiny app} for
+more details concerning the definition of a prior distribution.}
 
 \item{hr2}{second assumed true treatment effect on HR scale for prior distribution}
 
-\item{id1}{amount of information for hr1 in terms of number of events}
+\item{id1}{amount of information for \code{hr1} in terms of number of events}
 
-\item{id2}{amount of information for hr2 in terms of number of events}
+\item{id2}{amount of information for \code{hr2} in terms of number of events}
 
 \item{d2min}{minimal number of events for phase II}
 
 \item{d2max}{maximal number of events for phase II}
 
-\item{stepd2}{stepsize for the optimization over d2}
+\item{stepd2}{stepsize for the optimization over \code{d2}}
 
 \item{hrgomin}{minimal threshold value for the go/no-go decision rule}
 
@@ -67,17 +70,17 @@ optimal_bias(
 
 \item{stephrgo}{stepsize for the optimization over HRgo}
 
-\item{adj}{choose type of adjustment: "multiplicative", "additive", "both" (or "all")}
+\item{adj}{choose type of adjustment: \code{"multiplicative"}, \code{"additive"}, \code{"both"} (or \code{"all"})}
 
-\item{lambdamin}{minimal adjustment parameter lambda}
+\item{lambdamin}{minimal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)}
 
-\item{lambdamax}{maximal adjustment parameter lambda}
+\item{lambdamax}{maximal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)}
 
 \item{steplambda}{stepsize for the adjustment parameter lambda}
 
-\item{alphaCImin}{minimal alphaCI}
+\item{alphaCImin}{minimal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)}
 
-\item{alphaCImax}{maximal alphaCI}
+\item{alphaCImax}{maximal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)}
 
 \item{stepalphaCI}{stepsize for alphaCI}
 
@@ -85,17 +88,17 @@ optimal_bias(
 
 \item{beta}{1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula}
 
-\item{xi2}{event rate for phase II}
+\item{xi2}{event rate for phase II \link{TODO: I do not really how I would know this value beforehand. Wouldn't I always make the same guess as for HR1 or HR2?}}
 
 \item{xi3}{event rate for phase III}
 
-\item{c2}{variable per-patient cost for phase II}
+\item{c2}{variable per-patient cost for phase II in 10^5 $}
 
-\item{c3}{variable per-patient cost for phase III}
+\item{c3}{variable per-patient cost for phase III in 10^5 $}
 
-\item{c02}{fixed cost for phase II}
+\item{c02}{fixed cost for phase II in 10^5 $}
 
-\item{c03}{fixed cost for phase III}
+\item{c03}{fixed cost for phase III in 10^5 $}
 
 \item{K}{constraint on the costs of the program, default: Inf, e.g. no constraint}
 
@@ -109,11 +112,11 @@ optimal_bias(
 
 \item{stepl1}{lower boundary for effect size category "large" in HR scale = upper boundary for effect size category "medium" in HR scale, default: 0.85}
 
-\item{b1}{expected gain for effect size category "small"}
+\item{b1}{expected gain for effect size category "small" in 10^5 $}
 
-\item{b2}{expected gain for effect size category "medium"}
+\item{b2}{expected gain for effect size category "medium" in 10^5 $}
 
-\item{b3}{expected gain for effect size category "large"}
+\item{b3}{expected gain for effect size category "large" in 10^5 $}
 
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
 
@@ -143,10 +146,11 @@ The output of the function \code{\link{optimal_bias}} is a data.frame containing
 }
 and further input parameters.
 
-Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+Taking \code{cat(comment())} of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 }
 \description{
-The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results (Preussler et. al, 2020).
+The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results for time-to-event endpoints (Preussler et. al, 2020).
+The discounting may be necessary as programs that proceed to phase III can be overoptimistic about the treatment effect (i.e. they are biased).
 The assumed true treatment effects can be assumed fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}) or modelled by a prior distribution.
 The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package.
 Fast computing is enabled by parallel programming.

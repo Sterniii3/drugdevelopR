@@ -99,11 +99,11 @@ for details}
 
 \item{stepl1}{lower boundary for effect size category "large" = upper boundary for effect size category "medium", default: 0.8}
 
-\item{b1}{expected gain for effect size category "small"}
+\item{b1}{expected gain for effect size category "small" in 10^5 $}
 
-\item{b2}{expected gain for effect size category "medium"}
+\item{b2}{expected gain for effect size category "medium" in 10^5 $}
 
-\item{b3}{expected gain for effect size category "large"}
+\item{b3}{expected gain for effect size category "large" in 10^5 $}
 
 \item{gamma}{to model different populations in phase II and III choose \code{gamma != 0}, default: 0, see
 \href{https://web.imbi.uni-heidelberg.de/prior/}{here}

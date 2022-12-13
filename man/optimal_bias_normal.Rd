@@ -2,7 +2,7 @@
 % Please edit documentation in R/optimal_bias_normal.R
 \name{optimal_bias_normal}
 \alias{optimal_bias_normal}
-\title{Optimal phase II/III drug development planning with normally distributed endpoint}
+\title{Optimal phase II/III drug development planning when discounting phase II results with normally distributed endpoint}
 \usage{
 optimal_bias_normal(
   w,
@@ -73,15 +73,15 @@ optimal_bias_normal(
 
 \item{adj}{choose type of adjustment: "multiplicative", "additive", "both" (or "all")}
 
-\item{lambdamin}{minimal adjustment parameter lambda}
+\item{lambdamin}{minimal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)}
 
-\item{lambdamax}{maximal adjustment parameter lambda}
+\item{lambdamax}{maximal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)}
 
 \item{steplambda}{stepsize for the adjustment parameter lambda}
 
-\item{alphaCImin}{minimal alphaCI}
+\item{alphaCImin}{minimal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)}
 
-\item{alphaCImax}{maximal alphaCI}
+\item{alphaCImax}{maximal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)}
 
 \item{stepalphaCI}{stepsize for alphaCI}
 
@@ -143,7 +143,11 @@ and further input parameters.
 Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 }
 \description{
-The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results (Preussler et. al, 2020). For normally distributed endpoints the treatment effect is measured by the standardized difference in means (Delta). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
+The function \code{\link{optimal_bias_normal}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results for normally distributed endpoints (Preussler et. al, 2020).
+The discounting may be necessary as programs that proceed to phase III can be overoptimistic about the treatment effect (i.e. they are biased).
+The assumed true treatment effects can be assumed fixed or modelled by a prior distribution.
+The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package.
+Fast computing is enabled by parallel programming.
 }
 \section{drugdevelopR functions}{
 
