@@ -51,17 +51,17 @@ for details}
 \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 for details}
 
-\item{in1}{amount of information for Delta2 in terms of sample size, see
+\item{in1}{amount of information for \code{Delta2} in terms of sample size, see
 \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 for details}
 
-\item{in2}{amount of information for Delta1 in terms of sample size, see
+\item{in2}{amount of information for \code{Delta1} in terms of sample size, see
 \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 for details}
 
 \item{a}{lower boundary for the truncation of the \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}}
 
-\item{b}{upper boundary for the truncation \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}}
+\item{b}{upper boundary for the truncation of the \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}}
 
 \item{n2min}{minimal total sample size for phase II; must be an even number}
 
@@ -77,7 +77,7 @@ for details}
 
 \item{alpha}{significance level}
 
-\item{beta}{type II error rate; i.e. \code{1 - beta} is the power for calculation of the number of events for phase III by Schoenfeld's formula (Schoenfeld 1981)}
+\item{beta}{type II error rate; i.e. \code{1 - beta} is the power for calculation of the sample size for phase III}
 
 \item{c2}{variable per-patient cost for phase II in 10^5 $}
 
@@ -111,7 +111,7 @@ for details}
 
 \item{fixed}{choose if true treatment effects are fixed or following a prior distribution, if TRUE \code{Delta1} is used as fixed effect}
 
-\item{skipII}{skipII choose if skipping phase II is an option, default: FALSE;
+\item{skipII}{choose if skipping phase II is an option, default: FALSE;
 if TRUE, the program calculates the expected utility for the case when phase
 II is skipped and compares it to the situation when phase II is not skipped.
 The results are then returned as a list of two results lists, \code{res[[1]]}

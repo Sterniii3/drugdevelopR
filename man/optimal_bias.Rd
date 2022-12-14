@@ -2,7 +2,8 @@
 % Please edit documentation in R/optimal_bias.R
 \name{optimal_bias}
 \alias{optimal_bias}
-\title{Optimal phase II/III drug development planning when discounting phase II results}
+\title{Optimal phase II/III drug development planning for time-to-event endpoints
+when discounting phase II results}
 \usage{
 optimal_bias(
   w,
@@ -70,7 +71,13 @@ more details concerning the definition of a prior distribution.}
 
 \item{stephrgo}{stepsize for the optimization over HRgo}
 
-\item{adj}{choose type of adjustment: \code{"multiplicative"}, \code{"additive"}, \code{"both"} (or \code{"all"})}
+\item{adj}{choose type of adjustment: \code{"multiplicative"},
+\code{"additive"}, \code{"both"} or \code{"all"}. When using "both",
+\code{res[1,]} contains the results using the multiplicative method and \code{res[2,]}
+contains the results using the additive method. When using "all", there are
+also \code{res[3,]} and \code{res[4,]}, containing the results of a multiplicative
+and an additive method which do not only adjust the treatment effect but
+also the threshold value for the decision rule.}
 
 \item{lambdamin}{minimal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)}
 
@@ -123,16 +130,11 @@ more details concerning the definition of a prior distribution.}
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
 \value{
-The output of the function \code{\link{optimal_bias}} is a data.frame containing the optimization results:
+The output of the function is a \code{data.frame} object containing the optimization results:
 \describe{
-\item{Method}{Type of adjustment: multipl. (multiplicative) or add. (additive)}
 \item{u}{maximal expected utility}
-\item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}
-\item{HRgo}{optimal threshold value for the decision rule to go to phase III}
-\item{d2}{optimal total number of events for phase II}
-\item{d3}{total expected number of events for phase III; rounded to next natural number}
-\item{d}{total expected number of events in the program; d = d2 + d3}
-\item{n2}{total sample size for phase II; rounded to the next even natural number}
+\item{Kappa}{optimal threshold value for the decision rule to go to phase III}
+\item{n2}{total sample size for phase II}
 \item{n3}{total sample size for phase III; rounded to the next even natural number}
 \item{n}{total sample size in the program; n = n2 + n3}
 \item{K}{maximal costs of the program}
@@ -142,11 +144,12 @@ The output of the function \code{\link{optimal_bias}} is a data.frame containing
 \item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
 \item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
 \item{K2}{expected costs for phase II}
-\item{K3}{expected costs for phase III}
-}
+\item{K3}{expected costs for phase III}\item{Method}{Type of adjustment: "multipl." (multiplicative adjustment of effect size), "add." (additive adjustment of effect size), "multipl2" (multiplicative adjustment of effect size and threshold), "add2" (additive adjustment of effect size and threshold)}
+\item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}}
 and further input parameters.
 
-Taking \code{cat(comment())} of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+\if{html}{\out{<div class="sourceCode">}}\preformatted{             Taking `cat(comment())` of the data frame lists the used optimization sequences, start and finish date of the optimization procedure.
+}\if{html}{\out{</div>}}
 }
 \description{
 The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results for time-to-event endpoints (Preussler et. al, 2020).
@@ -155,28 +158,6 @@ The assumed true treatment effects can be assumed fixed (planning is then also p
 The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package.
 Fast computing is enabled by parallel programming.
 }
-\section{drugdevelopR functions}{
-
-The drugdevelopR package provides the functions
-\itemize{
-\item \code{\link{optimal_tte}},
-\item \code{\link{optimal_binary}} and
-\item \code{\link{optimal_normal}}
-}
-to plan optimal phase II/III drug development programs with
-\itemize{
-\item time-to-event (treatment effect measured by hazard ratio (HR)),
-\item binary (treatment effect measured by risk ratio (RR)) or
-\item normally distributed (treatment effect measured by standardized difference in means (Delta))
-}
-endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are
-\itemize{
-\item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
-\item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-\item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
-}
-}
-
 \examples{
 res <- optimal_bias(w = 0.3,                                 # define parameters for prior
   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,              # (https://web.imbi.uni-heidelberg.de/prior/)
@@ -196,6 +177,7 @@ res <- optimal_bias(w = 0.3,                                 # define parameters
   num_cl = 1)                                                # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 res
 cat(comment(res))                                            # displays the optimization sequence, start and finish date of the optimization procedure.
+
 }
 \references{
 IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.

@@ -1,4 +1,5 @@
-#' Optimal phase II/III drug development planning when discounting phase II results
+#' Optimal phase II/III drug development planning for time-to-event endpoints
+#'  when discounting phase II results
 #'
 #' The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results for time-to-event endpoints (Preussler et. al, 2020). 
 #' The discounting may be necessary as programs that proceed to phase III can be overoptimistic about the treatment effect (i.e. they are biased).
@@ -7,6 +8,7 @@
 #' Fast computing is enabled by parallel programming.
 #' 
 #' @name optimal_bias
+#' @inheritParams optimal_bias_generic
 #' @param w weight for mixture prior distribution
 #' @param hr1 first assumed true treatment effect on HR scale for prior 
 #' distribution, see the \href{https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html}{vignette on priors}
@@ -20,17 +22,7 @@
 #' @param stepd2 stepsize for the optimization over \code{d2}
 #' @param hrgomin minimal threshold value for the go/no-go decision rule
 #' @param hrgomax maximal threshold value for the go/no-go decision rule
-#' @param adj choose type of adjustment: \code{"multiplicative"},
-#'  \code{"additive"}, \code{"both"} or \code{"all"}. When using "both",
-#'  `res[1,]` contains the results using the multiplicative method and `res[2,]`
-#'  contains the results using the additive method.
 #' @param stephrgo stepsize for the optimization over HRgo
-#' @param lambdamin minimal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)
-#' @param lambdamax maximal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)
-#' @param steplambda stepsize for the adjustment parameter lambda
-#' @param alphaCImin minimal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)
-#' @param alphaCImax maximal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)
-#' @param stepalphaCI stepsize for alphaCI
 #' @param beta 1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula
 #' @param alpha one-sided significance level
 #' @param xi2 event rate for phase II [TODO: I do not really how I would know this value beforehand. Wouldn't I always make the same guess as for HR1 or HR2?]
@@ -50,31 +42,10 @@
 #' @param b3 expected gain for effect size category "large" in 10^5 $
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect
 #' @param num_cl number of clusters used for parallel computing, default: 1
+#' 
 #' @return
-#' The output of the function \code{\link{optimal_bias}} is a data.frame containing the optimization results:
-#' \describe{
-#'   \item{Method}{Type of adjustment: multipl. (multiplicative) or add. (additive)}
-#'   \item{u}{maximal expected utility}
-#'   \item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}
-#'   \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
-#'   \item{d2}{optimal total number of events for phase II}
-#'   \item{d3}{total expected number of events for phase III; rounded to next natural number}
-#'   \item{d}{total expected number of events in the program; d = d2 + d3}
-#'   \item{n2}{total sample size for phase II; rounded to the next even natural number}
-#'   \item{n3}{total sample size for phase III; rounded to the next even natural number}
-#'   \item{n}{total sample size in the program; n = n2 + n3}
-#'   \item{K}{maximal costs of the program}
-#'   \item{pgo}{probability to go to phase III}
-#'   \item{sProg}{probability of a successful program}
-#'   \item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-#'   \item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-#'   \item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
-#'   \item{K2}{expected costs for phase II}
-#'   \item{K3}{expected costs for phase III}
-#'   }
-#' and further input parameters.
-#'
-#' Taking \code{cat(comment())} of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+#' `r optimal_return_doc(type = "tte", setting = "bias")`
+#' 
 #' @examples
 #' res <- optimal_bias(w = 0.3,                                 # define parameters for prior
 #'   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,              # (https://web.imbi.uni-heidelberg.de/prior/)
@@ -94,29 +65,11 @@
 #'   num_cl = 1)                                                # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 #' res
 #' cat(comment(res))                                            # displays the optimization sequence, start and finish date of the optimization procedure.
-#' @section drugdevelopR functions:
-#' The drugdevelopR package provides the functions
-#' \itemize{
-#'   \item \code{\link{optimal_tte}},
-#'   \item \code{\link{optimal_binary}} and
-#'   \item \code{\link{optimal_normal}}
-#' }
-#' to plan optimal phase II/III drug development programs with
-#' \itemize{
-#'   \item time-to-event (treatment effect measured by hazard ratio (HR)),
-#'   \item binary (treatment effect measured by risk ratio (RR)) or
-#'   \item normally distributed (treatment effect measured by standardized difference in means (Delta))
-#' }
-#' endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are 
-#' \itemize{
-#'   \item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
-#'   \item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-#'   \item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
-#' }
+#' 
 #' @references
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 #'
-#'Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2020). Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. Submitted to peer-review journal.
+#' Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2020). Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. Submitted to peer-review journal.
 #'
 #' Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
 #'

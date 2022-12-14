@@ -11,74 +11,17 @@
 #' programming.
 #' 
 #' @name optimal_binary
-#' @param w weight for \href{https://web.imbi.uni-heidelberg.de/prior/}{mixture prior distribution}
-#' @param p0 assumed true rate of control group, see
-#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
-#'   for details
-#' @param p11 assumed true rate of treatment group, see
-#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
-#'   for details
-#' @param p12 assumed true rate of treatment group, see
-#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
-#'   for details
-#' @param in1 amount of information for `p11` in terms of sample size, see
-#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
-#'   for details
-#' @param in2 amount of information for `p12` in terms of sample size, see
-#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
-#'   for details
-#' @param n2min minimal total sample size for phase II; must be an even number
-#' @param n2max maximal total sample size for phase II, must be an even number
-#' @param stepn2 step size for the optimization over n2; must be an even number
-#' @param rrgomin minimal threshold value for the go/no-go decision rule
-#' @param rrgomax maximal threshold value for the go/no-go decision rule
-#' @param steprrgo step size for the optimization over RRgo
-#' @param beta type II error rate; i.e. `1 - beta` is the power for calculation of the number of events for phase III
-#' @param alpha significance level
-#' @param c2 variable per-patient cost for phase II in 10^5 $
-#' @param c3 variable per-patient cost for phase III in 10^5 $
-#' @param c02 fixed cost for phase II in 10^5 $
-#' @param c03 fixed cost for phase III in 10^5 $
-#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
-#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
-#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
-#' @param steps1 lower boundary for effect size category "small" in RR scale, default: 1
-#' @param stepm1 lower boundary for effect size category "medium" in RR scale = upper boundary for effect size category "small" in RR scale, default: 0.95
-#' @param stepl1 lower boundary for effect size category "large" in RR scale = upper boundary for effect size category "medium" in RR scale, default: 0.85
-#' @param b1 expected gain for effect size category "small"
-#' @param b2 expected gain for effect size category "medium"
-#' @param b3 expected gain for effect size category "large"
-#' @param gamma to model different populations in phase II and III choose `gamma != 0`, default: 0, see
-#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
-#'   for details
-#' @param fixed choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1
+#' 
+#' @inheritParams optimal_binary_generic
 #' @param skipII skipII choose if skipping phase II is an option, default: FALSE; 
 #' if TRUE, the program calculates the expected utility for the case when phase
 #' II is skipped and compares it to the situation when phase II is not skipped.
 #' The results are then returned as a list of two results lists, `res[[1]]`
 #' being the results when including phase II and `res[[2]]` when skipping phase II.
-#' @param num_cl number of clusters used for parallel computing, default: 1
-#' @return
-#' The output of the function \code{\link{optimal_binary}} is a data.frame containing the optimization results:
-#' \describe{
-#'   \item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}
-#'   \item{RRgo}{optimal threshold value for the decision rule to go to phase III}
-#'   \item{n2}{total sample size for phase II}
-#'   \item{n3}{total sample size for phase III; rounded to the next even natural number}
-#'   \item{n}{total sample size in the program; n = n2 + n3}
-#'   \item{K}{maximal costs of the program}
-#'   \item{pgo}{probability to go to phase III}
-#'   \item{sProg}{probability of a successful program}
-#'   \item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-#'   \item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-#'   \item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
-#'   \item{K2}{expected costs for phase II}
-#'   \item{K3}{expected costs for phase III}
-#' }
-#' and further input parameters.
-#'
-#' Taking `cat(comment())` of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' 
+#' @return
+#' `r optimal_return_doc(type = "binary")` 
+#'
 #' @examples
 #' res <- optimal_binary(w = 0.3,                           # define parameters for prior
 #'   p0 = 0.6, p11 =  0.3, p12 = 0.5, in1 = 30, in2 = 60,   # (https://web.imbi.uni-heidelberg.de/prior/)

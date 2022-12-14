@@ -76,11 +76,3 @@ The utility is in a further step maximized by the \code{optimal_multitrial_norma
      #                            c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
      #                            b1 = 3000, b2 = 8000, b3 = 10000)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-
