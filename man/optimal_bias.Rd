@@ -88,7 +88,7 @@ more details concerning the definition of a prior distribution.}
 
 \item{beta}{1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula}
 
-\item{xi2}{event rate for phase II \link{TODO: I do not really how I would know this value beforehand. Wouldn't I always make the same guess as for HR1 or HR2?}}
+\item{xi2}{event rate for phase II}
 
 \item{xi3}{event rate for phase III}
 
