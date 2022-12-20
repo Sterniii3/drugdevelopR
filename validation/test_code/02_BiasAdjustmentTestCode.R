@@ -369,7 +369,7 @@ test_that("02.08", {
 #' @editDate 2022-12-14
 test_that("02.09", {
   # Bias adjustment for normally distributed endpoints
-  optimal_bias_normal(
+  res <- optimal_bias_normal(
     alpha = 0.05,
     beta = 0.1,
     Delta1 = 0.625, Delta2 = 0.325,
@@ -399,7 +399,7 @@ test_that("02.10", {
   # Bias adjustment for normally distributed endpoints
   # with fixed prior treatment effect and all adjustment
   # methods
-  optimal_bias_normal(
+  res <- optimal_bias_normal(
     alpha = 0.05,
     beta = 0.1,
     Delta1 = 0.625, Delta2 = 0.325,
@@ -443,4 +443,67 @@ test_that("02.10", {
   expect_equal(res[4,]$n, 569)
   expect_equal(res[4,]$u, 3870.71, tolerance = 0.0001)
   expect_equal(res[4,]$Adj, 0.1)
+})
+#' @editor Lukas D Sauer
+#' @editDate 2022-12-20
+test_that("02.11", {
+  res <- optimal_bias_binary(
+    alpha = 0.025,
+    beta = 0.1,
+    p0 = 0.6, p11 = 0.3, p12= 0.5,
+    n2min = 10, n2max = 500, stepn2 = 2,
+    lambdamin = 0.7, lambdamax = 0.9, steplambda = 0.01,
+    steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
+    b1 = 1000, b2 = 2000, b3 = 3000,
+    num_cl = 3,
+    c02 = 100, c03 = 150,
+    c2 = 0.75, c3 = 1,
+    fixed = FALSE,
+    w = 0.3,
+    in1 = 30, in2 = 60,
+    adj = "additive",
+    alphaCImin = 0.1, alphaCImax = 0.5, stepalphaCI = 0.025,
+  )
+  expect_equal(res$n2, 158)
+  expect_equal(res$n3, 262)
+  expect_equal(res$n, 420)
+  expect_equal(res$RRgo, 0.86)
+  expect_equal(res$u, 708.24, tolerance = 0.005)
+  expect_equal(res$Adj, 0.4)
+})
+#' @editor Lukas D Sauer
+#' @editDate 2022-12-20
+test_that("02.12", {
+  res <- optimal_bias_binary(
+    alpha = 0.025,
+    beta = 0.1,
+    p0 = 0.6, p11 = 0.3, p12= 0.5,
+    n2min = 10, n2max = 500, stepn2 = 2,
+    lambdamin = 0.7, lambdamax = 0.9, steplambda = 0.01,
+    steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
+    b1 = 1000, b2 = 2000, b3 = 3000,
+    num_cl = 3,
+    c02 = 100, c03 = 150,
+    c2 = 0.75, c3 = 1,
+    fixed = TRUE,
+    w = 0.3,
+    in1 = 30, in2 = 60,
+    adj = "both",
+    alphaCImin = 0.1, alphaCImax = 0.5, stepalphaCI = 0.025,
+    lambdamin = 0.5, lambdamax = 1, steplambda = 0.02
+  )
+  expect_equal(res[1,]$Method, "multipl.")
+  expect_equal(res[1,]$n2, 198)
+  expect_equal(res[1,]$n3, 294)
+  expect_equal(res[1,]$n, 492)
+  expect_equal(res[1,]$u, 2180.86, tolerance = 0.005)
+  expect_equal(res[1,]$RRgo, 0.82)
+  expect_equal(res[1,]$Adj, 0.64)
+  expect_equal(res[2,]$Method, "add.")
+  expect_equal(res[2,]$n2, 178)
+  expect_equal(res[2,]$n3, 196)
+  expect_equal(res[2,]$n, 374)
+  expect_equal(res[2,]$u, 2062.42, tolerance = 0.005)
+  expect_equal(res[2,]$RRgo, 0.82)
+  expect_equal(res[2,]$Adj, 0.1)
 })

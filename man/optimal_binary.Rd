@@ -118,25 +118,19 @@ being the results when including phase II and \code{res[[2]]} when skipping phas
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
 \value{
-The output of the function \code{\link{optimal_binary}} is a data.frame containing the optimization results:
-\describe{
-\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}
-\item{RRgo}{optimal threshold value for the decision rule to go to phase III}
-\item{n2}{total sample size for phase II}
+The output of the function is a \code{data.frame} object containing the optimization results:
+\describe{\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}\item{RRgo}{optimal threshold value for the decision rule to go to phase III}\item{n2}{total sample size for phase II; rounded to the next even natural number}
 \item{n3}{total sample size for phase III; rounded to the next even natural number}
 \item{n}{total sample size in the program; n = n2 + n3}
 \item{K}{maximal costs of the program}
 \item{pgo}{probability to go to phase III}
 \item{sProg}{probability of a successful program}
-\item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-\item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-\item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
+\item{sProg1}{probability of a successful program with "small" treatment effect in phase III}
+\item{sProg2}{probability of a successful program with "medium" treatment effect in phase III}
+\item{sProg3}{probability of a successful program with "large" treatment effect in phase III }
 \item{K2}{expected costs for phase II}
-\item{K3}{expected costs for phase III}
-}
-and further input parameters.
-
-Taking \code{cat(comment())} of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+\item{K3}{expected costs for phase III}}
+and further input parameters. Taking \code{cat(comment())} of the data frame lists the used optimization sequences, start and finish date of the optimization procedure.
 }
 \description{
 The \code{\link{optimal_binary}} function of the drugdevelopR package enables

@@ -43,11 +43,11 @@ optimal_normal(
 \item{w}{weight for
 \href{https://web.imbi.uni-heidelberg.de/prior/}{mixture prior distribution}}
 
-\item{Delta1}{assumed true treatment effect for standardized difference in means, see
+\item{Delta1}{assumed true prior treatment effect for standardized difference in means, see
 \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 for details}
 
-\item{Delta2}{assumed true treatment effect for standardized difference in means, see
+\item{Delta2}{assumed true prior treatment effect for standardized difference in means, see
 \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 for details}
 
@@ -69,11 +69,11 @@ for details}
 
 \item{stepn2}{step size for the optimization over n2; must be an even number}
 
-\item{kappamin}{minimal threshold value for the go/no-go decision rule}
+\item{kappamin}{minimal threshold value $\kappa$ for the go/no-go decision rule}
 
-\item{kappamax}{maximal threshold value for the go/no-go decision rule}
+\item{kappamax}{maximal threshold value  $\kappa$ for the go/no-go decision rule}
 
-\item{stepkappa}{step size for the optimization over kappa}
+\item{stepkappa}{step size for the optimization over the threshold value $\kappa$}
 
 \item{alpha}{significance level}
 

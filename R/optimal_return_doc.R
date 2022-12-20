@@ -16,13 +16,13 @@ optimal_return_doc <- function(type,
     custom_threshold = "\\item{Kappa}{optimal threshold value for the decision rule to go to phase III}"
   }
   if(type == "binary"){
-    custom_threshold = "\item{RRgo}{optimal threshold value for the decision rule to go to phase III}"
+    custom_threshold = "\\item{RRgo}{optimal threshold value for the decision rule to go to phase III}"
   }
   if(type == "tte"){
-    custom_threshold = "\item{HRgo}{optimal threshold value for the decision rule to go to phase III}
-                        \item{d2}{optimal total number of events for phase II}
-                        \item{d3}{total expected number of events for phase III; rounded to next natural number}
-                        \item{d}{total expected number of events in the program; d = d2 + d3}"
+    custom_threshold = "\\item{HRgo}{optimal threshold value for the decision rule to go to phase III}
+                        \\item{d2}{optimal total number of events for phase II}
+                        \\item{d3}{total expected number of events for phase III; rounded to next natural number}
+                        \\item{d}{total expected number of events in the program; d = d2 + d3}"
   }
   if(setting == "bias"){
     custom_further = "\\item{Method}{Type of adjustment: \"multipl.\" (multiplicative adjustment of effect size), \"add.\" (additive adjustment of effect size), \"multipl2\" (multiplicative adjustment of effect size and threshold), \"add2\" (additive adjustment of effect size and threshold)}\n \\item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}"

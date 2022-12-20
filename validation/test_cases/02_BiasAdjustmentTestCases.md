@@ -110,7 +110,7 @@ Use the function ` optimal_bias_binary()`. Supply the following input values to 
 
   * a significance level of 0.025,
   * a power of 0.9, i.e. $\beta$ of 0.1,
-  * assumed true treatment effects of p0 = 0.6, p1 = 0.3, p2= 0.5,
+  * assumed true treatment effects of p0 = 0.6, p11 = 0.3, p12= 0.5,
   * the optimization region of all even numbers {10, 12, …, 500} for the number of participants in phase II,
   * the optimization region {0.7, 0.71, …, 0.9} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
@@ -118,9 +118,9 @@ Use the function ` optimal_bias_binary()`. Supply the following input values to 
   * three clusters for parallel computing,
   * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
-  * “fixed=FALSE”, i.e. set the function to use fixed treatment effects not modeled on a prior distribution,
+  * “fixed=FALSE”, i.e. set the function to use treatment effects modeled on a prior distribution,
   * weight of 0.3 for the prior distribution,
-  * 30 and 60 events for each treatment effect, respectively,
+  * a sample size of 30 and 60 for the the two treatment effect estimate, respectively,
   * additive adjustment method "additive", and
   * an optimization region of {0.1, 0.125, ..., 0.5} for the adjustment parameter $\alpha_{CI}$.
 
@@ -130,4 +130,4 @@ Verify that the function calculates an optimal sample size of 158 in phase II an
 
 Use the function `optimal_bias_binary()`. Supply the same input values as in test case 02.11 (including the optimization region for the additive adjustment parameter), however set the parameter fixed to `"TRUE"`. Furthermore use the adjustment method "both" and provide the following optimization set for the multiplicative adjustment parameter $\lambda$: {0.5, 0.52, ..., 1}.
 
-Verify that the program returns the results for both adjustment methods by returning the selected method as well as the calculated adjustment parameter. Hereby verify, that that for the multiplicative method the function calculates an optimal sample size of 198 in phase II and 294 in phase III (i.e. a total of 492 participants), an expected utility of 2180.86 (in 10^5\$), and an optimal threshold value of 0.82 as well as an optimal multiplicative adjustment parameter of 0.64  and that the for the additive method the function calculates an optimal sample size of 178 in phase II and 196 in phase III (i.e. a total of 374 participants), an expected utility of 2062.42 (in 10^5\$), and an optimal threshold value of 0.78 as well as an optimal additive adjustment parameter of 0.1.
+Verify that the program returns the results for both adjustment methods by returning the selected method as well as the calculated adjustment parameter. Hereby verify that for the multiplicative method, the function calculates an optimal sample size of 198 in phase II and 294 in phase III (i.e. a total of 492 participants), an expected utility of 2180.86 (in 10^5\$), and an optimal threshold value of 0.82 as well as an optimal multiplicative adjustment parameter of 0.64. Furthermore, verify that the for the additive method, the function calculates an optimal sample size of 178 in phase II and 196 in phase III (i.e. a total of 374 participants), an expected utility of 2062.42 (in 10^5\$), and an optimal threshold value of 0.78 as well as an optimal additive adjustment parameter of 0.1.

@@ -44,31 +44,47 @@ optimal_bias_binary(
 )
 }
 \arguments{
-\item{w}{weight for mixture prior distribution}
+\item{w}{weight for \href{https://web.imbi.uni-heidelberg.de/prior/}{mixture prior distribution}}
 
-\item{p0}{assumed true rate of control group}
+\item{p0}{assumed true rate of control group, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{p11}{assumed true rate of treatment group}
+\item{p11}{assumed true rate of treatment group, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{p12}{assumed true rate of treatment group}
+\item{p12}{assumed true rate of treatment group, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{in1}{amount of information for p11 in terms of sample size}
+\item{in1}{amount of information for \code{p11} in terms of sample size, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{in2}{amount of information for p12 in terms of sample size}
+\item{in2}{amount of information for \code{p12} in terms of sample size, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{n2min}{minimal total sample size for phase II; must be even number}
+\item{n2min}{minimal total sample size for phase II; must be an even number}
 
-\item{n2max}{maximal total sample size for phase II, must be even number}
+\item{n2max}{maximal total sample size for phase II, must be an even number}
 
-\item{stepn2}{stepsize for the optimization over n2; must be even number}
+\item{stepn2}{step size for the optimization over n2; must be an even number}
 
 \item{rrgomin}{minimal threshold value for the go/no-go decision rule}
 
 \item{rrgomax}{maximal threshold value for the go/no-go decision rule}
 
-\item{steprrgo}{stepsize for the optimization over RRgo}
+\item{steprrgo}{step size for the optimization over RRgo}
 
-\item{adj}{type of adjustment, \code{"additive"}, \code{"multiplicative"} or \code{"both"}}
+\item{adj}{choose type of adjustment: \code{"multiplicative"},
+\code{"additive"}, \code{"both"} or \code{"all"}. When using "both",
+\code{res[1,]} contains the results using the multiplicative method and \code{res[2,]}
+contains the results using the additive method. When using "all", there are
+also \code{res[3,]} and \code{res[4,]}, containing the results of a multiplicative
+and an additive method which do not only adjust the treatment effect but
+also the threshold value for the decision rule.}
 
 \item{lambdamin}{minimal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)}
 
@@ -84,15 +100,15 @@ optimal_bias_binary(
 
 \item{alpha}{significance level}
 
-\item{beta}{1-beta power for calculation of sample size for phase III}
+\item{beta}{type II error rate; i.e. \code{1 - beta} is the power for calculation of the number of events for phase III}
 
-\item{c2}{variable per-patient cost for phase II}
+\item{c2}{variable per-patient cost for phase II in 10^5 $}
 
-\item{c3}{variable per-patient cost for phase III}
+\item{c3}{variable per-patient cost for phase III in 10^5 $}
 
-\item{c02}{fixed cost for phase II}
+\item{c02}{fixed cost for phase II in 10^5 $}
 
-\item{c03}{fixed cost for phase III}
+\item{c03}{fixed cost for phase III in 10^5 $}
 
 \item{K}{constraint on the costs of the program, default: Inf, e.g. no constraint}
 
@@ -117,27 +133,20 @@ optimal_bias_binary(
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
 \value{
-The output of the function \code{\link{optimal_binary}} is a data.frame containing the optimization results:
-\describe{
-\item{Method}{Type of adjustment: multipl. (multiplicative) or add. (additive)}
-\item{u}{maximal expected utility}
-\item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}
-\item{RRgo}{optimal threshold value for the decision rule to go to phase III}
-\item{n2}{total sample size for phase II}
+The output of the function is a \code{data.frame} object containing the optimization results:
+\describe{\item{Method}{Type of adjustment: "multipl." (multiplicative adjustment of effect size), "add." (additive adjustment of effect size), "multipl2" (multiplicative adjustment of effect size and threshold), "add2" (additive adjustment of effect size and threshold)}
+\item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}\item{RRgo}{optimal threshold value for the decision rule to go to phase III}\item{n2}{total sample size for phase II; rounded to the next even natural number}
 \item{n3}{total sample size for phase III; rounded to the next even natural number}
 \item{n}{total sample size in the program; n = n2 + n3}
 \item{K}{maximal costs of the program}
 \item{pgo}{probability to go to phase III}
 \item{sProg}{probability of a successful program}
-\item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-\item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-\item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
+\item{sProg1}{probability of a successful program with "small" treatment effect in phase III}
+\item{sProg2}{probability of a successful program with "medium" treatment effect in phase III}
+\item{sProg3}{probability of a successful program with "large" treatment effect in phase III }
 \item{K2}{expected costs for phase II}
-\item{K3}{expected costs for phase III}
-}
-and further input parameters.
-
-Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+\item{K3}{expected costs for phase III}}
+and further input parameters. Taking \code{cat(comment())} of the data frame lists the used optimization sequences, start and finish date of the optimization procedure.
 }
 \description{
 The function \code{\link{optimal_bias_binary}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results for binary endpoints (Preussler et. al, 2020).
@@ -146,28 +155,6 @@ The assumed true treatment effects can be assumed fixed or modelled by a prior d
 The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package.
 Fast computing is enabled by parallel programming.
 }
-\section{drugdevelopR functions}{
-
-The drugdevelopR package provides the functions
-\itemize{
-\item \code{\link{optimal_tte}},
-\item \code{\link{optimal_binary}} or
-\item \code{\link{optimal_normal}}
-}
-to plan optimal phase II/III drug development programs with
-\itemize{
-\item time-to-event (treatment effect measured by hazard ratio (HR)),
-\item binary (treatment effect measured by risk ratio (RR)) and
-\item normally distributed (treatment effect measured by standardized difference in means (Delta))
-}
-endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are
-\itemize{
-\item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
-\item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-\item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
-}
-}
-
 \examples{
 res <- optimal_bias_binary(w = 0.3,                           # define parameters for prior
   p0 = 0.6, p11 =  0.3, p12 = 0.5, in1 = 30, in2 = 60,   # (https://web.imbi.uni-heidelberg.de/prior/)
@@ -187,6 +174,7 @@ res <- optimal_bias_binary(w = 0.3,                           # define parameter
   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 res
 cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+
 }
 \references{
 IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
