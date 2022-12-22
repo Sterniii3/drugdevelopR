@@ -65,9 +65,9 @@ for the choice of weights}
 
 \item{beta}{type II error rate; i.e. \code{1 - beta} is the power for calculation of the number of events for phase III by Schoenfeld's formula (Schoenfeld 1981)}
 
-\item{xi2}{event rate for phase II}
+\item{xi2}{assumed event rate for phase II, used for calculating the sample size of phase II via \code{n2 = d2/xi2}}
 
-\item{xi3}{event rate for phase III}
+\item{xi3}{event rate for phase III, used for calculating the sample size of phase III in analogy to \code{xi2}}
 
 \item{c2}{variable per-patient cost for phase II in 10^5 $.}
 
@@ -124,7 +124,10 @@ The function \code{\link{optimal_multitrial}} of the drugdevelopR package enable
 
 In other settings, the definition of "small", "medium" and "large" effect
 sizes can be user-specified using the input parameters \code{steps1}, \code{stepm1} and
-\code{stepl1}.
+\code{stepl1}. Due to the complexity of the multitrial setting, this feature is
+not included for this setting. Instead, the effect sizes were set to
+to predefined values as explained under sProg1, sProg2 and sProg3 in the
+\emph{Value} section.
 }
 
 \examples{

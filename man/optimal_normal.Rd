@@ -51,11 +51,11 @@ for details}
 \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 for details}
 
-\item{in1}{amount of information for \code{Delta2} in terms of sample size, see
+\item{in1}{amount of information for \code{Delta1} in terms of sample size, see
 \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 for details}
 
-\item{in2}{amount of information for \code{Delta1} in terms of sample size, see
+\item{in2}{amount of information for \code{Delta2} in terms of sample size, see
 \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 for details}
 

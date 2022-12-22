@@ -107,9 +107,9 @@ for the choice of weights}
 
 \item{beta}{type II error rate; i.e. \code{1 - beta} is the power for calculation of the number of events for phase III by Schoenfeld's formula (Schoenfeld 1981)}
 
-\item{xi2}{event rate for phase II}
+\item{xi2}{assumed event rate for phase II, used for calculating the sample size of phase II via \code{n2 = d2/xi2}}
 
-\item{xi3}{event rate for phase III}
+\item{xi3}{event rate for phase III, used for calculating the sample size of phase III in analogy to \code{xi2}}
 
 \item{c2}{variable per-patient cost for phase II in 10^5 $.}
 
@@ -154,14 +154,11 @@ median of the prior function.}
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
 \value{
-The output of the function \code{\link{optimal_tte}} is a data.frame containing the optimization results:
-\describe{
-\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}
-\item{HRgo}{optimal threshold value for the decision rule to go to phase III}
+The output of the function is a \code{data.frame} object containing the optimization results:
+\describe{\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}\item{HRgo}{optimal threshold value for the decision rule to go to phase III}
 \item{d2}{optimal total number of events for phase II}
 \item{d3}{total expected number of events for phase III; rounded to next natural number}
-\item{d}{total expected number of events in the program; d = d2 + d3}
-\item{n2}{total sample size for phase II; rounded to the next even natural number}
+\item{d}{total expected number of events in the program; d = d2 + d3}\item{n2}{total sample size for phase II; rounded to the next even natural number}
 \item{n3}{total sample size for phase III; rounded to the next even natural number}
 \item{n}{total sample size in the program; n = n2 + n3}
 \item{K}{maximal costs of the program}
@@ -169,14 +166,12 @@ The output of the function \code{\link{optimal_tte}} is a data.frame containing 
 \item{sProg}{probability of a successful program}
 \item{sProg1}{probability of a successful program with "small" treatment effect in phase III}
 \item{sProg2}{probability of a successful program with "medium" treatment effect in phase III}
-\item{sProg3}{probability of a successful program with "large" treatment effect in phase III }
+\item{sProg3}{probability of a successful program with "large" treatment effect in phase III}
 \item{K2}{expected costs for phase II}
-\item{K3}{expected costs for phase III}
-}
-and further input parameters.
-
-Taking \code{cat(comment())} of the data.frame object lists the used optimization sequences
-as well as start and finish date of the optimization procedure.
+\item{K3}{expected costs for phase III}}
+and further input parameters. Taking \code{cat(comment())} of the
+data frame lists the used optimization sequences, start and
+finish date of the optimization procedure.
 }
 \description{
 The function \code{\link{optimal_tte}} of the \code{\link{drugdevelopR}}

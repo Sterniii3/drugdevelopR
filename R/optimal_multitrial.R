@@ -7,10 +7,7 @@
 #' @inheritParams optimal_multitrial_generic
 #' @inheritParams optimal_tte_generic
 #' 
-#' @section Effect sizes:
-#' In other settings, the definition of "small", "medium" and "large" effect
-#' sizes can be user-specified using the input parameters `steps1`, `stepm1` and
-#' `stepl1`.
+#' @inheritSection optimal_multitrial_generic Effect sizes
 #' 
 #' @return
 #' `r optimal_return_doc(type = "tte", setting = "multitrial")`

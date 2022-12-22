@@ -7,10 +7,10 @@
 #' @param Delta2 assumed true prior treatment effect for standardized difference in means, see
 #'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 #'   for details
-#' @param in1 amount of information for `Delta2` in terms of sample size, see
+#' @param in1 amount of information for `Delta1` in terms of sample size, see
 #'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 #'   for details
-#' @param in2 amount of information for `Delta1` in terms of sample size, see
+#' @param in2 amount of information for `Delta2` in terms of sample size, see
 #'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 #'   for details
 #' @param a lower boundary for the truncation of the \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}

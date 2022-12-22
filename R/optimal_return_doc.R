@@ -33,10 +33,15 @@ optimal_return_doc <- function(type,
   }
   if(setting == "multitrial"){
     custom_further = "\\item{Case}{Case: \"number of significant trials needed\"}\\item{Strategy}{Strategy: \"number of trials to be conducted in order to achieve the goal of the case\"}"
-    if(type == "tte"){
+    if(type == "tte" | type == "binary"){
       steps1_str = " (lower boundary in HR scale is set to 1, as proposed by IQWiG (2016))"
       stepm1_str = " (lower boundary in HR scale is set to 0.95, as proposed by IQWiG (2016))"
       stepl1_str = " (lower boundary in HR scale is set to 0.85, as proposed by IQWiG (2016))"
+    }
+    if(type == "normal"){
+      steps1_str = " (lower boundary in HR scale is set to 0, as proposed by Cohen (1988))"
+      stepm1_str = " (lower boundary in HR scale is set to 0.5, as proposed Cohen (1988))"
+      stepl1_str = " (lower boundary in HR scale is set to 0.8, as proposed Cohen (1988))"
     }
   }
   return(paste0("The output of the function is a `data.frame` object containing the optimization results:

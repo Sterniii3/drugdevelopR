@@ -3,56 +3,15 @@
 #' The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. For binary endpoints the treatment effect is measured by the risk ratio (RR).The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
 #' 
 #' @name optimal_multitrial_binary
-#' @param w weight for mixture prior distribution
-#' @param p0 assumed true rate of control group
-#' @param p11 assumed true rate of treatment group
-#' @param p12 assumed true rate of treatment group
-#' @param in1 amount of information for p11 in terms of sample size
-#' @param in2 amount of information for p12 in terms of sample size
-#' @param n2min minimal total sample size for phase II; must be even number
-#' @param n2max maximal total sample size for phase II, must be even number
-#' @param stepn2 stepsize for the optimization over n2; must be even number
-#' @param rrgomin minimal threshold value for the go/no-go decision rule
-#' @param rrgomax maximal threshold value for the go/no-go decision rule
-#' @param steprrgo stepsize for the optimization over RRgo
-#' @param beta 1-beta power for calculation of sample size for phase III
-#' @param alpha significance level
-#' @param c2 variable per-patient cost for phase II
-#' @param c3 variable per-patient cost for phase III
-#' @param c02 fixed cost for phase II
-#' @param c03 fixed cost for phase III
-#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
-#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
-#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
-#' @param b1 expected gain for effect size category "small"
-#' @param b2 expected gain for effect size category "medium"
-#' @param b3 expected gain for effect size category "large"
-#' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
-#' @param strategy choose strategy: "conduct 1, 2, 3 or 4 trial"; TRUE calculates all strategies of the selected Case
-#' @param fixed choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1
-#' @param num_cl number of clusters used for parallel computing, default: 1
+#' 
+#' @inheritParams optimal_multitrial_generic
+#' @inheritParams optimal_binary_generic
+#' 
+#' @inheritSection optimal_multitrial_generic Effect sizes
+#' 
 #' @return
-#' The output of the function \code{\link{optimal_binary}} is a data.frame containing the optimization results:
-#' \describe{
-#'   \item{Case}{Case: "number of significant trials needed"}
-#'   \item{Strategy}{Strategy: "number of conducted trials"}
-#'   \item{u}{maximal expected utility}
-#'   \item{RRgo}{optimal threshold value for the decision rule to go to phase III}
-#'   \item{n2}{total sample size for phase II}
-#'   \item{n3}{total sample size for phase III; rounded to the next even natural number}
-#'   \item{n}{total sample size in the program; n = n2 + n3}
-#'   \item{K}{maximal costs of the program}
-#'   \item{pgo}{probability to go to phase III}
-#'   \item{sProg}{probability of a successful program}
-#'   \item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-#'   \item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-#'   \item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
-#'   \item{K2}{expected costs for phase II}
-#'   \item{K3}{expected costs for phase III}
-#' }
-#' and further input parameters.
-#'
-#' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+#' `r optimal_return_doc(type = "binary", setting = "multitrial")`
+#' 
 #' @examples
 #' res <- optimal_multitrial_binary(w = 0.3,                # define parameters for prior
 #'   p0 = 0.6, p11 =  0.3, p12 = 0.5, in1 = 30, in2 = 60,   # (https://web.imbi.uni-heidelberg.de/prior/)
@@ -67,25 +26,7 @@
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing 
 #' res
 #' cat(comment(res))                                        # displays the optimization sequence, start/finish date of procedure
-#' @section drugdevelopR functions:
-#' The drugdevelopR package provides the functions
-#' \itemize{
-#'   \item \code{\link{optimal_tte}},
-#'   \item \code{\link{optimal_binary}} or
-#'   \item \code{\link{optimal_normal}}
-#' }
-#' to plan optimal phase II/III drug development programs with
-#' \itemize{
-#'   \item time-to-event (treatment effect measured by hazard ratio (HR)),
-#'   \item binary (treatment effect measured by risk ratio (RR)) and
-#'   \item normally distributed (treatment effect measured by standardized difference in means (Delta))
-#' }
-#' endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are 
-#' \itemize{
-#'   \item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
-#'   \item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-#'   \item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
-#' }
+#' 
 #' @references
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 #' @editor Johannes Cepicka

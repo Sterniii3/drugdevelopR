@@ -14,8 +14,8 @@
 #' @param stephrgo step size for the optimization over HRgo
 #' @param beta type II error rate; i.e. `1 - beta` is the power for calculation of the number of events for phase III by Schoenfeld's formula (Schoenfeld 1981)
 #' @param alpha significance level
-#' @param xi2 event rate for phase II
-#' @param xi3 event rate for phase III
+#' @param xi2 assumed event rate for phase II, used for calculating the sample size of phase II via `n2 = d2/xi2`
+#' @param xi3 event rate for phase III, used for calculating the sample size of phase III in analogy to `xi2`
 #' @param c2 variable per-patient cost for phase II in 10^5 $.
 #' @param c3 variable per-patient cost for phase III in 10^5 $.
 #' @param c02 fixed cost for phase II in 10^5 $.
