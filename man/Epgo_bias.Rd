@@ -46,11 +46,3 @@ res <- Epgo_L2(HRgo = 0.8, d2 = 50, Adj = 0.4,
                                 w = 0.3, hr1 = 0.69, hr2 = 0.81, 
                                 id1 = 280, id2 = 420, fixed = FALSE)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-11-04
-}
-

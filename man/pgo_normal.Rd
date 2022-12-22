@@ -34,11 +34,3 @@ Given our parameters this function calculates the probability to go to phase III
 \examples{
 res <- pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625, strategy = 3, case = 31)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-05-08
-}
-

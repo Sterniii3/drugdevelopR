@@ -36,11 +36,3 @@ The results of this function are necessary for calculating the utility of the pr
 res <- Ess_binary(RRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
                             p0 = 0.6, p11 =  0.3, p12 = 0.5,strategy = 3, case = 31)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-05-08
-}
-
