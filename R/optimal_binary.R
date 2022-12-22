@@ -41,25 +41,6 @@
 #' res
 #' cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
 #' 
-#' @section drugdevelopR functions:
-#' The drugdevelopR package provides the functions
-#' \itemize{
-#'   \item \code{\link{optimal_tte}},
-#'   \item \code{\link{optimal_binary}} or
-#'   \item \code{\link{optimal_normal}}
-#' }
-#' to plan optimal phase II/III drug development programs with
-#' \itemize{
-#'   \item time-to-event (treatment effect measured by hazard ratio (HR)),
-#'   \item binary (treatment effect measured by risk ratio (RR)) and
-#'   \item normally distributed (treatment effect measured by standardized difference in means (Delta))
-#' }
-#' endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are 
-#' \itemize{
-#'   \item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
-#'   \item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-#'   \item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
-#' }
 #' @references
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 #' @export

@@ -125,7 +125,7 @@ test_that("02.04", {
                       lambdamin = 0.5, lambdamax = 1, steplambda = 0.02,
                       N = 350
   )
-  expect_equal(res$Method, c("multipl.", "add.", "multipl2", "add2"))
+  expect_equal(res$Method, c("multipl.", "add.", "multipl2.", "add2."))
   # Additive
   expect_equal(res[2,]$n2, 122)
   expect_equal(res[2,]$n3, 200)

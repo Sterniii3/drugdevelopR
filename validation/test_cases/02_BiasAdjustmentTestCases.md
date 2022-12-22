@@ -47,7 +47,7 @@ Verify that the function calculates an optimal sample size of 136 in phase II an
 Furthermore, verify that the probability to go to phase III is 0.38.
 
 ### 02.03 (shows that req. 02.06, 02.12, 02.16 and 02.20 are met): {-}
-Use the function `optimal_bias`. Supply the same input values as in test case 02.01, however set the adjustment method to "both" and set the optimization region for the multiplicative adjustment parameter $\lambda$ to {0.5, 0.52, ..., 1} and the parameters for the additive method $\alpha_{CI}$ to {0.3, 0.325, ..., 0.5}. Furthermore set a constraint for the maximum sample size to be 350.
+Use the function `optimal_bias`. Supply the same input values as in test case 02.01, however set the adjustment method to "both" and set the optimization region for the multiplicative adjustment parameter $\lambda$ to {0.5, 0.52, ..., 1} and the parameters for the additive method $\alpha_{CI}$ to {0.3, 0.325, ..., 0.5}. Furthermore, set a constraint for the maximum sample size to be 350.
 
 Verify that the program returns the results for both adjustment methods by returning the selected methods "multipl." and "add." as well as the calculated adjustment parameter. Hereby verify, that the results for the additive method are the same as in test case 02.01 as the sample size constraint is not binding and that the optimal sample size for the multiplicative method changes to 100 in phase II and 240 in phase III, (i.e a total of 340) and the expected utility changes to 98 (in 10^5\$).
 

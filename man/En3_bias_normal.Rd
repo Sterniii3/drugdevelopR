@@ -81,7 +81,7 @@ En3_normal_R2(
 
 \item{alpha}{significance level}
 
-\item{beta}{\verb{1-beta power} for calculation of sample size for phase III}
+\item{beta}{\code{1 - beta} is the power for calculation of sample size for phase III}
 
 \item{w}{weight for mixture prior distribution}
 

@@ -127,10 +127,12 @@ The output of the function is a \code{data.frame} object containing the optimiza
 \item{sProg}{probability of a successful program}
 \item{sProg1}{probability of a successful program with "small" treatment effect in phase III}
 \item{sProg2}{probability of a successful program with "medium" treatment effect in phase III}
-\item{sProg3}{probability of a successful program with "large" treatment effect in phase III }
+\item{sProg3}{probability of a successful program with "large" treatment effect in phase III}
 \item{K2}{expected costs for phase II}
 \item{K3}{expected costs for phase III}}
-and further input parameters. Taking \code{cat(comment())} of the data frame lists the used optimization sequences, start and finish date of the optimization procedure.
+and further input parameters. Taking \code{cat(comment())} of the
+data frame lists the used optimization sequences, start and
+finish date of the optimization procedure.
 }
 \description{
 The \code{\link{optimal_binary}} function of the drugdevelopR package enables
@@ -143,28 +145,6 @@ distribution. The R Shiny application
 distributions used in this package. Fast computing is enabled by parallel
 programming.
 }
-\section{drugdevelopR functions}{
-
-The drugdevelopR package provides the functions
-\itemize{
-\item \code{\link{optimal_tte}},
-\item \code{\link{optimal_binary}} or
-\item \code{\link{optimal_normal}}
-}
-to plan optimal phase II/III drug development programs with
-\itemize{
-\item time-to-event (treatment effect measured by hazard ratio (HR)),
-\item binary (treatment effect measured by risk ratio (RR)) and
-\item normally distributed (treatment effect measured by standardized difference in means (Delta))
-}
-endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are
-\itemize{
-\item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
-\item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-\item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
-}
-}
-
 \examples{
 res <- optimal_binary(w = 0.3,                           # define parameters for prior
   p0 = 0.6, p11 =  0.3, p12 = 0.5, in1 = 30, in2 = 60,   # (https://web.imbi.uni-heidelberg.de/prior/)

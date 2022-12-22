@@ -407,7 +407,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
  #' @param b3 expected gain for effect size category `"large"`
  #' @param fixed choose if true treatment effects are fixed or random
  #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
- #' @return The output of the the `functions utility2_binary()`, `utility3_binary()` and `utility4_binary()` is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
+ #' @return The output of the the functions `utility2_binary()`, `utility3_binary()` and `utility4_binary()` is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
  #' @examples res <- utility2_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
  #'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
  #'                                  in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,

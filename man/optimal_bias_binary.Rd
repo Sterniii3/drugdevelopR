@@ -134,7 +134,7 @@ also the threshold value for the decision rule.}
 }
 \value{
 The output of the function is a \code{data.frame} object containing the optimization results:
-\describe{\item{Method}{Type of adjustment: "multipl." (multiplicative adjustment of effect size), "add." (additive adjustment of effect size), "multipl2" (multiplicative adjustment of effect size and threshold), "add2" (additive adjustment of effect size and threshold)}
+\describe{\item{Method}{Type of adjustment: "multipl." (multiplicative adjustment of effect size), "add." (additive adjustment of effect size), "multipl2." (multiplicative adjustment of effect size and threshold), "add2." (additive adjustment of effect size and threshold)}
 \item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}\item{RRgo}{optimal threshold value for the decision rule to go to phase III}\item{n2}{total sample size for phase II; rounded to the next even natural number}
 \item{n3}{total sample size for phase III; rounded to the next even natural number}
 \item{n}{total sample size in the program; n = n2 + n3}
@@ -143,10 +143,12 @@ The output of the function is a \code{data.frame} object containing the optimiza
 \item{sProg}{probability of a successful program}
 \item{sProg1}{probability of a successful program with "small" treatment effect in phase III}
 \item{sProg2}{probability of a successful program with "medium" treatment effect in phase III}
-\item{sProg3}{probability of a successful program with "large" treatment effect in phase III }
+\item{sProg3}{probability of a successful program with "large" treatment effect in phase III}
 \item{K2}{expected costs for phase II}
 \item{K3}{expected costs for phase III}}
-and further input parameters. Taking \code{cat(comment())} of the data frame lists the used optimization sequences, start and finish date of the optimization procedure.
+and further input parameters. Taking \code{cat(comment())} of the
+data frame lists the used optimization sequences, start and
+finish date of the optimization procedure.
 }
 \description{
 The function \code{\link{optimal_bias_binary}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results for binary endpoints (Preussler et. al, 2020).

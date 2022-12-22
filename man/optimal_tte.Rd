@@ -194,11 +194,6 @@ parallel programming.
 The functions \code{optimal_tte} and \code{optimal_tte_graphic} return the same output (given the same input values).
 However, \code{optimal_tte_graphic} further returns graphical output to accompany the results.
 }
-\section{drugdevelopR package and R Shiny App}{
-
-The \code{\link{drugdevelopR}} package provides functions to plan optimal phase II/III drug development programs in variuos scenarios. The App \href{https://web.imbi.uni-heidelberg.de/drugdevelopR/}{drugdevelopR} serves as homepage, navigating the different parts of the drugdevelopR framework via links.
-}
-
 \examples{
 res <- optimal_tte(w = 0.3,                              # define parameters for prior
   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,          # (https://web.imbi.uni-heidelberg.de/prior/)
@@ -217,6 +212,7 @@ res <- optimal_tte(w = 0.3,                              # define parameters for
   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 res
 cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+
  # res <- optimal_tte_graphic(w = 0.3,                     # define parameters for prior
  # hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,          # (https://web.imbi.uni-heidelberg.de/prior/)
  # d2min = 20, d2max = 100, stepd2 = 5,                   # define optimization set for d2
