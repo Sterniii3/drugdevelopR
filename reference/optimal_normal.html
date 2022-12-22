@@ -7,7 +7,7 @@ difference in means. The assumed true treatment effects can be assumed to be
 fixed or modelled by a prior distribution. The R Shiny application
 prior visualizes the prior
 distributions used in this package. Fast computing is enabled by parallel
-programming."><title>Optimal phase II/III drug development planning with normally distributed endpoint — optimal_normal • drugdevelopR</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Optimal phase II/III drug development planning with normally distributed endpoint — optimal_normal"><meta property="og:description" content="The function optimal_normal of the drugdevelopR
+programming."><title>Optimal phase II/III drug development planning with normally distributed endpoint — optimal_normal • drugdevelopR</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Optimal phase II/III drug development planning with normally distributed endpoint — optimal_normal"><meta property="og:description" content="The function optimal_normal of the drugdevelopR
 package enables planning of phase II/III drug development programs with
 optimal sample size allocation and go/no-go decision rules for normally
 distributed endpoints. The treatment effect is measured by the standardized
@@ -41,7 +41,7 @@ programming."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/lib
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Fixed_and_prior_distributions.html">Fixed effects and prior distributions</a>
-    <a class="dropdown-item" href="../articles/Interpreting_Output.html">Interpreting the Output</a>
+    <a class="dropdown-item" href="../articles/Interpreting_Output.html">Interpreting the output</a>
     <a class="dropdown-item" href="../articles/introduction-to-drugdevelopR.html">Introduction to planning phase II and phase III trials with drugdevelopR</a>
   </div>
 </li>
@@ -127,25 +127,25 @@ programming.</p>
 
 
 <dt>Delta1</dt>
-<dd><p>assumed true treatment effect for standardized difference in means, see
+<dd><p>assumed true prior treatment effect for standardized difference in means, see
 <a href="https://web.imbi.uni-heidelberg.de/prior/" class="external-link">here</a>
 for details</p></dd>
 
 
 <dt>Delta2</dt>
-<dd><p>assumed true treatment effect for standardized difference in means, see
+<dd><p>assumed true prior treatment effect for standardized difference in means, see
 <a href="https://web.imbi.uni-heidelberg.de/prior/" class="external-link">here</a>
 for details</p></dd>
 
 
 <dt>in1</dt>
-<dd><p>amount of information for Delta2 in terms of sample size, see
+<dd><p>amount of information for <code>Delta1</code> in terms of sample size, see
 <a href="https://web.imbi.uni-heidelberg.de/prior/" class="external-link">here</a>
 for details</p></dd>
 
 
 <dt>in2</dt>
-<dd><p>amount of information for Delta1 in terms of sample size, see
+<dd><p>amount of information for <code>Delta2</code> in terms of sample size, see
 <a href="https://web.imbi.uni-heidelberg.de/prior/" class="external-link">here</a>
 for details</p></dd>
 
@@ -155,7 +155,7 @@ for details</p></dd>
 
 
 <dt>b</dt>
-<dd><p>upper boundary for the truncation <a href="https://web.imbi.uni-heidelberg.de/prior/" class="external-link">prior distribution</a></p></dd>
+<dd><p>upper boundary for the truncation of the <a href="https://web.imbi.uni-heidelberg.de/prior/" class="external-link">prior distribution</a></p></dd>
 
 
 <dt>n2min</dt>
@@ -171,15 +171,15 @@ for details</p></dd>
 
 
 <dt>kappamin</dt>
-<dd><p>minimal threshold value for the go/no-go decision rule</p></dd>
+<dd><p>minimal threshold value $$ for the go/no-go decision rule</p></dd>
 
 
 <dt>kappamax</dt>
-<dd><p>maximal threshold value for the go/no-go decision rule</p></dd>
+<dd><p>maximal threshold value  $$ for the go/no-go decision rule</p></dd>
 
 
 <dt>stepkappa</dt>
-<dd><p>step size for the optimization over kappa</p></dd>
+<dd><p>step size for the optimization over the threshold value $$</p></dd>
 
 
 <dt>alpha</dt>
@@ -187,7 +187,7 @@ for details</p></dd>
 
 
 <dt>beta</dt>
-<dd><p>type II error rate; i.e. <code>1 - beta</code> is the power for calculation of the number of events for phase III by Schoenfeld's formula (Schoenfeld 1981)</p></dd>
+<dd><p>type II error rate; i.e. <code>1 - beta</code> is the power for calculation of the sample size for phase III</p></dd>
 
 
 <dt>c2</dt>
@@ -253,7 +253,7 @@ for details</p></dd>
 
 
 <dt>skipII</dt>
-<dd><p>skipII choose if skipping phase II is an option, default: FALSE;
+<dd><p>choose if skipping phase II is an option, default: FALSE;
 if TRUE, the program calculates the expected utility for the case when phase
 II is skipped and compares it to the situation when phase II is not skipped.
 The results are then returned as a list of two results lists, <code>res[[1]]</code>
@@ -375,8 +375,8 @@ being the results when including phase II and <code>res[[2]]</code> when skippin
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence Kappa: 0.02 0.04 0.06 0.08 0.1 0.12 0.14 0.16 0.18 0.2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence n2: 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2022-12-14 01:17:28 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2022-12-14 01:19:06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2022-12-22 18:07:40 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2022-12-22 18:09:14</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -388,7 +388,7 @@ being the results when including phase II and <code>res[[2]]</code> when skippin
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer></div>
