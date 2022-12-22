@@ -10,7 +10,7 @@
 #' \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. 
 #' The app \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes
 #' the prior distributions used in this package. Fast computing is enabled by
-#'parallel programming.
+#' parallel programming.
 #' 
 #' @name optimal_tte
 #' @inheritParams optimal_tte_generic

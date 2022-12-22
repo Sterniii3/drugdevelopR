@@ -11,7 +11,6 @@
 #' @inheritParams optimal_bias_generic
 #' 
 #' @return
-#' @return
 #' `r optimal_return_doc(type = "binary", setting = "bias")`
 #'
 #' @examples

@@ -1,7 +1,6 @@
 #' @name optimal_generic
 #' 
-#' @return 
-#' `r optimal_return_doc(custom = "")`
+#' @return NULL
 optimal_generic <- function(){
   
 }
