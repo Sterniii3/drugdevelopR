@@ -124,6 +124,16 @@ finish date of the optimization procedure.
 \description{
 The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. For normally distributed endpoints the treatment effect is measured by the standardized difference in means (Delta). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
 }
+\section{Effect sizes}{
+
+In other settings, the definition of "small", "medium" and "large" effect
+sizes can be user-specified using the input parameters \code{steps1}, \code{stepm1} and
+\code{stepl1}. Due to the complexity of the multitrial setting, this feature is
+not included for this setting. Instead, the effect sizes were set to
+to predefined values as explained under sProg1, sProg2 and sProg3 in the
+\emph{Value} section.
+}
+
 \examples{
 res <- optimal_multitrial_normal(w=0.3,                             # define parameters for prior
   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,      # (https://web.imbi.uni-heidelberg.de/prior/)

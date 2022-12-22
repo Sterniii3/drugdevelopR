@@ -122,6 +122,16 @@ finish date of the optimization procedure.
 \description{
 The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. For binary endpoints the treatment effect is measured by the risk ratio (RR).The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
 }
+\section{Effect sizes}{
+
+In other settings, the definition of "small", "medium" and "large" effect
+sizes can be user-specified using the input parameters \code{steps1}, \code{stepm1} and
+\code{stepl1}. Due to the complexity of the multitrial setting, this feature is
+not included for this setting. Instead, the effect sizes were set to
+to predefined values as explained under sProg1, sProg2 and sProg3 in the
+\emph{Value} section.
+}
+
 \examples{
 res <- optimal_multitrial_binary(w = 0.3,                # define parameters for prior
   p0 = 0.6, p11 =  0.3, p12 = 0.5, in1 = 30, in2 = 60,   # (https://web.imbi.uni-heidelberg.de/prior/)
