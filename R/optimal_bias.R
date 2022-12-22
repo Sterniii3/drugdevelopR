@@ -25,7 +25,7 @@
 #' @param stephrgo stepsize for the optimization over HRgo
 #' @param beta 1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula
 #' @param alpha one-sided significance level
-#' @param xi2 event rate for phase II [TODO: I do not really how I would know this value beforehand. Wouldn't I always make the same guess as for HR1 or HR2?]
+#' @param xi2 event rate for phase II 
 #' @param xi3 event rate for phase III
 #' @param c2 variable per-patient cost for phase II in 10^5 $
 #' @param c3 variable per-patient cost for phase III in 10^5 $

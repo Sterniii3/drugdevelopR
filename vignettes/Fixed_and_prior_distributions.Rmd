@@ -60,7 +60,31 @@ To see how different input values change the prior distribution we refer to the 
                        a = 0.25,b = 0.75) #truncation values
 ```
 
+```{r, eval=TRUE, include=FALSE}
+# Comment this chunk after running it once
+# res <- optimal_normal(Delta1 = 0.625, Delta2 = 0.9 ,fixed = FALSE, # treatment effect
+#                      n2min = 20, n2max = 400, # sample size region
+#                       stepn2 = 4, # sample size step size
+#                       kappamin = 0.02, kappamax = 0.1, # threshold region
+#                       stepkappa = 0.02, # threshold step size
+#                       c2 = 0.675, c3 = 0.72, # maximal total trial costs
+#                       c02 = 15, c03 = 20, # maximal per-patient costs
+#                       b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
+#                       alpha = 0.05, # significance level
+#                       beta = 0.1, # 1 - power
+#                       w = 0.6, in1 = 300, in2 = 600, #weight and amoutn of information
+#                       a = 0.25,b = 0.75) #truncation values
+# saveRDS(res, file="optimal_normal_fixed_prior.RDS")
+```
+```{r, eval=TRUE, include=FALSE}
+res <- readRDS(file="optimal_normal_fixed_prior.RDS")
+```
 ## Interpreting the output
+After setting all these input parameters and running the function, let's take a look at the output of the program.
+
+```{r}
+res
+```
 
 The program returns a total of thirteen values and the input values. Once again we will only focus at the most important ones:
 
@@ -75,7 +99,7 @@ For more information on how to use the package, see:
 
 * [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html) See how the package works in a basic example.
 * *Different outcomes:* Apply it to binary endpoints and time-to-event endpoints.
-* *Interpreting the rest of the output:* Obtain further details on your drug development program.
+* [*Interpreting the rest of the output:*](https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html) Obtain further details on your drug development program.
 * *More parameters:* Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.
 * *Complex drug development programs:* Adapt to situations with biased effect estimators, multiple phase III trials, multi-arm trials, or multiple endpoints.
 * *Parallel computing:* Be faster at calculating the optimum by using parallel computing.

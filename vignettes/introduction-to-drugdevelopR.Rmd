@@ -112,7 +112,7 @@ The program returns a total of thirteen values and the input values. For now, we
 This tutorial only covered drugdevelopR's basic setting. Luckily, the package's functionality extends to a multitude of different settings. If the example above doesn't suit your needs, you can adapt it to your specific setting:
 
 * *Different outcomes:* Apply it to binary endpoints and time-to-event endpoints.
-* *Interpreting the rest of the output:* Obtain further details on your drug development program.
+* [*Interpreting the rest of the output:*](https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html) Obtain further details on your drug development program.
 * [*Fixed or prior:*](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html) Model the assumed treatment effect on a prior distribution.
 * *More parameters:* Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.
 * *Complex drug development programs:* Adapt to situations with biased effect estimators, multiple phase III trials, multi-arm trials, or multiple endpoints.
