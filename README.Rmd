@@ -40,7 +40,18 @@ and access the drugdevelopR App via [https://web.imbi.uni-heidelberg.de/drugdeve
 Here is a basic example for applying drugdevelopR to a drug development program with a normally distributed outcome:
 ```{r}
 library(drugdevelopR)
-# TODO: Fill example here.
+res <- optimal_normal(Delta1 = 0.625, Delta2 = 0.8 ,fixed = FALSE, # treatment effect
+                       n2min = 20, n2max = 400, # sample size region
+                       stepn2 = 4, # sample size step size
+                       kappamin = 0.02, kappamax = 0.2, # threshold region
+                       stepkappa = 0.02, # threshold step size
+                       c2 = 0.675, c3 = 0.72, # maximal total trial costs
+                       c02 = 15, c03 = 20, # maximal per-patient costs
+                       b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
+                       alpha = 0.05, # significance level
+                       beta = 0.1, # 1 - power
+                       w = 0.6, in1 = 300, in2 = 600, #weight and amount of information
+                       a = 0.25,b = 0.75) #truncation values
 ```
 ## drugdevelopR functions
 The drugdevelopR package provides the functions
