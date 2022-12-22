@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
 
-The drugdevelopR package enables us to optimally plan such programs using a utility maximizing approach. Up until now, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html). In this article, we want to expand the basic setting and want to introduce you to the modelling of the treatment effect by a prior distribution
+The drugdevelopR package enables us to optimally plan such programs using a utility maximizing approach. Up until now, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html). In this article, we want to expand the basic setting and want to introduce you to the modelling of the treatment effect by a prior distribution.
 
 # The example setting
 
