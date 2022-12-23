@@ -97,11 +97,13 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>Delta1</dt>
-<dd><p>assumed true treatment effect on HR scale for treatment 1</p></dd>
+<dd><p>assumed true treatment effect for endpoint 1 measured as the
+standardized difference in means</p></dd>
 
 
 <dt>Delta2</dt>
-<dd><p>assumed true treatment effect on HR scale for treatment 2</p></dd>
+<dd><p>assumed true treatment effect for endpoint 2 measured as the
+standardized difference in means</p></dd>
 
 
 <dt>in1</dt>
@@ -133,39 +135,39 @@
 
 
 <dt>kappamin</dt>
-<dd><p>minimal threshold value for the go/no-go decision rule</p></dd>
+<dd><p>minimal threshold value kappa for the go/no-go decision rule</p></dd>
 
 
 <dt>kappamax</dt>
-<dd><p>maximal threshold value for the go/no-go decision rule</p></dd>
+<dd><p>maximal threshold value  kappa for the go/no-go decision rule</p></dd>
 
 
 <dt>stepkappa</dt>
-<dd><p>stepsize for the optimization over HRgo</p></dd>
+<dd><p>step size for the optimization over the threshold value kappa</p></dd>
 
 
 <dt>alpha</dt>
-<dd><p>one-sided significance level/ family wise error rate</p></dd>
+<dd><p>one-sided significance level/family-wise error rate</p></dd>
 
 
 <dt>beta</dt>
-<dd><p>1-beta (any-pair) power for calculation of the number of events for phase III</p></dd>
+<dd><p>type-II error rate for any pair, i.e. <code>1 - beta</code> is the (any-pair) power for calculation of the sample size for phase III</p></dd>
 
 
 <dt>c2</dt>
-<dd><p>variable per-patient cost for phase II</p></dd>
+<dd><p>variable per-patient cost for phase II in 10^5 $</p></dd>
 
 
 <dt>c3</dt>
-<dd><p>variable per-patient cost for phase III</p></dd>
+<dd><p>variable per-patient cost for phase III in 10^5 $</p></dd>
 
 
 <dt>c02</dt>
-<dd><p>fixed cost for phase II</p></dd>
+<dd><p>fixed cost for phase II in 10^5 $</p></dd>
 
 
 <dt>c03</dt>
-<dd><p>fixed cost for phase III</p></dd>
+<dd><p>fixed cost for phase III in 10^5 $</p></dd>
 
 
 <dt>K</dt>
@@ -181,27 +183,27 @@
 
 
 <dt>steps1</dt>
-<dd><p>lower boundary for effect size category "small" in HR scale, default: 1</p></dd>
+<dd><p>lower boundary for effect size category "small", default: 0</p></dd>
 
 
 <dt>stepm1</dt>
-<dd><p>lower boundary for effect size category "medium" in HR scale = upper boundary for effect size category "small" in HR scale, default: 0.95</p></dd>
+<dd><p>lower boundary for effect size category "medium" = upper boundary for effect size category "small" default: 0.5</p></dd>
 
 
 <dt>stepl1</dt>
-<dd><p>lower boundary for effect size category "large" in HR scale = upper boundary for effect size category "medium" in HR scale, default: 0.85</p></dd>
+<dd><p>lower boundary for effect size category "large" = upper boundary for effect size category "medium", default: 0.8</p></dd>
 
 
 <dt>b1</dt>
-<dd><p>expected gain for effect size category "small"</p></dd>
+<dd><p>expected gain for effect size category "small" in 10^5 $</p></dd>
 
 
 <dt>b2</dt>
-<dd><p>expected gain for effect size category "medium"</p></dd>
+<dd><p>expected gain for effect size category "medium" in 10^5 $</p></dd>
 
 
 <dt>b3</dt>
-<dd><p>expected gain for effect size category "large"</p></dd>
+<dd><p>expected gain for effect size category "large" in 10^5 $</p></dd>
 
 
 <dt>rho</dt>
@@ -224,14 +226,10 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>The output of the function <code><a href="optimal_multiple_tte.html">optimal_multiple_tte</a></code> is a data.frame containing the optimization results:</p><dl><dt>u</dt>
-<dd><p>maximal expected utility</p></dd>
-
-<dt>Kappa</dt>
+<p>The output of the function is a <code>data.frame</code> object containing the optimization results:</p><dl><dt>Kappa</dt>
 <dd><p>optimal threshold value for the decision rule to go to phase III</p></dd>
-
 <dt>n2</dt>
-<dd><p>total sample size for phase II</p></dd>
+<dd><p>total sample size for phase II; rounded to the next even natural number</p></dd>
 
 <dt>n3</dt>
 <dd><p>total sample size for phase III; rounded to the next even natural number</p></dd>
@@ -249,13 +247,13 @@
 <dd><p>probability of a successful program</p></dd>
 
 <dt>sProg1</dt>
-<dd><p>probability of a successful program with "small" treatment effect in Phase III</p></dd>
+<dd><p>probability of a successful program with "small" treatment effect in phase III</p></dd>
 
 <dt>sProg2</dt>
-<dd><p>probability of a successful program with "medium" treatment effect in Phase III</p></dd>
+<dd><p>probability of a successful program with "medium" treatment effect in phase III</p></dd>
 
 <dt>sProg3</dt>
-<dd><p>probability of a successful program with "large" treatment effect in Phase III</p></dd>
+<dd><p>probability of a successful program with "large" treatment effect in phase III</p></dd>
 
 <dt>K2</dt>
 <dd><p>expected costs for phase II</p></dd>
@@ -263,38 +261,38 @@
 <dt>K3</dt>
 <dd><p>expected costs for phase III</p></dd>
 
-
-</dl><p>and further input parameters.</p>
-
-
-<p>Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
-@examples
-#res &lt;- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRsin1=300, in2=600, sigma1 = 8, sigma2= 12,n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2kappamin = 0.7, kappamax = 0.9, stepkappa = 0.05,         # define optimization set for HRgoalpha = 0.05, beta = 0.1,                              # drug development planning parametersc2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and IIIK = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful programsteps1 = 0,                                            # define lower boundary for "small"stepm1 = 0.5,                                          # "medium"stepl1 = 0.8,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effectrho = 0.5, relaxed = TRUE,                             # relaxed "TRUE"fixed = TRUE,                                          #   treatment effectnum_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())</p>
-
-
-<p>#res
-#cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.</p>
+</dl><p>and further input parameters. Taking <code>cat(comment())</code> of the
+data frame lists the used optimization sequences, start and
+finish date of the optimization procedure.</p>
     </div>
-    <div class="section level2">
-    <h2 id="drugdevelopr-functions">drugdevelopR functions<a class="anchor" aria-label="anchor" href="#drugdevelopr-functions"></a></h2>
-    
-
-<p>The drugdevelopR package provides the functions</p><ul><li><p><code><a href="optimal_tte.html">optimal_tte</a></code>,</p></li>
-<li><p><code><a href="optimal_binary.html">optimal_binary</a></code> and</p></li>
-<li><p><code><a href="optimal_normal.html">optimal_normal</a></code></p></li>
-</ul><p>to plan optimal phase II/III drug development programs with</p><ul><li><p>time-to-event (treatment effect measured by hazard ratio (HR)),</p></li>
-<li><p>binary (treatment effect measured by risk ratio (RR)) or</p></li>
-<li><p>normally distributed (treatment effect measured by standardized difference in means (Delta))</p></li>
-</ul><p>endpoint, where the treatment effect is modelled by a <a href="https://web.imbi.uni-heidelberg.de/prior/" class="external-link">prior</a>. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application <a href="https://web.imbi.uni-heidelberg.de/basic/" class="external-link">basic</a>. Extensions are</p><ul><li><p>optimal planning of programs including methods for discounting of phase II results (function: <code><a href="optimal_bias.html">optimal_bias</a></code>, App: <a href="https://web.imbi.uni-heidelberg.de/bias/" class="external-link">bias</a>),</p></li>
-<li><p>optimal planning of programs with several phase III trials (function: <code><a href="optimal_multitrial.html">optimal_multitrial</a></code>, App: <a href="https://web.imbi.uni-heidelberg.de/multitrial/" class="external-link">multitrial</a>) and</p></li>
-<li><p>optimal planning of programs with multiple arms (function: <code><a href="optimal_multiarm.html">optimal_multiarm</a></code>, App: <a href="https://web.imbi.uni-heidelberg.de/multiarm/" class="external-link">multiarm</a>).</p></li>
-</ul></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal Designs for Multi-Arm Phase II/III Drug Development Programs. Submitted to peer-review journal.</p>
 <p>IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at <a href="https://www.iqwig.de/de/methoden/methodenpapier.3020.html" class="external-link">https://www.iqwig.de/de/methoden/methodenpapier.3020.html</a>, assessed last 15.05.19.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> <span class="co">#res &lt;- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs</span></span></span>
+<span class="r-in"><span> <span class="co"># in1=300, in2=600, sigma1 = 8, sigma2= 12,</span></span></span>
+<span class="r-in"><span> <span class="co"># n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2</span></span></span>
+<span class="r-in"><span> <span class="co"># kappamin = 0.7, kappamax = 0.9, stepkappa = 0.05,         # define optimization set for HRgo</span></span></span>
+<span class="r-in"><span> <span class="co"># alpha = 0.05, beta = 0.1,                              # drug development planning parameters</span></span></span>
+<span class="r-in"><span> <span class="co"># c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III</span></span></span>
+<span class="r-in"><span> <span class="co"># K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program</span></span></span>
+<span class="r-in"><span> <span class="co"># steps1 = 0,                                            # define lower boundary for "small"</span></span></span>
+<span class="r-in"><span> <span class="co"># stepm1 = 0.5,                                          # "medium"</span></span></span>
+<span class="r-in"><span> <span class="co"># stepl1 = 0.8,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)</span></span></span>
+<span class="r-in"><span> <span class="co">#  b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect</span></span></span>
+<span class="r-in"><span> <span class="co"># rho = 0.5, relaxed = TRUE,                             # relaxed "TRUE"</span></span></span>
+<span class="r-in"><span> <span class="co"># fixed = TRUE,                                          #   treatment effect</span></span></span>
+<span class="r-in"><span> <span class="co"># num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())</span></span></span>
+<span class="r-in"><span><span class="co">#res</span></span></span>
+<span class="r-in"><span><span class="co">#cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
