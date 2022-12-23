@@ -66,11 +66,11 @@ for details}
 
 \item{stepn2}{step size for the optimization over n2; must be an even number}
 
-\item{kappamin}{minimal threshold value $\kappa$ for the go/no-go decision rule}
+\item{kappamin}{minimal threshold value kappa for the go/no-go decision rule}
 
-\item{kappamax}{maximal threshold value  $\kappa$ for the go/no-go decision rule}
+\item{kappamax}{maximal threshold value  kappa for the go/no-go decision rule}
 
-\item{stepkappa}{step size for the optimization over the threshold value $\kappa$}
+\item{stepkappa}{step size for the optimization over the threshold value kappa}
 
 \item{alpha}{significance level}
 

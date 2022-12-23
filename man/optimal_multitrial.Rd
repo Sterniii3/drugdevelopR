@@ -45,9 +45,9 @@ for the choice of weights}
 
 \item{hr2}{second assumed true treatment effect on HR scale for \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}}
 
-\item{id1}{amount of information for hr1 in terms of number of events}
+\item{id1}{amount of information for \code{hr1} in terms of number of events}
 
-\item{id2}{amount of information for hr2 in terms of number of events}
+\item{id2}{amount of information for \code{hr2} in terms of number of events}
 
 \item{d2min}{minimal number of events for phase II}
 
