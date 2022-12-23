@@ -171,15 +171,15 @@ for details</p></dd>
 
 
 <dt>kappamin</dt>
-<dd><p>minimal threshold value $$ for the go/no-go decision rule</p></dd>
+<dd><p>minimal threshold value kappa for the go/no-go decision rule</p></dd>
 
 
 <dt>kappamax</dt>
-<dd><p>maximal threshold value  $$ for the go/no-go decision rule</p></dd>
+<dd><p>maximal threshold value  kappa for the go/no-go decision rule</p></dd>
 
 
 <dt>stepkappa</dt>
-<dd><p>step size for the optimization over the threshold value $$</p></dd>
+<dd><p>step size for the optimization over the threshold value kappa</p></dd>
 
 
 <dt>alpha</dt>
@@ -314,20 +314,6 @@ being the results when including phase II and <code>res[[2]]</code> when skippin
 <p>Taking <code>cat(comment())</code> of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.</p>
     </div>
     <div class="section level2">
-    <h2 id="drugdevelopr-functions">drugdevelopR functions<a class="anchor" aria-label="anchor" href="#drugdevelopr-functions"></a></h2>
-    
-
-<p>The drugdevelopR package provides the functions</p><ul><li><p><code><a href="optimal_tte.html">optimal_tte</a></code>,</p></li>
-<li><p><code><a href="optimal_binary.html">optimal_binary</a></code> or</p></li>
-<li><p><code>optimal_normal</code></p></li>
-</ul><p>to plan optimal phase II/III drug development programs with</p><ul><li><p>time-to-event (treatment effect measured by hazard ratio (HR)),</p></li>
-<li><p>binary (treatment effect measured by risk ratio (RR)) and</p></li>
-<li><p>normally distributed (treatment effect measured by standardized difference in means (Delta))</p></li>
-</ul><p>endpoint, where the treatment effect is assumed fixed or modelled by a <a href="https://web.imbi.uni-heidelberg.de/prior/" class="external-link">prior</a>. Optimal phase II/III drug development planning with fixed treatment effects can also be done with the help of the R Shiny application <a href="https://web.imbi.uni-heidelberg.de/basic/" class="external-link">basic</a>. Extensions are</p><ul><li><p>optimal planning of programs including methods for discounting of phase II results (function: <code><a href="optimal_bias.html">optimal_bias</a></code>, App: <a href="https://web.imbi.uni-heidelberg.de/bias/" class="external-link">bias</a>),</p></li>
-<li><p>optimal planning of programs with several phase III trials (function: <code><a href="optimal_multitrial.html">optimal_multitrial</a></code>, App: <a href="https://web.imbi.uni-heidelberg.de/multitrial/" class="external-link">multitrial</a>) and</p></li>
-<li><p>optimal planning of programs with multiple arms (function: <code><a href="optimal_multiarm.html">optimal_multiarm</a></code>, App: <a href="https://web.imbi.uni-heidelberg.de/multiarm/" class="external-link">multiarm</a>).</p></li>
-</ul></div>
-    <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Cohen, J. (1988). Statistical power analysis for the behavioral sciences.</p>
     </div>
@@ -371,12 +357,12 @@ being the results when including phase II and <code>res[[2]]</code> when skippin
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 82 271   0.73   0.05      0      0    0.5    0.8  0.05  0.1  15  20 0.675</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     c3   b1   b2    b3 gamma</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.72 3000 8000 10000     0</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/comment.html" class="external-link">comment</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span>                                        <span class="co"># displays the optimization sequence, start and finish date of the optimization procedure.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/comment.html" class="external-link">comment</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span>                                        <span class="co"># displays the optimization sequence, start and finish date of the optimization procedure</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence Kappa: 0.02 0.04 0.06 0.08 0.1 0.12 0.14 0.16 0.18 0.2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence n2: 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2022-12-23 13:46:57 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2022-12-23 13:48:42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2022-12-23 15:06:16 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2022-12-23 15:07:55</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
