@@ -44,6 +44,9 @@ optimal_return_doc <- function(type,
       stepl1_str = " (lower boundary in HR scale is set to 0.8, as proposed Cohen (1988))"
     }
   }
+  if(setting == "multiarm"){
+    custom_further = "\\item{Strategy}{Strategy, 1: \"only best promising\" or 2: \"all promising\"}"
+  }
   return(paste0("The output of the function is a `data.frame` object containing the optimization results:
                  \\describe{",
                 custom_further,

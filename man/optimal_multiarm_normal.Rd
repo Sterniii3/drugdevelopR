@@ -2,7 +2,8 @@
 % Please edit documentation in R/optimal_multiarm_normal.R
 \name{optimal_multiarm_normal}
 \alias{optimal_multiarm_normal}
-\title{Optimal phase II/III drug development planning with normally distributed endpoint}
+\title{Optimal phase II/III drug development planning for multi-arm programs with
+normally distributed endpoint}
 \usage{
 optimal_multiarm_normal(
   Delta1,
@@ -33,25 +34,27 @@ optimal_multiarm_normal(
 )
 }
 \arguments{
-\item{Delta1}{assumed true treatment effect for standardized difference in means}
+\item{Delta1}{assumed true treatment effect as the standardized difference in
+means for treatment arm 1}
 
-\item{Delta2}{assumed true treatment effect for standardized difference in means}
+\item{Delta2}{assumed true treatment effect as the standardized difference in
+means for treatment arm 2}
 
-\item{n2min}{minimal total sample size for phase II; must be even number}
+\item{n2min}{minimal total sample size in phase II, must be divisible by 3}
 
-\item{n2max}{maximal total sample size for phase II, must be even number}
+\item{n2max}{maximal total sample size in phase II, must be divisible by 3}
 
-\item{stepn2}{stepsize for the optimization over n2; must be even number}
+\item{stepn2}{stepsize for the optimization over n2, must be divisible by 3}
 
-\item{kappamin}{minimal threshold value for the go/no-go decision rule}
+\item{kappamin}{minimal threshold value kappa for the go/no-go decision rule}
 
-\item{kappamax}{maximal threshold value for the go/no-go decision rule}
+\item{kappamax}{maximal threshold value  kappa for the go/no-go decision rule}
 
-\item{stepkappa}{stepsize for the optimization over kappa}
+\item{stepkappa}{step size for the optimization over the threshold value kappa}
 
-\item{alpha}{significance level}
+\item{alpha}{one-sided significance level/family-wise error rate}
 
-\item{beta}{1-beta power for calculation of sample size for phase III}
+\item{beta}{type-II error rate for any pair, i.e. \code{1 - beta} is the (any-pair) power for calculation of the sample size for phase III}
 
 \item{c2}{variable per-patient cost for phase II}
 
@@ -61,11 +64,11 @@ optimal_multiarm_normal(
 
 \item{c03}{fixed cost for phase III}
 
-\item{K}{constraint on the costs of the program, default: Inf, e.g. no constraint}
+\item{K}{constraint on the costs of the program, default: \code{Inf}, e.g. no constraint}
 
-\item{N}{constraint on the total expected sample size of the program, default: Inf, e.g. no constraint}
+\item{N}{constraint on the total expected sample size of the program, default: \code{Inf}, e.g. no constraint}
 
-\item{S}{constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint}
+\item{S}{constraint on the expected probability of a successful program, default: \code{-Inf}, e.g. no constraint}
 
 \item{steps1}{lower boundary for effect size category "small", default: 0}
 
@@ -79,56 +82,39 @@ optimal_multiarm_normal(
 
 \item{b3}{expected gain for effect size category "large"}
 
-\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)}
+\item{strategy}{choose strategy: 1 (only the best promising candidate), 2 (all promising candidates) or 3 (both strategies)}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
 \value{
-The output of the function \code{\link{optimal_normal}} is a data.frame containing the optimization results:
-\describe{
-\item{u}{maximal expected utility}
-\item{Kappa}{optimal threshold value for the decision rule to go to phase III}
-\item{n2}{total sample size for phase II}
+The output of the function is a \code{data.frame} object containing the optimization results:
+\describe{\item{Strategy}{Strategy, 1: "only best promising" or 2: "all promising"}\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}\item{Kappa}{optimal threshold value for the decision rule to go to phase III}\item{n2}{total sample size for phase II; rounded to the next even natural number}
 \item{n3}{total sample size for phase III; rounded to the next even natural number}
 \item{n}{total sample size in the program; n = n2 + n3}
 \item{K}{maximal costs of the program}
 \item{pgo}{probability to go to phase III}
 \item{sProg}{probability of a successful program}
-\item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-\item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-\item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
+\item{sProg1}{probability of a successful program with "small" treatment effect in phase III}
+\item{sProg2}{probability of a successful program with "medium" treatment effect in phase III}
+\item{sProg3}{probability of a successful program with "large" treatment effect in phase III}
 \item{K2}{expected costs for phase II}
-\item{K3}{expected costs for phase III}
-}
-and further input parameters.
-
-Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+\item{K3}{expected costs for phase III}}
+and further input parameters. Taking \code{cat(comment())} of the
+data frame lists the used optimization sequences, start and
+finish date of the optimization procedure.
 }
 \description{
-The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. For normally distributed endpoints the treatment effect is measured by the standardized difference in means (Delta). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
+The \code{\link{optimal_multiarm_normal}} function enables planning of
+multi-arm phase II/III drug development programs with optimal sample size
+allocation and go/no-go decision rules. For normally distributed endpoints,
+the treatment effect is measured by the standardized difference in means
+(Delta). So far, only three-arm trials with two treatments and one control
+are supported. The assumed true treatment effects can be assumed fixed or
+modelled by a prior distribution. The R Shiny application
+\href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the
+prior distributions used in this package. Fast computing is enabled by
+parallel programming.
 }
-\section{drugdevelopR functions}{
-
-The drugdevelopR package provides the functions
-\itemize{
-\item \code{\link{optimal_tte}},
-\item \code{\link{optimal_binary}} or
-\item \code{\link{optimal_normal}}
-}
-to plan optimal phase II/III drug development programs with
-\itemize{
-\item time-to-event (treatment effect measured by hazard ratio (HR)),
-\item binary (treatment effect measured by risk ratio (RR)) and
-\item normally distributed (treatment effect measured by standardized difference in means (Delta))
-}
-endpoint, where the treatment effect is assumed fixed or modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can also be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are
-\itemize{
-\item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
-\item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-\item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
-}
-}
-
 \examples{
 res <- optimal_multiarm_normal(Delta1 = 0.375, Delta2 = 0.625,     
   n2min = 20, n2max = 100, stepn2 = 4,                   # define optimization set for n2
@@ -144,6 +130,7 @@ res <- optimal_multiarm_normal(Delta1 = 0.375, Delta2 = 0.625,
   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 res
 cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+
 }
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences.
