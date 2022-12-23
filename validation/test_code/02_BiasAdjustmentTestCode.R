@@ -418,7 +418,7 @@ test_that("02.10", {
     alphaCImin = 0.25, alphaCImax = 0.5, stepalphaCI = 0.025,
     lambdamin = 0.7, lambdamax = 0.9, steplambda = 0.01
   )
-  expect_equal(res$Method, c("multipl.", "add.", "multipl2", "add2"))
+  expect_equal(res$Method, c("multipl.", "add.", "multipl2.", "add2."))
   # Multiplicative
   expect_equal(res[1,]$n2, 102)
   expect_equal(res[1,]$n3, 544)
@@ -440,7 +440,7 @@ test_that("02.10", {
   # Additive 2
   expect_equal(res[4,]$n2, 134)
   expect_equal(res[4,]$n3, 426)
-  expect_equal(res[4,]$n, 569)
+  expect_equal(res[4,]$n, 560)
   expect_equal(res[4,]$u, 3870.71, tolerance = 0.0001)
   expect_equal(res[4,]$Adj, 0.1)
 })

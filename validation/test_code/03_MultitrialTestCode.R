@@ -2,7 +2,12 @@
 #' @editDate 2022-12-20
 test_that("03.01", {
   # Multi-trial time-to-event endpoints
-  res <- optimal_multitrial(
+  res <- optimal_multitrial(alpha = 0.025,
+                            beta = 0.1,
+                            hr1 = 0.69, hr2 = 0.88,
+                            xi2 = 0.7, xi3 = 0.7,
+                            d2min = 10, bd2max = 400, stepd2 = 2,
+                            hrgomin = 0.71, hrgomax = 0.95, stephrgo = 0.01,
                )
   expect_equal(res$n2, 122)
   expect_equal(res$n3, 200)
