@@ -1,62 +1,30 @@
-#' Optimal phase II/III drug development planning for programs with multiple endpoints
+#' Optimal phase II/III drug development planning for programs with multiple
+#' time-to-event endpoints
 #'
-#' The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules (Preussler et. al, 2019). 
-#' Fast computing is enabled by parallel programming.
+#' The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package
+#'  enables planning of phase II/III drug development programs with optimal 
+#'  sample size allocation and go/no-go decision rules (Preussler et. al, 2019)
+#'  for two time-to-event endpoints and one control. 
+#'  Fast computing is enabled by parallel programming.
 #' 
 #' @name optimal_multiple_tte
+#' @inheritParams optimal_multiple_generic
+#' @inheritParams optimal_tte_generic
 #' @param hr1 assumed true treatment effect on HR scale for treatment 1
 #' @param hr2 assumed true treatment effect on HR scale for treatment 2
 #' @param id1 amount of information for hr1 in terms of number of events
 #' @param id2 amount of information for hr2 in terms of number of events
-#' @param rho correlation between the two endpoints
-#' @param fixed assumed fixed treatment effect 
-#' @param n2min minimal number of events for phase II, must be divisible by 3
-#' @param n2max maximal number of events for phase II, must be divisible by 3
-#' @param stepn2 stepsize for the optimization over d2, must be divisible by 3
-#' @param hrgomin minimal threshold value for the go/no-go decision rule
-#' @param hrgomax maximal threshold value for the go/no-go decision rule
-#' @param stephrgo stepsize for the optimization over HRgo
-#' @param beta 1-beta (any-pair) power for calculation of the number of events for phase III
-#' @param alpha one-sided significance level/ family wise error rate
-#' @param c2 variable per-patient cost for phase II
-#' @param c3 variable per-patient cost for phase III
-#' @param c02 fixed cost for phase II
-#' @param c03 fixed cost for phase III
-#' @param K constraint on the maximal costs of the program, default: Inf, e.g. no constraint
-#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
-#' @param S constraint on the expected minimal probability of a successful program, default: -Inf, e.g. no constraint
-#' @param steps1 lower boundary for effect size category "small" in HR scale, default: 1
-#' @param stepm1 lower boundary for effect size category "medium" in HR scale = upper boundary for effect size category "small" in HR scale, default: 0.95
-#' @param stepl1 lower boundary for effect size category "large" in HR scale = upper boundary for effect size category "medium" in HR scale, default: 0.85
+#' @param beta type-II error rate for any pair, i.e. `1 - beta` is the (any-pair) power for calculation of the number of events for phase III
 #' @param b11 expected gain for effect size category `"small"` if endpoint OS is significant
-#' @param b21 expected gain for effect size category `"medium"`if endpoint OS is significant
+#' @param b21 expected gain for effect size category `"medium"` if endpoint OS is significant
 #' @param b31 expected gain for effect size category `"large"` if endpoint OS is significant 
 #' @param b12 expected gain for effect size category `"small"` if endpoint OS is not significant
 #' @param b22 expected gain for effect size category `"medium"`if endpoint OS is not significant
 #' @param b32 expected gain for effect size category `"large"` if endpoint OS is not significant
-#' @param num_cl number of clusters used for parallel computing, default: 1
+#'
 #' @return
-#' The output of the function \code{\link{optimal_multiple_tte}} is a data.frame containing the optimization results:
-#' \describe{
-#'   \item{Strategy}{Strategy, 1: "only best promising" or 2: "all promising"}
-#'   \item{u}{maximal expected utility}
-#'   \item{HRgo}{optimal threshold value for the decision rule to go to phase III}
-#'   \item{n2}{optimal total sample size in phase II}
-#'   \item{n3}{total expected sample size for phase III; rounded to next natural number}
-#'   \item{n}{total sample size in the program; n = n2 + n3}
-#'   \item{K}{maximal costs of the program}
-#'   \item{pgo}{probability to go to phase III}
-#'   \item{sProg}{probability of a successful program}
-#'   \item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-#'   \item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-#'   \item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
-#'   \item{K2}{expected costs for phase II}
-#'   \item{K3}{expected costs for phase III}
-#'   \item{OP}{probability that one endpoint is significant}
-#'   }
-#' and further input parameters.
-#' res
-#' Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+#' `r optimal_return_doc(type = "tte", setting = "multiple")`
+#' 
 #' @examples
 #' #res <- optimal_multiple_tte(hr1 = 0.75, hr2 = 0.80, # define assumed true HRs
 #' #  id1 = 210, id2 = 420,
@@ -74,27 +42,9 @@
 #' #  num_cl = 1)                                       # set number of cores used for parallelized computing 
 #' # res
 #' # cat(comment(res))                                   # displays the optimization sequence, start and finish date of the optimization 
-#' @section drugdevelopR functions:
-#' The drugdevelopR package provides the functions
-#' \itemize{
-#'   \item \code{\link{optimal_tte}},
-#'   \item \code{\link{optimal_binary}} and
-#'   \item \code{\link{optimal_normal}}
-#' }
-#' to plan optimal phase II/III drug development programs with
-#' \itemize{
-#'   \item time-to-event (treatment effect measured by hazard ratio (HR)),
-#'   \item binary (treatment effect measured by risk ratio (RR)) or
-#'   \item normally distributed (treatment effect measured by standardized difference in means (Delta))
-#' }
-#' endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are 
-#' \itemize{
-#'   \item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
-#'   \item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-#'   \item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
-#' }
+#' 
 #' @references
-#'Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal Designs for Multi-Arm Phase II/III Drug Development Programs. Submitted to peer-review journal.
+#' Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal Designs for Multi-Arm Phase II/III Drug Development Programs. Submitted to peer-review journal.
 #'
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 #' @editor Johannes Cepicka

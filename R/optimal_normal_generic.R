@@ -1,12 +1,12 @@
 #' @name optimal_normal_generic
 #' @param w weight for
 #'  \href{https://web.imbi.uni-heidelberg.de/prior/}{mixture prior distribution}
-#' @param Delta1 assumed true prior treatment effect for standardized difference in means, see
-#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
-#'   for details
-#' @param Delta2 assumed true prior treatment effect for standardized difference in means, see
-#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
-#'   for details
+#' @param Delta1 assumed true prior treatment effect measured as the
+#'  standardized difference in means, see
+#'   \href{https://web.imbi.uni-heidelberg.de/prior/}{here} for details
+#' @param Delta2 assumed true prior treatment effect measured as the
+#'  standardized difference in means, see
+#'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here} for details
 #' @param in1 amount of information for `Delta1` in terms of sample size, see
 #'  \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 #'   for details

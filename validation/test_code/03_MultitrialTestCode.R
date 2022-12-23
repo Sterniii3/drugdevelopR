@@ -432,7 +432,7 @@ test_that("03.12", {
                                    case = 3, strategy = TRUE,
   )
   end_time_3 = Sys.time()
-  time_elapsed_01_02_num_cl_3 = end_time_3 - start_time_3
+  time_elapsed_num_cl_3 = end_time_3 - start_time_3
   start_time_1 = Sys.time()
   res <- optimal_multitrial_normal(alpha = 0.05,
                                    beta = 0.1,
@@ -450,8 +450,8 @@ test_that("03.12", {
                                    case = 3, strategy = TRUE,
   )
   end_time_1 = Sys.time()
-  time_elapsed_01_02_num_cl_1 = end_time_1 - start_time_1
-  expect_true(time_elapsed_01_02_num_cl_1 > time_elapsed_01_02_num_cl_3)
+  time_elapsed_num_cl_1 = end_time_1 - start_time_1
+  expect_true(time_elapsed_num_cl_1 > time_elapsed_num_cl_3)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23

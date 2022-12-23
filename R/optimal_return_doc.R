@@ -47,6 +47,13 @@ optimal_return_doc <- function(type,
   if(setting == "multiarm"){
     custom_further = "\\item{Strategy}{Strategy, 1: \"only best promising\" or 2: \"all promising\"}"
   }
+  if(setting == "multiple"){
+    if(type == "tte"){
+      custom_further = paste0(
+        "\\item{Strategy}{Strategy, 1: \"only best promising\" or 2: \"all promising\"}",
+        "\\item{OP}{probability that one endpoint is significant}")
+    }
+  }
   return(paste0("The output of the function is a `data.frame` object containing the optimization results:
                  \\describe{",
                 custom_further,
