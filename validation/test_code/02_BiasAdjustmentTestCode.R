@@ -452,7 +452,7 @@ test_that("02.11", {
     beta = 0.1,
     p0 = 0.6, p11 = 0.3, p12= 0.5,
     n2min = 10, n2max = 500, stepn2 = 2,
-    lambdamin = 0.7, lambdamax = 0.9, steplambda = 0.01,
+    rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
     b1 = 1000, b2 = 2000, b3 = 3000,
     num_cl = 3,

@@ -18,9 +18,9 @@
 #' @param n2min minimal total sample size for phase II; must be an even number
 #' @param n2max maximal total sample size for phase II, must be an even number
 #' @param stepn2 step size for the optimization over n2; must be an even number
-#' @param kappamin minimal threshold value $\kappa$ for the go/no-go decision rule
-#' @param kappamax maximal threshold value  $\kappa$ for the go/no-go decision rule
-#' @param stepkappa step size for the optimization over the threshold value $\kappa$
+#' @param kappamin minimal threshold value kappa for the go/no-go decision rule
+#' @param kappamax maximal threshold value  kappa for the go/no-go decision rule
+#' @param stepkappa step size for the optimization over the threshold value kappa
 #' @param beta type II error rate; i.e. `1 - beta` is the power for calculation of the sample size for phase III
 #' @param alpha significance level
 #' @param c2 variable per-patient cost for phase II in 10^5 $
