@@ -28,7 +28,7 @@ Use the function `optimal_multitrial`. Supply the following input values to the 
   * a power of 0.9, i.e. $\beta$ of 0.1,
   * assumed true treatment effects of 0.69 and 0.88,
   * event rates of 0.7 for both phase II and phase III,
-  * the optimization region {10, 12, …, 400} for the number of participants (events in the time-to-event setting) in phase II,
+  * the optimization region {10, 12, …, 400} for the number of events in phase II,
   * the optimization region {0.71, 0.72, ..., 0.95} for the threshold values,
   * expected gains of 100,000,000\$, 300,000,000\$, and 500,000,000\$ for each effect size, respectively,
   * three clusters for parallel computing,
