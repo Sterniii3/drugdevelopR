@@ -175,7 +175,7 @@ at b. To see how different input values change the prior distribution we
 refer to the <a href="https://web.imbi.uni-heidelberg.de/prior/" class="external-link">Shiny
 App</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span> <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_normal.html">optimal_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.625</span>, Delta2 <span class="op">=</span> <span class="fl">0.8</span> ,fixed <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># treatment effect</span></span>
+<code class="sourceCode R"><span> <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_normal.html">optimal_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.625</span>, Delta2 <span class="op">=</span> <span class="fl">0.8</span>, fixed <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># treatment effect</span></span>
 <span>                       n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">400</span>, <span class="co"># sample size region</span></span>
 <span>                       stepn2 <span class="op">=</span> <span class="fl">4</span>, <span class="co"># sample size step size</span></span>
 <span>                       kappamin <span class="op">=</span> <span class="fl">0.02</span>, kappamax <span class="op">=</span> <span class="fl">0.2</span>, <span class="co"># threshold region</span></span>
@@ -186,7 +186,7 @@ App</a>.</p>
 <span>                       alpha <span class="op">=</span> <span class="fl">0.05</span>, <span class="co"># significance level</span></span>
 <span>                       beta <span class="op">=</span> <span class="fl">0.1</span>, <span class="co"># 1 - power</span></span>
 <span>                       w <span class="op">=</span> <span class="fl">0.6</span>, in1 <span class="op">=</span> <span class="fl">300</span>, in2 <span class="op">=</span> <span class="fl">600</span>, <span class="co">#weight and amount of information</span></span>
-<span>                       a <span class="op">=</span> <span class="fl">0.25</span>,b <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span> <span class="co">#truncation values</span></span></code></pre></div>
+<span>                       a <span class="op">=</span> <span class="fl">0.25</span>, b <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span> <span class="co">#truncation values</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="interpreting-the-output">Interpreting the output<a class="anchor" aria-label="anchor" href="#interpreting-the-output"></a>
