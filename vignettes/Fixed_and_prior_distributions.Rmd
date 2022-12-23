@@ -46,7 +46,7 @@ variance $\sigma^2$, truncated below at a and above at b.
 To see how different input values change the prior distribution we refer to the [Shiny App](https://web.imbi.uni-heidelberg.de/prior/).
 
 ```{r,eval = FALSE}
- res <- optimal_normal(Delta1 = 0.625, Delta2 = 0.8 ,fixed = FALSE, # treatment effect
+ res <- optimal_normal(Delta1 = 0.625, Delta2 = 0.8, fixed = FALSE, # treatment effect
                        n2min = 20, n2max = 400, # sample size region
                        stepn2 = 4, # sample size step size
                        kappamin = 0.02, kappamax = 0.2, # threshold region
@@ -57,7 +57,7 @@ To see how different input values change the prior distribution we refer to the 
                        alpha = 0.05, # significance level
                        beta = 0.1, # 1 - power
                        w = 0.6, in1 = 300, in2 = 600, #weight and amount of information
-                       a = 0.25,b = 0.75) #truncation values
+                       a = 0.25, b = 0.75) #truncation values
 ```
 
 ```{r, eval=TRUE, include=FALSE}
