@@ -40,13 +40,13 @@ optimal_multitrial_normal(
 \item{w}{weight for
 \href{https://web.imbi.uni-heidelberg.de/prior/}{mixture prior distribution}}
 
-\item{Delta1}{assumed true prior treatment effect for standardized difference in means, see
-\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
-for details}
+\item{Delta1}{assumed true prior treatment effect measured as the
+standardized difference in means, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here} for details}
 
-\item{Delta2}{assumed true prior treatment effect for standardized difference in means, see
-\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
-for details}
+\item{Delta2}{assumed true prior treatment effect measured as the
+standardized difference in means, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here} for details}
 
 \item{in1}{amount of information for \code{Delta1} in terms of sample size, see
 \href{https://web.imbi.uni-heidelberg.de/prior/}{here}

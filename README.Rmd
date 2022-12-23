@@ -67,7 +67,9 @@ to plan optimal phase II/III drug development programs with
 * binary (treatment effect measured by risk ratio (RR)), or
 * normally distributed (treatment effect measured by standardized difference in means (Delta))
 
-endpoints, where the treatment effect is modelled by a [prior](https://web.imbi.uni-heidelberg.de/prior/). Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application [basic](https://web.imbi.uni-heidelberg.de/basic/). Extensions are 
+endpoints, where the treatment effect is modelled by a [prior](https://web.imbi.uni-heidelberg.de/prior/). Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application [basic](https://web.imbi.uni-heidelberg.de/basic/).
+
+Extensions to the basic setting are:
 
 * optimal planning of programs including methods for discounting of phase II results (function: [optimal_bias](https://sterniii3.github.io/drugdevelopR/reference/optimal_bias.html)}, App: [bias](https://web.imbi.uni-heidelberg.de/bias/)),
 * optimal planning of programs with several phase III trials (function: [optimal_multitrial](https://sterniii3.github.io/drugdevelopR/reference/optimal_multitrial.html)}, App: [multitrial](https://web.imbi.uni-heidelberg.de/multitrial/) and
