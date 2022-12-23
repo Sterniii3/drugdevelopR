@@ -4,8 +4,8 @@
 #'   for the choice of weights
 #' @param hr1 first assumed true treatment effect on HR scale for \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}
 #' @param hr2 second assumed true treatment effect on HR scale for \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}
-#' @param id1 amount of information for hr1 in terms of number of events
-#' @param id2 amount of information for hr2 in terms of number of events
+#' @param id1 amount of information for `hr1` in terms of number of events
+#' @param id2 amount of information for `hr2` in terms of number of events
 #' @param d2min minimal number of events for phase II
 #' @param d2max maximal number of events for phase II
 #' @param stepd2 step size for the optimization over d2

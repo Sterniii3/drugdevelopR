@@ -104,3 +104,4 @@ Use the function `optimal_multiarm_normal`. Supply the same input values as in t
 
 Verify that for strategy 1 the optimal utility changes to 109.68 (in 10^5\$) and the optimal sample size changes to 46 in phase II and 190 in phase III (i.e. a total of 236). Furthermore, verify that the costs in phase II are given by 46 and the costs in phase III are given by 151 (i.e. a total of 197).
 For strategy 2, verify that the optimal utility changes to 107.06 (in 10^5\$) and the optimal sample size changes to 28 in phase II and 208 in phase III (i.e. a total of 236). Furthermore, verify that the costs in phase II are given by 34 and the costs in phase III are given by 163 (i.e. a total of 197).
+
