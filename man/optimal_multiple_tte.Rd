@@ -2,7 +2,8 @@
 % Please edit documentation in R/optimal_multiple_tte.R
 \name{optimal_multiple_tte}
 \alias{optimal_multiple_tte}
-\title{Optimal phase II/III drug development planning for programs with multiple endpoints}
+\title{Optimal phase II/III drug development planning for programs with multiple
+time-to-event endpoints}
 \usage{
 optimal_multiple_tte(
   hr1,
@@ -122,7 +123,10 @@ data frame lists the used optimization sequences, start and
 finish date of the optimization procedure.
 }
 \description{
-The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules (Preussler et. al, 2019).
+The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package
+enables planning of phase II/III drug development programs with optimal
+sample size allocation and go/no-go decision rules (Preussler et. al, 2019)
+for two time-to-event endpoints and one control.
 Fast computing is enabled by parallel programming.
 }
 \examples{

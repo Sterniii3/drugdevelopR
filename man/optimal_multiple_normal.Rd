@@ -2,7 +2,8 @@
 % Please edit documentation in R/optimal_multiple_normal.R
 \name{optimal_multiple_normal}
 \alias{optimal_multiple_normal}
-\title{Optimal phase II/III drug development planning for programs with multiple endpoints}
+\title{Optimal phase II/III drug development planning for programs with multiple
+normally distributed endpoints}
 \usage{
 optimal_multiple_normal(
   Delta1,
@@ -121,7 +122,13 @@ data frame lists the used optimization sequences, start and
 finish date of the optimization procedure.
 }
 \description{
-The function \code{\link{optimal_multiple_normal}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules (Preussler et. al, 2019).  (planning is also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}). Fast coputing is enabled by parallel programming.
+The function \code{\link{optimal_multiple_normal}} of the drugdevelopR
+package enables planning of phase II/III drug development programs with
+optimal sample size allocation and go/no-go decision rules for two normally
+distributed endpoints and one control group. (Preussler et. al, 2019).
+Planning is also possible via user friendly R Shiny App:
+\href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}.
+Fast computing is enabled by parallel programming.
 }
 \examples{
  #res <- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs

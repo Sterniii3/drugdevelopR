@@ -387,20 +387,20 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
 #'                                  K = Inf, N = Inf, S = -Inf, 
 #'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
 #'                                  case = 2, fixed = TRUE)
-#'  #         res <- utility3_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
-#'  #                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'  #                                a = 0.25, b = 0.75, 
-#'  #                                c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
-#'  #                                K = Inf, N = Inf, S = -Inf,
-#'  #                                b1 = 3000, b2 = 8000, b3 = 10000, 
-#'  #                                case = 2, fixed = TRUE)                        
-#'  #         res <- utility4_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
-#'  #                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'  #                                a = 0.25, b = 0.75, 
-#'  #                                c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
-#'  #                                K = Inf, N = Inf, S = -Inf, 
-#'  #                                b1 = 3000, b2 = 8000, b3 = 10000, 
-#'  #                                case = 3, fixed = TRUE)
+#'           res <- utility3_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                  a = 0.25, b = 0.75, 
+#'                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
+#'                                  K = Inf, N = Inf, S = -Inf,
+#'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
+#'                                  case = 2, fixed = TRUE)                        
+#'           res <- utility4_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
+#'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                  a = 0.25, b = 0.75, 
+#'                                  c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
+#'                                  K = Inf, N = Inf, S = -Inf, 
+#'                                  b1 = 3000, b2 = 8000, b3 = 10000, 
+#'                                  case = 3, fixed = TRUE)
 #' @name utility_multitrial_normal                           
 #' @export
 #' @editor Johannes Cepicka
@@ -548,7 +548,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                     mean = Delta1, 
                     sd = sqrt(4/n2)) 
           })
-        },  kappa, Inf)$value)
+        },  kappa, 1000)$value)
       }
       if(size == "all"){
         return(integrate(function(y){
@@ -637,7 +637,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                     mean = Delta1, 
                     sd = sqrt(4/n2)) 
           })
-        },  kappa, Inf)$value)
+        },  kappa, 1000)$value)
       }
       if(size == "all"){
         return(integrate(function(y){
@@ -726,9 +726,9 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                         sd = sqrt(4/n2)) * 
                   prior_normal(x, w, Delta1, Delta2, in1, in2, a, b) 
               })
-            },  kappa, Inf)$value
+            },  kappa, 1000)$value
           })
-        },  0, Inf)$value)
+        },  0, 1000)$value)
       }
       if(size == "all"){
         return(integrate(function(x){
@@ -830,9 +830,9 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                         sd = sqrt(4/n2)) * 
                   prior_normal(x, w, Delta1, Delta2, in1, in2, a, b) 
               })
-            },  kappa, Inf)$value
+            },  kappa, 1000)$value
           })
-        },  0, Inf)$value)
+        },  0, 1000)$value)
       }
       if(size == "all"){
         return(integrate(function(x){
@@ -1019,7 +1019,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                   mean = Delta1, 
                   sd = sqrt(4/n2)) 
         })
-      },  kappa, Inf)$value)
+      },  kappa, 1000)$value)
     }
     if(size == "all"){
       return(integrate(function(y){
@@ -1134,9 +1134,9 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                       sd = sqrt(4/n2)) * 
                 prior_normal(x, w, Delta1, Delta2, in1, in2, a, b) 
             })
-          },  kappa, Inf)$value
+          },  kappa, 1000)$value
         })
-      },  0, Inf)$value)
+      },  0, 1000)$value)
     }
     if(size == "all"){
       return(integrate(function(x){
@@ -1453,9 +1453,9 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
                       sd = sqrt(4/n2)) * 
                 prior_normal(x, w, Delta1, Delta2, in1, in2, a, b) 
             })
-          },  kappa, Inf)$value
+          },  kappa, 1000)$value
         })
-      },  0, Inf)$value) 
+      },  0, 1000)$value) 
     }
     if(size == "large"){
       return(integrate(function(x){
@@ -1477,9 +1477,9 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
                       sd = sqrt(4/n2)) * 
                 prior_normal(x, w, Delta1, Delta2, in1, in2, a, b) 
             })
-          },  kappa, Inf)$value
+          },  kappa, 1000)$value
         })
-      },  0, Inf)$value)    
+      },  0, 1000)$value)    
     }
     if(size == "all"){
       return(integrate(function(x){
@@ -1532,11 +1532,11 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
 #' @return The output of the the function utility23_normal() is the expected utility of the program depending on whether two or three phase III trials are performed.
-#' @examples #res <- utility23_normal(n2 = 50, kappa = 0.2, w = 0.3, alpha = 0.025, beta = 0.1,
-#'       #                           Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'       #                           a = 0.25, b = 0.75, 
-#'      #                            c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
-#'      #                            b1 = 3000, b2 = 8000, b3 = 10000)
+#' @examples res <- utility23_normal(n2 = 50, kappa = 0.2, w = 0.3, alpha = 0.025, beta = 0.1,
+#'                                 Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
+#'                                 a = 0.25, b = 0.75, 
+#'                                 c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
+#'                                 b1 = 3000, b2 = 8000, b3 = 10000)
 #' @export
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
