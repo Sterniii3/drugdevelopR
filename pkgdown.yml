@@ -2,10 +2,12 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
+  Binary_and_normally_distributed: Binary_and_normally_distributed.html
   Fixed_and_prior_distributions: Fixed_and_prior_distributions.html
   Interpreting_Output: Interpreting_Output.html
+  More_Parameters: More_Parameters.html
   introduction-to-drugdevelopR: introduction-to-drugdevelopR.html
-last_built: 2022-12-28T00:16Z
+last_built: 2022-12-28T16:39Z
 urls:
   reference: https://sterniii3.github.io/drugdevelopR/reference
   article: https://sterniii3.github.io/drugdevelopR/articles
