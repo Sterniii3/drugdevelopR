@@ -2,7 +2,8 @@
 % Please edit documentation in R/optimal_multiarm.R
 \name{optimal_multiarm}
 \alias{optimal_multiarm}
-\title{Optimal phase II/III drug development planning for multi-arm programs}
+\title{Optimal phase II/III drug development planning for multi-arm programs with
+time-to-event endpoint}
 \usage{
 optimal_multiarm(
   hr1,
@@ -50,11 +51,12 @@ optimal_multiarm(
 
 \item{hrgomax}{maximal threshold value for the go/no-go decision rule}
 
-\item{stephrgo}{stepsize for the optimization over HRgo}
+\item{stephrgo}{step size for the optimization over HRgo}
 
-\item{alpha}{one-sided significance level/ family wise error rate}
+\item{alpha}{one-sided significance level/family-wise error rate}
 
-\item{beta}{1-beta (any-pair) power for calculation of the number of events for phase III}
+\item{beta}{type-II error rate for any pair, i.e. \code{1 - beta} is the
+(any-pair) power for calculation of the number of events for phase III}
 
 \item{c2}{variable per-patient cost for phase II}
 
@@ -64,11 +66,11 @@ optimal_multiarm(
 
 \item{c03}{fixed cost for phase III}
 
-\item{K}{constraint on the costs of the program, default: Inf, e.g. no constraint}
+\item{K}{constraint on the costs of the program, default: \code{Inf}, e.g. no constraint}
 
-\item{N}{constraint on the total expected sample size of the program, default: Inf, e.g. no constraint}
+\item{N}{constraint on the total expected sample size of the program, default: \code{Inf}, e.g. no constraint}
 
-\item{S}{constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint}
+\item{S}{constraint on the expected probability of a successful program, default: \code{-Inf}, e.g. no constraint}
 
 \item{steps1}{lower boundary for effect size category "small" in HR scale, default: 1}
 
@@ -82,57 +84,41 @@ optimal_multiarm(
 
 \item{b3}{expected gain for effect size category "large"}
 
-\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)}
+\item{strategy}{choose strategy: 1 (only the best promising candidate), 2 (all promising candidates) or 3 (both strategies)}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
 \value{
-The output of the function \code{\link{optimal_multiarm}} is a data.frame containing the optimization results:
-\describe{
-\item{Strategy}{Strategy, 1: "only best promising" or 2: "all promising"}
-\item{u}{maximal expected utility}
-\item{HRgo}{optimal threshold value for the decision rule to go to phase III}
-\item{n2}{optimal total sample size in phase II}
-\item{n3}{total expected sample size for phase III; rounded to next natural number}
+The output of the function is a \code{data.frame} object containing the optimization results:
+\describe{\item{Strategy}{Strategy, 1: "only best promising" or 2: "all promising"}\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}\item{HRgo}{optimal threshold value for the decision rule to go to phase III}
+\item{d2}{optimal total number of events for phase II}
+\item{d3}{total expected number of events for phase III; rounded to next natural number}
+\item{d}{total expected number of events in the program; d = d2 + d3}\item{n2}{total sample size for phase II; rounded to the next even natural number}
+\item{n3}{total sample size for phase III; rounded to the next even natural number}
 \item{n}{total sample size in the program; n = n2 + n3}
 \item{K}{maximal costs of the program}
 \item{pgo}{probability to go to phase III}
 \item{sProg}{probability of a successful program}
-\item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-\item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-\item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
+\item{sProg1}{probability of a successful program with "small" treatment effect in phase III}
+\item{sProg2}{probability of a successful program with "medium" treatment effect in phase III}
+\item{sProg3}{probability of a successful program with "large" treatment effect in phase III}
 \item{K2}{expected costs for phase II}
-\item{K3}{expected costs for phase III}
-}
-and further input parameters.
-res
-Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+\item{K3}{expected costs for phase III}}
+and further input parameters. Taking \code{cat(comment())} of the
+data frame lists the used optimization sequences, start and
+finish date of the optimization procedure.
 }
 \description{
-The function \code{\link{optimal_multiarm}} of the drugdevelopR package enables planning of multi-arm phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules (Preussler et. al, 2019). The assumed true treatment effects are assumed fixed (planning is also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}). Fast coputing is enabled by parallel programming.
+The function \code{\link{optimal_multiarm}} of the drugdevelopR package
+enables planning of multi-arm phase II/III drug development programs with
+optimal sample size allocation and go/no-go decision rules
+(Preussler et. al, 2019) for time-to-event endpoints. So far, only three-arm
+trials with two treatments and one control are supported. The assumed true
+treatment effects are assumed fixed (planning is also possible via
+user-friendly R Shiny App:
+\href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}). Fast
+computing is enabled by parallel programming.
 }
-\section{drugdevelopR functions}{
-
-The drugdevelopR package provides the functions
-\itemize{
-\item \code{\link{optimal_tte}},
-\item \code{\link{optimal_binary}} and
-\item \code{\link{optimal_normal}}
-}
-to plan optimal phase II/III drug development programs with
-\itemize{
-\item time-to-event (treatment effect measured by hazard ratio (HR)),
-\item binary (treatment effect measured by risk ratio (RR)) or
-\item normally distributed (treatment effect measured by standardized difference in means (Delta))
-}
-endpoint, where the treatment effect is modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are
-\itemize{
-\item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
-\item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-\item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
-}
-}
-
 \examples{
 res <- optimal_multiarm(hr1 = 0.75, hr2 = 0.80, ec = 0.6,# define assumed true HRs and control arm event rate
   n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
@@ -148,6 +134,8 @@ res <- optimal_multiarm(hr1 = 0.75, hr2 = 0.80, ec = 0.6,# define assumed true H
   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 res
 cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+
+
 }
 \references{
 Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal Designs for Multi-Arm Phase II/III Drug Development Programs. Submitted to peer-review journal.

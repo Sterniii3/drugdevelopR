@@ -43,25 +43,25 @@ optimal_normal(
 \item{w}{weight for
 \href{https://web.imbi.uni-heidelberg.de/prior/}{mixture prior distribution}}
 
-\item{Delta1}{assumed true treatment effect for standardized difference in means, see
+\item{Delta1}{assumed true prior treatment effect measured as the
+standardized difference in means, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here} for details}
+
+\item{Delta2}{assumed true prior treatment effect measured as the
+standardized difference in means, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here} for details}
+
+\item{in1}{amount of information for \code{Delta1} in terms of sample size, see
 \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 for details}
 
-\item{Delta2}{assumed true treatment effect for standardized difference in means, see
-\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
-for details}
-
-\item{in1}{amount of information for Delta2 in terms of sample size, see
-\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
-for details}
-
-\item{in2}{amount of information for Delta1 in terms of sample size, see
+\item{in2}{amount of information for \code{Delta2} in terms of sample size, see
 \href{https://web.imbi.uni-heidelberg.de/prior/}{here}
 for details}
 
 \item{a}{lower boundary for the truncation of the \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}}
 
-\item{b}{upper boundary for the truncation \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}}
+\item{b}{upper boundary for the truncation of the \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}}
 
 \item{n2min}{minimal total sample size for phase II; must be an even number}
 
@@ -69,15 +69,15 @@ for details}
 
 \item{stepn2}{step size for the optimization over n2; must be an even number}
 
-\item{kappamin}{minimal threshold value for the go/no-go decision rule}
+\item{kappamin}{minimal threshold value kappa for the go/no-go decision rule}
 
-\item{kappamax}{maximal threshold value for the go/no-go decision rule}
+\item{kappamax}{maximal threshold value  kappa for the go/no-go decision rule}
 
-\item{stepkappa}{step size for the optimization over kappa}
+\item{stepkappa}{step size for the optimization over the threshold value kappa}
 
 \item{alpha}{significance level}
 
-\item{beta}{type II error rate; i.e. \code{1 - beta} is the power for calculation of the number of events for phase III by Schoenfeld's formula (Schoenfeld 1981)}
+\item{beta}{type II error rate; i.e. \code{1 - beta} is the power for calculation of the sample size for phase III}
 
 \item{c2}{variable per-patient cost for phase II in 10^5 $}
 
@@ -111,7 +111,7 @@ for details}
 
 \item{fixed}{choose if true treatment effects are fixed or following a prior distribution, if TRUE \code{Delta1} is used as fixed effect}
 
-\item{skipII}{skipII choose if skipping phase II is an option, default: FALSE;
+\item{skipII}{choose if skipping phase II is an option, default: FALSE;
 if TRUE, the program calculates the expected utility for the case when phase
 II is skipped and compares it to the situation when phase II is not skipped.
 The results are then returned as a list of two results lists, \code{res[[1]]}
@@ -151,28 +151,6 @@ fixed or modelled by a prior distribution. The R Shiny application
 distributions used in this package. Fast computing is enabled by parallel
 programming.
 }
-\section{drugdevelopR functions}{
-
-The drugdevelopR package provides the functions
-\itemize{
-\item \code{\link{optimal_tte}},
-\item \code{\link{optimal_binary}} or
-\item \code{\link{optimal_normal}}
-}
-to plan optimal phase II/III drug development programs with
-\itemize{
-\item time-to-event (treatment effect measured by hazard ratio (HR)),
-\item binary (treatment effect measured by risk ratio (RR)) and
-\item normally distributed (treatment effect measured by standardized difference in means (Delta))
-}
-endpoint, where the treatment effect is assumed fixed or modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can also be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are
-\itemize{
-\item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
-\item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-\item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
-}
-}
-
 \examples{
 res <- optimal_normal(w=0.3,                             # define parameters for prior
   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,      # (https://web.imbi.uni-heidelberg.de/prior/)
@@ -191,7 +169,7 @@ res <- optimal_normal(w=0.3,                             # define parameters for
   skipII = FALSE,                                        # choose if skipping phase II would be an option
   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 res
-cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure
 }
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences.

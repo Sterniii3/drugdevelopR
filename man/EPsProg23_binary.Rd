@@ -71,11 +71,3 @@ res <- EPsProg23_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1,
                                  in1 = 300, in2 = 600, case = 2, size = "small",
                                  ymin = 0.5)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

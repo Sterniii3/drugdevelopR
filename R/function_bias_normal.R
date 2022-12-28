@@ -24,7 +24,7 @@
 #' @param n2 total sample size for phase II; must be even number
 #' @param Adj adjustment parameter
 #' @param alpha significance level
-#' @param beta `1-beta power` for calculation of sample size for phase III
+#' @param beta `1 - beta` is the power for calculation of sample size for phase III
 #' @param w weight for mixture prior distribution
 #' @param Delta1 assumed true treatment effect for standardized difference in means
 #' @param Delta2 assumed true treatment effect for standardized difference in means

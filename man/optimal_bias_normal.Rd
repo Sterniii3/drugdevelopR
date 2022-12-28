@@ -45,33 +45,48 @@ optimal_bias_normal(
 )
 }
 \arguments{
-\item{w}{weight for mixture prior distribution}
+\item{w}{weight for
+\href{https://web.imbi.uni-heidelberg.de/prior/}{mixture prior distribution}}
 
-\item{Delta1}{assumed true treatment effect for standardized difference in means}
+\item{Delta1}{assumed true prior treatment effect measured as the
+standardized difference in means, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here} for details}
 
-\item{Delta2}{assumed true treatment effect for standardized difference in means}
+\item{Delta2}{assumed true prior treatment effect measured as the
+standardized difference in means, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here} for details}
 
-\item{in1}{amount of information for Delta1 in terms of sample size}
+\item{in1}{amount of information for \code{Delta1} in terms of sample size, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{in2}{amount of information for Delta2 in terms of sample size}
+\item{in2}{amount of information for \code{Delta2} in terms of sample size, see
+\href{https://web.imbi.uni-heidelberg.de/prior/}{here}
+for details}
 
-\item{a}{lower boundary for the truncation}
+\item{a}{lower boundary for the truncation of the \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}}
 
-\item{b}{upper boundary for the truncation}
+\item{b}{upper boundary for the truncation of the \href{https://web.imbi.uni-heidelberg.de/prior/}{prior distribution}}
 
-\item{n2min}{minimal total sample size for phase II; must be even number}
+\item{n2min}{minimal total sample size for phase II; must be an even number}
 
-\item{n2max}{maximal total sample size for phase II, must be even number}
+\item{n2max}{maximal total sample size for phase II, must be an even number}
 
-\item{stepn2}{stepsize for the optimization over n2; must be even number}
+\item{stepn2}{step size for the optimization over n2; must be an even number}
 
-\item{kappamin}{minimal threshold value for the go/no-go decision rule}
+\item{kappamin}{minimal threshold value kappa for the go/no-go decision rule}
 
-\item{kappamax}{maximal threshold value for the go/no-go decision rule}
+\item{kappamax}{maximal threshold value  kappa for the go/no-go decision rule}
 
-\item{stepkappa}{stepsize for the optimization over kappa}
+\item{stepkappa}{step size for the optimization over the threshold value kappa}
 
-\item{adj}{choose type of adjustment: "multiplicative", "additive", "both" (or "all")}
+\item{adj}{choose type of adjustment: \code{"multiplicative"},
+\code{"additive"}, \code{"both"} or \code{"all"}. When using "both",
+\code{res[1,]} contains the results using the multiplicative method and \code{res[2,]}
+contains the results using the additive method. When using "all", there are
+also \code{res[3,]} and \code{res[4,]}, containing the results of a multiplicative
+and an additive method which do not only adjust the treatment effect but
+also the threshold value for the decision rule.}
 
 \item{lambdamin}{minimal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)}
 
@@ -87,15 +102,15 @@ optimal_bias_normal(
 
 \item{alpha}{significance level}
 
-\item{beta}{1-beta power for calculation of sample size for phase III}
+\item{beta}{type II error rate; i.e. \code{1 - beta} is the power for calculation of the sample size for phase III}
 
-\item{c2}{variable per-patient cost for phase II}
+\item{c2}{variable per-patient cost for phase II in 10^5 $}
 
-\item{c3}{variable per-patient cost for phase III}
+\item{c3}{variable per-patient cost for phase III in 10^5 $}
 
-\item{c02}{fixed cost for phase II}
+\item{c02}{fixed cost for phase II in 10^5 $}
 
-\item{c03}{fixed cost for phase III}
+\item{c03}{fixed cost for phase III in 10^5 $}
 
 \item{K}{constraint on the costs of the program, default: Inf, e.g. no constraint}
 
@@ -109,38 +124,33 @@ optimal_bias_normal(
 
 \item{stepl1}{lower boundary for effect size category "large" = upper boundary for effect size category "medium", default: 0.8}
 
-\item{b1}{expected gain for effect size category "small"}
+\item{b1}{expected gain for effect size category "small" in 10^5 $}
 
-\item{b2}{expected gain for effect size category "medium"}
+\item{b2}{expected gain for effect size category "medium" in 10^5 $}
 
-\item{b3}{expected gain for effect size category "large"}
+\item{b3}{expected gain for effect size category "large" in 10^5 $}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE hr1 is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or following a prior distribution, if TRUE \code{Delta1} is used as fixed effect}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
 \value{
-The output of the function \code{\link{optimal_bias_normal}} is a data.frame containing the optimization results:
-\describe{
-\item{Method}{Type of adjustment: multipl. (multiplicative) or add. (additive)}
-\item{u}{maximal expected utility}#'
-\item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}
-\item{Kappa}{optimal threshold value for the decision rule to go to phase III}
-\item{n2}{total sample size for phase II}
+The output of the function is a \code{data.frame} object containing the optimization results:
+\describe{\item{Method}{Type of adjustment: "multipl." (multiplicative adjustment of effect size), "add." (additive adjustment of effect size), "multipl2." (multiplicative adjustment of effect size and threshold), "add2." (additive adjustment of effect size and threshold)}
+\item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}\item{Kappa}{optimal threshold value for the decision rule to go to phase III}\item{n2}{total sample size for phase II; rounded to the next even natural number}
 \item{n3}{total sample size for phase III; rounded to the next even natural number}
 \item{n}{total sample size in the program; n = n2 + n3}
 \item{K}{maximal costs of the program}
 \item{pgo}{probability to go to phase III}
 \item{sProg}{probability of a successful program}
-\item{sProg1}{probability of a successful program with "small" treatment effect in Phase III}
-\item{sProg2}{probability of a successful program with "medium" treatment effect in Phase III}
-\item{sProg3}{probability of a successful program with "large" treatment effect in Phase III }
+\item{sProg1}{probability of a successful program with "small" treatment effect in phase III}
+\item{sProg2}{probability of a successful program with "medium" treatment effect in phase III}
+\item{sProg3}{probability of a successful program with "large" treatment effect in phase III}
 \item{K2}{expected costs for phase II}
-\item{K3}{expected costs for phase III}
-}
-and further input parameters.
-
-Taking cat(comment()) of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+\item{K3}{expected costs for phase III}}
+and further input parameters. Taking \code{cat(comment())} of the
+data frame lists the used optimization sequences, start and
+finish date of the optimization procedure.
 }
 \description{
 The function \code{\link{optimal_bias_normal}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results for normally distributed endpoints (Preussler et. al, 2020).
@@ -149,28 +159,6 @@ The assumed true treatment effects can be assumed fixed or modelled by a prior d
 The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package.
 Fast computing is enabled by parallel programming.
 }
-\section{drugdevelopR functions}{
-
-The drugdevelopR package provides the functions
-\itemize{
-\item \code{\link{optimal_tte}},
-\item \code{\link{optimal_binary}} or
-\item \code{\link{optimal_normal}}
-}
-to plan optimal phase II/III drug development programs with
-\itemize{
-\item time-to-event (treatment effect measured by hazard ratio (HR)),
-\item binary (treatment effect measured by risk ratio (RR)) and
-\item normally distributed (treatment effect measured by standardized difference in means (Delta))
-}
-endpoint, where the treatment effect is assumed fixed or modelled by a \href{https://web.imbi.uni-heidelberg.de/prior/}{prior}. Optimal phase II/III drug development planning with fixed treatment effects can also be done with the help of the R Shiny application \href{https://web.imbi.uni-heidelberg.de/basic/}{basic}. Extensions are
-\itemize{
-\item optimal planning of programs including methods for discounting of phase II results (function: \code{\link{optimal_bias}}, App: \href{https://web.imbi.uni-heidelberg.de/bias/}{bias}),
-\item optimal planning of programs with several phase III trials (function: \code{\link{optimal_multitrial}}, App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) and
-\item optimal planning of programs with multiple arms (function: \code{\link{optimal_multiarm}}, App: \href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}).
-}
-}
-
 \examples{
 res <- optimal_bias_normal(w=0.3,                                 # define parameters for prior
   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,          # (https://web.imbi.uni-heidelberg.de/prior/)
@@ -191,15 +179,8 @@ res <- optimal_bias_normal(w=0.3,                                 # define param
   num_cl = 1)                                                # set number of cores used for parallelized computing (check maximum number possible with detectCores())
 res
 cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+
 }
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences.
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

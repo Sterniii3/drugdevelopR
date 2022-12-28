@@ -17,13 +17,13 @@ knitr::opts_chunk$set(
 
 Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
 
-The drugdevelopR package enables us to optimally plan such programs using a utility maximizing approach. Up until now, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html). In this article, we want to expand the basic setting and want to introduce you to the modelling of the treatment effect by a prior distribution
+The drugdevelopR package enables us to optimally plan such programs using a utility-maximizing approach. Up until now, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html). In this article, we want to expand the basic setting and want to introduce you to the modelling of the assumed treatment effect on a prior distribution.
 
 # The example setting
 
 We are in the same setting as in the introduction, i.e. we  suppose we are developing a new tumor treatment, *exper*. The patient variable that we want to investigate is the difference in tumor width between the one-year visit and baseline. This is a normally distributed outcome variable.
 
-The parameters we insert into the function `optimum_normal` are the same parameters we also inserted in the basic setting, however, this time we set `fixed` = `"FALSE"`, hence the assumed true treatment effect is not fixed but follows a prior distribution. Again, we start by loading the drugdevelopR package.
+The parameters we insert into the function `optimum_normal` are the same parameters we also inserted in the basic setting. However this time, we set `fixed` = `"FALSE"`, hence the assumed true treatment effect is not fixed but follows a prior distribution. Again, we start by loading the drugdevelopR package.
 
 
 ```{r setup}
@@ -46,7 +46,7 @@ variance $\sigma^2$, truncated below at a and above at b.
 To see how different input values change the prior distribution we refer to the [Shiny App](https://web.imbi.uni-heidelberg.de/prior/).
 
 ```{r,eval = FALSE}
- res <- optimal_normal(Delta1 = 0.625, Delta2 = 0.8 ,fixed = FALSE, # treatment effect
+ res <- optimal_normal(Delta1 = 0.625, Delta2 = 0.8, fixed = FALSE, # treatment effect
                        n2min = 20, n2max = 400, # sample size region
                        stepn2 = 4, # sample size step size
                        kappamin = 0.02, kappamax = 0.2, # threshold region
@@ -56,8 +56,8 @@ To see how different input values change the prior distribution we refer to the 
                        b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
                        alpha = 0.05, # significance level
                        beta = 0.1, # 1 - power
-                       w = 0.6, in1 = 300, in2 = 600, #weight and amoutn of information
-                       a = 0.25,b = 0.75) #truncation values
+                       w = 0.6, in1 = 300, in2 = 600, #weight and amount of information
+                       a = 0.25, b = 0.75) #truncation values
 ```
 
 ```{r, eval=TRUE, include=FALSE}
