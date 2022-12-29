@@ -50,7 +50,7 @@ optimal_return_doc <- function(type,
   if(setting == "multiple"){
     if(type == "tte"){
       custom_further = paste0(
-        "\\item{Strategy}{Strategy, 1: \"only best promising\" or 2: \"all promising\"}",
+        "",
         "\\item{OP}{probability that one endpoint is significant}")
     }
   }
