@@ -4,23 +4,38 @@
 #' The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package
 #'  enables planning of phase II/III drug development programs with optimal 
 #'  sample size allocation and go/no-go decision rules (Preussler et. al, 2019)
-#'  for two time-to-event endpoints and one control. 
+#'  in a two-arm trial with two time-to-event endpoints.
+#'  
+#'  In this setting, the drug development program is defined to be successful if
+#'  it proceeds from phase II to phase III and at least one endpoint shows a 
+#'  statistically significant treatment effect in phase III. For example,
+#'  this situation is found in oncology trials, where overall survival (OS)
+#'  and progression-free survival (PFS) are the two endpoints of interest.
+#'  
+#'  The gain of a successful program may differ according to the importance of
+#'  the endpoint that is significant. If endpoint 1 is significant (no matter
+#'  whether endpoint 2 is significant or not), then the gains `b11`, `b21`
+#'  and `b31` will be used for calculation of the utility. If only endpoint 2 
+#'  is significant, then  `b12`, `b22` and `b32` will be used. This
+#'  also matches the oncology example, where OS (i.e. endpoint 1) implicates
+#'  larger expected gains than PFS alone (i.e. endpoint 2).
+#'  
 #'  Fast computing is enabled by parallel programming.
 #' 
 #' @name optimal_multiple_tte
 #' @inheritParams optimal_multiple_generic
 #' @inheritParams optimal_tte_generic
-#' @param hr1 assumed true treatment effect on HR scale for treatment 1
-#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param hr1 assumed true treatment effect on HR scale for endpoint 1 (e.g. OS)
+#' @param hr2 assumed true treatment effect on HR scale for endpoint 2 (e.g. PFS)
 #' @param id1 amount of information for hr1 in terms of number of events
 #' @param id2 amount of information for hr2 in terms of number of events
 #' @param beta type-II error rate for any pair, i.e. `1 - beta` is the (any-pair) power for calculation of the number of events for phase III
-#' @param b11 expected gain for effect size category `"small"` if endpoint OS is significant
-#' @param b21 expected gain for effect size category `"medium"` if endpoint OS is significant
-#' @param b31 expected gain for effect size category `"large"` if endpoint OS is significant 
-#' @param b12 expected gain for effect size category `"small"` if endpoint OS is not significant
-#' @param b22 expected gain for effect size category `"medium"`if endpoint OS is not significant
-#' @param b32 expected gain for effect size category `"large"` if endpoint OS is not significant
+#' @param b11 expected gain for effect size category `"small"` if endpoint 1 is significant (and endpoint 2 may or may not be significant)
+#' @param b21 expected gain for effect size category `"medium"` if endpoint 1 is significant (and endpoint 2 may or may not be significant)
+#' @param b31 expected gain for effect size category `"large"` if endpoint 1 is significant (and endpoint 2 may or may not be significant)
+#' @param b12 expected gain for effect size category `"small"` if endpoint 1 is not significant, but endpoint 2 is
+#' @param b22 expected gain for effect size category `"medium"`if endpoint 1 is not significant, but endpoint 2 is
+#' @param b32 expected gain for effect size category `"large"` if endpoint 1 is not significant, but endpoint 2 is
 #'
 #' @return
 #' `r optimal_return_doc(type = "tte", setting = "multiple")`

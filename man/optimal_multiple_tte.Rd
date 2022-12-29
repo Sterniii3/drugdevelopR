@@ -2,7 +2,8 @@
 % Please edit documentation in R/optimal_multiple_tte.R
 \name{optimal_multiple_tte}
 \alias{optimal_multiple_tte}
-\title{Optimal phase II/III drug development planning for programs with multiple endpoints}
+\title{Optimal phase II/III drug development planning for programs with multiple
+time-to-event endpoints}
 \usage{
 optimal_multiple_tte(
   hr1,
@@ -39,9 +40,9 @@ optimal_multiple_tte(
 )
 }
 \arguments{
-\item{hr1}{assumed true treatment effect on HR scale for treatment 1}
+\item{hr1}{assumed true treatment effect on HR scale for endpoint 1 (e.g. OS)}
 
-\item{hr2}{assumed true treatment effect on HR scale for treatment 2}
+\item{hr2}{assumed true treatment effect on HR scale for endpoint 2 (e.g. PFS)}
 
 \item{id1}{amount of information for hr1 in terms of number of events}
 
@@ -77,17 +78,17 @@ optimal_multiple_tte(
 
 \item{S}{constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint}
 
-\item{b11}{expected gain for effect size category \code{"small"} if endpoint OS is significant}
+\item{b11}{expected gain for effect size category \code{"small"} if endpoint 1 is significant (and endpoint 2 may or may not be significant)}
 
-\item{b21}{expected gain for effect size category \code{"medium"} if endpoint OS is significant}
+\item{b21}{expected gain for effect size category \code{"medium"} if endpoint 1 is significant (and endpoint 2 may or may not be significant)}
 
-\item{b31}{expected gain for effect size category \code{"large"} if endpoint OS is significant}
+\item{b31}{expected gain for effect size category \code{"large"} if endpoint 1 is significant (and endpoint 2 may or may not be significant)}
 
-\item{b12}{expected gain for effect size category \code{"small"} if endpoint OS is not significant}
+\item{b12}{expected gain for effect size category \code{"small"} if endpoint 1 is not significant, but endpoint 2 is}
 
-\item{b22}{expected gain for effect size category \code{"medium"}if endpoint OS is not significant}
+\item{b22}{expected gain for effect size category \code{"medium"}if endpoint 1 is not significant, but endpoint 2 is}
 
-\item{b32}{expected gain for effect size category \code{"large"} if endpoint OS is not significant}
+\item{b32}{expected gain for effect size category \code{"large"} if endpoint 1 is not significant, but endpoint 2 is}
 
 \item{steps1}{lower boundary for effect size category "small" in HR scale, default: 1}
 
@@ -103,7 +104,7 @@ optimal_multiple_tte(
 }
 \value{
 The output of the function is a \code{data.frame} object containing the optimization results:
-\describe{\item{Strategy}{Strategy, 1: "only best promising" or 2: "all promising"}\item{OP}{probability that one endpoint is significant}\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}\item{HRgo}{optimal threshold value for the decision rule to go to phase III}
+\describe{\item{OP}{probability that one endpoint is significant}\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}\item{HRgo}{optimal threshold value for the decision rule to go to phase III}
 \item{d2}{optimal total number of events for phase II}
 \item{d3}{total expected number of events for phase III; rounded to next natural number}
 \item{d}{total expected number of events in the program; d = d2 + d3}\item{n2}{total sample size for phase II; rounded to the next even natural number}
@@ -122,7 +123,25 @@ data frame lists the used optimization sequences, start and
 finish date of the optimization procedure.
 }
 \description{
-The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules (Preussler et. al, 2019).
+The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package
+enables planning of phase II/III drug development programs with optimal
+sample size allocation and go/no-go decision rules (Preussler et. al, 2019)
+in a two-arm trial with two time-to-event endpoints.
+
+In this setting, the drug development program is defined to be successful if
+it proceeds from phase II to phase III and at least one endpoint shows a
+statistically significant treatment effect in phase III. For example,
+this situation is found in oncology trials, where overall survival (OS)
+and progression-free survival (PFS) are the two endpoints of interest.
+
+The gain of a successful program may differ according to the importance of
+the endpoint that is significant. If endpoint 1 is significant (no matter
+whether endpoint 2 is significant or not), then the gains \code{b11}, \code{b21}
+and \code{b31} will be used for calculation of the utility. If only endpoint 2
+is significant, then  \code{b12}, \code{b22} and \code{b32} will be used. This
+also matches the oncology example, where OS (i.e. endpoint 1) implicates
+larger expected gains than PFS alone (i.e. endpoint 2).
+
 Fast computing is enabled by parallel programming.
 }
 \examples{

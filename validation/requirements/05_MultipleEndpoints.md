@@ -23,14 +23,14 @@
 
 The program should also provide methods for drug development programs with multiple endpoints. For now, this means that the program provides methods for two endpoints. Moreover, only normally distributed and time-to-event endpoints are implemented in the multiple endpoint setting. (Further extensions may be implemented in the future.) The definition of treatment success is different for the two endpoints:
 
- *	In the time-to-event setting, the drug development program is defined to be successful if it proceeds from phase II to phase III and at least one endpoint shows a statistically significant treatment effect in phase III. For example, this situation is found in oncology trials, where overall survival (OS) and progression free survival (PFS) are the two endpoints of interest.
+ *	In the time-to-event setting, the drug development program is defined to be successful if it proceeds from phase II to phase III and at least one endpoint shows a statistically significant treatment effect in phase III. For example, this situation is found in oncology trials, where overall survival (OS) and progression-free survival (PFS) are the two endpoints of interest.
 
  *	For normally distributed endpoints, the drug development program is defined to be successful if it proceeds from phase II to phase III and all endpoints show a statistically significant treatment effect in phase III. For example, this situation is found in Alzheimer’s disease trials, where a drug should show significant results in improving cognition (cognitive endpoint) as well as in improving activities of daily living (functional endpoint).
 
 The user should be able to provide the following input values in addition to the general parameters defined in the basic setting:
 
   *	The correlation between the two endpoints,
-  * The event rate of the control arm (in the time to event setting), and
+  * The event rate of the control arm (in the time-to-event setting), and
   * The variances of the endpoints (in the normally distributed setting).
 
 The program should correctly calculate the optimal sample size, the optimal threshold value and the corresponding expected utility for utility-based optimization of phase II/III programs with two time-to-event endpoints. We require the following:
