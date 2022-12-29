@@ -1,0 +1,20 @@
+---
+title: "Binary and normally distributed outcomes"
+author: "Johannes Cepicka"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Binary_and_normally_distributed}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(drugdevelopR)
+```

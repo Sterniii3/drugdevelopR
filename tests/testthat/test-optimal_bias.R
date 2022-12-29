@@ -1,4 +1,4 @@
-test_that("Optimal_binary works for additive adjustment method", {
+test_that("Optimal_bias works for additive adjustment method", {
   expect_equal(optimal_bias(w = 0.3, hr1 = 0.69, hr2 = 0.88, 
                             id1 = 210, id2 = 420,     
                             d2min = 20, d2max = 100, stepd2 = 5, 
@@ -14,7 +14,7 @@ test_that("Optimal_binary works for additive adjustment method", {
                             fixed = TRUE, num_cl = 2)$u, 859.71)
 })
 
-test_that("Optimal_binary works for multiplicative method", {
+test_that("Optimal_bias works for multiplicative method", {
   expect_equal(optimal_bias(w = 0.3, hr1 = 0.69, hr2 = 0.88, 
                             id1 = 210, id2 = 420,     
                             d2min = 20, d2max = 100, stepd2 = 5, 
@@ -30,7 +30,7 @@ test_that("Optimal_binary works for multiplicative method", {
                             fixed = FALSE, num_cl = 2)$u, 98.28)
 })
 
-test_that("Optimal_binary works for both methods", {
+test_that("Optimal_bias works for both methods", {
   expect_equal(optimal_bias(w = 0.3, hr1 = 0.69, hr2 = 0.88, 
                             id1 = 210, id2 = 420,     
                             d2min = 50, d2max = 150, stepd2 = 5, 
@@ -46,7 +46,7 @@ test_that("Optimal_binary works for both methods", {
                             fixed = TRUE, num_cl = 2)$u, c(972.87,922.63))
 })
 
-test_that("Optimal_binary works for method `all`", {
+test_that("Optimal_bias works for method `all`", {
   expect_equal(optimal_bias(w = 0.3, hr1 = 0.69, hr2 = 0.88, 
                             id1 = 210, id2 = 420,     
                             d2min = 50, d2max = 150, stepd2 = 5, 
@@ -62,7 +62,7 @@ test_that("Optimal_binary works for method `all`", {
                             fixed = TRUE, num_cl = 2)$u, c(972.87,922.63,966.59,921.11))
 })
 
-test_that("Optimal_binary works for method `all` with prior distributions", {
+test_that("Optimal_bias works for method `all` with prior distributions", {
   expect_equal(optimal_bias(w = 0.3, hr1 = 0.69, hr2 = 0.88, 
                             id1 = 210, id2 = 420,     
                             d2min = 50, d2max = 150, stepd2 = 5, 

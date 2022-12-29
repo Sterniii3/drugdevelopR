@@ -126,6 +126,7 @@ finish date of the optimization procedure.
 The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package
 enables planning of phase II/III drug development programs with optimal
 sample size allocation and go/no-go decision rules (Preussler et. al, 2019)
+
 in a two-arm trial with two time-to-event endpoints.
 
 In this setting, the drug development program is defined to be successful if

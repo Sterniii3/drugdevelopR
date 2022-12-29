@@ -1,0 +1,20 @@
+---
+title: "More Parameters more "
+author: "Johannes Cepicka"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{More_Parameters}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(drugdevelopR)
+```
