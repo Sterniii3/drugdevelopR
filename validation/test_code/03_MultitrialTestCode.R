@@ -7,7 +7,7 @@ test_that("03.01", {
                             hr1 = 0.69, hr2 = 0.88,
                             xi2 = 0.7, xi3 = 0.7,
                             d2min = 10, d2max = 400, stepd2 = 2,
-                            hrgomin = 0.71, hrgomax = 0.95, stephrgo = 0.01,
+                            hrgomin = 0.65, hrgomax = 0.95, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
                             num_cl = 3,
                             c02 = 100, c03 = 150,
@@ -65,7 +65,7 @@ test_that("03.02", {
                             hr1 = 0.69, hr2 = 0.88,
                             xi2 = 0.7, xi3 = 0.7,
                             d2min = 10, d2max = 400, stepd2 = 2,
-                            hrgomin = 0.71, hrgomax = 0.95, stephrgo = 0.01,
+                            hrgomin = 0.65, hrgomax = 0.95, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
                             num_cl = 3,
                             c02 = 100, c03 = 150,
@@ -77,11 +77,11 @@ test_that("03.02", {
   )
   # Strategies
   expect_equal(res$Strategy, 1)
-  expect_equal(res$u, -152.1, tolerance = 0.005)
-  expect_equal(res$n2, 160)
-  expect_equal(res$n3, 190)
-  expect_equal(res$n, 356)
-  expect_equal(res$HRgo, 0.7)
+  expect_equal(res$u, -150.95, tolerance = 0.005)
+  expect_equal(res$n2, 176)
+  expect_equal(res$n3, 146)
+  expect_equal(res$n, 322)
+  expect_equal(res$HRgo, 0.68)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23
@@ -92,7 +92,7 @@ test_that("03.03", {
                             hr1 = 0.69, hr2 = 0.88,
                             xi2 = 0.7, xi3 = 0.7,
                             d2min = 10, d2max = 400, stepd2 = 2,
-                            hrgomin = 0.71, hrgomax = 0.95, stephrgo = 0.01,
+                            hrgomin = 0.65, hrgomax = 0.95, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
                             num_cl = 3,
                             c02 = 100, c03 = 150,
@@ -149,7 +149,7 @@ test_that("03.04", {
                             hr1 = 0.69, hr2 = 0.88,
                             xi2 = 0.7, xi3 = 0.7,
                             d2min = 10, d2max = 400, stepd2 = 2,
-                            hrgomin = 0.71, hrgomax = 0.95, stephrgo = 0.01,
+                            hrgomin = 0.65, hrgomax = 0.95, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
                             num_cl = 3,
                             c02 = 100, c03 = 150,
@@ -169,7 +169,7 @@ test_that("03.05", {
                             hr1 = 0.69, hr2 = 0.88,
                             xi2 = 0.7, xi3 = 0.7,
                             d2min = 10, d2max = 400, stepd2 = 2,
-                            hrgomin = 0.71, hrgomax = 0.95, stephrgo = 0.01,
+                            hrgomin = 0.65, hrgomax = 0.95, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
                             num_cl = 3,
                             c02 = 100, c03 = 150,
@@ -228,7 +228,7 @@ test_that("03.06", {
                             hr1 = 0.69, hr2 = 0.88,
                             xi2 = 0.7, xi3 = 0.7,
                             d2min = 10, d2max = 400, stepd2 = 2,
-                            hrgomin = 0.71, hrgomax = 0.95, stephrgo = 0.01,
+                            hrgomin = 0.65, hrgomax = 0.95, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
                             num_cl = 3,
                             c02 = 100, c03 = 150,
@@ -258,7 +258,7 @@ test_that("03.07", {
                             beta = 0.1,
                             p0 = 0.6, p11 = 0.3, p12 = 0.5,
                             n2min = 10, n2max = 400, stepn2 = 2,
-                            rrgomin = 0.71, rrgomax = 0.95, steprrgo = 0.01,
+                            rrgomin = 0.70, rrgomax = 0.95, steprrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
                             num_cl = 3,
                             c02 = 100, c03 = 150,
@@ -297,7 +297,7 @@ test_that("03.08", {
                                    beta = 0.1,
                                    p0 = 0.6, p11 = 0.3, p12 = 0.5,
                                    n2min = 10, n2max = 400, stepn2 = 2,
-                                   rrgomin = 0.71, rrgomax = 0.95, steprrgo = 0.01,
+                                   rrgomin = 0.70, rrgomax = 0.95, steprrgo = 0.01,
                                    b1 = 1000, b2 = 3000, b3 = 5000,
                                    num_cl = 3,
                                    c02 = 100, c03 = 150,
@@ -321,7 +321,7 @@ test_that("03.09", {
                                    beta = 0.1,
                                    p0 = 0.6, p11 = 0.3, p12 = 0.5,
                                    n2min = 10, n2max = 400, stepn2 = 2,
-                                   rrgomin = 0.71, rrgomax = 0.95, steprrgo = 0.01,
+                                   rrgomin = 0.70, rrgomax = 0.95, steprrgo = 0.01,
                                    b1 = 1000, b2 = 3000, b3 = 5000,
                                    num_cl = 3,
                                    c02 = 100, c03 = 150,
@@ -354,7 +354,7 @@ test_that("03.10", {
                                    beta = 0.1,
                                    p0 = 0.6, p11 = 0.3, p12 = 0.5,
                                    n2min = 10, n2max = 400, stepn2 = 2,
-                                   rrgomin = 0.71, rrgomax = 0.95, steprrgo = 0.01,
+                                   rrgomin = 0.70, rrgomax = 0.95, steprrgo = 0.01,
                                    b1 = 1000, b2 = 3000, b3 = 5000,
                                    num_cl = 3,
                                    c02 = 100, c03 = 150,
@@ -368,7 +368,7 @@ test_that("03.10", {
                                    beta = 0.1,
                                    p0 = 0.6, p11 = 0.3, p12 = 0.5,
                                    n2min = 10, n2max = 400, stepn2 = 2,
-                                   rrgomin = 0.71, rrgomax = 0.95, steprrgo = 0.01,
+                                   rrgomin = 0.70, rrgomax = 0.95, steprrgo = 0.01,
                                    b1 = 1000, b2 = 3000, b3 = 5000,
                                    num_cl = 3,
                                    c02 = 100, c03 = 150,

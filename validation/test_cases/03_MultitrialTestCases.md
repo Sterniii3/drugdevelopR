@@ -29,7 +29,7 @@ Use the function `optimal_multitrial`. Supply the following input values to the 
   * assumed true treatment effects of 0.69 and 0.88,
   * event rates of 0.7 for both phase II and phase III,
   * the optimization region {10, 12, …, 400} for the number of events in phase II,
-  * the optimization region {0.71, 0.72, ..., 0.95} for the threshold values,
+  * the optimization region {0.65, 0.71, ..., 0.95} for the threshold values,
   * expected gains of 100,000,000\$, 300,000,000\$, and 500,000,000\$ for each effect size, respectively,
   * three clusters for parallel computing,
   * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
@@ -53,7 +53,7 @@ For strategy 23, the program returns an expected utility of 45.84, optimal sampl
 
 Use the function `optimal_multitrial`. Supply the same input values as in test case 03.01, however, set the parameter case to 3 and the parameter strategy to 1. 
 
-Verify that the program returns an optimal sample size of 166 in phase II and 190 in phase III (i.e. a total number of 356 participants), an expected utility of -152.1 and an optimal threshold value of 0.7. Furthermore, verify, that the probability to go to phase III is 0.25 as suggested by Stella Erdmann [2].
+Verify that the program returns an optimal sample size of 176 in phase II and 146 in phase III (i.e. a total number of 322 participants), an expected utility of -150.95 and an optimal threshold value of 0.68. Furthermore, verify, that the probability to go to phase III is 0.22 as suggested by Stella Erdmann [2].
 
 ### 03.03 (shows that req. 03.03, 03.07 and 03.16 are met): {-}
 Use the function `optimal_multitrial`. Supply the same input values as in test case 03.01, however set a cost constraint of 50,000,000 \$. 

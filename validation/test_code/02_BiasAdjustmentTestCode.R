@@ -81,7 +81,7 @@ test_that("02.03", {
                       id1 = 210, id2 = 420,
                       adj = "both",
                       alphaCImin = 0.3, alphaCImax = 0.5, stepalphaCI = 0.025,
-                      lambdamin = 0.5, lambdamax = 1, steplambda = 0.02,
+                      lambdamin = 0.5, lambdamax = 1, steplambda = 0.05,
                       N = 350
   )
   expect_equal(res$Method, c("multipl.", "add."))
@@ -122,7 +122,7 @@ test_that("02.04", {
                       id1 = 210, id2 = 420,
                       adj = "all",
                       alphaCImin = 0.3, alphaCImax = 0.5, stepalphaCI = 0.025,
-                      lambdamin = 0.5, lambdamax = 1, steplambda = 0.02,
+                      lambdamin = 0.5, lambdamax = 1, steplambda = 0.05,
                       N = 350
   )
   expect_equal(res$Method, c("multipl.", "add.", "multipl2.", "add2."))
@@ -141,11 +141,11 @@ test_that("02.04", {
   expect_equal(res[1,]$n, 340)
   expect_equal(res[1,]$u, 98, tolerance = 0.0001)
   # Multiplicative 2
-  expect_equal(res[3,]$n2, 122)
-  expect_equal(res[3,]$n3, 204)
-  expect_equal(res[3,]$n, 326)
-  expect_equal(res[3,]$u, 97.00, tolerance = 0.0001)
-  expect_equal(res[3,]$Adj, 0.78)
+  expect_equal(res[3,]$n2, 108)
+  expect_equal(res[3,]$n3, 200)
+  expect_equal(res[3,]$n, 308)
+  expect_equal(res[3,]$u, 96.69, tolerance = 0.0001)
+  expect_equal(res[3,]$Adj, 0.75)
   # Additive 2
   expect_equal(res[4,]$n2, 136)
   expect_equal(res[4,]$n3, 206)
@@ -176,11 +176,11 @@ test_that("02.05", {
                       lambdamin = NULL, lambdamax = NULL, steplambda = NULL
   )
   expect_equal(res$n2, 144)
-  expect_equal(res$n3, 456)
-  expect_equal(res$u, 853.02)
-  expect_equal(res$Adj, 0.475)
+  expect_equal(res$n3, 478)
+  expect_equal(res$u, 865.02)
+  expect_equal(res$Adj, 0.5)
   expect_equal(res$K2, 208)
-  expect_equal(res$K3, 582)
+  expect_equal(res$K3, 608)
   res <- optimal_bias(alpha = 0.025,
                       beta = 0.1,
                       hr1 = 0.69, hr2 = 0.88,
@@ -232,13 +232,13 @@ test_that("02.06", {
                       lambdamin = NULL, lambdamax = NULL, steplambda = NULL
   )
   expect_equal(res$n2, 144)
-  expect_equal(res$n3, 456)
-  expect_equal(res$u, 853.02)
-  expect_equal(res$Adj, 0.475)
-  expect_equal(res$sProg, 0.66)
+  expect_equal(res$n3, 478)
+  expect_equal(res$u, 865.02)
+  expect_equal(res$Adj, 0.5)
+  expect_equal(res$sProg, 0.68)
   expect_equal(res$sProg1, 0.07)
   expect_equal(res$sProg2, 0.21)
-  expect_equal(res$sProg3, 0.38)
+  expect_equal(res$sProg3, 0.39)
   res <- optimal_bias(alpha = 0.025,
                       beta = 0.1,
                       hr1 = 0.69, hr2 = 0.88,
@@ -261,11 +261,11 @@ test_that("02.06", {
   expect_equal(res$n2, 144)
   expect_equal(res$n3, 710)
   expect_equal(res$u, 769.80)
-  expect_equal(res$Adj, 0.375)
-  expect_equal(res$sProg, 0.71)
-  expect_equal(res$sProg1, 0.06)
-  expect_equal(res$sProg2, 0.19)
-  expect_equal(res$sProg3, 0.46)
+  expect_equal(res$Adj, 0.5)
+  expect_equal(res$sProg, 0.7)
+  expect_equal(res$sProg1, 0.07)
+  expect_equal(res$sProg2, 0.21)
+  expect_equal(res$sProg3, 0.42)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-14
@@ -387,11 +387,11 @@ test_that("02.09", {
     adj = "multiplicative",
     lambdamin = 0.7, lambdamax = 0.9, steplambda = 0.01
   )
-  expect_equal(res$n2, 236)
-  expect_equal(res$n3, 548)
-  expect_equal(res$n, 784)
+  expect_equal(res$n2, 192)
+  expect_equal(res$n3, 474)
+  expect_equal(res$n, 666)
   expect_equal(res$Kappa, 0.12)
-  expect_equal(res$u, 2779.11, tolerance = 0.005)
+  expect_equal(res$u, 2899.32, tolerance = 0.005)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-14
@@ -420,29 +420,29 @@ test_that("02.10", {
   )
   expect_equal(res$Method, c("multipl.", "add.", "multipl2.", "add2."))
   # Multiplicative
-  expect_equal(res[1,]$n2, 102)
-  expect_equal(res[1,]$n3, 544)
-  expect_equal(res[1,]$n, 646)
-  expect_equal(res[1,]$u, 4336.42, tolerance = 0.0001)
-  expect_equal(res[1,]$Adj, 0.5, tolerance = 0.0001)
+  expect_equal(res[1,]$n2, 88)
+  expect_equal(res[1,]$n3, 310)
+  expect_equal(res[1,]$n, 398)
+  expect_equal(res[1,]$u, 3861.76, tolerance = 0.0001)
+  expect_equal(res[1,]$Adj, 0.7, tolerance = 0.0001)
   # Additive
-  expect_equal(res[2,]$n2, 130)
-  expect_equal(res[2,]$n3, 456)
-  expect_equal(res[2,]$n, 586)
-  expect_equal(res[2,]$u, 3871.26, tolerance = 0.0001)
-  expect_equal(res[2,]$Adj, 0.1, tolerance = 0.0001)
+  expect_equal(res[2,]$n2, 96)
+  expect_equal(res[2,]$n3, 306)
+  expect_equal(res[2,]$n, 402)
+  expect_equal(res[2,]$u, 3631.51, tolerance = 0.0001)
+  expect_equal(res[2,]$Adj, 0.25, tolerance = 0.0001)
   # Multiplicative 2
-  expect_equal(res[3,]$n2, 98)
-  expect_equal(res[3,]$n3, 536)
-  expect_equal(res[3,]$n, 634)
-  expect_equal(res[3,]$u, 4336.37, tolerance = 0.0001)
-  expect_equal(res[3,]$Adj, 0.5)
+  expect_equal(res[3,]$n2, 88)
+  expect_equal(res[3,]$n3, 306)
+  expect_equal(res[3,]$n, 394)
+  expect_equal(res[3,]$u, 3860.12, tolerance = 0.0001)
+  expect_equal(res[3,]$Adj, 0.7)
   # Additive 2
-  expect_equal(res[4,]$n2, 134)
-  expect_equal(res[4,]$n3, 426)
-  expect_equal(res[4,]$n, 560)
-  expect_equal(res[4,]$u, 3870.71, tolerance = 0.0001)
-  expect_equal(res[4,]$Adj, 0.1)
+  expect_equal(res[4,]$n2, 96)
+  expect_equal(res[4,]$n3, 312)
+  expect_equal(res[4,]$n, 408)
+  expect_equal(res[4,]$u, 3631.28, tolerance = 0.0001)
+  expect_equal(res[4,]$Adj, 0.25)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-20
@@ -464,12 +464,12 @@ test_that("02.11", {
     adj = "additive",
     alphaCImin = 0.1, alphaCImax = 0.5, stepalphaCI = 0.025,
   )
-  expect_equal(res$n2, 158)
-  expect_equal(res$n3, 262)
-  expect_equal(res$n, 420)
-  expect_equal(res$RRgo, 0.86)
-  expect_equal(res$u, 708.24, tolerance = 0.005)
-  expect_equal(res$Adj, 0.4)
+  expect_equal(res$n2, 166)
+  expect_equal(res$n3, 264)
+  expect_equal(res$n, 430)
+  expect_equal(res$RRgo, 0.82)
+  expect_equal(res$u, 605.91, tolerance = 0.005)
+  expect_equal(res$Adj, 0.275)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-20
@@ -479,7 +479,7 @@ test_that("02.12", {
     beta = 0.1,
     p0 = 0.6, p11 = 0.3, p12= 0.5,
     n2min = 10, n2max = 500, stepn2 = 2,
-    lambdamin = 0.7, lambdamax = 0.9, steplambda = 0.01,
+    rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
     b1 = 1000, b2 = 2000, b3 = 3000,
     num_cl = 3,
@@ -490,20 +490,20 @@ test_that("02.12", {
     in1 = 30, in2 = 60,
     adj = "both",
     alphaCImin = 0.1, alphaCImax = 0.5, stepalphaCI = 0.025,
-    lambdamin = 0.5, lambdamax = 1, steplambda = 0.02
+    lambdamin = 0.5, lambdamax = 1, steplambda = 0.05
   )
   expect_equal(res[1,]$Method, "multipl.")
-  expect_equal(res[1,]$n2, 198)
-  expect_equal(res[1,]$n3, 294)
-  expect_equal(res[1,]$n, 492)
-  expect_equal(res[1,]$u, 2180.86, tolerance = 0.005)
-  expect_equal(res[1,]$RRgo, 0.82)
-  expect_equal(res[1,]$Adj, 0.64)
+  expect_equal(res[1,]$n2, 206)
+  expect_equal(res[1,]$n3, 340)
+  expect_equal(res[1,]$n, 546)
+  expect_equal(res[1,]$u, 2116.67, tolerance = 0.005)
+  expect_equal(res[1,]$RRgo, 0.8)
+  expect_equal(res[1,]$Adj, 0.65)
   expect_equal(res[2,]$Method, "add.")
-  expect_equal(res[2,]$n2, 178)
-  expect_equal(res[2,]$n3, 196)
-  expect_equal(res[2,]$n, 374)
-  expect_equal(res[2,]$u, 2062.42, tolerance = 0.005)
-  expect_equal(res[2,]$RRgo, 0.82)
+  expect_equal(res[2,]$n2, 190)
+  expect_equal(res[2,]$n3, 226)
+  expect_equal(res[2,]$n, 416)
+  expect_equal(res[2,]$u, 1996.10, tolerance = 0.005)
+  expect_equal(res[2,]$RRgo, 0.77)
   expect_equal(res[2,]$Adj, 0.1)
 })
