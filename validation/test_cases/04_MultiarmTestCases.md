@@ -71,12 +71,12 @@ Verify that the program returns an optimal utility of 1398.06 (in 10^5\$), an op
 ### 04.06 (shows that req. 04.02, 04.09 and 04.14 are met): {-}
 Use the function `optimal_multiarm_binary`. Supply the same input values as in test case 04.05, however set the parameter strategy to 2, i.e. calculating the results if all promising treatments proceed to phase III.
 
-Verify that the program returns an optimal utility of 1414.44 (in 10^5\$), an optimal sample size of 300 in phase II and 513 in phase III (i.e. a total of 505) and an optimal threshold value for the go-decision of 0.78. 
+Verify that the program returns an optimal utility of 1414.44 (in 10^5\$), an optimal sample size of 300 in phase II and 513 in phase III (i.e. a total of 813) and an optimal threshold value for the go-decision of 0.78. 
 
 ### 04.07 (shows that req. 04.02, 04.06 and 04.11 are met): {-}
 Use the function `optimal_multiarm_binary`. Supply the same input values as in test case 04.05, however set the parameter strategy to 3, and set a constraint for the minimal success probability of 0.85.
 
-Verify that the program returns the results for both strategies, the results for strategy 2 are the same as in test case 04.06. as the constraint is not binding, however, the results strategy 1 change as follows:  The optimal utility changes to -9999, indicating that the constraint can not be fulfilled, within the optimization region.
+Verify that the program returns the results for both strategies, the results for strategy 2 are the same as in test case 04.06. as the constraint is not binding, however, the results for strategy 1 change as follows:  The optimal utility changes to -9999, indicating that the constraint can not be fulfilled, within the optimization region.
 
 ### 04.08 (shows that req. 04.01, 04.08 and 04.13 are met): {-}
 Use the function `optimal_multiarm_normal()`. Supply the following input values to the function:
@@ -91,14 +91,14 @@ Use the function `optimal_multiarm_normal()`. Supply the following input values 
   * three clusters for parallel computing,
   * fixed costs of 1,500,000\$ in phase II and of 2,000,000\$ in phase III,
   * variable costs of 67,500\$ in phase II and 72,000\$ in phase III,
-  * strategy 1, i.e calculating the results if only the best promising treatment proceeds to phase III.
+  * strategy 1, i.e. use the strategy where only the best promising treatment proceeds to phase III.
   
-Verify that the program returns an optimal utility of 109.9 (in 10^5\$), an optimal sample size of 56 in phase II and 205 in phase III (i.e a total of 261) and an optimal threshold value for the go-decision of 0.16. Furthermore, verify, that the probability for a succesfull program is 0.32.
+Verify that the program returns an optimal utility of 109.9 (in 10^5\$), an optimal sample size of 56 in phase II and 205 in phase III (i.e a total of 261) and an optimal threshold value for the go-decision of 0.16. Furthermore, verify, that the probability for a successful program is 0.32.
 
 ### 04.09 (shows that req. 04.01, 04.09 and 04.13 are met): {-}
 Use the function `optimal_multiarm_normal`. Supply the same input values as in test case 04.08, however set the parameter strategy to 2, i.e. calculating the results if all promising treatments proceed to phase III.
 
-Verify that the program returns an optimal utility of 107.09 (in 10^5\$), an optimal sample size of 30 in phase II and 247 in phase III (i.e. a total of 277) and an optimal threshold value for the go-decision of 0.20. Furthermore, verify, that the probability for a succesfull program is 0.33.
+Verify that the program returns an optimal utility of 107.09 (in 10^5\$), an optimal sample size of 30 in phase II and 247 in phase III (i.e. a total of 277) and an optimal threshold value for the go-decision of 0.20. Furthermore, verify, that the probability for a successful program is 0.33.
 
 ### 04.10 (shows that req. 04.01, 04.05 and 04.10 are met): {-}
 

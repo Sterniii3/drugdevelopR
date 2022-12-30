@@ -24,7 +24,7 @@ A further extension implemented are multi-arm trials. So far, only three-arm tri
   *	A parameter to specify which strategy is used, i.e. if only the best candidate or all promising candidates proceed to phase III,
   *	The event rate of the control arm (in the time-to-event setting).
 
-The best candidate is the treatment group with the highest treatment effect, the promising candidates are all candidates with a treatment effect greater than a pre-specified threshold $\kappa$
+The best candidate is the treatment group with the highest treatment effect, the promising candidates are all candidates with a treatment effect greater than a pre-specified threshold $\kappa$.
 
 As above, possible cost or size constraints should be considered. However in contrast to the above settings, we only implemented fixed treatments effects. Treatment effects modeled on a prior distribution were yet not implemented, but the validation is easily adaptable if this feature is added in the future. Therefore, we expect from the program:
 

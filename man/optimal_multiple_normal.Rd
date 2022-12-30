@@ -52,7 +52,7 @@ standardized difference in means}
 
 \item{sigma1}{variance of endpoint 1}
 
-\item{sigma2}{variance of endpoint 1}
+\item{sigma2}{variance of endpoint 2}
 
 \item{n2min}{minimal total sample size in phase II, must be divisible by 3}
 
@@ -124,10 +124,30 @@ finish date of the optimization procedure.
 \description{
 The function \code{\link{optimal_multiple_normal}} of the drugdevelopR
 package enables planning of phase II/III drug development programs with
-optimal sample size allocation and go/no-go decision rules for two normally
-distributed endpoints and one control group. (Preussler et. al, 2019).
-Planning is also possible via user friendly R Shiny App:
-\href{https://web.imbi.uni-heidelberg.de/multiarm/}{multiarm}.
+optimal sample size allocation and go/no-go decision rules for two-arm
+trials with two normally  distributed endpoints and one control group
+(Preussler et. al, 2019).
+
+For this setting, the drug development program is defined to be successful
+if it proceeds from phase II to phase III and all endpoints show a
+statistically significant treatment effect in phase III. For example, this
+situation is found in Alzheimer’s disease trials, where a drug should show
+significant results in improving cognition (cognitive endpoint) as well as
+in improving activities of daily living (functional endpoint).
+
+The effect size categories small, medium and large are applied to both
+endpoints. In order to define an overall effect size from the two individual
+effect sizes, the function implements two different combination rules:
+\itemize{
+\item A strict rule (\code{relaxed = FALSE}) assigning a large overall effect in case
+both endpoints show an effect of large size, a small overall effect in
+case that at least one of the endpoints shows a small effect, and a medium
+overall effect otherwise, and
+\item A relaxed rule (\code{relaxed = TRUE}) assigning a large overall effect if at
+least one of the endpoints shows a large effect, a small effect if both
+endpoints show a  small effect, and a medium overall effect otherwise.
+}
+
 Fast computing is enabled by parallel programming.
 }
 \examples{
