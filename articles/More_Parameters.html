@@ -144,8 +144,8 @@ or prior</em></a></p>
 <p>The are three options how to include constraint optimization, by
 setting maximum costs limits, a maximum number of participants or by
 demanding a minimum probability of a successful program. These options
-can be applied separately or combined, how it is best suited to your
-needs.</p>
+can be applied separately or combined, as it is best suited to your
+specific needs.</p>
 <div class="section level4">
 <h4 id="cost-constraint---maximum-total-costs">Cost Constraint - Maximum Total Costs<a class="anchor" aria-label="anchor" href="#cost-constraint---maximum-total-costs"></a>
 </h4>
@@ -155,7 +155,8 @@ III, i.e. as <span class="math inline">\(K2\)</span> + <span class="math inline
 assume an investor in your drug or a pharmaceutical company is only
 willing to pay 20,000,000 $. You can now set a maximum cost constraint
 by providing an parameter value of <code>K = 200</code> into the
-<code>optimum_normal</code> function.</p>
+<code>optimum_normal</code> function. The default value for
+<code>K</code> is <code>Inf</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="va">resK</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_normal.html">optimal_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.625</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># treatment effect</span></span>
 <span>                       n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">400</span>, <span class="co"># sample size region</span></span>
@@ -168,8 +169,9 @@ by providing an parameter value of <code>K = 200</code> into the
 <span>                       alpha <span class="op">=</span> <span class="fl">0.05</span>, <span class="co"># significance level</span></span>
 <span>                       beta <span class="op">=</span> <span class="fl">0.1</span>, <span class="co"># 1 - power</span></span>
 <span>                       Delta2 <span class="op">=</span> <span class="cn">NULL</span>, w <span class="op">=</span> <span class="cn">NULL</span>, in1 <span class="op">=</span> <span class="cn">NULL</span>, in2 <span class="op">=</span> <span class="cn">NULL</span>, </span>
-<span>                       a <span class="op">=</span> <span class="cn">NULL</span>,b <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>                       K <span class="op">=</span> <span class="fl">200</span><span class="op">)</span> <span class="co"># setting all unneeded parameters to NULL</span></span></code></pre></div>
+<span>                       a <span class="op">=</span> <span class="cn">NULL</span>,b <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># setting all unneeded parameters to NULL</span></span>
+<span>                       K <span class="op">=</span> <span class="fl">200</span> <span class="co"># cost constraint</span></span>
+<span>                       <span class="op">)</span> </span></code></pre></div>
 <p>We get the following results:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resK</span></span>
@@ -193,7 +195,8 @@ persons willing to participate in a trial, for example because the
 incidence of the illness is not very high within the target population.
 To model this, we can easily set a sample size constraint, in this case
 of <code>N = 200</code>. This allows for an optimal allocation of the
-participants between phase II and III.</p>
+participants between phase II and III. The default value for
+<code>N</code> is <code>Inf</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="va">resN</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_normal.html">optimal_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.625</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># treatment effect</span></span>
 <span>                       n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">400</span>, <span class="co"># sample size region</span></span>
@@ -206,8 +209,9 @@ participants between phase II and III.</p>
 <span>                       alpha <span class="op">=</span> <span class="fl">0.05</span>, <span class="co"># significance level</span></span>
 <span>                       beta <span class="op">=</span> <span class="fl">0.1</span>, <span class="co"># 1 - power</span></span>
 <span>                       Delta2 <span class="op">=</span> <span class="cn">NULL</span>, w <span class="op">=</span> <span class="cn">NULL</span>, in1 <span class="op">=</span> <span class="cn">NULL</span>, in2 <span class="op">=</span> <span class="cn">NULL</span>, </span>
-<span>                       a <span class="op">=</span> <span class="cn">NULL</span>,b <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>                       N <span class="op">=</span> <span class="fl">200</span><span class="op">)</span> <span class="co"># setting all unneeded parameters to NULL</span></span></code></pre></div>
+<span>                       a <span class="op">=</span> <span class="cn">NULL</span>,b <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># setting all unneeded parameters to NULL</span></span>
+<span>                       N <span class="op">=</span> <span class="fl">200</span> <span class="co"># sample size constraint</span></span>
+<span>                       <span class="op">)</span> </span></code></pre></div>
 <p>We get the following results:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resN</span></span>
@@ -217,7 +221,7 @@ participants between phase II and III.</p>
 <span><span class="co">#&gt; 1      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000 8000 10000     0</span></span></code></pre></div>
 <p>Due to our sample size constraint to optimal number of participants
 in phase II is 72 and 128 in phase III (down from 84 and 166
-respectively) within this framework. The expected utility in the optimal
+respectively) within this framework. The expected utility in the optimum
 decreases to 314,241,000.</p>
 </div>
 <div class="section level4">
@@ -232,9 +236,10 @@ from phase II to phase III and that a positive treatment effect could be
 detected in phase III. Let’s say, you are willing to have higher costs
 and in return want this probability to be 0.87. You can include this
 within the framework, by including the parameter <code>S</code> and by
-setting it to <code>S = 0.87</code></p>
+setting it to <code>S = 0.87</code>. The default value for
+<code>S</code> is <code>-Inf</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span> <span class="va">resK</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_normal.html">optimal_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.625</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># treatment effect</span></span>
+<code class="sourceCode R"><span> <span class="va">resS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_normal.html">optimal_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.625</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># treatment effect</span></span>
 <span>                       n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">400</span>, <span class="co"># sample size region</span></span>
 <span>                       stepn2 <span class="op">=</span> <span class="fl">4</span>, <span class="co"># sample size step size</span></span>
 <span>                       kappamin <span class="op">=</span> <span class="fl">0.02</span>, kappamax <span class="op">=</span> <span class="fl">0.2</span>, <span class="co"># threshold region</span></span>
@@ -245,8 +250,9 @@ setting it to <code>S = 0.87</code></p>
 <span>                       alpha <span class="op">=</span> <span class="fl">0.05</span>, <span class="co"># significance level</span></span>
 <span>                       beta <span class="op">=</span> <span class="fl">0.1</span>, <span class="co"># 1 - power</span></span>
 <span>                       Delta2 <span class="op">=</span> <span class="cn">NULL</span>, w <span class="op">=</span> <span class="cn">NULL</span>, in1 <span class="op">=</span> <span class="cn">NULL</span>, in2 <span class="op">=</span> <span class="cn">NULL</span>, </span>
-<span>                       a <span class="op">=</span> <span class="cn">NULL</span>,b <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>                       S <span class="op">=</span> <span class="fl">0.87</span><span class="op">)</span> <span class="co"># setting all unneeded parameters to NULL</span></span></code></pre></div>
+<span>                       a <span class="op">=</span> <span class="cn">NULL</span>,b <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># setting all unneeded parameters to NULL</span></span>
+<span>                       S <span class="op">=</span> <span class="fl">0.87</span> <span class="co">#minimum success probability</span></span>
+<span>                       <span class="op">)</span> </span></code></pre></div>
 <p>We get the following results:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resS</span></span>
@@ -262,10 +268,52 @@ expected utility decreased to 323,557,000.</p>
 <div class="section level3">
 <h3 id="customized-effect-size-categories">Customized Effect Size Categories<a class="anchor" aria-label="anchor" href="#customized-effect-size-categories"></a>
 </h3>
+<p>Up until now, the effect size categories for a small, medium or large
+treatment effect were predefined and set to <span class="math inline">\(0-0.5\)</span> for a small treatment effect, <span class="math inline">\(0.5-0.8\)</span> for a medium treatment effect and
+<span class="math inline">\(\geq 0.8\)</span> for a large treatment
+effect (each in standardized differences in mean). These parameter
+values were taken from Cohen (1988). However, one can easily customize
+the effect size categories by inserting threshold values for each effect
+size. Let’s say you only consider a program successful if the treatment
+effect is above 0.1. Furthermore, you want to assign a medium benefit if
+the treatment effect is between 0.6 and 1 and a large benefit if the
+treatment effect is above 1. Hereby, note that there is a one-to-one
+relation between effect size categories and benefit categories, i.e. a
+large treatment effect corresponds to a large benefit and so on. If you
+want to implement this scenario you can do this by defining the
+parameters <code>steps1</code>, <code>stepm1</code> and
+<code>stepl1</code>. Here, we set them to <code>steps1 = 0.1</code>,
+<code>stepm1 = 0.6</code> and <code>stepl1 = 1</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span> <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_normal.html">optimal_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.625</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># treatment effect</span></span>
+<span>                       n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">400</span>, <span class="co"># sample size region</span></span>
+<span>                       stepn2 <span class="op">=</span> <span class="fl">4</span>, <span class="co"># sample size step size</span></span>
+<span>                       kappamin <span class="op">=</span> <span class="fl">0.02</span>, kappamax <span class="op">=</span> <span class="fl">0.2</span>, <span class="co"># threshold region</span></span>
+<span>                       stepkappa <span class="op">=</span> <span class="fl">0.02</span>, <span class="co"># threshold step size</span></span>
+<span>                       c2 <span class="op">=</span> <span class="fl">0.675</span>, c3 <span class="op">=</span> <span class="fl">0.72</span>, <span class="co"># maximal total trial costs</span></span>
+<span>                       c02 <span class="op">=</span> <span class="fl">15</span>, c03 <span class="op">=</span> <span class="fl">20</span>, <span class="co"># maximal per-patient costs</span></span>
+<span>                       b1 <span class="op">=</span> <span class="fl">3000</span>, b2 <span class="op">=</span> <span class="fl">8000</span>, b3 <span class="op">=</span> <span class="fl">10000</span>, <span class="co"># gains for patients</span></span>
+<span>                       alpha <span class="op">=</span> <span class="fl">0.05</span>, <span class="co"># significance level</span></span>
+<span>                       beta <span class="op">=</span> <span class="fl">0.1</span>, <span class="co"># 1 - power</span></span>
+<span>                       Delta2 <span class="op">=</span> <span class="cn">NULL</span>, w <span class="op">=</span> <span class="cn">NULL</span>, in1 <span class="op">=</span> <span class="cn">NULL</span>, in2 <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>                       a <span class="op">=</span> <span class="cn">NULL</span>,b <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># setting all unneeded parameters to NULL</span></span>
+<span>                       steps1 <span class="op">=</span> <span class="fl">0.1</span>, stepm1 <span class="op">=</span> <span class="fl">0.6</span>, stepl1 <span class="op">=</span> <span class="fl">1</span> <span class="co">#stepsizes for effect size categories</span></span>
+<span>                       <span class="op">)</span> </span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="differnces-in-treatments-effects">Differnces in Treatments Effects<a class="anchor" aria-label="anchor" href="#differnces-in-treatments-effects"></a>
+<h3 id="differences-in-the-treatments-effect">Differences in the Treatments Effect<a class="anchor" aria-label="anchor" href="#differences-in-the-treatments-effect"></a>
 </h3>
+<p>Due to different population structures in phase II and phase III the
+assumed true treatment effect <code>Delta1</code> may not be the same in
+both phases. Trials are often conducted in populations that are more
+heterogeneous than that of the pre- ceding phase II trials (Kirby et
+al., 2012), so the effect in phase III may be different than in phase
+II. In order to model for these differences, one can use the parameter
+<code>gamma</code>. The treatment effect in phase III is than calculated
+as follows: <span class="math inline">\(\Delta_3 = \Delta_2 +
+\gamma\)</span> Values of gamma below zero indicate a more pessimistic
+view, values above zero indicate a more optimistic view about the
+treatment effect.</p>
 </div>
 <div class="section level3">
 <h3 id="skipping-phase-ii">Skipping Phase II<a class="anchor" aria-label="anchor" href="#skipping-phase-ii"></a>
@@ -303,6 +351,15 @@ distribution.</li>
 biased effect estimators, multiple phase III trials, multi-arm trials,
 or multiple endpoints.</li>
 </ul>
+</div>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
+<p>Cohen, J. (1988). Statistical power analysis for the behavioral
+sciences.</p>
+<p>Kirby, S., Burke, J., Chuang-Stein, C., and Sin, C. (2012).
+Discounting phase 2 results when planning phase 3 clinical trials.
+Pharmaceutical Statistics, 11(5):373–385.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

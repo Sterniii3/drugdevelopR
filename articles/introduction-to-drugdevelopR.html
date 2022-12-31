@@ -170,7 +170,10 @@ to search this region in steps of four participants at a time by setting
 and maximal threshold value for the go/no-go decision rule. The package
 will search for the optimal threshold value within this region. For now,
 we want the program to search in the interval between 0.02 and 0.2 while
-going in steps of <code>stepkappa = 0.02</code>.</li>
+going in steps of <code>stepkappa = 0.02</code>. Note, that he lower
+bound of the decision rule set for represents the smallest size of
+treatment effect observed in phase II allowing to go to phase III, so it
+can be used to model the minimally clinically relevant effect size.</li>
 <li>
 <code>c02</code> and <code>c03</code> are fixed costs for phase II
 and phase III respectively. We will set the phase II costs to 15 and the
