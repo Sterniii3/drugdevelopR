@@ -1,5 +1,5 @@
 ---
-title: "More Parameters more "
+title: "More Parameters"
 author: "Johannes Cepicka"
 output: rmarkdown::html_vignette
 vignette: >
@@ -15,6 +15,182 @@ knitr::opts_chunk$set(
 )
 ```
 
+Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
+
+The drugdevelopR package enables us to optimally plan such programs using a utility-maximizing approach. To get a brief introduction, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html). However, there are many more parameters, which the user can provide, to adapt the program to your specific needs. In this article, we therefore want to present the options you have.
+
+# The example setting and the input parameters
+
+We are in the same setting as in the introduction, i.e. we  suppose we are developing a new tumor treatment, *exper*. The patient variable that we want to investigate is the difference in tumor width between the one-year visit and baseline. This is a normally distributed outcome variable.
+
+The parameters we insert into the function `optimum_normal` are the same parameters we also inserted in the basic setting. Thus, for more information on the input values we refer to the [Introduction](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html).
+We start by loading the drugdevelopR package.
 ```{r setup}
 library(drugdevelopR)
 ```
+
+Back then, we got the following output:
+
+```{r, eval=TRUE, include=FALSE}
+res <- readRDS(file="optimal_normal_basic_setting.RDS")
+```
+```{r}
+res
+```
+
+We now want to see, how different modifications, i.e using more paramters change the outcome of the program. Note, that setting the parameter `fixed` to be `"False"`, and thus using a prior distribution, was already explained in the article 
+[*Fixed or prior*](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html)
+
+## Constraint Optimization
+The are three options how to include constraint optimization, by setting maximum costs limits, a maximum number of participants or by demanding a minimum probability of a successful program. These options can be applied separately or combined, how it is best suited to your needs.
+
+### Cost Constraint - Maximum Total Costs
+The total costs are given as sum of the cost ins phase II and phase III, i.e. as $K2$ + $K3$. In our example we get total costs of $72+139=211$ (in 10^5 \$). Let's assume an investor in your drug or a pharmaceutical company is only willing to pay 20,000,000 \$. You can now set a maximum cost constraint by providing an parameter value of `K = 200` into the `optimum_normal` function. 
+
+```{r,eval = FALSE}
+ resK <- optimal_normal(Delta1 = 0.625, fixed = TRUE, # treatment effect
+                       n2min = 20, n2max = 400, # sample size region
+                       stepn2 = 4, # sample size step size
+                       kappamin = 0.02, kappamax = 0.2, # threshold region
+                       stepkappa = 0.02, # threshold step size
+                       c2 = 0.675, c3 = 0.72, # maximal total trial costs
+                       c02 = 15, c03 = 20, # maximal per-patient costs
+                       b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
+                       alpha = 0.05, # significance level
+                       beta = 0.1, # 1 - power
+                       Delta2 = NULL, w = NULL, in1 = NULL, in2 = NULL, 
+                       a = NULL,b = NULL,
+                       K = 200) # setting all unneeded parameters to NULL
+```
+
+We get the following results:
+```{r, eval=TRUE, include=FALSE}
+# Comment this chunk after running it once
+#  resK <- optimal_normal(Delta1 = 0.625, fixed = TRUE, # treatment effect
+#                        n2min = 20, n2max = 400, # sample size region
+#                        stepn2 = 4, # sample size step size
+#                        kappamin = 0.02, kappamax = 0.2, # threshold region
+#                        stepkappa = 0.02, # threshold step size
+#                        c2 = 0.675, c3 = 0.72, # maximal total trial costs
+#                        c02 = 15, c03 = 20, # maximal per-patient costs
+#                        b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
+#                        alpha = 0.05, # significance level
+#                        beta = 0.1, # 1 - power
+#                        Delta2 = NULL, w = NULL, in1 = NULL, in2 = NULL, 
+#                        a = NULL,b = NULL,
+#                        K = 200) # setting all unneeded parameters to NULL
+# saveRDS(resK, file="optimal_normal_cost_constraint.RDS")
+```
+```{r, eval=TRUE, include=FALSE}
+resK <- readRDS(file="optimal_normal_cost_constraint.RDS")
+```
+```{r}
+resK
+```
+We see that due to the cost constraint the costs in phase II actually increase from 72 to 74, however the costs in phase III decrease from 139 to 125, so overall the constraint is met. Moreover, the expected utility at the optimum decreases from 325,983,000 to 324,742,000 dollars.
+
+### Sample Size Constraint - Maximum Number of Participants
+Very similarly to to the cost constraint, we can set a constraint on the maximum number of participants in our trial. As we can see, without constraints, in the optimum we need a total number of 250 participants. However, one can certainly imagine a situation, where the only 200 persons willing to participate in a trial, for example because the incidence of the illness is not very high within the target population. To model this, we can easily set a sample size constraint, in this case of `N = 200`. This allows for an optimal allocation of the participants between phase II and III.
+```{r,eval = FALSE}
+ resN <- optimal_normal(Delta1 = 0.625, fixed = TRUE, # treatment effect
+                       n2min = 20, n2max = 400, # sample size region
+                       stepn2 = 4, # sample size step size
+                       kappamin = 0.02, kappamax = 0.2, # threshold region
+                       stepkappa = 0.02, # threshold step size
+                       c2 = 0.675, c3 = 0.72, # maximal total trial costs
+                       c02 = 15, c03 = 20, # maximal per-patient costs
+                       b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
+                       alpha = 0.05, # significance level
+                       beta = 0.1, # 1 - power
+                       Delta2 = NULL, w = NULL, in1 = NULL, in2 = NULL, 
+                       a = NULL,b = NULL,
+                       N = 200) # setting all unneeded parameters to NULL
+```
+
+We get the following results:
+```{r, eval=TRUE, include=FALSE}
+# Comment this chunk after running it once
+#  resN <- optimal_normal(Delta1 = 0.625, fixed = TRUE, # treatment effect
+#                        n2min = 20, n2max = 400, # sample size region
+#                        stepn2 = 4, # sample size step size
+#                        kappamin = 0.02, kappamax = 0.2, # threshold region
+#                        stepkappa = 0.02, # threshold step size
+#                        c2 = 0.675, c3 = 0.72, # maximal total trial costs
+#                        c02 = 15, c03 = 20, # maximal per-patient costs
+#                        b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
+#                        alpha = 0.05, # significance level
+#                        beta = 0.1, # 1 - power
+#                        Delta2 = NULL, w = NULL, in1 = NULL, in2 = NULL, 
+#                        a = NULL,b = NULL,
+#                        N = 200) # setting all unneeded parameters to NULL
+# saveRDS(resN, file="optimal_normal_sample_size_constraint.RDS")
+```
+```{r, eval=TRUE, include=FALSE}
+resN <- readRDS(file="optimal_normal_sample_size_constraint.RDS")
+```
+```{r}
+resN
+```
+Due to our sample size constraint to optimal number of participants in phase II is 72 and 128 in phase III (down from 84 and 166 respectively) within this framework. The expected utility in the optimal decreases to 314,241,000.
+
+### Success Probability Constraint - Minimum Probability of a Successful Program
+The last option provided for constraint optimization is the minimum probability of a successful program. In our basic setting, without constraints, we hat a probability that the program was successful of 0.85, i.e. we had a probability of 0.85 that the program would proceed from phase II to phase III and that a positive treatment effect could be detected in phase III. Let's say, you are willing to have higher costs and in return want this probability to be 0.87. You can include this within the framework, by including the parameter `S` and by setting it to `S = 0.87`
+
+```{r,eval = FALSE}
+ resK <- optimal_normal(Delta1 = 0.625, fixed = TRUE, # treatment effect
+                       n2min = 20, n2max = 400, # sample size region
+                       stepn2 = 4, # sample size step size
+                       kappamin = 0.02, kappamax = 0.2, # threshold region
+                       stepkappa = 0.02, # threshold step size
+                       c2 = 0.675, c3 = 0.72, # maximal total trial costs
+                       c02 = 15, c03 = 20, # maximal per-patient costs
+                       b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
+                       alpha = 0.05, # significance level
+                       beta = 0.1, # 1 - power
+                       Delta2 = NULL, w = NULL, in1 = NULL, in2 = NULL, 
+                       a = NULL,b = NULL,
+                       S = 0.87) # setting all unneeded parameters to NULL
+```
+We get the following results:
+```{r, eval=TRUE, include=FALSE}
+# Comment this chunk after running it once
+#  resS <- optimal_normal(Delta1 = 0.625, fixed = TRUE, # treatment effect
+#                        n2min = 20, n2max = 400, # sample size region
+#                        stepn2 = 4, # sample size step size
+#                        kappamin = 0.02, kappamax = 0.2, # threshold region
+#                        stepkappa = 0.02, # threshold step size
+#                        c2 = 0.675, c3 = 0.72, # maximal total trial costs
+#                        c02 = 15, c03 = 20, # maximal per-patient costs
+#                        b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
+#                        alpha = 0.05, # significance level
+#                        beta = 0.1, # 1 - power
+#                        Delta2 = NULL, w = NULL, in1 = NULL, in2 = NULL, 
+#                        a = NULL,b = NULL,
+#                        S = 0.87) # setting all unneeded parameters to NULL
+# saveRDS(resS, file="optimal_normal_probability_constraint.RDS")
+```
+```{r, eval=TRUE, include=FALSE}
+resS <- readRDS(file="optimal_normal_probability_constraint.RDS")
+```
+```{r}
+resS
+```
+The probability of a successful program now increased from 0.85 to 0.87, mainly by increasing the number of participants in phase II. The expected utility decreased to 323,557,000.
+
+## Customized Effect Size Categories
+
+## Differnces in Treatments Effects 
+
+## Skipping Phase II
+
+## Parallel Computing
+
+# Where to go from here
+This tutorial presents even more parameters, so you can adapt the the program to your specific needs.
+For more information on how to use the package, see:
+
+* [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html) See how the package works in a basic example.
+* *Different outcomes:* Apply it to binary endpoints and time-to-event endpoints.
+* [*Interpreting the rest of the output:*](https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html) Obtain further details on your drug development program.
+* [*Fixed or prior:*](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html) Model the assumed treatment effect on a prior distribution.
+* *Complex drug development programs:* Adapt to situations with biased effect estimators, multiple phase III trials, multi-arm trials, or multiple endpoints.
