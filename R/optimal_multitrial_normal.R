@@ -1,6 +1,16 @@
 #' Optimal phase II/III drug development planning where several phase III trials are performed
 #'
-#' The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. For normally distributed endpoints the treatment effect is measured by the standardized difference in means (Delta). The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
+#' The `optimal_multitrial_normal` function enables planning of phase II/III
+#' drug development programs with several phase III trials for
+#' the same normally distributed endpoint. Its main output values are optimal
+#' sample size allocation and go/no-go decision rules. For normally distributed 
+#' endpoints, the treatment effect is measured by the standardized difference in
+#' means (Delta). The assumed true treatment effects can be assumed fixed or
+#' modelled by a prior distribution.
+#' 
+#' The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} 
+#' visualizes the prior distributions used in this package. Fast computing is
+#' enabled by parallel programming.
 #' 
 #' @name optimal_multitrial_normal
 #' 
@@ -13,8 +23,8 @@
 #' `r optimal_return_doc(type = "normal", setting = "multitrial")`
 #' 
 #' @examples
-#' res <- optimal_multitrial_normal(w=0.3,                             # define parameters for prior
-#'   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,      # (https://web.imbi.uni-heidelberg.de/prior/)
+#' res <- optimal_multitrial_normal(w = 0.3,                # define parameters for prior
+#'   Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600,  # (https://web.imbi.uni-heidelberg.de/prior/)
 #'   a = 0.25, b = 0.75,
 #'   n2min = 20, n2max = 100, stepn2 = 4,                   # define optimization set for n2
 #'   kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,     # define optimization set for kappa

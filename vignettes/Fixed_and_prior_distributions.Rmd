@@ -30,7 +30,7 @@ The parameters we insert into the function `optimum_normal` are the same paramet
 library(drugdevelopR)
 ```
 
-## Parameters of the prior distriution
+## Parameters of the prior distribution
 
 Additionally to the parameters in the baseline scenario with fixed treatment effects, we now need further input parameters:
 
@@ -79,6 +79,7 @@ To see how different input values change the prior distribution we refer to the 
 ```{r, eval=TRUE, include=FALSE}
 res <- readRDS(file="optimal_normal_fixed_prior.RDS")
 ```
+
 ## Interpreting the output
 After setting all these input parameters and running the function, let's take a look at the output of the program.
 

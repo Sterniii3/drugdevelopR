@@ -1,6 +1,17 @@
 #' Optimal phase II/III drug development planning where several phase III trials are performed
 #'
-#' The drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules. For binary endpoints the treatment effect is measured by the risk ratio (RR).The assumed true treatment effects can be assumed fixed or modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
+#' The `optimal_multitrial_binary` function enables planning of phase II/III
+#' drug development programs with several phase III trials for the same
+#' binary endpoint. The main output values are optimal sample size allocation
+#' and go/no-go decision rules. For binary endpoints, the treatment effect is
+#' measured by the risk ratio (RR).
+#' 
+#' The assumed true treatment effects can be assumed fixed or modelled by a
+#' prior distribution. The R Shiny application
+#' \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior 
+#' distributions used in this package. 
+#' 
+#' Fast computing is enabled by parallel programming.
 #' 
 #' @name optimal_multitrial_binary
 #' 
