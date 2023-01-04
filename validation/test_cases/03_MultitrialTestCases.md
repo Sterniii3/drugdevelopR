@@ -34,7 +34,7 @@ Use the function `optimal_multitrial`. Supply the following input values to the 
   * three clusters for parallel computing,
   * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
-  * “fixed=FALSE”, i.e. set the function to use a prior distribution,
+  * `fixed=FALSE`, i.e. set the function to use a prior distribution,
   * weight of 0.3 for the prior distribution,
   * amount of information for prior true treatment effect given by 210 and 420 expected events for the two assumed treatment effects, respectively,
   * use case 2 (i.e. at least two trials have to show a significant positive treatment effect), and
@@ -98,7 +98,7 @@ Use the function ` optimal_multitrial_binary()`. Supply the following input valu
   * three clusters for parallel computing,
   * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
-  * “fixed=FALSE”, i.e. set the function to use fixed treatment effects not modelled on a prior distribution,
+  * `fixed=FALSE`, i.e. set the function to use treatment effects modelled on a prior distribution,
   * weight of 0.3 for the prior distribution,
   * sample sizes of 30 and 60 as the amount of information for the two assumed treatment effects,
   * use case 3 (i.e. at least three trials have to show a significant positive treatment effect), and
@@ -125,7 +125,7 @@ For strategy 2, the program returns an expected utility of 1878.56 (in 10^5\$), 
 ### 03.10 (shows that req. 03.06, 03.10 and 03.17 are met): {-}
 Use the function `optimal_multitrial_binary`. Supply the same input values as in test case 03.07, however change the parameter fixed to be `"TRUE"` and set the parameter case to 2 and the strategy to 3. Redo this, however, the second time set a sample size constraint of 600.
 
-Verify, that the expected utility changes from 1332.94 to 1313.11 (in 10^5\$), and the optimal sample size changes from 242 to 186 in phase II and remains at 414 in phase III (in total it changes from 656 to 600).
+Verify that the expected utility changes from 1332.94 to 1313.11 (in 10^5\$), and the optimal sample size changes from 242 to 186 in phase II and remains at 414 in phase III (in total it changes from 656 to 600).
 
 ### 03.11 (shows that req. 03.01, 03.05, 03.11 and 03.15 are met): {-}
 Use the function `optimal_multitrial_normal()`. Supply the following input values to the function:
@@ -133,13 +133,13 @@ Use the function `optimal_multitrial_normal()`. Supply the following input value
   * a significance level of 0.05,
   * a power of 0.9, i.e. $\beta$ of 0.1,
   * assumed true treatment effects of 0.375 and 0.5,
-  * the optimization region of even numbers {20, 24, …, 500} for the number of participants in phase II,
+  * the optimization region {20, 24, …, 500} for the number of participants in phase II,
   * the optimization region {0.02, 0.04,…, 0.4} for the threshold values,
   * expected gains of 300,000,000\$, 800,000,000\$ and 1,000,000,000\$ for each effect size, respectively,
   * three clusters for parallel computing,
   * fixed costs of 1,500,000\$ in phase II and of 2,000,000\$ in phase III,
   * variable costs of 67,500\$ in phase II and 72,000\$ in phase III,
-  * “fixed=FALSE”, i.e. set the function to model the treatment effects on a prior distribution,
+  * `fixed=FALSE`, i.e. set the function to model the treatment effects on a prior distribution,
   * weight of 0.5 for the prior distribution,
   * sample sizes of 300 and 600 as the amount of information on which the
     two assumed treatment effects are based,
@@ -148,7 +148,9 @@ Use the function `optimal_multitrial_normal()`. Supply the following input value
   * use `strategy = TRUE`, i.e. calculate all implemented strategies for the specified case.
   
 Verify that for strategy 1, the program returns an expected utility of 1654.08 (in 10^5\$), an optimal threshold value of 0.16 and an optimal number of participants of 364 in phase II and 672 in phase III (i.e. 1036 in total). 
+
 For strategy 3, the program returns an expected utility of 1308.56 (in 10^5\$), an optimal threshold value of 0.16 and an optimal number of participants of 296 in phase II and 708 in phase III (i.e. 1004 in total), corresponding to three trials with 236 participants each. Moreover, the program returns a probability of a successful program of 0.68.
+
 For strategy 4, the program returns an expected utility of 1843.1 (in 10^5\$), an optimal threshold value of 0.18 and an optimal number of participants of 342 in phase II and 888 in phase III (i.e. 1230 in total), corresponding to four trials with 222 participants each. Moreover, the program returns a probability of a successful program of 0.86.
 
 ### 03.12 (shows that req. 03.09 is met): {-} 
@@ -158,13 +160,17 @@ Verify that the computation time will increase compared to the setting in 03.11.
 ### 03.13 (shows that req. 03.01, 03.08 and 03.19 are met): {-}
 Use the function `optimal_multitrial_normal()`. Supply the same input values as in test case 03.11, however change the parameter fixed to be `"TRUE"`. Redo this, however, the second time set a minimum success probability of 0.82.
 
-Verify that for strategy 1, the program returns an expected utility of 1514.35 (in 10^5\$), an optimal threshold value of 0.16 and an optimal number of participants of 440 in phase II and 830 in phase III (i.e. 1270 in total). Moreover, the program returns a probability of a successful program of 0.81.
-For strategy 3, the program returns an expected utility of 1116.60 (in 10^5\$), an optimal threshold value of 0.16 and an optimal number of participants of 364 in phase II and 882 in phase III (i.e. 1270 in total), corresponding to three trials with 294 participants each. Moreover, the program returns a probability of a successful program of 0.68.
-For strategy 4, the program returns an expected utility of 1395.35 (in 10^5\$), an optimal threshold value of 0.18 and an optimal number of participants of 424 in phase II and 1128 in phase III (i.e. 1270 in total), corresponding to four trials with 282 participants each. Moreover, the program returns a probability of a successful program of 0.86.
+Verify that for strategy 1 without the constraint, the program returns an expected utility of 1514.35 (in 10^5\$), an optimal threshold value of 0.16 and an optimal number of participants of 440 in phase II and 830 in phase III (i.e. 1270 in total). Moreover, the program returns a probability of a successful program of 0.81.
 
-With the constraint of a minimum success probability, the program returns the same results for strategy 4 as the constraint is fulfilled at the optimum for this strategy.
-For strategy 1 the  expected utility changes to 1514.35 (in 10^5\$), the  optimal threshold value to 0.16 and an optimal number of participants of 440 in phase II and 830 in phase III (i.e. 1270 in total). Moreover, the program now returns a probability of a successful program of 0.82.
-For strategy 3 the constraint can not be met withing the optimization region, so the program returns an expected utility of -9999.
+For strategy 3 without the constraint, the program returns an expected utility of 1116.60 (in 10^5\$), an optimal threshold value of 0.16 and an optimal number of participants of 364 in phase II and 882 in phase III (i.e. 1246 in total), corresponding to three trials with 294 participants each. Moreover, the program returns a probability of a successful program of 0.68.
+
+For strategy 4 without the constraint, the program returns an expected utility of 1395.35 (in 10^5\$), an optimal threshold value of 0.18 and an optimal number of participants of 424 in phase II and 1128 in phase III (i.e. 1270 in total), corresponding to four trials with 282 participants each. Moreover, the program returns a probability of a successful program of 0.86.
+
+For strategy 1 under the constraint, the expected utility changes to 1514.35 (in 10^5\$), the  optimal threshold value to 0.16 and an optimal number of participants of 440 in phase II and 830 in phase III (i.e. 1270 in total). Moreover, the program now returns a probability of a successful program of 0.82.
+
+For strategy 3 under the constraint, the constraint can not be met withing the optimization region, so the program returns an expected utility of -9999.
+
+For strategy 4 under the constraint, the program returns the same results as before as the constraint is fulfilled at the optimum for this strategy.
 
 ### 03.14 (shows that req. 03.01, 03.04 and 03.10 are met): {-}
 Use the function `optimal_multitrial_normal()`. Supply the same input values as in test case 03.11, however change the parameter fixed to be `"TRUE"` and use case 2 (i.e. at least three trials have to show a significant positive treatment effect) and the strategy 3 (i.e three trials are conducted in phase III).
