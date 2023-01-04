@@ -327,7 +327,7 @@ test_that("03.09", {
                                    num_cl = 3,
                                    c02 = 100, c03 = 150,
                                    c2 = 0.75, c3 = 1,
-                                   fixed = FALSE,
+                                   fixed = TRUE,
                                    w = 0.3,
                                    in1 = 30, in2 = 60,
                                    case = 1, strategy = TRUE,
@@ -360,7 +360,7 @@ test_that("03.10", {
                                    num_cl = 3,
                                    c02 = 100, c03 = 150,
                                    c2 = 0.75, c3 = 1,
-                                   fixed = FALSE,
+                                   fixed = TRUE,
                                    w = 0.3,
                                    in1 = 30, in2 = 60,
                                    case = 2, strategy = 3,
@@ -374,23 +374,23 @@ test_that("03.10", {
                                    num_cl = 3,
                                    c02 = 100, c03 = 150,
                                    c2 = 0.75, c3 = 1,
-                                   fixed = FALSE,
+                                   fixed = TRUE,
                                    w = 0.3,
                                    in1 = 30, in2 = 60,
                                    case = 2, strategy = 3,
-                                   N = 600,
+                                   N = 600
   )
   # Unconstrained
   expect_equal(res$Strategy, 3)
-  expect_equal(res[1,]$u, 1332.94, tolerance = 0.005)
-  expect_equal(res[1,]$n2, 242)
-  expect_equal(res[1,]$n3, 414)
-  expect_equal(res[1,]$n, 656)
+  expect_equal(res$u, 1332.94, tolerance = 0.005)
+  expect_equal(res$n2, 242)
+  expect_equal(res$n3, 414)
+  expect_equal(res$n, 656)
   # Constrained
-  expect_equal(res_constrained[2,]$u, 1313.11, tolerance = 0.005)
-  expect_equal(res_constrained[2,]$n2, 186)
-  expect_equal(res_constrained[2,]$n3, 414)
-  expect_equal(res_constrained[2,]$n, 600)
+  expect_equal(res_constrained$u, 1313.11, tolerance = 0.005)
+  expect_equal(res_constrained$n2, 186)
+  expect_equal(res_constrained$n3, 414)
+  expect_equal(res_constrained$n, 600)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23
@@ -399,8 +399,8 @@ test_that("03.11", {
   res <- optimal_multitrial_normal(alpha = 0.05,
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
-                                   n2min = 10, n2max = 500, stepn2 = 2,
-                                   kappamin = 0.01, kappamax = 0.5, kappago = 0.01,
+                                   n2min = 20, n2max = 500, stepn2 = 4,
+                                   kappamin = 0.02, kappamax = 0.4, kappago = 0.01,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
                                    num_cl = 3,
                                    c02 = 15, c03 = 20,
@@ -408,9 +408,31 @@ test_that("03.11", {
                                    fixed = FALSE,
                                    w = 0.5,
                                    in1 = 300, in2 = 600,
-                                   a = 0, b = 0.75,
+                                   a = 0.25, b = 0.75,
                                    case = 3, strategy = TRUE,
   )
+  # Strategies
+  expect_equal(res$Strategy, c(1, 3, 4))
+  # Strategy 1
+  expect_equal(res[1,]$u, 1654.08, tolerance = 0.005)
+  expect_equal(res[1,]$Kappa, 0.16)
+  expect_equal(res[1,]$n2, 364)
+  expect_equal(res[1,]$n3, 708)
+  expect_equal(res[1,]$n, 1004)
+  # Strategy 3
+  expect_equal(res[2,]$u, 1308.56, tolerance = 0.005)
+  expect_equal(res[2,]$Kappa, 0.16)
+  expect_equal(res[2,]$n2, 296)
+  expect_equal(res[2,]$n3, 708)
+  expect_equal(res[2,]$n, 1004)
+  expect_equal(res[2,]$sProg, 0.68)
+  # Strategy 4
+  expect_equal(res[3,]$u, 1843.1, tolerance = 0.005)
+  expect_equal(res[3,]$Kappa, 0.18)
+  expect_equal(res[3,]$n2, 342)
+  expect_equal(res[3,]$n3, 888)
+  expect_equal(res[3,]$n, 1230)
+  expect_equal(res[2,]$sProg, 0.86)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23
@@ -487,8 +509,50 @@ test_that("03.13", {
                                    in1 = 300, in2 = 600,
                                    a = 0, b = 0.75,
                                    case = 3, strategy = TRUE,
-                                   S = 0.8
+                                   S = 0.82
   )
+  # Unconstrained
+  expect_equal(res$Strategy, c(1, 3, 4))
+  # Strategy 1
+  expect_equal(res[1, ]$u, 1514.35, tolerance = 0.005)
+  expect_equal(res[1, ]$Kappa, 0.16)
+  expect_equal(res[1, ]$n2, 440)
+  expect_equal(res[1, ]$n3, 830)
+  expect_equal(res[1, ]$n, 1270)
+  expect_equal(res[1, ]$sProg, 0.82)
+  # Strategy 3
+  expect_equal(res[2, ]$u, 1116.60, tolerance = 0.005)
+  expect_equal(res[2, ]$Kappa, 0.16)
+  expect_equal(res[2, ]$n2, 364)
+  expect_equal(res[2, ]$n3, 882)
+  expect_equal(res[2, ]$n, 1246)
+  expect_equal(res[2, ]$sProg, 0.68)
+  # Strategy 4
+  expect_equal(res[3, ]$u, 1395.35, tolerance = 0.005)
+  expect_equal(res[3, ]$Kappa, 0.18)
+  expect_equal(res[3, ]$n2, 424)
+  expect_equal(res[3, ]$n3, 1128)
+  expect_equal(res[3, ]$n, 1552)
+  expect_equal(res[3, ]$sProg, 0.86)
+  # Constrained
+  expect_equal(res_constrained$Strategy, c(1, 3, 4))
+  # Strategy 1
+  expect_equal(res_constrained[1, ]$u, 1514.35, tolerance = 0.005)
+  expect_equal(res_constrained[1, ]$Kappa, 0.16)
+  expect_equal(res_constrained[1, ]$n2, 440)
+  expect_equal(res_constrained[1, ]$n3, 830)
+  expect_equal(res_constrained[1, ]$n, 1270)
+  expect_equal(res_constrained[1, ]$sProg, 0.82)
+  # Strategy 3
+  expect_equal(res_constrained[2, ]$u, -9999)
+  # Strategy 4
+  expect_equal(res_constrained[3, ]$u, 1395.35, tolerance = 0.005)
+  expect_equal(res_constrained[3, ]$Kappa, 0.18)
+  expect_equal(res_constrained[3, ]$n2, 424)
+  expect_equal(res_constrained[3, ]$n3, 1128)
+  expect_equal(res_constrained[3, ]$n, 1552)
+  expect_equal(res_constrained[3, ]$sProg, 0.86)
+
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23
@@ -509,4 +573,10 @@ test_that("03.14", {
                                    a = 0, b = 0.75,
                                    case = 2, strategy = 3,
   )
+  # Strategy 1
+  expect_equal(res$u, 1749.97, tolerance = 0.005)
+  expect_equal(res$Kappa, 0.16)
+  expect_equal(416)
+  expect_equal(res$n3, 876)
+  expect_equal(res$n, 1292)
 })
