@@ -82,6 +82,7 @@ test_that("03.02", {
   expect_equal(res$n3, 190)
   expect_equal(res$n, 356)
   expect_equal(res$HRgo, 0.7)
+  expect_equal(res$pgo, 0.25)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23

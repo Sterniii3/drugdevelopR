@@ -2,25 +2,25 @@
 #' time-to-event endpoints
 #'
 #' The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package
-#'  enables planning of phase II/III drug development programs with optimal 
-#'  sample size allocation and go/no-go decision rules (Preussler et. al, 2019)
-#'  in a two-arm trial with two time-to-event endpoints.
+#' enables planning of phase II/III drug development programs with optimal 
+#' sample size allocation and go/no-go decision rules (Preussler et. al, 2019)
+#' in a two-arm trial with two time-to-event endpoints.
 #'  
-#'  In this setting, the drug development program is defined to be successful if
-#'  it proceeds from phase II to phase III and at least one endpoint shows a 
-#'  statistically significant treatment effect in phase III. For example,
-#'  this situation is found in oncology trials, where overall survival (OS)
-#'  and progression-free survival (PFS) are the two endpoints of interest.
+#' In this setting, the drug development program is defined to be successful if
+#' it proceeds from phase II to phase III and at least one endpoint shows a 
+#' statistically significant treatment effect in phase III. For example,
+#' this situation is found in oncology trials, where overall survival (OS)
+#' and progression-free survival (PFS) are the two endpoints of interest.
 #'  
-#'  The gain of a successful program may differ according to the importance of
-#'  the endpoint that is significant. If endpoint 1 is significant (no matter
-#'  whether endpoint 2 is significant or not), then the gains `b11`, `b21`
-#'  and `b31` will be used for calculation of the utility. If only endpoint 2 
-#'  is significant, then  `b12`, `b22` and `b32` will be used. This
-#'  also matches the oncology example, where OS (i.e. endpoint 1) implicates
-#'  larger expected gains than PFS alone (i.e. endpoint 2).
+#' The gain of a successful program may differ according to the importance of
+#' the endpoint that is significant. If endpoint 1 is significant (no matter
+#' whether endpoint 2 is significant or not), then the gains `b11`, `b21`
+#' and `b31` will be used for calculation of the utility. If only endpoint 2 
+#' is significant, then  `b12`, `b22` and `b32` will be used. This
+#' also matches the oncology example, where OS (i.e. endpoint 1) implicates
+#' larger expected gains than PFS alone (i.e. endpoint 2).
 #'  
-#'  Fast computing is enabled by parallel programming.
+#' Fast computing is enabled by parallel programming.
 #' 
 #' @name optimal_multiple_tte
 #' @inheritParams optimal_multiple_generic
