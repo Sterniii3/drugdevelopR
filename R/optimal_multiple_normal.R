@@ -47,7 +47,7 @@
 #'  #res <- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs
 #'  # in1=300, in2=600, sigma1 = 8, sigma2= 12,
 #'  # n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
-#'  # kappamin = 0.7, kappamax = 0.9, stepkappa = 0.05,         # define optimization set for HRgo
+#'  # kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,         # define optimization set for HRgo
 #'  # alpha = 0.05, beta = 0.1,                              # drug development planning parameters
 #'  # c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
 #'  # K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
@@ -62,7 +62,7 @@
 #' #cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
 #' 
 #' @references
-#' Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal Designs for Multi-Arm Phase II/III Drug Development Programs. Submitted to peer-review journal.
+#' Meinhard Kieser, Marietta Kirchner, Eva Dölger, Heiko Götte (2018). Optimal planning of phase II/III programs for clinical trials with multiple endpoints
 #'
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 #' @editor Johannes Cepicka
@@ -107,7 +107,7 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
                           "steps1", "stepm1", "stepl1",
                           "K", "N", "S",
                           "c2", "c3", "c02", "c03",
-                          "b1", "b2", "b3", "KAPPA",
+                          "b1", "b2", "b3", "kappa",
                           "Delta1", "Delta2", "in1", "in2", "sigma1", "sigma2",
                           "rho", "fixed", "relaxed"), envir = environment())
       
