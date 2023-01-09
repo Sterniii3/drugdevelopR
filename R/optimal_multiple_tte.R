@@ -104,7 +104,7 @@ result <- NULL
     
     cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
     
-    parallel::clusterExport(cl, c("pnorm", "dnorm","qnorm","adaptIntegrate","dbivanorm","fmax", "pgo_multiple_tte", "pw", "Ess_multiple_tte",
+    parallel::clusterExport(cl, c("pnorm", "dnorm", "dmvnorm","qnorm","adaptIntegrate","dbivanorm","fmax", "pgo_multiple_tte", "pw", "Ess_multiple_tte",
                         "EPsProg_multiple_tte", "os_tte", "alpha", "beta",
                         "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
                         "K", "N", "S",

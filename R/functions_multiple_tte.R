@@ -437,11 +437,16 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
   stepm2 <- stepl1
   stepl2 <- 0
 
-   n3 <- Ess_multiple_tte(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
+   n3 <- Ess_multiple_tte(HRgo=HRgo,n2=n2,
+                          alpha=alpha,beta=beta,
+                          hr1=hr1,hr2=hr2,id1=id1,id2=id2,
+                          fixed=fixed,rho=rho)
    
-   OS <- os_tte(HRgo = HRgo, n2 = n2, alpha = alpha, beta = beta,
+   OS <- os_tte(HRgo = HRgo, n2 = n2,
+                alpha = alpha, beta = beta,
                 hr1 = hr1, hr2 = hr2,
-                id1 = id1, id2 = id2, fixed = fixed, rho = rho)
+                id1 = id1, id2 = id2,
+                fixed = fixed, rho = rho)
   
    pw <- pw(n2=n2,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
    
