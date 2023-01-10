@@ -16,7 +16,7 @@ test_that("optimal_bias_normal works for true treatment effects", {
 test_that("optimal_bias_normal works when using a prior distribution", {
   expect_equal(optimal_bias_normal(w=0.3, Delta1 = 0.375, Delta2 = 0.625,
                                    in1=300, in2=600, a = 0.25, b = 0.75,
-                                   n2min = 20, n2max = 100, stepn2 = 4,
+                                   n2min = 80, n2max = 100, stepn2 = 4,
                                    kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,
                                    adj = "additive", alpha = 0.05, beta = 0.1,
                                    lambdamin = 0.6, lambdamax = 1, steplambda = 0.05, 
@@ -31,7 +31,7 @@ test_that("optimal_bias_normal works when using a prior distribution", {
 test_that("optimal_bias_normal works for method all", {
   expect_equal(optimal_bias_normal(w=0.3, Delta1 = 0.375, Delta2 = 0.625,
                                    in1=300, in2=600, a = 0.25, b = 0.75,
-                                   n2min = 20, n2max = 100, stepn2 = 4,
+                                   n2min = 80, n2max = 100, stepn2 = 4,
                                    kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,
                                    adj = "all", alpha = 0.05, beta = 0.1,
                                    lambdamin = 0.6, lambdamax = 1, steplambda = 0.05, 
