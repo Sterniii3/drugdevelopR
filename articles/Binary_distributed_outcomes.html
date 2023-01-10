@@ -49,7 +49,7 @@
     <a class="dropdown-item" href="../articles/Multiarm_Trials.html">Multiarm_Trials</a>
     <a class="dropdown-item" href="../articles/Multiple_Endpoints.html">Multiple_Endpoints</a>
     <a class="dropdown-item" href="../articles/Multitrial.html">Multitrial</a>
-    <a class="dropdown-item" href="../articles/Time-to-event_outcomes.html">Time-to-event_outcomes</a>
+    <a class="dropdown-item" href="../articles/Time-to-event_outcomes.html">Time-to-event Outcome Variables</a>
     <a class="dropdown-item" href="../articles/introduction-to-drugdevelopR.html">Introduction to planning phase II and phase III trials with drugdevelopR</a>
   </div>
 </li>
@@ -167,11 +167,11 @@ and maximal threshold value for the go/no-go decision rule in terms of
 the negative logarithm of the risk ratio. The package will search for
 the optimal threshold value within this region. For now, we want the
 program to search in the interval between 0.7 and 0.9 while going in
-steps of <code>stepkappa = 0.01</code>. Note, that he lower bound of the
+steps of <code>steprrgo = 0.01</code>. Note, that he lower bound of the
 decision rule set for represents the smallest size of treatment effect
 observed in phase II allowing to go to phase III, so it can be used to
 model the minimally clinically relevant effect size. Moreover, note that
-the intervall specified above corresponds to the set <span class="math inline">\(\{-\log(0.9), ..., -\log(0.7)\}\)</span>.</li>
+the interval specified above corresponds to the set <span class="math inline">\(\{-\log(0.9), ..., -\log(0.7)\}\)</span>.</li>
 <li>
 <code>c02</code> and <code>c03</code> are fixed costs for phase II
 and phase III respectively. We will set the phase II costs to 100 and
@@ -205,9 +205,9 @@ that we require a power of 90%.</li>
 <p>As in the setting with normally distributed outcomes, the treatment
 effect may be fixed (as in this example) or follows a prior distribution
 (see <a href="https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html">Fixed
-or Prior</a>. Furthermore, all options to adapt the program to your
+or Prior</a>). Furthermore, all options to adapt the program to your
 specific needs are also available in this setting (see <a href="https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html">More
-Paramters</a>.</p>
+Paramters</a>).</p>
 <p>Now that we have defined all parameters needed for our example, we
 are ready to feed them to the package. We will use the function
 <code><a href="../reference/optimal_binary.html">optimal_binary()</a></code>, which calculates the optimal sample size
@@ -270,8 +270,8 @@ see:</p>
 to drugdevelopR:</em></a> See how the package works in a basic
 example.</li>
 <li>
-<em>Different outcomes:</em> Apply it to time-to-event
-endpoints.</li>
+<em>Different outcomes:</em> Apply it to <a href="https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html">time-to-event
+endpoints</a>.</li>
 <li>
 <a href="https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html"><em>Interpreting
 the rest of the output:</em></a> Obtain further details on your drug
@@ -292,7 +292,7 @@ effect between phase II and III. Skip phase II.</li>
 biased effect estimators, multiple phase III trials, multi-arm trials,
 or multiple endpoints.</li>
 <li>
-<a href="https://sterniii3.github.io/drugdevelopR/articles/More_Parameters/#Parallel_Computing.html"><em>Parallel
+<a href="https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html"><em>Parallel
 computing:</em></a> Be faster at calculating the optimum by using
 parallel computing.</li>
 </ul>
