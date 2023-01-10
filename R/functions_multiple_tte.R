@@ -289,9 +289,9 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
                 })
               },-log(HRgo),Inf)$value
             })
-          },-Inf,Inf)$value
+          },-1000,1000)$value
         })
-      },-Inf,Inf)$value)
+      },-1000,1000)$value)
      
    }
 }
@@ -359,9 +359,9 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
               })
             },-Inf,Inf)$value
           })
-        },-Inf,Inf)$value
+        },-1000,1000)$value
       })
-    },-Inf,Inf)$value
+    },-1000,1000)$value
 
     os2_tte<-integrate(function(u){
       sapply(u,function(u){
@@ -373,9 +373,9 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
               })
             },-Inf,Inf)$value
           })
-        },-Inf,Inf)$value
+        },-1000,1000)$value
       })
-    },-Inf,Inf)$value}
+    },-1000,1000)$value}
 
     return(os_tte <- os1_tte*pw(n2,hr1,hr2,id1,id2,fixed,rho) + os2_tte*(1-pw(n2,hr1,hr2,id1,id2,fixed,rho)))
 }
