@@ -110,7 +110,7 @@ result <- NULL
                         "K", "N", "S",
                         "c2", "c3", "c02", "c03",
                         "b11", "b21", "b31","b12","b22","b32", "HRgo",
-                        "hr1", "hr2", "id1", "id2", "rho", "fixed", "ec"), envir = environment())
+                        "hr1", "hr2", "id1", "id2", "rho", "fixed"), envir = environment())
     
     
     res <- parallel::parSapply(cl, N2, utility_multiple_tte, HRgo,
