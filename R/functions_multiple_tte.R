@@ -452,7 +452,7 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
    
    if(n2+n3>N){
      
-     return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+     return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
      
    }else{
      
@@ -463,7 +463,7 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
      
      if(K2+K3>K){
        
-       return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+       return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
        #output: expected utility Eud, En3, EsP, Epgo
        
      }else{
@@ -492,7 +492,7 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
        
        if(SP<S){
          
-         return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+         return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
          
        }else{
          
