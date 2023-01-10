@@ -266,7 +266,7 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
               sapply(y,function(y){
                 fmax(y,-log(hr1)/sqrt((x^2/c)*(ec/hr[1])),-log(hr2)/sqrt((x^2/c)*(ec/hr[2])),1,1,rho)*fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)
               })
-            },qnorm(1-alpha)+step1/sqrt((x^2/c)),qnorm(1-alpha)+step2/sqrt((x^2/c)))$value
+            },qnorm(1-alpha)-log(step1)/sqrt((x^2/c)),qnorm(1-alpha)-log(step2)/sqrt((x^2/c)))$value
           })
         }, -log(HRgo),Inf)$value)
    }
@@ -285,7 +285,7 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
                       (fmax(y,-log(hr1)/sqrt((x^2/c)*(hr[ec]/hr[1])),-log(hr2)/sqrt((x^2/c)*(hr[ec]/hr[2])),1,1,rho)
                        *fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)*dbivanorm(u,v,hr1,hr2,vartrue1,vartrue2,rho))
                     })
-                  },qnorm(1-alpha)+step1/sqrt((x^2/c)),qnorm(1-alpha)+step2/sqrt((x^2/c)))$value
+                  },qnorm(1-alpha)-log(step1)/sqrt((x^2/c)),qnorm(1-alpha)-log(step2)/sqrt((x^2/c)))$value
                 })
               },-log(HRgo),Inf)$value
             })
