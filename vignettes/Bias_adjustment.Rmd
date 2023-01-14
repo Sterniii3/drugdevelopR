@@ -1,5 +1,5 @@
 ---
-title: "Bias_adjustment"
+title: "Methods for Discounting of Phase II Results - Bias Adjustment"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Bias_adjustment}
@@ -14,16 +14,109 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
+
+The drugdevelopR package enables us to optimally plan such programs using a utility-maximizing approach. To get a brief introduction, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html). Contrary to the introduction we now want to investigate a scenario, where the results of phase II of a time-to-event outcome are discounted. The discounting may be necessary as programs that proceed to phase III can be overoptimistic about the treatment effect (i.e. they are biased). Hereby, we adjust the optimal number of events in phase III.
+
+# The example setting
+Suppose we are developing a new tumor treatment, *exper*. The patient variable that we want to investigate is how long the patient survives without further progression of the tumor (progression free survival). This is a time to event outcome variable. Therefore, we will use the function `optimal_bias`, which calculates optimal sample sizes and threshold decisions values for time-to-event outcomes with bias adjustment.
+
+Within our drug development program, we will compare our experimental treatment *exper* to the control treatment *contro*. The treatment effect measure is given by $\theta = −\log(HR)$, which is the negative logarithm of the hazard ratio $HR$, which is the ratio of the hazard rates. If we assume that unfavorable events as tumor progression occur only 75\% as often as in the control group, we have a hazard ratio of 0.75.
+
+# Applying the package to the example
+
+After installing the package according to the [installation instructions](https://sterniii3.github.io/drugdevelopR/#Installation), we can load it using the following code:
+```{r}
 library(drugdevelopR)
 ```
 
-For more information on how to use the package, see:
+We insert the same input values as in the example for time-to-event outcomes (see the vignette on [time-to-event endpoints](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html)). As in the basic setting, the treatment effect may be fixed (as in this example) or follows a prior distribution (see [Fixed or Prior](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html)). Furthermore, most options to adapt the program to your specific needs are also available in this setting (see [More Paramters](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html)), however skipping phase II and choosing different treatment effects in phase II and III are not possible.
+
+In addition to the parameters from the basic setting, some parameters are needed specifically for the bias adjustment:
+
+*  The parameter `adj` is needed to select the type of bias adjustment. There are four possible options for this parameter:
+   *  `adj = additive` selects the additive adjustment method for the number of events in phase III. Hereby, the lower bound of the one-sided confidence interval is adjusted according to Wang et al (2006).
+   *  `adj = multiplicative` selects the multiplicative adjustment method for the number of events in phase III. Hereby, an estimate with a retention factor is used according to Kirby et al. (2012).
+   *  `adj = both` returns the results of both adjustment methods, i.e. the additive and the multiplicative one.
+   *  `adj = all` returns the results of both adjustment methods and in addition, also returns the results for both methods when not only the number of events is adjusted but also the threshold value for the decision rule. 
+* Furthermore, the optimization regions for the adjustment parameters have to be specified.
+   * For the additive method, no adjustment is equal to setting the adjustment parameter to 0.5. Therefore we set the upper limit `alphaCImax` to 0.5. We want to investigate the optimization region in the interval of [0.1, 0.5] with step size 0.05. Thus, we set the lower bound to `alphaCImin` to 0.1 and the step size to `stepalphaCI = 0.05`.
+   * For the multiplicative method, no adjustment is equal to setting the adjustment parameter to 1. Therefore we set the upper limit `lambdamax` to 1. We want to investigate the optimization region in the interval of [0.7, 1] with step size 0.05. Thus, we set the lower bound to `lambdamin` to 0.1 and the step size to `steplambda = 0.05`.
+   
+Now that we have defined all parameters needed for our example, we are ready to feed them to the package.
+```{r,eval = FALSE}
+res <- optimal_bias(w = 0.3,                                 # define parameters for prior
+   hr1 = 0.75, hr2 = 0.8, id1 = 210, id2 = 420,              # (https://web.imbi.uni-heidelberg.de/prior/)
+   d2min = 20, d2max = 400, stepd2 = 5,                      # define optimization set for d2
+   adj = "both",                                             # choose both adjustment methods
+   lambdamin = 0.7, lambdamax = 1, steplambda = 0.05,        # optimization set for multiplicative adjustment
+   alphaCImin = 0.1, alphaCImax = 0.5, stepalphaCI = 0.05,   # optimization set for additive adjustment
+   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.01,            # define optimization set for HRgo
+   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,           # drug development planning parameters
+   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,                  # define fixed and variable costs
+   K = Inf, N = Inf, S = -Inf,                               # set constraints
+   steps1 = 1,  stepm1 = 0.95, stepl1 = 0.85,                # define boundary for  effect size categories
+   b1 = 1000, b2 = 2000, b3 = 3000,                          # define expected benefits
+   fixed = TRUE,                                             # choose if  effects are fixed or random
+   num_cl = 1)
+```
+
+```{r, eval=TRUE, include=FALSE}
+#res <- optimal_bias(w = 0.3,                                 # define parameters for prior
+#   hr1 = 0.75, hr2 = 0.8, id1 = 210, id2 = 420,              # (https://web.imbi.uni-heidelberg.de/prior/)
+#   d2min = 20, d2max = 400, stepd2 = 5,                      # define optimization set for d2
+#   adj = "both",                                             # choose both adjustment methods
+#   lambdamin = 0.7, lambdamax = 1, steplambda = 0.05,        # optimization set for multiplicative adjustment
+#   alphaCImin = 0.1, alphaCImax = 0.5, stepalphaCI = 0.05,   # optimization set for additive adjustment
+#   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.01,            # define optimization set for HRgo
+#   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,           # drug development planning parameters
+#   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,                  # define fixed and variable costs
+#   K = Inf, N = Inf, S = -Inf,                               # set constraints
+#   steps1 = 1,  stepm1 = 0.95, stepl1 = 0.85,                # define boundary for  effect size categories
+#   b1 = 1000, b2 = 2000, b3 = 3000,                          # define expected benefits
+#   fixed = TRUE,                                             # choose if  effects are fixed or random
+#   num_cl = 1)
+# saveRDS(res, file="optimal_bias_adjustment.RDS")
+```
+```{r, eval=TRUE, include=FALSE}
+res <- readRDS(file="optimal_bias_adjustment.RDS")
+```
+
+## Interpreting the output
+
+After setting all these input parameters and running the function, let's take a look at the output of the program.
+
+```{r}
+res
+```
+
+The program returns output values for both adjustment methods. The most important ones for the multiplicative method are:
+
+* `res$Adj` is the optimal multiplicative adjustment parameter. In this setting, our optimal value is 0.95, indicating that a slight bias adjustment leads to a higher utility.
+* `res$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 210 events in phase II and 451 events in phase III, which correspond to 300 participants in phase II and 644 in phase III. 
+* `res$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.87 in phase II in order to proceed to phase III. 
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 587.18, i.e we have an expected utility of 58 718 000\$. 
+
+For the additive method we get:
+
+* `res$Adj` is the optimal additive adjustment parameter. In this setting, our optimal value is 0.5, indicating that no  bias adjustment leads to the highest utility. In this case, our results match the results of the basic setting as can be verified [here](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html).
+* `res$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 210 events in phase II and 441 events in phase III, which correspond to 300 participants in phase II and 630 in phase III. 
+* `res$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.88 in phase II in order to proceed to phase III. 
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 584.57, i.e we have an expected utility of 58 457 000\$. 
+
+# Where to go from here
+In this article we presented an example how methods to discount the results of phase II can be included for the purpose of bias adjustment. Note, that this example is not restricted to time-to-event endpoints but can also be applied to binary and normally distributed endpoints. For more information on how to use the package, see:
 
 * [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html) See how the package works in a basic example.
 * *Different outcomes:* Apply it to [binary endpoints](https://sterniii3.github.io/drugdevelopR/articles/Binary_distributed_outcomes.html) and [time-to-event endpoints](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html).
 * [*Interpreting the rest of the output:*](https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html) Obtain further details on your drug development program.
 * [*Fixed or prior:*](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html) Model the assumed treatment effect on a prior distribution.
 * [*More parameters:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.
-* *Complex drug development programs:* Adapt to situations with biased effect estimators, multiple phase III trials, multi-arm trials, or multiple endpoints.
-* *Parallel computing:* Be faster at calculating the optimum by using parallel computing.
+* *Complex drug development programs:* Adapt to situations with multiple phase III trials, multi-arm trials, or multiple endpoints.
+* [*Parallel computing:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Be faster at calculating the optimum by using parallel computing.
+
+#References 
+Kirby, S., Burke, J., Chuang-Stein, C., and Sin, C. (2012). Discounting phase 2 results when planning phase 3 clinical trials. Pharmaceutical Statistics, 11(5):373–385.
+
+Wang, S.-J., Hung, H. J., and O’Neill, R. T. (2006). Adapting the sample size planning of a phase III trial based on phase II data. Pharmaceutical Statistics, 5(2):85–97.
+
