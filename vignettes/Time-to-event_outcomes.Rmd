@@ -22,7 +22,7 @@ The drugdevelopR package enables us to optimally plan such programs using a util
 Suppose we are developing a new tumor treatment, *exper*. The patient variable that we want to investigate is how long the patient survives without further progression of the tumor (progression free survival). This is a time to event outcome variable.
 
 Within our drug development program, we will compare our experimental treatment *exper* to the control treatment *contro*.
-The treatment effect measure is given by $ \theta = −\log(HR)$, which is the negative logarithm of the hazard ratio  $HR$, which is the ratio of the hazard rates. If we assume that unfavorable events as tumor progression occur only 75\% as often as in the control group, we have a hazard ratio of 0.75.
+The treatment effect measure is given by $\theta = −\log(HR)$, which is the negative logarithm of the hazard ratio $HR$, which is the ratio of the hazard rates. If we assume that unfavorable events as tumor progression occur only 75\% as often as in the control group, we have a hazard ratio of 0.75.
 
 # Applying the package to the example
 
