@@ -41,7 +41,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Bias_adjustment.html">Bias_adjustment</a>
+    <a class="dropdown-item" href="../articles/Bias_adjustment.html">Methods for Discounting of Phase II Results - Bias Adjustment</a>
     <a class="dropdown-item" href="../articles/Binary_distributed_outcomes.html">Binary Distributed Outcome Variables</a>
     <a class="dropdown-item" href="../articles/Fixed_and_prior_distributions.html">Fixed effects and prior distributions</a>
     <a class="dropdown-item" href="../articles/Interpreting_Output.html">Interpreting the Rest of the Output</a>
@@ -207,8 +207,21 @@ that we require a power of 90%.</li>
 <p>As in the setting with normally distributed outcomes, the treatment
 effect may be fixed (as in this example) or follows a prior distribution
 (see <a href="https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html">Fixed
-or Prior</a>). Furthermore, all options to adapt the program to your
-specific needs are also available in this setting (see <a href="https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html">More
+or Prior</a>). Note, that in the case of using a prior distribution, the
+following input parameters have to be specified, which differ from the
+setting with normally distributed outcomes: * Instead of the parameters
+<code>in1</code> and <code>in2</code> for the “amount of information”,
+we have to use the parameters <code>id1</code> and <code>id2</code>
+which represent the “number of events”. They refer to the number of
+events which were observed in the study to determine the treatment
+effect. If in our study 210 events could be observed, then the value for
+<code>id1</code> is set to be 420. If we assume assume that in the study
+of the other research group 420 events could be observed, the parameter
+value for <code>id2</code> is 420. * Moreover, we do not need truncation
+values, i.e. values for the parameters <code>a</code> and
+<code>b</code>.</p>
+<p>Furthermore, all options to adapt the program to your specific needs
+are also available in this setting (see <a href="https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html">More
 Paramters</a>).</p>
 <p>Now that we have defined all parameters needed for our example, we
 are ready to feed them to the package. We will use the function
@@ -217,7 +230,7 @@ the optimal threshold value for a time-to-event outcome variable.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_tte.html">optimal_tte</a></span><span class="op">(</span>w <span class="op">=</span> <span class="fl">0.3</span>,                               <span class="co"># define parameters for prior</span></span>
 <span>   hr1 <span class="op">=</span> <span class="fl">0.75</span>, hr2 <span class="op">=</span> <span class="fl">0.8</span>, id1 <span class="op">=</span> <span class="fl">210</span>, id2 <span class="op">=</span> <span class="fl">420</span>,           <span class="co"># (https://web.imbi.uni-heidelberg.de/prior/)</span></span>
-<span>   d2min <span class="op">=</span> <span class="fl">20</span>, d2max <span class="op">=</span> <span class="fl">100</span>, stepd2 <span class="op">=</span> <span class="fl">5</span>,                   <span class="co"># define optimization set for d2</span></span>
+<span>   d2min <span class="op">=</span> <span class="fl">20</span>, d2max <span class="op">=</span> <span class="fl">400</span>, stepd2 <span class="op">=</span> <span class="fl">5</span>,                   <span class="co"># define optimization set for d2</span></span>
 <span>   hrgomin <span class="op">=</span> <span class="fl">0.7</span>, hrgomax <span class="op">=</span> <span class="fl">0.9</span>, stephrgo <span class="op">=</span> <span class="fl">0.01</span>,         <span class="co"># define optimization set for HRgo</span></span>
 <span>   alpha <span class="op">=</span> <span class="fl">0.05</span>, beta <span class="op">=</span> <span class="fl">0.1</span>, xi2 <span class="op">=</span> <span class="fl">0.7</span>, xi3 <span class="op">=</span> <span class="fl">0.7</span>,        <span class="co"># drug development planning parameters</span></span>
 <span>   c2 <span class="op">=</span> <span class="fl">0.75</span>, c3 <span class="op">=</span> <span class="fl">1</span>, c02 <span class="op">=</span> <span class="fl">100</span>, c03 <span class="op">=</span> <span class="fl">150</span>,               <span class="co"># define fixed and variable costs</span></span>
@@ -237,28 +250,28 @@ let’s take a look at the output of the program.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span></span>
 <span><span class="co">#&gt;        u HRgo  d2  d3   d  n2  n3   n  pgo sProg   hr   K   N    S  K2  K3</span></span>
-<span><span class="co">#&gt; 1 544.93 0.87 100 327 427 144 468 612 0.77  0.58 0.75 Inf Inf -Inf 208 584</span></span>
+<span><span class="co">#&gt; 1 584.57 0.88 210 441 651 300 630 930 0.88  0.71 0.75 Inf Inf -Inf 325 761</span></span>
 <span><span class="co">#&gt;   sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta xi2 xi3 c02 c03   c2 c3</span></span>
-<span><span class="co">#&gt; 1   0.08   0.24   0.26      1   0.95   0.85  0.05  0.1 0.7 0.7 100 150 0.75  1</span></span>
+<span><span class="co">#&gt; 1   0.09    0.3   0.33      1   0.95   0.85  0.05  0.1 0.7 0.7 100 150 0.75  1</span></span>
 <span><span class="co">#&gt;     b1   b2   b3 gamma</span></span>
 <span><span class="co">#&gt; 1 1000 2000 3000     0</span></span></code></pre></div>
-<p>The program returns a total of thirteen values and the input values.
-For now, we will only look at the most important ones:</p>
+<p>The program returns a total of sixteen output values and the input
+paramters. For now, we will only look at the most important ones:</p>
 <ul>
 <li>
 <code>res$d2</code> is the optimal number of events for phase II and
 <code>res$d3</code> the resulting number of events for phase III. We see
-that the optimal scenario requires 100 events in phase II and 327 events
-in phase III, which correspond to 144 participants in phase II and 468
+that the optimal scenario requires 210 events in phase II and 441 events
+in phase III, which correspond to 300 participants in phase II and 630
 in phase III.</li>
 <li>
 <code>res$HRgo</code> is the optimal threshold value for the
 go/no-go decision rule. We see that we need a hazard ratio of less than
-0.87 in phase II in order to proceed to phase III.</li>
+0.88 in phase II in order to proceed to phase III.</li>
 <li>
 <code>res$u</code> is the expected utility of the program for the
 optimal sample size and threshold value. In our case it amounts to
-544.93, i.e we have an expected utility of 54 493 000$.</li>
+584.57, i.e we have an expected utility of 58 457 000$.</li>
 </ul>
 </div>
 </div>
@@ -293,8 +306,9 @@ of a successful program. Define an expected difference in treatment
 effect between phase II and III. Skip phase II.</li>
 <li>
 <em>Complex drug development programs:</em> Adapt to situations with
-biased effect estimators, multiple phase III trials, multi-arm trials,
-or multiple endpoints.</li>
+<a href="https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html">biased
+effect estimators</a>, multiple phase III trials, multi-arm trials, or
+multiple endpoints.</li>
 <li>
 <em>Parallel computing:</em> Be faster at calculating the optimum by
 using parallel computing.</li>
