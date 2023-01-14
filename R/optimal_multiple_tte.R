@@ -104,7 +104,7 @@ result <- NULL
     
     cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
     
-    parallel::clusterExport(cl, c("pnorm", "pmvnorm", "dnorm", "dmvnorm","qnorm", "qmvnorm", "adaptIntegrate", "MASS",
+    parallel::clusterExport(cl, c("pnorm", "pmvnorm", "dnorm", "dmvnorm","qnorm", "qmvnorm", "adaptIntegrate",
                         "dbivanorm","fmax", "pgo_multiple_tte", "pw", "Ess_multiple_tte",
                         "EPsProg_multiple_tte", "os_tte", "alpha", "beta",
                         "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
@@ -113,6 +113,8 @@ result <- NULL
                         "b11", "b21", "b31","b12","b22","b32", "HRgo",
                         "hr1", "hr2", "id1", "id2", "rho", "fixed"), envir = environment())
     
+    res_test <- parallel::parSapply(cl,N2,pgo_multiple_tte, HRgo, hr1, hr2,
+                                    id1, id2, fixed, rho)
     
     res <- parallel::parSapply(cl, N2, utility_multiple_tte, HRgo,
                      alpha,beta,hr1,hr2,id1,id2,rho,fixed,
