@@ -145,7 +145,7 @@ Ess_multiple_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
           sapply(x,function(x){
             ((4*(qnorm(1 - alpha) + qnorm(1 - beta))^2)/x^2)*fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)
             })
-        },-log(HRgo),Inf,abs.tol=1e-2)$value)
+        },-log(HRgo),10000)$value)
       }
 
   else   {

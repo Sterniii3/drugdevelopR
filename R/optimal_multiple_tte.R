@@ -113,17 +113,9 @@ result <- NULL
                         "b11", "b21", "b31","b12","b22","b32", "HRgo",
                         "hr1", "hr2", "id1", "id2", "rho", "fixed"), envir = environment())
     
-    res_test <- parallel::parSapply(cl,N2,pgo_multiple_tte, HRgo, hr1, hr2,
-                                    id1, id2, fixed, rho)
     
-#    res_test2 <- parallel::parSapply(cl, N2, Ess_multiple_tte, HRgo, alpha, beta,
-#                                     hr1, hr2, id1, id2, fixed, rho)
-    
-    res_test3 <- parallel::parSapply(cl, N2, pw, hr1,hr2,id1,id2,fixed,rho)
-    
-    res_test4 <- parallel::parSapply(cl,N2, EPsProg_multiple_tte, HRgo, 
-                                     alpha, beta,ec=1, hr1, hr2, id1, id2,
-                                     step1, step2,fixed, rho)
+    res_test2 <- parallel::parSapply(cl, N2, Ess_multiple_tte, HRgo, alpha, beta,
+                                     hr1, hr2, id1, id2, fixed, rho)
     
     res <- parallel::parSapply(cl, N2, utility_multiple_tte, HRgo,
                      alpha,beta,hr1,hr2,id1,id2,rho,fixed,
