@@ -118,7 +118,12 @@ result <- NULL
     
 #    res_test2 <- parallel::parSapply(cl, N2, Ess_multiple_tte, HRgo, alpha, beta,
 #                                     hr1, hr2, id1, id2, fixed, rho)
+    
     res_test3 <- parallel::parSapply(cl, N2, pw, hr1,hr2,id1,id2,fixed,rho)
+    
+    res_test4 <- parallel::parSapply(cl,N2, EPsProg_multiple_tte, HRgo, 
+                                     alpha, beta,ec=1, hr1, hr2, id1, id2,
+                                     step1, step2,fixed, rho)
     
     res <- parallel::parSapply(cl, N2, utility_multiple_tte, HRgo,
                      alpha,beta,hr1,hr2,id1,id2,rho,fixed,
