@@ -102,7 +102,8 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
       
       cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
-      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate","dbivanorm", "pgo_multiple_normal", "Ess_multiple_normal",
+      parallel::clusterExport(cl, c("pmvnorm", "pnorm", "dmvnorm", "dnorm","qmvnorm", "qnrom","adaptIntegrate",
+                          "dbivanorm", "pgo_multiple_normal", "Ess_multiple_normal",
                           "EPsProg_multiple_normal", "posp_normal", "fmin", "alpha", "beta",
                           "steps1", "stepm1", "stepl1",
                           "K", "N", "S",
@@ -110,6 +111,21 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
                           "b1", "b2", "b3", "kappa",
                           "Delta1", "Delta2", "in1", "in2", "sigma1", "sigma2",
                           "rho", "fixed", "relaxed"), envir = environment())
+      
+      res_test1 <- parallel::parSapply(cl, N2, pgo_multiple_normal,kappa,
+                                       Delta1, Delta2, in1, in2,
+                                       sigma1, sigma2, fixed, rho)
+      res_test2 <- parallel::parSapply(cl, N2, Ess_multiple_normal, kappa,
+                                       alpha, beta, Delta1, Delta2, in1, in2,
+                                       sigma1, sigma2, fixed, rho)
+      res_test3 <- parallel::parSapply(cl, N2, posp_normal,kappa, alpha, beta,
+                                       Delta1, Delta2, sigma1, sigma2, in1, in2,
+                                       fixed, rho)
+      res_test4 <- parallel::parSapply(cl, N2, EPsProg_multiple_normal, kappa, 
+                                       alpha, beta, Delta1, Delta2, sigma1, sigma2, 
+                                       step11 = steps1, step12 = stepm1, 
+                                       step21 = stepm1, step22 =stepl1, 
+                                       in1, in2, fixed,rho)
       
       
       res <- parallel::parSapply(cl, N2, utility_multiple_normal, kappa,
