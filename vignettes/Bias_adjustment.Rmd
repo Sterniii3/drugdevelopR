@@ -105,14 +105,14 @@ For the additive method we get:
 * `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 584.57, i.e we have an expected utility of 58 457 000\$. 
 
 # Where to go from here
-In this article we presented an example how methods to discount the results of phase II can be included for the purpose of bias adjustment. Note, that this example is not restricted to time-to-event endpoints but can also be applied to binary and normally distributed endpoints. For more information on how to use the package, see:
+In this article we presented an example how methods to discount the results of phase II can be included for the purpose of bias adjustment. Note, that this example is not restricted to time-to-event endpoints but can also be applied to binary and normally distributed endpoints using the function `optimal_bias_binary` and `optimal_bias_normal`. For more information on how to use the package, see:
 
 * [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html) See how the package works in a basic example.
 * *Different outcomes:* Apply it to [binary endpoints](https://sterniii3.github.io/drugdevelopR/articles/Binary_distributed_outcomes.html) and [time-to-event endpoints](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html).
 * [*Interpreting the rest of the output:*](https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html) Obtain further details on your drug development program.
 * [*Fixed or prior:*](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html) Model the assumed treatment effect on a prior distribution.
 * [*More parameters:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.
-* *Complex drug development programs:* Adapt to situations with multiple phase III trials, multi-arm trials, or multiple endpoints.
+* *Complex drug development programs:* Adapt to situations with [multiple phase III trials](https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html), multi-arm trials, or multiple endpoints.
 * [*Parallel computing:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Be faster at calculating the optimum by using parallel computing.
 
 #References 

@@ -1,6 +1,9 @@
 #' Optimal phase II/III drug development planning where several phase III trials are performed for time-to-event endpoints
 #'
-#' The function \code{\link{optimal_multitrial}} of the drugdevelopR package enables planning of phase II/III drug development programs with time-to-event endpoints for programs with several phase III trials (Preussler et. al, 2019). Its main output values are the optimal sample size allocation and optimal go/no-go decision rules. The assumed true treatment effects can be assumed to be fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) or can be modelled by a prior distribution. The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast coputing is enabled by parallel programming.
+#' The function \code{\link{optimal_multitrial}} of the drugdevelopR package enables planning of phase II/III drug development programs with time-to-event endpoints for programs with several phase III trials (Preussler et. al, 2019). 
+#' Its main output values are the optimal sample size allocation and optimal go/no-go decision rules. 
+#' The assumed true treatment effects can be assumed to be fixed (planning is then also possible via user friendly R Shiny App: \href{https://web.imbi.uni-heidelberg.de/multitrial/}{multitrial}) or can be modelled by a prior distribution. 
+#' The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} visualizes the prior distributions used in this package. Fast computing is enabled by parallel programming.
 #' 
 #' @name optimal_multitrial
 #' 
