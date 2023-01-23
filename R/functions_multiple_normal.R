@@ -297,7 +297,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
   covmatt3<-matrix(c(1, rho, rho, 1), ncol=2)
   
   
-  c     = (qnorm(1-alpha)+qnorm(1-beta))^2 
+  c <- (qnorm(1-alpha)+qnorm(1-beta))^2 
   
   if(fixed) {
     return(integrate(function(y){
