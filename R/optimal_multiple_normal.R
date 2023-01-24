@@ -104,52 +104,45 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
     for(j in 1:length(KAPPA)){
       
       kappa <- KAPPA[j]
+    
       
-        
-        res <- utility_multiple_normal(kappa = kappa, n2=N2, alpha = alpha, beta = beta, 
-                                       Delta1 = Delta1, Delta2= Delta2, in1 = in1, in2 = in2,
-                                       sigma1= sigma1, sigma2=sigma2,
-                                       c2 = c2, c02 = c02, c3 = c3, c03 = c03, K = K, N = N, S = S,
-                                       steps1 = steps1, stepm1 = stepm1, stepl1 = stepl1, 
-                                       b1 = b1, b2 = b2, b3 = b3, fixed  = fixed, rho = rho, relaxed = relaxed)
+     cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+           
+      parallel::clusterExport(cl, c("pmvnorm", "pnorm", "dmvnorm", "dnorm","qmvnorm", "qnorm","adaptIntegrate",
+                          "dbivanorm", "max", "min", "pgo_multiple_normal", "Ess_multiple_normal",
+                         "EPsProg_multiple_normal", "posp_normal", "fmin", "alpha", "beta",
+                          "steps1", "stepm1", "stepl1",
+                         "K", "N", "S",
+                          "c2", "c3", "c02", "c03",
+                          "b1", "b2", "b3", "kappa",
+                          "integrate", "sapply",
+                          "Delta1", "Delta2", "in1", "in2", "sigma1", "sigma2",
+                          "rho", "fixed", "relaxed"), envir = environment())
       
-#      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+      res_test1 <- parallel::parSapply(cl, N2, pgo_multiple_normal,kappa,
+                                       Delta1, Delta2, in1, in2,
+                                       sigma1, sigma2, fixed, rho)
+      res_test2 <- parallel::parSapply(cl, N2, Ess_multiple_normal, kappa,
+                                       alpha, beta, Delta1, Delta2, in1, in2,
+                                       sigma1, sigma2, fixed, rho)
+      res_test3 <- parallel::parSapply(cl, N2, posp_normal,kappa, alpha, beta,
+                                       Delta1, Delta2, sigma1, sigma2, in1, in2,
+                                       fixed, rho)
+      res_test4 <- parallel::parSapply(cl, N2, EPsProg_multiple_normal, kappa, 
+                                       alpha, beta, Delta1, Delta2, sigma1, sigma2, 
+                                       step11 = steps1, step12 = stepm1, 
+                                       step21 = stepm1, step22 =stepl1, 
+                                       in1, in2, fixed,rho)
       
-#      parallel::clusterExport(cl, c("pmvnorm", "pnorm", "dmvnorm", "dnorm","qmvnorm", "qnorm","adaptIntegrate",
-#                          "dbivanorm", "max", "min", "pgo_multiple_normal", "Ess_multiple_normal",
-#                          "EPsProg_multiple_normal", "posp_normal", "fmin", "alpha", "beta",
-#                          "steps1", "stepm1", "stepl1",
-#                         "K", "N", "S",
-#                          "c2", "c3", "c02", "c03",
-#                          "b1", "b2", "b3", "kappa",
-#                          "integrate", "sapply",
-#                          "Delta1", "Delta2", "in1", "in2", "sigma1", "sigma2",
-#                          "rho", "fixed", "relaxed"), envir = environment())
-#      
-#      res_test1 <- parallel::parSapply(cl, N2, pgo_multiple_normal,kappa,
-#                                       Delta1, Delta2, in1, in2,
-#                                       sigma1, sigma2, fixed, rho)
-#      res_test2 <- parallel::parSapply(cl, N2, Ess_multiple_normal, kappa,
-#                                       alpha, beta, Delta1, Delta2, in1, in2,
-#                                       sigma1, sigma2, fixed, rho)
-#      res_test3 <- parallel::parSapply(cl, N2, posp_normal,kappa, alpha, beta,
-#                                       Delta1, Delta2, sigma1, sigma2, in1, in2,
-#                                       fixed, rho)
-#      res_test4 <- parallel::parSapply(cl, N2, EPsProg_multiple_normal, kappa, 
-#                                       alpha, beta, Delta1, Delta2, sigma1, sigma2, 
-#                                       step11 = steps1, step12 = stepm1, 
-#                                       step21 = stepm1, step22 =stepl1, 
-#                                       in1, in2, fixed,rho)
-#      
-#      
-#      res <- parallel::parSapply(cl, N2, utility_multiple_normal, kappa,
-#                       alpha,beta, Delta1,Delta2, in1, in2, sigma1, sigma2,
-#                       rho,fixed,relaxed,
-#                       c2,c02,c3,c03,K,N,S,
-#                       steps1, stepm1, stepl1,b1, b2, b3)
-#      
-#      setTxtProgressBar(title= "i", pb, j)
-#      parallel::stopCluster(cl)
+      
+      res <- parallel::parSapply(cl, N2, utility_multiple_normal, kappa,
+                       alpha,beta, Delta1,Delta2, in1, in2, sigma1, sigma2,
+                       rho,fixed,relaxed,
+                       c2,c02,c3,c03,K,N,S,
+                       steps1, stepm1, stepl1,b1, b2, b3)
+      
+      setTxtProgressBar(title= "i", pb, j)
+      parallel::stopCluster(cl)
       
       ufkt[, j]     <-  res[1, ]
       n3fkt[, j]    <-  res[2, ]
