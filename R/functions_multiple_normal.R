@@ -98,7 +98,7 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
   
   
    if(fixed) {
-    return(pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(Delta1, Delta2),sigma=covmat)[1])
+    return(pmvnorm(lower=Kappa, upper=c(10000,10000), mean=c(Delta1, Delta2),sigma=covmat)[1])
   }
   
   else  {
@@ -156,7 +156,7 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
     return(integrate(function(x){ sapply(x,function(x){
       (4*(qnorm(1-alpha)+qnorm(1-beta))^2/x^2)*fmin(x,Delta1,Delta2,var1,var2,rho)
     })
-    },kappa,Inf)$value)
+    },kappa,10000)$value)
   }
   
   else   {
@@ -222,9 +222,9 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
                     mean=c(Delta1/sqrt(r[1]/max((r[1]*c/x^2),(r[2]*c/y^2))),Delta2/sqrt(r[2]/max((r[1]*c/x^2),(r[2]*c/y^2)))),
                     sigma=covmatt3)[1]*dbivanorm(x,y,Delta1,Delta2,var1,var2,rho)
           })
-        }, Kappa[1],Inf)$value #x
+        }, Kappa[1],10000)$value #x
       })
-    }, Kappa[2],Inf)$value)
+    }, Kappa[2],10000)$value)
   }
   
   else {
@@ -309,9 +309,9 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
                     mean=c(Delta1/sqrt(r[1]/max((r[1]*c/x^2),(r[2]*c/y^2))),Delta2/sqrt(r[2]/max((r[1]*c/x^2),(r[2]*c/y^2)))),
                     sigma=covmatt3)[1]*dbivanorm(x,y,Delta1,Delta2,var1,var2,rho)
           })
-        },Kappa[1],Inf)$value
+        },Kappa[1],1000)$value
       })
-    },Kappa[2],Inf)$value)
+    },Kappa[2],1000)$value)
   }
   
   
@@ -417,11 +417,11 @@ utility_multiple_normal<-function(kappa, n2, alpha, beta,
       # probability of a successful program; small, medium, large effect size
       prob11 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                            sigma1 = sigma1, sigma2 = sigma2,
-                           step11 = steps1 , step12 = stepm1  , step21 = stepm1, step22 = Inf, 
+                           step11 = steps1 , step12 = stepm1  , step21 = stepm1, step22 = 1000, 
                            in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
       prob21 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                               sigma1 = sigma1, sigma2 = sigma2,
-                              step11 = stepm1, step12 = steps1 , step21 = Inf , step22 = stepm1,
+                              step11 = stepm1, step12 = steps1 , step21 = 1000 , step22 = stepm1,
                               in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
       prob31 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                               sigma1 = sigma1, sigma2 = sigma2,
@@ -431,21 +431,21 @@ utility_multiple_normal<-function(kappa, n2, alpha, beta,
       proba1 <- prob11 + prob21 + prob31
       proba3 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                               sigma1 = sigma1, sigma2 = sigma2,
-                              step11 = stepl1, step12 = stepl1, step21 = Inf, step22 = Inf,
+                              step11 = stepl1, step12 = stepl1, step21 = 1000, step22 = 1000,
                               in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
       proba2 <- POSP - proba1 - proba3
       
       prob13 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                               sigma1 = sigma1, sigma2 = sigma2,
-                              step11 = stepl1, step12 = steps1, step21 = Inf, step22 = stepl1,
+                              step11 = stepl1, step12 = steps1, step21 = 1000, step22 = stepl1,
                               in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
       prob23 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                               sigma1 = sigma1, sigma2 = sigma2,
-                              step11 = steps1, step12 = stepl1, step21 = stepl1, step22 = Inf,
+                              step11 = steps1, step12 = stepl1, step21 = stepl1, step22 = 1000,
                               in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
       prob33 = EPsProg_multiple_normal(kappa = kappa ,n2 = n2, alpha=alpha, beta=beta, Delta1 = Delta1, Delta2=Delta2,
                               sigma1 = sigma1, sigma2 = sigma2,
-                              step11 = stepl1, step12 = stepl1, step21 = Inf, step22 = Inf,
+                              step11 = stepl1, step12 = stepl1, step21 = 1000, step22 = 1000,
                               in1 = in1, in2 = in2, fixed = fixed ,rho = rho)
       
       probb3 <- prob13 + prob23 + prob33
