@@ -100,16 +100,13 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
     cat("", fill = TRUE)
     pb <- txtProgressBar(min = 0, max = length(KAPPA), style = 3, label = "Optimization progess")
     
-    for (l in 1: length(N2)){
-      
-      n2 <- N2[l]
     
     for(j in 1:length(KAPPA)){
       
       kappa <- KAPPA[j]
       
         
-        res <- utility_multiple_normal(kappa = kappa, n2=n2, alpha = alpha, beta = beta, 
+        res <- utility_multiple_normal(kappa = kappa, n2=N2, alpha = alpha, beta = beta, 
                                        Delta1 = Delta1, Delta2= Delta2, in1 = in1, in2 = in2,
                                        sigma1= sigma1, sigma2=sigma2,
                                        c2 = c2, c02 = c02, c3 = c3, c03 = c03, K = K, N = N, S = S,
@@ -163,7 +160,7 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
       K2fkt[, j]    <-  res[7, ]
       K3fkt[, j]    <-  res[8, ]
       
-    }}
+    }
     
     ind   <-  which(ufkt  ==  max(ufkt), arr.ind <-  TRUE)
     
