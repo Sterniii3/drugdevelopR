@@ -55,3 +55,11 @@ res <- EPsProg23(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1,
                                   id1 = 280, id2 = 420, case = 2, size = "small",
                                   ymin = 0.5)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

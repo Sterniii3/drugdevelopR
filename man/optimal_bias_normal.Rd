@@ -184,3 +184,11 @@ cat(comment(res))                                        # displays the optimiza
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences.
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+
