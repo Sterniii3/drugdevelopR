@@ -98,6 +98,7 @@ After setting all these input parameters and running the function, let's take a 
 ```{r}
 res1
 ```
+The program returns a data frame, where the output for all implemented strategies is listed.
 For strategy 1 we get:
 
 * `res$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 105 events in phase II and 444 events in phase III, which correspond to 150 participants in phase II and 634 in phase III. 
@@ -125,7 +126,7 @@ In this article we presented an example when several phase III endpoints are per
 * [*Interpreting the rest of the output:*](https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html) Obtain further details on your drug development program.
 * [*Fixed or prior:*](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html) Model the assumed treatment effect on a prior distribution.
 * [*More parameters:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.
-* *Complex drug development programs:* Adapt to situations with [biased effect estimators](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html),  multi-arm trials, or multiple endpoints.
+* *Complex drug development programs:* Adapt to situations with [biased effect estimators](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html),  [multi-arm trials](https://sterniii3.github.io/drugdevelopR/articles/Multiarm_Trials.html), or multiple endpoints.
 * *Parallel computing:* Be faster at calculating the optimum by using parallel computing.
 
 # References
