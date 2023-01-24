@@ -109,7 +109,7 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
       kappa <- KAPPA[j]
       
         
-        res <- utility_multiarm_normal(kappa = kappa, n2=n2, alpha = alpha, beta = beta, 
+        res <- utility_multiple_normal(kappa = kappa, n2=n2, alpha = alpha, beta = beta, 
                                        Delta1 = Delta1, Delta2= Delta2, in1 = in1, in2 = in2,
                                        sigma1= sigma1, sigma2=sigma2,
                                        c2 = c2, c02 = c02, c3 = c3, c03 = c03, K = K, N = N, S = S,
