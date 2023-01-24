@@ -91,6 +91,7 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
   
   result <- NULL
   
+  
     
     ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
       sp2fkt <- sp3fkt <- n3fkt <- matrix(0, length(N2), length(KAPPA))
@@ -99,47 +100,59 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
     cat("", fill = TRUE)
     pb <- txtProgressBar(min = 0, max = length(KAPPA), style = 3, label = "Optimization progess")
     
+    for (l in 1: length(N2)){
+      
+      n2 <- N2[l]
+    
     for(j in 1:length(KAPPA)){
       
       kappa <- KAPPA[j]
       
-      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+        
+        res <- utility_multiarm_normal(kappa = kappa, n2=n2, alpha = alpha, beta = beta, 
+                                       Delta1 = Delta1, Delta2= Delta2, in1 = in1, in2 = in2,
+                                       sigma1= sigma1, sigma2=sigma2,
+                                       c2 = c2, c02 = c02, c3 = c3, c03 = c03, K = K, N = N, S = S,
+                                       steps1 = steps1, stepm1 = stepm1, stepl1 = stepl1, 
+                                       b1 = b1, b2 = b2, b3 = b3, fixed  = fixed, rho = rho, relaxed = relaxed)
       
-      parallel::clusterExport(cl, c("pmvnorm", "pnorm", "dmvnorm", "dnorm","qmvnorm", "qnorm","adaptIntegrate",
-                          "dbivanorm", "max", "min", "pgo_multiple_normal", "Ess_multiple_normal",
-                          "EPsProg_multiple_normal", "posp_normal", "fmin", "alpha", "beta",
-                          "steps1", "stepm1", "stepl1",
-                          "K", "N", "S",
-                          "c2", "c3", "c02", "c03",
-                          "b1", "b2", "b3", "kappa",
-                          "integrate", "sapply",
-                          "Delta1", "Delta2", "in1", "in2", "sigma1", "sigma2",
-                          "rho", "fixed", "relaxed"), envir = environment())
+#      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
-      res_test1 <- parallel::parSapply(cl, N2, pgo_multiple_normal,kappa,
-                                       Delta1, Delta2, in1, in2,
-                                       sigma1, sigma2, fixed, rho)
-      res_test2 <- parallel::parSapply(cl, N2, Ess_multiple_normal, kappa,
-                                       alpha, beta, Delta1, Delta2, in1, in2,
-                                       sigma1, sigma2, fixed, rho)
-      res_test3 <- parallel::parSapply(cl, N2, posp_normal,kappa, alpha, beta,
-                                       Delta1, Delta2, sigma1, sigma2, in1, in2,
-                                       fixed, rho)
-      res_test4 <- parallel::parSapply(cl, N2, EPsProg_multiple_normal, kappa, 
-                                       alpha, beta, Delta1, Delta2, sigma1, sigma2, 
-                                       step11 = steps1, step12 = stepm1, 
-                                       step21 = stepm1, step22 =stepl1, 
-                                       in1, in2, fixed,rho)
-      
-      
-      res <- parallel::parSapply(cl, N2, utility_multiple_normal, kappa,
-                       alpha,beta, Delta1,Delta2, in1, in2, sigma1, sigma2,
-                       rho,fixed,relaxed,
-                       c2,c02,c3,c03,K,N,S,
-                       steps1, stepm1, stepl1,b1, b2, b3)
-      
-      setTxtProgressBar(title= "i", pb, j)
-      parallel::stopCluster(cl)
+#      parallel::clusterExport(cl, c("pmvnorm", "pnorm", "dmvnorm", "dnorm","qmvnorm", "qnorm","adaptIntegrate",
+#                          "dbivanorm", "max", "min", "pgo_multiple_normal", "Ess_multiple_normal",
+#                          "EPsProg_multiple_normal", "posp_normal", "fmin", "alpha", "beta",
+#                          "steps1", "stepm1", "stepl1",
+#                         "K", "N", "S",
+#                          "c2", "c3", "c02", "c03",
+#                          "b1", "b2", "b3", "kappa",
+#                          "integrate", "sapply",
+#                          "Delta1", "Delta2", "in1", "in2", "sigma1", "sigma2",
+#                          "rho", "fixed", "relaxed"), envir = environment())
+#      
+#      res_test1 <- parallel::parSapply(cl, N2, pgo_multiple_normal,kappa,
+#                                       Delta1, Delta2, in1, in2,
+#                                       sigma1, sigma2, fixed, rho)
+#      res_test2 <- parallel::parSapply(cl, N2, Ess_multiple_normal, kappa,
+#                                       alpha, beta, Delta1, Delta2, in1, in2,
+#                                       sigma1, sigma2, fixed, rho)
+#      res_test3 <- parallel::parSapply(cl, N2, posp_normal,kappa, alpha, beta,
+#                                       Delta1, Delta2, sigma1, sigma2, in1, in2,
+#                                       fixed, rho)
+#      res_test4 <- parallel::parSapply(cl, N2, EPsProg_multiple_normal, kappa, 
+#                                       alpha, beta, Delta1, Delta2, sigma1, sigma2, 
+#                                       step11 = steps1, step12 = stepm1, 
+#                                       step21 = stepm1, step22 =stepl1, 
+#                                       in1, in2, fixed,rho)
+#      
+#      
+#      res <- parallel::parSapply(cl, N2, utility_multiple_normal, kappa,
+#                       alpha,beta, Delta1,Delta2, in1, in2, sigma1, sigma2,
+#                       rho,fixed,relaxed,
+#                       c2,c02,c3,c03,K,N,S,
+#                       steps1, stepm1, stepl1,b1, b2, b3)
+#      
+#      setTxtProgressBar(title= "i", pb, j)
+#      parallel::stopCluster(cl)
       
       ufkt[, j]     <-  res[1, ]
       n3fkt[, j]    <-  res[2, ]
@@ -150,7 +163,7 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
       K2fkt[, j]    <-  res[7, ]
       K3fkt[, j]    <-  res[8, ]
       
-    }
+    }}
     
     ind   <-  which(ufkt  ==  max(ufkt), arr.ind <-  TRUE)
     
@@ -191,6 +204,11 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
                                           alpha = alpha, beta = beta, c02 = c02,
                                           c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3))
     }
+    
+    
+  
+  
+
     
   
   
