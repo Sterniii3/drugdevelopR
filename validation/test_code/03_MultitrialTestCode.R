@@ -400,7 +400,7 @@ test_that("03.11", {
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
                                    n2min = 20, n2max = 500, stepn2 = 4,
-                                   kappamin = 0.02, kappamax = 0.4, kappago = 0.01,
+                                   kappamin = 0.02, kappamax = 0.4, stepkappa = 0.01,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
                                    num_cl = 3,
                                    c02 = 15, c03 = 20,
@@ -443,7 +443,7 @@ test_that("03.12", {
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
                                    n2min = 10, n2max = 500, stepn2 = 2,
-                                   kappamin = 0.01, kappamax = 0.5, kappago = 0.01,
+                                   kappamin = 0.01, kappamax = 0.5, stepkappa = 0.01,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
                                    num_cl = 3,
                                    c02 = 15, c03 = 20,
@@ -461,7 +461,7 @@ test_that("03.12", {
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
                                    n2min = 10, n2max = 500, stepn2 = 2,
-                                   kappamin = 0.01, kappamax = 0.5, kappago = 0.01,
+                                   kappamin = 0.01, kappamax = 0.5, stepkappa = 0.01,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
                                    num_cl = 1,
                                    c02 = 15, c03 = 20,
@@ -484,7 +484,7 @@ test_that("03.13", {
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
                                    n2min = 10, n2max = 500, stepn2 = 2,
-                                   kappamin = 0.01, kappamax = 0.5, kappago = 0.01,
+                                   kappamin = 0.01, kappamax = 0.5, stepkappa = 0.01,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
                                    num_cl = 3,
                                    c02 = 15, c03 = 20,
@@ -499,7 +499,7 @@ test_that("03.13", {
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
                                    n2min = 10, n2max = 500, stepn2 = 2,
-                                   kappamin = 0.01, kappamax = 0.5, kappago = 0.01,
+                                   kappamin = 0.01, kappamax = 0.5, stepkappa = 0.01,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
                                    num_cl = 3,
                                    c02 = 15, c03 = 20,
@@ -562,7 +562,7 @@ test_that("03.14", {
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
                                    n2min = 10, n2max = 500, stepn2 = 2,
-                                   kappamin = 0.01, kappamax = 0.5, kappago = 0.01,
+                                   kappamin = 0.01, kappamax = 0.5, stepkappa = 0.01,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
                                    num_cl = 3,
                                    c02 = 15, c03 = 20,
@@ -576,7 +576,7 @@ test_that("03.14", {
   # Strategy 1
   expect_equal(res$u, 1749.97, tolerance = 0.005)
   expect_equal(res$Kappa, 0.16)
-  expect_equal(416)
+  expect_equal(res$n2, 416)
   expect_equal(res$n3, 876)
   expect_equal(res$n, 1292)
 })
