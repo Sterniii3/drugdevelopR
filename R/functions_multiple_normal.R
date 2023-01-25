@@ -9,12 +9,6 @@
 # Date: 13.12.2016
 ############################################################################################
 
-#load packages
-library(mvtnorm)
-library(MASS)
-library(doParallel)
-library(parallel)
-
 
 #'Density for the minimum of two normally distributed random variables
 #'
