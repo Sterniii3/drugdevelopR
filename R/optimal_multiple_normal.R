@@ -110,13 +110,14 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
            
       parallel::clusterExport(cl, c("pmvnorm", "pnorm", "dmvnorm", "dnorm","qmvnorm", "qnorm",
                           "dbivanorm", "max", "min", "pgo_multiple_normal", "Ess_multiple_normal",
-                         "EPsProg_multiple_normal", "posp_normal", "fmin", "alpha", "beta",
+                          "EPsProg_multiple_normal", "posp_normal", "fmin", "alpha", "beta",
                           "steps1", "stepm1", "stepl1",
-                         "K", "N", "S",
+                          "K", "N", "S",
                           "c2", "c3", "c02", "c03",
                           "b1", "b2", "b3", "kappa",
                           "integrate", "sapply",
                           "Delta1", "Delta2", "in1", "in2", "sigma1", "sigma2",
+                          "MASS", "Kappa", "covmat",
                           "rho", "fixed", "relaxed"), envir = environment())
       
       res_test1 <- parallel::parSapply(cl, N2, pgo_multiple_normal,kappa,
