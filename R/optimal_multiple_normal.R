@@ -108,7 +108,7 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
       
      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
            
-      parallel::clusterExport(cl, c("pmvnorm", "pnorm", "dmvnorm", "dnorm","qmvnorm", "qnorm","adaptIntegrate",
+      parallel::clusterExport(cl, c("pmvnorm", "pnorm", "dmvnorm", "dnorm","qmvnorm", "qnorm",
                           "dbivanorm", "max", "min", "pgo_multiple_normal", "Ess_multiple_normal",
                          "EPsProg_multiple_normal", "posp_normal", "fmin", "alpha", "beta",
                           "steps1", "stepm1", "stepl1",
