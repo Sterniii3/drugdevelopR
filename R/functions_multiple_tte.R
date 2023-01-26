@@ -142,9 +142,10 @@ Ess_multiple_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
   
  if(fixed)  {
          return(integrate(function(x){
-          sapply(x,function(x)
-            ((4*(qnorm(1 - alpha) + qnorm(1 - beta))^2)/x^2)*fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho))
-        },-log(HRgo),Inf,abs.tol=1e-2)$value)
+          sapply(x,function(x){
+            ((4*(qnorm(1 - alpha) + qnorm(1 - beta))^2)/x^2)*fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)
+            })
+        },-log(HRgo),Inf)$value)
       }
 
   else   {
@@ -266,7 +267,7 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
               sapply(y,function(y){
                 fmax(y,-log(hr1)/sqrt((x^2/c)*(ec/hr[1])),-log(hr2)/sqrt((x^2/c)*(ec/hr[2])),1,1,rho)*fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)
               })
-            },qnorm(1-alpha)+step1/sqrt((x^2/c)),qnorm(1-alpha)+step2/sqrt((x^2/c)))$value
+            },qnorm(1-alpha)-log(step1)/sqrt((x^2/c)),qnorm(1-alpha)-log(step2)/sqrt((x^2/c)))$value
           })
         }, -log(HRgo),Inf)$value)
    }
@@ -285,13 +286,13 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
                       (fmax(y,-log(hr1)/sqrt((x^2/c)*(hr[ec]/hr[1])),-log(hr2)/sqrt((x^2/c)*(hr[ec]/hr[2])),1,1,rho)
                        *fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)*dbivanorm(u,v,hr1,hr2,vartrue1,vartrue2,rho))
                     })
-                  },qnorm(1-alpha)+step1/sqrt((x^2/c)),qnorm(1-alpha)+step2/sqrt((x^2/c)))$value
+                  },qnorm(1-alpha)-log(step1)/sqrt((x^2/c)),qnorm(1-alpha)-log(step2)/sqrt((x^2/c)))$value
                 })
               },-log(HRgo),Inf)$value
             })
-          },-Inf,Inf)$value
+          },-1000,1000)$value
         })
-      },-Inf,Inf)$value)
+      },-1000,1000)$value)
      
    }
 }
@@ -359,9 +360,9 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
               })
             },-Inf,Inf)$value
           })
-        },-Inf,Inf)$value
+        },-1000,1000)$value
       })
-    },-Inf,Inf)$value
+    },-1000,1000)$value
 
     os2_tte<-integrate(function(u){
       sapply(u,function(u){
@@ -373,9 +374,9 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
               })
             },-Inf,Inf)$value
           })
-        },-Inf,Inf)$value
+        },-1000,1000)$value
       })
-    },-Inf,Inf)$value}
+    },-1000,1000)$value}
 
     return(os_tte <- os1_tte*pw(n2,hr1,hr2,id1,id2,fixed,rho) + os2_tte*(1-pw(n2,hr1,hr2,id1,id2,fixed,rho)))
 }
@@ -437,17 +438,22 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
   stepm2 <- stepl1
   stepl2 <- 0
 
-   n3 <- Ess_multiple_tte(HRgo=HRgo,n2=n2,alpha=alpha,beta=beta,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
+   n3 <- Ess_multiple_tte(HRgo=HRgo,n2=n2,
+                          alpha=alpha,beta=beta,
+                          hr1=hr1,hr2=hr2,id1=id1,id2=id2,
+                          fixed=fixed,rho=rho)
    
-   OS <- os_tte(HRgo = HRgo, n2 = n2, alpha = alpha, beta = beta,
+   OS <- os_tte(HRgo = HRgo, n2 = n2,
+                alpha = alpha, beta = beta,
                 hr1 = hr1, hr2 = hr2,
-                id1 = id1, id2 = id2, fixed = fixed, rho = rho)
+                id1 = id1, id2 = id2,
+                fixed = fixed, rho = rho)
   
    pw <- pw(n2=n2,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
    
    if(n2+n3>N){
      
-     return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+     return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
      
    }else{
      
@@ -458,7 +464,7 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
      
      if(K2+K3>K){
        
-       return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+       return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
        #output: expected utility Eud, En3, EsP, Epgo
        
      }else{
@@ -487,7 +493,7 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
        
        if(SP<S){
          
-         return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
+         return(c(-9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999, -9999))
          
        }else{
          

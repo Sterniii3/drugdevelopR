@@ -40,6 +40,9 @@
 #' @param sigma2 variance of endpoint 2
 #' @param relaxed relaxed or strict decision rule 
 #' @param beta type-II error rate for any pair, i.e. `1 - beta` is the (any-pair) power for calculation of the sample size for phase III
+#'
+#' @importFrom stats quantile rnorm
+#'
 #' @return
 #' `r optimal_return_doc(type = "normal", setting = "multiple")`
 #' 
@@ -47,7 +50,7 @@
 #'  #res <- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs
 #'  # in1=300, in2=600, sigma1 = 8, sigma2= 12,
 #'  # n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
-#'  # kappamin = 0.7, kappamax = 0.9, stepkappa = 0.05,         # define optimization set for HRgo
+#'  # kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,         # define optimization set for HRgo
 #'  # alpha = 0.05, beta = 0.1,                              # drug development planning parameters
 #'  # c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
 #'  # K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
@@ -62,7 +65,7 @@
 #' #cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
 #' 
 #' @references
-#' Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal Designs for Multi-Arm Phase II/III Drug Development Programs. Submitted to peer-review journal.
+#' Meinhard Kieser, Marietta Kirchner, Eva Dölger, Heiko Götte (2018). Optimal planning of phase II/III programs for clinical trials with multiple endpoints
 #'
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 #' @editor Johannes Cepicka
@@ -88,6 +91,7 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
   
   result <- NULL
   
+  
     
     ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
       sp2fkt <- sp3fkt <- n3fkt <- matrix(0, length(N2), length(KAPPA))
@@ -96,20 +100,40 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
     cat("", fill = TRUE)
     pb <- txtProgressBar(min = 0, max = length(KAPPA), style = 3, label = "Optimization progess")
     
+    
     for(j in 1:length(KAPPA)){
       
       kappa <- KAPPA[j]
+    
       
-      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
-      
-      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate","dbivanorm", "pgo_multiple_normal", "Ess_multiple_normal",
+     cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+           
+      parallel::clusterExport(cl, c("pmvnorm", "pnorm", "dmvnorm", "dnorm","qmvnorm", "qnorm",
+                          "dbivanorm", "max", "min", "pgo_multiple_normal", "Ess_multiple_normal",
                           "EPsProg_multiple_normal", "posp_normal", "fmin", "alpha", "beta",
                           "steps1", "stepm1", "stepl1",
                           "K", "N", "S",
                           "c2", "c3", "c02", "c03",
-                          "b1", "b2", "b3", "KAPPA",
+                          "b1", "b2", "b3", "kappa",
+                          "integrate", "sapply",
                           "Delta1", "Delta2", "in1", "in2", "sigma1", "sigma2",
+                           "Kappa", "covmat", "var1", "var2",
                           "rho", "fixed", "relaxed"), envir = environment())
+      
+      res_test1 <- parallel::parSapply(cl, N2, pgo_multiple_normal,kappa,
+                                       Delta1, Delta2, in1, in2,
+                                       sigma1, sigma2, fixed, rho)
+      res_test2 <- parallel::parSapply(cl, N2, Ess_multiple_normal, kappa,
+                                       alpha, beta, Delta1, Delta2, in1, in2,
+                                       sigma1, sigma2, fixed, rho)
+      res_test3 <- parallel::parSapply(cl, N2, posp_normal,kappa, alpha, beta,
+                                       Delta1, Delta2, sigma1, sigma2, in1, in2,
+                                       fixed, rho)
+      res_test4 <- parallel::parSapply(cl, N2, EPsProg_multiple_normal, kappa, 
+                                       alpha, beta, Delta1, Delta2, sigma1, sigma2, 
+                                       step11 = steps1, step12 = stepm1, 
+                                       step21 = stepm1, step22 =stepl1, 
+                                       in1, in2, fixed,rho)
       
       
       res <- parallel::parSapply(cl, N2, utility_multiple_normal, kappa,
@@ -156,8 +180,6 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
                                           K = K, K2 = round(k2), K3 = round(k3),
                                           sProg1 = round(prob1,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),
                                           steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
-                                          pgo3 = round(pg3,2), d33= d33, n33 = n33,
-                                          sProg13 = round(prob13,2), sProg23 = round(prob23,2), sProg33 = round(prob33,2),
                                           alpha = alpha, beta = beta, c02 = c02,
                                           c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3))
     }else{
@@ -173,6 +195,11 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
                                           alpha = alpha, beta = beta, c02 = c02,
                                           c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3))
     }
+    
+    
+  
+  
+
     
   
   

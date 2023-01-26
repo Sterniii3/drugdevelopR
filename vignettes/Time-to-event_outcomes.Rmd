@@ -1,5 +1,5 @@
 ---
-title: "Time-to-event_outcomes"
+title: "Time-to-event Outcome Variables"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Time-to-event_outcomes}
@@ -14,16 +14,106 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
+
+The drugdevelopR package enables us to optimally plan such programs using a utility-maximizing approach. To get a brief introduction, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html). In the introduction, the observed outcome variable "tumor growth" was normally distributed. However, the drugdevelopR package is not only restricted to normally distributed outcome variables but also binary distributed outcome variables and a time-to-event outcome variables. In this article we want explain how the setting with time-to-event variables works.
+
+# The example setting
+Suppose we are developing a new tumor treatment, *exper*. The patient variable that we want to investigate is how long the patient survives without further progression of the tumor (progression free survival). This is a time to event outcome variable.
+
+Within our drug development program, we will compare our experimental treatment *exper* to the control treatment *contro*.
+The treatment effect measure is given by $\theta = −\log(HR)$, which is the negative logarithm of the hazard ratio $HR$, which is the ratio of the hazard rates. If we assume that unfavorable events as tumor progression occur only 75\% as often as in the control group, we have a hazard ratio of 0.75.
+
+# Applying the package to the example
+
+After installing the package according to the [installation instructions](https://sterniii3.github.io/drugdevelopR/#Installation), we can load it using the following code:
+```{r}
 library(drugdevelopR)
 ```
 
+## Defining all necessary parameters
+In order to apply the package to the setting from our example, we need to specify the following parameters:
+
+* `hr1` is our hazard ratio. As already explained above, we assume that our experimental treatment *exper* leads to unfavorable events occurring only 75\% of times compared to the control treatment *contro*. Therefore, we set `hr1 = 0.75`. For now, we will assume that the probabilities are fixed and independent of any prior distribution. Thus, we will set `fixed = TRUE`.
+* `d2min` and `d2max` specify the minimal and maximal number of events for the phase II trial. The package will search for the optimal sample size within this region. For now, we want the program to search for the optimal sample size in the interval between 20 and 400 events. In addition, we will tell the program to search this region in steps of four participants at a time by setting `stepd2 = 4`.
+* `hrgomin` and `hrgomax` specify the minimal and maximal threshold value for the go/no-go decision rule in terms of the negative logarithm of the hazard ratio. The package will search for the optimal threshold value within this region. For now, we want the program to search in the interval between 0.7 and 0.9 while going in steps of `stephrgo = 0.01`. Note, that he lower bound of the decision rule set for represents the smallest size of treatment effect observed in phase II allowing to go to phase III, so it can be used to model the minimally clinically relevant effect size. Moreover, note that the interval specified above corresponds to the set $\{-\log(0.9), ..., -\log(0.7)\}$.
+* `xi2` and `xi3` correspond to the event rates in phase II and phase III. After calculating the optimal number of events `d2` and `d3`, the event rates are used to calculate the optimal sample sizes in phase II and III. We assume event rates of 0.7 in each phase, indicating that 70 events correspond to an optimal sample size of 100, respectively.
+* `c02` and `c03` are fixed costs for phase II and phase III respectively. We will set the phase II costs to 100 and the phase III costs to 150 (in $10^5$\$), i.e we have fixed costs of 10 000 000\$ in phase II and 15 000 000\$ in phase III. Note that the currency of the input values does not matter, so an input value for `c02` of 15 could also be interpreted as fixed costs of 1 500 000€ if necessary. 
+* `c2` and `c3` are the costs in phase II and phase III per patient. We will set them to be 0.75 in phase II and 0.1 in phase III. Again, these values are given in $10^5$\$, i.e we have per patient costs of 75 000\$ in phase II and 100 000\$ in phase III.
+* `b1`, `b2` and `b3` are the expected small, medium and large benefit categories for successfully launching the treatment on the market for each effect size category in $10^5$\$. We will define a small benefit of 1000, a medium benefit of 2000, and a large benefit of 3000. The effect size categories directly correspond to the treatment effect, i.e. if the the treatment effect is between 1 and 0.95 (in terms of the risk ratio) we have a small treatment effect, hence yielding expected benefits of the drug development program of 100 000 000\$.
+* `alpha` is the specified significance level. We will set `alpha = 0.05`.
+* 1 - `beta` is the minimal power that we require for our drug development program. We will set `beta = 0.1`, meaning that we require a power of 90%.
+
+As in the setting with normally distributed outcomes, the treatment effect may be fixed (as in this example) or follows a prior distribution (see [Fixed or Prior](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html)).
+Note, that in the case of using a prior distribution, the following input parameters have to be specified, which differ from the setting with normally distributed outcomes:
+* Instead of the parameters `in1` and `in2` for the "amount of information", we have to use the parameters `id1` and `id2` which represent the "number of events". They refer to the number of events which were observed in the study to determine the treatment effect. If in our study 210 events could be observed, then the value for `id1` is set to be 420. If we assume assume that in the study of the other research group 420 events could be observed, the parameter value for `id2` is 420.
+* Moreover, we do not need truncation values, i.e. values for the parameters `a` and `b`.
+
+Furthermore, all options to adapt the program to your specific needs are also available in this setting (see [More Paramters](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html)).
+
+Now that we have defined all parameters needed for our example, we are ready to feed them to the package. We will use the function `optimal_tte()`, which calculates the optimal sample size and the optimal threshold value for a time-to-event outcome variable.
+```{r,eval = FALSE}
+res <- optimal_tte(w = 0.3,                               # define parameters for prior
+   hr1 = 0.75, hr2 = 0.8, id1 = 210, id2 = 420,           # (https://web.imbi.uni-heidelberg.de/prior/)
+   d2min = 20, d2max = 400, stepd2 = 5,                   # define optimization set for d2
+   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.01,         # define optimization set for HRgo
+   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,        # drug development planning parameters
+   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs
+   K = Inf, N = Inf, S = -Inf,                            # set constraints
+   steps1 = 1,  stepm1 = 0.95, stepl1 = 0.85,             # define boundary for  effect size categories
+   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefits
+   gamma = 0,                                             # assume different/same population structures 
+   fixed = TRUE,                                          # choose if  effects are fixed or random
+   skipII = FALSE,                                        # more parameters
+   num_cl = 1)
+```
+
+```{r, eval=TRUE, include=FALSE}
+# Comment this chunk after running it once
+#res <- optimal_tte(w = 0.3,                               # define parameters for prior
+#   hr1 = 0.75, hr2 = 0.8, id1 = 210, id2 = 420,           # (https://web.imbi.uni-heidelberg.de/prior/)
+#   d2min = 20, d2max = 400, stepd2 = 5,                   # define optimization set for d2
+#   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.01,         # define optimization set for HRgo
+#   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,        # drug development planning parameters
+#   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs
+#   K = Inf, N = Inf, S = -Inf,                            # set constraints
+#   steps1 = 1,  stepm1 = 0.95, stepl1 = 0.85,             # define boundary for  effect size categories
+#  b1 = 1000, b2 = 2000, b3 = 3000,                        # define expected benefits
+#   gamma = 0,                                             # assume different/same population structures 
+#   fixed = TRUE,                                          # choose if  effects are fixed or random
+#   skipII = FALSE,                                        # more parameters
+#   num_cl = 1)
+#saveRDS(res, file="optimal_tte_basic_setting.RDS")
+```
+```{r, eval=TRUE, include=FALSE}
+res <- readRDS(file="optimal_tte_basic_setting.RDS")
+```
+
+## Interpreting the output
+
+After setting all these input parameters and running the function, let's take a look at the output of the program.
+
+```{r}
+res
+```
+
+
+The program returns a total of sixteen output values and the input paramters. For now, we will only look at the most important ones:
+
+* `res$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 210 events in phase II and 441 events in phase III, which correspond to 300 participants in phase II and 630 in phase III. 
+* `res$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.88 in phase II in order to proceed to phase III. 
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 584.57, i.e we have an expected utility of 58 457 000\$. 
+
+
+# Where to go from here
+
+In this article we introduced the setting, when the outcome is a time-to-event variable. 
 For more information on how to use the package, see:
 
 * [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html) See how the package works in a basic example.
-* *Different outcomes:* Apply it to binary endpoints and time-to-event endpoints.
+* *Different outcomes:* Apply it to [binary endpoints](https://sterniii3.github.io/drugdevelopR/articles/Binary_distributed_outcomes.html).
 * [*Interpreting the rest of the output:*](https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html) Obtain further details on your drug development program.
 * [*Fixed or prior:*](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html) Model the assumed treatment effect on a prior distribution.
 * [*More parameters:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.
-* *Complex drug development programs:* Adapt to situations with biased effect estimators, multiple phase III trials, multi-arm trials, or multiple endpoints.
+* *Complex drug development programs:* Adapt to situations with [biased effect estimators](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html), [multiple phase III trials](https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html), [multi-arm trials](https://sterniii3.github.io/drugdevelopR/articles/Multiarm_Trials.html), or multiple endpoints.
 * *Parallel computing:* Be faster at calculating the optimum by using parallel computing.

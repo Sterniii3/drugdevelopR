@@ -109,3 +109,11 @@ res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
                                b12 = 1000, b22 = 1500, b32 = 2000, 
                                fixed = TRUE, rho = 0.3)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

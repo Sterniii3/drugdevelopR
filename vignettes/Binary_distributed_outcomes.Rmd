@@ -1,5 +1,6 @@
 ---
-title: "Binary_distributed_outcomes"
+title: "Binary Distributed Outcome Variables"
+author: "Johannes Cepicka"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Binary_distributed_outcomes}
@@ -14,16 +15,99 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
+
+The drugdevelopR package enables us to optimally plan such programs using a utility-maximizing approach. To get a brief introduction, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html). In the introduction, the observed outcome variable "tumor growth" was normally distributed. However, the drugdevelopR package is not only restricted to normally distributed outcome variables but also binary distributed outcome variables and a time-to-event outcome variables. In this article we want explain how the setting with binary distributed variables works.
+
+# The example setting
+Suppose we are developing a new treatment to prevent strokes, *exper*. The patient variable that we want to investigate is if the patient has had a stroke (unfavorable outcome with value 1) or not (favourable outcome with value 0) over a pre-defined observation period. This is a binary distributed outcome variable.
+
+Within our drug development program, we will compare our experimental treatment *exper* to the control treatment *contro*.
+The treatment effect measure is given by $ \rho = −\log(RR)$, which is the negative logarithm of the risk ratio (relative risk) $RR = \frac{p_1}{p_0}$. Here, $p_1$ is the failure probability of the experimental treatment (i.e. $\mathbb{P}(X_i = 1)$, the probability that patient $X_i$ has a stroke) and analogously $p_0$ is the failure probability of the control treatment.
+
+# Applying the package to the example
+
+After installing the package according to the [installation instructions](https://sterniii3.github.io/drugdevelopR/#Installation), we can load it using the following code:
+```{r}
 library(drugdevelopR)
 ```
 
+## Defining all necessary parameters
+In order to apply the package to the setting from our example, we need to specify the following parameters:
+
+* `p11` is the probability that the unfavorable outcome occurs for our experimental treatment *exper* and `p0` is the probability that the unfavorable outcome occurs for our control treatment *contro*. Lets assume, that 30\% of patients, who receive the experimental treatment have a stroke and 50\% of the control group. Therefore, we set `p11 = 0.3` and `p0 = 0.5`.  For now, we will assume that the probabilities are fixed and independent of any prior distribution. Thus, we will set `fixed = TRUE`.
+* `n2min` and `n2max` specify the minimal and maximal number of participants for the phase II trial. The package will search for the optimal sample size within this region. For now, we want the program to search for the optimal sample size in the interval between 20 and 400 participants. In addition, we will tell the program to search this region in steps of four participants at a time by setting `stepn2 = 4`.
+* `rrgomin` and `rrgomax` specify the minimal and maximal threshold value for the go/no-go decision rule in terms of the negative logarithm of the risk ratio. The package will search for the optimal threshold value within this region. For now, we want the program to search in the interval between 0.7 and 0.9 while going in steps of `steprrgo = 0.01`. Note, that he lower bound of the decision rule set for represents the smallest size of treatment effect observed in phase II allowing to go to phase III, so it can be used to model the minimally clinically relevant effect size. Moreover, note that the interval specified above corresponds to the set $\{-\log(0.9), ..., -\log(0.7)\}$.
+* `c02` and `c03` are fixed costs for phase II and phase III respectively. We will set the phase II costs to 100 and the phase III costs to 150 (in $10^5$\$), i.e we have fixed costs of 10 000 000\$ in phase II and 15 000 000\$ in phase III. Note that the currency of the input values does not matter, so an input value for `c02` of 15 could also be interpreted as fixed costs of 1 500 000€ if necessary. 
+* `c2` and `c3` are the costs in phase II and phase III per patient. We will set them to be 0.75 in phase II and 0.1 in phase III. Again, these values are given in $10^5$\$, i.e we have per patient costs of 75 000\$ in phase II and 100 000\$ in phase III.
+* `b1`, `b2` and `b3` are the expected small, medium and large benefit categories for successfully launching the treatment on the market for each effect size category in $10^5$\$. We will define a small benefit of 1000, a medium benefit of 2000, and a large benefit of 3000. The effect size categories directly correspond to the treatment effect, i.e. if the the treatment effect is between 1 and 0.95 (in terms of the risk ratio) we have a small treatment effect, hence yielding expected benefits of the drug development program of 100 000 000\$.
+* `alpha` is the specified significance level. We will set `alpha = 0.05`.
+* 1 - `beta` is the minimal power that we require for our drug development program. We will set `beta = 0.1`, meaning that we require a power of 90%.
+
+As in the setting with normally distributed outcomes, the treatment effect may be fixed (as in this example) or follows a prior distribution (see [Fixed or Prior](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html)). Furthermore, all options to adapt the program to your specific needs are also available in this setting (see [More Paramters](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html)).
+
+Now that we have defined all parameters needed for our example, we are ready to feed them to the package. We will use the function `optimal_binary()`, which calculates the optimal sample size and the optimal threshold value for a binary distributed outcome variable.
+```{r,eval = FALSE}
+res <- optimal_binary(p0 = 0.5, p11 =  0.3,               # probabilities of the unfavorable outcome
+   n2min = 20, n2max = 400, stepn2 = 4,                   # define optimization set for n2
+   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,         # define optimization set for RRgo
+   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
+   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III,
+   K = Inf, N = Inf, S = -Inf,                            # constraints
+   steps1 = 1, stepm1 = 0.95,  stepl1 = 0.85,             # treatment effect size categories as proposed by IQWiG (2016)
+   b1 = 1000, b2 = 2000, b3 = 3000,                       # expected benefit categories
+   w = 0.3, p12 = 0.5, in1 = 30, in2 = 60,                # prior (https://web.imbi.uni-heidelberg.de/prior/)
+   gamma = 0,                                             # population structures in phase II and III
+   fixed = TRUE,                                          # choose if true treatment effects are fixed or random
+   skipII = FALSE,                                        # choose if skipping phase II would be an option
+   num_cl = 1)
+```
+
+```{r, eval=TRUE, include=FALSE}
+# Comment this chunk after running it once
+#res <- optimal_binary(p0 = 0.5, p11 =  0.3,               # probabilities of the unfavorable outcome
+#   n2min = 20, n2max = 400, stepn2 = 4,                   # define optimization set for n2
+#   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,         # define optimization set for RRgo
+#   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
+#   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III,
+#   K = Inf, N = Inf, S = -Inf,                            # constraints
+#   steps1 = 1, stepm1 = 0.95,  stepl1 = 0.85,             # treatment effect size categories as proposed by IQWiG (2016)
+#   b1 = 1000, b2 = 2000, b3 = 3000,                       # expected benefit categories
+#   w = 0.3, p12 = 0.5, in1 = 30, in2 = 60,                # prior (https://web.imbi.uni-heidelberg.de/prior/)
+#   gamma = 0,                                             # population structures in phase II and III
+#   fixed = TRUE,                                          # choose if true treatment effects are fixed or random
+#   skipII = FALSE,                                        # choose if skipping phase II would be an option
+#   num_cl = 1)
+#saveRDS(res, file="optimal_binary_basic_setting.RDS")
+```
+```{r, eval=TRUE, include=FALSE}
+res <- readRDS(file="optimal_binary_basic_setting.RDS")
+```
+
+## Interpreting the output
+
+After setting all these input parameters and running the function, let's take a look at the output of the program.
+
+```{r}
+res
+```
+
+
+The program returns a total of thirteen values and the input values. For now, we will only look at the most important ones:
+
+* `res$n2` is the optimal sample size for phase II and `res$n3` the resulting sample size for phase III. We see that the optimal scenario requires 256 participants in phase II and 290 participants in phase III. 
+* `res$RRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a risk ratio of less than 0.87 in phase II in order to proceed to phase III. 
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 1528.94, i.e we have an expected utility of 152 894 000\$. 
+
+# Where to go from here
+
+In this article we introduced the setting, when the outcome variable is binary distributed. 
 For more information on how to use the package, see:
 
 * [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html) See how the package works in a basic example.
-* *Different outcomes:* Apply it to binary endpoints and time-to-event endpoints.
+* *Different outcomes:* Apply it to [time-to-event endpoints](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html).
 * [*Interpreting the rest of the output:*](https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html) Obtain further details on your drug development program.
 * [*Fixed or prior:*](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html) Model the assumed treatment effect on a prior distribution.
 * [*More parameters:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.
-* *Complex drug development programs:* Adapt to situations with biased effect estimators, multiple phase III trials, multi-arm trials, or multiple endpoints.
-* *Parallel computing:* Be faster at calculating the optimum by using parallel computing.
+* *Complex drug development programs:* Adapt to situations with [biased effect estimators](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html), [multiple phase III trials](https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html), [multi-arm trials](https://sterniii3.github.io/drugdevelopR/articles/Multiarm_Trials.html), or multiple endpoints.
+* [*Parallel computing:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Be faster at calculating the optimum by using parallel computing.

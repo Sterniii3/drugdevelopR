@@ -9,12 +9,6 @@
 # Date: 13.12.2016
 ############################################################################################
 
-#load packages
-library(mvtnorm)
-library(MASS)
-library(doParallel)
-library(parallel)
-
 
 #'Density for the minimum of two normally distributed random variables
 #'
@@ -92,15 +86,13 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
   
   Kappa <- c(kappa*sigma1,kappa*sigma2)
-  Sigma <- c(sigma1,sigma2)
-  r<-c(4*Sigma[1]^2,4*Sigma[2]^2) #(r1,r2) known constant for endpoint i
-  var1<-r[1]/n2 #variance of effect for endpoint 1
-  var2<-r[2]/n2 #variance of effect for endpoint 2
-  covmat<-matrix(c(var1, rho*sqrt(var1)*sqrt(var2), rho*sqrt(var1)*sqrt(var2), var2), ncol=2) #covariance-Matrix of c(true1,true2)
+  var1 <- (4*sigma1^2)/n2  #variance of effect for endpoint 1 
+  var2 <- (4*sigma2^2)/n2  #variance of effect for endpoint 2
+  covmat<-matrix(c(var1, rho*sqrt(var1)*sqrt(var2), rho*sqrt(var1)*sqrt(var2), var2), ncol=2) #covariance-Matrix of c(Delta2,Delta2)
   
   
    if(fixed) {
-    return(pmvnorm(lower=kappa, upper=c(Inf,Inf), mean=c(Delta1, Delta2),sigma=covmat)[1])
+    return(pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(Delta1, Delta2),sigma=covmat)[1])
   }
   
   else  {
@@ -108,7 +100,7 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
       sapply(u,function(u){
         integrate(function(v){
           sapply(v,function(v){
-            (pmvnorm(lower=kappa, upper=c(Inf,Inf), mean=c(u,v),sigma=covmat)[1])*dbivanorm(u,v,Delta1,Delta2, 4/in1, 4/in2, rho)
+            (pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(u,v),sigma=covmat)[1])*dbivanorm(u,v,Delta1,Delta2, 4/in1, 4/in2, rho)
           })
         },-Inf,Inf )$value
       })
@@ -297,7 +289,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
   covmatt3<-matrix(c(1, rho, rho, 1), ncol=2)
   
   
-  c     = (qnorm(1-alpha)+qnorm(1-beta))^2 
+  c <- (qnorm(1-alpha)+qnorm(1-beta))^2 
   
   if(fixed) {
     return(integrate(function(y){

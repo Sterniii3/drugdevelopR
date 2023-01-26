@@ -77,12 +77,12 @@ test_that("03.02", {
   )
   # Strategies
   expect_equal(res$Strategy, 1)
-  expect_equal(res$u, -150.95, tolerance = 0.005)
-  expect_equal(res$n2, 176)
-  expect_equal(res$n3, 146)
-  expect_equal(res$n, 322)
-  expect_equal(res$HRgo, 0.68)
-  expect_equal(res$pgo, 0.22)
+  expect_equal(res$u, -148.05, tolerance = 0.005)
+  expect_equal(res$n2, 140)
+  expect_equal(res$n3, 134)
+  expect_equal(res$n, 274)
+  expect_equal(res$HRgo, 0.67)
+  expect_equal(res$pgo, 0.21)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23

@@ -139,3 +139,11 @@ res <- En3_normal_L(kappa = 0.1, n2 = 50, Adj = 0,
                               in1 = 300, in2 = 600, 
                               a = 0.25, b = 0.75, fixed = FALSE)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

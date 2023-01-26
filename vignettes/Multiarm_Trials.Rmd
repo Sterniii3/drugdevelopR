@@ -1,5 +1,5 @@
 ---
-title: "Multiarm_Trials"
+title: "Multiarm - Methods for Multi-Arm Programs"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Multiarm_Trials}
@@ -14,16 +14,98 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+
+Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
+
+The drugdevelopR package enables us to optimally plan such programs using a utility-maximizing approach. To get a brief introduction, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html). Contrary to the basic setting, when only one phase II and one phase III trial were conducted, in this scenario we investigate what happens when multi-arm trials are conducted, i.e. when several different treatments are ready at the same time, or several doses of the same treatment are available. The drugdevelopR package enables multi-arm program with two treatment arms and one control arm, so we can investigate what happens when two different treatments are ready at the same time or two doses of the same treatment.
+
+# The example setting
+Suppose we are developing a new tumor treatment, *exper*. The patient variable that we want to investigate is how long the patient survives without further progression of the tumor (progression free survival). This is a time to event outcome variable. We want to test two different doses of of *exper*, *exper1* and *exper2*. Therefore, we will use the function `optimal_multiarm`, which calculates optimal sample sizes and threshold decisions values for time-to-event outcomes when multi-arm trials are conducted. 
+
+Within our drug development program, we will compare our two experimental treatments *exper1* and *exper2* to the control treatment *contro*. The treatment effect measure is given by $\theta = −\log(HR)$, which is the negative logarithm of the hazard ratio $HR$, which is the ratio of the hazard rates, for each treatment effect. If we assume that unfavorable events as tumor progression occur only 75\% as often as in the control group for a specific dose, we have a hazard ratio of 0.75.
+
+# Applying the package to the example
+
+After installing the package according to the [installation instructions](https://sterniii3.github.io/drugdevelopR/#Installation), we can load it using the following code:
+```{r}
 library(drugdevelopR)
 ```
 
-For more information on how to use the package, see:
+## Defining all necessary parameters
+As, the parameters in the multi-arm setting differ slightly from the other cases ([bias adjustment](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html) and [multitrial](https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html)), we will explain them in more detail.
+Contrary to the basic setting, the treatment effect are always assumed to be fixed, so the option to use prior distributions is not available. Nevertheless, some options to adapt the program to your specific needs are also available in this setting (see [More Paramters](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html)), and choosing different treatment effects in phase II and III are not possible.
+
+* `hr1` is our hazard ratio for the first dose *exper1*. As already explained above, we assume that our experimental treatment *exper1* leads to unfavorable events occurring only 75\% of times compared to the control treatment *contro*. Therefore, we set `hr1 = 0.75`. Analogously, `hr2` is the hazard ratio for our second dose *exper2*. For our example, we set `hr2 = 0.8`.
+* `ec` is the control arm event rate for phase II and III, how often the unfavorable event occurs in the control group. We assume that 60% of patients in the group *contro* have an unfavorable event, thus, we set `ec = 0.6`.
+* `n2min` and `n2max` specify the minimal and maximal number of participants for the phase II trial. The package will search for the optimal sample size within this region. For now, we want the program to search for the optimal sample size in the interval between 20 and 400 participants. In addition, we will tell the program to search this region in steps of ten participants at a time by setting `stepn2 = 10`.
+* `hrgomin` and `hrgomax` specify the minimal and maximal threshold value for the go/no-go decision rule in terms of the negative logarithm of the hazard ratio. The package will search for the optimal threshold value within this region. For now, we want the program to search in the interval between 0.76 and 0.9 while going in steps of `stephrgo = 0.02`. Note, that he lower bound of the decision rule set for represents the smallest size of treatment effect observed in phase II allowing to go to phase III, so it can be used to model the minimally clinically relevant effect size. Moreover, note that the interval specified above corresponds to the set $\{-\log(0.9), ..., -\log(0.76)\}$.
+* `c02` and `c03` are fixed costs for phase II and phase III respectively. We will set the phase II costs to 100 and the phase III costs to 150 (in $10^5$\$), i.e we have fixed costs of 10 000 000\$ in phase II and 15 000 000\$ in phase III. Note that the currency of the input values does not matter, so an input value for `c02` of 15 could also be interpreted as fixed costs of 1 500 000€ if necessary. 
+* `c2` and `c3` are the costs in phase II and phase III per patient. We will set them to be 0.75 in phase II and 0.1 in phase III. Again, these values are given in $10^5$\$, i.e we have per patient costs of 75 000\$ in phase II and 100 000\$ in phase III.
+* `b1`, `b2` and `b3` are the expected small, medium and large benefit categories for successfully launching the treatment on the market for each effect size category in $10^5$\$. We will define a small benefit of 1000, a medium benefit of 2000, and a large benefit of 3000. The effect size categories directly correspond to the treatment effect, i.e. if the the treatment effect is between 1 and 0.95 (in terms of the risk ratio) we have a small treatment effect, hence yielding expected benefits of the drug development program of 100 000 000\$.
+* `alpha` is the specified significance level. We will set `alpha = 0.05`.
+* 1 - `beta` type-II error rate for any pair, i.e. `1 - beta` is the (any-pair) power for calculation of the number of events for phase III. We will set `beta = 0.1`, meaning that we require a power of 90%.
+
+Note, that these parameters may be different to the basic setting, even if the names are the same. One parameter that is not in the basic setting is the following parameter:
+
+* The parameter `strategy` allows the user to choose between three strategies. One can select `strategy = 1` in which only the best promising candidate of the two doses proceeds to phase III, `strategy = 2`  in which all promising candidates proceed to phase III or `strategy = 3`, in which both strategies are explored. For our example we want to explore both settings, so we use `strategy = 3`.
+
+```{r,eval = FALSE}
+res <- optimal_multiarm(hr1 = 0.75, hr2 = 0.80, ec = 0.6, # define assumed true HRs and control arm event rate
+   n2min = 100, n2max = 200, stepn2 = 10,                 # define optimization set for n2
+   hrgomin = 0.76, hrgomax = 0.9, stephrgo = 0.02,        # define optimization set for HRgo
+   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
+   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
+   b1 = 1000, b2 = 2000, b3 = 3000,                       # gains for each effect size category
+   strategy = 3,                                          
+   num_cl = 3)
+```
+
+```{r, eval=TRUE, include=FALSE}
+# Comment this chunk after running it once
+# res <- optimal_multiarm(hr1 = 0.75, hr2 = 0.80, ec = 0.6, # define assumed true HRs and control arm event rate
+#   n2min = 100, n2max = 200, stepn2 = 10,                 # define optimization set for n2
+#   hrgomin = 0.76, hrgomax = 0.9, stephrgo = 0.02,        # define optimization set for HRgo
+#   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
+#   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III       
+#   b1 = 1000, b2 = 2000, b3 = 3000,                       # gains for each effect size category
+#   strategy = 3,                                         
+#   num_cl = 3)
+#saveRDS(res, file="optimal_multiarm.RDS")
+```
+```{r, eval=TRUE, include=FALSE}
+res <- readRDS(file="optimal_multiarm.RDS")
+```
+
+## Interpreting the output
+
+After setting all these input parameters and running the function, let's take a look at the output of the program.
+
+```{r}
+res
+```
+The program returns a data frame, where the output for all implemented strategies is listed.
+For strategy 1 (only the best promising proceeds to phase III) we get:
+
+* `res$n2` is the optimal number of participants for phase II and `res$n3` the resulting number of events for phase III. We see that the optimal scenario requires 180 participants in phase II and 408 participants in phase III.
+* `res$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.84 in phase II in order to proceed to phase III. 
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 261.00, i.e we have an expected utility of 26 100 000\$.
+
+The results for strategy 2 (all promising proceed to phase III) are:
+
+* `res$n2` is the optimal number of participants for phase II and `res$n3` the resulting number of events for phase III. We see that the optimal scenario requires 100 participants in phase II and 483 participants in phase III.
+* `res$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.80 in phase II in order to proceed to phase III. 
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 246.92, i.e we have an expected utility of 24 692 000\$.
+
+We furthermore want to explain the return values `sProg`, `sProg2` and `sProg3`. Contrary to the basic setting, `sProg2` is the probability of a successful program with only one treatment in phase III and `sProg2` is the probability of a successful program with two treatments in phase III. Hence, for strategy 1 (only the most promising treatment in phase II proceeds to phase III) `sProg = sProg2 = 0.47`. With strategy 2 (all promising treatments proceed to phase III), the probability is the sum of the probability, that both treatments went to phase III `sProg3 = 0.26` and the probability that only one treatment proceeded to phase III `sProg2 = 0.21`.
+
+
+# Where to go from here
+In this article we presented an example when multi-arm trials are conducted. Note, that this example is not restricted to time-to-event endpoints but can also be applied to binary and normally distributed endpoints by using the functions `optimal_multiarm_binary` and `optimal_multiarm_normal`. For more information on how to use the package, see:
 
 * [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html) See how the package works in a basic example.
-* *Different outcomes:* Apply it to binary endpoints and time-to-event endpoints.
+* *Different outcomes:* Apply it to [binary endpoints](https://sterniii3.github.io/drugdevelopR/articles/Binary_distributed_outcomes.html) and [time-to-event endpoints](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html).
 * [*Interpreting the rest of the output:*](https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html) Obtain further details on your drug development program.
 * [*Fixed or prior:*](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html) Model the assumed treatment effect on a prior distribution.
 * [*More parameters:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.
-* *Complex drug development programs:* Adapt to situations with biased effect estimators, multiple phase III trials, multi-arm trials, or multiple endpoints.
+* *Complex drug development programs:* Adapt to situations with [biased effect estimators](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html), [multiple phase III trials](https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html), or multiple endpoints.
 * *Parallel computing:* Be faster at calculating the optimum by using parallel computing.
