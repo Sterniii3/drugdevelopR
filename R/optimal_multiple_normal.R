@@ -117,10 +117,10 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
                           "b1", "b2", "b3", "kappa",
                           "integrate", "sapply",
                           "Delta1", "Delta2", "in1", "in2", "sigma1", "sigma2",
-                           "Kappa", "covmat", "var1", "var2",
+                          "Kappa", "covmat", "var1", "var2",
                           "rho", "fixed", "relaxed"), envir = environment())
       
-      res_test1 <- parallel::parSapply(cl, N2, pgo_multiple_normal,kappa,
+      res_test1 <- parallel::parSapply(cl, N2, pgo_multiple_normal,kappa=kappa,
                                        Delta1, Delta2, in1, in2,
                                        sigma1, sigma2, fixed, rho)
       res_test2 <- parallel::parSapply(cl, N2, Ess_multiple_normal, kappa,
@@ -136,9 +136,9 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
                                        in1, in2, fixed,rho)
       
       
-      res <- parallel::parSapply(cl, N2, utility_multiple_normal, kappa,
+      res <- parallel::parSapply(cl, N2, utility_multiple_normal, kappa=kappa,
                        alpha,beta, Delta1,Delta2, in1, in2, sigma1, sigma2,
-                       rho,fixed,relaxed,
+                       rho=rho,fixed,relaxed,
                        c2,c02,c3,c03,K,N,S,
                        steps1, stepm1, stepl1,b1, b2, b3)
       
