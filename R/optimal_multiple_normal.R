@@ -47,22 +47,22 @@
 #' `r optimal_return_doc(type = "normal", setting = "multiple")`
 #' 
 #' @examples
-#'  #res <- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs
-#'  # in1=300, in2=600, sigma1 = 8, sigma2= 12,
-#'  # n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
-#'  # kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,         # define optimization set for HRgo
-#'  # alpha = 0.05, beta = 0.1,                              # drug development planning parameters
-#'  # c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
-#'  # K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
-#'  # steps1 = 0,                                            # define lower boundary for "small"
-#'  # stepm1 = 0.5,                                          # "medium"
-#'  # stepl1 = 0.8,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
-#'  #  b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
-#'  # rho = 0.5, relaxed = TRUE,                             # relaxed "TRUE"
-#'  # fixed = TRUE,                                          #   treatment effect
-#'  # num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
-#' #res
-#' #cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+#'  res <- optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,    # define assumed true HRs
+#'   in1=300, in2=600, sigma1 = 8, sigma2= 12,
+#'   n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
+#'   kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,     # define optimization set for HRgo
+#'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
+#'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
+#'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
+#'   steps1 = 0,                                            # define lower boundary for "small"
+#'   stepm1 = 0.5,                                          # "medium"
+#'   stepl1 = 0.8,                                          # and "large" treatment effect size categories as proposed by IQWiG (2016)
+#'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
+#'   rho = 0.5, relaxed = TRUE,                             # relaxed "TRUE"
+#'   fixed = TRUE,                                          #   treatment effect
+#'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
+#'  res
+#'  cat(comment(res))                                       # displays the optimization sequence, start and finish date of the optimization procedure.
 #' 
 #' @references
 #' Meinhard Kieser, Marietta Kirchner, Eva Dölger, Heiko Götte (2018). Optimal planning of phase II/III programs for clinical trials with multiple endpoints
@@ -119,26 +119,12 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
                           "Delta1", "Delta2", "in1", "in2", "sigma1", "sigma2",
                           "Kappa", "covmat", "var1", "var2",
                           "rho", "fixed", "relaxed"), envir = environment())
-      
-      res_test1 <- parallel::parSapply(cl, N2, pgo_multiple_normal,kappa=kappa,
-                                       Delta1, Delta2, in1, in2,
-                                       sigma1, sigma2, fixed, rho)
-      res_test2 <- parallel::parSapply(cl, N2, Ess_multiple_normal, kappa,
-                                       alpha, beta, Delta1, Delta2, in1, in2,
-                                       sigma1, sigma2, fixed, rho)
-      res_test3 <- parallel::parSapply(cl, N2, posp_normal,kappa, alpha, beta,
-                                       Delta1, Delta2, sigma1, sigma2, in1, in2,
-                                       fixed, rho)
-      res_test4 <- parallel::parSapply(cl, N2, EPsProg_multiple_normal, kappa, 
-                                       alpha, beta, Delta1, Delta2, sigma1, sigma2, 
-                                       step11 = steps1, step12 = stepm1, 
-                                       step21 = stepm1, step22 =stepl1, 
-                                       in1, in2, fixed,rho)
+    
       
       
       res <- parallel::parSapply(cl, N2, utility_multiple_normal, kappa=kappa,
                        alpha,beta, Delta1,Delta2, in1, in2, sigma1, sigma2,
-                       rho=rho,fixed,relaxed,
+                       rho = rho,fixed = fixed,relaxed = relaxed,
                        c2,c02,c3,c03,K,N,S,
                        steps1, stepm1, stepl1,b1, b2, b3)
       
