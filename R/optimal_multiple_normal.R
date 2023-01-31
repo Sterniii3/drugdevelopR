@@ -117,7 +117,6 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
                           "b1", "b2", "b3", "kappa",
                           "integrate", "sapply",
                           "Delta1", "Delta2", "in1", "in2", "sigma1", "sigma2",
-                          "Kappa", "covmat", "var1", "var2",
                           "rho", "fixed", "relaxed"), envir = environment())
     
       
