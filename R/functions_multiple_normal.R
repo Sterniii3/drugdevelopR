@@ -382,9 +382,11 @@ utility_multiple_normal<-function(kappa, n2, alpha, beta,
                                   steps1, stepm1, stepl1, 
                                   b1, b2, b3, fixed, rho, relaxed){ 
   
-  n3 = Ess_multiple_normal(kappa = kappa, n2 = n2, alpha = alpha , beta = beta, 
+  n3 <- Ess_multiple_normal(kappa = kappa, n2 = n2, alpha = alpha , beta = beta, 
                   Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, 
                   sigma1 = sigma1, sigma2 = sigma2, fixed = fixed, rho = rho)
+  n3 <- ceiling(n3)
+  
   
   POSP = posp_normal(kappa = kappa, n2=n2, alpha= alpha, beta=beta, 
                      Delta1 = Delta1, Delta2 = Delta2, in1, in2,
@@ -397,10 +399,10 @@ utility_multiple_normal<-function(kappa, n2, alpha, beta,
     
   }else{
     
-    pnogo   = pgo_multiple_normal( kappa=kappa, n2=n2, Delta1=Delta1, Delta2=Delta2, in1=in1, in2=in2, sigma1 = sigma1, sigma2 = sigma2, fixed=fixed, rho=rho)
+    pgo   = pgo_multiple_normal( kappa=kappa, n2=n2, Delta1=Delta1, Delta2=Delta2, in1=in1, in2=in2, sigma1 = sigma1, sigma2 = sigma2, fixed=fixed, rho=rho)
     
     K2    <-  c02 + c2 * n2  #cost phase II
-    K3    <-  c03 * (1-pnogo) + c3 * n3  #cost phase III
+    K3    <-  c03 * pgo + c3 * n3  #cost phase III
     
     if(K2+K3>K){
       
@@ -474,10 +476,10 @@ utility_multiple_normal<-function(kappa, n2, alpha, beta,
         
         EU    = -K2-K3+G                                            # total expected utility
         
-        SP2 = SP
-        SP3 = 0
+        SP2 = prob2
+        SP3 = prob3
         
-        return(c(EU, n3, SP, 1-pnogo, SP2, SP3, K2, K3))
+        return(c(EU, n3, SP, pgo, SP2, SP3, K2, K3))
         
       }
     }
