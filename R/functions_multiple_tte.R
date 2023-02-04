@@ -461,7 +461,7 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
      pgo   = pgo_multiple_tte(HRgo=HRgo,n2=n2,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
      
      K2    <-  c02 + c2 * n2  #cost phase II
-     K3    <-  c03 * (1-pnogo) + c3 * n3  #cost phase III
+     K3    <-  c03 * pgo + c3 * n3  #cost phase III
      
      if(K2+K3>K){
        
