@@ -442,6 +442,7 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
                           alpha=alpha,beta=beta,
                           hr1=hr1,hr2=hr2,id1=id1,id2=id2,
                           fixed=fixed,rho=rho)
+   n3 <-  ceiling(n3)
    
    OS <- os_tte(HRgo = HRgo, n2 = n2,
                 alpha = alpha, beta = beta,
@@ -457,7 +458,7 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
      
    }else{
      
-     pnogo   = pgo_multiple_tte(HRgo=HRgo,n2=n2,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
+     pgo   = pgo_multiple_tte(HRgo=HRgo,n2=n2,hr1=hr1,hr2=hr2,id1=id1,id2=id2,fixed=fixed,rho=rho)
      
      K2    <-  c02 + c2 * n2  #cost phase II
      K3    <-  c03 * (1-pnogo) + c3 * n3  #cost phase III
@@ -504,7 +505,7 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
          SP2 = SP
          SP3 = 0
          
-         return(c(EU, n3, SP, 1-pnogo, SP2, SP3, K2, K3, OS))
+         return(c(EU, n3, SP, pgo, SP2, SP3, K2, K3, OS))
          
        }
      }

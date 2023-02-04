@@ -22,7 +22,7 @@ Use the function `optimal_multiple_tte`. Supply the following input values to th
   * a significance level of 0.025,
   * a power of 0.9, i.e. $\beta$ of 0.1,
   * assumed true treatment hazard ratios of 0.75 and 0.85 for endpoint 1 and endpoint 2, respectively
-  * the optimization region {20, 24, …, 200} for the number of participants (events in the time-to-event setting) in phase II,
+  * the optimization region {100, 104, …, 300} for the number of participants in phase II,
   * the optimization region {0.70, 0.72, ..., 0.86} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
   * expected gains of 100,000,000\$, 150,000,000\$, and 200,000,000\$ for each effect size, respectively, if only endpoint 2 shows a significant result,
@@ -44,7 +44,7 @@ Verify that
 ### 05.03 (shows that req. 05.01, 05.03, 05.06 and 05.09 are met): {-}
 Use the function `optimal_multiple_tte`. Supply the same input values as in test case 05.01, however, set the parameter fixed to be "TRUE". Redo this, however, the second time use a maximum cost limit of 400 (in 10^5 \$).
 
-Verify that
+Verify that the function returns an optimal number of participants of 228 in phase II and 443 in phase III (i.e a total of 671 participants), an optimal threshold value of 0.86 and an expected utility of 287.79 (in 10^5 \$). Furthermore, verify, that the function returns costs of 271 (in 10^5 \$) in phase II and 
 
 ### 05.04 (shows that req. 05.01, 05.03, 05.07 and 05.12 are met): {-}
 Use the function `optimal_multiple_tte`. Supply the same input values as in test case 05.01, however, set the parameter fixed to be "TRUE" and set a minimum probability of a successful program of 0.7. 
