@@ -102,9 +102,9 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
           sapply(v,function(v){
             (pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(u,v),sigma=covmat)[1])*dbivanorm(u,v,Delta1,Delta2, 4/in1, 4/in2, rho)
           })
-        },-Inf,Inf )$value
+        },0,Inf )$value
       })
-    },-Inf,Inf )$value)
+    },0,Inf )$value)
     
      }
   
