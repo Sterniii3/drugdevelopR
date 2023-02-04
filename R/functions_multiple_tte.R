@@ -502,8 +502,8 @@ utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
                              
          EU    = -K2-K3+G                                            # total expected utility
          
-         SP2 = SP
-         SP3 = 0
+         SP2 = prob2
+         SP3 = prob3
          
          return(c(EU, n3, SP, pgo, SP2, SP3, K2, K3, OS))
          
