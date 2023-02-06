@@ -93,8 +93,7 @@ pgo_multiple_tte<-function(HRgo,n2,hr1,hr2,id1,id2,fixed,rho){
          integrate(function(v){
             sapply(v,function(v){
               integrate(function(x){sapply(x,function(x){
-              (fmax(x,u,v,sqrt(var1),sqrt(var2),rho))
-                *(dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho))
+              (fmax(x,u,v,sqrt(var1),sqrt(var2),rho))*(dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho))
             })
           },-log(HRgo),Inf)$value
         })
