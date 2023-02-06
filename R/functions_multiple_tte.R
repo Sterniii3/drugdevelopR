@@ -143,8 +143,8 @@ Ess_multiple_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
  if(fixed)  {
          return(integrate(function(x){
           sapply(x,function(x){
-            ((4*(qnorm(1 - alpha) + qnorm(1 - beta))^2)/x^2)
-            *fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)
+            ((4*(qnorm(1 - alpha) + qnorm(1 - beta))^2)/x^2)*
+              fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)
             })
         },-log(HRgo),Inf)$value)
       }
@@ -156,9 +156,9 @@ Ess_multiple_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
                 sapply(v,function(v){
                   integrate(function(x){
                     sapply(x,function(x){
-                      (((4*(qnorm(1 - alpha) + qnorm(1 - beta))^2)/x^2)
-                       *fmax(x,u,v,sqrt(var1),sqrt(var2),rho))
-                      *(dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho))
+                      (((4*(qnorm(1 - alpha) + qnorm(1 - beta))^2)/x^2)*
+                         fmax(x,u,v,sqrt(var1),sqrt(var2),rho))*
+                        (dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho))
                     })
                   },-log(HRgo),Inf)$value #divide value by pgo to get E(e3|GO)
                 })
@@ -207,8 +207,8 @@ else {
       sapply(u,function(u){
         integrate(function(v){
           sapply(v,function(v){
-            pnorm(0,mean=(u-v),sd=sqrt(var1+var2-2*rho*sqrt(var1)*sqrt(var2)),lower.tail=FALSE)
-            *(dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho))
+            pnorm(0,mean=(u-v),sd=sqrt(var1+var2-2*rho*sqrt(var1)*sqrt(var2)),lower.tail=FALSE)*
+              (dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho))
           })
         },-Inf,Inf)$value
       })
@@ -269,8 +269,8 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
           sapply(x,function(x){ 
             integrate(function(y){ 
               sapply(y,function(y){
-                fmax(y,-log(hr1)/sqrt((x^2/c)*(ec/hr[1])),-log(hr2)/sqrt((x^2/c)*(ec/hr[2])),1,1,rho)
-                *fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)
+                fmax(y,-log(hr1)/sqrt((x^2/c)*(ec/hr[1])),-log(hr2)/sqrt((x^2/c)*(ec/hr[2])),1,1,rho)*
+                  fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)
               })
             },qnorm(1-alpha)-log(step1)/sqrt((x^2/c)),qnorm(1-alpha)-log(step2)/sqrt((x^2/c)))$value
           })
@@ -288,9 +288,9 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
                 sapply(x,function(x){ 
                   integrate(function(y){ 
                     sapply(y,function(y){
-                      (fmax(y,-log(hr1)/sqrt((x^2/c)*(hr[ec]/hr[1])),-log(hr2)/sqrt((x^2/c)*(hr[ec]/hr[2])),1,1,rho)
-                       *fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)
-                       *dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho))
+                      (fmax(y,-log(hr1)/sqrt((x^2/c)*(hr[ec]/hr[1])),-log(hr2)/sqrt((x^2/c)*(hr[ec]/hr[2])),1,1,rho)*
+                         fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)*
+                         dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho))
                     })
                   },qnorm(1-alpha)-log(step1)/sqrt((x^2/c)),qnorm(1-alpha)-log(step2)/sqrt((x^2/c)))$value
                 })
