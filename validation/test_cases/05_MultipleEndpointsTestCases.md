@@ -23,7 +23,7 @@ Use the function `optimal_multiple_tte`. Supply the following input values to th
   * a power of 0.9, i.e. $\beta$ of 0.1,
   * assumed true treatment hazard ratios of 0.75 and 0.85 for endpoint 1 and endpoint 2, respectively
   * the optimization region {100, 104, …, 300} for the number of participants in phase II,
-  * the optimization region {0.70, 0.72, ..., 0.86} for the threshold values,
+  * the optimization region {0.70, 0.72, ..., 0.9} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
   * expected gains of 100,000,000\$, 150,000,000\$, and 200,000,000\$ for each effect size, respectively, if only endpoint 2 shows a significant result,
   * expected gains of 100,000,000\$, 200,000,000\$, and 300,000,000\$ for each effect size, respectively, if endpoint 1 shows a significant result (independent of the significance of endpoint 2),
@@ -44,13 +44,13 @@ Verify that
 ### 05.03 (shows that req. 05.01, 05.03, 05.06 and 05.09 are met): {-}
 Use the function `optimal_multiple_tte`. Supply the same input values as in test case 05.01, however, set the parameter fixed to be "TRUE". Redo this, however, the second time use a maximum cost limit of 600 (in 10^5 \$).
 
-Verify that the function returns an optimal number of participants of 220 in phase II and 438 in phase III (i.e a total of 658 participants), an optimal threshold value of 0.86 and an expected utility of 137.60 (in 10^5 \$). Furthermore, verify, that the function returns costs of 265 (in 10^5 \$) in phase II and 588 (in 10^5 \$) in phase III.
-With the cost constraint, the function returns an optimal number of participants of 120 in phase II and 259 in phase III (i.e a total of 379 participants), an optimal threshold value of 0.82 and an expected utility of 81.02 (in 10^5 \$). Furthermore, verify, that the function returns costs of 190 (in 10^5 \$) in phase II and 409 (in 10^5 \$) in phase III, satisfying the constraint.
+Verify that the function returns an optimal number of participants of 196 in phase II and 424 in phase III (i.e a total of 620 participants), an optimal threshold value of 0.86 and an expected utility of 161.11 (in 10^5 \$). Furthermore, verify, that the function returns costs of 247 (in 10^5 \$) in phase II and 549 (in 10^5 \$) in phase III.
+With the cost constraint, the function returns an optimal number of participants of 112 in phase II and 301 in phase III (i.e a total of 413 participants), an optimal threshold value of 0.84 and an expected utility of 137.33 (in 10^5 \$). Furthermore, verify, that the function returns costs of 184 (in 10^5 \$) in phase II and 414 (in 10^5 \$) in phase III, satisfying the constraint.
 
 ### 05.04 (shows that req. 05.01, 05.03, 05.07 and 05.12 are met): {-}
 Use the function `optimal_multiple_tte`. Supply the same input values as in test case 05.01, however, set the parameter fixed to be "TRUE" and set a minimum probability of a successful program of 0.6. 
 
-Verify that the function returns an optimal number of participants of 228 in phase II and 518 in phase III (i.e a total of 746 participants), an optimal threshold value of 0.88 and an expected utility of 134.45 (in 10^5 \$). Furthermore, verify that the probability of a successful program is given as 0.6., satisfying the constraint and that the probability that endpoint OS is significant is 0.53.
+Verify that the function returns an optimal number of participants of 280 in phase II and 467 in phase III (i.e a total of 746 participants), an optimal threshold value of 0.86 and an expected utility of 153.98 (in 10^5 \$). Furthermore, verify that the probability of a successful program is given as 0.6., satisfying the constraint and that the probability that endpoint OS is significant is 0.54.
 
 ### 05.05 (shows that req. 05.08 is met): {-}
 Use the function `optimal_multiple_tte`. Supply the same input values as in test case 05.01, however change the number of cores for parallel computing to 1.
@@ -95,7 +95,7 @@ Verify, that due to the cost constraint the program now returns an expected util
 Use the function `optimal_multiple_normal`. Supply the same input values as in test case 05.06 (without sample size constraint), however, set the parameter fixed to be "TRUE". Redo this and set a minimum probability of a successful program of 0.7. 
 
 Verify that the program returns an expected utility of 596.08 (in 10^5 \$), an optimal threshold value of 0.02, an optimal sample size in phase II of 120. Furthermore, verify the probability of a successful program is 0.55, and the success probabilities for the various benefit categories are given by 0.14, 0.36 and 0.05 for small, medium and large treatment effects respectively. 
-Furthermore verify, that the constraint cannot be met, within the optimization region, i.e. an expected utility of -9999 is returned.
+Furthermore verify, that the constraint cannot be met, within the optimization region, i.e. an expected utility of -9999 is returned, when the constraint is imposed.
 
 ### 05.10 (shows that req. 05.11, 05.13 and 05.14 are met): {-}
 Use the function `optimal_multiple_normal`. Supply the same input values as in test case 05.06 (without sample size constraint), however, set parameter fixed to be "TRUE". Redo this, however the second time, set the parameter relaxed to "FALSE"
