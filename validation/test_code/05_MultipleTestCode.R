@@ -88,18 +88,22 @@ test_that("05.03", {
                               fixed = TRUE,
                               K = 400
   )
-  expect_equal(res_nolim$u, 0, tolerance = 0.005)
-  expect_equal(res_nolim$n2, 0)
-  expect_equal(res_nolim$n3, 0)
-  expect_equal(res_nolim$n, 0)
-  expect_equal(res_nolim$HRgo, 0)
-  expect_equal(res_nolim$pgo, 0)
-  expect_equal(res_lim$u, 0, tolerance = 0.005)
-  expect_equal(res_lim$n2, 0)
-  expect_equal(res_lim$n3, 0)
-  expect_equal(res_lim$n, 0)
-  expect_equal(res_lim$HRgo, 0)
-  expect_equal(res_lim$pgo, 0)
+  
+  expect_equal(res_nolim$n2, 196)
+  expect_equal(res_nolim$n3, 424)
+  expect_equal(res_nolim$n, 620)
+  expect_equal(res_nolim$HRgo, 0.86)
+  expect_equal(res_nolim$u, 161.11, tolerance = 0.005)
+  expect_equal(res_nolim$K2, 247)
+  expect_equal(res_nolim$K3, 549)
+  
+  expect_equal(res_lim$n2, 112)
+  expect_equal(res_lim$n3, 301)
+  expect_equal(res_lim$n, 413)
+  expect_equal(res_lim$HRgo, 0.84)
+  expect_equal(res_lim$u, 137.33, tolerance = 0.005)
+  expect_equal(res_lim$K2, 184)
+  expect_equal(res_lim$K3, 414)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
@@ -121,12 +125,15 @@ test_that("05.04", {
                               fixed = TRUE,
                               S = 0.7
   )
-  expect_equal(res$u, 0, tolerance = 0.005)
-  expect_equal(res$n2, 0)
-  expect_equal(res$n3, 0)
-  expect_equal(res$n, 0)
-  expect_equal(res$HRgo, 0)
-  expect_equal(res$pgo, 0)
+  
+  expect_equal(res$n2, 280)
+  expect_equal(res$n3, 467)
+  expect_equal(res$n, 746)
+  expect_equal(res$HRgo, 0.86)
+  expect_equal(res$u, 153.98, tolerance = 0.005)
+  expect_equal(res$sProg, 0.6)
+  expect_equal(res$OP, 0.54)
+  
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
@@ -296,18 +303,19 @@ test_that("05.08", {
                                        relaxed = TRUE,
                                        K = 400
   )
-  expect_equal(res_nolim$u, 0, tolerance = 0.005)
-  expect_equal(res_nolim$n2, 0)
-  expect_equal(res_nolim$n3, 0)
-  expect_equal(res_nolim$n, 0)
-  expect_equal(res_nolim$HRgo, 0)
-  expect_equal(res_nolim$pgo, 0)
-  expect_equal(res_lim$u, 0, tolerance = 0.005)
-  expect_equal(res_lim$n2, 0)
-  expect_equal(res_lim$n3, 0)
-  expect_equal(res_lim$n, 0)
-  expect_equal(res_lim$HRgo, 0)
-  expect_equal(res_lim$pgo, 0)
+  expect_equal(res_nolim$u, 596.08, tolerance = 0.005)
+  expect_equal(res_nolim$Kappa, 0.02)
+  expect_equal(res_nolim$n2, 120)
+  expect_equal(res_nolim$K2, 190)
+  expect_equal(res_nolim$K3, 217)
+  expect_equal(res_nolim$K, 407)
+  
+  expect_equal(res_lim$u, 592.48, tolerance = 0.005)
+  expect_equal(res_lim$Kappa, 0.02)
+  expect_equal(res_lim$n2, 104)
+  expect_equal(res_lim$K2, 178)
+  expect_equal(res_lim$K3, 220)
+  expect_equal(res_lim$K, 398)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
@@ -345,25 +353,22 @@ test_that("05.09", {
                                        relaxed = FALSE,
                                      S = 0.7
   )
-  expect_equal(res_nolim$u, 0, tolerance = 0.005)
-  expect_equal(res_nolim$n2, 0)
-  expect_equal(res_nolim$n3, 0)
-  expect_equal(res_nolim$n, 0)
-  expect_equal(res_nolim$HRgo, 0)
-  expect_equal(res_nolim$pgo, 0)
-  expect_equal(res_lim$u, 0, tolerance = 0.005)
-  expect_equal(res_lim$n2, 0)
-  expect_equal(res_lim$n3, 0)
-  expect_equal(res_lim$n, 0)
-  expect_equal(res_lim$HRgo, 0)
-  expect_equal(res_lim$pgo, 0)
+  expect_equal(res_nolim$u, 596.08, tolerance = 0.005)
+  expect_equal(res_nolim$Kappa, 0.02)
+  expect_equal(res_nolim$n2, 120)
+  expect_equal(res_nolim$sProg, 0.55)
+  expect_equal(res_nolim$sProg1, 0.14)
+  expect_equal(res_nolim$sProg2, 0.36)
+  expect_equal(res_nolim$sProg3, 0.05)
+  
+  expect_equal(res_lim$u, -9999)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
 test_that("05.10", {
   # Multiple normally distributed endpoints
   # -- with and without
-  res <- optimal_multiple_normal(alpha = 0.05,
+  res_relaxed <- optimal_multiple_normal(alpha = 0.05,
                                        beta = 0.1,
                                        Delta1 = 0.75, Delta2 = 0.85,
                                        n2min = 20, n2max = 200, stepn2 = 4,
@@ -372,16 +377,34 @@ test_that("05.10", {
                                        num_cl = 3,
                                        c02 = 15, c03 = 20,
                                        c2 = 0.675, c3 = 0.72,
-                                       fixed = FALSE,
+                                       fixed = TRUE,
                                        rho = 0.6,
                                        sigma1 = 8, sigma2 = 12,
                                        in1 = 210, in2 = 420,
-                                       relaxed = FALSE
+                                       relaxed = TRUE
   )
-  expect_equal(res$u, 0, tolerance = 0.005)
-  expect_equal(res$n2, 0)
-  expect_equal(res$n3, 0)
-  expect_equal(res$n, 0)
-  expect_equal(res$HRgo, 0)
-  expect_equal(res$pgo, 0)
+  res_not<- optimal_multiple_normal(alpha = 0.05,
+                                         beta = 0.1,
+                                         Delta1 = 0.75, Delta2 = 0.85,
+                                         n2min = 20, n2max = 200, stepn2 = 4,
+                                         kappamin = 0.02, kappamax = 0.2, kappago = 0.02,
+                                         b1 = 1000, b2 = 2000, b3 = 3000,
+                                         num_cl = 3,
+                                         c02 = 15, c03 = 20,
+                                         c2 = 0.675, c3 = 0.72,
+                                         fixed = TRUE,
+                                         rho = 0.6,
+                                         sigma1 = 8, sigma2 = 12,
+                                         in1 = 210, in2 = 420,
+                                         relaxed = FALSE
+  )
+  expect_equal(res_relaxed$u, 596.08, tolerance = 0.005)
+  expect_equal(res_relaxed$Kappa, 0.02)
+  expect_equal(res_relaxed$n2, 122)
+  expect_equal(res_relaxed$pgo, 0.97)
+  
+  expect_equal(res_not$u, -99.03, tolerance = 0.005)
+  expect_equal(res_not$Kappa, 0.02)
+  expect_equal(res_not$n2, 96)
+  expect_equal(res_not$pgo, 0.96)
 })
