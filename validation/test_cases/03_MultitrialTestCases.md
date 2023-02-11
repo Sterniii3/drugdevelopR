@@ -133,8 +133,8 @@ Use the function `optimal_multitrial_normal()`. Supply the following input value
   * a significance level of 0.05,
   * a power of 0.9, i.e. $\beta$ of 0.1,
   * assumed true treatment effects of 0.375 and 0.5,
-  * the optimization region {20, 24, …, 500} for the number of participants in phase II,
-  * the optimization region {0.02, 0.04,…, 0.4} for the threshold values,
+  * the optimization region {200, 204, …, 500} for the number of participants in phase II,
+  * the optimization region {0.1, 0.12,…, 0.2} for the threshold values,
   * expected gains of 300,000,000\$, 800,000,000\$ and 1,000,000,000\$ for each effect size, respectively,
   * three clusters for parallel computing,
   * fixed costs of 1,500,000\$ in phase II and of 2,000,000\$ in phase III,
@@ -166,7 +166,7 @@ For strategy 3 without the constraint, the program returns an expected utility o
 
 For strategy 4 without the constraint, the program returns an expected utility of 1395.35 (in 10^5\$), an optimal threshold value of 0.18 and an optimal number of participants of 424 in phase II and 1128 in phase III (i.e. 1270 in total), corresponding to four trials with 282 participants each. Moreover, the program returns a probability of a successful program of 0.86.
 
-For strategy 1 under the constraint, the expected utility changes to 1514.35 (in 10^5\$), the  optimal threshold value to 0.16 and an optimal number of participants of 440 in phase II and 830 in phase III (i.e. 1270 in total). Moreover, the program now returns a probability of a successful program of 0.82.
+For strategy 1 under the constraint, the expected utility changes to 1513.26 (in 10^5\$), the  optimal threshold value to 0.14 and an optimal number of participants of 444 in phase II and 852 in phase III (i.e. 1296 in total). Moreover, the program now returns a probability of a successful program of 0.82.
 
 For strategy 3 under the constraint, the constraint can not be met withing the optimization region, so the program returns an expected utility of -9999.
 

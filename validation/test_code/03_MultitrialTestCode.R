@@ -399,8 +399,8 @@ test_that("03.11", {
   res <- optimal_multitrial_normal(alpha = 0.05,
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
-                                   n2min = 20, n2max = 500, stepn2 = 4,
-                                   kappamin = 0.02, kappamax = 0.4, kappago = 0.01,
+                                   n2min = 200, n2max = 500, stepn2 = 4,
+                                   kappamin = 0.1, kappamax = 0.2, kappago = 0.02,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
                                    num_cl = 3,
                                    c02 = 15, c03 = 20,
@@ -442,8 +442,8 @@ test_that("03.12", {
   res <- optimal_multitrial_normal(alpha = 0.05,
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
-                                   n2min = 10, n2max = 500, stepn2 = 2,
-                                   kappamin = 0.01, kappamax = 0.5, kappago = 0.01,
+                                   n2min = 200, n2max = 500, stepn2 = 4,
+                                   kappamin = 0.1, kappamax = 0.2, kappago = 0.02,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
                                    num_cl = 3,
                                    c02 = 15, c03 = 20,
@@ -460,8 +460,8 @@ test_that("03.12", {
   res <- optimal_multitrial_normal(alpha = 0.05,
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
-                                   n2min = 10, n2max = 500, stepn2 = 2,
-                                   kappamin = 0.01, kappamax = 0.5, kappago = 0.01,
+                                   n2min = 200, n2max = 500, stepn2 = 4,
+                                   kappamin = 0.1, kappamax = 0.2, kappago = 0.02,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
                                    num_cl = 1,
                                    c02 = 15, c03 = 20,
@@ -483,8 +483,8 @@ test_that("03.13", {
   res <- optimal_multitrial_normal(alpha = 0.05,
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
-                                   n2min = 10, n2max = 500, stepn2 = 2,
-                                   kappamin = 0.01, kappamax = 0.5, kappago = 0.01,
+                                   n2min = 200, n2max = 500, stepn2 = 4,
+                                   kappamin = 0.1, kappamax = 0.2, kappago = 0.02,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
                                    num_cl = 3,
                                    c02 = 15, c03 = 20,
@@ -498,8 +498,8 @@ test_that("03.13", {
   res_prob_constraint <- optimal_multitrial_normal(alpha = 0.05,
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
-                                   n2min = 10, n2max = 500, stepn2 = 2,
-                                   kappamin = 0.01, kappamax = 0.5, kappago = 0.01,
+                                   n2min = 200, n2max = 500, stepn2 = 4,
+                                   kappamin = 0.1, kappamax = 0.2, kappago = 0.02,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
                                    num_cl = 3,
                                    c02 = 15, c03 = 20,
@@ -537,11 +537,11 @@ test_that("03.13", {
   # Constrained
   expect_equal(res_constrained$Strategy, c(1, 3, 4))
   # Strategy 1
-  expect_equal(res_constrained[1, ]$u, 1514.35, tolerance = 0.005)
-  expect_equal(res_constrained[1, ]$Kappa, 0.16)
-  expect_equal(res_constrained[1, ]$n2, 440)
-  expect_equal(res_constrained[1, ]$n3, 830)
-  expect_equal(res_constrained[1, ]$n, 1270)
+  expect_equal(res_constrained[1, ]$u, 1513.26, tolerance = 0.005)
+  expect_equal(res_constrained[1, ]$Kappa, 0.14)
+  expect_equal(res_constrained[1, ]$n2, 444)
+  expect_equal(res_constrained[1, ]$n3, 852)
+  expect_equal(res_constrained[1, ]$n, 1296)
   expect_equal(res_constrained[1, ]$sProg, 0.82)
   # Strategy 3
   expect_equal(res_constrained[2, ]$u, -9999)
@@ -561,8 +561,8 @@ test_that("03.14", {
   res <- optimal_multitrial_normal(alpha = 0.05,
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
-                                   n2min = 10, n2max = 500, stepn2 = 2,
-                                   kappamin = 0.01, kappamax = 0.5, kappago = 0.01,
+                                   n2min = 200, n2max = 500, stepn2 = 4,
+                                   kappamin = 0.1, kappamax = 0.2, kappago = 0.02,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
                                    num_cl = 3,
                                    c02 = 15, c03 = 20,
