@@ -6,8 +6,8 @@ test_that("03.01", {
                             beta = 0.1,
                             hr1 = 0.69, hr2 = 0.88,
                             xi2 = 0.7, xi3 = 0.7,
-                            d2min = 10, d2max = 400, stepd2 = 2,
-                            hrgomin = 0.65, hrgomax = 0.95, stephrgo = 0.01,
+                            d2min = 100, d2max = 300, stepd2 = 4,
+                            hrgomin = 0.65, hrgomax = 0.8, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
                             num_cl = 3,
                             c02 = 100, c03 = 150,
@@ -20,16 +20,16 @@ test_that("03.01", {
   # Strategies
   expect_equal(res$Strategy, c(1, 2, 3, 23))
   # Strategy 1
-  expect_equal(res[1,]$u, -1.55, tolerance = 0.005)
-  expect_equal(res[1,]$n2, 180)
+  expect_equal(res[1,]$u, -1.89, tolerance = 0.005)
+  expect_equal(res[1,]$n2, 200)
   expect_equal(res[1,]$n3, 238)
-  expect_equal(res[1,]$n, 418)
-  expect_equal(res[1,]$d2, 126)
+  expect_equal(res[1,]$n, 438)
+  expect_equal(res[1,]$d2, 140)
   expect_equal(res[1,]$d3, 167)
-  expect_equal(res[1,]$d, 293)
+  expect_equal(res[1,]$d, 307)
   expect_equal(res[1,]$HRgo, 0.75)
   # Strategy 2
-  expect_equal(res[2,]$u, -94.13, tolerance = 0.005)
+  expect_equal(res[2,]$u, -94.31, tolerance = 0.005)
   expect_equal(res[2,]$n2, 172)
   expect_equal(res[2,]$n3, 172)
   expect_equal(res[2,]$n, 344)
@@ -38,22 +38,22 @@ test_that("03.01", {
   expect_equal(res[2,]$d, 242)
   expect_equal(res[2,]$HRgo, 0.72)
   # Strategy 3
-  expect_equal(res[3,]$u, -11.67, tolerance = 0.005)
-  expect_equal(res[3,]$n2, 220)
+  expect_equal(res[3,]$u, -12.88, tolerance = 0.005)
+  expect_equal(res[3,]$n2, 224)
   expect_equal(res[3,]$n3, 252)
-  expect_equal(res[3,]$n, 472)
-  expect_equal(res[3,]$d2, 154)
+  expect_equal(res[3,]$n, 476)
+  expect_equal(res[3,]$d2, 156)
   expect_equal(res[3,]$d3, 177)
-  expect_equal(res[3,]$d, 331)
+  expect_equal(res[3,]$d, 333)
   expect_equal(res[3,]$HRgo, 0.72)
   # Strategy 23
-  expect_equal(res[4,]$u, 45.84, tolerance = 0.005)
-  expect_equal(res[4,]$n2, 180)
+  expect_equal(res[4,]$u, 45.72, tolerance = 0.005)
+  expect_equal(res[4,]$n2, 178)
   expect_equal(res[4,]$n3, 194)
-  expect_equal(res[4,]$n, 374)
-  expect_equal(res[4,]$d2, 126)
+  expect_equal(res[4,]$n, 372)
+  expect_equal(res[4,]$d2, 124)
   expect_equal(res[4,]$d3, 136)
-  expect_equal(res[4,]$d, 262)
+  expect_equal(res[4,]$d, 260)
   expect_equal(res[4,]$HRgo, 0.73)
 })
 #' @editor Lukas D Sauer
@@ -64,8 +64,8 @@ test_that("03.02", {
                             beta = 0.1,
                             hr1 = 0.69, hr2 = 0.88,
                             xi2 = 0.7, xi3 = 0.7,
-                            d2min = 10, d2max = 400, stepd2 = 2,
-                            hrgomin = 0.65, hrgomax = 0.95, stephrgo = 0.01,
+                            d2min = 100, d2max = 300, stepd2 = 4,
+                            hrgomin = 0.65, hrgomax = 0.8, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
                             num_cl = 3,
                             c02 = 100, c03 = 150,
@@ -77,12 +77,12 @@ test_that("03.02", {
   )
   # Strategies
   expect_equal(res$Strategy, 1)
-  expect_equal(res$u, -148.05, tolerance = 0.005)
-  expect_equal(res$n2, 140)
-  expect_equal(res$n3, 134)
+  expect_equal(res$u, -148.57, tolerance = 0.005)
+  expect_equal(res$n2, 160)
+  expect_equal(res$n3, 130)
   expect_equal(res$n, 274)
   expect_equal(res$HRgo, 0.67)
-  expect_equal(res$pgo, 0.21)
+  expect_equal(res$pgo, 0.2)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23
@@ -92,8 +92,8 @@ test_that("03.03", {
                             beta = 0.1,
                             hr1 = 0.69, hr2 = 0.88,
                             xi2 = 0.7, xi3 = 0.7,
-                            d2min = 10, d2max = 400, stepd2 = 2,
-                            hrgomin = 0.65, hrgomax = 0.95, stephrgo = 0.01,
+                            d2min = 100, d2max = 300, stepd2 = 4,
+                            hrgomin = 0.65, hrgomax = 0.8, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
                             num_cl = 3,
                             c02 = 100, c03 = 150,
@@ -107,15 +107,15 @@ test_that("03.03", {
   # Strategies
   expect_equal(res$Strategy, c(1, 2, 3, 23))
   # Strategy 1
-  expect_equal(res[1,]$u, -3.75, tolerance = 0.005)
-  expect_equal(res[1,]$n2, 180)
+  expect_equal(res[1,]$u, -4.21, tolerance = 0.005)
+  expect_equal(res[1,]$n2, 172)
   expect_equal(res[1,]$n3, 212)
-  expect_equal(res[1,]$n, 392)
-  expect_equal(res[1,]$K2, 235)
+  expect_equal(res[1,]$n, 384)
+  expect_equal(res[1,]$K2, 229)
   expect_equal(res[1,]$K3, 261)
   expect_equal(res[1,]$HRgo, 0.74)
   # Strategy 2
-  expect_equal(res[2,]$u, -94.13, tolerance = 0.005)
+  expect_equal(res[2,]$u, -94.31, tolerance = 0.005)
   expect_equal(res[2,]$n2, 172)
   expect_equal(res[2,]$n3, 172)
   expect_equal(res[2,]$n, 344)
@@ -124,21 +124,21 @@ test_that("03.03", {
   expect_equal(res[2,]$d, 242)
   expect_equal(res[2,]$HRgo, 0.72)
   # Strategy 3
-  expect_equal(res[3,]$u, -28.05, tolerance = 0.005)
-  expect_equal(res[3,]$n2, 206)
-  expect_equal(res[3,]$n3, 150)
-  expect_equal(res[3,]$n, 356)
-  expect_equal(res[3,]$K2, 254)
-  expect_equal(res[3,]$K3, 243)
+  expect_equal(res[3,]$u, -27.31, tolerance = 0.005)
+  expect_equal(res[3,]$n2, 172)
+  expect_equal(res[3,]$n3, 156)
+  expect_equal(res[3,]$n, 328)
+  expect_equal(res[3,]$K2, 229)
+  expect_equal(res[3,]$K3, 254)
   expect_equal(res[3,]$HRgo, 0.68)
   # Strategy 23
-  expect_equal(res[4,]$u, 45.84, tolerance = 0.005)
-  expect_equal(res[4,]$n2, 180)
+  expect_equal(res[4,]$u, 45.72, tolerance = 0.005)
+  expect_equal(res[4,]$n2, 178)
   expect_equal(res[4,]$n3, 194)
-  expect_equal(res[4,]$n, 374)
-  expect_equal(res[4,]$d2, 126)
+  expect_equal(res[4,]$n, 372)
+  expect_equal(res[4,]$d2, 124)
   expect_equal(res[4,]$d3, 136)
-  expect_equal(res[4,]$d, 262)
+  expect_equal(res[4,]$d, 260)
   expect_equal(res[4,]$HRgo, 0.73)
 })
 #' @editor Lukas D Sauer
@@ -149,8 +149,8 @@ test_that("03.04", {
                             beta = 0.1,
                             hr1 = 0.69, hr2 = 0.88,
                             xi2 = 0.7, xi3 = 0.7,
-                            d2min = 10, d2max = 400, stepd2 = 2,
-                            hrgomin = 0.65, hrgomax = 0.95, stephrgo = 0.01,
+                            d2min = 100, d2max = 300, stepd2 = 4,
+                            hrgomin = 0.65, hrgomax = 0.8, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
                             num_cl = 3,
                             c02 = 100, c03 = 150,
@@ -169,8 +169,8 @@ test_that("03.05", {
                             beta = 0.1,
                             hr1 = 0.69, hr2 = 0.88,
                             xi2 = 0.7, xi3 = 0.7,
-                            d2min = 10, d2max = 400, stepd2 = 2,
-                            hrgomin = 0.65, hrgomax = 0.95, stephrgo = 0.01,
+                            d2min = 200, d2max = 400, stepd2 = 4,
+                            hrgomin = 0.8, hrgomax = 0.9, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
                             num_cl = 3,
                             c02 = 100, c03 = 150,
@@ -183,42 +183,32 @@ test_that("03.05", {
   # Strategies
   expect_equal(res$Strategy, c(1, 2, 3, 23))
   # Strategy 1
-  expect_equal(res[1,]$u, 1166.41, tolerance = 0.005)
-  expect_equal(res[1,]$n2, 420)
+  expect_equal(res[1,]$u, 1165.47, tolerance = 0.005)
+  expect_equal(res[1,]$n2, 424)
   expect_equal(res[1,]$n3, 1044)
-  expect_equal(res[1,]$n, 1464)
-  expect_equal(res[1,]$d2, 294)
+  expect_equal(res[1,]$n, 1468)
+  expect_equal(res[1,]$d2, 296)
   expect_equal(res[1,]$d3, 731)
-  expect_equal(res[1,]$d, 1025)
+  expect_equal(res[1,]$d, 1027)
   expect_equal(res[1,]$HRgo, 0.86)
   # Strategy 2
-  expect_equal(res[2,]$u, 811.67, tolerance = 0.005)
-  expect_equal(res[2,]$n2, 386)
+  expect_equal(res[2,]$u, 810.67, tolerance = 0.005)
+  expect_equal(res[2,]$n2, 384)
   expect_equal(res[2,]$n3, 1040)
-  expect_equal(res[2,]$n, 1426)
-  expect_equal(res[2,]$d2, 270)
+  expect_equal(res[2,]$n, 1424)
+  expect_equal(res[2,]$d2, 268)
   expect_equal(res[2,]$d3, 728)
-  expect_equal(res[2,]$d, 998)
+  expect_equal(res[2,]$d, 996)
   expect_equal(res[2,]$HRgo, 0.85)
   # Strategy 3
-  expect_equal(res[3,]$u, 1045.41, tolerance = 0.005)
-  expect_equal(res[3,]$n2, 420)
-  expect_equal(res[3,]$n3, 1386)
-  expect_equal(res[3,]$n, 1806)
-  expect_equal(res[3,]$d2, 294)
-  expect_equal(res[3,]$d3, 972)
-  expect_equal(res[3,]$d, 1266)
+  expect_equal(res[3,]$u, 1045.28, tolerance = 0.005)
+  expect_equal(res[3,]$n2, 446)
+  expect_equal(res[3,]$n3, 1398)
+  expect_equal(res[3,]$n, 1844)
+  expect_equal(res[3,]$d2, 312)
+  expect_equal(res[3,]$d3, 978)
+  expect_equal(res[3,]$d, 1290)
   expect_equal(res[3,]$HRgo, 0.82)
-  # Strategy 23
-  expect_equal(res[4,]$u, 45.84, tolerance = 0.005)
-  expect_equal(res[4,]$n2, 180)
-  expect_equal(res[4,]$n3, 194)
-  expect_equal(res[4,]$n, 374)
-  expect_equal(res[4,]$d2, 126)
-  expect_equal(res[4,]$d3, 136)
-  expect_equal(res[4,]$d, 262)
-  expect_equal(res[4,]$HRgo, 0.73)
-  expect_equal(res[4,]$pgo, 0.09)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23
@@ -228,7 +218,7 @@ test_that("03.06", {
                             beta = 0.1,
                             hr1 = 0.69, hr2 = 0.88,
                             xi2 = 0.7, xi3 = 0.7,
-                            d2min = 10, d2max = 400, stepd2 = 2,
+                            d2min = 20, d2max = 400, stepd2 = 2,
                             hrgomin = 0.65, hrgomax = 0.95, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
                             num_cl = 3,
@@ -258,8 +248,8 @@ test_that("03.07", {
   res <- optimal_multitrial_binary(alpha = 0.025,
                             beta = 0.1,
                             p0 = 0.6, p11 = 0.3, p12 = 0.5,
-                            n2min = 10, n2max = 400, stepn2 = 2,
-                            rrgomin = 0.70, rrgomax = 0.95, steprrgo = 0.01,
+                            n2min = 100, n2max = 400, stepn2 = 4,
+                            rrgomin = 0.70, rrgomax = 0.80, steprrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
                             num_cl = 3,
                             c02 = 100, c03 = 150,
@@ -272,23 +262,23 @@ test_that("03.07", {
   # Strategies
   expect_equal(res$Strategy, c(1, 3, 4))
   # Strategy 1
-  expect_equal(res[1,]$u, 71.66, tolerance = 0.005)
-  expect_equal(res[1,]$RRgo, 0.71)
-  expect_equal(res[1,]$n2, 130)
-  expect_equal(res[1,]$n3, 178)
-  expect_equal(res[1,]$n, 308)
+  expect_equal(res[1,]$u, 405.56, tolerance = 0.005)
+  expect_equal(res[1,]$RRgo, 0.77)
+  expect_equal(res[1,]$n2, 176)
+  expect_equal(res[1,]$n3, 306)
+  expect_equal(res[1,]$n, 482)
   # Strategy 3
-  expect_equal(res[2,]$u, 585.59, tolerance = 0.005)
-  expect_equal(res[2,]$RRgo, 0.75)
-  expect_equal(res[2,]$n2, 276)
-  expect_equal(res[2,]$n3, 276)
-  expect_equal(res[2,]$n, 552)
+  expect_equal(res[2,]$u, 1494.31, tolerance = 0.005)
+  expect_equal(res[2,]$RRgo, 0.77)
+  expect_equal(res[2,]$n2, 340)
+  expect_equal(res[2,]$n3, 336)
+  expect_equal(res[2,]$n, 676)
   # Strategy 4
-  expect_equal(res[3,]$u, 718.18, tolerance = 0.005)
-  expect_equal(res[3,]$RRgo, 0.73)
-  expect_equal(res[3,]$n2, 316)
-  expect_equal(res[3,]$n3, 304)
-  expect_equal(res[3,]$n, 552)
+  expect_equal(res[3,]$u, 1736.36, tolerance = 0.005)
+  expect_equal(res[3,]$RRgo, 0.76)
+  expect_equal(res[3,]$n2, 384)
+  expect_equal(res[3,]$n3, 408)
+  expect_equal(res[3,]$n, 792)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23
@@ -297,8 +287,8 @@ test_that("03.08", {
   res <- optimal_multitrial_binary(alpha = 0.025,
                                    beta = 0.1,
                                    p0 = 0.6, p11 = 0.3, p12 = 0.5,
-                                   n2min = 10, n2max = 400, stepn2 = 2,
-                                   rrgomin = 0.70, rrgomax = 0.95, steprrgo = 0.01,
+                                   n2min = 10, n2max = 400, stepn2 = 4,
+                                   rrgomin = 0.70, rrgomax = 0.80, steprrgo = 0.01,
                                    b1 = 1000, b2 = 3000, b3 = 5000,
                                    num_cl = 3,
                                    c02 = 100, c03 = 150,
@@ -310,9 +300,9 @@ test_that("03.08", {
   )
   # Strategies
   expect_equal(res$Strategy, c(23))
-  expect_equal(res$u, 810.94, tolerance = 0.005)
-  expect_equal(res$n2, 220)
-  expect_equal(res$n3, 184)
+  expect_equal(res$u, 1701.93, tolerance = 0.005)
+  expect_equal(res$n2, 260)
+  expect_equal(res$n3, 224)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23
@@ -321,8 +311,8 @@ test_that("03.09", {
   res <- optimal_multitrial_binary(alpha = 0.025,
                                    beta = 0.1,
                                    p0 = 0.6, p11 = 0.3, p12 = 0.5,
-                                   n2min = 10, n2max = 400, stepn2 = 2,
-                                   rrgomin = 0.70, rrgomax = 0.95, steprrgo = 0.01,
+                                   n2min = 100, n2max = 400, stepn2 = 4,
+                                   rrgomin = 0.80, rrgomax = 0.95, steprrgo = 0.01,
                                    b1 = 1000, b2 = 3000, b3 = 5000,
                                    num_cl = 3,
                                    c02 = 100, c03 = 150,
@@ -336,16 +326,16 @@ test_that("03.09", {
   expect_equal(res$Strategy, c(1, 2))
   # Strategy 1
   expect_equal(res[1,]$u, 1742.40, tolerance = 0.005)
-  expect_equal(res[1,]$RRgo, 0.88)
-  expect_equal(res[1,]$n2, 162)
-  expect_equal(res[1,]$n3, 160)
-  expect_equal(res[1,]$n, 322)
+  expect_equal(res[1,]$RRgo, 0.91)
+  expect_equal(res[1,]$n2, 176)
+  expect_equal(res[1,]$n3, 158)
+  expect_equal(res[1,]$n, 334)
   # Strategy 2
-  expect_equal(res[2,]$u, 1878.56, tolerance = 0.005)
-  expect_equal(res[2,]$RRgo, 0.82)
-  expect_equal(res[2,]$n2, 200)
-  expect_equal(res[2,]$n3, 292)
-  expect_equal(res[2,]$n, 492)
+  expect_equal(res[2,]$u, 3657.57, tolerance = 0.005)
+  expect_equal(res[2,]$RRgo, 0.89)
+  expect_equal(res[2,]$n2, 240)
+  expect_equal(res[2,]$n3, 284)
+  expect_equal(res[2,]$n, 524)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23
@@ -354,8 +344,8 @@ test_that("03.10", {
   res <- optimal_multitrial_binary(alpha = 0.025,
                                    beta = 0.1,
                                    p0 = 0.6, p11 = 0.3, p12 = 0.5,
-                                   n2min = 10, n2max = 400, stepn2 = 2,
-                                   rrgomin = 0.70, rrgomax = 0.95, steprrgo = 0.01,
+                                   n2min = 100, n2max = 400, stepn2 = 4,
+                                   rrgomin = 0.80, rrgomax = 0.95, steprrgo = 0.01,
                                    b1 = 1000, b2 = 3000, b3 = 5000,
                                    num_cl = 3,
                                    c02 = 100, c03 = 150,
@@ -368,8 +358,8 @@ test_that("03.10", {
   res_constrained <- optimal_multitrial_binary(alpha = 0.025,
                                    beta = 0.1,
                                    p0 = 0.6, p11 = 0.3, p12 = 0.5,
-                                   n2min = 10, n2max = 400, stepn2 = 2,
-                                   rrgomin = 0.70, rrgomax = 0.95, steprrgo = 0.01,
+                                   n2min = 100, n2max = 400, stepn2 = 4,
+                                   rrgomin = 0.80, rrgomax = 0.95, steprrgo = 0.01,
                                    b1 = 1000, b2 = 3000, b3 = 5000,
                                    num_cl = 3,
                                    c02 = 100, c03 = 150,
@@ -382,14 +372,14 @@ test_that("03.10", {
   )
   # Unconstrained
   expect_equal(res$Strategy, 3)
-  expect_equal(res$u, 1332.94, tolerance = 0.005)
-  expect_equal(res$n2, 242)
-  expect_equal(res$n3, 414)
-  expect_equal(res$n, 656)
+  expect_equal(res$u, 2923.29, tolerance = 0.005)
+  expect_equal(res$n2, 288)
+  expect_equal(res$n3, 408)
+  expect_equal(res$n, 696)
   # Constrained
-  expect_equal(res_constrained$u, 1313.11, tolerance = 0.005)
-  expect_equal(res_constrained$n2, 186)
-  expect_equal(res_constrained$n3, 414)
+  expect_equal(res_constrained$u, 2795.38, tolerance = 0.005)
+  expect_equal(res_constrained$n2, 132)
+  expect_equal(res_constrained$n3, 468)
   expect_equal(res_constrained$n, 600)
 })
 #' @editor Lukas D Sauer

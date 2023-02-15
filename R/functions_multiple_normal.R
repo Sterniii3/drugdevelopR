@@ -93,7 +93,7 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
   
    if(fixed) {
     return(pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(Delta1, Delta2),sigma=covmat)[1])
-  }
+   }
   
   else  {
     return(integrate(function(u){
@@ -164,9 +164,9 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
         })
         },Kappa[2],Inf)$value
       })
-      },-Inf,Inf )$value
+      },0,1000 )$value
     })
-    },-Inf,Inf )$value)
+    },0,1000 )$value)
     
   }
 }
