@@ -195,17 +195,17 @@ child_files_test <- vt_get_child_files(validation_order = "test_cases")
 vt_file(vt_path(child_files_test),dynamic_referencing = FALSE)
 ```
 
-# Test Results {-}
+<!-- # Test Results {-} -->
 
-```{r}
-# Currently, this code causes a LaTeX error in valtools. This can be manually
-# fixed by installing valtools from source and adapting the source code as
-# described in:
-# https://github.com/phuse-org/valtools/pull/222
-vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R",
-                  "test_code/02_BiasAdjustmentTestCode.R")),
-        dynamic_referencing = FALSE)
-```
+<!-- ```{r} -->
+<!-- # Currently, this code causes a LaTeX error in valtools. This can be manually -->
+<!-- # fixed by installing valtools from source and adapting the source code as -->
+<!-- # described in: -->
+<!-- # https://github.com/phuse-org/valtools/pull/222 -->
+<!-- vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R", -->
+<!--                   "test_code/02_BiasAdjustmentTestCode.R")), -->
+<!--         dynamic_referencing = FALSE) -->
+<!-- ``` -->
 
 
 # References {-}
