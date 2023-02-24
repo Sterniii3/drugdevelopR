@@ -24,10 +24,10 @@
 #' @param n2 total sample size for phase II; must be an even number
 #' @param Delta1 assumed true treatment effect for standardized difference in means
 #' @param Delta2 assumed true treatment effect for standardized difference in means
-#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)
+#' @param strategy choose Strategy: 1 ("only best promising"), 2 ("all promising")
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
 #' @return The function pgo_normal() returns the probability to go to phase III for multiarm programs with normally distributed outcomes 
-#' @examples res <- pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625, strategy = 3, case = 31)
+#' @examples res <- pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625, strategy = 2, case = 31)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
 #' @export
