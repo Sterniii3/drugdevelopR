@@ -42,9 +42,9 @@ utility_multiple_tte(
 
 \item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
-\item{hr1}{assumed true treatment effect on HR scale for treatment 1}
+\item{hr1}{assumed true treatment effect on HR scale for endpoint OS}
 
-\item{hr2}{assumed true treatment effect on HR scale for treatment 2}
+\item{hr2}{assumed true treatment effect on HR scale for endpoint PFS}
 
 \item{id1}{amount of information for \code{hr1} in terms of sample size}
 
