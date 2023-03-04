@@ -42,6 +42,7 @@
 #' @param beta type-II error rate for any pair, i.e. `1 - beta` is the (any-pair) power for calculation of the sample size for phase III
 #'
 #' @importFrom stats quantile rnorm
+#' @importFrom MASS mvrnorm
 #'
 #' @return
 #' `r optimal_return_doc(type = "normal", setting = "multiple")`

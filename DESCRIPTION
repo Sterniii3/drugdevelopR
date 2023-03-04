@@ -19,6 +19,7 @@ Depends:
     foreach,
     iterators,
     cubature,
+    MASS,
     stats
 URL: https://github.com/Sterniii3/drugdevelopR,
     https://sterniii3.github.io/drugdevelopR/

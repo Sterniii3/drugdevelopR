@@ -48,7 +48,7 @@ get a successful drug development program. Successful means that both endpoints 
 \examples{
 res <- pgo_multiple_normal(kappa = 0.1, n2 = 50,
                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-                               sigma1 = 8, sigma2 = 4, fixed = TRUE, rho = 0.3)
+                               sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
 }
 \section{Last Edited By}{
 Johannes Cepicka
