@@ -288,7 +288,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
       
     }
       
-      return(1/nsim * sum(posp_vector))
+      return(sum(posp_vector))
     
     
 #   return (integrate(function(u){ sapply(u,function(u){
@@ -409,7 +409,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
       
     }
     
-    return(1/nsim * sum(EPsProg_vector))
+    return(sum(EPsProg_vector))
     
 #    return(integrate(function(u){ sapply(u,function(u){
 #      integrate(function(v){sapply(v,function(v){
