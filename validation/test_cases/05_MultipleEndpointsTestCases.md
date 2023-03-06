@@ -63,7 +63,7 @@ Use the function `optimal_multiple_normal()`. Supply the following input values 
   * a significance level of 0.05,
   * a power of 0.9, i.e. $\beta$ of 0.1,
   * assumed true treatment effects of 0.75 and 0.8 for the endpoints 1 and 2, respectively
-    * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
+    * boundaries of 0, 0.5 and 0.8 for the effect size categories small, medium and large,
   * the optimization region {20, 24, …, 200} for the number of participants in phase II,
   * the optimization region {0.02, 0.04,…, 0.20} for the threshold values,
   * expected gains of 100,000,000\$, 200,000,000\$ and 300,000,000\$ for each effect size, respectively,
