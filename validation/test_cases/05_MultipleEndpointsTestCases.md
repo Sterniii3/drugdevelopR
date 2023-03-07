@@ -23,7 +23,7 @@ Use the function `optimal_multiple_tte`. Supply the following input values to th
   * a power of 0.9, i.e. $\beta$ of 0.1,
   * assumed true treatment hazard ratios of 0.75 and 0.85 for endpoint 1 and endpoint 2, respectively
   * the optimization region {100, 104, …, 300} for the number of participants in phase II,
-  * the optimization region {0.70, 0.72, ..., 0.9} for the threshold values,
+  * the optimization region {0.80, 0.82, ..., 0.9} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
   * expected gains of 100,000,000\$, 150,000,000\$, and 200,000,000\$ for each effect size, respectively, if only endpoint 2 shows a significant result,
   * expected gains of 100,000,000\$, 200,000,000\$, and 300,000,000\$ for each effect size, respectively, if endpoint 1 shows a significant result (independent of the significance of endpoint 2),
@@ -64,8 +64,8 @@ Use the function `optimal_multiple_normal()`. Supply the following input values 
   * a power of 0.9, i.e. $\beta$ of 0.1,
   * assumed true treatment effects of 0.75 and 0.8 for the endpoints 1 and 2, respectively
     * boundaries of 0, 0.5 and 0.8 for the effect size categories small, medium and large,
-  * the optimization region {20, 24, …, 200} for the number of participants in phase II,
-  * the optimization region {0.02, 0.04,…, 0.20} for the threshold values,
+  * the optimization region {80, 84, …, 160} for the number of participants in phase II,
+  * the optimization region {0.02, 0.04,…, 0.10} for the threshold values,
   * expected gains of 100,000,000\$, 200,000,000\$ and 300,000,000\$ for each effect size, respectively,
   * three clusters for parallel computing,
   * fixed costs of 10,00,000\$ in phase II and of 15,000,000\$ in phase III,
@@ -76,9 +76,10 @@ Use the function `optimal_multiple_normal()`. Supply the following input values 
   * sample sizes of 300 and 600 as the amount of information for the two treatment effects,
   * `relaxed=TRUE`, i.e. use the relaxed combination strategy for effect sizes.
 
-Redo this, however, the second time set a sample size constraint of 300.
+Redo this, however, the second time set a sample size constraint of 190.
   
-  Verify that
+Verify that the program returns an expected utility of 960.55 (in 10^5 \$), an optimal threshold value of 0.02 and optimal sample sizes of 108 in phase II and 85 in phase III (i.e. 193 in total). 
+With the constraint, the program returns an expected utility of 959.20 (in 10^5 \$), an optimal threshold value of 0.02 and optimal sample sizes of 96 in phase II and 94 in phase III (i.e. 190 in total).
 
 ### 05.07 (shows that req. 05.02, 05.04 and 05.08 are met): {-}
 Use the function `optimal_multiple_normal`. Supply the same input values as in test case 05.06 (without sample size constraint), however, however change the number of clusters for parallel computing to 1. 
