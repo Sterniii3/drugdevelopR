@@ -261,7 +261,7 @@ For more information on how to use the package, see:
 * *Different outcomes:* Apply it to [binary endpoints](https://sterniii3.github.io/drugdevelopR/articles/Binary_distributed_outcomes.html) and [time-to-event endpoints](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html).
 * [*Interpreting the rest of the output:*](https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html) Obtain further details on your drug development program.
 * [*Fixed or prior:*](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html) Model the assumed treatment effect on a prior distribution.
-* *Complex drug development programs:* Adapt to situations with [biased effect estimators](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html), [multiple phase III trials](https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html), [multi-arm trials](https://sterniii3.github.io/drugdevelopR/articles/Multiarm_Trials.html), or multiple endpoints.
+* *Complex drug development programs:* Adapt to situations with [biased effect estimators](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html), [multiple phase III trials](https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html), [multi-arm trials](https://sterniii3.github.io/drugdevelopR/articles/Multiarm_Trials.html), or [multiple endpoints](https://sterniii3.github.io/drugdevelopR/articles/Multiple_Endpoints.html).
 
 # References
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences.

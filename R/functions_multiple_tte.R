@@ -56,11 +56,11 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #' get a successful drug development program. Successful means that at least one endpoint shows a statistically significant positive treatment effect in phase III. 
 #' @param HRgo threshold value for the go/no-go decision rule; 
 #' @param n2 total sample size for phase II; must be even number
-#' @param hr1 assumed true treatment effect on HR scale for treatment 1
-#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param hr1 assumed true treatment effect on HR scale for endpoint OS
+#' @param hr2 assumed true treatment effect on HR scale for endpoint PFS
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
-#' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
+#' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
 #' @return The output of the the function `pgo_multiple_tte()` is the probability to go to phase III.
 #' @examples res <- pgo_multiple_tte(HRgo = 0.8, n2 = 50,
@@ -115,11 +115,11 @@ pgo_multiple_tte<-function(HRgo,n2,hr1,hr2,id1,id2,fixed,rho){
 #' @param n2 total sample size for phase II; must be even number
 #' @param beta `1-beta` power for calculation of the number of events for phase III by Schoenfeld (1981) formula
 #' @param alpha one- sided significance level
-#' @param hr1 assumed true treatment effect on HR scale for treatment 1
-#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param hr1 assumed true treatment effect on HR scale for endpoint OS
+#' @param hr2 assumed true treatment effect on HR scale for endpoint PFS
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
-#' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
+#' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
 #' @return the output of the the function `Ess_multiple_tte()` is the expected number of participants in phase III
 #' @examples res <- Ess_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
@@ -175,11 +175,11 @@ Ess_multiple_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #' 
 #' Z=X-Y is normally distributed with expectation mu_x - mu_y and variance sigma_x + sigma_y- 2 rho sdx sdy
 #' @param n2 total sample size for phase II; must be even number
-#' @param hr1 assumed true treatment effect on HR scale for treatment 1
-#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param hr1 assumed true treatment effect on HR scale for endpoint OS
+#' @param hr2 assumed true treatment effect on HR scale for endpoint PFS
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
-#' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
+#' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
 #' @return The output of the the function `pw()` is the probability that endpoint one has a better result than endpoint two
 #' @examples res <- pw(n2 = 50,hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
@@ -235,13 +235,13 @@ expn3go_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
 #' @param ec control arm event rate for phase II and III
-#' @param hr1 assumed true treatment effect on HR scale for treatment 1
-#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param hr1 assumed true treatment effect on HR scale for endpoint OS
+#' @param hr2 assumed true treatment effect on HR scale for endpoint PFS
 #' @param id1 amount of information for `hr1` in terms of sample size
 #' @param id2 amount of information for `hr2` in terms of sample size
 #' @param step1 lower boundary for effect size
 #' @param step2 upper boundary for effect size
-#' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
+#' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
 #' @return The output of the the function `EPsProg_multiple_tte()` is the expected probability of a successful program, when going to phase III.
 #' @examples res <- EPsProg_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.025, beta = 0.1,
@@ -312,11 +312,11 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
 #' @param n2 total sample size for phase II; must be even number
 #' @param beta 1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula
 #' @param alpha one- sided significance level
-#' @param hr1 assumed true treatment effect on HR scale for treatment 1
-#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param hr1 assumed true treatment effect on HR scale for endpoint OS
+#' @param hr2 assumed true treatment effect on HR scale for endpoint PFS
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
-#' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
+#' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
 #' @return The output of the the function `os_tte()` is the probability that endpoint OS significant.
 #' @examples res <- os_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
@@ -400,8 +400,8 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
-#' @param hr1 assumed true treatment effect on HR scale for treatment 1
-#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param hr1 assumed true treatment effect on HR scale for endpoint OS
+#' @param hr2 assumed true treatment effect on HR scale for endpoint PFS
 #' @param id1 amount of information for `hr1` in terms of sample size
 #' @param id2 amount of information for `hr2` in terms of sample size
 #' @param c2 variable per-patient cost for phase II

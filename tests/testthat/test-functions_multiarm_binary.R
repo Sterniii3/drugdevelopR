@@ -31,3 +31,34 @@ test_that("Utility increases for lower risk ratio", {
                                      steps1 = 1, stepm1 = 0.95,   stepl1 = 0.85,
                                      b1 = 1000, b2 = 2000, b3 = 3000)[1] )
 })
+
+
+test_that("pgo_binary: Setting 1.21", {
+  expect_equal(pgo_binary(RRgo = 0.8 ,n2 = 50 ,
+                          p0 = 0.6, p11 =  0.3, p12 = 0.5,
+                          strategy = 1, case = 21), 
+               0.82731434)
+})
+
+test_that("pgo_binary: Setting 1.22", {
+  expect_equal(pgo_binary(RRgo = 0.8 ,n2 = 50 ,
+                          p0 = 0.6, p11 =  0.3, p12 = 0.5,
+                          strategy = 1, case = 22), 
+               0.058433831)
+})
+
+
+test_that("pgo_binary: Setting 2.31", {
+  expect_equal(pgo_binary(RRgo = 0.8 ,n2 = 50 ,
+                          p0 = 0.6, p11 =  0.3, p12 = 0.5,
+                          strategy = 2, case = 31), 
+               0.390209193)
+})
+
+test_that("pgo_binary: Setting 2.32", {
+  expect_equal(pgo_binary(RRgo = 0.8 ,n2 = 50 ,
+                          p0 = 0.6, p11 =  0.3, p12 = 0.5,
+                          strategy = 2, case = 32), 
+               0.0387135207)
+})
+

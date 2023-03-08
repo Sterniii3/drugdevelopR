@@ -31,11 +31,11 @@ optimal_multiple_tte(
   b12,
   b22,
   b32,
-  steps1,
-  stepm1,
-  stepl1,
+  steps1 = 1,
+  stepm1 = 0.95,
+  stepl1 = 0.85,
   rho,
-  fixed,
+  fixed = TRUE,
   num_cl = 1
 )
 }

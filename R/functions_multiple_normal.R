@@ -79,34 +79,52 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #' @return The output of the the function `pgo_multiple_normal()` is the probability to go to phase III.
 #' @examples res <- pgo_multiple_normal(kappa = 0.1, n2 = 50,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'                                sigma1 = 8, sigma2 = 4, fixed = TRUE, rho = 0.3)
+#'                                sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export
 pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
-  
+
   Kappa <- c(kappa*sigma1,kappa*sigma2)
   var1 <- (4*sigma1^2)/n2  #variance of effect for endpoint 1 
   var2 <- (4*sigma2^2)/n2  #variance of effect for endpoint 2
   covmat<-matrix(c(var1, rho*sqrt(var1)*sqrt(var2), rho*sqrt(var1)*sqrt(var2), var2), ncol=2) #covariance-Matrix of c(Delta2,Delta2)
-  
-  
-   if(fixed) {
+ 
+   
+  if(fixed) {
     return(pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(Delta1, Delta2),sigma=covmat)[1])
-   }
+  }
   
-  else  {
-    return(integrate(function(u){
-      sapply(u,function(u){
-        integrate(function(v){
-          sapply(v,function(v){
-            (pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(u,v),sigma=covmat)[1])*dbivanorm(u,v,Delta1,Delta2, 4/in1, 4/in2, rho)
-          })
-        },0,Inf )$value
-      })
-    },0,Inf )$value)
+  else {
+    mu_prior<-c(Delta1, Delta2) # true treatment effect theta
+    Sigma_prior<-matrix(c(4/in1,rho*sqrt(4/in1)*sqrt(4/in2), rho*sqrt(4/in1)*sqrt(4/in2),4/in2),ncol=2)
+    nsim<-100 
+    set.seed(61216)
+    rsamp <- mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
+    pgo_vector <- vector(length = nsim)
     
-     }
+    for (m in 1:nsim){
+    Delta1_prior <- rsamp[m,1]
+    Delta2_prior <- rsamp[m,2]
+    
+    pgo_vector[m] <- pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(Delta1_prior, Delta2_prior),sigma=covmat)[1]
+    }
+    
+    return(1/nsim * sum(pgo_vector))
+   
+  }
+  
+#    return(integrate(function(u){
+#      sapply(u,function(u){
+#        integrate(function(v){
+#          sapply(v,function(v){
+#            (pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(u,v),sigma=covmat)[1])*dbivanorm(u,v,Delta1,Delta2, 4/in1, 4/in2, rho)
+#          })
+#        },0,Inf )$value
+#      })
+#   },0,Inf )$value)
+    
+     
   
 }
 
@@ -130,7 +148,7 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
 #' @return the output of the the function Ess_multiple_normal is the expected number of participants in phase III
 #' @examples res <- Ess_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'                                sigma1 = 8, sigma2 = 4, fixed = TRUE, rho = 0.3)
+#'                                sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export
@@ -154,19 +172,40 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
   }
   
   else   {
-    return(integrate(function(u){ sapply(u,function(u){
-      integrate(function(v){sapply(v,function(v){
-        integrate(function(y){ sapply(y,function(y){ 
-          integrate(function(x){ sapply(x,function(x){
-            max((r[1]*(qnorm(1-alpha)+qnorm(1-beta))^2/x^2),(r[2]*(qnorm(1-alpha)+qnorm(1-beta))^2/y^2))*dbivanorm(x,y,u,v,var1,var2,rho)*dbivanorm(u,v,Delta1,Delta2,4/in1, 4/in2,rho)
-          })
-          },Kappa[1],Inf)$value
-        })
-        },Kappa[2],Inf)$value
-      })
-      },0,1000 )$value
-    })
-    },0,1000 )$value)
+    mu_prior<-c(Delta1, Delta2) # true treatment effect theta
+    Sigma_prior<-matrix(c(4/in1,rho*sqrt(4/in1)*sqrt(4/in2), rho*sqrt(4/in1)*sqrt(4/in2),4/in2),ncol=2)
+    nsim<-100 
+    set.seed(61216)
+    rsamp <- mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
+    Ess_vector <- vector(length = nsim)
+    
+    for (m in 1:nsim){
+      Delta1_prior <- rsamp[m,1]
+      Delta2_prior <- rsamp[m,2]
+      
+     Ess_vector[m] <- integrate(function(x){ sapply(x,function(x){
+                                 (4*(qnorm(1-alpha)+qnorm(1-beta))^2/x^2)*fmin(x,Delta1_prior,Delta2_prior,var1,var2,rho)
+                                  })
+                               },kappa,Inf)$value
+     
+       }
+      
+      return(1/nsim * sum(Ess_vector))
+      
+    
+#    return(integrate(function(u){ sapply(u,function(u){
+#      integrate(function(v){sapply(v,function(v){
+#        integrate(function(y){ sapply(y,function(y){ 
+#          integrate(function(x){ sapply(x,function(x){
+#            max((r[1]*(qnorm(1-alpha)+qnorm(1-beta))^2/x^2),(r[2]*(qnorm(1-alpha)+qnorm(1-beta))^2/y^2))*dbivanorm(x,y,u,v,var1,var2,rho)*dbivanorm(u,v,Delta1,Delta2,4/in1, 4/in2,rho)
+#          })
+#          },Kappa[1],Inf)$value
+#        })
+#        },Kappa[2],Inf)$value
+#      })
+#      }, -Inf,Inf )$value
+#    })
+#   },-Inf,Inf )$value)
     
   }
 }
@@ -190,7 +229,7 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
 #' @return The output of the the function `posp_normal()` is the probability of a successful program, when going to phase III.
 #' @examples res <- posp_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-#'                                sigma1 = 8, sigma2 = 4, fixed = TRUE, rho = 0.3)
+#'                                sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export
@@ -222,24 +261,55 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
   }
   
   else {
-    return (integrate(function(u){ sapply(u,function(u){
-      integrate(function(v){sapply(v,function(v){
-        integrate(function(y){ sapply(y,function(y){ 
-          integrate(function(x){ sapply(x,function(x){
-            pmvnorm(lower=c(qnorm(1-alpha),qnorm(1-alpha)),
-                    upper=c(Inf,Inf),
-                    mean=c(u/sqrt(r[1]/max((r[1]*c/x^2),(r[2]*c/y^2))),v/sqrt(r[2]/max((r[1]*c/x^2),(r[2]*c/y^2)))),
-                    sigma=covmatt3)[1]*dbivanorm(x,y,u,v,var1,var2,rho)*dbivanorm(u,v,Delta1,Delta2,4/in1,4/in2,rho)
-          })
+    
+    mu_prior<-c(Delta1, Delta2) # true treatment effect theta
+    Sigma_prior<-matrix(c(4/in1,rho*sqrt(4/in1)*sqrt(4/in2), rho*sqrt(4/in1)*sqrt(4/in2),4/in2),ncol=2)
+    nsim<-100 
+    set.seed(61216)
+    rsamp <- mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
+    
+    for (m in 1:nsim){
+      Delta1_prior <- rsamp[m,1]
+      Delta2_prior <- rsamp[m,2]
+      posp_vector <- vector(length = nsim)
+      
+      posp_vector[m] <- integrate(function(y){ 
+        sapply(y,function(y){ 
+          integrate(function(x){ 
+            sapply(x,function(x){
+              pmvnorm(lower=c(qnorm(1-alpha),qnorm(1-alpha)), 
+                      upper=c(Inf,Inf), 
+                      mean=c(Delta1_prior/sqrt(r[1]/max((r[1]*c/x^2),(r[2]*c/y^2))),Delta2_prior/sqrt(r[2]/max((r[1]*c/x^2),(r[2]*c/y^2)))),
+                      sigma=covmatt3)[1]*dbivanorm(x,y,Delta1_prior,Delta2_prior,var1,var2,rho)
+            })
           }, Kappa[1],Inf)$value #x
         })
-        }, Kappa[2],Inf)$value #y
-      })
-      },-Inf,Inf )$value
-    })
-    },-Inf,Inf )$value)
+      }, Kappa[2],Inf)$value
+      
+    }
+      
+      return(sum(posp_vector))
+    
+    
+#   return (integrate(function(u){ sapply(u,function(u){
+#      integrate(function(v){sapply(v,function(v){
+#        integrate(function(y){ sapply(y,function(y){ 
+#          integrate(function(x){ sapply(x,function(x){
+#            pmvnorm(lower=c(qnorm(1-alpha),qnorm(1-alpha)),
+#                    upper=c(Inf,Inf),
+#                    mean=c(u/sqrt(r[1]/max((r[1]*c/x^2),(r[2]*c/y^2))),v/sqrt(r[2]/max((r[1]*c/x^2),(r[2]*c/y^2)))),
+#                    sigma=covmatt3)[1]*dbivanorm(x,y,u,v,var1,var2,rho)*dbivanorm(u,v,Delta1,Delta2,4/in1,4/in2,rho)
+#          })
+#          }, Kappa[1],Inf)$value #x
+#        })
+#        }, Kappa[2],Inf)$value #y
+#      })
+#      },-Inf,Inf )$value
+#    })
+#    },-Inf,Inf )$value)
   }
   
+    
 }
 
 #E(n3|GO)
@@ -270,7 +340,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
 #' @param rho correlation between the two endpoints
 #' @return The output of the the function `EPsProg_multiple_normal()` is the expected probability of a successfull program, when going to phase III.
 #' @examples res <- EPsProg_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
-#'                                Delta1 = 0.375, Delta2 = 0.625, sigma1 = 8, sigma2 = 4,
+#'                                Delta1 = 0.375, Delta2 = 0.625, sigma1 = 2, sigma2 = 1,
 #'                                step11 = 0, step12 = 0, step21 = 0.5, step22 = 0.5, 
 #'                                in1 = 300, in2 = 600, fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
@@ -311,24 +381,54 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
   
   else {
     
-    return(integrate(function(u){ sapply(u,function(u){
-      integrate(function(v){sapply(v,function(v){
-        integrate(function(y){ sapply(y,function(y){ 
-          integrate(function(x){ sapply(x,function(x){
-            pmvnorm(lower=c(qnorm(1-alpha)+step11*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
-                            qnorm(1-alpha)+step12*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2), 
-                    upper=c(qnorm(1-alpha)+step21*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
-                            qnorm(1-alpha)+step22*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2), 
-                    mean=c(u/sqrt(r[1]/max((r[1]*c/x^2),(r[2]*c/y^2))),v/sqrt(r[2]/max((r[1]*c/x^2),(r[2]*c/y^2)))),
-                    sigma=covmatt3)[1]*dbivanorm(x,y,u,v,var1,var2,rho)*dbivanorm(u,v,Delta1,Delta2,4/in1,4/in2,rho)
-          })
+    mu_prior<-c(Delta1, Delta2) # true treatment effect theta
+    Sigma_prior<-matrix(c(4/in1,rho*sqrt(4/in1)*sqrt(4/in2), rho*sqrt(4/in1)*sqrt(4/in2),4/in2),ncol=2)
+    nsim<-100 
+    set.seed(61216)
+    rsamp <- mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
+    
+    for (m in 1:nsim){
+      Delta1_prior <- rsamp[m,1]
+      Delta2_prior <- rsamp[m,2]
+      EPsProg_vector <- vector(length = nsim)
+      
+      EPsProg_vector[m] <- integrate(function(y){
+        sapply(y,function(y){
+          integrate(function(x){ 
+            sapply(x,function(x){ 
+              pmvnorm(lower=c(qnorm(1-alpha)+step11*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
+                              qnorm(1-alpha)+step12*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2), 
+                      upper=c(qnorm(1-alpha)+step21*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
+                              qnorm(1-alpha)+step22*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2), 
+                      mean=c(Delta1_prior/sqrt(r[1]/max((r[1]*c/x^2),(r[2]*c/y^2))),Delta2_prior/sqrt(r[2]/max((r[1]*c/x^2),(r[2]*c/y^2)))),
+                      sigma=covmatt3)[1]*dbivanorm(x,y,Delta1_prior,Delta2_prior,var1,var2,rho)
+            })
           },Kappa[1],Inf)$value
         })
-        },Kappa[2],Inf)$value
-      })
-      },-Inf,Inf )$value
-    })
-    },-Inf,Inf )$value)
+      },Kappa[2],Inf)$value
+      
+    }
+    
+    return(sum(EPsProg_vector))
+    
+#    return(integrate(function(u){ sapply(u,function(u){
+#      integrate(function(v){sapply(v,function(v){
+#        integrate(function(y){ sapply(y,function(y){ 
+#          integrate(function(x){ sapply(x,function(x){
+#            pmvnorm(lower=c(qnorm(1-alpha)+step11*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
+#                            qnorm(1-alpha)+step12*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2), 
+#                    upper=c(qnorm(1-alpha)+step21*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
+#                            qnorm(1-alpha)+step22*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2), 
+#                    mean=c(u/sqrt(r[1]/max((r[1]*c/x^2),(r[2]*c/y^2))),v/sqrt(r[2]/max((r[1]*c/x^2),(r[2]*c/y^2)))),
+#                    sigma=covmatt3)[1]*dbivanorm(x,y,u,v,var1,var2,rho)*dbivanorm(u,v,Delta1,Delta2,4/in1,4/in2,rho)
+#          })
+#          },Kappa[1],Inf)$value
+#        })
+#        },Kappa[2],Inf)$value
+#      })
+#      },-Inf,Inf )$value
+#    })
+#    },-Inf,Inf )$value)
     
   }
 }
@@ -367,7 +467,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
 #' @examples res <- utility_multiple_normal(kappa = 0.1, n2 = 50, 
 #'                                alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, 
-#'                                in1 = 300, in2 = 600, sigma1 = 8, sigma2 = 4,
+#'                                in1 = 300, in2 = 600, sigma1 = 2, sigma2 = 1,
 #'                                c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                K = Inf, N = Inf, S = -Inf,
 #'                                steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,

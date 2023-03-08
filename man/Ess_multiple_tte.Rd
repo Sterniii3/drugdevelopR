@@ -15,15 +15,15 @@ Ess_multiple_tte(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho)
 
 \item{beta}{\code{1-beta} power for calculation of the number of events for phase III by Schoenfeld (1981) formula}
 
-\item{hr1}{assumed true treatment effect on HR scale for treatment 1}
+\item{hr1}{assumed true treatment effect on HR scale for endpoint OS}
 
-\item{hr2}{assumed true treatment effect on HR scale for treatment 2}
+\item{hr2}{assumed true treatment effect on HR scale for endpoint PFS}
 
 \item{id1}{amount of information for \code{hr1} in terms of number of events}
 
 \item{id2}{amount of information for \code{hr2} in terms of number of events}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random}
 
 \item{rho}{correlation between the two endpoints}
 }

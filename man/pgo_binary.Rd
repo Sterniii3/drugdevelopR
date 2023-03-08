@@ -17,7 +17,7 @@ pgo_binary(RRgo, n2, p0, p11, p12, strategy, case)
 
 \item{p12}{assumed true rate of treatment group}
 
-\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)}
+\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising")}
 
 \item{case}{different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)}
 }
@@ -34,7 +34,7 @@ Given our parameters this function calculates the probability to go to phase III
 }
 }
 \examples{
-res <- pgo_binary(RRgo = 0.8 ,n2 = 50 ,p0 = 0.6, p11 =  0.3, p12 = 0.5,strategy = 3, case = 31)
+res <- pgo_binary(RRgo = 0.8 ,n2 = 50 ,p0 = 0.6, p11 =  0.3, p12 = 0.5,strategy = 2, case = 31)
 }
 \section{Last Edited By}{
 Johannes Cepicka

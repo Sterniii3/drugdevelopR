@@ -126,8 +126,8 @@ In this article we presented an example when several phase III endpoints are per
 * [*Interpreting the rest of the output:*](https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html) Obtain further details on your drug development program.
 * [*Fixed or prior:*](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html) Model the assumed treatment effect on a prior distribution.
 * [*More parameters:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.
-* *Complex drug development programs:* Adapt to situations with [biased effect estimators](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html),  [multi-arm trials](https://sterniii3.github.io/drugdevelopR/articles/Multiarm_Trials.html), or multiple endpoints.
-* *Parallel computing:* Be faster at calculating the optimum by using parallel computing.
+* *Complex drug development programs:* Adapt to situations with [biased effect estimators](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html),  [multi-arm trials](https://sterniii3.github.io/drugdevelopR/articles/Multiarm_Trials.html), or [multiple endpoints](https://sterniii3.github.io/drugdevelopR/articles/Multiple_Endpoints.html).
+* [*Parallel computing:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Be faster at calculating the optimum by using parallel computing.
 
 # References
 Koch, G. G. (2005). Statistical consideration of the strategy for demon- strating clinical evidence of effectiveness one larger vs two smaller pivotal studies by z. shun, e. chi, s. durrleman and l. fisher, statistics in medicine 2005; 24: 1619–1637. Statistics in Medicine, 24(11):1639–1646.

@@ -97,7 +97,7 @@ The utility is in a further step maximized by the \code{optimal_multiple_normal(
 res <- utility_multiple_normal(kappa = 0.1, n2 = 50, 
                                alpha = 0.025, beta = 0.1,
                                Delta1 = 0.375, Delta2 = 0.625, 
-                               in1 = 300, in2 = 600, sigma1 = 8, sigma2 = 4,
+                               in1 = 300, in2 = 600, sigma1 = 2, sigma2 = 1,
                                c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                                K = Inf, N = Inf, S = -Inf,
                                steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,

@@ -31,9 +31,9 @@ EPsProg_multiple_tte(
 
 \item{ec}{control arm event rate for phase II and III}
 
-\item{hr1}{assumed true treatment effect on HR scale for treatment 1}
+\item{hr1}{assumed true treatment effect on HR scale for endpoint OS}
 
-\item{hr2}{assumed true treatment effect on HR scale for treatment 2}
+\item{hr2}{assumed true treatment effect on HR scale for endpoint PFS}
 
 \item{id1}{amount of information for \code{hr1} in terms of sample size}
 
@@ -43,7 +43,7 @@ EPsProg_multiple_tte(
 
 \item{step2}{upper boundary for effect size}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random}
 
 \item{rho}{correlation between the two endpoints}
 }
