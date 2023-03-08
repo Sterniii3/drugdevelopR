@@ -155,7 +155,7 @@ Use the function `Epgo_binary()`. Supply 10 sets of the following input values:
 
 Calculate the function output for all 10 parameter sets and compare the results to the results of a SAS program implementing the probability formula
 $$p_{go}^{\varrho}= \Phi\left(\frac{\varrho - \kappa}{\sqrt{2/n_2 \cdot(\frac{1-p_0}{p_0}+ \frac{1-p_1}{p_1}) }}\right)$$
-where $\varrho = -\log(RR)$ and $\kappa=-\log(p11/p0)$ as calculated in
+where $\varrho = -\log(RR)$ and $\kappa=-\log(p_{11}/p_0)$ as calculated in
 [@preussler2020].
 
 Use the function `En3_binary()`. Supply 10 sets of the following input values:
