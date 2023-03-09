@@ -376,3 +376,17 @@ test_that("01.12", {
   expect_true(time_elapsed_01_02_num_cl_1 > time_elapsed_01_02_num_cl_3)
 }
 )
+#' @editor Lukas D Sauer
+#' @editDate 2023-03-09
+test_that("01.14", {
+  # Comparing results of Epgo_binary() and En3_binary() to SAS results
+  data <- haven::read_sas("./validation/ref/valref_binary.sas7bdat")
+  res_r <- rep(0, nrow(data))
+  for(i in (1:nrow(data))){
+    res_r[i] <- En3_binary(RRgo = data$RRgo_vec[i], n2 = data$n2_vec[i],
+                           alpha = data$alpha_vec[i], beta = data$beta_vec[i],
+                           p0 = data$p0_vec[i], w = NULL, p11 = data$p11_vec[i],
+                           p12 = NULL, in1 = NULL, in2 = NULL, fixed = TRUE)
+  }
+  expect_equal(data$res_sas, res_r)
+})
