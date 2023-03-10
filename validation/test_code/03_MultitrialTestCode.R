@@ -422,7 +422,7 @@ test_that("03.11", {
   expect_equal(res[3,]$n2, 342)
   expect_equal(res[3,]$n3, 888)
   expect_equal(res[3,]$n, 1230)
-  expect_equal(res[2,]$sProg, 0.86)
+  expect_equal(res[3,]$sProg, 0.86)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23
@@ -509,7 +509,7 @@ test_that("03.13", {
   expect_equal(res[1, ]$n2, 440)
   expect_equal(res[1, ]$n3, 830)
   expect_equal(res[1, ]$n, 1270)
-  expect_equal(res[1, ]$sProg, 0.82)
+  expect_equal(res[1, ]$sProg, 0.81)
   # Strategy 3
   expect_equal(res[2, ]$u, 1116.60, tolerance = 0.005)
   expect_equal(res[2, ]$Kappa, 0.16)
@@ -525,23 +525,23 @@ test_that("03.13", {
   expect_equal(res[3, ]$n, 1552)
   expect_equal(res[3, ]$sProg, 0.86)
   # Constrained
-  expect_equal(res_constrained$Strategy, c(1, 3, 4))
+  expect_equal(res_prob_constraint$Strategy, c(1, 3, 4))
   # Strategy 1
-  expect_equal(res_constrained[1, ]$u, 1513.26, tolerance = 0.005)
-  expect_equal(res_constrained[1, ]$Kappa, 0.14)
-  expect_equal(res_constrained[1, ]$n2, 444)
-  expect_equal(res_constrained[1, ]$n3, 852)
-  expect_equal(res_constrained[1, ]$n, 1296)
-  expect_equal(res_constrained[1, ]$sProg, 0.82)
+  expect_equal(res_prob_constraint[1, ]$u, 1513.26, tolerance = 0.005)
+  expect_equal(res_prob_constraint[1, ]$Kappa, 0.14)
+  expect_equal(res_prob_constraint[1, ]$n2, 444)
+  expect_equal(res_prob_constraint[1, ]$n3, 852)
+  expect_equal(res_prob_constraint[1, ]$n, 1296)
+  expect_equal(res_prob_constraint[1, ]$sProg, 0.82)
   # Strategy 3
-  expect_equal(res_constrained[2, ]$u, -9999)
+  expect_equal(res_prob_constraint[2, ]$u, -9999)
   # Strategy 4
-  expect_equal(res_constrained[3, ]$u, 1395.35, tolerance = 0.005)
-  expect_equal(res_constrained[3, ]$Kappa, 0.18)
-  expect_equal(res_constrained[3, ]$n2, 424)
-  expect_equal(res_constrained[3, ]$n3, 1128)
-  expect_equal(res_constrained[3, ]$n, 1552)
-  expect_equal(res_constrained[3, ]$sProg, 0.86)
+  expect_equal(res_prob_constraint[3, ]$u, 1395.35, tolerance = 0.005)
+  expect_equal(res_prob_constraint[3, ]$Kappa, 0.18)
+  expect_equal(res_prob_constraint[3, ]$n2, 424)
+  expect_equal(res_prob_constraint[3, ]$n3, 1128)
+  expect_equal(res_prob_constraint[3, ]$n, 1552)
+  expect_equal(res_prob_constraint[3, ]$sProg, 0.86)
 
 })
 #' @editor Lukas D Sauer
@@ -566,7 +566,7 @@ test_that("03.14", {
   # Strategy 1
   expect_equal(res$u, 1749.97, tolerance = 0.005)
   expect_equal(res$Kappa, 0.16)
-  expect_equal(416)
+  expect_equal(res$n2, 416)
   expect_equal(res$n3, 876)
   expect_equal(res$n, 1292)
 })
