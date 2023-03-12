@@ -27,7 +27,7 @@ Use the function `optimal_multiarm`. Supply the following input values to the fu
   * the optimization region {0.71, 0.72, ..., 0.9} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
   * expected gains of 100,000,000\$, 200,000,000\$, and 300,000,000\$ for each effect size, respectively,
-  * three clusters for parallel computing,
+  * twelve clusters for parallel computing,
   * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * use strategy 1, i.e. the strategy where only the best of the promising
@@ -47,7 +47,7 @@ Use the function `optimal_multiarm`. Supply the same input values as in test cas
 Verify that the program returns the results for both strategies, the results for strategy 2 are the same as in test case 04.02. as the constraint is not binding, however, the results strategy 1 change as follows:  The optimal utility changes to 8.34, the optimal sample size changes to 133 in phase II and 383 in phase III (i.e. a total of 516) and the optimal threshold value for the go-decision is 0.82.
 
 ### 04.04 (shows that req. 04.07 is met): {-}
-Use the function `optimal_multiarm`. Supply the same input values as in test case 04.02, however change the number of cores for parallel computing to 1. 
+Use the function `optimal_multiarm`. Supply the same input values as in test case 04.02, however change the number of cores for parallel computing to 6. 
 
 Verify that the computation time will increase compared to the setting in 04.02.
 
@@ -61,7 +61,7 @@ Use the function ` optimal_multiarm_binary()`. Supply the following input values
   * the optimization region {0.7, 0.71, …, 0.9} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
   * expected gains of 100,000,000\$, 200,000,000\$, and 300,000,000\$ for each effect size, respectively,
-  * three clusters for parallel computing,
+  * twelve clusters for parallel computing,
   * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III, and
   * strategy 1, i.e. the strategy where only the best promising treatment proceeds to phase III.
@@ -88,7 +88,7 @@ Use the function `optimal_multiarm_normal()`. Supply the following input values 
   * the optimization region {0.02, 0.04,…, 0.3} for the threshold values,
   * boundaries of 0, 0.5 and 0.8 for the effect size categories small, medium and large,
   * expected gains of 100,000,000\$, 300,000,000\$ and 500,000,000\$ for each effect size, respectively,
-  * three clusters for parallel computing,
+  * twelve clusters for parallel computing,
   * fixed costs of 1,500,000\$ in phase II and of 2,000,000\$ in phase III,
   * variable costs of 67,500\$ in phase II and 72,000\$ in phase III,
   * strategy 1, i.e. use the strategy where only the best promising treatment proceeds to phase III.

@@ -32,7 +32,7 @@ Use the function `optimal_tte()`. Supply the following input values to the funct
   * the optimization region {0.71, 0.72, ..., 0.95} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
   * expected gains of 100,000,000\$, 300,000,000\$, and 500,000,000\$ for each effect size, respectively,
-  * three clusters for parallel computing,
+  * twelve clusters for parallel computing,
   * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * “fixed=FALSE”, i.e. set the function to use a prior distribution,
@@ -77,7 +77,7 @@ Use the function ` optimal_binary()`. Supply the following input values to the f
   * the optimization region {0.7, 0.71, …, 0.9} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
   * expected gains of 100,000,000\$, 300,000,000\$, and 500,000,000\$ for each effect size, respectively,
-  * three clusters for parallel computing,
+  * twelve clusters for parallel computing,
   * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * `fixed=TRUE`, i.e. set the function to use fixed treatment effects not modelled on a prior distribution,
@@ -100,7 +100,7 @@ Use the function `optimal_normal()`. Supply the following input values to the fu
   * the optimization region {0.01, 0.02,…, 0.5} for the threshold values,
   * boundaries of 0, 0.375 and 0.625 for the effect size categories small, medium and large,
   * expected gains of 62,500,000\$, 200,000,000\$ and 1,000,000,000\$ for each effect size, respectively,
-  * three clusters for parallel computing,
+  * twelve clusters for parallel computing,
   * fixed costs of 1,500,000\$ in phase II and of 2,000,000\$ in phase III,
   * variable costs of 67,500\$ in phase II and 72,000\$ in phase III,
   * “fixed=FALSE”, i.e. set the function to model the treatment effects on a prior distribution,
@@ -115,7 +115,7 @@ Use the function `optimal_normal()`. Supply the same input values as in test cas
 Verify that the function calculates an optimal sample size of 78 in phase II, an expected utility of 944 (in 10^5\$)  and an optimal threshold value of 0.12 as suggested by Stella Erdmann [2]. Furthermore, verify that the probability of a successful program is given by 0.83, which is the sum of the probabilities of a small (0.51), medium (0.30) or large (0.02) treatment effect.
 
 ### 01.12 (shows that req. 01.08 is met): {-}
-Use the `function optimal_tte`. Supply the same input values as in test case 01.01 to the function except for the following change: Set the number of cores for parallel computing to 1. Verify that the computation time will increase compared to the setting in 01.01.
+Use the `function optimal_tte`. Supply the same input values as in test case 01.01 to the function except for the following change: Set the number of cores for parallel computing to 6. Verify that the computation time will increase compared to the setting in 01.01.
 
 ### 01.13 (shows that req. 01.01, 01.13, 01.14 are met): {-}
 Use the function `Epgo_normal()`. Supply 10 sets of the following input values:

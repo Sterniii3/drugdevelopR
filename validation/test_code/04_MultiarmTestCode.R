@@ -10,7 +10,7 @@ test_that("04.01", {
                           hrgomin = 0.71, hrgomax = 0.9, stephrgo = 0.01,
                           steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                           b1 = 1000, b2 = 2000, b3 = 3000,
-                          num_cl = 3,
+                          num_cl = 12,
                           c02 = 100, c03 = 150,
                           c2 = 0.75, c3 = 1,
                           strategy = 1
@@ -34,7 +34,7 @@ test_that("04.02", {
                           hrgomin = 0.71, hrgomax = 0.9, stephrgo = 0.01,
                           steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                           b1 = 1000, b2 = 2000, b3 = 3000,
-                          num_cl = 3,
+                          num_cl = 12,
                           c02 = 100, c03 = 150,
                           c2 = 0.75, c3 = 1,
                           strategy = 2
@@ -58,7 +58,7 @@ test_that("04.03", {
                           hrgomin = 0.71, hrgomax = 0.9, stephrgo = 0.01,
                           steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                           b1 = 1000, b2 = 2000, b3 = 3000,
-                          num_cl = 3,
+                          num_cl = 12,
                           c02 = 100, c03 = 150,
                           c2 = 0.75, c3 = 1,
                           strategy = 3,
@@ -91,7 +91,7 @@ test_that("04.04", {
                           hrgomin = 0.71, hrgomax = 0.9, stephrgo = 0.01,
                           steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                           b1 = 1000, b2 = 2000, b3 = 3000,
-                          num_cl = 3,
+                          num_cl = 12,
                           c02 = 100, c03 = 150,
                           c2 = 0.75, c3 = 1,
                           strategy = 2
@@ -107,7 +107,7 @@ test_that("04.04", {
                           hrgomin = 0.71, hrgomax = 0.9, stephrgo = 0.01,
                           steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                           b1 = 1000, b2 = 2000, b3 = 3000,
-                          num_cl = 1,
+                          num_cl = 6,
                           c02 = 100, c03 = 150,
                           c2 = 0.75, c3 = 1,
                           strategy = 2
@@ -127,7 +127,7 @@ test_that("04.05", {
                           rrgomin = 0.71, rrgomax = 0.9, steprrgo = 0.01,
                           steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                           b1 = 1000, b2 = 2000, b3 = 3000,
-                          num_cl = 3,
+                          num_cl = 12,
                           c02 = 100, c03 = 150,
                           c2 = 0.75, c3 = 1,
                           strategy = 1
@@ -149,7 +149,7 @@ test_that("04.06", {
                                  rrgomin = 0.71, rrgomax = 0.9, steprrgo = 0.01,
                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                                  b1 = 1000, b2 = 2000, b3 = 3000,
-                                 num_cl = 3,
+                                 num_cl = 12,
                                  c02 = 100, c03 = 150,
                                  c2 = 0.75, c3 = 1,
                                  strategy = 2
@@ -171,7 +171,7 @@ test_that("04.07", {
                                  rrgomin = 0.71, rrgomax = 0.9, steprrgo = 0.01,
                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                                  b1 = 1000, b2 = 2000, b3 = 3000,
-                                 num_cl = 3,
+                                 num_cl = 12,
                                  c02 = 100, c03 = 150,
                                  c2 = 0.75, c3 = 1,
                                  strategy = 3,
@@ -200,7 +200,7 @@ test_that("04.08", {
                                  kappamin = 0.02, kappamax = 0.3, stepkappa = 0.02,
                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                  b1 = 1000, b2 = 3000, b3 = 5000,
-                                 num_cl = 3,
+                                 num_cl = 12,
                                  c02 = 15, c03 = 20,
                                  c2 = 0.675, c3 = 0.72,
                                  strategy = 1
@@ -223,7 +223,7 @@ test_that("04.09", {
                                  kappamin = 0.02, kappamax = 0.3, stepkappa = 0.02,
                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                  b1 = 1000, b2 = 3000, b3 = 5000,
-                                 num_cl = 3,
+                                 num_cl = 12,
                                  c02 = 15, c03 = 20,
                                  c2 = 0.675, c3 = 0.72,
                                  strategy = 2
@@ -246,7 +246,7 @@ test_that("04.10", {
                                  kappamin = 0.02, kappamax = 0.3, stepkappa = 0.02,
                                  steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                  b1 = 1000, b2 = 3000, b3 = 5000,
-                                 num_cl = 3,
+                                 num_cl = 12,
                                  c02 = 15, c03 = 20,
                                  c2 = 0.675, c3 = 0.72,
                                  strategy = 3,

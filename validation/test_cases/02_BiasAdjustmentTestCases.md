@@ -28,7 +28,7 @@ Use the function `optimal_bias()`. Supply the following input values to the func
   * the optimization region {0.7, 0.72, ..., 0.9} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
   * expected gains of 100,000,000\$, 200,000,000\$, and 300,000,000\$ for each effect size, respectively,
-  * three clusters for parallel computing,
+  * twelve clusters for parallel computing,
   * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * “fixed=FALSE”, i.e. set the function to use a prior distribution,
@@ -72,7 +72,7 @@ Use the function `optimal_bias`. Supply the same input values as in test case 02
 Verify that both adjustment methods and the case with no bias adjustment return the same results, i.e. an expected utility of 75.8 (in 10^5\$) and optimal sample sizes of 122 participants in phase II and 210 participants in phase III (i.e. a total sample size of 332).
 
 ### 02.08 (shows that req. 02.09 is met): {-}
-Use the function `optimal_bias`. Supply the same input values as in test case 02.01, however change the number of clusters for parallel computing to 1. 
+Use the function `optimal_bias`. Supply the same input values as in test case 02.01, however change the number of clusters for parallel computing to 6. 
 Verify that the computation time will increase compared to the setting in 02.01.
 
 ### 02.09 (shows that req. 02.01, 02.05 and 02.11 are met): {-}
@@ -85,7 +85,7 @@ Use the function `optimal_bias_normal()`. Supply the following input values to t
   * the optimization region {0.02, 0.04,…, 0.4} for the threshold values,
   * boundaries of 0, 0.5 and 0.8 for the effect size categories small, medium and large,
   * expected gains of 300,000,000\$, 800,000,000\$ and 1,000,000,000\$ for each effect size, respectively,
-  * three clusters for parallel computing,
+  * twelve clusters for parallel computing,
   * fixed costs of 1,500,000\$ in phase II and of 2,000,000\$ in phase III,
   * variable costs of 67,500\$ in phase II and 72,000\$ in phase III,
   * “fixed=FALSE”, i.e. set the function to model the treatment effects on a prior distribution,
@@ -115,7 +115,7 @@ Use the function ` optimal_bias_binary()`. Supply the following input values to 
   * the optimization region {0.7, 0.71, …, 0.9} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
   * expected gains of 100,000,000, 200,000,000, and 300,000,000 for each effect size, respectively,
-  * three clusters for parallel computing,
+  * twelve clusters for parallel computing,
   * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * “fixed=FALSE”, i.e. set the function to use treatment effects modeled on a prior distribution,

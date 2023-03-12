@@ -9,7 +9,7 @@ test_that("03.01", {
                             d2min = 100, d2max = 300, stepd2 = 4,
                             hrgomin = 0.65, hrgomax = 0.8, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
-                            num_cl = 3,
+                            num_cl = 12,
                             c02 = 100, c03 = 150,
                             c2 = 0.75, c3 = 1,
                             fixed = FALSE,
@@ -67,7 +67,7 @@ test_that("03.02", {
                             d2min = 100, d2max = 300, stepd2 = 4,
                             hrgomin = 0.65, hrgomax = 0.8, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
-                            num_cl = 3,
+                            num_cl = 12,
                             c02 = 100, c03 = 150,
                             c2 = 0.75, c3 = 1,
                             fixed = FALSE,
@@ -95,7 +95,7 @@ test_that("03.03", {
                             d2min = 100, d2max = 300, stepd2 = 4,
                             hrgomin = 0.65, hrgomax = 0.8, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
-                            num_cl = 3,
+                            num_cl = 12,
                             c02 = 100, c03 = 150,
                             c2 = 0.75, c3 = 1,
                             fixed = FALSE,
@@ -152,7 +152,7 @@ test_that("03.04", {
                             d2min = 100, d2max = 300, stepd2 = 4,
                             hrgomin = 0.65, hrgomax = 0.8, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
-                            num_cl = 3,
+                            num_cl = 12,
                             c02 = 100, c03 = 150,
                             c2 = 0.75, c3 = 1,
                             fixed = FALSE,
@@ -170,9 +170,9 @@ test_that("03.05", {
                             hr1 = 0.69, hr2 = 0.88,
                             xi2 = 0.7, xi3 = 0.7,
                             d2min = 200, d2max = 400, stepd2 = 4,
-                            hrgomin = 0.8, hrgomax = 0.9, stephrgo = 0.01,
+                            hrgomin = 0.8, hrgomax = 0.88, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
-                            num_cl = 3,
+                            num_cl = 12,
                             c02 = 100, c03 = 150,
                             c2 = 0.75, c3 = 1,
                             fixed = TRUE,
@@ -209,6 +209,15 @@ test_that("03.05", {
   expect_equal(res[3,]$d3, 978)
   expect_equal(res[3,]$d, 1290)
   expect_equal(res[3,]$HRgo, 0.82)
+ # Strategy 23
+ expect_equal(res[4,]$u, -47.41, tolerance = 0.005)
+ expect_equal(res[4,]$n2, 286)
+ expect_equal(res[4,]$n3, 454)
+ expect_equal(res[4,]$n, 740)
+ expect_equal(res[4,]$d2, 200)
+ expect_equal(res[4,]$d3, 318)
+ expect_equal(res[4,]$d, 518)
+ expect_equal(res[4,]$HRgo, 0.80)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23
@@ -221,7 +230,7 @@ test_that("03.06", {
                             d2min = 20, d2max = 400, stepd2 = 2,
                             hrgomin = 0.65, hrgomax = 0.95, stephrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
-                            num_cl = 3,
+                            num_cl = 12,
                             c02 = 100, c03 = 150,
                             c2 = 0.75, c3 = 1,
                             fixed = FALSE,
@@ -251,7 +260,7 @@ test_that("03.07", {
                             n2min = 100, n2max = 400, stepn2 = 4,
                             rrgomin = 0.70, rrgomax = 0.80, steprrgo = 0.01,
                             b1 = 1000, b2 = 3000, b3 = 5000,
-                            num_cl = 3,
+                            num_cl = 12,
                             c02 = 100, c03 = 150,
                             c2 = 0.75, c3 = 1,
                             fixed = FALSE,
@@ -290,7 +299,7 @@ test_that("03.08", {
                                    n2min = 10, n2max = 400, stepn2 = 4,
                                    rrgomin = 0.70, rrgomax = 0.80, steprrgo = 0.01,
                                    b1 = 1000, b2 = 3000, b3 = 5000,
-                                   num_cl = 3,
+                                   num_cl = 12,
                                    c02 = 100, c03 = 150,
                                    c2 = 0.75, c3 = 1,
                                    fixed = FALSE,
@@ -301,7 +310,7 @@ test_that("03.08", {
   # Strategies
   expect_equal(res$Strategy, c(23))
   expect_equal(res$u, 1701.93, tolerance = 0.005)
-  expect_equal(res$n2, 260)
+  expect_equal(res$n2, 262)
   expect_equal(res$n3, 224)
 })
 #' @editor Lukas D Sauer
@@ -314,7 +323,7 @@ test_that("03.09", {
                                    n2min = 100, n2max = 400, stepn2 = 4,
                                    rrgomin = 0.80, rrgomax = 0.95, steprrgo = 0.01,
                                    b1 = 1000, b2 = 3000, b3 = 5000,
-                                   num_cl = 3,
+                                   num_cl = 12,
                                    c02 = 100, c03 = 150,
                                    c2 = 0.75, c3 = 1,
                                    fixed = TRUE,
@@ -325,7 +334,7 @@ test_that("03.09", {
   # Strategies
   expect_equal(res$Strategy, c(1, 2))
   # Strategy 1
-  expect_equal(res[1,]$u, 1742.40, tolerance = 0.005)
+  expect_equal(res[1,]$u, 3187.57, tolerance = 0.005)
   expect_equal(res[1,]$RRgo, 0.91)
   expect_equal(res[1,]$n2, 176)
   expect_equal(res[1,]$n3, 158)
@@ -347,7 +356,7 @@ test_that("03.10", {
                                    n2min = 100, n2max = 400, stepn2 = 4,
                                    rrgomin = 0.80, rrgomax = 0.95, steprrgo = 0.01,
                                    b1 = 1000, b2 = 3000, b3 = 5000,
-                                   num_cl = 3,
+                                   num_cl = 12,
                                    c02 = 100, c03 = 150,
                                    c2 = 0.75, c3 = 1,
                                    fixed = TRUE,
@@ -361,7 +370,7 @@ test_that("03.10", {
                                    n2min = 100, n2max = 400, stepn2 = 4,
                                    rrgomin = 0.80, rrgomax = 0.95, steprrgo = 0.01,
                                    b1 = 1000, b2 = 3000, b3 = 5000,
-                                   num_cl = 3,
+                                   num_cl = 12,
                                    c02 = 100, c03 = 150,
                                    c2 = 0.75, c3 = 1,
                                    fixed = TRUE,
@@ -392,7 +401,7 @@ test_that("03.11", {
                                    n2min = 200, n2max = 500, stepn2 = 4,
                                    kappamin = 0.1, kappamax = 0.2, stepkappa = 0.02,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
-                                   num_cl = 3,
+                                   num_cl = 12,
                                    c02 = 15, c03 = 20,
                                    c2 = 0.675, c3 = 0.72,
                                    fixed = FALSE,
@@ -404,25 +413,26 @@ test_that("03.11", {
   # Strategies
   expect_equal(res$Strategy, c(1, 3, 4))
   # Strategy 1
-  expect_equal(res[1,]$u, 1654.08, tolerance = 0.005)
+  expect_equal(res[1,]$u, 1660.95, tolerance = 0.005)
   expect_equal(res[1,]$Kappa, 0.16)
-  expect_equal(res[1,]$n2, 364)
-  expect_equal(res[1,]$n3, 708)
-  expect_equal(res[1,]$n, 1004)
+  expect_equal(res[1,]$n2, 388)
+  expect_equal(res[1,]$n3, 666)
+  expect_equal(res[1,]$n, 1054)
+  expect_equal(res[1,]$sProg, 0.81)
   # Strategy 3
-  expect_equal(res[2,]$u, 1308.56, tolerance = 0.005)
+  expect_equal(res[2,]$u, 1282.14, tolerance = 0.005)
   expect_equal(res[2,]$Kappa, 0.16)
-  expect_equal(res[2,]$n2, 296)
-  expect_equal(res[2,]$n3, 708)
-  expect_equal(res[2,]$n, 1004)
-  expect_equal(res[2,]$sProg, 0.68)
+  expect_equal(res[2,]$n2, 332)
+  expect_equal(res[2,]$n3, 702)
+  expect_equal(res[2,]$n, 1034)
+  expect_equal(res[2,]$sProg, 0.67)
   # Strategy 4
-  expect_equal(res[3,]$u, 1843.1, tolerance = 0.005)
+  expect_equal(res[3,]$u, 1786.02, tolerance = 0.005)
   expect_equal(res[3,]$Kappa, 0.18)
-  expect_equal(res[3,]$n2, 342)
+  expect_equal(res[3,]$n2, 356)
   expect_equal(res[3,]$n3, 888)
-  expect_equal(res[3,]$n, 1230)
-  expect_equal(res[3,]$sProg, 0.86)
+  expect_equal(res[3,]$n, 1244)
+  expect_equal(res[3,]$sProg, 0.85)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23
@@ -435,7 +445,7 @@ test_that("03.12", {
                                    n2min = 200, n2max = 500, stepn2 = 4,
                                    kappamin = 0.1, kappamax = 0.2, stepkappa = 0.02,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
-                                   num_cl = 3,
+                                   num_cl = 12,
                                    c02 = 15, c03 = 20,
                                    c2 = 0.675, c3 = 0.72,
                                    fixed = FALSE,
@@ -453,7 +463,7 @@ test_that("03.12", {
                                    n2min = 200, n2max = 500, stepn2 = 4,
                                    kappamin = 0.1, kappamax = 0.2, stepkappa = 0.02,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
-                                   num_cl = 1,
+                                   num_cl = 6,
                                    c02 = 15, c03 = 20,
                                    c2 = 0.675, c3 = 0.72,
                                    fixed = FALSE,
@@ -476,7 +486,7 @@ test_that("03.13", {
                                    n2min = 200, n2max = 500, stepn2 = 4,
                                    kappamin = 0.1, kappamax = 0.2, stepkappa = 0.02,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
-                                   num_cl = 3,
+                                   num_cl = 12,
                                    c02 = 15, c03 = 20,
                                    c2 = 0.675, c3 = 0.72,
                                    fixed = TRUE,
@@ -491,7 +501,7 @@ test_that("03.13", {
                                    n2min = 200, n2max = 500, stepn2 = 4,
                                    kappamin = 0.1, kappamax = 0.2, stepkappa = 0.02,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
-                                   num_cl = 3,
+                                   num_cl = 12,
                                    c02 = 15, c03 = 20,
                                    c2 = 0.675, c3 = 0.72,
                                    fixed = TRUE,
@@ -554,7 +564,7 @@ test_that("03.14", {
                                    n2min = 200, n2max = 500, stepn2 = 4,
                                    kappamin = 0.1, kappamax = 0.2, stepkappa = 0.02,
                                    b1 = 3000, b2 = 8000, b3 = 10000,
-                                   num_cl = 3,
+                                   num_cl = 12,
                                    c02 = 15, c03 = 20,
                                    c2 = 0.675, c3 = 0.72,
                                    fixed = TRUE,
