@@ -156,9 +156,8 @@ the second treatment effect describes the effect of the second endpoint
 and is also relevant for <code>fixed = TRUE</code>. Furthermore, some
 options to adapt the program to your specific needs are also available
 in this setting (see <a href="https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html">More
-Paramters</a>), however skipping phase II, setting predefined benefit
-categories and choosing different treatment effects in phase II and III
-are not possible.</p>
+Paramters</a>), however skipping phase II and choosing different
+treatment effects in phase II and III are not possible.</p>
 <ul>
 <li>
 <code>hr1</code> is our hazard ratio for the treatment effect of the
@@ -235,17 +234,126 @@ go/no-go decision rule. We see that we need a hazard ratio of less than
 optimal sample size and threshold value. In our case it amounts to
 295.29, i.e we have an expected utility of 29 529 000$.</li>
 <li>
-<code>res$u</code> is the probability that endpoint OS is
+<code>res$OS</code> is the probability that endpoint OS is
 significant, given that the program is successful overall. The
-probability of a successful program is 0.49, if the program is
-successful the probability that the endpoint OS is significant and,
-thus, we obtain higher benefits is 0.77.</li>
+probability of a successful program is 0.49, thus, if the program is
+successful the probability that the endpoint OS is significant and we
+obtain higher benefits is 0.77.</li>
 </ul>
 </div>
 </div>
 <div class="section level2">
 <h2 id="both-endpoints-have-to-be-significant">Both endpoints have to be significant<a class="anchor" aria-label="anchor" href="#both-endpoints-have-to-be-significant"></a>
 </h2>
+<p>In this scenario, suppose we are developing a new Alzheimer
+medication, <em>exper</em>. The two endpoints we consider interesting
+are improving cognition (cognitive endpoint) and improving activities of
+daily living (functional endpoint). These are normally distributed
+outcome variables. Therefore, we will use the function
+<code>optimal_multiple_normal</code>, which calculates optimal sample
+sizes and threshold decisions values for normally distributed outcomes
+when multiple endpoints are investigated.</p>
+<p>Within our drug development program, we will compare our experimental
+treatment to the control treatment <em>contro</em>. The treatment effect
+measure of <em>exper</em> for each endpoint <span class="math inline">\(i \in \{1,2\}\)</span> is given by <span class="math inline">\(\Delta_i = \mu_{exper} - \mu_{contro}\)</span>,
+which is the difference in mean between the experimental treatment and
+the control treatment, for both endpoints. Note that this is not divided
+by the standard deviation, hence is it not standardized. For more
+information, see the vignette on <a href="https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html">normally
+distributed outcomes</a>.</p>
+<div class="section level3">
+<h3 id="applying-the-package-to-the-example-1">Applying the package to the example<a class="anchor" aria-label="anchor" href="#applying-the-package-to-the-example-1"></a>
+</h3>
+<p>After installing the package according to the <a href="https://sterniii3.github.io/drugdevelopR/#Installation">installation
+instructions</a>, we can load it using the following code:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Sterniii3/drugdevelopR" class="external-link">drugdevelopR</a></span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="defining-all-necessary-parameters-1">Defining all necessary parameters<a class="anchor" aria-label="anchor" href="#defining-all-necessary-parameters-1"></a>
+</h3>
+<p>As, the parameters in the setting with multiple endpoints differ
+slightly from the other cases (<a href="https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html">bias
+adjustment</a> and <a href="https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html">multitrial</a>),
+we will explain the differing parameters in more detail. As in the basic
+setting, the treatment effect may be fixed (as in this example) or
+follows a prior distribution (see <a href="https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html">Fixed
+or Prior</a>) Note, that in this case, contrary to the other setting,
+the second treatment effect describes the effect of the second endpoint
+and is also relevant for <code>fixed = TRUE</code>. Furthermore, some
+options to adapt the program to your specific needs are also available
+in this setting (see <a href="https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html">More
+Paramters</a>), however skipping phase II and choosing different
+treatment effects in phase II and III are not possible.</p>
+<ul>
+<li>
+<code>Delta1</code> is our assumed true treatment effect given as
+difference in means between <em>exper</em> and <em>contro</em> for the
+cognitive endpoint and <code>Delta1</code> is our assumed true treatment
+effect given as difference in means between <em>exper</em> and
+<em>contro</em> for the functional endpoint. We assume true treatment
+effects to be 0.8 and 0.5 for each endpoint respectively, hence
+<code>Delta1 = 0.8</code> and <code>Delta2 = 0.5</code>.</li>
+<li>
+<code>n2min</code> and <code>n2max</code> specify the minimal and
+maximal number of participants for the phase II trial. The package will
+search for the optimal sample size within this region. For now, we want
+the program to search for the optimal sample size in the interval
+between 20 and 400 participants. In addition, we will tell the program
+to search this region in steps of ten participants at a time by setting
+<code>stepn2 = 10</code>.</li>
+<li>As we do not include the variances of the experimental and control
+treatment when calculating the assumed true treatment effect, we have to
+include two parameters that amount for the standard deviations <span class="math inline">\(\sigma_i\)</span> for <span class="math inline">\(i \in \{1,2\}\)</span>. We set
+<code>sigma1 = 2</code> and <code>sigma2 = 1</code> for our
+example.</li>
+<li>As both endpoints have to show a significant positive treatment
+effect, in order for a program to be successful, we have the parameter
+<code>relaxed</code> to decide, whether a program shows a large, medium
+or small treatment effect overall. If <code>relaxed = FALSE</code> , we
+consider a strict rule assigning a large overall effect in case both
+endpoints show an effect of large size, a small overall effect in case
+that at least one of the endpoints shows a small effect, and a medium
+overall effect otherwise. If <code>relaxed = TRUE</code>, we investigate
+the characteristics for a more relaxed rule assigning a large overall
+effect if at least one of the endpoints shows a large effect, a small
+effect if both endpoints show a small effect, and a medium overall
+effect otherwise. For our example, we set
+<code>relaxed = TRUE</code>
+</li>
+<li>Finally, the parameter <code>rho</code> determines the correlation
+between the treatment effects of the two endpoints. In our case, we set
+<code>rho = 0.5</code>, indicating the correlation between the treatment
+effects is 0.5.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_multiple_normal.html">optimal_multiple_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.8</span>, Delta2 <span class="op">=</span> <span class="fl">0.5</span>,  <span class="co"># define assumed true treatmen effects</span></span>
+<span>   in1<span class="op">=</span> <span class="cn">NULL</span>, in2<span class="op">=</span> <span class="cn">NULL</span>, sigma1 <span class="op">=</span> <span class="fl">2</span>, sigma2<span class="op">=</span> <span class="fl">1</span>,              <span class="co"># standard deviations</span></span>
+<span>   n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">400</span>, stepn2 <span class="op">=</span> <span class="fl">10</span>,                     <span class="co"># define optimization set for n2</span></span>
+<span>   kappamin <span class="op">=</span> <span class="fl">0.02</span>, kappamax <span class="op">=</span> <span class="fl">0.2</span>, stepkappa <span class="op">=</span> <span class="fl">0.02</span>,        <span class="co"># define optimization set for HRgo</span></span>
+<span>   alpha <span class="op">=</span> <span class="fl">0.05</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                                 <span class="co"># drug development planning parameters</span></span>
+<span>   c2 <span class="op">=</span> <span class="fl">0.75</span>, c3 <span class="op">=</span> <span class="fl">1</span>, c02 <span class="op">=</span> <span class="fl">100</span>, c03 <span class="op">=</span> <span class="fl">150</span>,                  <span class="co"># define fixed and variable costs for phase II and III</span></span>
+<span>   K <span class="op">=</span> <span class="cn">Inf</span>, N <span class="op">=</span> <span class="cn">Inf</span>, S <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>,                               <span class="co"># set constraints</span></span>
+<span>   steps1 <span class="op">=</span> <span class="fl">0</span>,  stepm1 <span class="op">=</span> <span class="fl">0.5</span>, stepl1 <span class="op">=</span> <span class="fl">0.8</span>,                  <span class="co"># benefit categories</span></span>
+<span>   b1 <span class="op">=</span> <span class="fl">1000</span>, b2 <span class="op">=</span> <span class="fl">2000</span>, b3 <span class="op">=</span> <span class="fl">3000</span>,                          <span class="co"># define expected benefits </span></span>
+<span>   rho <span class="op">=</span> <span class="fl">0.5</span>, relaxed <span class="op">=</span> <span class="cn">TRUE</span>,                                <span class="co"># relaxed "TRUE"</span></span>
+<span>   fixed <span class="op">=</span> <span class="cn">TRUE</span>,                                             <span class="co"># fixed treatment effect </span></span>
+<span>   num_cl <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="interpreting-the-output-1">Interpreting the output<a class="anchor" aria-label="anchor" href="#interpreting-the-output-1"></a>
+</h3>
+<p>After setting all these input parameters and running the function,
+let’s take a look at the output of the program.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res2</span></span>
+<span><span class="co">#&gt;         u Kappa n2  n3   n  pgo sProg Delta1 Delta2 sigma1 sigma2 rho relaxed</span></span>
+<span><span class="co">#&gt; 1 -133.06  0.02 80 149 229 0.94  0.53    0.8    0.5      2      1 0.5    TRUE</span></span>
+<span><span class="co">#&gt;     K   N    S  K2  K3 sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02</span></span>
+<span><span class="co">#&gt; 1 Inf Inf -Inf 160 291   0.74  -0.21      0      0    0.5    0.8  0.05  0.1 100</span></span>
+<span><span class="co">#&gt;   c03   c2 c3   b1   b2   b3</span></span>
+<span><span class="co">#&gt; 1 150 0.75  1 1000 2000 3000</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="where-to-go-from-here">Where to go from here<a class="anchor" aria-label="anchor" href="#where-to-go-from-here"></a>
