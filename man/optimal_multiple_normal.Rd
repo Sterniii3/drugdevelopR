@@ -41,10 +41,10 @@ optimal_multiple_normal(
 }
 \arguments{
 \item{Delta1}{assumed true treatment effect for endpoint 1 measured as the
-standardized difference in means}
+difference in means}
 
 \item{Delta2}{assumed true treatment effect for endpoint 2 measured as the
-standardized difference in means}
+difference in means}
 
 \item{in1}{amount of information for Delta1 in terms of number of events}
 

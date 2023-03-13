@@ -32,9 +32,9 @@ EPsProg_multiple_normal(
 
 \item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
-\item{Delta1}{assumed true treatment effect for standardized difference in means}
+\item{Delta1}{assumed true treatment effect given as difference in means for endpoint 1}
 
-\item{Delta2}{assumed true treatment effect for standardized difference in means}
+\item{Delta2}{assumed true treatment effect given as difference in means for endpoint 2}
 
 \item{sigma1}{standard deviation of first endpoint}
 

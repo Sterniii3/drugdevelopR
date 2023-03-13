@@ -31,9 +31,9 @@
 #' @inheritParams optimal_multiple_generic
 #' @inheritParams optimal_normal_generic
 #' @param Delta1 assumed true treatment effect for endpoint 1 measured as the
-#'  standardized difference in means
+#'  difference in means
 #' @param Delta2 assumed true treatment effect for endpoint 2 measured as the
-#'  standardized difference in means
+#'   difference in means
 #' @param in1 amount of information for Delta1 in terms of number of events
 #' @param in2 amount of information for Delta2 in terms of number of events
 #' @param sigma1 variance of endpoint 1
