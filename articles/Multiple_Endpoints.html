@@ -299,7 +299,7 @@ effects to be 0.8 and 0.5 for each endpoint respectively, hence
 maximal number of participants for the phase II trial. The package will
 search for the optimal sample size within this region. For now, we want
 the program to search for the optimal sample size in the interval
-between 20 and 400 participants. In addition, we will tell the program
+between 20 and 200 participants. In addition, we will tell the program
 to search this region in steps of ten participants at a time by setting
 <code>stepn2 = 10</code>.</li>
 <li>As we do not include the variances of the experimental and control
@@ -329,7 +329,7 @@ effects is 0.5.</li>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_multiple_normal.html">optimal_multiple_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.8</span>, Delta2 <span class="op">=</span> <span class="fl">0.5</span>,  <span class="co"># define assumed true treatmen effects</span></span>
 <span>   in1<span class="op">=</span> <span class="cn">NULL</span>, in2<span class="op">=</span> <span class="cn">NULL</span>, sigma1 <span class="op">=</span> <span class="fl">2</span>, sigma2<span class="op">=</span> <span class="fl">1</span>,              <span class="co"># standard deviations</span></span>
-<span>   n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">400</span>, stepn2 <span class="op">=</span> <span class="fl">10</span>,                     <span class="co"># define optimization set for n2</span></span>
+<span>   n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">200</span>, stepn2 <span class="op">=</span> <span class="fl">10</span>,                     <span class="co"># define optimization set for n2</span></span>
 <span>   kappamin <span class="op">=</span> <span class="fl">0.02</span>, kappamax <span class="op">=</span> <span class="fl">0.2</span>, stepkappa <span class="op">=</span> <span class="fl">0.02</span>,        <span class="co"># define optimization set for HRgo</span></span>
 <span>   alpha <span class="op">=</span> <span class="fl">0.05</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                                 <span class="co"># drug development planning parameters</span></span>
 <span>   c2 <span class="op">=</span> <span class="fl">0.75</span>, c3 <span class="op">=</span> <span class="fl">1</span>, c02 <span class="op">=</span> <span class="fl">100</span>, c03 <span class="op">=</span> <span class="fl">150</span>,                  <span class="co"># define fixed and variable costs for phase II and III</span></span>
@@ -347,12 +347,28 @@ effects is 0.5.</li>
 let’s take a look at the output of the program.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res2</span></span>
-<span><span class="co">#&gt;         u Kappa n2  n3   n  pgo sProg Delta1 Delta2 sigma1 sigma2 rho relaxed</span></span>
-<span><span class="co">#&gt; 1 -133.06  0.02 80 149 229 0.94  0.53    0.8    0.5      2      1 0.5    TRUE</span></span>
+<span><span class="co">#&gt;        u Kappa  n2 n3   n  pgo sProg Delta1 Delta2 sigma1 sigma2 rho relaxed</span></span>
+<span><span class="co">#&gt; 1 472.44  0.02 100 72 172 0.97  0.54    0.8   0.75      2      1 0.5    TRUE</span></span>
 <span><span class="co">#&gt;     K   N    S  K2  K3 sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02</span></span>
-<span><span class="co">#&gt; 1 Inf Inf -Inf 160 291   0.74  -0.21      0      0    0.5    0.8  0.05  0.1 100</span></span>
+<span><span class="co">#&gt; 1 Inf Inf -Inf 175 218   0.24   0.28   0.02      0    0.5    0.8  0.05  0.1 100</span></span>
 <span><span class="co">#&gt;   c03   c2 c3   b1   b2   b3</span></span>
 <span><span class="co">#&gt; 1 150 0.75  1 1000 2000 3000</span></span></code></pre></div>
+<p>The program returns a data frame, with the following results:</p>
+<ul>
+<li>
+<code>res$n2</code> is the optimal number of participants for phase
+II and <code>res$n3</code> the resulting number of events for phase III.
+We see that the optimal scenario requires 100 participants in phase II
+and 72 participants in phase III.</li>
+<li>
+<code>res$Kappa</code> is the optimal threshold value for the
+go/no-go decision rule. We see that we need a hazard ratio of less than
+0.02 in phase II in order to proceed to phase III.</li>
+<li>
+<code>res$u</code> is the expected utility of the program for the
+optimal sample size and threshold value. In our case it amounts to
+472.44, i.e we have an expected utility of 47 244 000$.</li>
+</ul>
 </div>
 </div>
 <div class="section level2">
