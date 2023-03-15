@@ -13,7 +13,7 @@ test_that("01.01", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = FALSE, # use a prior distribution
@@ -47,7 +47,7 @@ test_that("01.02", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = TRUE, # use a prior distribution
@@ -79,7 +79,7 @@ test_that("01.03", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = FALSE, # use a prior distribution
@@ -110,7 +110,7 @@ test_that("01.04", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = FALSE, # use a prior distribution
@@ -143,7 +143,7 @@ test_that("01.05", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = FALSE, # use a prior distribution
@@ -174,7 +174,7 @@ test_that("01.06", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = FALSE, # use a prior distribution
@@ -203,7 +203,7 @@ test_that("01.07", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = FALSE, # use a prior distribution
@@ -228,7 +228,7 @@ test_that("01.08", {
                        rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
                        steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                        b1 = 1000, b2 = 3000, b3 = 5000,
-                       num_cl = 3,
+                       num_cl = 12,
                        c02 = 100, c03 = 150,
                        c2 = 0.75, c3 = 1,
                        fixed = TRUE,
@@ -254,7 +254,7 @@ test_that("01.09", {
                        rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
                        steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                        b1 = 1000, b2 = 3000, b3 = 5000,
-                       num_cl = 3,
+                       num_cl = 12,
                        c02 = 100, c03 = 150,
                        c2 = 0.75, c3 = 1,
                        fixed = FALSE,
@@ -278,7 +278,7 @@ test_that("01.10", {
     kappamin = 0.01, kappamax = 0.5, stepkappa = 0.01,
     steps1 = 0, stepm1 = 0.375, stepl1 = 0.625,
     b1 = 625, b2 = 2000, b3 = 10000,
-    num_cl = 3,
+    num_cl = 12,
     c02 = 15, c03 = 20,
     c2 = 0.675, c3 = 0.72,
     fixed = FALSE,
@@ -303,7 +303,7 @@ test_that("01.11", {
     kappamin = 0.01, kappamax = 0.5, stepkappa = 0.01,
     steps1 = 0, stepm1 = 0.375, stepl1 = 0.625,
     b1 = 625, b2 = 2000, b3 = 10000,
-    num_cl = 3,
+    num_cl = 12,
     c02 = 15, c03 = 20,
     c2 = 0.675, c3 = 0.72,
     fixed = TRUE,
@@ -341,7 +341,7 @@ test_that("01.12", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = FALSE, # use a prior distribution

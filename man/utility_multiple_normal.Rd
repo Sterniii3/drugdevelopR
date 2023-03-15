@@ -42,9 +42,9 @@ utility_multiple_normal(
 
 \item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
-\item{Delta1}{assumed true treatment effect for standardized difference in means}
+\item{Delta1}{assumed true treatment effect given as difference in means for endpoint 1}
 
-\item{Delta2}{assumed true treatment effect for standardized difference in means}
+\item{Delta2}{assumed true treatment effect given as difference in means for endpoint 2}
 
 \item{in1}{amount of information for \code{Delta1} in terms of sample size}
 

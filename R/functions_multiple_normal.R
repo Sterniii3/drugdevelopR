@@ -68,8 +68,8 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #' get a successful drug development program. Successful means that both endpoints show a statistically significant positive treatment effect in phase III. 
 #' @param kappa threshold value for the go/no-go decision rule; vector for both endpoints 
 #' @param n2 total sample size for phase II; must be even number
-#' @param Delta1 assumed true treatment effect for standardized difference in means
-#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param Delta1 assumed true treatment effect given as difference in means for endpoint 1
+#' @param Delta2 assumed true treatment effect given as difference in means for endpoint 2
 #' @param in1 amount of information for Delta1 in terms of sample size
 #' @param in2 amount of information for Delta2 in terms of sample size
 #' @param sigma1 standard deviation of first endpoint
@@ -137,8 +137,8 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
 #' @param beta 1-beta power for calculation of sample size for phase III
-#' @param Delta1 assumed true treatment effect for standardized difference in means
-#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param Delta1 assumed true treatment effect given as difference in means for endpoint 1
+#' @param Delta2 assumed true treatment effect given as difference in means for endpoint 2
 #' @param in1 amount of information for Delta1 in terms of sample size
 #' @param in2 amount of information for Delta2 in terms of sample size
 #' @param sigma1 standard deviation of first endpoint
@@ -218,8 +218,8 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
-#' @param Delta1 assumed true treatment effect for standardized difference in means
-#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param Delta1 assumed true treatment effect given as difference in means for endpoint 1
+#' @param Delta2 assumed true treatment effect given as difference in means for endpoint 2
 #' @param in1 amount of information for `Delta1` in terms of sample size
 #' @param in2 amount of information for `Delta2` in terms of sample size
 #' @param sigma1 standard deviation of first endpoint
@@ -326,8 +326,8 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
-#' @param Delta1 assumed true treatment effect for standardized difference in means
-#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param Delta1 assumed true treatment effect given as difference in means for endpoint 1
+#' @param Delta2 assumed true treatment effect given as difference in means for endpoint 2
 #' @param in1 amount of information for `Delta1` in terms of sample size
 #' @param in2 amount of information for `Delta2` in terms of sample size
 #' @param sigma1 standard deviation of first endpoint
@@ -441,8 +441,8 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
-#' @param Delta1 assumed true treatment effect for standardized difference in means
-#' @param Delta2 assumed true treatment effect for standardized difference in means
+#' @param Delta1 assumed true treatment effect given as difference in means for endpoint 1
+#' @param Delta2 assumed true treatment effect given as difference in means for endpoint 2
 #' @param in1 amount of information for `Delta1` in terms of sample size
 #' @param in2 amount of information for `Delta2` in terms of sample size
 #' @param sigma1 standard deviation of first endpoint

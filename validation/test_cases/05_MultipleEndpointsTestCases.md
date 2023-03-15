@@ -27,7 +27,7 @@ Use the function `optimal_multiple_tte`. Supply the following input values to th
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
   * expected gains of 100,000,000\$, 150,000,000\$, and 200,000,000\$ for each effect size, respectively, if only endpoint 2 shows a significant result,
   * expected gains of 100,000,000\$, 200,000,000\$, and 300,000,000\$ for each effect size, respectively, if endpoint 1 shows a significant result (independent of the significance of endpoint 2),
-  * three clusters for parallel computing,
+  * twelve clusters for parallel computing,
   * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * a correlation between the two endpoints of 0.6,
@@ -53,7 +53,7 @@ Use the function `optimal_multiple_tte`. Supply the same input values as in test
 Verify that the function returns an optimal number of participants of 280 in phase II and 467 in phase III (i.e a total of 746 participants), an optimal threshold value of 0.86 and an expected utility of 153.98 (in 10^5 \$). Furthermore, verify that the probability of a successful program is given as 0.6., satisfying the constraint and that the probability that endpoint OS is significant is 0.54.
 
 ### 05.05 (shows that req. 05.08 is met): {-}
-Use the function `optimal_multiple_tte`. Supply the same input values as in test case 05.01, however change the number of cores for parallel computing to 1.
+Use the function `optimal_multiple_tte`. Supply the same input values as in test case 05.01, however change the number of cores for parallel computing to 6.
 
 Verify that the computation time will increase compared to the setting in 05.01.
 
@@ -67,7 +67,7 @@ Use the function `optimal_multiple_normal()`. Supply the following input values 
   * the optimization region {80, 84, …, 160} for the number of participants in phase II,
   * the optimization region {0.02, 0.04,…, 0.10} for the threshold values,
   * expected gains of 100,000,000\$, 200,000,000\$ and 300,000,000\$ for each effect size, respectively,
-  * three clusters for parallel computing,
+  * twelve clusters for parallel computing,
   * fixed costs of 10,00,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * `fixed=FALSE`, i.e. set the function to model the treatment effects on a prior distribution,
@@ -82,7 +82,7 @@ Verify that the program returns an expected utility of 960.55 (in 10^5 \$), an o
 With the constraint, the program returns an expected utility of 959.20 (in 10^5 \$), an optimal threshold value of 0.02 and optimal sample sizes of 96 in phase II and 94 in phase III (i.e. 190 in total).
 
 ### 05.07 (shows that req. 05.02, 05.04 and 05.08 are met): {-}
-Use the function `optimal_multiple_normal`. Supply the same input values as in test case 05.06 (without sample size constraint), however, however change the number of clusters for parallel computing to 1. 
+Use the function `optimal_multiple_normal`. Supply the same input values as in test case 05.06 (without sample size constraint), however, however change the number of clusters for parallel computing to 6. 
 
 Verify that the computation time will increase compared to the setting in 05.06.
 
