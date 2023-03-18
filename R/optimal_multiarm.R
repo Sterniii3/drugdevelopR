@@ -21,7 +21,7 @@
 #'  (any-pair) power for calculation of the number of events for phase III
 #' 
 #' @importFrom utils setTxtProgressBar txtProgressBar
-#' @importFrom mvtnorm dmvnorm
+#' @importFrom mvtnorm dmvnorm qmvnorm
 #' 
 #' @return
 #' `r optimal_return_doc(type = "tte", setting = "multiarm")`

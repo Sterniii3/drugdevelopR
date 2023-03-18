@@ -218,12 +218,12 @@ else {
 }
 
 #E(n3|GO)
-expn3go_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
-  
-  expe3go_tte<-Ess_multiple_tte(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho)/pgo_multiple_tte(HRgo,n2,hr1,hr2,id1,id2,fixed,rho)
-  
-  return(expe3go_tte/hr[1])*pw(n2,hr1,hr2,id1,id2,fixed,rho)+(expe3go_tte/hr[2])*(1-pw(n2,hr1,hr2,id1,id2,fixed,rho))
-  }
+# expn3go_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
+#  hr <- c(hr1,hr2)
+#  expe3go_tte<-Ess_multiple_tte(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho)/pgo_multiple_tte(HRgo,n2,hr1,hr2,id1,id2,fixed,rho)
+#  
+#  return(expe3go_tte/hr[1])*pw(n2,hr1,hr2,id1,id2,fixed,rho)+(expe3go_tte/hr[2])*(1-pw(n2,hr1,hr2,id1,id2,fixed,rho))
+#  }
   
   
 #' Expected probability of a successful program for multiple endpoints in a time-to-event setting 
