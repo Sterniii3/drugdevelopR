@@ -19,7 +19,7 @@
 #' being the results when including phase II and `res[[2]]` when skipping phase II.
 #' 
 #' @importFrom ggdmc dtnorm
-#' @importFrom MCMCglmm rtnorm
+#' @importFrom hbmem rtnorm
 #' 
 #' @return
 #' The output of the function \code{\link{optimal_normal}} is a data.frame containing the optimization results:
