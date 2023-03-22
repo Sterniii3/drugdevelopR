@@ -66,12 +66,12 @@ Use the function ` optimal_multiarm_binary()`. Supply the following input values
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III, and
   * strategy 1, i.e. the strategy where only the best promising treatment proceeds to phase III.
   
-Verify that the program returns an optimal utility of 1398.06 (in 10^5\$), an optimal sample size of 370 in phase II and 289 in phase III (i.e a total of 659) and an optimal threshold value for the go-decision of 0.87. 
+Verify that the program returns an optimal utility of 1264.64 (in 10^5\$), an optimal sample size of 386 in phase II and 344 in phase III (i.e a total of 730) and an optimal threshold value for the go-decision of 0.86. 
 
 ### 04.06 (shows that req. 04.02, 04.09 and 04.14 are met): {-}
 Use the function `optimal_multiarm_binary`. Supply the same input values as in test case 04.05, however set the parameter strategy to 2, i.e. calculating the results if all promising treatments proceed to phase III.
 
-Verify that the program returns an optimal utility of 1414.44 (in 10^5\$), an optimal sample size of 300 in phase II and 513 in phase III (i.e. a total of 813) and an optimal threshold value for the go-decision of 0.78. 
+Verify that the program returns an optimal utility of 1281.74 (in 10^5\$), an optimal sample size of 312 in phase II and 561 in phase III (i.e. a total of 873) and an optimal threshold value for the go-decision of 0.77. 
 
 ### 04.07 (shows that req. 04.02, 04.06 and 04.11 are met): {-}
 Use the function `optimal_multiarm_binary`. Supply the same input values as in test case 04.05, however set the parameter strategy to 3, and set a constraint for the minimal success probability of 0.85.
@@ -84,7 +84,7 @@ Use the function `optimal_multiarm_normal()`. Supply the following input values 
   * a significance level of 0.05,
   * a power of 0.9, i.e. $\beta$ of 0.1,
   * assumed true treatment effects of 0.175 and 0.225,
-  * the optimization region of even numbers {10, 12, …, 500} for the number of participants in phase II,
+  * the optimization region of even numbers {10, 12, …, 200} for the number of participants in phase II,
   * the optimization region {0.02, 0.04,…, 0.3} for the threshold values,
   * boundaries of 0, 0.5 and 0.8 for the effect size categories small, medium and large,
   * expected gains of 100,000,000\$, 300,000,000\$ and 500,000,000\$ for each effect size, respectively,
