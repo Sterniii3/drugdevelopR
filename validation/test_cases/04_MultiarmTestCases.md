@@ -42,7 +42,7 @@ Verify that the program returns an optimal utility of 4.36 (in 10^5\$), an optim
 Furthermore, verify that the probability to go to phase III is given by 0.65.
 
 ### 04.03 (shows that req. 04.03, 04.04 and 04.14 are met): {-}
-Use the function `optimal_multiarm`. Supply the same input values as in test case 04.01, however set the parameter strategy to 3, i.e. calculate the results for both strategies. Furthemore, set a sample size constraint of 520.
+Use the function `optimal_multiarm`. Supply the same input values as in test case 04.01, however set the parameter strategy to 3, i.e. calculate the results for both strategies. Furthermore, set a sample size constraint of 520.
 
 Verify that the program returns the results for both strategies, the results for strategy 2 are the same as in test case 04.02. as the constraint is not binding, however, the results strategy 1 change as follows:  The optimal utility changes to 8.34, the optimal sample size changes to 133 in phase II and 383 in phase III (i.e. a total of 516) and the optimal threshold value for the go-decision is 0.82.
 

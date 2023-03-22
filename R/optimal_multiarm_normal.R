@@ -128,7 +128,7 @@ optimal_multiarm_normal <- function(Delta1, Delta2,
     prob2 <- sp2fkt[I, J]
     prob3 <- sp3fkt[I, J]
     
-    result <-  rbind(result, data.frame(Strategy = strategy,u = round(Eud,2), kappa = KAPPA[J], n2 = N2[I], 
+    result <-  rbind(result, data.frame(Strategy = strategy,u = round(Eud,2), Kappa = KAPPA[J], n2 = N2[I], 
                                         n3 = n3, n = N2[I] + n3,
                                         pgo = round(pg,2), sProg = round(prob,2),
                                         Delta1 = Delta1, Delta2 = Delta2, 
