@@ -18,10 +18,10 @@
 #' The results are then returned as a list of two results lists, `res[[1]]`
 #' being the results when including phase II and `res[[2]]` when skipping phase II.
 #' 
+#' @importFrom msm dtnorm ptnorm rtnorm
 #' @import doParallel
 #' @import foreach 
 #' @import iterators 
-#' @import msm 
 #' @import parallel
 #' 
 #' @return
