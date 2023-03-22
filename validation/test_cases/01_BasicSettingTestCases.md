@@ -146,7 +146,7 @@ and $f(\hat\Delta_{2})$ is the probability density function of $\mathcal{N}(\Del
 ### 01.14 (shows that req. 01.02, 01.13, 01.14 are met): {-}
 Use the function `Epgo_binary()`. Supply 10 sets of the following input values:
 
-  * risk ratios $RR$ as parameter `RRgo`,
+  * threshold risk ratios $RR_{go}$ as parameter `RRgo`,
   * sample sizes of phase II $n_2$ as parameter `n2`,
   * assumed true rate in the control group $p_0$ as parameter `p0`,
   * assumed true rate in the treatment group $p_1$ as parameter `p11`,
@@ -155,7 +155,7 @@ Use the function `Epgo_binary()`. Supply 10 sets of the following input values:
 
 Calculate the function output for all 10 parameter sets and compare the results to the results of a SAS program implementing the probability formula
 $$p_{go}^{\varrho}= \Phi\left(\frac{\varrho - \kappa}{\sqrt{2/n_2 \cdot(\frac{1-p_0}{p_0}+ \frac{1-p_1}{p_1}) }}\right)$$
-where $\varrho = -\log(RR)$ and $\kappa=-\log(p_{11}/p_0)$ as calculated in
+where $\varrho = -\log(p_{11}/p_0)$ and $\kappa=-\log(RR_{go})$ as calculated in
 [@preussler2020].
 
 Use the function `En3_binary()`. Supply 10 sets of the following input values:
@@ -167,8 +167,8 @@ Use the function `En3_binary()`. Supply 10 sets of the following input values:
 Calculate the function output for all 10 parameter sets and compare the results to the results of a SAS program implementing the sample size formula
 $$ \mathrm E[N_{3}^{\varrho}(\hat\varrho_2)\cdot 1_{\{ \hat\varrho_2 \geq \kappa\}}] = \int^{\infty}_{\kappa} N_{3}^{\varrho}(\hat\varrho_2) \cdot f(\hat\varrho_{2})   d\hat\varrho_{2} ,$$
 where
-$$N_3^{\varrho} = \frac{2\cdot\bigg(z_{1-\alpha}\cdot\sqrt{\frac{2 \cdot (1-p)}{p}}+z_{1-\beta}\cdot \sqrt{\frac{1-p_0}{p_0}+\frac{1-p_1}{p_1}}\bigg)^2}{\hat \varrho_2^2},$$
-and $f(\hat\varrho_{2})$ is the probability density function of $\mathcal{N}(\varrho,2/n_2\cdot(\frac{1-p_0}{p_0}+ \frac{1-p_1}{p_1}))$, which is the fixed case (no prior distribution) of eq. 2.8 from [@preussler2020].
+$$N_3^{\varrho}(\hat\varrho_2) = \frac{2\cdot\bigg(z_{1-\alpha}\cdot\sqrt{\frac{2 \cdot (1-p)}{p}}+z_{1-\beta}\cdot \sqrt{\frac{1-p_0}{p_0}+\frac{1-p_1}{p_1}}\bigg)^2}{\hat \varrho_2^2},$$
+and $f(\hat\varrho_{2})$ is the probability density function of the normal distribution $\mathcal{N}(\mu = \varrho,\sigma^2=2/n_2\cdot(\frac{1-p_0}{p_0}+ \frac{1-p_1}{p_1}))$, which is the fixed case (no prior distribution) of eq. 2.8 from [@preussler2020].
 
 ### 01.15 (shows that req. 01.03, 01.13, 01.14 are met): {-}
 Use the function `Epgo_tte()`. Supply 10 sets of the following input values:

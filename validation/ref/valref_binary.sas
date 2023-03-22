@@ -1,55 +1,63 @@
 proc iml;
-* sample size;
+* Set seed for generation of random examples;
+CALL RANDSEED(22032023); 
+* Number of examples;
+n_examples = 10;
+
+* Sample size formula;
 start n3(x) global(n2, p, p0, p11, z_alpha, z_beta);
    return( 2*(z_alpha*sqrt(2*(1-p)/p)
 			  + z_beta*sqrt((1-p0)/p0
 			  + (1-p11)/p11))**2
 			/x**2);
 finish;
-* probability density function;
-start f(x) global(n2, p0, p11, kappa);
-	return(pdf('normal', x, kappa, 2/n2*((1-p0)/p0 + (1-p11)/p11)));
+* Probability density function;
+start f(x) global(n2, p0, p11, rho);
+	return(pdf('normal', x, rho, sqrt(2/n2*((1-p0)/p0 + (1-p11)/p11))));
 finish;
-* sample size times density;
+* Sample size formula times density;
 start n3_times_f(x);
 	return(n3(x)*f(x));
 finish;
+
 * Randomly generate input values;
-RRgo_vec = {0.7, 0.75, 0.8, 0.85};   
-n2_vec = {20, 50, 70, 100};   
-p0_vec = {0.5, 0.55, 0.6, 0.65};
-p11_vec = {0.2, 0.25, 0.3, 0.4};
-alpha_vec = {0.01, 0.03, 0.05, 0.1};
-beta_vec = {0.7, 0.75, 0.8, 0.85};
-* pre-allocate results vector;
+RRgo_vec = randfun(n_examples, "Uniform", 0.5, 0.95);   
+n2_vec = randfun(n_examples, "Integer", 10, 100);   
+p0_vec = randfun(n_examples, "Uniform", 0.5, 0.99);
+p11_vec = randfun(n_examples, "Uniform", 0.1, 0.49);
+alpha_vec = randfun(n_examples, "Uniform", 0.01, 0.2);
+beta_vec = randfun(n_examples, "Uniform", 0.01, 0.3);
+
+* Pre-allocate results vector;
 res_sas = j(nrow(RRgo_vec),1,.);
-* generate results for each parameter combination;
+* Generate results for each parameter combination;
 do i = 1 to nrow(res_sas);
-	* generate derived variables;
+	* Generate derived variables;
 	RRgo = RRgo_vec[i];
-	rho = -log(RRgo);
+	kappa = -log(RRgo);
 	n2 = n2_vec[i];
 	p0 = p0_vec[i];
 	p11 = p11_vec[i];
-	kappa = -log(p11/p0);
+	rho = -log(p11/p0);
 	p = (p0 + p11)/2;
-	* quantiles of normal distribution;
+	* Quantiles of normal distribution;
 	alpha = alpha_vec[i];
 	z_alpha = quantile('NORMAL', 1 - alpha);
 	beta = beta_vec[i];
 	z_beta = quantile('NORMAL', 1 - beta);
-	* integrate for receiving expected sample size;
+	* Integrate for receiving expected sample size;
 	limits = {0 .P};
-	limits[1,1] = rho;
+	limits[1,1] = kappa;
 	call quad(R, "n3_times_f", limits);
-	* write results;
+	* Write results;
 	res_sas[i] = R;
 end;
-* write data set;
+
+* Write data set;
 create dat_out var {"res_sas" "RRgo_vec" "n2_vec" "p0_vec" "p11_vec" "alpha_vec" "beta_vec"};
 append;
 close dat_out;
-* save data set;
+* Save data set;
 options replace;
 libname out '.';
 data out.valref_binary;

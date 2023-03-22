@@ -193,7 +193,7 @@ test_that("04.07", {
 #' @editDate 2022-12-29
 test_that("04.08", {
   # Multiarm normal endpoints with strategy 1
-  res <- optimal_multiarm_normal(alpha = 0.025,
+  res <- optimal_multiarm_normal(alpha = 0.05,
                                  beta = 0.1,
                                  Delta1 = 0.175, Delta2 = 0.225,
                                  n2min = 10, n2max = 500, stepn2 = 2,
@@ -216,7 +216,7 @@ test_that("04.08", {
 #' @editDate 2022-12-29
 test_that("04.09", {
   # Multiarm normal endpoints with strategy 2
-  res <- optimal_multiarm_normal(alpha = 0.025,
+  res <- optimal_multiarm_normal(alpha = 0.05,
                                  beta = 0.1,
                                  Delta1 = 0.175, Delta2 = 0.225,
                                  n2min = 10, n2max = 500, stepn2 = 2,
@@ -239,7 +239,7 @@ test_that("04.09", {
 #' @editDate 2022-12-29
 test_that("04.10", {
   # Multiarm normal endpoints with strategy 3 (i.e. strategies 1 and 2)
-  res <- optimal_multiarm_normal(alpha = 0.025,
+  res <- optimal_multiarm_normal(alpha = 0.055,
                                  beta = 0.1,
                                  Delta1 = 0.175, Delta2 = 0.225,
                                  n2min = 10, n2max = 500, stepn2 = 2,

@@ -33,5 +33,6 @@ Suggests:
     magrittr,
     devtools
 VignetteBuilder: knitr
-Additional_repositories: https://github.com/phuse-org/valtools 
+Additional_repositories: https://github.com/phuse-org/valtools
+Config/testthat/parallel: true
 Config/testthat/edition: 3
