@@ -124,7 +124,7 @@ test_that("04.05", {
                           beta = 0.1,
                           p0 = 0.5, p11 = 0.3, p12 = 0.4,
                           n2min = 10, n2max = 400, stepn2 = 2,
-                          rrgomin = 0.71, rrgomax = 0.9, steprrgo = 0.01,
+                          rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
                           steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                           b1 = 1000, b2 = 2000, b3 = 3000,
                           num_cl = 12,
@@ -146,7 +146,7 @@ test_that("04.06", {
                                  beta = 0.1,
                                  p0 = 0.5, p11 = 0.3, p12 = 0.4,
                                  n2min = 10, n2max = 400, stepn2 = 2,
-                                 rrgomin = 0.71, rrgomax = 0.9, steprrgo = 0.01,
+                                 rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                                  b1 = 1000, b2 = 2000, b3 = 3000,
                                  num_cl = 12,
@@ -168,7 +168,7 @@ test_that("04.07", {
                                  beta = 0.1,
                                  p0 = 0.5, p11 = 0.3, p12 = 0.4,
                                  n2min = 10, n2max = 400, stepn2 = 2,
-                                 rrgomin = 0.71, rrgomax = 0.9, steprrgo = 0.01,
+                                 rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                                  b1 = 1000, b2 = 2000, b3 = 3000,
                                  num_cl = 12,
@@ -184,7 +184,7 @@ test_that("04.07", {
   expect_equal(res[2,]$n2, 312)
   expect_equal(res[2,]$n3, 561)
   expect_equal(res[2,]$n, 873)
-  expect_equal(res[2,]$RRgo, 0.78)
+  expect_equal(res[2,]$RRgo, 0.77)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
@@ -236,7 +236,7 @@ test_that("04.09", {
 #' @editDate 2022-12-29
 test_that("04.10", {
   # Multiarm normal endpoints with strategy 3 (i.e. strategies 1 and 2)
-  res <- optimal_multiarm_normal(alpha = 0.055,
+  res <- optimal_multiarm_normal(alpha = 0.05,
                                  beta = 0.1,
                                  Delta1 = 0.175, Delta2 = 0.225,
                                  n2min = 10, n2max = 200, stepn2 = 2,
@@ -255,12 +255,12 @@ test_that("04.10", {
   expect_equal(res[1,]$n, 236)
   expect_equal(res[1,]$K2, 46)
   expect_equal(res[1,]$K3, 151)
-  expect_equal(res[1,]$K, 197)
+  expect_equal(res[1,]$K, 200)
   expect_equal(res[2,]$u, 107.06, tolerance = 0.005)
   expect_equal(res[2,]$n2, 28)
   expect_equal(res[2,]$n3, 208)
   expect_equal(res[2,]$n, 236)
   expect_equal(res[2,]$K2, 34)
   expect_equal(res[2,]$K3, 163)
-  expect_equal(res[2,]$K, 197)
+  expect_equal(res[2,]$K, 200)
 })

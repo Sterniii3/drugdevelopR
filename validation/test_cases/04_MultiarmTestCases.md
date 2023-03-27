@@ -104,6 +104,6 @@ Verify that the program returns an optimal utility of 107.09 (in 10^5\$), an opt
 
 Use the function `optimal_multiarm_normal`. Supply the same input values as in test case 04.08, however set the parameter strategy to 3, i.e. calculating the results for both strategies and set a cost constraint of 200.
 
-Verify that for strategy 1 the optimal utility changes to 109.68 (in 10^5\$) and the optimal sample size changes to 46 in phase II and 190 in phase III (i.e. a total of 236). Furthermore, verify that the costs in phase II are given by 46 and the costs in phase III are given by 151 (i.e. a total of 197).
-For strategy 2, verify that the optimal utility changes to 107.06 (in 10^5\$) and the optimal sample size changes to 28 in phase II and 208 in phase III (i.e. a total of 236). Furthermore, verify that the costs in phase II are given by 34 and the costs in phase III are given by 163 (i.e. a total of 197).
+Verify that for strategy 1 the optimal utility changes to 109.68 (in 10^5\$) and the optimal sample size changes to 46 in phase II and 190 in phase III (i.e. a total of 236). Furthermore, verify that the costs in phase II are given by 46 and the costs in phase III are given by 151. Verify that the cost constraint of 200 is returned.
+For strategy 2, verify that the optimal utility changes to 107.06 (in 10^5\$) and the optimal sample size changes to 28 in phase II and 208 in phase III (i.e. a total of 236). Furthermore, verify that the costs in phase II are given by 34 and the costs in phase III are given by 163. Verify that the cost constraint of 200 is returned.
 
