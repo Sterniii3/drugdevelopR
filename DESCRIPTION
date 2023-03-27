@@ -15,6 +15,7 @@ Depends:
     mvtnorm,
     doParallel,
     parallel,
+    cubature,
     msm,
     foreach,
     iterators,
