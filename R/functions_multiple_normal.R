@@ -57,7 +57,7 @@ return(t1+t2)}
 #' @export
 dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){ 
   covariancemat <- matrix(c(sigma1, rho*sqrt(sigma1)*sqrt(sigma2), rho*sqrt(sigma1)*sqrt(sigma2), sigma2),ncol=2)
-  ff <- dmvnorm(cbind(x,y), mean=c(mu1,mu2),sigma=covariancemat)
+  ff <- mvtnorm::dmvnorm(cbind(x,y), mean=c(mu1,mu2),sigma=covariancemat)
   return(ff)
 }
 
@@ -92,7 +92,7 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
  
    
   if(fixed) {
-    return(pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(Delta1, Delta2),sigma=covmat)[1])
+    return(mvtnorm::pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(Delta1, Delta2),sigma=covmat)[1])
   }
   
   else {
@@ -100,14 +100,14 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
     Sigma_prior<-matrix(c(4/in1,rho*sqrt(4/in1)*sqrt(4/in2), rho*sqrt(4/in1)*sqrt(4/in2),4/in2),ncol=2)
     nsim<-100 
     set.seed(61216)
-    rsamp <- mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
+    rsamp <- MASS::mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
     pgo_vector <- vector(length = nsim)
     
     for (m in 1:nsim){
     Delta1_prior <- rsamp[m,1]
     Delta2_prior <- rsamp[m,2]
     
-    pgo_vector[m] <- pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(Delta1_prior, Delta2_prior),sigma=covmat)[1]
+    pgo_vector[m] <- mvtnorm::pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(Delta1_prior, Delta2_prior),sigma=covmat)[1]
     }
     
     return(1/nsim * sum(pgo_vector))
@@ -118,7 +118,7 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
 #      sapply(u,function(u){
 #        integrate(function(v){
 #          sapply(v,function(v){
-#            (pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(u,v),sigma=covmat)[1])*dbivanorm(u,v,Delta1,Delta2, 4/in1, 4/in2, rho)
+#            (mvtnorm::pmvnorm(lower=Kappa, upper=c(Inf,Inf), mean=c(u,v),sigma=covmat)[1])*dbivanorm(u,v,Delta1,Delta2, 4/in1, 4/in2, rho)
 #          })
 #        },0,Inf )$value
 #      })
@@ -176,7 +176,7 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
     Sigma_prior<-matrix(c(4/in1,rho*sqrt(4/in1)*sqrt(4/in2), rho*sqrt(4/in1)*sqrt(4/in2),4/in2),ncol=2)
     nsim<-100 
     set.seed(61216)
-    rsamp <- mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
+    rsamp <- MASS::mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
     Ess_vector <- vector(length = nsim)
     
     for (m in 1:nsim){
@@ -250,7 +250,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
       sapply(y,function(y){ 
         integrate(function(x){ 
           sapply(x,function(x){
-            pmvnorm(lower=c(qnorm(1-alpha),qnorm(1-alpha)), 
+            mvtnorm::pmvnorm(lower=c(qnorm(1-alpha),qnorm(1-alpha)), 
                     upper=c(Inf,Inf), 
                     mean=c(Delta1/sqrt(r[1]/max((r[1]*c/x^2),(r[2]*c/y^2))),Delta2/sqrt(r[2]/max((r[1]*c/x^2),(r[2]*c/y^2)))),
                     sigma=covmatt3)[1]*dbivanorm(x,y,Delta1,Delta2,var1,var2,rho)
@@ -266,7 +266,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
     Sigma_prior<-matrix(c(4/in1,rho*sqrt(4/in1)*sqrt(4/in2), rho*sqrt(4/in1)*sqrt(4/in2),4/in2),ncol=2)
     nsim<-100 
     set.seed(61216)
-    rsamp <- mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
+    rsamp <- MASS::mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
     
     for (m in 1:nsim){
       Delta1_prior <- rsamp[m,1]
@@ -277,7 +277,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
         sapply(y,function(y){ 
           integrate(function(x){ 
             sapply(x,function(x){
-              pmvnorm(lower=c(qnorm(1-alpha),qnorm(1-alpha)), 
+              mvtnorm::pmvnorm(lower=c(qnorm(1-alpha),qnorm(1-alpha)), 
                       upper=c(Inf,Inf), 
                       mean=c(Delta1_prior/sqrt(r[1]/max((r[1]*c/x^2),(r[2]*c/y^2))),Delta2_prior/sqrt(r[2]/max((r[1]*c/x^2),(r[2]*c/y^2)))),
                       sigma=covmatt3)[1]*dbivanorm(x,y,Delta1_prior,Delta2_prior,var1,var2,rho)
@@ -295,7 +295,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
 #      integrate(function(v){sapply(v,function(v){
 #        integrate(function(y){ sapply(y,function(y){ 
 #          integrate(function(x){ sapply(x,function(x){
-#            pmvnorm(lower=c(qnorm(1-alpha),qnorm(1-alpha)),
+#            mvtnorm::pmvnorm(lower=c(qnorm(1-alpha),qnorm(1-alpha)),
 #                    upper=c(Inf,Inf),
 #                    mean=c(u/sqrt(r[1]/max((r[1]*c/x^2),(r[2]*c/y^2))),v/sqrt(r[2]/max((r[1]*c/x^2),(r[2]*c/y^2)))),
 #                    sigma=covmatt3)[1]*dbivanorm(x,y,u,v,var1,var2,rho)*dbivanorm(u,v,Delta1,Delta2,4/in1,4/in2,rho)
@@ -366,7 +366,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
       sapply(y,function(y){
         integrate(function(x){ 
           sapply(x,function(x){ 
-            pmvnorm(lower=c(qnorm(1-alpha)+step11*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
+            mvtnorm::pmvnorm(lower=c(qnorm(1-alpha)+step11*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
                             qnorm(1-alpha)+step12*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2), 
                     upper=c(qnorm(1-alpha)+step21*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
                             qnorm(1-alpha)+step22*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2), 
@@ -385,7 +385,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
     Sigma_prior<-matrix(c(4/in1,rho*sqrt(4/in1)*sqrt(4/in2), rho*sqrt(4/in1)*sqrt(4/in2),4/in2),ncol=2)
     nsim<-100 
     set.seed(61216)
-    rsamp <- mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
+    rsamp <- MASS::mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
     
     for (m in 1:nsim){
       Delta1_prior <- rsamp[m,1]
@@ -396,7 +396,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
         sapply(y,function(y){
           integrate(function(x){ 
             sapply(x,function(x){ 
-              pmvnorm(lower=c(qnorm(1-alpha)+step11*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
+              mvtnorm::pmvnorm(lower=c(qnorm(1-alpha)+step11*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
                               qnorm(1-alpha)+step12*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2), 
                       upper=c(qnorm(1-alpha)+step21*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
                               qnorm(1-alpha)+step22*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2), 
@@ -415,7 +415,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
 #      integrate(function(v){sapply(v,function(v){
 #        integrate(function(y){ sapply(y,function(y){ 
 #          integrate(function(x){ sapply(x,function(x){
-#            pmvnorm(lower=c(qnorm(1-alpha)+step11*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
+#            mvtnorm::pmvnorm(lower=c(qnorm(1-alpha)+step11*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
 #                            qnorm(1-alpha)+step12*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2), 
 #                    upper=c(qnorm(1-alpha)+step21*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2,
 #                            qnorm(1-alpha)+step22*sqrt(max((r[1]*c/x^2),(r[2]*c/y^2)))/2), 

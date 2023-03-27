@@ -1,13 +1,13 @@
 # Prior distribution for Delta
 prior_normal <-function(x, w, Delta1, Delta2, in1, in2, a, b){
-  w * dtnorm(x, Delta2, sqrt(4/in1), lower = a, upper = b) +
-    (1-w) * dtnorm(x, Delta1, sqrt(4/in2), lower = a, upper = b)
+  w * msm::dtnorm(x, Delta2, sqrt(4/in1), lower = a, upper = b) +
+    (1-w) * msm::dtnorm(x, Delta1, sqrt(4/in2), lower = a, upper = b)
 }
 
 # 1000000 realizations of the prior distribution
 box_normal <-function(w, Delta1, Delta2, in1, in2, a, b){
-  w*rtnorm(1000000,Delta2,sqrt(4/in1), lower = a, upper = b) +
-    (1-w)*rtnorm(1000000,Delta1,sqrt(4/in2), lower = a, upper = b)
+  w*msm::rtnorm(1000000,Delta2,sqrt(4/in1), lower = a, upper = b) +
+    (1-w)*msm::rtnorm(1000000,Delta1,sqrt(4/in2), lower = a, upper = b)
 }
 
 # Expected probability to go to phase III: Epgo

@@ -45,7 +45,7 @@ pgo_tte<-function(HRgo,n2,ec,hr1,hr2,strategy,case){
   
   if(case==1){# no go
     
-    return(pmvnorm(lower = c(-Inf,-Inf),
+    return(mvtnorm::pmvnorm(lower = c(-Inf,-Inf),
                    upper = c(-log(HRgo),-log(HRgo)),
                    mean  = MEANY,
                    sigma = SIGMAY))
@@ -56,7 +56,7 @@ pgo_tte<-function(HRgo,n2,ec,hr1,hr2,strategy,case){
       return(integrate(function(y1){
         sapply(y1,function(y1){ 
           integrate(function(y2){
-            dmvnorm(cbind(y1,y2),
+            mvtnorm::dmvnorm(cbind(y1,y2),
                     mean  = MEANY,
                     sigma = SIGMAY)
           }, -Inf, y1)$value   
@@ -69,7 +69,7 @@ pgo_tte<-function(HRgo,n2,ec,hr1,hr2,strategy,case){
       return(integrate(function(y2){
         sapply(y2,function(y2){ 
           integrate(function(y1){
-            dmvnorm(cbind(y1,y2),
+            mvtnorm::dmvnorm(cbind(y1,y2),
                     mean  = MEANY,
                     sigma = SIGMAY)
           }, -Inf, y2)$value   
@@ -81,14 +81,14 @@ pgo_tte<-function(HRgo,n2,ec,hr1,hr2,strategy,case){
   if(strategy==2){# all promising
     if(case==21){# treatment 1 is promising, treatment 2 is not
       
-      return(pmvnorm(lower=c(-log(HRgo),-Inf),
+      return(mvtnorm::pmvnorm(lower=c(-log(HRgo),-Inf),
                      upper=c(Inf,-log(HRgo)),
                      mean=MEANY,
                      sigma=SIGMAY))   
       
     }
     if(case==22){# treatment 2 is promising, treatment 1 is not
-      return(pmvnorm(lower=c(-Inf,-log(HRgo)),
+      return(mvtnorm::pmvnorm(lower=c(-Inf,-log(HRgo)),
                      upper=c(-log(HRgo),Inf),
                      mean=MEANY,
                      sigma=SIGMAY))         
@@ -98,7 +98,7 @@ pgo_tte<-function(HRgo,n2,ec,hr1,hr2,strategy,case){
       return(integrate(function(y1){
         sapply(y1,function(y1){ 
           integrate(function(y2){
-            dmvnorm(cbind(y1,y2),
+            mvtnorm::dmvnorm(cbind(y1,y2),
                     mean  = MEANY,
                     sigma = SIGMAY)
           }, -log(HRgo), y1)$value   
@@ -111,7 +111,7 @@ pgo_tte<-function(HRgo,n2,ec,hr1,hr2,strategy,case){
       return(integrate(function(y2){
         sapply(y2,function(y2){ 
           integrate(function(y1){
-            dmvnorm(cbind(y1,y2),
+            mvtnorm::dmvnorm(cbind(y1,y2),
                     mean  = MEANY,
                     sigma = SIGMAY)
           }, -log(HRgo),y2)$value   
@@ -195,7 +195,7 @@ Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
         sapply(y1,function(y1){ 
           integrate(function(y2){
             ss_tte(alpha,beta,ec,et1,y1,1)*
-              dmvnorm(cbind(y1,y2),
+              mvtnorm::dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
           }, -Inf, y1)$value   
@@ -209,7 +209,7 @@ Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
         sapply(y2,function(y2){ 
           integrate(function(y1){
             ss_tte(alpha,beta,ec,et2,y2,1)*
-              dmvnorm(cbind(y1,y2),
+              mvtnorm::dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
           },-Inf, y2)$value   
@@ -223,7 +223,7 @@ Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
     if(case==21){# treatment 1 is promising, treatment 2 is not
       
       f <- function(y){ 
-        ss_tte(alpha,beta,ec,et1,y[1],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
+        ss_tte(alpha,beta,ec,et1,y[1],1)*mvtnorm::dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
       return(cubature::adaptIntegrate(f, lowerLimit = c(-log(HRgo), -Inf), upperLimit = c(Inf, -log(HRgo)))$integral)
@@ -232,7 +232,7 @@ Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
     if(case==22){# treatment 2 is promising, treatment 1 is not
       
       f <- function(y){ 
-        ss_tte(alpha,beta,ec,et2,y[2],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
+        ss_tte(alpha,beta,ec,et2,y[2],1)*mvtnorm::dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
       return(cubature::adaptIntegrate(f, lowerLimit = c(-Inf, -log(HRgo)), upperLimit = c(-log(HRgo), Inf))$integral)
@@ -244,7 +244,7 @@ Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
         sapply(y1,function(y1){ 
           integrate(function(y2){
             ss_tte(alpha,beta,ec,et2,y2,2)*
-              dmvnorm(cbind(y1,y2),
+              mvtnorm::dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
           }, -log(HRgo), y1)$value   
@@ -258,7 +258,7 @@ Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
         sapply(y2,function(y2){ 
           integrate(function(y1){
             ss_tte(alpha,beta,ec,et1,y1,2)*
-              dmvnorm(cbind(y1,y2),
+              mvtnorm::dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
           }, -log(HRgo), y2)$value   
@@ -320,7 +320,7 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
                 pnorm(qnorm(1-alpha)-log(step1)/(sqrt(y1^2/c)),
                       mean=-log(hr1)/(sqrt(y1^2/c)),
                       sd=1) )*
-              dmvnorm(cbind(y1,y2),
+              mvtnorm::dmvnorm(cbind(y1,y2),
                       mean=MEANY,
                       sigma=SIGMAY) 
           }, -Inf,y1)$value
@@ -341,7 +341,7 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
                 pnorm(qnorm(1-alpha)-log(step1)/(sqrt(y2^2/c)),
                       mean=-log(hr2)/(sqrt(y2^2/c)),
                       sd=1) )*
-              dmvnorm(cbind(y1,y2),
+              mvtnorm::dmvnorm(cbind(y1,y2),
                       mean=MEANY,
                       sigma=SIGMAY) 
           }, -Inf,y2)$value
@@ -363,7 +363,7 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
             pnorm(qnorm(1-alpha)-log(step1)/(sqrt(y[1]^2/c)),
                   mean=-log(hr1)/(sqrt(y[1]^2/c)),
                   sd=1) )*
-          dmvnorm(c(y[1],y[2]),
+          mvtnorm::dmvnorm(c(y[1],y[2]),
                   mean=MEANY,
                   sigma=SIGMAY)
       }
@@ -382,7 +382,7 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
             pnorm(qnorm(1-alpha)-log(step1)/(sqrt(y[2]^2/c)),
                   mean=-log(hr2)/(sqrt(y[2]^2/c)),
                   sd=1) )*
-          dmvnorm(c(y[1],y[2]),
+          mvtnorm::dmvnorm(c(y[1],y[2]),
                   mean=MEANY,
                   sigma=SIGMAY)
       }
@@ -393,24 +393,24 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
     if(case==31){# both treatments are promising, treatment 1 is better
       
       SIGMAZ   = matrix(c(1,1/2,1/2,1), nrow = 2, ncol = 2)
-      calpha   = as.numeric(qmvnorm(1-alpha, mean=c(0,0), sigma= SIGMAZ)[1])
+      calpha   = as.numeric(mvtnorm::qmvnorm(1-alpha, mean=c(0,0), sigma= SIGMAZ)[1])
       c        = (calpha+qnorm(1-beta))^2 
       
       return(integrate(function(y1){ 
         sapply(y1,function(y1){
           integrate(function(y2){ 
             sapply(y2,function(y2){ # How to erase??
-              ( pmvnorm(lower=c(-Inf,-Inf),
+              ( mvtnorm::pmvnorm(lower=c(-Inf,-Inf),
                         upper=c(calpha-log(step2)/(sqrt(y2^2/c)),
                                 calpha-log(step2)/(sqrt(y2^2/c))),
                         mean=c(-log(hr1)/(sqrt(y2^2/c)),-log(hr2)/(sqrt(y2^2/c))),
                         sigma=SIGMAZ)-
-                  pmvnorm(lower=c(-Inf,-Inf),
+                  mvtnorm::pmvnorm(lower=c(-Inf,-Inf),
                           upper=c(calpha-log(step1)/(sqrt(y2^2/c)),
                                   calpha-log(step1)/(sqrt(y2^2/c))),
                           mean=c(-log(hr1)/(sqrt(y2^2/c)),-log(hr2)/(sqrt(y2^2/c))),
                           sigma=SIGMAZ) )*
-                dmvnorm(c(y1,y2),
+                mvtnorm::dmvnorm(c(y1,y2),
                         mean=MEANY,
                         sigma=SIGMAY) 
             })
@@ -423,24 +423,24 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
     if(case==32){# both treatments are promising, treatment 2 is better
       
       SIGMAZ   = matrix(c(1,1/2,1/2,1), nrow = 2, ncol = 2) 
-      calpha   = as.numeric(qmvnorm(1-alpha, mean=c(0,0), sigma= SIGMAZ)[1])
+      calpha   = as.numeric(mvtnorm::qmvnorm(1-alpha, mean=c(0,0), sigma= SIGMAZ)[1])
       c        = (calpha+qnorm(1-beta))^2 
       
       return(integrate(function(y2){ 
         sapply(y2,function(y2){
           integrate(function(y1){ 
             sapply(y1,function(y1){ # How to erase??
-              ( pmvnorm(lower=c(-Inf,-Inf),
+              ( mvtnorm::pmvnorm(lower=c(-Inf,-Inf),
                         upper=c(calpha-log(step2)/(sqrt(y1^2/c)),
                                 calpha-log(step2)/(sqrt(y1^2/c))),
                         mean=c(-log(hr1)/(sqrt(y1^2/c)),-log(hr2)/(sqrt(y1^2/c))),
                         sigma=SIGMAZ)-
-                  pmvnorm(lower=c(-Inf,-Inf),
+                  mvtnorm::pmvnorm(lower=c(-Inf,-Inf),
                           upper=c(calpha-log(step1)/(sqrt(y1^2/c)),
                                   calpha-log(step1)/(sqrt(y1^2/c))),
                           mean=c(-log(hr1)/(sqrt(y1^2/c)),-log(hr2)/(sqrt(y1^2/c))),
                           sigma=SIGMAZ) )*
-                dmvnorm(c(y1,y2),
+                mvtnorm::dmvnorm(c(y1,y2),
                         mean=MEANY,
                         sigma=SIGMAY) 
             })

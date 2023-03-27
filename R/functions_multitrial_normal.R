@@ -61,14 +61,14 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
       if(size == "small"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(0, 
+            ( mvtnorm::pmvnorm(lower = c(0, 
                                 0), 
                       upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c),
                                 qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                       mean = c((Delta1)/sqrt(y^2/c), 
                                (Delta1)/sqrt(y^2/c)), 
                       sigma = SIGMA) - 
-                pmvnorm(lower = c(0, 
+                mvtnorm::pmvnorm(lower = c(0, 
                                   0), 
                         upper = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
@@ -84,14 +84,14 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
       if(size == "large"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(0, 
+            ( mvtnorm::pmvnorm(lower = c(0, 
                                 0), 
                       upper = c(Inf, 
                                 Inf), 
                       mean = c((Delta1)/sqrt(y^2/c), 
                                (Delta1)/sqrt(y^2/c)), 
                       sigma = SIGMA) - 
-                pmvnorm(lower = c(0, 
+                mvtnorm::pmvnorm(lower = c(0, 
                                   0), 
                         upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                   qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
@@ -107,14 +107,14 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
       if(size == "all"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(0, 
+            ( mvtnorm::pmvnorm(lower = c(0, 
                                 0), 
                       upper = c(Inf, 
                                 Inf), 
                       mean = c((Delta1)/sqrt(y^2/c), 
                                (Delta1)/sqrt(y^2/c)), 
                       sigma = SIGMA) - 
-                pmvnorm(lower = c(0, 
+                mvtnorm::pmvnorm(lower = c(0, 
                                   0), 
                         upper = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
@@ -132,14 +132,14 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
       if(size == "small"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                 qnorm(1 - alpha)), 
                       upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                 qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                       mean = c((Delta1)/sqrt(y^2/c), 
                                (Delta1)/sqrt(y^2/c)), 
                       sigma = SIGMA) - 
-                pmvnorm(lower = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
                                   qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                         upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                   qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
@@ -155,7 +155,7 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
       if(size == "large"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+            ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                 qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                       upper = c(Inf, 
                                 Inf), 
@@ -171,7 +171,7 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
       if(size == "all"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                 qnorm(1 - alpha)), 
                       upper = c(Inf, 
                                 Inf), 
@@ -193,14 +193,14 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(0, 
+                ( mvtnorm::pmvnorm(lower = c(0, 
                                     0), 
                           upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c),
                                     qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                           mean = c(x/sqrt(y^2/c), 
                                    x/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                    pmvnorm(lower = c(0, 
+                    mvtnorm::pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
@@ -221,14 +221,14 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(0, 
+                ( mvtnorm::pmvnorm(lower = c(0, 
                                     0), 
                           upper = c(Inf, 
                                     Inf), 
                           mean = c(x/sqrt(y^2/c), 
                                    x/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                    pmvnorm(lower = c(0, 
+                    mvtnorm::pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
@@ -249,14 +249,14 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(0, 
+                ( mvtnorm::pmvnorm(lower = c(0, 
                                     0), 
                           upper = c(Inf, 
                                     Inf), 
                           mean = c(x/sqrt(y^2/c), 
                                    x/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                    pmvnorm(lower = c(0, 
+                    mvtnorm::pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
@@ -279,14 +279,14 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
                           upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                     qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                           mean = c(x/sqrt(y^2/c), 
                                    x/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                    pmvnorm(lower = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                    mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
                                       qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                             upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
@@ -307,7 +307,7 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                     qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                           upper = c(Inf, 
                                     Inf), 
@@ -328,7 +328,7 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
                           upper = c(Inf, 
                                     Inf), 
@@ -495,7 +495,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
       if(size == "small"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     0), 
                           upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
@@ -505,7 +505,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                    Delta1/sqrt(y^2/c), 
                                    Delta1/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
                             upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
@@ -524,7 +524,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
       if(size == "large"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                     qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                     0), 
                           upper = c(Inf, 
@@ -534,7 +534,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                    Delta1/sqrt(y^2/c), 
                                    Delta1/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                             upper = c(Inf, 
@@ -553,7 +553,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
       if(size == "all"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     0), 
                           upper = c(Inf, 
@@ -563,7 +563,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                    Delta1/sqrt(y^2/c), 
                                    Delta1/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
                             upper = c(Inf, 
@@ -584,7 +584,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
       if(size == "small"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
                           upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
@@ -594,7 +594,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                    Delta1/sqrt(y^2/c), 
                                    Delta1/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
                             upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
@@ -613,7 +613,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
       if(size == "large"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                     qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                     qnorm(1 - alpha)), 
                           upper = c(Inf, 
@@ -623,7 +623,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                    Delta1/sqrt(y^2/c), 
                                    Delta1/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                             upper = c(Inf, 
@@ -642,7 +642,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
       if(size == "all"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                 qnorm(1 - alpha), 
                                 qnorm(1 - alpha)), 
                       upper = c(Inf, 
@@ -667,7 +667,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         0), 
                               upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
@@ -677,7 +677,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c)), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
                                           qnorm(1 - alpha)), 
                                 upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
@@ -701,7 +701,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                         qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                         0), 
                               upper = c(Inf, 
@@ -711,7 +711,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c)), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                           qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                           qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                                 upper = c(Inf, 
@@ -735,7 +735,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         0), 
                               upper = c(Inf, 
@@ -745,7 +745,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c)), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
                                           qnorm(1 - alpha)), 
                                 upper = c(Inf, 
@@ -771,7 +771,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha)), 
                               upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
@@ -781,7 +781,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c)), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
                                           qnorm(1 - alpha)), 
                                 upper = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
@@ -805,7 +805,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                         qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                         qnorm(1 - alpha)), 
                               upper = c(Inf, 
@@ -815,7 +815,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c)), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                           qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                           qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                                 upper = c(Inf, 
@@ -839,7 +839,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
                           upper = c(Inf, 
@@ -954,7 +954,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
     if(size == "small"){
       return(integrate(function(y){
         sapply(y, function(y){
-          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha), 
+          ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha), 
                                   qnorm(1 - alpha), 
                                   0), 
@@ -967,7 +967,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                  Delta1/sqrt(y^2/c), 
                                  Delta1/sqrt(y^2/c)), 
                         sigma = SIGMA)  - 
-              3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+              3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
@@ -989,7 +989,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
     if(size == "large"){
       return(integrate(function(y){
         sapply(y, function(y){
-          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+          ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                   qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                   qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                   0), 
@@ -1002,7 +1002,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                  Delta1/sqrt(y^2/c), 
                                  Delta1/sqrt(y^2/c)), 
                         sigma = SIGMA)  - 
-              3 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+              3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                     qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                     qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                     qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
@@ -1024,7 +1024,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
     if(size == "all"){
       return(integrate(function(y){
         sapply(y, function(y){
-          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha), 
+          ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha), 
                                   qnorm(1 - alpha), 
                                   0), 
@@ -1037,7 +1037,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                  Delta1/sqrt(y^2/c), 
                                  Delta1/sqrt(y^2/c)), 
                         sigma = SIGMA) - 
-              3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+              3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
@@ -1063,7 +1063,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( 4 * pmvnorm(lower = c(qnorm(1 - alpha), 
+              ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       0), 
@@ -1076,7 +1076,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                      x/sqrt(y^2/c), 
                                      x/sqrt(y^2/c)), 
                             sigma = SIGMA)  - 
-                  3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                  3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha)), 
@@ -1103,7 +1103,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+              ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       0), 
@@ -1116,7 +1116,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                      x/sqrt(y^2/c), 
                                      x/sqrt(y^2/c)), 
                             sigma = SIGMA)  - 
-                  3 * pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+                  3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                         qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                         qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                         qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
@@ -1143,7 +1143,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( 4 * pmvnorm(lower = c(qnorm(1 - alpha), 
+              ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       0), 
@@ -1156,7 +1156,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
                                      x/sqrt(y^2/c), 
                                      x/sqrt(y^2/c)), 
                             sigma = SIGMA) - 
-                  3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                  3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha)), 
@@ -1288,7 +1288,7 @@ Epgo23_normal <-  function(kappa, n2, alpha, beta, a, b,  w, Delta1, Delta2, in1
     sapply(x, function(x){
       integrate(function(y){
         sapply(y, function(y){
-          2 * (pmvnorm(lower = c(qnorm(1 - alpha), 
+          2 * (mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                  0), 
                        upper = c(Inf, 
                                  qnorm(1 - alpha)), 
@@ -1357,14 +1357,14 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( pmvnorm(lower = c(qnorm(1 - alpha), 
+              ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
                         upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                   qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                         mean = c(x/sqrt(y^2/c), 
                                  x/sqrt(y^2/c)), 
                         sigma = SIGMA)  - 
-                  pmvnorm(lower = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                  mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
                                     qnorm(1 - alpha) + 0.5/sqrt(y^2/c)), 
                           upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                     qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
@@ -1385,7 +1385,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+              ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                   qnorm(1 - alpha) + 0.8/sqrt(y^2/c)), 
                         upper = c(Inf, Inf), 
                         mean = c(x/sqrt(y^2/c), 
@@ -1405,7 +1405,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( pmvnorm(lower = c(qnorm(1 - alpha), 
+              ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
                         upper = c(Inf, 
                                   Inf), 
@@ -1428,7 +1428,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              2 * ( pmvnorm(lower = c(qnorm(1 - alpha), 
+              2 * ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       0, 
                                       qnorm(1 - alpha)), 
                             upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
@@ -1438,7 +1438,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
                                      x/sqrt(y^2/c), 
                                      x/sqrt(ymin^2/c)), 
                             sigma = SIGMA3)  - 
-                      pmvnorm(lower = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
+                      mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.5/sqrt(y^2/c), 
                                         0, 
                                         qnorm(1 - alpha) + 0.5/sqrt(ymin^2/c)), 
                               upper = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
@@ -1462,7 +1462,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              2 * ( pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
+              2 * ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) + 0.8/sqrt(y^2/c), 
                                       0, 
                                       qnorm(1 - alpha) + 0.8/sqrt(ymin^2/c)), 
                             upper = c(Inf, 
@@ -1486,7 +1486,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              2 * ( pmvnorm(lower = c(qnorm(1 - alpha), 
+              2 * ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       0, 
                                       qnorm(1 - alpha)), 
                             upper = c(Inf, 

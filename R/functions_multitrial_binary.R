@@ -69,14 +69,14 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
       if(size == "small"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(0, 
+            ( mvtnorm::pmvnorm(lower = c(0, 
                                 0), 
                       upper = c(qnorm(1 - alpha) - log(0.95)/sqrt(t1(p11, p0)*y^2/const(p11, p0)),
                                 qnorm(1 - alpha) - log(0.95)/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
                       mean = c(rho/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                rho/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
                       sigma = SIGMA) - 
-                pmvnorm(lower = c(0, 
+                mvtnorm::pmvnorm(lower = c(0, 
                                   0), 
                         upper = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
@@ -124,7 +124,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                       mean = c(rho/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                rho/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
                       sigma = SIGMA) - 
-                pmvnorm(lower = c(0, 
+                mvtnorm::pmvnorm(lower = c(0, 
                                   0), 
                         upper = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
@@ -142,7 +142,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
       if(size == "small"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                 qnorm(1 - alpha)), 
                       upper = c(qnorm(1 - alpha) - 
                                   log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
@@ -151,7 +151,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                       mean = c(rho/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                rho/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
                       sigma = SIGMA) - 
-                pmvnorm(lower = c(qnorm(1 - alpha) - 
+                mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                     log(0.95)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                   qnorm(1 - alpha) - 
                                     log(0.95)/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
@@ -171,7 +171,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
       if(size == "large"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(qnorm(1 - alpha) - 
+            ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                   log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                 qnorm(1 - alpha) - 
                                   log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
@@ -189,7 +189,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
       if(size == "all"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                 qnorm(1 - alpha)), 
                       upper = c(Inf, 
                                 Inf), 
@@ -211,14 +211,14 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(0, 
+                ( mvtnorm::pmvnorm(lower = c(0, 
                                     0), 
                           upper = c(qnorm(1 - alpha) - log(0.95)/sqrt(t1(x, p0)*y^2/const(x, p0)),
                                     qnorm(1 - alpha) - log(0.95)/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                           mean = c(x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                    x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                           sigma = SIGMA) - 
-                    pmvnorm(lower = c(0, 
+                    mvtnorm::pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
@@ -239,14 +239,14 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(0, 
+                ( mvtnorm::pmvnorm(lower = c(0, 
                                     0), 
                           upper = c(Inf, 
                                     Inf), 
                           mean = c(x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                    x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                           sigma = SIGMA) - 
-                    pmvnorm(lower = c(0, 
+                    mvtnorm::pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha) - 
                                         log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
@@ -269,14 +269,14 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(0, 
+                ( mvtnorm::pmvnorm(lower = c(0, 
                                     0), 
                           upper = c(Inf, 
                                     Inf), 
                           mean = c(x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                    x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                           sigma = SIGMA) - 
-                    pmvnorm(lower = c(0, 
+                    mvtnorm::pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
@@ -299,7 +299,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
                           upper = c(qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
@@ -308,7 +308,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                           mean = c(x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                    x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                           sigma = SIGMA) - 
-                    pmvnorm(lower = c(qnorm(1 - alpha) - 
+                    mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                         log(0.95)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                       qnorm(1 - alpha) - 
                                         log(0.95)/sqrt(t1(x, p0)*y^2/const(x, p0))), 
@@ -333,7 +333,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(qnorm(1 - alpha) - 
+                ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                     qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0))), 
@@ -356,7 +356,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
                           upper = c(Inf, 
                                     Inf), 
@@ -518,7 +518,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
       if(size == "small"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     0), 
                           upper = c(qnorm(1 - alpha) - 
@@ -531,7 +531,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                    rho/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                    rho/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
                             upper = c(qnorm(1 - alpha) - 
@@ -553,7 +553,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
       if(size == "large"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                     qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
@@ -565,7 +565,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                    rho/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                    rho/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                         log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                       qnorm(1 - alpha) - 
                                         log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
@@ -587,7 +587,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
       if(size == "all"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     0), 
                           upper = c(Inf, 
@@ -597,7 +597,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                    rho/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                    rho/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
                             upper = c(Inf, 
@@ -618,7 +618,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
       if(size == "small"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
                           upper = c(qnorm(1 - alpha) - 
@@ -631,7 +631,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                    rho/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                    rho/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
                             upper = c(qnorm(1 - alpha) - 
@@ -653,7 +653,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
       if(size == "large"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                     qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
@@ -665,7 +665,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                    rho/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                    rho/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                         log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                       qnorm(1 - alpha) - 
                                         log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
@@ -687,7 +687,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
       if(size == "all"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                 qnorm(1 - alpha), 
                                 qnorm(1 - alpha)), 
                       upper = c(Inf, 
@@ -712,7 +712,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         0), 
                               upper = c(qnorm(1 - alpha) - 
@@ -725,7 +725,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                        x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                        x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
                                           qnorm(1 - alpha)), 
                                 upper = c(qnorm(1 - alpha) - 
@@ -752,7 +752,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                           log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                         qnorm(1 - alpha) - 
                                           log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
@@ -764,7 +764,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                        x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                        x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                             log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                           qnorm(1 - alpha) - 
                                             log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
@@ -791,7 +791,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         0), 
                               upper = c(Inf, 
@@ -801,7 +801,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                        x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                        x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
                                           qnorm(1 - alpha)), 
                                 upper = c(Inf, 
@@ -827,7 +827,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha)), 
                               upper = c(qnorm(1 - alpha) - 
@@ -840,7 +840,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                        x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                        x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
                                           qnorm(1 - alpha)), 
                                 upper = c(qnorm(1 - alpha) - 
@@ -867,7 +867,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                           log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                         qnorm(1 - alpha) - 
                                           log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
@@ -879,7 +879,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                        x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                        x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                             log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                           qnorm(1 - alpha) - 
                                             log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
@@ -906,7 +906,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
                           upper = c(Inf, 
@@ -1017,7 +1017,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
     if(size == "small"){
       return(integrate(function(y){
         sapply(y, function(y){
-          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha), 
+          ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha), 
                                   qnorm(1 - alpha), 
                                   0), 
@@ -1030,7 +1030,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                  rho/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                  rho/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
                         sigma = SIGMA)  - 
-              3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+              3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
@@ -1056,7 +1056,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
     if(size == "large"){
       return(integrate(function(y){
         sapply(y, function(y){
-          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) - log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
+          ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                   qnorm(1 - alpha) - log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                   qnorm(1 - alpha) - log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                   0), 
@@ -1069,7 +1069,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                  rho/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                  rho/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
                         sigma = SIGMA)  - 
-              3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+              3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                     qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
@@ -1095,7 +1095,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
     if(size == "all"){
       return(integrate(function(y){
         sapply(y, function(y){
-          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha), 
+          ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha), 
                                   qnorm(1 - alpha), 
                                   0), 
@@ -1108,7 +1108,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                  rho/sqrt(t1(p11, p0)*y^2/const(p11, p0)), 
                                  rho/sqrt(t1(p11, p0)*y^2/const(p11, p0))), 
                         sigma = SIGMA) - 
-              3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+              3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
@@ -1134,7 +1134,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( 4 * pmvnorm(lower = c(qnorm(1 - alpha), 
+              ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       0), 
@@ -1147,7 +1147,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                      x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                      x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                             sigma = SIGMA)  - 
-                  3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                  3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha)), 
@@ -1178,7 +1178,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) - log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
+              ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                       qnorm(1 - alpha) - log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                       qnorm(1 - alpha) - log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                       0), 
@@ -1191,7 +1191,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                      x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                      x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                             sigma = SIGMA)  - 
-                  3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+                  3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                           log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                         qnorm(1 - alpha) - 
                                           log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
@@ -1222,7 +1222,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( 4 * pmvnorm(lower = c(qnorm(1 - alpha), 
+              ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       0), 
@@ -1235,7 +1235,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
                                      x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                      x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                             sigma = SIGMA) - 
-                  3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                  3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha)), 
@@ -1363,7 +1363,7 @@ Epgo23_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2){
     sapply(x, function(x){
       integrate(function(y){
         sapply(y, function(y){
-          2 * (pmvnorm(lower = c(qnorm(1 - alpha), 
+          2 * (mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                  0), 
                        upper = c(Inf, 
                                  qnorm(1 - alpha)), 
@@ -1432,14 +1432,14 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( pmvnorm(lower = c(qnorm(1 - alpha), 
+              ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
                         upper = c(qnorm(1 - alpha) - log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                   qnorm(1 - alpha) - log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                         mean = c(x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                  x/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                         sigma = SIGMA)  - 
-                  pmvnorm(lower = c(qnorm(1 - alpha) - log(0.95)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
+                  mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - log(0.95)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                     qnorm(1 - alpha) - log(0.95)/sqrt(t1(x, p0)*y^2/const(x, p0))), 
                           upper = c(qnorm(1 - alpha) - log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                     qnorm(1 - alpha) - log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0))), 
@@ -1460,7 +1460,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( pmvnorm(lower = c(qnorm(1 - alpha) - 
+              ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                     log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                   qnorm(1 - alpha) - 
                                     log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0))), 
@@ -1482,7 +1482,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( pmvnorm(lower = c(qnorm(1 - alpha), 
+              ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
                         upper = c(Inf, 
                                   Inf), 
@@ -1505,7 +1505,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              2 * ( pmvnorm(lower = c(qnorm(1 - alpha), 
+              2 * ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       0, 
                                       qnorm(1 - alpha)), 
                             upper = c(qnorm(1 - alpha) - 
@@ -1517,7 +1517,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
                                      x/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                      x/sqrt(t1(x, p0)*ymin^2/const(x, p0))), 
                             sigma = SIGMA3)  - 
-                      pmvnorm(lower = c(qnorm(1 - alpha) - 
+                      mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                           log(0.95)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                         0, 
                                         qnorm(1 - alpha) - 
@@ -1545,7 +1545,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              2 * ( pmvnorm(lower = c(qnorm(1 - alpha) - 
+              2 * ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                         log(0.85)/sqrt(t1(x, p0)*y^2/const(x, p0)), 
                                       0, 
                                       qnorm(1 - alpha) - 
@@ -1571,7 +1571,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              2 * ( pmvnorm(lower = c(qnorm(1 - alpha), 
+              2 * ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       0, 
                                       qnorm(1 - alpha)), 
                             upper = c(Inf, 
