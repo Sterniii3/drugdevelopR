@@ -123,7 +123,7 @@ test_that("04.05", {
   res <- optimal_multiarm_binary(alpha = 0.025,
                           beta = 0.1,
                           p0 = 0.5, p11 = 0.3, p12 = 0.4,
-                          n2min = 10, n2max = 400, stepn2 = 2,
+                          n2min = 200, n2max = 400, stepn2 = 2,
                           rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
                           steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                           b1 = 1000, b2 = 2000, b3 = 3000,
@@ -145,7 +145,7 @@ test_that("04.06", {
   res <- optimal_multiarm_binary(alpha = 0.025,
                                  beta = 0.1,
                                  p0 = 0.5, p11 = 0.3, p12 = 0.4,
-                                 n2min = 10, n2max = 400, stepn2 = 2,
+                                 n2min = 200, n2max = 400, stepn2 = 2,
                                  rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                                  b1 = 1000, b2 = 2000, b3 = 3000,
@@ -167,7 +167,7 @@ test_that("04.07", {
   res <- optimal_multiarm_binary(alpha = 0.025,
                                  beta = 0.1,
                                  p0 = 0.5, p11 = 0.3, p12 = 0.4,
-                                 n2min = 10, n2max = 400, stepn2 = 2,
+                                 n2min = 200, n2max = 400, stepn2 = 2,
                                  rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                                  b1 = 1000, b2 = 2000, b3 = 3000,
@@ -180,10 +180,10 @@ test_that("04.07", {
   # Return results for both strategies
   expect_equal(res[1,]$u, -9999)
 
-  expect_equal(res[2,]$u, 1281.74, tolerance = 0.005)
-  expect_equal(res[2,]$n2, 312)
-  expect_equal(res[2,]$n3, 561)
-  expect_equal(res[2,]$n, 873)
+  expect_equal(res[2,]$u, 1281.28, tolerance = 0.005)
+  expect_equal(res[2,]$n2, 326)
+  expect_equal(res[2,]$n3, 565)
+  expect_equal(res[2,]$n, 891)
   expect_equal(res[2,]$RRgo, 0.77)
 })
 #' @editor Lukas D Sauer

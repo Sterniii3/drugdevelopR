@@ -57,7 +57,7 @@ Use the function ` optimal_multiarm_binary()`. Supply the following input values
   * a significance level of 0.025,
   * a power of 0.9, i.e. $\beta$ of 0.1,
   * assumed true treatment rate of 0.5 in the control group and assumed true rates of 0.3 and 0.4 for the two treatment arms, 
-  * the optimization region of all even numbers {10, 12, …, 400} for the number of participants in phase II,
+  * the optimization region of all even numbers {200, 202, …, 400} for the number of participants in phase II,
   * the optimization region {0.7, 0.71, …, 0.9} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
   * expected gains of 100,000,000\$, 200,000,000\$, and 300,000,000\$ for each effect size, respectively,
