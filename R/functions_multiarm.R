@@ -227,7 +227,7 @@ Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
         ss_tte(alpha,beta,ec,et1,y[1],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(-log(HRgo), -Inf), upperLimit = c(Inf, -log(HRgo)))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(-log(HRgo), -Inf), upperLimit = c(Inf, -log(HRgo)))$integral)
       
     }
     if(case==22){# treatment 2 is promising, treatment 1 is not
@@ -236,7 +236,7 @@ Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
         ss_tte(alpha,beta,ec,et2,y[2],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(-Inf, -log(HRgo)), upperLimit = c(-log(HRgo), Inf))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(-Inf, -log(HRgo)), upperLimit = c(-log(HRgo), Inf))$integral)
       
     }
     if(case==31){# both treatments are promising, treatment 1 is better
@@ -369,7 +369,7 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
                   sigma=SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(-log(HRgo), -Inf), upperLimit = c(Inf, -log(HRgo)))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(-log(HRgo), -Inf), upperLimit = c(Inf, -log(HRgo)))$integral)
       
     }
     if(case==22){# treatment 2 is promising, treatment 1 is not 
@@ -388,7 +388,7 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
                   sigma=SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(-Inf, -log(HRgo)), upperLimit = c(-log(HRgo), Inf))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(-Inf, -log(HRgo)), upperLimit = c(-log(HRgo), Inf))$integral)
       
     }
     if(case==31){# both treatments are promising, treatment 1 is better

@@ -223,7 +223,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
         ss_binary(alpha,beta,p0,p11,y[1],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(-log(RRgo), -Inf), upperLimit = c(Inf, -log(RRgo)))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(-log(RRgo), -Inf), upperLimit = c(Inf, -log(RRgo)))$integral)
       
     }
     if(case==22){# treatment 2 is promising, treatment 1 is not
@@ -232,7 +232,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
         ss_binary(alpha,beta,p0,p11,y[2],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(-Inf, -log(RRgo)), upperLimit = c(-log(RRgo), Inf))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(-Inf, -log(RRgo)), upperLimit = c(-log(RRgo), Inf))$integral)
       
     }
     if(case==31){# both treatments are promising, treatment 1 is better
@@ -364,7 +364,7 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
                   sigma=SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(-log(RRgo), -Inf), upperLimit = c(Inf, -log(RRgo)))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(-log(RRgo), -Inf), upperLimit = c(Inf, -log(RRgo)))$integral)
       
     }
     if(case==22){# treatment 2 is promising, treatment 1 is not 
@@ -383,7 +383,7 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
                   sigma=SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(-Inf, -log(RRgo)), upperLimit = c(-log(RRgo), Inf))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(-Inf, -log(RRgo)), upperLimit = c(-log(RRgo), Inf))$integral)
       
     }
     if(case==31){# both treatments are promising, treatment 1 is better

@@ -217,7 +217,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
         ss_normal(alpha,beta,y[1],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(kappa, -Inf), upperLimit = c(Inf, kappa))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(kappa, -Inf), upperLimit = c(Inf, kappa))$integral)
       
     }
     if(case==22){# treatment 2 is promising, treatment 1 is not
@@ -226,7 +226,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
         ss_normal(alpha,beta,y[2],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(-Inf, kappa), upperLimit = c(kappa, Inf))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(-Inf, kappa), upperLimit = c(kappa, Inf))$integral)
       
     }
     if(case==31){# both treatments are promising, treatment 1 is better
@@ -357,7 +357,7 @@ PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,c
                   sigma=SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(kappa, -Inf), upperLimit = c(Inf, kappa))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(kappa, -Inf), upperLimit = c(Inf, kappa))$integral)
       
     }
     if(case==22){# treatment 2 is promising, treatment 1 is not 
@@ -376,7 +376,7 @@ PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,c
                   sigma=SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(-Inf, kappa), upperLimit = c(kappa, Inf))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(-Inf, kappa), upperLimit = c(kappa, Inf))$integral)
       
     }
     if(case==31){# both treatments are promising, treatment 1 is better
