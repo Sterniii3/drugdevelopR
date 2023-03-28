@@ -12,13 +12,14 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Depends:
-    mvtnorm,
     doParallel,
     parallel,
-    cubature,
-    msm,
     foreach,
     iterators,
+Imports:
+    mvtnorm,
+    cubature,
+    msm,
     MASS,
     stats
 URL: https://github.com/Sterniii3/drugdevelopR,
