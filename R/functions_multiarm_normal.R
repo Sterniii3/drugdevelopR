@@ -382,7 +382,7 @@ PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,c
     if(case==31){# both treatments are promising, treatment 1 is better
       
       SIGMAZ   = matrix(c(1,1/2,1/2,1), nrow = 2, ncol = 2)
-      calpha   = as.numeric(mvtnorm::qmvnorn(1-alpha, mean=c(0,0), sigma= SIGMAZ)[1])
+      calpha   = as.numeric(mvtnorm::qmvnorm(1-alpha, mean=c(0,0), sigma= SIGMAZ)[1])
       c        = (calpha+qnorm(1-beta))^2 
       
       return(integrate(function(y1){ 
@@ -412,7 +412,7 @@ PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,c
     if(case==32){# both treatments are promising, treatment 2 is better
       
       SIGMAZ   = matrix(c(1,1/2,1/2,1), nrow = 2, ncol = 2) 
-      calpha   = as.numeric(mvtnorm::qmvnorn(1-alpha, mean=c(0,0), sigma= SIGMAZ)[1])
+      calpha   = as.numeric(mvtnorm::qmvnorm(1-alpha, mean=c(0,0), sigma= SIGMAZ)[1])
       c        = (calpha+qnorm(1-beta))^2 
       
       return(integrate(function(y2){ 
