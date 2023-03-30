@@ -381,12 +381,16 @@ test_that("01.12", {
 test_that("01.14", {
   # Comparing results of Epgo_binary() and En3_binary() to SAS results
   data <- haven::read_sas("./validation/ref/valref_binary.sas7bdat")
-  res_r <- rep(0, nrow(data))
+  pgo_r <- rep(0, nrow(data))
+  En3_r <- rep(0, nrow(data))
   for(i in (1:nrow(data))){
-    res_r[i] <- En3_binary(RRgo = data$RRgo_vec[i], n2 = data$n2_vec[i],
+    pgo_r[i] <- Epgo_binary(RRgo = data$RRgo_vec[i], n2 = data$n2_vec[i],
+                           p0 = data$p0_vec[i], p11 = data$p11_vec[i],
+                           p12 = NULL, in1 = NULL, in2 = NULL, fixed = TRUE)
+    En3_r[i] <- En3_binary(RRgo = data$RRgo_vec[i], n2 = data$n2_vec[i],
                            alpha = data$alpha_vec[i], beta = data$beta_vec[i],
                            p0 = data$p0_vec[i], w = NULL, p11 = data$p11_vec[i],
                            p12 = NULL, in1 = NULL, in2 = NULL, fixed = TRUE)
   }
-  expect_equal(data$res_sas, res_r)
+  expect_equal(En3_r, data$n3_sas)
 })

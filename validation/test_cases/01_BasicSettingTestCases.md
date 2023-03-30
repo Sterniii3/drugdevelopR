@@ -129,7 +129,7 @@ Use the function `Epgo_normal()`. Supply 10 sets of the following input values:
 Calculate the function output for all 10 parameter sets and compare the results to the results of a SAS program implementing the probability formula
 $$p_{go}^{\Delta}= \mathrm{P}(\hat\Delta_2\geq \kappa|\Delta) = \Phi\left(\frac{\Delta - \kappa}{\sqrt{
 		4/n_2}}\right)$$
-from [@preussler2020].
+from [@preussler2020], where $\Phi$ is the cumulative distribution function of the standard normal distribution.
 
 Use the function `En3_normal()`. Supply 10 sets of the following input values:
 
@@ -155,8 +155,7 @@ Use the function `Epgo_binary()`. Supply 10 sets of the following input values:
 
 Calculate the function output for all 10 parameter sets and compare the results to the results of a SAS program implementing the probability formula
 $$p_{go}^{\varrho}= \Phi\left(\frac{\varrho - \kappa}{\sqrt{2/n_2 \cdot(\frac{1-p_0}{p_0}+ \frac{1-p_1}{p_1}) }}\right)$$
-where $\varrho = -\log(p_{11}/p_0)$ and $\kappa=-\log(RR_{go})$ as calculated in
-[@preussler2020].
+from [@preussler2020] where $\varrho = -\log(p_{11}/p_0)$ and $\kappa=-\log(RR_{go})$ and $\Phi$ is the cumulative distribution function of the standard normal distribution.
 
 Use the function `En3_binary()`. Supply 10 sets of the following input values:
 
@@ -181,7 +180,7 @@ Use the function `Epgo_tte()`. Supply 10 sets of the following input values:
 
 Calculate the function output for all 10 parameter sets and compare the results to the results of a SAS program implementing the probability formula
 $$p_{go}^{\theta}=\mathrm P(\hat\theta_2 \geq \kappa|\theta)= \Phi\left(\frac{\theta-\kappa}{\sqrt{4/d_2}}\right),$$
-where $\kappa=-\log(HR_{go}$ as calculated in [@preussler2020].
+from [@preussler2020], where $\kappa=-\log(HR_{go}$ and $\Phi$ is the cumulative distribution function of the standard normal distribution.
 
 Use the function `Ed3_tte()`. Supply 10 sets of the following input values:
 
