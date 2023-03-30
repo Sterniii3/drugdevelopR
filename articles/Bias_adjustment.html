@@ -42,10 +42,10 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Bias_adjustment.html">Methods for Discounting of Phase II Results - Bias Adjustment</a>
-    <a class="dropdown-item" href="../articles/Binary_distributed_outcomes.html">Binary Distributed Outcome Variables</a>
-    <a class="dropdown-item" href="../articles/Fixed_and_prior_distributions.html">Fixed effects and prior distributions</a>
-    <a class="dropdown-item" href="../articles/Interpreting_Output.html">Interpreting the Rest of the Output</a>
-    <a class="dropdown-item" href="../articles/More_Parameters.html">More Parameters to Adapt to Specific Settings and Individual Needs</a>
+    <a class="dropdown-item" href="../articles/Binary_outcomes.html">Binary outcome variables</a>
+    <a class="dropdown-item" href="../articles/Fixed_and_prior_distributions.html">Fixed effect estimates and prior distributions</a>
+    <a class="dropdown-item" href="../articles/Interpreting_Output.html">Interpreting the rest of the output</a>
+    <a class="dropdown-item" href="../articles/More_Parameters.html">More parameters to adapt to specific settings</a>
     <a class="dropdown-item" href="../articles/Multiarm_Trials.html">Multiarm - Methods for Multi-Arm Programs</a>
     <a class="dropdown-item" href="../articles/Multiple_Endpoints.html">Programs for Trials with Multiple Endpoints</a>
     <a class="dropdown-item" href="../articles/Multitrial.html">Multitrial Programs - Methods for Programs with Several Phase III Trials</a>
@@ -96,7 +96,7 @@ is, in case of promising results, followed by a confirmatory phase III
 trial.</p>
 <p>The drugdevelopR package enables us to optimally plan such programs
 using a utility-maximizing approach. To get a brief introduction, we
-presented a very basic example on how the package works in <a href="https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html">Introduction
+presented a very basic example on how the package works in <a href="https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html">Introduction
 to planning phase II and phase III trials with drugdevelopR</a>.
 Contrary to the introduction we now want to investigate a scenario,
 where the results of phase II of a time-to-event outcome are discounted.
@@ -139,7 +139,7 @@ endpoints</a>). As in the basic setting, the treatment effect may be
 fixed (as in this example) or follows a prior distribution (see <a href="https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html">Fixed
 or Prior</a>). Furthermore, most options to adapt the program to your
 specific needs are also available in this setting (see <a href="https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html">More
-Paramters</a>), however skipping phase II and choosing different
+parameters</a>), however skipping phase II and choosing different
 treatment effects in phase II and III are not possible.</p>
 <p>In addition to the parameters from the basic setting, some parameters
 are needed specifically for the bias adjustment:</p>
@@ -238,7 +238,7 @@ go/no-go decision rule. We see that we need a hazard ratio of less than
 <li>
 <code>res$u</code> is the expected utility of the program for the
 optimal sample size and threshold value. In our case it amounts to
-587.18, i.e we have an expected utility of 58 718 000$.</li>
+587.18, i.e. we have an expected utility of 58 718 000$.</li>
 </ul>
 <p>For the additive method we get:</p>
 <ul>
@@ -260,7 +260,7 @@ go/no-go decision rule. We see that we need a hazard ratio of less than
 <li>
 <code>res$u</code> is the expected utility of the program for the
 optimal sample size and threshold value. In our case it amounts to
-584.57, i.e we have an expected utility of 58 457 000$.</li>
+584.57, i.e. we have an expected utility of 58 457 000$.</li>
 </ul>
 </div>
 </div>
@@ -276,11 +276,11 @@ the function <code>optimal_bias_binary</code> and
 package, see:</p>
 <ul>
 <li>
-<a href="https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html"><em>Introduction
+<a href="https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html"><em>Introduction
 to drugdevelopR:</em></a> See how the package works in a basic
 example.</li>
 <li>
-<em>Different outcomes:</em> Apply it to <a href="https://sterniii3.github.io/drugdevelopR/articles/Binary_distributed_outcomes.html">binary
+<em>Different outcomes:</em> Apply it to <a href="https://sterniii3.github.io/drugdevelopR/articles/Binary_outcomes.html">binary
 endpoints</a> and <a href="https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html">time-to-event
 endpoints</a>.</li>
 <li>
@@ -305,7 +305,7 @@ phase III trials</a>, <a href="https://sterniii3.github.io/drugdevelopR/articles
 trials</a>, or <a href="https://sterniii3.github.io/drugdevelopR/articles/Multiple_Endpoints.html">multiple
 endpoints</a>.</li>
 <li>
-<a href="https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html"><em>Parallel
+<a href="https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html#parallel-computing"><em>Parallel
 computing:</em></a> Be faster at calculating the optimum by using
 parallel computing.</li>
 </ul>

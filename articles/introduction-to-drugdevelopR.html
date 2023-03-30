@@ -44,10 +44,10 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Bias_adjustment.html">Methods for Discounting of Phase II Results - Bias Adjustment</a>
-    <a class="dropdown-item" href="../articles/Binary_distributed_outcomes.html">Binary Distributed Outcome Variables</a>
-    <a class="dropdown-item" href="../articles/Fixed_and_prior_distributions.html">Fixed effects and prior distributions</a>
-    <a class="dropdown-item" href="../articles/Interpreting_Output.html">Interpreting the Rest of the Output</a>
-    <a class="dropdown-item" href="../articles/More_Parameters.html">More Parameters to Adapt to Specific Settings and Individual Needs</a>
+    <a class="dropdown-item" href="../articles/Binary_outcomes.html">Binary outcome variables</a>
+    <a class="dropdown-item" href="../articles/Fixed_and_prior_distributions.html">Fixed effect estimates and prior distributions</a>
+    <a class="dropdown-item" href="../articles/Interpreting_Output.html">Interpreting the rest of the output</a>
+    <a class="dropdown-item" href="../articles/More_Parameters.html">More parameters to adapt to specific settings</a>
     <a class="dropdown-item" href="../articles/Multiarm_Trials.html">Multiarm - Methods for Multi-Arm Programs</a>
     <a class="dropdown-item" href="../articles/Multiple_Endpoints.html">Programs for Trials with Multiple Endpoints</a>
     <a class="dropdown-item" href="../articles/Multitrial.html">Multitrial Programs - Methods for Programs with Several Phase III Trials</a>
@@ -174,14 +174,14 @@ can be used to model the minimally clinically relevant effect size.</li>
 <code>c02</code> and <code>c03</code> are fixed costs for phase II
 and phase III respectively. We will set the phase II costs to 15 and the
 phase III costs to 20 (in <span class="math inline">\(10^5\)</span>$),
-i.e we have fixed costs of 1 500 000$ in phase II and 2 000 000$ in
+i.e. we have fixed costs of 1 500 000$ in phase II and 2 000 000$ in
 phase III. Note that the currency of the input values does not matter,
 so an input value for <code>c02</code> of 15 could also be interpreted
 as fixed costs of 1 500 000€ if necessary.</li>
 <li>
 <code>c2</code> and <code>c3</code> are the costs in phase II and
 phase III per patient. We will set them to be 0.675 in phase II and 0.72
-in phase III. Again, these values are given in <span class="math inline">\(10^5\)</span>$, i.e we have per patient costs of
+in phase III. Again, these values are given in <span class="math inline">\(10^5\)</span>$, i.e. we have per patient costs of
 67 500$ in phase II and 72 000$ in phase III.</li>
 <li>
 <code>b1</code>, <code>b2</code> and <code>b3</code> are the
@@ -190,7 +190,7 @@ launching the treatment on the market for each effect size category in
 <span class="math inline">\(10^5\)</span>$. We will define a small
 benefit of 3000, a medium benefit of 8000, and a large benefit of 10000.
 The effect size categories directly correspond to the treatment effect,
-i.e. if the the treatment effect is between 0 and 0.5 (in standardized
+i.e. if the treatment effect is between 0 and 0.5 (in standardized
 differences of mean) we have a small treatment effect, hence yielding
 expected benefits of the drug development program of 300 000 000$.</li>
 <li>
@@ -250,7 +250,7 @@ than 0.06 in phase II in order to proceed to phase III.</li>
 <li>
 <code>res$u</code> is the expected utility of the program for the
 optimal sample size and threshold value. In our case it amounts to
-3259.83, i.e we have an expected utility of 325 983 000$.</li>
+3259.83, i.e. we have an expected utility of 325 983 000$.</li>
 </ul>
 </div>
 </div>
@@ -263,7 +263,7 @@ the example above doesn’t suit your needs, you can adapt it to your
 specific setting:</p>
 <ul>
 <li>
-<em>Different outcomes:</em> Apply it to <a href="https://sterniii3.github.io/drugdevelopR/articles/Binary_distributed_outcomes.html">binary
+<em>Different outcomes:</em> Apply it to <a href="https://sterniii3.github.io/drugdevelopR/articles/Binary_outcomes.html">binary
 endpoints</a> and <a href="https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html">time-to-event
 endpoints</a>.</li>
 <li>
@@ -289,7 +289,7 @@ phase III trials</a>, <a href="https://sterniii3.github.io/drugdevelopR/articles
 trials</a>, or <a href="https://sterniii3.github.io/drugdevelopR/articles/Multiple_Endpoints.html">multiple
 endpoints</a>.</li>
 <li>
-<a href="https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html"><em>Parallel
+<a href="https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html#parallel-computing"><em>Parallel
 computing:</em></a> Be faster at calculating the optimum by using
 parallel computing.</li>
 </ul>

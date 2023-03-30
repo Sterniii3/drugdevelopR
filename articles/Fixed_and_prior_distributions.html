@@ -6,12 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="drugdevelopR">
-<title>Fixed effects and prior distributions • drugdevelopR</title>
+<title>Fixed effect estimates and prior distributions • drugdevelopR</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Fixed effects and prior distributions">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Fixed effect estimates and prior distributions">
 <meta property="og:description" content="drugdevelopR">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -42,10 +42,10 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Bias_adjustment.html">Methods for Discounting of Phase II Results - Bias Adjustment</a>
-    <a class="dropdown-item" href="../articles/Binary_distributed_outcomes.html">Binary Distributed Outcome Variables</a>
-    <a class="dropdown-item" href="../articles/Fixed_and_prior_distributions.html">Fixed effects and prior distributions</a>
-    <a class="dropdown-item" href="../articles/Interpreting_Output.html">Interpreting the Rest of the Output</a>
-    <a class="dropdown-item" href="../articles/More_Parameters.html">More Parameters to Adapt to Specific Settings and Individual Needs</a>
+    <a class="dropdown-item" href="../articles/Binary_outcomes.html">Binary outcome variables</a>
+    <a class="dropdown-item" href="../articles/Fixed_and_prior_distributions.html">Fixed effect estimates and prior distributions</a>
+    <a class="dropdown-item" href="../articles/Interpreting_Output.html">Interpreting the rest of the output</a>
+    <a class="dropdown-item" href="../articles/More_Parameters.html">More parameters to adapt to specific settings</a>
     <a class="dropdown-item" href="../articles/Multiarm_Trials.html">Multiarm - Methods for Multi-Arm Programs</a>
     <a class="dropdown-item" href="../articles/Multiple_Endpoints.html">Programs for Trials with Multiple Endpoints</a>
     <a class="dropdown-item" href="../articles/Multitrial.html">Multitrial Programs - Methods for Programs with Several Phase III Trials</a>
@@ -80,7 +80,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Fixed effects and prior distributions</h1>
+      <img src="" class="logo" alt=""><h1>Fixed effect estimates and prior distributions</h1>
                         <h4 data-toc-skip class="author">Johannes
 Cepicka</h4>
             
@@ -98,7 +98,7 @@ is, in case of promising results, followed by a confirmatory phase III
 trial.</p>
 <p>The drugdevelopR package enables us to optimally plan such programs
 using a utility-maximizing approach. Up until now, we presented a very
-basic example on how the package works in <a href="https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html">Introduction
+basic example on how the package works in <a href="https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html">Introduction
 to planning phase II and phase III trials with drugdevelopR</a>. In this
 article, we want to expand the basic setting and want to introduce you
 to the modelling of the assumed treatment effect on a prior
@@ -140,29 +140,31 @@ conducted a similar study and got an treatment effect of 0.9, which will
 now be our value for <code>Delta2</code>. Of course, the choice of <span class="math inline">\(\Delta_1\)</span> and <span class="math inline">\(\Delta_2\)</span> need not be built on two
 clinical studies, but can also be derived from different sources for
 forming a prior belief, e.g. clinical experience.</li>
-<li>We now have to add more information about the two experiments which
-is done by the two additional parameters <code>in1</code> and
-<code>in2</code>. We call these parameters the “amount of information”
-and they refer to the number of participants which were used in the
-study to determine the treatment effect. If our study was conducted with
-300 participants the value for <code>in1</code> is set to be 300. Let’s
-assume that the study of the other research group was conducted with 600
-participants, so the parameter value for <code>in2</code> is 600.</li>
+<li>We now have to specify how sure we are about the two prior beliefs
+<span class="math inline">\(\Delta_1\)</span> and <span class="math inline">\(\Delta_2\)</span>. This is done by the two
+additional parameters <code>in1</code> and <code>in2</code>. We call
+these parameters the “amount of information”. They refer to the sample
+sizes of the studies on which we base our prior beliefs. If our pilot
+study was conducted with 300 participants, the value for
+<code>in1</code> is set to be 300. Let’s assume that the study of the
+other research group was conducted with 600 participants, so the
+parameter value for <code>in2</code> is 600. The higher amount of
+information, the lower the variance we attribute to that prior
+belief.</li>
 <li>Now, a weight parameter <code>w</code> has to be defined, that
 allows us to weigh the two treatment effects. If we want to trust our
-results more, than we can set a higher parameter value for w (Note w has
-to be between 0 and 1, a parameter value of 1 would put all the weight
-on our results and none on the results of the second study), if we think
-the results of the other group are more reliable we reduce the value for
-w, thus putting more weight on <code>Delta2</code>. Note that by
-exchanging the values of <code>Delta1</code> and <code>Delta2</code>
-(and the corresponding values for <code>in1</code> and <code>in2</code>)
-and setting <span class="math inline">\(w_{new} = 1 - w_{old}\)</span>
-our final results will not change. In our case, we want to put more
-trust on our results and thus set the parameter <code>w</code> to be
-0.6. Setting the weight to <span class="math inline">\(1\)</span> would
-effectively mean ignoring the second treatment effect, which is also
-possible.</li>
+results more, than we can set a higher parameter value for
+<code>w</code>. (Note that <code>w</code> has to be between 0 and 1, a
+parameter value of 1 would put all the weight on our results and none on
+the results of the second study). If we think the results of the other
+group are more reliable we reduce the value for w, thus putting more
+weight on <code>Delta2</code>. Note that by exchanging the values of
+<code>Delta1</code> and <code>Delta2</code> (and the corresponding
+values for <code>in1</code> and <code>in2</code>) and setting <span class="math inline">\(w_{new} = 1 - w_{old}\)</span> our final results
+will not change. In our case, we want to put more trust on our results
+and thus set the parameter <code>w</code> to be 0.6. Setting the weight
+to <span class="math inline">\(1\)</span> would effectively mean
+ignoring the second treatment effect, which is also possible.</li>
 <li>The prior distribution used in the package is the sum of two
 truncated normal distributions. Hence, we need truncation values
 <code>a</code> as the lower boundary for the truncation and
@@ -176,7 +178,7 @@ is then given by <span class="math inline">\(\Delta ∼ w ·
 truncated normal distribution with mean <span class="math inline">\(\mu\)</span>, variance <span class="math inline">\(\sigma^2\)</span>, truncated below at a and above
 at b. To see how different input values change the prior distribution we
 refer to the <a href="https://web.imbi.uni-heidelberg.de/prior/" class="external-link">Shiny
-App</a>.</p>
+app</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_normal.html">optimal_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.625</span>, Delta2 <span class="op">=</span> <span class="fl">0.8</span>, fixed <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># treatment effect</span></span>
 <span>                       n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">400</span>, <span class="co"># sample size region</span></span>
@@ -205,7 +207,7 @@ let’s take a look at the output of the program.</p>
 <span><span class="co">#&gt;     c3   b1   b2    b3 gamma</span></span>
 <span><span class="co">#&gt; 1 0.72 3000 8000 10000     0</span></span></code></pre></div>
 <p>The program returns a total of thirteen values and the input values.
-Once again we will only focus at the most important ones:</p>
+Once again, we will only focus at the most important ones:</p>
 <ul>
 <li>
 <code>res$n2</code> is the optimal sample size for phase II and
@@ -221,13 +223,35 @@ same as in the baseline scenario.</li>
 <li>
 <code>res$u</code> is the expected utility of the program for the
 optimal sample size and threshold value. In our case it amounts to
-3473.81, i.e we have an expected utility of 347 381 000$. This is a
+3473.81, i.e. we have an expected utility of 347 381 000$. This is a
 6.56% increase over the scenario without the prior distribution. The
 increase in the expected utility can be attributed to the additional
 weight which was put on the second treatment effect <code>Delta2</code>,
 which was more promising than our treatment effect.</li>
 </ul>
+<p>Of course, the differences in the output values compared to the fixed
+setting heavily depend on the choice of the prior.</p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="prior-distributions-for-time-to-event-outcomes">Prior distributions for time-to-event outcomes<a class="anchor" aria-label="anchor" href="#prior-distributions-for-time-to-event-outcomes"></a>
+</h2>
+<p>Note that in the setting of <a href="https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html">time-to-event
+outcomes</a>, the following input parameters have to be specified, which
+differ from the setting with normally distributed outcomes:</p>
+<ul>
+<li>Instead of the parameters <code>in1</code> and <code>in2</code> for
+the “amount of information”, we have to use the parameters
+<code>id1</code> and <code>id2</code> which represent the “number of
+events”. They refer to the number of events which were observed in the
+study to determine the treatment effect. If in our study 210 events
+could be observed, then the value for <code>id1</code> is set to be 420.
+If we assume assume that in the study of the other research group 420
+events could be observed, the parameter value for <code>id2</code> is
+420.</li>
+<li>Moreover, we do not need truncation values, i.e. values for the
+parameters <code>a</code> and <code>b</code>.</li>
+</ul>
 </div>
 <div class="section level2">
 <h2 id="where-to-go-from-here">Where to go from here<a class="anchor" aria-label="anchor" href="#where-to-go-from-here"></a>
@@ -238,11 +262,11 @@ distribution when setting the parameter <code>fixed</code> to be
 <p>For more information on how to use the package, see:</p>
 <ul>
 <li>
-<a href="https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html"><em>Introduction
+<a href="https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html"><em>Introduction
 to drugdevelopR:</em></a> See how the package works in a basic
 example.</li>
 <li>
-<em>Different outcomes:</em> Apply it to <a href="https://sterniii3.github.io/drugdevelopR/articles/Binary_distributed_outcomes.html">binary
+<em>Different outcomes:</em> Apply it to <a href="https://sterniii3.github.io/drugdevelopR/articles/Binary_outcomes.html">binary
 endpoints</a> and <a href="https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html">time-to-event
 endpoints</a>.</li>
 <li>
@@ -264,7 +288,7 @@ phase III trials</a>, <a href="https://sterniii3.github.io/drugdevelopR/articles
 trials</a>, or <a href="https://sterniii3.github.io/drugdevelopR/articles/Multiple_Endpoints.html">multiple
 endpoints</a>.</li>
 <li>
-<a href="https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html"><em>Parallel
+<a href="https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html#parallel-computing"><em>Parallel
 computing:</em></a> Be faster at calculating the optimum by using
 parallel computing.</li>
 </ul>

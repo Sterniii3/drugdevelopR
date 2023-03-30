@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   Bias_adjustment: Bias_adjustment.html
-  Binary_distributed_outcomes: Binary_distributed_outcomes.html
+  Binary_outcomes: Binary_outcomes.html
   Fixed_and_prior_distributions: Fixed_and_prior_distributions.html
   Interpreting_Output: Interpreting_Output.html
   More_Parameters: More_Parameters.html
@@ -12,7 +12,7 @@ articles:
   Multitrial: Multitrial.html
   Time-to-event_outcomes: Time-to-event_outcomes.html
   introduction-to-drugdevelopR: introduction-to-drugdevelopR.html
-last_built: 2023-03-30T11:19Z
+last_built: 2023-03-30T14:14Z
 urls:
   reference: https://sterniii3.github.io/drugdevelopR/reference
   article: https://sterniii3.github.io/drugdevelopR/articles
