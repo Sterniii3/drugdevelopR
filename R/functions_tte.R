@@ -1,4 +1,23 @@
 # prior distribution for theta
+
+#' Prior distribution for time-to-event outcomes
+#'
+#' If we do not assume the treatment effects to be fixed, i.e. `fixed = FALSE`,
+#' the function `prior_tte` allows us to model the treatment effect following a prior distribution.
+#' For more details concerning the definition of a prior distribution, see the \href{https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html}{vignette on priors}
+#' as well as the \href{https://web.imbi.uni-heidelberg.de/prior/}{Shiny app}.
+#'
+#' @param x integration variable
+#' @param w weight for mixture prior distribution
+#' @param hr1 first assumed true treatment effect on HR scale for prior distribution
+#' @param hr2 second assumed true treatment effect on HR scale for prior distribution
+#' @param id1 amount of information for `hr1` in terms of number of events
+#' @param id2 amount of information for `hr2` in terms of number of events
+#' @return The output of the functions `Epgo_tte()` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
+#' @examples res <- prior_tte(x = 0.5, w = 0.5, hr1 = 0.69, hr2 = 0.88, id1 = 240, id2 = 420)
+#' @export
+#' @editor Johannes Cepicka
+#' @editDate 2022-01-30
 prior_tte<-function(x, w, hr1, hr2, id1, id2){
     w * dnorm(x, -log(hr1), sqrt(4/id1)) + 
     (1 - w) * dnorm(x, -log(hr2), sqrt(4/id2))
@@ -11,6 +30,24 @@ box_tte<-function(w, hr1, hr2, id1, id2){
 }
 
 # expected probability to go to phase III
+
+#' Expected probability to go to phase III for time-to-event outcomes
+#' 
+#' @param HRgo threshold value for the go/no-go decision rule
+#' @param d2 total number of events for phase II; must be even number
+#' @param w weight for mixture prior distribution
+#' @param hr1 first assumed true treatment effect on HR scale for prior distribution
+#' @param hr2 second assumed true treatment effect on HR scale for prior distribution
+#' @param id1 amount of information for `hr1` in terms of number of events
+#' @param id2 amount of information for `hr2` in terms of number of events
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
+#' @return The output of the functions `Epgo_tte()` is the expected probability to go to phase III.
+#' @examples res <- Epgo_tte(HRgo = 0.8, d2 = 50,  
+#'                                 w = 0.3, hr1 = 0.69, hr2 = 0.81, 
+#'                                 id1 = 280, id2 = 420, fixed = FALSE)
+#' @export
+#' @editor Johannes Cepicka
+#' @editDate 2022-01-30
 Epgo_tte <-  function(HRgo, d2, w, hr1, hr2, id1, id2, fixed){
   if(!fixed){
     return(  
@@ -30,6 +67,26 @@ Epgo_tte <-  function(HRgo, d2, w, hr1, hr2, id1, id2, fixed){
 
 # expected number of events for phase III 
 # in before phase II perspective
+#' Expected sample size for phase III for time-to-event outcomes
+#' 
+#' @param HRgo threshold value for the go/no-go decision rule
+#' @param d2 total events for phase II; must be even number
+#' @param alpha significance level
+#' @param beta `1-beta` power for calculation of sample size for phase III
+#' @param w weight for mixture prior distribution
+#' @param hr1 first assumed true treatment effect on HR scale for prior distribution
+#' @param hr2 second assumed true treatment effect on HR scale for prior distribution
+#' @param id1 amount of information for `hr1` in terms of number of events
+#' @param id2 amount of information for `hr2` in terms of number of events
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
+#' @return The output of the the functions `Ed3_tte` is the expected number of events in phase III. 
+#' @examples res <-  Ed3_tte(HRgo = 0.8, d2 = 50,
+#'                         alpha = 0.025, beta = 0.1, w = 0.3, 
+#'                         hr1 =  0.69, hr2 = 0.81, 
+#'                         id1 = 280, id2 = 420, fixed = FALSE)
+#' @export
+#' @editor Johannes Cepicka
+#' @editDate 2022-01-30
 Ed3_tte <-  function(HRgo, d2, alpha, beta, 
                      w, hr1, hr2, id1, id2, fixed){
   if(!fixed){
@@ -59,6 +116,32 @@ Ed3_tte <-  function(HRgo, d2, alpha, beta,
 }
 
 # expected probability of a successful program
+
+#' Expected probability of a successful program for time-to-event outcomes
+#' 
+#' @param HRgo threshold value for the go/no-go decision rule
+#' @param d2 total events for phase II; must be even number
+#' @param alpha significance level
+#' @param beta `1-beta` power for calculation of sample size for phase III
+#' @param step1 lower boundary for effect size
+#' @param step2 upper boundary for effect size
+#' @param w weight for mixture prior distribution
+#' @param hr1 first assumed true treatment effect on HR scale for prior distribution
+#' @param hr2 second assumed true treatment effect on HR scale for prior distribution
+#' @param id1 amount of information for `hr1` in terms of number of events
+#' @param id2 amount of information for `hr2` in terms of number of events
+#' @param gamma difference in treatment effect due to different population structures in phase II and III
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
+#' @return  The output of the functions `EPsProg_tte()` is the expected probability of a successful program.
+#' @examples res <- EPsProg_tte(HRgo = 0.8, d2 = 50, 
+#'                            alpha = 0.025, beta = 0.1, 
+#'                            step1 = 1, step2 = 0.95, 
+#'                            w = 0.3, hr1 = 0.69, hr2 = 0.81,
+#'                            id1 = 280, id2 = 420,
+#'                            gamma = 0, fixed = FALSE)
+#' @export
+#' @editor Johannes Cepicka
+#' @editDate 2022-01-30
 EPsProg_tte <-  function(HRgo, d2, alpha, beta, 
                          step1, step2, 
                          w, hr1, hr2, id1, id2, 
@@ -103,6 +186,50 @@ EPsProg_tte <-  function(HRgo, d2, alpha, beta,
 }
 
 # utility function
+
+#' Utility function for time-to-event outcomes.
+#' 
+#' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program. 
+#' The utility is in a further step maximized by the `optimal_tte()` function.
+#' @param HRgo threshold value for the go/no-go decision rule
+#' @param d2 total events for phase II; must be even number
+#' @param alpha significance level
+#' @param beta `1-beta` power for calculation of sample size for phase III
+#' @param xi2 event rate for phase II
+#' @param xi3 event rate for phase III
+#' @param w weight for mixture prior distribution
+#' @param hr1 first assumed true treatment effect on HR scale for prior distribution
+#' @param hr2 second assumed true treatment effect on HR scale for prior distribution
+#' @param id1 amount of information for `hr1` in terms of number of events
+#' @param id2 amount of information for `hr2` in terms of number of events
+#' @param c2 variable per-patient cost for phase II
+#' @param c3 variable per-patient cost for phase III
+#' @param c02 fixed cost for phase II
+#' @param c03 fixed cost for phase III
+#' @param K constraint on the costs of the program, default: Inf, e.g. no constraint
+#' @param N constraint on the total expected sample size of the program, default: Inf, e.g. no constraint
+#' @param S constraint on the expected probability of a successful program, default: -Inf, e.g. no constraint
+#' @param steps1 lower boundary for effect size category `"small"` in RR scale, default: 1
+#' @param stepm1 lower boundary for effect size category `"medium"` in RR scale = upper boundary for effect size category "small" in RR scale, default: 0.95
+#' @param stepl1 lower boundary for effect size category `"large"` in RR scale = upper boundary for effect size category "medium" in RR scale, default: 0.85
+#' @param b1 expected gain for effect size category `"small"`
+#' @param b2 expected gain for effect size category `"medium"`
+#' @param b3 expected gain for effect size category `"large"`
+#' @param gamma difference in treatment effect due to different population structures in phase II and III
+#' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
+#' @return The output of the functions `utility_tte()` is the expected utility of the program.
+#' @examples res <- utility_tte(d2 = 50, HRgo = 0.8, w = 0.3, 
+#'                                  hr1 =  0.69, hr2 = 0.81, 
+#'                                  id1 = 280, id2 = 420, xi2 = 0.7, xi3 = 0.7,
+#'                                  alpha = 0.025, beta = 0.1,
+#'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
+#'                                  K = Inf, N = Inf, S = -Inf,
+#'                                  steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
+#'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
+#'                                  gamma = 0, fixed = TRUE)
+#' @export
+#' @editor Johannes Cepicka
+#' @editDate 2022-01-30
 utility_tte <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                          alpha, beta, xi2, xi3,
                          c2, c3, c02, c03, 
@@ -188,6 +315,19 @@ utility_tte <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 #################
 
 # number of events for phase III based on median_prior
+#' Expected probability to go to phase III for time-to-event outcomes
+#' 
+#' If choosing `skipII = TRUE`, the program calculates the expected utility for the case when phase
+#' II is skipped and compares it to the situation when phase II is not skipped.
+#'  This function calculates the expected sample size for phase III for time-to-event outcomes using a median prior. 
+#' @param alpha significance level
+#' @param beta `1-beta` power for calculation of sample size for phase III 
+#' @param median_prior the median_prior is given as -log(hr1), the assumed true treatment effect
+#' @return The output of the functions `d3_skipII_tte()` is the expected number of events in phase III when skipping phase II.
+#' @examples res <- d3_skipII_tte(alpha = 0.05, beta = 0.1, median_prior = 0.35)
+#' @export
+#' @editor Johannes Cepicka
+#' @editDate 2022-01-30
 d3_skipII_tte <-function(alpha, beta, median_prior){
   return(
     (4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(median_prior^2)

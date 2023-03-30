@@ -372,7 +372,7 @@ utility_L <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
-#' @return The output of the functions `Epgo_L2` and `Epgo_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
+#' @return The output of the functions `Epgo_L2` and `Epgo_R2` is the expected probability to go to phase III with conservative decision rule and sample size calculation.
 #' @examples res <- Epgo_L2(HRgo = 0.8, d2 = 50, Adj = 0.4,  
 #'                                 w = 0.3, hr1 = 0.69, hr2 = 0.81, 
 #'                                 id1 = 280, id2 = 420, fixed = FALSE)
