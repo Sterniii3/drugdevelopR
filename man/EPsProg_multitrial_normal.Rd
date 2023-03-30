@@ -88,7 +88,7 @@ EPsProg4_normal(
 \item{fixed}{choose if true treatment effects are fixed or random}
 }
 \value{
-The output of the the function \code{EPsProg2_normal()}, \code{EPsProg3_normal()} and \code{EPsProg4_normal()} is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively).
+The output of the function \code{EPsProg2_normal()}, \code{EPsProg3_normal()} and \code{EPsProg4_normal()} is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively).
 }
 \description{
 These functions calculate the expected probability of a successful program given the parameters.

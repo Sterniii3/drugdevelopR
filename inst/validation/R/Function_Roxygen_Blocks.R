@@ -2,9 +2,9 @@
 #' @description To discount for overoptimistic results in phase II when calculating the optimal sample size in phase III, 
 #'it is necessary to use the functions `En3_binary_L()`, `En3_binary_L2()`, `En3_binary_R()` and `En3_binary_R2()`.
 #'Each function describes a specific case:
-#'- `En3_binary_L()`: calculates the optimal sample size for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval), 
+#'- `En3_binary_L()`: calculates the optimal sample size for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval), 
 #'however the go-decision is not affected by the bias adjustment
-#'- `En3_binary_L2()`: calculates the optimal sample size for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval)
+#'- `En3_binary_L2()`: calculates the optimal sample size for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval)
 #'when the go-decision is also affected by the bias adjustment
 #'- `En3_binary_R()`: calculates the optimal sample size for a multiplicative adjustment factor (i.e. use estimate with a retention factor), 
 #'however the go-decision is not affected by the bias adjustment
@@ -22,7 +22,7 @@
 #' @param in1 amount of information for `p11` in terms of sample size
 #' @param in2 amount of information for `p12` in terms of sample size
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `p11` is used as fixed effect
-#' @return The output of the the functions `En3_binary_L`, `En3_binary_L2`, `En3_binary_R` and `En3_binary_R2` is the expected number of participants in phase III. 
+#' @return The output of the functions `En3_binary_L`, `En3_binary_L2`, `En3_binary_R` and `En3_binary_R2` is the expected number of participants in phase III. 
 #' @importFrom stats qnorm integrate dnorm
 #' @examples res <- En3_binary_L(RRgo = 0.8, n2 = 50, Adj = 0, 
 #'                              alpha = 0.025, beta = 0.1, p0 = 0.6,  w = 0.3,
@@ -50,9 +50,9 @@ En3_binary_L <- function(){}
 #' @title Expected probability of a successful program for bias adjustment programs with binary distributed outcomes
 #' @description To discount for overoptimistic results in phase II when calculating the optimal sample size in phase III, 
 #'it is necessary to use the following functions, which each describe a specific case:
-#'- `EPsProg_binary_L()`: calculates the expected probability of a successful for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval), 
+#'- `EPsProg_binary_L()`: calculates the expected probability of a successful for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval), 
 #'however the go-decision is not affected by the bias adjustment
-#'- `EPsProg_binary_L2()`: calculates the expected probability of a successful for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval)
+#'- `EPsProg_binary_L2()`: calculates the expected probability of a successful for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval)
 #'when the go-decision is also affected by the bias adjustment
 #'- `EPsProg_binary_R()`: calculates the expected probability of a successful for a multiplicative adjustment factor (i.e. use estimate with a retention factor), 
 #'however the go-decision is not affected by the bias adjustment
@@ -72,7 +72,7 @@ En3_binary_L <- function(){}
 #' @param in1 amount of information for `p11` in terms of sample size
 #' @param in2 amount of information for `p12` in terms of sample size
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `p11` is used as fixed effect
-#' @return  The output of the the functions `EPsProg_binary_L()`, `EPsProg_binary_L2()`, `EPsProg_binary_R()` and `EPsProg_binary_R2()` is the expected probability of a successful program.
+#' @return  The output of the functions `EPsProg_binary_L()`, `EPsProg_binary_L2()`, `EPsProg_binary_R()` and `EPsProg_binary_R2()` is the expected probability of a successful program.
 #' @importFrom stats qnorm integrate dnorm
 #' @examples res <- EPsProg_binary_L(RRgo = 0.8, n2 = 50, Adj = 0, 
 #'                                 alpha = 0.025, beta = 0.1, 
@@ -128,7 +128,7 @@ EPsProg_binary_L <- function(){}
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `p11` is used as fixed effect
-#' @return The output of the the functions `utility_binary_L()`, `utility_binary_L2()`, `utility_binary_R()` and `utility_binary_R2()` is the expected utility of the program.
+#' @return The output of the functions `utility_binary_L()`, `utility_binary_L2()`, `utility_binary_R()` and `utility_binary_R2()` is the expected utility of the program.
 #' @examples res <- utility_binary_L(n2 = 50, RRgo = 0.8, Adj = 0.1, w = 0.3, 
 #'                                 p0 = 0.6, p11 =  0.3, p12 = 0.5, 
 #'                                 in1 = 300, in2 = 600, 
@@ -174,7 +174,7 @@ utility_binary_L <- function(){}
 #' @title Expected probability to go to phase III for bias adjustment programs with binary distributed outcomes
 #' @description In the case we do not only want do discount for overoptimistic results in phase II when calculating the sample size in phase III, 
 #'but also when deciding whether to go to phase III or not the functions `Epgo_binary_L2` and `Epgo_binary_R2` are necessary.
-#'The function `Epgo_binary_L2` uses an additive adjustment parameter (i.e adjust the lower bound of the one-sided confidence interval),
+#'The function `Epgo_binary_L2` uses an additive adjustment parameter (i.e. adjust the lower bound of the one-sided confidence interval),
 #'the function `Epgo_binary_R2` uses a multiplicative adjustment parameter (i.e. use estimate with a retention factor)
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
@@ -186,7 +186,7 @@ utility_binary_L <- function(){}
 #' @param in1 amount of information for `p11` in terms of sample size
 #' @param in2 amount of information for `p12` in terms of sample size
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `p11` is used as fixed effect
-#' @return The output of the the functions `Epgo_normal_L2` and `Epgo_normal_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
+#' @return The output of the functions `Epgo_normal_L2` and `Epgo_normal_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
 #' @importFrom stats qnorm integrate dnorm
 #' @examples res <- Epgo_binary_L2(RRgo = 0.8, n2 = 50, Adj = 0,  p0 = 0.6,  w = 0.3,
 #'                              p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 
@@ -204,9 +204,9 @@ Epgo_binary_L2 <- function(){}
 #' @description To discount for overoptimistic results in phase II when calculating the optimal sample size in phase III, 
 #'it is necessary to use the functions `En3_normal_L()`, `En3_normal_L2()`, `En3_normal_R()` and `En3_normal_R2()`.
 #'Each function describes a specific case:
-#'- `En3_normal_L()`: calculates the optimal sample size for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval), 
+#'- `En3_normal_L()`: calculates the optimal sample size for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval), 
 #'however the go-decision is not affected by the bias adjustment
-#'- `En3_normal_L2()`: calculates the optimal sample size for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval)
+#'- `En3_normal_L2()`: calculates the optimal sample size for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval)
 #'when the go-decision is also affected by the bias adjustment
 #'- `En3_normal_R()`: calculates the optimal sample size for a multiplicative adjustment factor (i.e. use estimate with a retention factor), 
 #'however the go-decision is not affected by the bias adjustment
@@ -225,7 +225,7 @@ Epgo_binary_L2 <- function(){}
 #' @param a lower boundary for the truncation
 #' @param b upper boundary for the truncation
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
-#' @return The output of the the functions `En3_normal_L`, `En3_normal_L2`, `En3_normal_R` and `En3_normal_R2` is the expected number of participants in phase III.
+#' @return The output of the functions `En3_normal_L`, `En3_normal_L2`, `En3_normal_R` and `En3_normal_R2` is the expected number of participants in phase III.
 #' @importFrom stats qnorm integrate dnorm
 #' @examples res <- En3_normal_L(kappa = 0.1, n2 = 50, Adj = 0, 
 #'                              alpha = 0.025, beta = 0.1, w = 0.3,
@@ -256,9 +256,9 @@ En3_normal_L <- function(){}
 #' @title Expected probability of a successful program for bias adjustment programs with normally distributed outcomes
 #' @description To discount for overoptimistic results in phase II when calculating the optimal sample size in phase III, 
 #'it is necessary to use the following functions, which each describe a specific case:
-#'- `EPsProg_normal_L()`: calculates the expected probability of a successful for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval), 
+#'- `EPsProg_normal_L()`: calculates the expected probability of a successful for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval), 
 #'however the go-decision is not affected by the bias adjustment
-#'- `EPsProg_normal_L2()`: calculates the expected probability of a successful for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval)
+#'- `EPsProg_normal_L2()`: calculates the expected probability of a successful for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval)
 #'when the go-decision is also affected by the bias adjustment
 #'- `EPsProg_normal_R()`: calculates the expected probability of a successful for a multiplicative adjustment factor (i.e. use estimate with a retention factor), 
 #'however the go-decision is not affected by the bias adjustment
@@ -279,7 +279,7 @@ En3_normal_L <- function(){}
 #' @param a lower boundary for the truncation
 #' @param b upper boundary for the truncation
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
-#' @return The output of the the functions `EPsProg_normal_L()`, `EPsProg_normal_L2()`, `EPsProg_normal_R()` and `EPsProg_normal_R2()` is the expected probability of a successful program.
+#' @return The output of the functions `EPsProg_normal_L()`, `EPsProg_normal_L2()`, `EPsProg_normal_R()` and `EPsProg_normal_R2()` is the expected probability of a successful program.
 #' @importFrom stats qnorm integrate dnorm pnorm
 #' @examples res <- EPsProg_normal_L(kappa = 0.1, n2 = 50, Adj = 0, 
 #'                                 alpha = 0.025, beta = 0.1, w = 0.3,
@@ -340,7 +340,7 @@ EPsProg_normal_L <- function(){}
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
-#' @return The output of the the functions `utility_normal_L()`, `utility_normal_L2()`, `utility_normal_R()` and `utility_normal_R2()` is the expected utility of the program.
+#' @return The output of the functions `utility_normal_L()`, `utility_normal_L2()`, `utility_normal_R()` and `utility_normal_R2()` is the expected utility of the program.
 #' @examples res <- utility_normal_L(kappa = 0.1, n2 = 50, Adj = 0, 
 #'                                 alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                 Delta1 = 0.375, Delta2 = 0.625, 
@@ -390,7 +390,7 @@ utility_normal_L <- function(){}
 #' @title Expected probability to go to phase III for bias adjustment programs with normally distributed outcomes
 #' @description In the case we do not only want do discount for overoptimistic results in phase II when calculating the sample size in phase III, 
 #'but also when deciding whether to go to phase III or not the functions `Epgo_normal_L2` and `Epgo_normal_R2` are necessary.
-#'The function `Epgo_normal_L2` uses an additive adjustment parameter (i.e adjust the lower bound of the one-sided confidence interval),
+#'The function `Epgo_normal_L2` uses an additive adjustment parameter (i.e. adjust the lower bound of the one-sided confidence interval),
 #'the function `Epgo_normal_R2` uses a multiplicative adjustment parameter (i.e. use estimate with a retention factor)
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
@@ -403,7 +403,7 @@ utility_normal_L <- function(){}
 #' @param a lower boundary for the truncation
 #' @param b upper boundary for the truncation
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
-#' @return The output of the the functions `Epgo_normal_L2` and `Epgo_normal_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
+#' @return The output of the functions `Epgo_normal_L2` and `Epgo_normal_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
 #' @importFrom stats qnorm integrate dnorm
 #' @examples res <- Epgo_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, w = 0.3,
 #'                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
@@ -498,7 +498,7 @@ Ess_binary <- function(){}
 PsProg_binary <- function(){}
 
 #' @title Utility function for multiarm programs with binary distributed outcomes
-#' @description The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the the sample size and expected probability of a successful program. 
+#' @description The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the sample size and expected probability of a successful program. 
 #'The utility is in further step maximized by the `optimal_multiarm_binary()` function.
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
@@ -521,7 +521,7 @@ PsProg_binary <- function(){}
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
-#' @return The output of the the function `utility_multiarm_binary()` is the expected utility of the program
+#' @return The output of the function `utility_multiarm_binary()` is the expected utility of the program
 #' @examples res <- utility_multiarm_binary(n2 = 50, RRgo = 0.8, alpha = 0.05, beta = 0.1,
 #'                            p0 = 0.6, p11 =  0.3, p12 = 0.5, strategy = 3,
 #'                            c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
@@ -609,7 +609,7 @@ Ess_normal <- function(){}
 PsProg_normal <- function(){}
 
 #' @title Utility function for multiarm programs with normally distributed outcomes
-#' @description The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the the sample size and expected probability of a successful program. 
+#' @description The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the sample size and expected probability of a successful program. 
 #'The utility is in further step maximized by the `optimal_multiarm_normal()` function.
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
@@ -631,7 +631,7 @@ PsProg_normal <- function(){}
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
-#' @return The output of the the function `utility_multiarm_normal()` is the expected utility of the program.
+#' @return The output of the function `utility_multiarm_normal()` is the expected utility of the program.
 #' @examples res <- utility_multiarm_normal(n2 = 50, kappa = 0.8, alpha = 0.05, beta = 0.1,
 #'                            Delta1 = 0.375, Delta2 = 0.625, strategy = 3,
 #'                            c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
@@ -725,7 +725,7 @@ Ess_tte <- function(){}
 PsProg_tte <- function(){}
 
 #' @title Utility function for multiarm programs with time-to-event outcomes
-#' @description The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the the sample size and expected probability of a successful program. 
+#' @description The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the sample size and expected probability of a successful program. 
 #'The utility is in further step maximized by the `optimal_multiarm()` function.
 #' @param HRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be divisible by three
@@ -748,7 +748,7 @@ PsProg_tte <- function(){}
 #' @param b1 expected gain for effect size category `"small"`
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
-#' @return The output of the the function `utility_multiarm()` is the expected utility of the program
+#' @return The output of the function `utility_multiarm()` is the expected utility of the program
 #' @examples res <- utility_multiarm(n2 = 50, HRgo = 0.8, alpha = 0.05, beta = 0.1,
 #'                            hr1 = 0.7, hr2 = 0.8, strategy = 3, ec = 0.6,
 #'                            c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
@@ -809,7 +809,7 @@ dbivanorm <- function(){}
 #' @param sigma2 standard deviation of second endpoint
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `pgo_multiple_normal()` is the probability to go to phase III.
+#' @return The output of the function `pgo_multiple_normal()` is the probability to go to phase III.
 #' @examples res <- pgo_multiple_normal(kappa = 0.1, n2 = 50,
 #'                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                               sigma1 = 8, sigma2 = 4, fixed = TRUE, rho = 0.3)
@@ -833,7 +833,7 @@ pgo_multiple_normal <- function(){}
 #' @param sigma2 standard deviation of second endpoint
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return the output of the the function Ess_multiple_normal is the expected number of participants in phase III
+#' @return the output of the function Ess_multiple_normal is the expected number of participants in phase III
 #' @examples res <- Ess_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                               sigma1 = 8, sigma2 = 4, fixed = TRUE, rho = 0.3)
@@ -857,7 +857,7 @@ Ess_multiple_normal <- function(){}
 #' @param sigma2 standard deviation of second endpoint
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `posp_normal()` is the probability of a successful program, when going to phase III.
+#' @return The output of the function `posp_normal()` is the probability of a successful program, when going to phase III.
 #' @examples res <- posp_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                               sigma1 = 8, sigma2 = 4, fixed = TRUE, rho = 0.3)
@@ -885,7 +885,7 @@ posp_normal <- function(){}
 #' @param step22 upper boundary for effect size for second endpoint
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE then `Delta1` is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `EPsProg_multiple_normal()` is the expected probability of a successfull program, when going to phase III.
+#' @return The output of the function `EPsProg_multiple_normal()` is the expected probability of a successfull program, when going to phase III.
 #' @examples res <- EPsProg_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                               Delta1 = 0.375, Delta2 = 0.625, sigma1 = 8, sigma2 = 4,
 #'                               step11 = 0, step12 = 0, step21 = 0.5, step22 = 0.5, 
@@ -924,7 +924,7 @@ EPsProg_multiple_normal <- function(){}
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
 #' @param rho correlation between the two endpoints
 #' @param relaxed relaxed or strict decision rule
-#' @return The output of the the function `utility_multiple_normal()` is the expected utility of the program.
+#' @return The output of the function `utility_multiple_normal()` is the expected utility of the program.
 #' @examples res <- utility_multiple_normal(kappa = 0.1, n2 = 50, 
 #'                               alpha = 0.025, beta = 0.1,
 #'                               Delta1 = 0.375, Delta2 = 0.625, 
@@ -971,7 +971,7 @@ fmax <- function(){}
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `pgo_multiple_tte()` is the probability to go to phase III.
+#' @return The output of the function `pgo_multiple_tte()` is the probability to go to phase III.
 #' @examples res <- pgo_multiple_tte(HRgo = 0.8, n2 = 50, ec = 0.6,
 #'                               hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
 #'                               fixed = TRUE, rho = 0.3)
@@ -994,7 +994,7 @@ pgo_multiple_tte <- function(){}
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return the output of the the function `Ess_multiple_tte()` is the expected number of participants in phase III
+#' @return the output of the function `Ess_multiple_tte()` is the expected number of participants in phase III
 #' @examples res <- Ess_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
 #'                               ec = 0.6,hr1 = 0.75, hr2 = 0.80, 
 #'                               id1 = 300, id2 = 600, 
@@ -1015,7 +1015,7 @@ Ess_multiple_tte <- function(){}
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `pw()` is the probability that endpoint one has a better result than endpoint two
+#' @return The output of the function `pw()` is the probability that endpoint one has a better result than endpoint two
 #' @examples res <- pw(n2 = 50, ec = 0.6,
 #'                    hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
 #'                    fixed = FALSE, rho = 0.3)
@@ -1040,7 +1040,7 @@ pw <- function(){}
 #' @param step2 upper boundary for effect size
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `EPsProg_multiple_tte()` is the expected probability of a successful program, when going to phase III.
+#' @return The output of the function `EPsProg_multiple_tte()` is the expected probability of a successful program, when going to phase III.
 #' @examples res <- EPsProg_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                               ec = 0.6, hr1 = 0.75, hr2 = 0.80,
 #'                               id1 = 300, id2 = 600, 
@@ -1065,7 +1065,7 @@ EPsProg_multiple_tte <- function(){}
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `os_tte()` is the probability that endpoint OS significant.
+#' @return The output of the function `os_tte()` is the probability that endpoint OS significant.
 #' @examples res <- os_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
 #'                               hr1 = 0.75, hr2 = 0.80, 
 #'                               id1 = 300, id2 = 600, 
@@ -1108,7 +1108,7 @@ os_tte <- function(){}
 #' @param b32 expected gain for effect size category `"large"` if endpoint OS is not significant
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `utility_multiple_tte()` is the expected utility of the program.
+#' @return The output of the function `utility_multiple_tte()` is the expected utility of the program.
 #' @examples res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
 #'                               hr1 = 0.75, hr2 = 0.80,
 #'                               id1 = 300, id2 = 600, ec = 0.6,
@@ -1149,7 +1149,7 @@ utility_multiple_tte <- function(){}
 #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
 #' @param size size category "small", "medium" or "large"
 #' @param fixed choose if true treatment effects are fixed or random
-#' @return The output of the the function EPsProg2_binary(), EPsProg3_binary() and EPsProg4_binary() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively)
+#' @return The output of the function EPsProg2_binary(), EPsProg3_binary() and EPsProg4_binary() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively)
 #' @examples res <- EPsProg2_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
 #'                                 p0 = 0.6,  w = 0.3, p11 =  0.3, p12 = 0.5, 
 #'                                 in1 = 300, in2 = 600, case = 2, size = "small",
@@ -1193,7 +1193,7 @@ EPsProg2_binary <- function(){}
 #' @param b3 expected gain for effect size category `"large"`
 #' @param fixed choose if true treatment effects are fixed or random
 #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
-#' @return The output of the the `functions utility2_binary()`, `utility3_binary()` and `utility4_binary()` is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
+#' @return The output of the `functions utility2_binary()`, `utility3_binary()` and `utility4_binary()` is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
 #' @examples res <- utility2_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
 #'                                 p0 = 0.6, p11 =  0.3, p12 = 0.5, 
 #'                                 in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
@@ -1234,7 +1234,7 @@ utility2_binary <- function(){}
 #' @param p12 assumed true rate of treatment group
 #' @param in1 amount of information for `p11` in terms of sample size
 #' @param in2 amount of information for `p12` in terms of sample size
-#' @return The output of the the function `Epgo23_binary()` is the probability to to a third phase III trial.
+#' @return The output of the function `Epgo23_binary()` is the probability to a third phase III trial.
 #' @examples res <- Epgo23_binary(RRgo = 0.8, n2 = 50,  p0 = 0.3, w = 0.3, alpha = 0.025, beta = 0.1,
 #'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600)
 #' @editor Johannes Cepicka
@@ -1267,7 +1267,7 @@ Epgo23_binary <- function(){}
 #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
 #' @param size size category `"small"`, `"medium"` or `"large"`
 #' @param ymin assumed minimal clinical relevant effect
-#' @return The output of the the function `EPsProg23_binary()` is the expected probability of a successful program.
+#' @return The output of the function `EPsProg23_binary()` is the expected probability of a successful program.
 #' @examples res <- EPsProg23_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
 #'                                 w = 0.6,  p0 = 0.3, p11 =  0.3, p12 = 0.5, 
 #'                                 in1 = 300, in2 = 600, case = 2, size = "small",
@@ -1297,7 +1297,7 @@ EPsProg23_binary <- function(){}
 #' @param b1 expected gain for effect size category `"small"`
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
-#' @return The output of the the function `utility23_binary()` is the expected utility of the program depending on whether two or three phase III trials are performed.
+#' @return The output of the function `utility23_binary()` is the expected utility of the program depending on whether two or three phase III trials are performed.
 #' @examples #res <- utility23_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
 #'          #                       p0 = 0.6, p11 =  0.3, p12 = 0.5, 
 #'          #                       in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
@@ -1335,7 +1335,7 @@ utility23_binary <- function(){}
 #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
 #' @param size size category `"small"`, `"medium"` or `"large"`
 #' @param fixed choose if true treatment effects are fixed or random
-#' @return The output of the the function `EPsProg2_normal()`, `EPsProg3_normal()` and `EPsProg4_normal()` is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively).
+#' @return The output of the function `EPsProg2_normal()`, `EPsProg3_normal()` and `EPsProg4_normal()` is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively).
 #' @examples res <- EPsProg2_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                 Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                 a = 0.25, b = 0.75, 
@@ -1380,7 +1380,7 @@ EPsProg2_normal <- function(){}
 #' @param b3 expected gain for effect size category `"large"`
 #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
 #' @param fixed choose if true treatment effects are fixed or random
-#' @return The output of the the functions utility2_normal(), utility3_normal() and utility4_normal() is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
+#' @return The output of the functions utility2_normal(), utility3_normal() and utility4_normal() is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
 #' @examples res <- utility2_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                 Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                 a = 0.25, b = 0.75, 
@@ -1420,7 +1420,7 @@ utility2_normal <- function(){}
 #' @param Delta2 assumed true treatment effect for standardized difference in means
 #' @param in1 amount of information for `Delta1` in terms of sample size
 #' @param in2 amount of information for `Delta2` in terms of sample size
-#' @return The output of the the function `Epgo23_normal()` is the probability to to a third phase III trial.
+#' @return The output of the function `Epgo23_normal()` is the probability to a third phase III trial.
 #' @examples res <- Epgo23_normal(kappa = 0.1, n2 = 50, w = 0.3, alpha = 0.025, beta = 0.1,
 #'                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600)
 #' @export 
@@ -1485,7 +1485,7 @@ EPsProg23_normal <- function(){}
 #' @param b1 expected gain for effect size category `"small"`
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
-#' @return The output of the the function utility23_normal() is the expected utility of the program depending on whether two or three phase III trials are performed.
+#' @return The output of the function utility23_normal() is the expected utility of the program depending on whether two or three phase III trials are performed.
 #' @examples #res <- utility23_normal(n2 = 50, kappa = 0.2, w = 0.3,
 #'      #                           Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'      #                           a = 0.25, b = 0.75, 
@@ -1521,7 +1521,7 @@ utility23_normal <- function(){}
 #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
 #' @param size size category "small", "medium" or "large"
 #' @param fixed choose if true treatment effects are fixed or random
-#' @return The output of the the function EPsProg2(), EPsProg3() and EPsProg4() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively)
+#' @return The output of the function EPsProg2(), EPsProg3() and EPsProg4() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively)
 #' @examples res <- EPsProg2(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
 #'                                 w = 0.3, hr1 =  0.69, hr2 = 0.81, 
 #'                                 id1 = 210, id2 = 420, case = 2, size = "small",
@@ -1566,7 +1566,7 @@ EPsProg2 <- function(){}
 #' @param b3 expected gain for effect size category `"large"`
 #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
 #' @param fixed choose if true treatment effects are fixed or random
-#' @return The output of the the functions `utility2()`, `utility3()` and `utility4()` is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
+#' @return The output of the functions `utility2()`, `utility3()` and `utility4()` is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
 #' @examples res <- utility2(d2 = 50, HRgo = 0.8,  w = 0.3, 
 #'                                 hr1 =  0.69, hr2 = 0.81, 
 #'                                 id1 = 210, id2 = 420, 
@@ -1609,7 +1609,7 @@ utility2 <- function(){}
 #' @param hr2 second assumed true treatment effect on HR scale for prior distribution
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
-#' @return The output of the the function `Epgo23()` is the probability to to a third phase III trial.
+#' @return The output of the function `Epgo23()` is the probability to a third phase III trial.
 #' @examples res <- Epgo23(HRgo = 0.8, d2 = 50,  w = 0.3, alpha = 0.025, beta = 0.1,
 #'                               hr1 =  0.69, hr2 = 0.81, id1 = 280, id2 = 420)
 #' @export 
@@ -1641,7 +1641,7 @@ Epgo23 <- function(){}
 #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
 #' @param size size category `"small"`, `"medium"` or `"large"`
 #' @param ymin assumed minimal clinical relevant effect
-#' @return The output of the the function `EPsProg23()` is the expected probability of a successful program.
+#' @return The output of the function `EPsProg23()` is the expected probability of a successful program.
 #' @examples res <- EPsProg23(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
 #'                                  w = 0.3, hr1 =  0.69, hr2 = 0.81, 
 #'                                  id1 = 280, id2 = 420, case = 2, size = "small",
@@ -1673,7 +1673,7 @@ EPsProg23 <- function(){}
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
 #' @importFrom mvtnorm pmvnorm
-#' @return The output of the the function `utility23()` is the expected utility of the program depending on whether two or three phase III trials are performed.
+#' @return The output of the function `utility23()` is the expected utility of the program depending on whether two or three phase III trials are performed.
 #' @examples #res <- utility23(d2 = 50, HRgo = 0.8,  w = 0.3, 
 #'  #                               hr1 =  0.69, hr2 = 0.81, 
 #'  #                              id1 = 280, id2 = 420, 

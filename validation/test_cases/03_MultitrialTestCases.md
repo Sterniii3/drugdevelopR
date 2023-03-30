@@ -82,7 +82,7 @@ For strategy 23, the program returns an expected utility of -47.41, optimal samp
 
 Use the function `optimal_multitrial`. Supply the same input values as in test case 01.01 and set the case and the strategy to 1.
 
-Verify, that the function returns the same results as in test case 01.01. i.e an optimal sample size of 206 in phase II and 354 in phase III (i.e. a total of 560 participants), an expected utility of 432 (in 10^5\$), and an optimal threshold value of 0.84 as suggested by Stella Erdmann [2]. Furthermore, verify that one can expect 144 events in phase II and 248 events in phase III (i.e. 392 in total).
+Verify, that the function returns the same results as in test case 01.01. i.e. an optimal sample size of 206 in phase II and 354 in phase III (i.e. a total of 560 participants), an expected utility of 432 (in 10^5\$), and an optimal threshold value of 0.84 as suggested by Stella Erdmann [2]. Furthermore, verify that one can expect 144 events in phase II and 248 events in phase III (i.e. 392 in total).
 
 ### 03.07 (shows that req. 03.02, 03.05 and 03.11 are met): {-}
 Use the function ` optimal_multitrial_binary()`. Supply the following input values to the function:
@@ -172,6 +172,6 @@ For strategy 3 under the constraint, the constraint can not be met withing the o
 For strategy 4 under the constraint, the program returns the same results as before as the constraint is fulfilled at the optimum for this strategy.
 
 ### 03.14 (shows that req. 03.01, 03.04 and 03.10 are met): {-}
-Use the function `optimal_multitrial_normal()`. Supply the same input values as in test case 03.11, however change the parameter fixed to be `"TRUE"` and use case 2 (i.e. at least three trials have to show a significant positive treatment effect) and the strategy 3 (i.e three trials are conducted in phase III).
+Use the function `optimal_multitrial_normal()`. Supply the same input values as in test case 03.11, however change the parameter fixed to be `"TRUE"` and use case 2 (i.e. at least three trials have to show a significant positive treatment effect) and the strategy 3 (i.e. three trials are conducted in phase III).
 
 Verify that the program returns an expected utility of 1749.97 (in 10^5\$), an optimal threshold value of 0.16 and an optimal number of participants of 416 in phase II and 876 in phase III (i.e. 1292 in total), corresponding to three trials with 292 participants each. 

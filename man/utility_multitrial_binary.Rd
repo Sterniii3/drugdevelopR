@@ -128,7 +128,7 @@ utility4_binary(
 \item{fixed}{choose if true treatment effects are fixed or random}
 }
 \value{
-The output of the the functions \code{utility2_binary()}, \code{utility3_binary()} and \code{utility4_binary()} is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
+The output of the functions \code{utility2_binary()}, \code{utility3_binary()} and \code{utility4_binary()} is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
 }
 \description{
 The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program.

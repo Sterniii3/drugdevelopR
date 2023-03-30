@@ -444,7 +444,7 @@ PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,c
 
 #' Utility function for multiarm programs with normally distributed outcomes
 #' 
-#' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the the sample size and expected probability of a successful program. 
+#' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the sample size and expected probability of a successful program. 
 #' The utility is in further step maximized by the `optimal_multiarm_normal()` function.
 #' 
 #' @param kappa threshold value for the go/no-go decision rule
@@ -467,7 +467,7 @@ PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,c
 #' @param b1 expected gain for effect size category "small"
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
-#' @return The output of the the function `utility_multiarm_normal()` is the expected utility of the program.
+#' @return The output of the function `utility_multiarm_normal()` is the expected utility of the program.
 #' @examples res <- utility_multiarm_normal(n2 = 50, kappa = 0.8, alpha = 0.05, beta = 0.1,
 #'                             Delta1 = 0.375, Delta2 = 0.625, strategy = 1,
 #'                             c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,

@@ -87,7 +87,7 @@ utility_multiple_normal(
 \item{relaxed}{relaxed or strict decision rule}
 }
 \value{
-The output of the the function \code{utility_multiple_normal()} is the expected utility of the program.
+The output of the function \code{utility_multiple_normal()} is the expected utility of the program.
 }
 \description{
 The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program.

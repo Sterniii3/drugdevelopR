@@ -30,7 +30,7 @@ Epgo23_normal(kappa, n2, alpha, beta, a, b, w, Delta1, Delta2, in1, in2)
 \item{in2}{amount of information for \code{Delta2} in terms of sample size}
 }
 \value{
-The output of the the function \code{Epgo23_normal()} is the probability to to a third phase III trial.
+The output of the function \code{Epgo23_normal()} is the probability to a third phase III trial.
 }
 \description{
 In the setting of Case 2: Strategy 2/2( + 1); at least two trials significant (and the

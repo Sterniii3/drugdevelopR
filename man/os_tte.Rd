@@ -28,7 +28,7 @@ os_tte(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho)
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-The output of the the function \code{os_tte()} is the probability that endpoint OS significant.
+The output of the function \code{os_tte()} is the probability that endpoint OS significant.
 }
 \description{
 This function calculate the probability that the endpoint OS is statistically significant.

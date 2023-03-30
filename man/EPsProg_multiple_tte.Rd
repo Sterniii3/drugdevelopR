@@ -48,7 +48,7 @@ EPsProg_multiple_tte(
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-The output of the the function \code{EPsProg_multiple_tte()} is the expected probability of a successful program, when going to phase III.
+The output of the function \code{EPsProg_multiple_tte()} is the expected probability of a successful program, when going to phase III.
 }
 \description{
 This function calculates the probability that our drug development program is successful.

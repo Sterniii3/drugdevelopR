@@ -49,7 +49,7 @@ optimal_bias(
 \item{w}{weight for mixture prior distribution}
 
 \item{hr1}{first assumed true treatment effect on HR scale for prior
-distribution, see the \href{https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html}{vignette on priors}
+distribution, see the \href{https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html}{vignette on priors}
 as well as the \href{https://web.imbi.uni-heidelberg.de/prior/}{Shiny app} for
 more details concerning the definition of a prior distribution.}
 
@@ -85,9 +85,9 @@ also the threshold value for the decision rule.}
 
 \item{steplambda}{stepsize for the adjustment parameter lambda}
 
-\item{alphaCImin}{minimal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)}
+\item{alphaCImin}{minimal additive adjustment parameter alphaCI (i.e. adjust the lower bound of the one-sided confidence interval)}
 
-\item{alphaCImax}{maximal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)}
+\item{alphaCImax}{maximal additive adjustment parameter alphaCI (i.e. adjust the lower bound of the one-sided confidence interval)}
 
 \item{stepalphaCI}{stepsize for alphaCI}
 

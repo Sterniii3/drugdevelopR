@@ -22,7 +22,7 @@ pw(n2, hr1, hr2, id1, id2, fixed, rho)
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-The output of the the function \code{pw()} is the probability that endpoint one has a better result than endpoint two
+The output of the function \code{pw()} is the probability that endpoint one has a better result than endpoint two
 }
 \description{
 This function calculated the probability that the treatment effect in endpoint one (or endpoint x) is larger than in endpoint two (or endpoint y), i.e. P(x>y) = P(x-y>0)

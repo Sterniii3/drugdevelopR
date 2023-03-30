@@ -18,9 +18,9 @@ t3 <- function(x, p0){sqrt(((1-p0)/p0) + ((1-x)/x))}
 #' To discount for overoptimistic results in phase II when calculating the optimal sample size in phase III, 
 #' it is necessary to use the functions `En3_binary_L()`, `En3_binary_L2()`, `En3_binary_R()` and `En3_binary_R2()`.
 #' Each function describes a specific case:
-#' - `En3_binary_L()`: calculates the optimal sample size for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval), 
+#' - `En3_binary_L()`: calculates the optimal sample size for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval), 
 #' however the go-decision is not affected by the bias adjustment
-#' - `En3_binary_L2()`: calculates the optimal sample size for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval)
+#' - `En3_binary_L2()`: calculates the optimal sample size for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval)
 #' when the go-decision is also affected by the bias adjustment
 #' - `En3_binary_R()`: calculates the optimal sample size for a multiplicative adjustment factor (i.e. use estimate with a retention factor), 
 #' however the go-decision is not affected by the bias adjustment
@@ -38,7 +38,7 @@ t3 <- function(x, p0){sqrt(((1-p0)/p0) + ((1-x)/x))}
 #' @param in1 amount of information for `p11` in terms of sample size
 #' @param in2 amount of information for `p12` in terms of sample size
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `p11` is used as fixed effect
-#' @return The output of the the functions `En3_binary_L`, `En3_binary_L2`, `En3_binary_R` and `En3_binary_R2` is the expected number of participants in phase III. 
+#' @return The output of the functions `En3_binary_L`, `En3_binary_L2`, `En3_binary_R` and `En3_binary_R2` is the expected number of participants in phase III. 
 #' @importFrom stats qnorm integrate dnorm
 #' @examples res <- En3_binary_L(RRgo = 0.8, n2 = 50, Adj = 0, 
 #'                               alpha = 0.025, beta = 0.1, p0 = 0.6,  w = 0.3,
@@ -102,9 +102,9 @@ En3_binary_L <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2,
 #' 
 #' To discount for overoptimistic results in phase II when calculating the optimal sample size in phase III, 
 #' it is necessary to use the following functions, which each describe a specific case:
-#' - `EPsProg_binary_L()`: calculates the expected probability of a successful for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval), 
+#' - `EPsProg_binary_L()`: calculates the expected probability of a successful for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval), 
 #' however the go-decision is not affected by the bias adjustment
-#' - `EPsProg_binary_L2()`: calculates the expected probability of a successful for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval)
+#' - `EPsProg_binary_L2()`: calculates the expected probability of a successful for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval)
 #' when the go-decision is also affected by the bias adjustment
 #' - `EPsProg_binary_R()`: calculates the expected probability of a successful for a multiplicative adjustment factor (i.e. use estimate with a retention factor), 
 #' however the go-decision is not affected by the bias adjustment
@@ -124,7 +124,7 @@ En3_binary_L <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2,
 #' @param in1 amount of information for `p11` in terms of sample size
 #' @param in2 amount of information for `p12` in terms of sample size
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `p11` is used as fixed effect
-#' @return  The output of the the functions `EPsProg_binary_L()`, `EPsProg_binary_L2()`, `EPsProg_binary_R()` and `EPsProg_binary_R2()` is the expected probability of a successful program.
+#' @return  The output of the functions `EPsProg_binary_L()`, `EPsProg_binary_L2()`, `EPsProg_binary_R()` and `EPsProg_binary_R2()` is the expected probability of a successful program.
 #' @importFrom stats qnorm integrate dnorm
 #' @examples res <- EPsProg_binary_L(RRgo = 0.8, n2 = 50, Adj = 0, 
 #'                                  alpha = 0.025, beta = 0.1, 
@@ -230,7 +230,7 @@ EPsProg_binary_L <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `p11` is used as fixed effect
-#' @return The output of the the functions `utility_binary_L()`, `utility_binary_L2()`, `utility_binary_R()` and `utility_binary_R2()` is the expected utility of the program.
+#' @return The output of the functions `utility_binary_L()`, `utility_binary_L2()`, `utility_binary_R()` and `utility_binary_R2()` is the expected utility of the program.
 #' @examples res <- utility_binary_L(n2 = 50, RRgo = 0.8, Adj = 0.1, w = 0.3, 
 #'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
 #'                                  in1 = 300, in2 = 600, 
@@ -356,7 +356,7 @@ utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 #' 
 #' In the case we do not only want do discount for overoptimistic results in phase II when calculating the sample size in phase III, 
 #' but also when deciding whether to go to phase III or not the functions `Epgo_binary_L2` and `Epgo_binary_R2` are necessary.
-#' The function `Epgo_binary_L2` uses an additive adjustment parameter (i.e adjust the lower bound of the one-sided confidence interval),
+#' The function `Epgo_binary_L2` uses an additive adjustment parameter (i.e. adjust the lower bound of the one-sided confidence interval),
 #' the function `Epgo_binary_R2` uses a multiplicative adjustment parameter (i.e. use estimate with a retention factor)
 #' @param RRgo threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
@@ -368,7 +368,7 @@ utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 #' @param in1 amount of information for `p11` in terms of sample size
 #' @param in2 amount of information for `p12` in terms of sample size
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `p11` is used as fixed effect
-#' @return The output of the the functions `Epgo_binary_L2` and `Epgo_binary_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
+#' @return The output of the functions `Epgo_binary_L2` and `Epgo_binary_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
 #' @importFrom stats qnorm integrate dnorm
 #' @examples res <- Epgo_binary_L2(RRgo = 0.8, n2 = 50, Adj = 0,  p0 = 0.6,  w = 0.3,
 #'                               p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600, 

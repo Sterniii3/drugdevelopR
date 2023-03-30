@@ -33,7 +33,7 @@ Use the function `optimal_multiarm`. Supply the following input values to the fu
   * use strategy 1, i.e. the strategy where only the best of the promising
     treatments proceeds to phase III.
   
-Verify that the program returns an optimal utility of 8.56 (in 10^5\$), an optimal sample size of 141 in phase II and 391 in phase III (i.e a total of 532) and an optimal threshold value for the go-decision of 0.82 as suggested by Stella Erdmann [2]. Furthermore, verify that the probability to go to phase III is given by 0.72.
+Verify that the program returns an optimal utility of 8.56 (in 10^5\$), an optimal sample size of 141 in phase II and 391 in phase III (i.e. a total of 532) and an optimal threshold value for the go-decision of 0.82 as suggested by Stella Erdmann [2]. Furthermore, verify that the probability to go to phase III is given by 0.72.
 
 ### 04.02 (shows that req. 04.03, 04.09 and 04.12 are met): {-}
 Use the function `optimal_multiarm`. Supply the same input values as in test case 04.01, however use strategy 2, i.e. the strategy where all promising treatments proceed to phase III.
@@ -66,7 +66,7 @@ Use the function ` optimal_multiarm_binary()`. Supply the following input values
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III, and
   * strategy 1, i.e. the strategy where only the best promising treatment proceeds to phase III.
   
-Verify that the program returns an optimal utility of 1264.64 (in 10^5\$), an optimal sample size of 386 in phase II and 344 in phase III (i.e a total of 730) and an optimal threshold value for the go-decision of 0.86. 
+Verify that the program returns an optimal utility of 1264.64 (in 10^5\$), an optimal sample size of 386 in phase II and 344 in phase III (i.e. a total of 730) and an optimal threshold value for the go-decision of 0.86. 
 
 ### 04.06 (shows that req. 04.02, 04.09 and 04.14 are met): {-}
 Use the function `optimal_multiarm_binary`. Supply the same input values as in test case 04.05, however set the parameter strategy to 2, i.e. calculating the results if all promising treatments proceed to phase III.
@@ -93,7 +93,7 @@ Use the function `optimal_multiarm_normal()`. Supply the following input values 
   * variable costs of 67,500\$ in phase II and 72,000\$ in phase III,
   * strategy 1, i.e. use the strategy where only the best promising treatment proceeds to phase III.
   
-Verify that the program returns an optimal utility of 109.9 (in 10^5\$), an optimal sample size of 56 in phase II and 205 in phase III (i.e a total of 261) and an optimal threshold value for the go-decision of 0.16. Furthermore, verify, that the probability for a successful program is 0.32.
+Verify that the program returns an optimal utility of 109.9 (in 10^5\$), an optimal sample size of 56 in phase II and 205 in phase III (i.e. a total of 261) and an optimal threshold value for the go-decision of 0.16. Furthermore, verify, that the probability for a successful program is 0.32.
 
 ### 04.09 (shows that req. 04.01, 04.09 and 04.13 are met): {-}
 Use the function `optimal_multiarm_normal`. Supply the same input values as in test case 04.08, however set the parameter strategy to 2, i.e. calculating the results if all promising treatments proceed to phase III.

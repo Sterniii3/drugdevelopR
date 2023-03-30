@@ -1,5 +1,5 @@
 ---
-title: "Fixed effects and prior distributions"
+title: "Fixed effect estimates and prior distributions"
 author: "Johannes Cepicka"
 output: rmarkdown::html_vignette
 vignette: >
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
 
-The drugdevelopR package enables us to optimally plan such programs using a utility-maximizing approach. Up until now, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html). In this article, we want to expand the basic setting and want to introduce you to the modelling of the assumed treatment effect on a prior distribution.
+The drugdevelopR package enables us to optimally plan such programs using a utility-maximizing approach. Up until now, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html). In this article, we want to expand the basic setting and want to introduce you to the modelling of the assumed treatment effect on a prior distribution.
 
 # The example setting
 
@@ -35,15 +35,15 @@ library(drugdevelopR)
 Additionally to the parameters in the baseline scenario with fixed treatment effects, we now need further input parameters:
 
 * Differing from the baseline scenario we now have not only one treatment effect, but two: `Delta1` and `Delta2`. The input parameter `Delta1` is the one we got from some randomized controlled pilot trial that our team conducted earlier. Its value is given as the standardized difference in means ($\Delta=\frac{\mu_{contro} - \mu_{exper}}{\sigma}$) and its value was determined to be 0.625. However, we are not so sure about this result, as another research group conducted a similar study and got an treatment effect of 0.9, which will now be our value for `Delta2`. Of course, the choice of $\Delta_1$ and $\Delta_2$ need not be built on two clinical studies, but can also be derived from different sources for forming a prior belief, e.g. clinical experience.
-* We now have to add more information about the two experiments which is done by the two additional parameters `in1` and `in2`. We call these parameters the "amount of information" and they refer to the number of participants which were used in the study to determine the treatment effect. If our study was conducted with 300 participants the value for `in1` is set to be 300. Let's assume that the study of the other research group was conducted with 600 participants, so the parameter value for `in2` is 600.
-* Now, a weight parameter `w` has to be defined, that allows us to weigh the two treatment effects. If we want to trust our results more, than we can set a higher parameter value for w (Note w has to be between 0 and 1, a parameter value of 1 would put all the weight on our results and none on the results of the second study), if we think the results of the other group are more reliable we reduce the value for w, thus putting more weight on `Delta2`. Note that by exchanging the values of `Delta1` and `Delta2` (and the corresponding values for `in1` and `in2`) and setting $w_{new} = 1 - w_{old}$ our final results will not change. In our case, we want to put more trust on our results and thus set the parameter `w` to be 0.6. Setting the weight to $1$ would effectively mean ignoring the second treatment effect, which is also possible.
+* We now have to specify how sure we are about the two prior beliefs $\Delta_1$ and $\Delta_2$. This is done by the two additional parameters `in1` and `in2`. We call these parameters the "amount of information". They refer to the sample sizes of the studies on which we base our prior beliefs. If our pilot study was conducted with 300 participants, the value for `in1` is set to be 300. Let's assume that the study of the other research group was conducted with 600 participants, so the parameter value for `in2` is 600. The higher amount of information, the lower the variance we attribute to that prior belief.
+* Now, a weight parameter `w` has to be defined, that allows us to weigh the two treatment effects. If we want to trust our results more, than we can set a higher parameter value for `w`. (Note that `w` has to be between 0 and 1, a parameter value of 1 would put all the weight on our results and none on the results of the second study). If we think the results of the other group are more reliable we reduce the value for w, thus putting more weight on `Delta2`. Note that by exchanging the values of `Delta1` and `Delta2` (and the corresponding values for `in1` and `in2`) and setting $w_{new} = 1 - w_{old}$ our final results will not change. In our case, we want to put more trust on our results and thus set the parameter `w` to be 0.6. Setting the weight to $1$ would effectively mean ignoring the second treatment effect, which is also possible.
 * The prior distribution used in the package is the sum of two truncated normal distributions. Hence, we need truncation values `a` as the lower boundary for the truncation and `b` as the upper boundary. In our case we set `a = 0.25` and `b = 0.75`.
 
 The prior distribution for the standardized true difference in means is then given by
 $\Delta ∼ w · \mathcal{N}^t_{[0.25,0.75]} (0.625, 4/300) + (1 − w) · \mathcal{N}^t_{[0.25,0.75]} (0.9, 4/600)$
 where $N^t_{[a,b]} (\mu, \sigma^2)$ denotes the truncated normal distribution with mean $\mu$,
 variance $\sigma^2$, truncated below at a and above at b.
-To see how different input values change the prior distribution we refer to the [Shiny App](https://web.imbi.uni-heidelberg.de/prior/).
+To see how different input values change the prior distribution we refer to the [Shiny app](https://web.imbi.uni-heidelberg.de/prior/).
 
 ```{r,eval = FALSE}
  res <- optimal_normal(Delta1 = 0.625, Delta2 = 0.8, fixed = FALSE, # treatment effect
@@ -87,21 +87,30 @@ After setting all these input parameters and running the function, let's take a 
 res
 ```
 
-The program returns a total of thirteen values and the input values. Once again we will only focus at the most important ones:
+The program returns a total of thirteen values and the input values. Once again, we will only focus at the most important ones:
 
-* `res$n2` is the optimal sample size for phase II and `res$n3` the resulting sample size for phase III. We see that the optimal scenario requires 76 participants in phase II and 158 participants in phase III. The number of participants in both phases was reduced compared to the setting with a fixed treatment effect.
+* `res$n2` is the optimal sample size for phase II and `res$n3` the resulting sample size for phase III. We see that the optimal scenario requires 76 participants in phase II and 158 participants in phase III. The number of participants in both phases was reduced compared to the setting with a fixed treatment effect. 
 * `res$Kappa` is the optimal threshold value for the go/no-go decision rule. We see that we need a treatment effect of more than 0.06 in phase II in order to proceed to phase III, which is the same as in the baseline scenario. 
-* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 3473.81, i.e we have an expected utility of 347 381 000\$. This is a 6.56\% increase over the scenario without the prior distribution. The increase in the expected utility can be attributed to the additional weight which was put on the second treatment effect `Delta2`, which was more promising than our treatment effect.
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 3473.81, i.e. we have an expected utility of 347 381 000\$. This is a 6.56\% increase over the scenario without the prior distribution. The increase in the expected utility can be attributed to the additional weight which was put on the second treatment effect `Delta2`, which was more promising than our treatment effect.
+
+Of course, the differences in the output values compared to the fixed setting heavily depend on the choice of the prior.
+
+# Prior distributions for time-to-event outcomes
+
+Note that in the setting of [time-to-event outcomes](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html), the following input parameters have to be specified, which differ from the setting with normally distributed outcomes:
+
+* Instead of the parameters `in1` and `in2` for the "amount of information", we have to use the parameters `id1` and `id2` which represent the "number of events". They refer to the number of events which were observed in the study to determine the treatment effect. If in our study 210 events could be observed, then the value for `id1` is set to be 420. If we assume assume that in the study of the other research group 420 events could be observed, the parameter value for `id2` is 420.
+* Moreover, we do not need truncation values, i.e. values for the parameters `a` and `b`.
 
 # Where to go from here
 This tutorial explains how to use the parameters needed for the prior distribution when setting the parameter `fixed` to be `"FALSE"`.
 
 For more information on how to use the package, see:
 
-* [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html) See how the package works in a basic example.
-* *Different outcomes:* Apply it to [binary endpoints](https://sterniii3.github.io/drugdevelopR/articles/Binary_distributed_outcomes.html) and [time-to-event endpoints](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html).
+* [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html) See how the package works in a basic example.
+* *Different outcomes:* Apply it to [binary endpoints](https://sterniii3.github.io/drugdevelopR/articles/Binary_outcomes.html) and [time-to-event endpoints](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html).
 * [*Interpreting the rest of the output:*](https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html) Obtain further details on your drug development program.
 * [*More parameters:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.
 * *Complex drug development programs:* Adapt to situations with [biased effect estimators](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html), [multiple phase III trials](https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html), [multi-arm trials](https://sterniii3.github.io/drugdevelopR/articles/Multiarm_Trials.html), or [multiple endpoints](https://sterniii3.github.io/drugdevelopR/articles/Multiple_Endpoints.html).
-* [*Parallel computing:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Be faster at calculating the optimum by using parallel computing.
+* [*Parallel computing:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html#parallel-computing) Be faster at calculating the optimum by using parallel computing.
 

@@ -57,7 +57,7 @@ EPsProg_multiple_normal(
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-The output of the the function \code{EPsProg_multiple_normal()} is the expected probability of a successfull program, when going to phase III.
+The output of the function \code{EPsProg_multiple_normal()} is the expected probability of a successfull program, when going to phase III.
 }
 \description{
 This function calculates the probability that our drug development program is successful.

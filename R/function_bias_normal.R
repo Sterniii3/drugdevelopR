@@ -12,9 +12,9 @@
 #' To discount for overoptimistic results in phase II when calculating the optimal sample size in phase III, 
 #' it is necessary to use the functions `En3_normal_L()`, `En3_normal_L2()`, `En3_normal_R()` and `En3_normal_R2()`.
 #' Each function describes a specific case:
-#' - `En3_normal_L()`: calculates the optimal sample size for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval), 
+#' - `En3_normal_L()`: calculates the optimal sample size for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval), 
 #' however the go-decision is not affected by the bias adjustment
-#' - `En3_normal_L2()`: calculates the optimal sample size for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval)
+#' - `En3_normal_L2()`: calculates the optimal sample size for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval)
 #' when the go-decision is also affected by the bias adjustment
 #' - `En3_normal_R()`: calculates the optimal sample size for a multiplicative adjustment factor (i.e. use estimate with a retention factor), 
 #' however the go-decision is not affected by the bias adjustment
@@ -33,7 +33,7 @@
 #' @param a lower boundary for the truncation
 #' @param b upper boundary for the truncation
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
-#' @return The output of the the functions `En3_normal_L`, `En3_normal_L2`, `En3_normal_R` and `En3_normal_R2` is the expected number of participants in phase III.
+#' @return The output of the functions `En3_normal_L`, `En3_normal_L2`, `En3_normal_R` and `En3_normal_R2` is the expected number of participants in phase III.
 #' @importFrom stats qnorm integrate dnorm
 #' @examples res <- En3_normal_L(kappa = 0.1, n2 = 50, Adj = 0, 
 #'                               alpha = 0.025, beta = 0.1, w = 0.3,
@@ -105,9 +105,9 @@ En3_normal_L <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, i
 #' 
 #' To discount for overoptimistic results in phase II when calculating the optimal sample size in phase III, 
 #' it is necessary to use the following functions, which each describe a specific case:
-#' - `EPsProg_normal_L()`: calculates the expected probability of a successful for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval), 
+#' - `EPsProg_normal_L()`: calculates the expected probability of a successful for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval), 
 #' however the go-decision is not affected by the bias adjustment
-#' - `EPsProg_normal_L2()`: calculates the expected probability of a successful for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval)
+#' - `EPsProg_normal_L2()`: calculates the expected probability of a successful for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval)
 #' when the go-decision is also affected by the bias adjustment
 #' - `EPsProg_normal_R()`: calculates the expected probability of a successful for a multiplicative adjustment factor (i.e. use estimate with a retention factor), 
 #' however the go-decision is not affected by the bias adjustment
@@ -128,7 +128,7 @@ En3_normal_L <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, i
 #' @param a lower boundary for the truncation
 #' @param b upper boundary for the truncation
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
-#' @return The output of the the functions `EPsProg_normal_L()`, `EPsProg_normal_L2()`, `EPsProg_normal_R()` and `EPsProg_normal_R2()` is the expected probability of a successful program.
+#' @return The output of the functions `EPsProg_normal_L()`, `EPsProg_normal_L2()`, `EPsProg_normal_R()` and `EPsProg_normal_R2()` is the expected probability of a successful program.
 #' @importFrom stats qnorm integrate dnorm pnorm
 #' @examples res <- EPsProg_normal_L(kappa = 0.1, n2 = 50, Adj = 0, 
 #'                                  alpha = 0.025, beta = 0.1, w = 0.3,
@@ -230,7 +230,7 @@ EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
-#' @return The output of the the functions `utility_normal_L()`, `utility_normal_L2()`, `utility_normal_R()` and `utility_normal_R2()` is the expected utility of the program.
+#' @return The output of the functions `utility_normal_L()`, `utility_normal_L2()`, `utility_normal_R()` and `utility_normal_R2()` is the expected utility of the program.
 #' @examples res <- utility_normal_L(kappa = 0.1, n2 = 50, Adj = 0, 
 #'                                  alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, 
@@ -367,7 +367,7 @@ utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
 #' 
 #' In the case we do not only want do discount for overoptimistic results in phase II when calculating the sample size in phase III, 
 #' but also when deciding whether to go to phase III or not the functions `Epgo_normal_L2` and `Epgo_normal_R2` are necessary.
-#' The function `Epgo_normal_L2` uses an additive adjustment parameter (i.e adjust the lower bound of the one-sided confidence interval),
+#' The function `Epgo_normal_L2` uses an additive adjustment parameter (i.e. adjust the lower bound of the one-sided confidence interval),
 #' the function `Epgo_normal_R2` uses a multiplicative adjustment parameter (i.e. use estimate with a retention factor)
 #' @param kappa threshold value for the go/no-go decision rule
 #' @param n2 total sample size for phase II; must be even number
@@ -380,7 +380,7 @@ utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
 #' @param a lower boundary for the truncation
 #' @param b upper boundary for the truncation
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
-#' @return The output of the the functions `Epgo_normal_L2` and `Epgo_normal_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
+#' @return The output of the functions `Epgo_normal_L2` and `Epgo_normal_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
 #' @importFrom stats qnorm integrate dnorm
 #' @examples res <- Epgo_normal_L2(kappa = 0.1, n2 = 50, Adj = 0, w = 0.3,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 

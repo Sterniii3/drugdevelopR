@@ -63,7 +63,7 @@ utility23(
 \item{b3}{expected gain for effect size category \code{"large"}}
 }
 \value{
-The output of the the function \code{utility23()} is the expected utility of the program depending on whether two or three phase III trials are performed.
+The output of the function \code{utility23()} is the expected utility of the program depending on whether two or three phase III trials are performed.
 }
 \description{
 The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program.

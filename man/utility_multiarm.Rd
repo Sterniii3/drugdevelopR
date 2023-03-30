@@ -72,10 +72,10 @@ utility_multiarm(
 \item{b3}{expected gain for effect size category \code{"large"}}
 }
 \value{
-The output of the the function \code{utility_multiarm()} is the expected utility of the program
+The output of the function \code{utility_multiarm()} is the expected utility of the program
 }
 \description{
-The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the the sample size and expected probability of a successful program.
+The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the sample size and expected probability of a successful program.
 The utility is in further step maximized by the \code{optimal_multiarm()} function.
 }
 \examples{

@@ -33,7 +33,7 @@
 #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
 #' @param size size category `"small"`, `"medium"` or `"large"`
 #' @param fixed choose if true treatment effects are fixed or random
-#' @return The output of the the function `EPsProg2_normal()`, `EPsProg3_normal()` and `EPsProg4_normal()` is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively).
+#' @return The output of the function `EPsProg2_normal()`, `EPsProg3_normal()` and `EPsProg4_normal()` is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively).
 #' @examples res <- EPsProg2_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
@@ -379,7 +379,7 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
 #' @param b3 expected gain for effect size category `"large"`
 #' @param case choose case: "at least 1, 2 or 3 significant trials needed for approval"
 #' @param fixed choose if true treatment effects are fixed or random
-#' @return The output of the the functions utility2_normal(), utility3_normal() and utility4_normal() is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
+#' @return The output of the functions utility2_normal(), utility3_normal() and utility4_normal() is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
 #' @examples res <- utility2_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
@@ -1273,7 +1273,7 @@ utility4_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
 #' @param Delta2 assumed true treatment effect for standardized difference in means
 #' @param in1 amount of information for `Delta1` in terms of sample size
 #' @param in2 amount of information for `Delta2` in terms of sample size
-#' @return The output of the the function `Epgo23_normal()` is the probability to to a third phase III trial.
+#' @return The output of the function `Epgo23_normal()` is the probability to a third phase III trial.
 #' @examples res <- Epgo23_normal(kappa = 0.1, n2 = 50, w = 0.3, alpha = 0.025, beta = 0.1, a = 0.25, b=0.75,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600)
 #' @export
@@ -1531,7 +1531,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
 #' @param b1 expected gain for effect size category `"small"`
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
-#' @return The output of the the function utility23_normal() is the expected utility of the program depending on whether two or three phase III trials are performed.
+#' @return The output of the function utility23_normal() is the expected utility of the program depending on whether two or three phase III trials are performed.
 #' @examples res <- utility23_normal(n2 = 50, kappa = 0.2, w = 0.3, alpha = 0.025, beta = 0.1,
 #'                                 Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                 a = 0.25, b = 0.75, 

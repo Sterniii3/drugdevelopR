@@ -62,7 +62,7 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `pgo_multiple_tte()` is the probability to go to phase III.
+#' @return The output of the function `pgo_multiple_tte()` is the probability to go to phase III.
 #' @examples res <- pgo_multiple_tte(HRgo = 0.8, n2 = 50,
 #'                                hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
 #'                                fixed = TRUE, rho = 0.3)
@@ -121,7 +121,7 @@ pgo_multiple_tte<-function(HRgo,n2,hr1,hr2,id1,id2,fixed,rho){
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
-#' @return the output of the the function `Ess_multiple_tte()` is the expected number of participants in phase III
+#' @return the output of the function `Ess_multiple_tte()` is the expected number of participants in phase III
 #' @examples res <- Ess_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
 #'                                hr1 = 0.75, hr2 = 0.80, 
 #'                                id1 = 300, id2 = 600, 
@@ -181,7 +181,7 @@ Ess_multiple_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `pw()` is the probability that endpoint one has a better result than endpoint two
+#' @return The output of the function `pw()` is the probability that endpoint one has a better result than endpoint two
 #' @examples res <- pw(n2 = 50,hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
 #'                     fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
@@ -243,7 +243,7 @@ else {
 #' @param step2 upper boundary for effect size
 #' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `EPsProg_multiple_tte()` is the expected probability of a successful program, when going to phase III.
+#' @return The output of the function `EPsProg_multiple_tte()` is the expected probability of a successful program, when going to phase III.
 #' @examples res <- EPsProg_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                ec = 1, hr1 = 0.75, hr2 = 0.80,
 #'                                id1 = 300, id2 = 600, 
@@ -318,7 +318,7 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `os_tte()` is the probability that endpoint OS significant.
+#' @return The output of the function `os_tte()` is the probability that endpoint OS significant.
 #' @examples res <- os_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
 #'                                hr1 = 0.75, hr2 = 0.80, 
 #'                                id1 = 300, id2 = 600, 
@@ -422,7 +422,7 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
 #' @param b32 expected gain for effect size category `"large"` if endpoint OS is not significant
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `utility_multiple_tte()` is the expected utility of the program.
+#' @return The output of the function `utility_multiple_tte()` is the expected utility of the program.
 #' @examples res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
 #'                                hr1 = 0.75, hr2 = 0.80,
 #'                                id1 = 300, id2 = 600,

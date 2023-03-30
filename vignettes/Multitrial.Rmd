@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
 
-The drugdevelopR package enables us to optimally plan such programs using a utility-maximizing approach. To get a brief introduction, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html). Contrary to the basic setting, where only one phase III trial was conducted, we now want to show how several phase III trials can be included within the framework.
+The drugdevelopR package enables us to optimally plan such programs using a utility-maximizing approach. To get a brief introduction, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html). Contrary to the basic setting, where only one phase III trial was conducted, we now want to show how several phase III trials can be included within the framework.
 
 # The example setting
 Suppose we are developing a new tumor treatment, *exper*. The patient variable that we want to investigate is how long the patient survives without further progression of the tumor (progression free survival). This is a time to event outcome variable. Therefore, we will use the function `optimal_multitrial`, which calculates optimal sample sizes and threshold decisions values for time-to-event outcomes when several phase III trials are performed.
@@ -30,7 +30,7 @@ After installing the package according to the [installation instructions](https:
 library(drugdevelopR)
 ```
 
-We insert the same input values as in the example for time-to-event outcomes (see the vignette on [time-to-event endpoints](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html)). As in the basic setting, the treatment effect may be fixed (as in this example) or follows a prior distribution (see [Fixed or Prior](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html)). Furthermore, some options to adapt the program to your specific needs are also available in this setting (see [More Paramters](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html)), however skipping phase II, setting predefined benefit categories and choosing different treatment effects in phase II and III are not possible.
+We insert the same input values as in the example for time-to-event outcomes (see the vignette on [time-to-event endpoints](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html)). As in the basic setting, the treatment effect may be fixed (as in this example) or follows a prior distribution (see [Fixed or Prior](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html)). Furthermore, some options to adapt the program to your specific needs are also available in this setting (see [More parameters](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html)), however skipping phase II, setting predefined benefit categories and choosing different treatment effects in phase II and III are not possible.
 
 The program implements a framework developed for phase II/III drug development programs where several phase III trials are performed. This is of particular relevance as regulatory agencies often require statistical significance in two or more phase III trials. Different cases, defined by the number of significant trials needed for approval, should be implemented in the package. For each case, different strategies, defined by the number of phase III trials to be conducted in order to reach the goal of the case, should be implemented. For the success of the drug development program, it is necessary that the treatment effects of all phase III trials point in the same direction. For example, if we select case 3 and strategy 4, we require four phase III trials, where three need to be significant at level $\alpha$ and the treatment effect of the fourth must point in the same direction.
 Hence, in addition to the parameters from the basic setting, the user should be allowed to provide the following parameters:
@@ -103,31 +103,31 @@ For strategy 1 we get:
 
 * `res$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 105 events in phase II and 444 events in phase III, which correspond to 150 participants in phase II and 634 in phase III. 
 * `res$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.78 in phase II in order to proceed to phase III. 
-* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to -64.48, i.e we have an expected utility of -6 448 000\$.
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to -64.48, i.e. we have an expected utility of -6 448 000\$.
 Note, that the input parameter `alpha` is returned having a value of 0.000125, which corresponds to the adjusted significance level $\alpha^3$.
 
 The results for strategy 3 are:
 
 * `res$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 75 events in phase II and 417 events in phase III, which leads to 108 participants in phase II and 594 in phase III. This corresponds to three trials in phase III with each trial having 298 participants.
 * `res$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.78 in phase II in order to proceed to phase III. 
-* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to -272.50, i.e we have an expected utility of -27 250 000\$.
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to -272.50, i.e. we have an expected utility of -27 250 000\$.
 
 Strategy 4 yields the following results:
 
 * `res$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 60 events in phase II and 264 events in phase III, which leads to 86 participants in phase II and 376 in phase III. This corresponds to four trials in phase III with each trial having 94 participants.
 * `res$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.70 in phase II in order to proceed to phase III. 
-* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to -293.81, i.e we have an expected utility of -29 381 000\$.
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to -293.81, i.e. we have an expected utility of -29 381 000\$.
 
 # Where to go from here
 In this article we presented an example when several phase III endpoints are performed. Note, that this example is not restricted to time-to-event endpoints but can also be applied to binary and normally distributed endpoints by using the functions `optimal_multitrial_binary` and `optimal_multitrial_normal`. For more information on how to use the package, see:
 
-* [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html) See how the package works in a basic example.
-* *Different outcomes:* Apply it to [binary endpoints](https://sterniii3.github.io/drugdevelopR/articles/Binary_distributed_outcomes.html) and [time-to-event endpoints](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html).
+* [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html) See how the package works in a basic example.
+* *Different outcomes:* Apply it to [binary endpoints](https://sterniii3.github.io/drugdevelopR/articles/Binary_outcomes.html) and [time-to-event endpoints](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html).
 * [*Interpreting the rest of the output:*](https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html) Obtain further details on your drug development program.
 * [*Fixed or prior:*](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html) Model the assumed treatment effect on a prior distribution.
 * [*More parameters:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Define custom effect size categories. Put constraints on the optimization by defining maximum costs, the total expected sample size of the program or the minimum expected probability of a successful program. Define an expected difference in treatment effect between phase II and III. Skip phase II.
 * *Complex drug development programs:* Adapt to situations with [biased effect estimators](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html),  [multi-arm trials](https://sterniii3.github.io/drugdevelopR/articles/Multiarm_Trials.html), or [multiple endpoints](https://sterniii3.github.io/drugdevelopR/articles/Multiple_Endpoints.html).
-* [*Parallel computing:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) Be faster at calculating the optimum by using parallel computing.
+* [*Parallel computing:*](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html#parallel-computing) Be faster at calculating the optimum by using parallel computing.
 
 # References
 Koch, G. G. (2005). Statistical consideration of the strategy for demon- strating clinical evidence of effectiveness one larger vs two smaller pivotal studies by z. shun, e. chi, s. durrleman and l. fisher, statistics in medicine 2005; 24: 1619–1637. Statistics in Medicine, 24(11):1639–1646.

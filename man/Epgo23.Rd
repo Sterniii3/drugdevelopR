@@ -26,7 +26,7 @@ Epgo23(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2)
 \item{id2}{amount of information for \code{hr2} in terms of number of events}
 }
 \value{
-The output of the the function \code{Epgo23()} is the probability to to a third phase III trial.
+The output of the function \code{Epgo23()} is the probability to a third phase III trial.
 }
 \description{
 In the setting of Case 2: Strategy 2/2( + 1); at least two trials significant (and the

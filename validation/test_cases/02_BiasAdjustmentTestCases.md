@@ -49,7 +49,7 @@ Furthermore, verify that the probability to go to phase III is 0.38.
 ### 02.03 (shows that req. 02.06, 02.12, 02.16 and 02.20 are met): {-}
 Use the function `optimal_bias`. Supply the same input values as in test case 02.01, however set the adjustment method to "both" and set the optimization region for the multiplicative adjustment parameter $\lambda$ to {0.5, 0.55, ..., 1} and the parameters for the additive method $\alpha_{CI}$ to {0.3, 0.325, ..., 0.5}. Furthermore, set a constraint for the maximum sample size to be 350.
 
-Verify that the program returns the results for both adjustment methods by returning the selected methods "multipl." and "add." as well as the calculated adjustment parameter. Hereby verify, that the results for the additive method are the same as in test case 02.01 as the sample size constraint is not binding and that the optimal sample size for the multiplicative method changes to 100 in phase II and 240 in phase III, (i.e a total of 340) and the expected utility changes to 98 (in 10^5\$).
+Verify that the program returns the results for both adjustment methods by returning the selected methods "multipl." and "add." as well as the calculated adjustment parameter. Hereby verify, that the results for the additive method are the same as in test case 02.01 as the sample size constraint is not binding and that the optimal sample size for the multiplicative method changes to 100 in phase II and 240 in phase III, (i.e. a total of 340) and the expected utility changes to 98 (in 10^5\$).
 
 ### 02.04 (shows that req. 02.13 and 02.20 are met): {-}
 Use the function `optimal_bias`. Supply the same input values as in test case 02.03 (including the optimization regions for the adjustment parameters and the constraint for the maximal sample size), however set the adjustment method to "all".
@@ -120,7 +120,7 @@ Use the function ` optimal_bias_binary()`. Supply the following input values to 
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * “fixed=FALSE”, i.e. set the function to use treatment effects modeled on a prior distribution,
   * weight of 0.3 for the prior distribution,
-  * a sample size of 30 and 60 for the the two treatment effect estimate, respectively,
+  * a sample size of 30 and 60 for the two treatment effect estimate, respectively,
   * additive adjustment method "additive", and
   * an optimization region of {0.1, 0.125, ..., 0.5} for the adjustment parameter $\alpha_{CI}$.
 

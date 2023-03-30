@@ -24,7 +24,7 @@ pgo_multiple_tte(HRgo, n2, hr1, hr2, id1, id2, fixed, rho)
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-The output of the the function \code{pgo_multiple_tte()} is the probability to go to phase III.
+The output of the function \code{pgo_multiple_tte()} is the probability to go to phase III.
 }
 \description{
 This function calculates the probability that we go to phase III, i.e. that results of phase II are promising enough to

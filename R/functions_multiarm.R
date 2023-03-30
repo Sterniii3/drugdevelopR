@@ -455,7 +455,7 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
 
 #' Utility function for multiarm programs with time-to-event outcomes
 #' 
-#' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the the sample size and expected probability of a successful program. 
+#' The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the sample size and expected probability of a successful program. 
 #' The utility is in further step maximized by the `optimal_multiarm()` function.
 #' 
 #' @param HRgo threshold value for the go/no-go decision rule
@@ -479,7 +479,7 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
 #' @param b1 expected gain for effect size category `"small"`
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
-#' @return The output of the the function `utility_multiarm()` is the expected utility of the program
+#' @return The output of the function `utility_multiarm()` is the expected utility of the program
 #' @examples res <- utility_multiarm(n2 = 50, HRgo = 0.8, alpha = 0.05, beta = 0.1,
 #'                             hr1 = 0.7, hr2 = 0.8, strategy = 2, ec = 0.6,
 #'                             c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,

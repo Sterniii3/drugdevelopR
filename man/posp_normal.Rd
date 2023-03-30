@@ -45,7 +45,7 @@ posp_normal(
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-The output of the the function \code{posp_normal()} is the probability of a successful program, when going to phase III.
+The output of the function \code{posp_normal()} is the probability of a successful program, when going to phase III.
 }
 \description{
 After getting the "go"-decision to go to phase III, i.e. our results of phase II are over the predefined threshold \code{kappa}, this function

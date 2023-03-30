@@ -32,7 +32,7 @@ EPsProg23(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, ymin)
 \item{ymin}{assumed minimal clinical relevant effect}
 }
 \value{
-The output of the the function \code{EPsProg23()} is the expected probability of a successful program.
+The output of the function \code{EPsProg23()} is the expected probability of a successful program.
 }
 \description{
 The function \code{EPsProg23()} calculates the expected probability of a successful program

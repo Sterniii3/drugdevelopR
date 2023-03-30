@@ -76,7 +76,7 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #' @param sigma2 standard deviation of second endpoint
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `pgo_multiple_normal()` is the probability to go to phase III.
+#' @return The output of the function `pgo_multiple_normal()` is the probability to go to phase III.
 #' @examples res <- pgo_multiple_normal(kappa = 0.1, n2 = 50,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
@@ -145,7 +145,7 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
 #' @param sigma2 standard deviation of second endpoint
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return the output of the the function Ess_multiple_normal is the expected number of participants in phase III
+#' @return the output of the function Ess_multiple_normal is the expected number of participants in phase III
 #' @examples res <- Ess_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
@@ -226,7 +226,7 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
 #' @param sigma2 standard deviation of second endpoint
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `posp_normal()` is the probability of a successful program, when going to phase III.
+#' @return The output of the function `posp_normal()` is the probability of a successful program, when going to phase III.
 #' @examples res <- posp_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
@@ -338,7 +338,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
 #' @param step22 upper boundary for effect size for second endpoint
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE then `Delta1` is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `EPsProg_multiple_normal()` is the expected probability of a successfull program, when going to phase III.
+#' @return The output of the function `EPsProg_multiple_normal()` is the expected probability of a successfull program, when going to phase III.
 #' @examples res <- EPsProg_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, sigma1 = 2, sigma2 = 1,
 #'                                step11 = 0, step12 = 0, step21 = 0.5, step22 = 0.5, 
@@ -463,7 +463,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `Delta1` is used as fixed effect
 #' @param rho correlation between the two endpoints
 #' @param relaxed relaxed or strict decision rule
-#' @return The output of the the function `utility_multiple_normal()` is the expected utility of the program.
+#' @return The output of the function `utility_multiple_normal()` is the expected utility of the program.
 #' @examples res <- utility_multiple_normal(kappa = 0.1, n2 = 50, 
 #'                                alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, 

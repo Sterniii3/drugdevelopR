@@ -45,7 +45,7 @@ Ess_multiple_normal(
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-the output of the the function Ess_multiple_normal is the expected number of participants in phase III
+the output of the function Ess_multiple_normal is the expected number of participants in phase III
 }
 \description{
 Given phase II results are promising enough to get the "go"-decision to go to phase III this function now calculates the expected sample size for phase III.

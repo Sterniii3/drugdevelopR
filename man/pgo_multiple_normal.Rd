@@ -39,7 +39,7 @@ pgo_multiple_normal(
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-The output of the the function \code{pgo_multiple_normal()} is the probability to go to phase III.
+The output of the function \code{pgo_multiple_normal()} is the probability to go to phase III.
 }
 \description{
 This function calculated the probability that we go to phase III, i.e. that results of phase II are promising enough to

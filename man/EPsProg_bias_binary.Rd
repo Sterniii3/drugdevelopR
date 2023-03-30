@@ -106,15 +106,15 @@ EPsProg_binary_R2(
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{p11} is used as fixed effect}
 }
 \value{
-The output of the the functions \code{EPsProg_binary_L()}, \code{EPsProg_binary_L2()}, \code{EPsProg_binary_R()} and \code{EPsProg_binary_R2()} is the expected probability of a successful program.
+The output of the functions \code{EPsProg_binary_L()}, \code{EPsProg_binary_L2()}, \code{EPsProg_binary_R()} and \code{EPsProg_binary_R2()} is the expected probability of a successful program.
 }
 \description{
 To discount for overoptimistic results in phase II when calculating the optimal sample size in phase III,
 it is necessary to use the following functions, which each describe a specific case:
 \itemize{
-\item \code{EPsProg_binary_L()}: calculates the expected probability of a successful for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval),
+\item \code{EPsProg_binary_L()}: calculates the expected probability of a successful for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval),
 however the go-decision is not affected by the bias adjustment
-\item \code{EPsProg_binary_L2()}: calculates the expected probability of a successful for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval)
+\item \code{EPsProg_binary_L2()}: calculates the expected probability of a successful for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval)
 when the go-decision is also affected by the bias adjustment
 \item \code{EPsProg_binary_R()}: calculates the expected probability of a successful for a multiplicative adjustment factor (i.e. use estimate with a retention factor),
 however the go-decision is not affected by the bias adjustment

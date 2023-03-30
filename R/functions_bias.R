@@ -15,9 +15,9 @@
 #' To discount for overoptimistic results in phase II when calculating the optimal sample size in phase III, 
 #' it is necessary to use the functions `Ed3_L()`, `Ed3_L2()`, `Ed3_R()` and `Ed3_R2()`.
 #' Each function describes a specific case:
-#' - `Ed3_L()`: calculates the optimal sample size for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval), 
+#' - `Ed3_L()`: calculates the optimal sample size for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval), 
 #' however the go-decision is not affected by the bias adjustment
-#' - `Ed3_L2()`: calculates the optimal sample size for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval)
+#' - `Ed3_L2()`: calculates the optimal sample size for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval)
 #' when the go-decision is also affected by the bias adjustment
 #' - `Ed3_R()`: calculates the optimal sample size for a multiplicative adjustment factor (i.e. use estimate with a retention factor), 
 #' however the go-decision is not affected by the bias adjustment
@@ -34,7 +34,7 @@
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
-#' @return The output of the the functions `Ed3_L`, `Ed3_L2`, `Ed3_R` and `Ed3_R2` is the expected number of participants in phase III. 
+#' @return The output of the functions `Ed3_L`, `Ed3_L2`, `Ed3_R` and `Ed3_R2` is the expected number of participants in phase III. 
 #' @examples res <-  Ed3_L(HRgo = 0.8, d2 = 50, Adj = 0.4,
 #'                         alpha = 0.025, beta = 0.1, w = 0.3, 
 #'                         hr1 =  0.69, hr2 = 0.81, 
@@ -105,9 +105,9 @@ Ed3_L<-function(HRgo, d2, Adj, alpha, beta, w, hr1, hr2, id1, id2, fixed){
 #' 
 #' To discount for overoptimistic results in phase II when calculating the optimal sample size in phase III, 
 #' it is necessary to use the following functions, which each describe a specific case:
-#' - `EPsProg_L()`: calculates the expected probability of a successful for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval), 
+#' - `EPsProg_L()`: calculates the expected probability of a successful for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval), 
 #' however the go-decision is not affected by the bias adjustment
-#' - `EPsProg_L2()`: calculates the expected probability of a successful for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval)
+#' - `EPsProg_L2()`: calculates the expected probability of a successful for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval)
 #' when the go-decision is also affected by the bias adjustment
 #' - `EPsProg_R()`: calculates the expected probability of a successful for a multiplicative adjustment factor (i.e. use estimate with a retention factor), 
 #' however the go-decision is not affected by the bias adjustment
@@ -126,7 +126,7 @@ Ed3_L<-function(HRgo, d2, Adj, alpha, beta, w, hr1, hr2, id1, id2, fixed){
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
-#' @return  The output of the the functions `EPsProg_L()`, `EPsProg_L2()`, `EPsProg_R()` and `EPsProg_R2()` is the expected probability of a successful program.
+#' @return  The output of the functions `EPsProg_L()`, `EPsProg_L2()`, `EPsProg_R()` and `EPsProg_R2()` is the expected probability of a successful program.
 #' @examples res <- EPsProg_L(HRgo = 0.8, d2 = 50, Adj = 0.4, 
 #'                            alpha = 0.025, beta = 0.1, 
 #'                            step1 = 1, step2 = 0.95, 
@@ -228,7 +228,7 @@ EPsProg_L<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1, 
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
-#' @return The output of the the functions `utility_L()`, `utility_L2()`, `utility_R()` and `utility_R2()` is the expected utility of the program.
+#' @return The output of the functions `utility_L()`, `utility_L2()`, `utility_R()` and `utility_R2()` is the expected utility of the program.
 #' @examples res <- utility_L(d2 = 50, HRgo = 0.8, Adj = 0.4, w = 0.3, 
 #'                                  hr1 =  0.69, hr2 = 0.81, 
 #'                                  id1 = 280, id2 = 420, xi2 = 0.7, xi3 = 0.7,
@@ -361,7 +361,7 @@ utility_L <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
 #' 
 #' In the case we do not only want do discount for overoptimistic results in phase II when calculating the sample size in phase III, 
 #' but also when deciding whether to go to phase III or not the functions `Epgo_L2` and `Epgo_R2` are necessary.
-#' The function `Epgo_L2` uses an additive adjustment parameter (i.e adjust the lower bound of the one-sided confidence interval),
+#' The function `Epgo_L2` uses an additive adjustment parameter (i.e. adjust the lower bound of the one-sided confidence interval),
 #' the function `Epgo_R2` uses a multiplicative adjustment parameter (i.e. use estimate with a retention factor)
 #' @param HRgo threshold value for the go/no-go decision rule
 #' @param d2 total number of events for phase II; must be even number
@@ -372,7 +372,7 @@ utility_L <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
-#' @return The output of the the functions `Epgo_L2` and `Epgo_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
+#' @return The output of the functions `Epgo_L2` and `Epgo_R2` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
 #' @examples res <- Epgo_L2(HRgo = 0.8, d2 = 50, Adj = 0.4,  
 #'                                 w = 0.3, hr1 = 0.69, hr2 = 0.81, 
 #'                                 id1 = 280, id2 = 420, fixed = FALSE)

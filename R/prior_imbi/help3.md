@@ -1,5 +1,5 @@
 #### Additional Information
-Optimal planning when assuming a prior distribution for the treatment effect can be done withe the help of the following R packages for programs 
+Optimal planning when assuming a prior distribution for the treatment effect can be done withe help of the following R packages for programs 
 * in the basic setting
 
 #### References

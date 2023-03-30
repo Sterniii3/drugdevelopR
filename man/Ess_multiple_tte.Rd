@@ -28,7 +28,7 @@ Ess_multiple_tte(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho)
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-the output of the the function \code{Ess_multiple_tte()} is the expected number of participants in phase III
+the output of the function \code{Ess_multiple_tte()} is the expected number of participants in phase III
 }
 \description{
 Given phase II results are promising enough to get the "go"-decision to go to phase III this function now calculates the expected sample size for phase III.

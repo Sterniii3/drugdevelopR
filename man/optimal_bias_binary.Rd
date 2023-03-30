@@ -92,9 +92,9 @@ also the threshold value for the decision rule.}
 
 \item{steplambda}{stepsize for the adjustment parameter lambda}
 
-\item{alphaCImin}{minimal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)}
+\item{alphaCImin}{minimal additive adjustment parameter alphaCI (i.e. adjust the lower bound of the one-sided confidence interval)}
 
-\item{alphaCImax}{maximal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)}
+\item{alphaCImax}{maximal additive adjustment parameter alphaCI (i.e. adjust the lower bound of the one-sided confidence interval)}
 
 \item{stepalphaCI}{stepsize for alphaCI}
 

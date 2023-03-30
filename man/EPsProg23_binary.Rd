@@ -48,7 +48,7 @@ EPsProg23_binary(
 \item{ymin}{assumed minimal clinical relevant effect}
 }
 \value{
-The output of the the function \code{EPsProg23_binary()} is the expected probability of a successful program.
+The output of the function \code{EPsProg23_binary()} is the expected probability of a successful program.
 }
 \description{
 The function \code{EPsProg23_binary()} calculates the expected probability of a successful program
