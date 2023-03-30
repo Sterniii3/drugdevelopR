@@ -140,8 +140,8 @@ Use the function `En3_normal()`. Supply 10 sets of the following input values:
 Calculate the function output for all 10 parameter sets and compare the results to the results of a SAS program implementing the sample size formula
 $$ \mathrm E[N_{3}^{\Delta}(\hat\Delta_2)\cdot 1_{\{ \hat\Delta_2 \geq \kappa\}}] = \int^{\infty}_{\kappa} N_{3}^{\Delta}(\hat\Delta_2) \cdot f(\hat\Delta_{2})   d\hat\Delta_{2} ,$$
 where
-$$N_3^{\Delta,\tau} = N_3^{\Delta,\tau}(\hat \Delta_2) = \frac{4\cdot(z_{1-\alpha}+z_{1-\beta})^2}{(\hat \Delta_2-\tau/\sigma)^2}$$
-and $f(\hat\Delta_{2})$ is the probability density function of $\mathcal{N}(\Delta,4/n_2)$, which is the fixed case (no prior distribution) of eq. 2.8 from [@preussler2020].
+$$N_3^{\Delta,\tau} = N_3^{\Delta,\tau}(\hat \Delta_2) = \frac{4\cdot(z_{1-\alpha}+z_{1-\beta})^2}{(\hat \Delta_2-\tau/\sigma)^2},$$
+where $\tau/\sigma = 0$ (i.e. testing for superiority) and $f(\hat\Delta_{2})$ is the probability density function of $\mathcal{N}(\Delta,4/n_2)$. This formula is the fixed case (no prior distribution) of eq. 2.8 from [@preussler2020].
 
 ### 01.14 (shows that req. 01.02, 01.13, 01.14 are met): {-}
 Use the function `Epgo_binary()`. Supply 10 sets of the following input values:
