@@ -129,7 +129,7 @@ Use the function `Epgo_normal()`. Supply 10 sets of the following input values:
 Calculate the function output for all 10 parameter sets and compare the results to the results of a SAS program implementing the probability formula
 $$p_{go}^{\Delta}= \mathrm{P}(\hat\Delta_2\geq \kappa|\Delta) = \Phi\left(\frac{\Delta - \kappa}{\sqrt{
 		4/n_2}}\right)$$
-from [@preussler2020], where $\Phi$ is the cumulative distribution function of the standard normal distribution.
+from [@preussler2020], where $\Phi$ is the cumulative distribution function of the standard normal distribution $\mathcal N(0,1)$.
 
 Use the function `En3_normal()`. Supply 10 sets of the following input values:
 
@@ -141,7 +141,7 @@ Calculate the function output for all 10 parameter sets and compare the results 
 $$ \mathrm E[N_{3}^{\Delta}(\hat\Delta_2)\cdot 1_{\{ \hat\Delta_2 \geq \kappa\}}] = \int^{\infty}_{\kappa} N_{3}^{\Delta}(\hat\Delta_2) \cdot f(\hat\Delta_{2})   d\hat\Delta_{2} ,$$
 where
 $$N_3^{\Delta,\tau} = N_3^{\Delta,\tau}(\hat \Delta_2) = \frac{4\cdot(z_{1-\alpha}+z_{1-\beta})^2}{(\hat \Delta_2-\tau/\sigma)^2},$$
-where $\tau/\sigma = 0$ (i.e. testing for superiority) and $f(\hat\Delta_{2})$ is the probability density function of $\mathcal{N}(\Delta,4/n_2)$. This formula is the fixed case (no prior distribution) of eq. 2.8 from [@preussler2020].
+where $\tau/\sigma = 0$ (i.e. testing for superiority) and $f(\hat\Delta_{2})$ is the probability density function of $\mathcal{N}(\mu = \Delta, \sigma^2 = 4/n_2)$. This formula is the fixed case (no prior distribution) of eq. 2.8 from [@preussler2020]. (Note: R and SAS use the standard deviation for specifying normal distribution. Here, we specify using the variance.)
 
 ### 01.14 (shows that req. 01.02, 01.13, 01.14 are met): {-}
 Use the function `Epgo_binary()`. Supply 10 sets of the following input values:
@@ -155,7 +155,7 @@ Use the function `Epgo_binary()`. Supply 10 sets of the following input values:
 
 Calculate the function output for all 10 parameter sets and compare the results to the results of a SAS program implementing the probability formula
 $$p_{go}^{\varrho}= \Phi\left(\frac{\varrho - \kappa}{\sqrt{2/n_2 \cdot(\frac{1-p_0}{p_0}+ \frac{1-p_1}{p_1}) }}\right)$$
-from [@preussler2020] where $\varrho = -\log(p_{11}/p_0)$ and $\kappa=-\log(RR_{go})$ and $\Phi$ is the cumulative distribution function of the standard normal distribution.
+from [@preussler2020] where $\varrho = -\log(p_{11}/p_0)$ and $\kappa=-\log(RR_{go})$ and $\Phi$ is the cumulative distribution function of the standard normal distribution $\mathcal N(0,1)$.
 
 Use the function `En3_binary()`. Supply 10 sets of the following input values:
 
@@ -167,20 +167,20 @@ Calculate the function output for all 10 parameter sets and compare the results 
 $$ \mathrm E[N_{3}^{\varrho}(\hat\varrho_2)\cdot 1_{\{ \hat\varrho_2 \geq \kappa\}}] = \int^{\infty}_{\kappa} N_{3}^{\varrho}(\hat\varrho_2) \cdot f(\hat\varrho_{2})   d\hat\varrho_{2} ,$$
 where
 $$N_3^{\varrho}(\hat\varrho_2) = \frac{2\cdot\bigg(z_{1-\alpha}\cdot\sqrt{\frac{2 \cdot (1-p)}{p}}+z_{1-\beta}\cdot \sqrt{\frac{1-p_0}{p_0}+\frac{1-p_1}{p_1}}\bigg)^2}{\hat \varrho_2^2},$$
-and $f(\hat\varrho_{2})$ is the probability density function of the normal distribution $\mathcal{N}(\mu = \varrho,\sigma^2=2/n_2\cdot(\frac{1-p_0}{p_0}+ \frac{1-p_1}{p_1}))$, which is the fixed case (no prior distribution) of eq. 2.8 from [@preussler2020].
+and $f(\hat\varrho_{2})$ is the probability density function of the normal distribution $\mathcal{N}(\mu = \varrho, \sigma^2 = 2/n_2\cdot(\frac{1-p_0}{p_0}+ \frac{1-p_1}{p_1}))$, which is the fixed case (no prior distribution) of eq. 2.8 from [@preussler2020].
 
 ### 01.15 (shows that req. 01.03, 01.13, 01.14 are met): {-}
 Use the function `Epgo_tte()`. Supply 10 sets of the following input values:
 
   * threshold values $HR_{go}$ as parameter `HRgo`,
   * number of events in phase II $d_2$ as parameter `d2`,
-  * assumed true treatment effects $\theta$ as parameter `hr1`,
+  * assumed true treatment effects $HR$ as parameter `hr1`,
   * `fixed=TRUE`, i.e. set the function to use fixed treatment effects not modelled on a prior distribution, and
   * `NULL` for all other input values of the function.
 
 Calculate the function output for all 10 parameter sets and compare the results to the results of a SAS program implementing the probability formula
 $$p_{go}^{\theta}=\mathrm P(\hat\theta_2 \geq \kappa|\theta)= \Phi\left(\frac{\theta-\kappa}{\sqrt{4/d_2}}\right),$$
-from [@preussler2020], where $\kappa=-\log(HR_{go}$ and $\Phi$ is the cumulative distribution function of the standard normal distribution.
+from [@preussler2020], where $\theta=-\log(HR)$, $\kappa=-\log(HR_{go})$ and $\Phi$ is the cumulative distribution function of the standard normal distribution $\mathcal N(0,1)$.
 
 Use the function `Ed3_tte()`. Supply 10 sets of the following input values:
 
@@ -192,5 +192,5 @@ Calculate the function output for all 10 parameter sets and compare the results 
 $$d_3 = \int^{\infty}_{\kappa} D_{3}(\hat\theta_2) \cdot f(\hat\theta_{2}) \ d\hat\theta_{2} $$
 with
 $$ D_3 =\frac{4 \cdot (z_{1-\alpha}+z_{1-\beta})^{2}}{\hat\theta^{2}_{2}}$$
-and $f(\hat\theta_{2})$ being probability density function of the normal distribution $\mathcal N(\kappa, \sqrt{4/d_2})$, which is the fixed case (no prior distribution) of eq. 2.7 from [@preussler2020].
+and $f(\hat\theta_{2})$ being probability density function of the normal distribution $\mathcal N(\mu = \theta, \sigma^2 = 4/d_2)$, which is the fixed case (no prior distribution) of eq. 2.7 from [@preussler2020].
 

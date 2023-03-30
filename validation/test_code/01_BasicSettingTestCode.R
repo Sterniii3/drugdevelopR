@@ -414,3 +414,22 @@ test_that("01.14", {
   expect_equal(Epgo_r, data$pgo_sas)
   expect_equal(En3_r, data$n3_sas)
 })
+#' @editor Lukas D Sauer
+#' @editDate 2023-03-30
+test_that("01.15", {
+  # Comparing results of Epgo_tte() and En3_tte() to SAS results
+  data <- haven::read_sas("./validation/ref/valref_tte.sas7bdat")
+  Epgo_r <- rep(0, nrow(data))
+  Ed3_r <- rep(0, nrow(data))
+  for(i in (1:nrow(data))){
+    Epgo_r[i] <- Epgo_tte(HRgo = data$HRgo_vec[i], d2 = data$d2_vec[i],
+                          hr1 = data$hr1_vec[i], hr2 = NULL,
+                          w = NULL, id1 = NULL, id2 = NULL, fixed = TRUE)
+    Ed3_r[i] <- Ed3_tte(HRgo = data$HRgo_vec[i], d2 = data$d2_vec[i],
+                        alpha = data$alpha_vec[i], beta = data$beta_vec[i],
+                        hr1 = data$hr1_vec[i], hr2 = NULL,
+                        w = NULL, id1 = NULL, id2 = NULL, fixed = TRUE)
+  }
+  expect_equal(Epgo_r, data$pgo_sas)
+  expect_equal(Ed3_r, data$d3_sas)
+})
