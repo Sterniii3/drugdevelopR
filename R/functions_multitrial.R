@@ -62,14 +62,14 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
       if(size == "small"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(0, 
+            ( mvtnorm::pmvnorm(lower = c(0, 
                                 0), 
                       upper = c(qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c),
                                 qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c)), 
                       mean = c(theta/sqrt(y^2/c), 
                                theta/sqrt(y^2/c)), 
                       sigma = SIGMA) - 
-                pmvnorm(lower = c(0, 
+                mvtnorm::pmvnorm(lower = c(0, 
                                   0), 
                         upper = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
@@ -85,14 +85,14 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
       if(size == "large"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(0, 
+            ( mvtnorm::pmvnorm(lower = c(0, 
                                 0), 
                       upper = c(Inf, 
                                 Inf), 
                       mean = c(theta/sqrt(y^2/c), 
                                theta/sqrt(y^2/c)), 
                       sigma = SIGMA) - 
-                pmvnorm(lower = c(0, 
+                mvtnorm::pmvnorm(lower = c(0, 
                                   0), 
                         upper = c(qnorm(1 - alpha) - 
                                     log(0.85)/sqrt(y^2/c), 
@@ -110,14 +110,14 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
       if(size == "all"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(0, 
+            ( mvtnorm::pmvnorm(lower = c(0, 
                                 0), 
                       upper = c(Inf, 
                                 Inf), 
                       mean = c(theta/sqrt(y^2/c), 
                                theta/sqrt(y^2/c)), 
                       sigma = SIGMA) - 
-                pmvnorm(lower = c(0, 
+                mvtnorm::pmvnorm(lower = c(0, 
                                   0), 
                         upper = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
@@ -135,7 +135,7 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
       if(size == "small"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                 qnorm(1 - alpha)), 
                       upper = c(qnorm(1 - alpha) - 
                                   log(0.85)/sqrt(y^2/c), 
@@ -144,7 +144,7 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                       mean = c(theta/sqrt(y^2/c), 
                                theta/sqrt(y^2/c)), 
                       sigma = SIGMA) - 
-                pmvnorm(lower = c(qnorm(1 - alpha) - 
+                mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                     log(0.95)/sqrt(y^2/c), 
                                   qnorm(1 - alpha) - 
                                     log(0.95)/sqrt(y^2/c)), 
@@ -164,7 +164,7 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
       if(size == "large"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(qnorm(1 - alpha) - 
+            ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                   log(0.85)/sqrt(y^2/c), 
                                 qnorm(1 - alpha) - 
                                   log(0.85)/sqrt(y^2/c)), 
@@ -182,7 +182,7 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
       if(size == "all"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                 qnorm(1 - alpha)), 
                       upper = c(Inf, 
                                 Inf), 
@@ -204,14 +204,14 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(0, 
+                ( mvtnorm::pmvnorm(lower = c(0, 
                                     0), 
                           upper = c(qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c),
                                     qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c)), 
                           mean = c(x/sqrt(y^2/c), 
                                    x/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                    pmvnorm(lower = c(0, 
+                    mvtnorm::pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
@@ -232,14 +232,14 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(0, 
+                ( mvtnorm::pmvnorm(lower = c(0, 
                                     0), 
                           upper = c(Inf, 
                                     Inf), 
                           mean = c(x/sqrt(y^2/c), 
                                    x/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                    pmvnorm(lower = c(0, 
+                    mvtnorm::pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha) - 
                                         log(0.85)/sqrt(y^2/c), 
@@ -262,14 +262,14 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(0, 
+                ( mvtnorm::pmvnorm(lower = c(0, 
                                     0), 
                           upper = c(Inf, 
                                     Inf), 
                           mean = c(x/sqrt(y^2/c), 
                                    x/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                    pmvnorm(lower = c(0, 
+                    mvtnorm::pmvnorm(lower = c(0, 
                                       0), 
                             upper = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
@@ -292,7 +292,7 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
                           upper = c(qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(y^2/c), 
@@ -301,7 +301,7 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                           mean = c(x/sqrt(y^2/c), 
                                    x/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                    pmvnorm(lower = c(qnorm(1 - alpha) - 
+                    mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                         log(0.95)/sqrt(y^2/c), 
                                       qnorm(1 - alpha) - 
                                         log(0.95)/sqrt(y^2/c)), 
@@ -326,7 +326,7 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(qnorm(1 - alpha) - 
+                ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(y^2/c), 
                                     qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(y^2/c)), 
@@ -349,7 +349,7 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
                           upper = c(Inf, 
                                     Inf), 
@@ -523,7 +523,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
       if(size == "small"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     0), 
                           upper = c(qnorm(1 - alpha) - 
@@ -536,7 +536,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                    theta/sqrt(y^2/c), 
                                    theta/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
                             upper = c(qnorm(1 - alpha) - 
@@ -558,7 +558,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
       if(size == "large"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(y^2/c), 
                                     qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(y^2/c), 
@@ -570,7 +570,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                    theta/sqrt(y^2/c), 
                                    theta/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                         log(0.85)/sqrt(y^2/c), 
                                       qnorm(1 - alpha) - 
                                         log(0.85)/sqrt(y^2/c), 
@@ -592,7 +592,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
       if(size == "all"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     0), 
                           upper = c(Inf, 
@@ -602,7 +602,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                    theta/sqrt(y^2/c), 
                                    theta/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
                             upper = c(Inf, 
@@ -623,7 +623,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
       if(size == "small"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
                           upper = c(qnorm(1 - alpha) - 
@@ -636,7 +636,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                    theta/sqrt(y^2/c), 
                                    theta/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha)), 
                             upper = c(qnorm(1 - alpha) - 
@@ -658,7 +658,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
       if(size == "large"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+            ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(y^2/c), 
                                     qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(y^2/c), 
@@ -670,7 +670,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                    theta/sqrt(y^2/c), 
                                    theta/sqrt(y^2/c)), 
                           sigma = SIGMA) - 
-                2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+                2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                         log(0.85)/sqrt(y^2/c), 
                                       qnorm(1 - alpha) - 
                                         log(0.85)/sqrt(y^2/c), 
@@ -692,7 +692,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
       if(size == "all"){
         return(integrate(function(y){
           sapply(y, function(y){
-            ( pmvnorm(lower = c(qnorm(1 - alpha), 
+            ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                 qnorm(1 - alpha), 
                                 qnorm(1 - alpha)), 
                       upper = c(Inf, 
@@ -717,7 +717,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         0), 
                               upper = c(qnorm(1 - alpha) - 
@@ -730,7 +730,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c)), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
                                           qnorm(1 - alpha)), 
                                 upper = c(qnorm(1 - alpha) - 
@@ -757,7 +757,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                           log(0.85)/sqrt(y^2/c), 
                                         qnorm(1 - alpha) - 
                                           log(0.85)/sqrt(y^2/c), 
@@ -769,7 +769,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c)), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                             log(0.85)/sqrt(y^2/c), 
                                           qnorm(1 - alpha) - 
                                             log(0.85)/sqrt(y^2/c), 
@@ -796,7 +796,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         0), 
                               upper = c(Inf, 
@@ -806,7 +806,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c)), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
                                           qnorm(1 - alpha)), 
                                 upper = c(Inf, 
@@ -832,7 +832,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha)), 
                               upper = c(qnorm(1 - alpha) - 
@@ -845,7 +845,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c)), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                           qnorm(1 - alpha), 
                                           qnorm(1 - alpha)), 
                                 upper = c(qnorm(1 - alpha) - 
@@ -872,7 +872,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( 3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+                ( 3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                           log(0.85)/sqrt(y^2/c), 
                                         qnorm(1 - alpha) - 
                                           log(0.85)/sqrt(y^2/c), 
@@ -884,7 +884,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                        x/sqrt(y^2/c), 
                                        x/sqrt(y^2/c)), 
                               sigma = SIGMA) - 
-                    2 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+                    2 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                             log(0.85)/sqrt(y^2/c), 
                                           qnorm(1 - alpha) - 
                                             log(0.85)/sqrt(y^2/c), 
@@ -911,7 +911,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
           sapply(x, function(x){
             integrate(function(y){
               sapply(y, function(y){
-                ( pmvnorm(lower = c(qnorm(1 - alpha), 
+                ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
                           upper = c(Inf, 
@@ -1028,7 +1028,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
     if(size == "small"){
       return(integrate(function(y){
         sapply(y, function(y){
-          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha), 
+          ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha), 
                                   qnorm(1 - alpha), 
                                   0), 
@@ -1041,7 +1041,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                  theta/sqrt(y^2/c), 
                                  theta/sqrt(y^2/c)), 
                         sigma = SIGMA)  - 
-              3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+              3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
@@ -1067,7 +1067,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
     if(size == "large"){
       return(integrate(function(y){
         sapply(y, function(y){
-          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
+          ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
                                   qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
                                   qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
                                   0), 
@@ -1080,7 +1080,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                  theta/sqrt(y^2/c), 
                                  theta/sqrt(y^2/c)), 
                         sigma = SIGMA)  - 
-              3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+              3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(y^2/c), 
                                     qnorm(1 - alpha) - 
                                       log(0.85)/sqrt(y^2/c), 
@@ -1106,7 +1106,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
     if(size == "all"){
       return(integrate(function(y){
         sapply(y, function(y){
-          ( 4 * pmvnorm(lower = c(qnorm(1 - alpha), 
+          ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha), 
                                   qnorm(1 - alpha), 
                                   0), 
@@ -1119,7 +1119,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                  theta/sqrt(y^2/c), 
                                  theta/sqrt(y^2/c)), 
                         sigma = SIGMA) - 
-              3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+              3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha), 
                                     qnorm(1 - alpha)), 
@@ -1145,7 +1145,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( 4 * pmvnorm(lower = c(qnorm(1 - alpha), 
+              ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       0), 
@@ -1158,7 +1158,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                      x/sqrt(y^2/c), 
                                      x/sqrt(y^2/c)), 
                             sigma = SIGMA)  - 
-                  3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                  3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha)), 
@@ -1189,7 +1189,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( 4 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+              ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                         log(0.85)/sqrt(y^2/c), 
                                       qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
                                       qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
@@ -1203,7 +1203,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                      x/sqrt(y^2/c), 
                                      x/sqrt(y^2/c)), 
                             sigma = SIGMA)  - 
-                  3 * pmvnorm(lower = c(qnorm(1 - alpha) - 
+                  3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                           log(0.85)/sqrt(y^2/c), 
                                         qnorm(1 - alpha) - 
                                           log(0.85)/sqrt(y^2/c), 
@@ -1234,7 +1234,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( 4 * pmvnorm(lower = c(qnorm(1 - alpha), 
+              ( 4 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       qnorm(1 - alpha), 
                                       0), 
@@ -1247,7 +1247,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
                                      x/sqrt(y^2/c), 
                                      x/sqrt(y^2/c)), 
                             sigma = SIGMA) - 
-                  3 * pmvnorm(lower = c(qnorm(1 - alpha), 
+                  3 * mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha), 
                                         qnorm(1 - alpha)), 
@@ -1381,7 +1381,7 @@ Epgo23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
     sapply(x, function(x){
       integrate(function(y){
         sapply(y, function(y){
-          2 * (pmvnorm(lower = c(qnorm(1 - alpha), 
+          2 * (mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                  0), 
                        upper = c(Inf, 
                                  qnorm(1 - alpha)), 
@@ -1448,14 +1448,14 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( pmvnorm(lower = c(qnorm(1 - alpha), 
+              ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
                         upper = c(qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
                                   qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c)), 
                         mean = c(x/sqrt(y^2/c), 
                                  x/sqrt(y^2/c)), 
                         sigma = SIGMA)  - 
-                  pmvnorm(lower = c(qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c), 
+                  mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c), 
                                     qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c)), 
                           upper = c(qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
                                     qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c)), 
@@ -1476,7 +1476,7 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( pmvnorm(lower = c(qnorm(1 - alpha) - 
+              ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                     log(0.85)/sqrt(y^2/c), 
                                   qnorm(1 - alpha) - 
                                     log(0.85)/sqrt(y^2/c)), 
@@ -1497,7 +1497,7 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              ( pmvnorm(lower = c(qnorm(1 - alpha), 
+              ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                   qnorm(1 - alpha)), 
                         upper = c(Inf, 
                                   Inf), 
@@ -1520,7 +1520,7 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              2 * ( pmvnorm(lower = c(qnorm(1 - alpha), 
+              2 * ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       0, 
                                       qnorm(1 - alpha)), 
                             upper = c(qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
@@ -1530,7 +1530,7 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
                                      x/sqrt(y^2/c), 
                                      x/sqrt(ymin^2/c)), 
                             sigma = SIGMA3)  - 
-                      pmvnorm(lower = c(qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c), 
+                      mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - log(0.95)/sqrt(y^2/c), 
                                         0, 
                                         qnorm(1 - alpha) - log(0.95)/sqrt(ymin^2/c)), 
                               upper = c(qnorm(1 - alpha) - log(0.85)/sqrt(y^2/c), 
@@ -1554,7 +1554,7 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              2 * ( pmvnorm(lower = c(qnorm(1 - alpha) - 
+              2 * ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha) - 
                                         log(0.85)/sqrt(y^2/c), 
                                       0, 
                                       qnorm(1 - alpha) - 
@@ -1580,7 +1580,7 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
         sapply(x, function(x){
           integrate(function(y){
             sapply(y, function(y){
-              2 * ( pmvnorm(lower = c(qnorm(1 - alpha), 
+              2 * ( mvtnorm::pmvnorm(lower = c(qnorm(1 - alpha), 
                                       0, 
                                       qnorm(1 - alpha)), 
                             upper = c(Inf, 

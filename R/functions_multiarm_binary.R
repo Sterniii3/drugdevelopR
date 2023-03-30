@@ -43,7 +43,7 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
   
   if(case==1){# no go
     
-    return(pmvnorm(lower = c(-Inf,-Inf),
+    return(mvtnorm::pmvnorm(lower = c(-Inf,-Inf),
                    upper = c(-log(RRgo),-log(RRgo)),
                    mean  = MEANY,
                    sigma = SIGMAY))
@@ -54,7 +54,7 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
       return(integrate(function(y1){
         sapply(y1,function(y1){ 
           integrate(function(y2){
-            dmvnorm(cbind(y1,y2),
+            mvtnorm::dmvnorm(cbind(y1,y2),
                     mean  = MEANY,
                     sigma = SIGMAY)
           }, -Inf, y1)$value   
@@ -67,7 +67,7 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
       return(integrate(function(y2){
         sapply(y2,function(y2){ 
           integrate(function(y1){
-            dmvnorm(cbind(y1,y2),
+            mvtnorm::dmvnorm(cbind(y1,y2),
                     mean  = MEANY,
                     sigma = SIGMAY)
           }, -Inf, y2)$value   
@@ -79,14 +79,14 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
   if(strategy==2){# all promising
     if(case==21){# treatment 1 is promising, treatment 2 is not
       
-      return(pmvnorm(lower=c(-log(RRgo),-Inf),
+      return(mvtnorm::pmvnorm(lower=c(-log(RRgo),-Inf),
                      upper=c(Inf,-log(RRgo)),
                      mean=MEANY,
                      sigma=SIGMAY))   
       
     }
     if(case==22){# treatment 2 is promising, treatment 1 is not
-      return(pmvnorm(lower=c(-Inf,-log(RRgo)),
+      return(mvtnorm::pmvnorm(lower=c(-Inf,-log(RRgo)),
                      upper=c(-log(RRgo),Inf),
                      mean=MEANY,
                      sigma=SIGMAY))         
@@ -96,7 +96,7 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
       return(integrate(function(y1){
         sapply(y1,function(y1){ 
           integrate(function(y2){
-            dmvnorm(cbind(y1,y2),
+            mvtnorm::dmvnorm(cbind(y1,y2),
                     mean  = MEANY,
                     sigma = SIGMAY)
           }, -log(RRgo), y1)$value   
@@ -109,7 +109,7 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
       return(integrate(function(y2){
         sapply(y2,function(y2){ 
           integrate(function(y1){
-            dmvnorm(cbind(y1,y2),
+            mvtnorm::dmvnorm(cbind(y1,y2),
                     mean  = MEANY,
                     sigma = SIGMAY)
           }, -log(RRgo),y2)$value   
@@ -192,7 +192,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
         sapply(y1,function(y1){ 
           integrate(function(y2){
             ss_binary(alpha,beta,p0,p11,y1,1)*
-              dmvnorm(cbind(y1,y2),
+              mvtnorm::dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
           }, -Inf, y1)$value   
@@ -206,7 +206,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
         sapply(y2,function(y2){ 
           integrate(function(y1){
             ss_binary(alpha,beta,p0,p11,y2,1)*
-              dmvnorm(cbind(y1,y2),
+              mvtnorm::dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
           },-Inf, y2)$value   
@@ -220,19 +220,19 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
     if(case==21){# treatment 1 is promising, treatment 2 is not
       
       f <- function(y){ 
-        ss_binary(alpha,beta,p0,p11,y[1],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
+        ss_binary(alpha,beta,p0,p11,y[1],1)*mvtnorm::dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(-log(RRgo), -Inf), upperLimit = c(Inf, -log(RRgo)))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(-log(RRgo), -Inf), upperLimit = c(Inf, -log(RRgo)))$integral)
       
     }
     if(case==22){# treatment 2 is promising, treatment 1 is not
       
       f <- function(y){ 
-        ss_binary(alpha,beta,p0,p11,y[2],1)*dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
+        ss_binary(alpha,beta,p0,p11,y[2],1)*mvtnorm::dmvnorm(c(y[1],y[2]), mean  = MEANY, sigma = SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(-Inf, -log(RRgo)), upperLimit = c(-log(RRgo), Inf))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(-Inf, -log(RRgo)), upperLimit = c(-log(RRgo), Inf))$integral)
       
     }
     if(case==31){# both treatments are promising, treatment 1 is better
@@ -241,7 +241,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
         sapply(y1,function(y1){ 
           integrate(function(y2){
             ss_binary(alpha,beta,p0,p11,y2,2)*
-              dmvnorm(cbind(y1,y2),
+              mvtnorm::dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
           }, -log(RRgo), y1)$value   
@@ -255,7 +255,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
         sapply(y2,function(y2){ 
           integrate(function(y1){
             ss_binary(alpha,beta,p0,p11,y1,2)*
-              dmvnorm(cbind(y1,y2),
+              mvtnorm::dmvnorm(cbind(y1,y2),
                       mean  = MEANY,
                       sigma = SIGMAY)
           }, -log(RRgo), y2)$value   
@@ -316,7 +316,7 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
                 pnorm(qnorm(1-alpha)-log(step1)/(sqrt((((1-p0)/p0) + ((1-p11)/p11))*y1^2/c1)),
                       mean=-log((p11/p0))/(sqrt((((1-p0)/p0) + ((1-p11)/p11))*y1^2/c1)),
                       sd=1) )*
-              dmvnorm(cbind(y1,y2),
+              mvtnorm::dmvnorm(cbind(y1,y2),
                       mean=MEANY,
                       sigma=SIGMAY) 
           }, -Inf,y1)$value
@@ -337,7 +337,7 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
                 pnorm(qnorm(1-alpha)-log(step1)/(sqrt((((1-p0)/p0) + ((1-p12)/p12))*y2^2/c2)),
                       mean=-log((p12/p0))/(sqrt((((1-p0)/p0) + ((1-p12)/p12))*y2^2/c2)),
                       sd=1) )*
-              dmvnorm(cbind(y1,y2),
+              mvtnorm::dmvnorm(cbind(y1,y2),
                       mean=MEANY,
                       sigma=SIGMAY) 
           }, -Inf,y2)$value
@@ -359,12 +359,12 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
             pnorm(qnorm(1-alpha)-log(step1)/(sqrt((((1-p0)/p0) + ((1-p11)/p11))*y[1]^2/c1)),
                   mean=-log((p11/p0))/(sqrt((((1-p0)/p0) + ((1-p11)/p11))*y[1]^2/c1)),
                   sd=1) )*
-          dmvnorm(c(y[1],y[2]),
+          mvtnorm::dmvnorm(c(y[1],y[2]),
                   mean=MEANY,
                   sigma=SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(-log(RRgo), -Inf), upperLimit = c(Inf, -log(RRgo)))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(-log(RRgo), -Inf), upperLimit = c(Inf, -log(RRgo)))$integral)
       
     }
     if(case==22){# treatment 2 is promising, treatment 1 is not 
@@ -378,35 +378,35 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
             pnorm(qnorm(1-alpha)-log(step1)/(sqrt((((1-p0)/p0) + ((1-p12)/p12))*y[2]^2/c2)),
                   mean=-log((p12/p0))/(sqrt((((1-p0)/p0) + ((1-p12)/p12))*y[2]^2/c2)),
                   sd=1) )*
-          dmvnorm(c(y[1],y[2]),
+          mvtnorm::dmvnorm(c(y[1],y[2]),
                   mean=MEANY,
                   sigma=SIGMAY)
       }
       
-      return(adaptIntegrate(f, lowerLimit = c(-Inf, -log(RRgo)), upperLimit = c(-log(RRgo), Inf))$integral)
+      return(cubature::adaptIntegrate(f, lowerLimit = c(-Inf, -log(RRgo)), upperLimit = c(-log(RRgo), Inf))$integral)
       
     }
     if(case==31){# both treatments are promising, treatment 1 is better
       
       SIGMAZ   = matrix(c(1,1/2,1/2,1), nrow = 2, ncol = 2)
-      calpha   = as.numeric(qmvnorm(1-alpha, mean=c(0,0), sigma= SIGMAZ)[1])
+      calpha   = as.numeric(mvtnorm::qmvnorm(1-alpha, mean=c(0,0), sigma= SIGMAZ)[1])
       c2        = (calpha*sqrt(2*(1-((p0 + p12)/2))/((p0 + p12)/2))+qnorm(1-beta)*sqrt(((1-p0)/p0) + ((1-p12)/p12)))^2  
       
       return(integrate(function(y1){ 
         sapply(y1,function(y1){
           integrate(function(y2){ 
             sapply(y2,function(y2){ # How to erase??
-              ( pmvnorm(lower=c(-Inf,-Inf),
+              ( mvtnorm::pmvnorm(lower=c(-Inf,-Inf),
                         upper=c(calpha-log(step2)/(sqrt((((1-p0)/p0) + ((1-p12)/p12))*y2^2/c2)),
                                 calpha-log(step2)/(sqrt((((1-p0)/p0) + ((1-p12)/p12))*y2^2/c2))),
                         mean=c(-log((p11/p0))/(sqrt((((1-p0)/p0) + ((1-p12)/p12))*y2^2/c2)),-log((p12/p0))/(sqrt((((1-p0)/p0) + ((1-p12)/p12))*y2^2/c2))),
                         sigma=SIGMAZ)-
-                  pmvnorm(lower=c(-Inf,-Inf),
+                  mvtnorm::pmvnorm(lower=c(-Inf,-Inf),
                           upper=c(calpha-log(step1)/(sqrt((((1-p0)/p0) + ((1-p12)/p12))*y2^2/c2)),
                                   calpha-log(step1)/(sqrt((((1-p0)/p0) + ((1-p12)/p12))*y2^2/c2))),
                           mean=c(-log((p11/p0))/(sqrt((((1-p0)/p0) + ((1-p12)/p12))*y2^2/c2)),-log((p12/p0))/(sqrt((((1-p0)/p0) + ((1-p12)/p12))*y2^2/c2))),
                           sigma=SIGMAZ) )*
-                dmvnorm(c(y1,y2),
+                mvtnorm::dmvnorm(c(y1,y2),
                         mean=MEANY,
                         sigma=SIGMAY) 
             })
@@ -419,24 +419,24 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
     if(case==32){# both treatments are promising, treatment 2 is better
       
       SIGMAZ   = matrix(c(1,1/2,1/2,1), nrow = 2, ncol = 2) 
-      calpha   = as.numeric(qmvnorm(1-alpha, mean=c(0,0), sigma= SIGMAZ)[1])
+      calpha   = as.numeric(mvtnorm::qmvnorm(1-alpha, mean=c(0,0), sigma= SIGMAZ)[1])
       c1        = (calpha*sqrt(2*(1-((p0 + p11)/2))/((p0 + p11)/2))+qnorm(1-beta)*sqrt(((1-p0)/p0) + ((1-p11)/p11)))^2 
       
       return(integrate(function(y2){ 
         sapply(y2,function(y2){
           integrate(function(y1){ 
             sapply(y1,function(y1){ # How to erase??
-              ( pmvnorm(lower=c(-Inf,-Inf),
+              ( mvtnorm::pmvnorm(lower=c(-Inf,-Inf),
                         upper=c(calpha-log(step2)/(sqrt((((1-p0)/p0) + ((1-p11)/p11))*y1^2/c1)),
                                 calpha-log(step2)/(sqrt((((1-p0)/p0) + ((1-p11)/p11))*y1^2/c1))),
                         mean=c(-log((p11/p0))/(sqrt((((1-p0)/p0) + ((1-p11)/p11))*y1^2/c1)),-log((p12/p0))/(sqrt((((1-p0)/p0) + ((1-p11)/p11))*y1^2/c1))),
                         sigma=SIGMAZ)-
-                  pmvnorm(lower=c(-Inf,-Inf),
+                  mvtnorm::pmvnorm(lower=c(-Inf,-Inf),
                           upper=c(calpha-log(step1)/(sqrt((((1-p0)/p0) + ((1-p11)/p11))*y1^2/c1)),
                                   calpha-log(step1)/(sqrt((((1-p0)/p0) + ((1-p11)/p11))*y1^2/c1))),
                           mean=c(-log((p11/p0))/(sqrt((((1-p0)/p0) + ((1-p11)/p11))*y1^2/c1)),-log((p12/p0))/(sqrt((((1-p0)/p0) + ((1-p11)/p11))*y1^2/c1))),
                           sigma=SIGMAZ) )*
-                dmvnorm(c(y1,y2),
+                mvtnorm::dmvnorm(c(y1,y2),
                         mean=MEANY,
                         sigma=SIGMAY) 
             })

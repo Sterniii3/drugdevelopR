@@ -45,7 +45,7 @@ fmax<-function (z,mu1,mu2,sigma1,sigma2,rho){
 #'@export
 dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){ 
   covariancemat <- matrix(c(sigma1,rho*sqrt(sigma1)*sqrt(sigma2), rho*sqrt(sigma1)*sqrt(sigma2),sigma2),ncol=2)
-  ff <- dmvnorm(cbind(x,y), mean=c(mu1,mu2),sigma=covariancemat)
+  ff <- mvtnorm::dmvnorm(cbind(x,y), mean=c(mu1,mu2),sigma=covariancemat)
   return(ff)
 }
 
