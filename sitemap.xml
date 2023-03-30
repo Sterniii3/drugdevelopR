@@ -85,7 +85,13 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multitrial_normal.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_tte.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Ed3_bias.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/Ed3_tte.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/En3_bias_binary.html</loc>
@@ -112,6 +118,9 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_bias_normal.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_tte.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_binary.html</loc>
   </url>
   <url>
@@ -134,6 +143,9 @@
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/PsProg_tte.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/d3_skipII_tte.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/dbivanorm.html</loc>
@@ -214,6 +226,9 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/posp_normal.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/prior_tte.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/pw.html</loc>
   </url>
   <url>
@@ -266,5 +281,8 @@
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multitrial_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_tte.html</loc>
   </url>
 </urlset>
