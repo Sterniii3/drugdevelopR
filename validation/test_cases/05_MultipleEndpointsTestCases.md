@@ -39,7 +39,7 @@ Verify that the program returns an expected utility of 457.75 (in 10^5 \$) an op
 ### 05.02 (shows that req. 05.01, 05.04, 05.05 and 05.10 are met): {-}
 Use the function `optimal_multiple_tte`. Supply the same input values as in test case 05.01, however, set a sample size constraint of 500.
 
-Verify that the program returns an expected utility of 457.75 (in 10^5 \$) an optimal number of participants of 256 in phase II and 236 in phase III (i.e. 492 in total), hence, satisfying the constraint and an optimal threshold value of 0.86. 
+Verify that the program returns an expected utility of  843.36 (in 10^5 \$) an optimal number of participants of 256 in phase II and 236 in phase III (i.e. 492 in total), hence, satisfying the constraint and an optimal threshold value of 0.86. 
 
 ### 05.03 (shows that req. 05.01, 05.03, 05.06 and 05.09 are met): {-}
 Use the function `optimal_multiple_tte`. Supply the same input values as in test case 05.01, however, set the parameter fixed to be "TRUE". Redo this, however, the second time use a maximum cost limit of 600 (in 10^5 \$).
@@ -68,7 +68,7 @@ Use the function `optimal_multiple_normal()`. Supply the following input values 
   * the optimization region {0.02, 0.04,…, 0.10} for the threshold values,
   * expected gains of 100,000,000\$, 200,000,000\$ and 300,000,000\$ for each effect size, respectively,
   * twelve clusters for parallel computing,
-  * fixed costs of 10,00,000\$ in phase II and of 15,000,000\$ in phase III,
+  * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * `fixed=FALSE`, i.e. set the function to model the treatment effects on a prior distribution,
   * a correlation of 0.5 between the two treatment effects,
