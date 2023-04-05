@@ -278,27 +278,52 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
    }
   
   
-   else {
+   else {     
+    mu_prior_tte<-c(hr1, hr2) # true treatment effect theta
+    Sigma_prior_tte<-matrix(c(4/id1,rho*sqrt(4/id1)*sqrt(4/id2), rho*sqrt(4/id1)*sqrt(4/id2),4/id2),ncol=2)
+    nsim<-5000 
+    set.seed(61216)
+    rsamp <- MASS::mvrnorm(n = nsim, mu_prior_tte, Sigma_prior_tte, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
+     
+   for (m in 1:nsim){
+     hr1_prior <- rsamp[m,1]
+     hr2_prior <- rsamp[m,2]
+     EPsProg_multiple_tte_vector <- vector(length = nsim) 
+    
+     EPsProg_multiple_tte_vector[m] <- integrate(function(x){ 
+       sapply(x,function(x){ 
+         integrate(function(y){ 
+           sapply(y,function(y){
+             fmax(y,-log(hr1_prior)/sqrt((x^2/c)*(ec/hr[1])),-log(hr2_prior)/sqrt((x^2/c)*(ec/hr[2])),1,1,rho)*
+               fmax(x,-log(hr1_prior),-log(hr2_prior),sqrt(var1),sqrt(var2),rho)
+           })
+         },qnorm(1-alpha)-log(step1)/sqrt((x^2/c)),qnorm(1-alpha)-log(step2)/sqrt((x^2/c)))$value
+       })
+     }, -log(HRgo),Inf)$value
+     
+   } 
+   
+   return(sum(EPsProg_multiple_tte_vector))
 
-     return(integrate(function(u){
-        sapply(u,function(u){
-          integrate(function(v){
-            sapply(v,function(v){
-              integrate(function(x){ 
-                sapply(x,function(x){ 
-                  integrate(function(y){ 
-                    sapply(y,function(y){
-                      (fmax(y,-log(hr1)/sqrt((x^2/c)*(hr[ec]/hr[1])),-log(hr2)/sqrt((x^2/c)*(hr[ec]/hr[2])),1,1,rho)*
-                         fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)*
-                         dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho))
-                    })
-                  },qnorm(1-alpha)-log(step1)/sqrt((x^2/c)),qnorm(1-alpha)-log(step2)/sqrt((x^2/c)))$value
-                })
-              },-log(HRgo),Inf)$value
-            })
-          },-Inf,Inf)$value
-        })
-      },-Inf,Inf)$value)
+#     return(integrate(function(u){
+#        sapply(u,function(u){
+#          integrate(function(v){
+#            sapply(v,function(v){
+#              integrate(function(x){ 
+#                sapply(x,function(x){ 
+#                  integrate(function(y){ 
+#                    sapply(y,function(y){
+#                      (fmax(y,-log(hr1)/sqrt((x^2/c)*(hr[ec]/hr[1])),-log(hr2)/sqrt((x^2/c)*(hr[ec]/hr[2])),1,1,rho)*
+#                         fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)*
+#                         dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho))
+#                    })
+#                  },qnorm(1-alpha)-log(step1)/sqrt((x^2/c)),qnorm(1-alpha)-log(step2)/sqrt((x^2/c)))$value
+#                })
+#              },-log(HRgo),Inf)$value
+#            })
+#          },-Inf,Inf)$value
+#       })
+#      },-Inf,Inf)$value)
      
    }
 }
@@ -355,34 +380,67 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
       },-Inf,Inf)$value}
 
   else {
+    
+    mu_prior_tte<-c(hr1, hr2) # true treatment effect theta
+    Sigma_prior_tte<-matrix(c(4/id1,rho*sqrt(4/id1)*sqrt(4/id2), rho*sqrt(4/id1)*sqrt(4/id2),4/id2),ncol=2)
+    nsim<-1000 
+    set.seed(61216)
+    rsamp <- MASS::mvrnorm(n = nsim, mu_prior_tte, Sigma_prior_tte, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
+    
+    for (m in 1:nsim){
+      hr1_prior <- rsamp[m,1]
+      hr2_prior <- rsamp[m,2]
+      os1_tte_vector <- vector(length = nsim) 
+      os2_tte_vector <- vector(length = nsim)
+   
+      
+      os1_tte_vector[m] <- integrate(function(x){ 
+        sapply(x,function(x){ 
+          pnorm(-qnorm(1-alpha)-log(hr2_prior)/sqrt((x^2/c)*(hr[1]/hr[2])))*fmax(x,-log(hr1_prior),-log(hr2_prior),sqrt(var1),sqrt(var2),rho)
+        })
+      },-Inf,Inf)$value
+      
+      os1_tte <- sum(os1_tte_vector)
+      
+      os2_tte_vector[m] <- integrate(function(x){ 
+        sapply(x,function(x){ 
+          pnorm(-qnorm(1-alpha)-log(hr2_prior)/sqrt((x^2/c)*(hr[2]/hr[2])))*fmax(x,-log(hr1_prior),-log(hr2_prior),sqrt(var1),sqrt(var2),rho)
+        })
+      },-Inf,Inf)$value
+      
+      os2_tte <- sum(os2_tte_vector)
+      
+       }
+    
   
-      os1_tte<-integrate(function(u){
-      sapply(u,function(u){
-        integrate(function(v){
-          sapply(v,function(v){
-            integrate(function(x){ 
-              sapply(x,function(x){ 
-                pnorm(-qnorm(1-alpha)-log(hr2)/sqrt((x^2/c)*(hr[1]/hr[2])))*fmax(x,u,v,sqrt(var1),sqrt(var2),rho)*dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho)
-              })
-            },-Inf,Inf)$value
-          })
-        },-1000,1000)$value
-      })
-    },-1000,1000)$value
+#      os1_tte<-integrate(function(u){
+#      sapply(u,function(u){
+#        integrate(function(v){
+#          sapply(v,function(v){
+#            integrate(function(x){ 
+#              sapply(x,function(x){ 
+#                pnorm(-qnorm(1-alpha)-log(hr2)/sqrt((x^2/c)*(hr[1]/hr[2])))*fmax(x,u,v,sqrt(var1),sqrt(var2),rho)*dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho)
+#              })
+#            },-Inf,Inf)$value
+#          })
+#        },-1000,1000)$value
+#      })
+#    },-1000,1000)$value
 
-    os2_tte<-integrate(function(u){
-      sapply(u,function(u){
-        integrate(function(v){
-          sapply(v,function(v){
-            integrate(function(x){ 
-              sapply(x,function(x){ 
-                pnorm(-qnorm(1-alpha)-log(hr2)/sqrt((x^2/c)*(hr[2]/hr[2])))*fmax(x,u,v,sqrt(var1),sqrt(var2),rho)*dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho)
-              })
-            },-Inf,Inf)$value
-          })
-        },-1000,1000)$value
-      })
-    },-1000,1000)$value}
+#    os2_tte<-integrate(function(u){
+#      sapply(u,function(u){
+#        integrate(function(v){
+#          sapply(v,function(v){
+#            integrate(function(x){ 
+#              sapply(x,function(x){ 
+#                pnorm(-qnorm(1-alpha)-log(hr2)/sqrt((x^2/c)*(hr[2]/hr[2])))*fmax(x,u,v,sqrt(var1),sqrt(var2),rho)*dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho)
+#              })
+#            },-Inf,Inf)$value
+#          })
+#        },-1000,1000)$value
+#      })
+#  },-1000,1000)$value
+}
 
     return(os_tte <- os1_tte*pw(n2,hr1,hr2,id1,id2,fixed,rho) + os2_tte*(1-pw(n2,hr1,hr2,id1,id2,fixed,rho)))
 }
