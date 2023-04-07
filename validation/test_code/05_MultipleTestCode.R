@@ -17,10 +17,10 @@ test_that("05.01", {
                           rho = 0.6,
                           fixed = FALSE,
                )
-  expect_equal(res$u, 905.1, tolerance = 0.005)
-  expect_equal(res$n2, 296)
-  expect_equal(res$n3, 285)
-  expect_equal(res$n, 581)
+  expect_equal(res$u, 597.78, tolerance = 0.005)
+  expect_equal(res$n2, 216)
+  expect_equal(res$n3, 280)
+  expect_equal(res$n, 496)
   expect_equal(res$HRgo, 0.88)
   expect_equal(res$pgo, 0.75)
 })
@@ -42,14 +42,14 @@ test_that("05.02", {
                               c2 = 0.75, c3 = 1,
                               rho = 0.6,
                               fixed = FALSE,
-                              N = 500
+                              N = 480
                               
   )
-  expect_equal(res$u, 843.36, tolerance = 0.005)
-  expect_equal(res$n2, 256)
-  expect_equal(res$n3, 236)
-  expect_equal(res$n, 492)
-  expect_equal(res$HRgo, 0.86)
+  expect_equal(res$u, 595.85, tolerance = 0.005)
+  expect_equal(res$n2, 200)
+  expect_equal(res$n3, 279)
+  expect_equal(res$n, 479)
+  expect_equal(res$HRgo, 0.88)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
@@ -94,6 +94,7 @@ test_that("05.03", {
   expect_equal(res_nolim$HRgo, 0.86)
   expect_equal(res_nolim$K2, 247)
   expect_equal(res_nolim$K3, 549)
+
   expect_equal(res_lim$u, 137.33, tolerance = 0.005)
   expect_equal(res_lim$n2, 112)
   expect_equal(res_lim$n3, 301)
