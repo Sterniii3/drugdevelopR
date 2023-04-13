@@ -1,5 +1,5 @@
 ---
-title: "Multitrial Programs - Methods for Programs with Several Phase III Trials"
+title: "Multitrial - methods for programs with several phase III trials"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Multitrial}
