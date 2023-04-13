@@ -154,6 +154,7 @@ The program returns a data frame, with the following results:
 
 # Where to go from here
 In this article we presented examples when multiple endpoints are of interest.
+
 For more information on how to use the package, see:
 
 * [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html) See how the package works in a basic example.

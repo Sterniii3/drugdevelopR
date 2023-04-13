@@ -92,17 +92,17 @@ res
 
 The program returns output values for both adjustment methods. The most important ones for the multiplicative method are:
 
-* `res$Adj` is the optimal multiplicative adjustment parameter. In this setting, our optimal value is 0.95, indicating that a slight bias adjustment leads to a higher utility.
-* `res$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 210 events in phase II and 451 events in phase III, which correspond to 300 participants in phase II and 644 in phase III. 
-* `res$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.87 in phase II in order to proceed to phase III. 
-* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 587.18, i.e. we have an expected utility of 58 718 000\$. 
+* `res[1,]$Adj` is the optimal multiplicative adjustment parameter. In this setting, our optimal value is 0.95, indicating that a slight bias adjustment leads to a higher utility.
+* `res[1,]$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 210 events in phase II and 451 events in phase III, which correspond to 300 participants in phase II and 644 in phase III. 
+* `res[1,]$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.87 in phase II in order to proceed to phase III. 
+* `res[1,]$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 587.18, i.e. we have an expected utility of 58 718 000\$. 
 
 For the additive method we get:
 
-* `res$Adj` is the optimal additive adjustment parameter. In this setting, our optimal value is 0.5, indicating that no  bias adjustment leads to the highest utility. In this case, our results match the results of the basic setting as can be verified [here](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html).
-* `res$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 210 events in phase II and 441 events in phase III, which correspond to 300 participants in phase II and 630 in phase III. 
-* `res$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.88 in phase II in order to proceed to phase III. 
-* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 584.57, i.e. we have an expected utility of 58 457 000\$. 
+* `res[2,]$Adj` is the optimal additive adjustment parameter. In this setting, our optimal value is 0.5, indicating that no  bias adjustment leads to the highest utility. In this case, our results match the results of the basic setting as can be verified [here](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html).
+* `res[2,]$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 210 events in phase II and 441 events in phase III, which correspond to 300 participants in phase II and 630 in phase III. 
+* `res[2,]$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.88 in phase II in order to proceed to phase III. 
+* `res[2,]$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 584.57, i.e. we have an expected utility of 58 457 000\$. 
 
 # Where to go from here
 In this article we presented an example how methods to discount the results of phase II can be included for the purpose of bias adjustment. Note that this example is not restricted to time-to-event endpoints but can also be applied to binary and normally distributed endpoints using the functions `optimal_bias_binary` and `optimal_bias_normal`. For more information on how to use the package, see:
