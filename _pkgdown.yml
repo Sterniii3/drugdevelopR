@@ -16,7 +16,7 @@ articles:
   contents:
   - Fixed_and_prior_distributions
   - More_Parameters
-  - Interpreting the rest of the output
+  - Interpreting_Output
   
 - title: Complex settings
   contents:
@@ -24,3 +24,8 @@ articles:
   - Multitrial
   - Multiarm_Trials
   - Multiple_Endpoints
+  
+- title: Package validation
+  navbar: ~
+  contents:
+  - Package_validation

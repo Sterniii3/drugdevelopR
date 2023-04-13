@@ -7,11 +7,15 @@ usernames:
   johannescepicka:
     name: Johannes Cepicka
     title: BSc
-    role: Validation Lead, Responsible for Validation
+    role: Validation lead, package developer
   lukasdsauer:
     name: Lukas D Sauer
     title: MSc
-    role: Programmer of test cases
+    role: Validation lead, programmer of test cases
+  stellaerdmann:
+    name: Stella Erdmann
+    title: PhD
+    role: Project lead, package developer
 validation_files:
 - 01_BasicSetting.md
 - 02_BiasAdjustment.md
