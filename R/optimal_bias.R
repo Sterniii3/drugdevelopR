@@ -11,7 +11,7 @@
 #' @inheritParams optimal_bias_generic
 #' @param w weight for mixture prior distribution
 #' @param hr1 first assumed true treatment effect on HR scale for prior 
-#' distribution, see the \href{https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html}{vignette on priors}
+#' distribution, see the \href{https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html}{vignette on priors}
 #'  as well as the \href{https://web.imbi.uni-heidelberg.de/prior/}{Shiny app} for
 #'  more details concerning the definition of a prior distribution.
 #' @param hr2 second assumed true treatment effect on HR scale for prior distribution

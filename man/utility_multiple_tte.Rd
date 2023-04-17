@@ -42,9 +42,9 @@ utility_multiple_tte(
 
 \item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
-\item{hr1}{assumed true treatment effect on HR scale for treatment 1}
+\item{hr1}{assumed true treatment effect on HR scale for endpoint OS}
 
-\item{hr2}{assumed true treatment effect on HR scale for treatment 2}
+\item{hr2}{assumed true treatment effect on HR scale for endpoint PFS}
 
 \item{id1}{amount of information for \code{hr1} in terms of sample size}
 
@@ -87,7 +87,7 @@ utility_multiple_tte(
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-The output of the the function \code{utility_multiple_tte()} is the expected utility of the program.
+The output of the function \code{utility_multiple_tte()} is the expected utility of the program.
 }
 \description{
 The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program.
@@ -109,11 +109,3 @@ res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
                                b12 = 1000, b22 = 1500, b32 = 2000, 
                                fixed = TRUE, rho = 0.3)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

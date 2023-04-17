@@ -49,7 +49,7 @@ optimal_bias(
 \item{w}{weight for mixture prior distribution}
 
 \item{hr1}{first assumed true treatment effect on HR scale for prior
-distribution, see the \href{https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html}{vignette on priors}
+distribution, see the \href{https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html}{vignette on priors}
 as well as the \href{https://web.imbi.uni-heidelberg.de/prior/}{Shiny app} for
 more details concerning the definition of a prior distribution.}
 
@@ -85,9 +85,9 @@ also the threshold value for the decision rule.}
 
 \item{steplambda}{stepsize for the adjustment parameter lambda}
 
-\item{alphaCImin}{minimal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)}
+\item{alphaCImin}{minimal additive adjustment parameter alphaCI (i.e. adjust the lower bound of the one-sided confidence interval)}
 
-\item{alphaCImax}{maximal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)}
+\item{alphaCImax}{maximal additive adjustment parameter alphaCI (i.e. adjust the lower bound of the one-sided confidence interval)}
 
 \item{stepalphaCI}{stepsize for alphaCI}
 
@@ -138,7 +138,7 @@ The output of the function is a \code{data.frame} object containing the optimiza
 \item{d}{total expected number of events in the program; d = d2 + d3}\item{n2}{total sample size for phase II; rounded to the next even natural number}
 \item{n3}{total sample size for phase III; rounded to the next even natural number}
 \item{n}{total sample size in the program; n = n2 + n3}
-\item{K}{maximal costs of the program}
+\item{K}{maximal costs of the program (i.e. the cost constraint, if it is set or the sum K2+K3 if no cost constraint is set)}
 \item{pgo}{probability to go to phase III}
 \item{sProg}{probability of a successful program}
 \item{sProg1}{probability of a successful program with "small" treatment effect in phase III}

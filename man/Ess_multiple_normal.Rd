@@ -28,9 +28,9 @@ Ess_multiple_normal(
 
 \item{beta}{1-beta power for calculation of sample size for phase III}
 
-\item{Delta1}{assumed true treatment effect for standardized difference in means}
+\item{Delta1}{assumed true treatment effect given as difference in means for endpoint 1}
 
-\item{Delta2}{assumed true treatment effect for standardized difference in means}
+\item{Delta2}{assumed true treatment effect given as difference in means for endpoint 2}
 
 \item{in1}{amount of information for Delta1 in terms of sample size}
 
@@ -45,7 +45,7 @@ Ess_multiple_normal(
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-the output of the the function Ess_multiple_normal is the expected number of participants in phase III
+the output of the function Ess_multiple_normal is the expected number of participants in phase III
 }
 \description{
 Given phase II results are promising enough to get the "go"-decision to go to phase III this function now calculates the expected sample size for phase III.
@@ -54,13 +54,5 @@ The results of this function are necessary for calculating the utility of the pr
 \examples{
 res <- Ess_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-                               sigma1 = 8, sigma2 = 4, fixed = TRUE, rho = 0.3)
+                               sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

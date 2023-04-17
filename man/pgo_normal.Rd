@@ -15,7 +15,7 @@ pgo_normal(kappa, n2, Delta1, Delta2, strategy, case)
 
 \item{Delta2}{assumed true treatment effect for standardized difference in means}
 
-\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)}
+\item{strategy}{choose Strategy: 1 ("only best promising"), 2 ("all promising")}
 
 \item{case}{different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)}
 }
@@ -32,13 +32,5 @@ Given our parameters this function calculates the probability to go to phase III
 }
 }
 \examples{
-res <- pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625, strategy = 3, case = 31)
+res <- pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625, strategy = 2, case = 31)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-05-08
-}
-

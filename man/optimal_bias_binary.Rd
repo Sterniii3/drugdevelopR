@@ -92,9 +92,9 @@ also the threshold value for the decision rule.}
 
 \item{steplambda}{stepsize for the adjustment parameter lambda}
 
-\item{alphaCImin}{minimal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)}
+\item{alphaCImin}{minimal additive adjustment parameter alphaCI (i.e. adjust the lower bound of the one-sided confidence interval)}
 
-\item{alphaCImax}{maximal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)}
+\item{alphaCImax}{maximal additive adjustment parameter alphaCI (i.e. adjust the lower bound of the one-sided confidence interval)}
 
 \item{stepalphaCI}{stepsize for alphaCI}
 
@@ -138,7 +138,7 @@ The output of the function is a \code{data.frame} object containing the optimiza
 \item{Adj}{optimal adjustment parameter (lambda or alphaCI according to Method)}\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}\item{RRgo}{optimal threshold value for the decision rule to go to phase III}\item{n2}{total sample size for phase II; rounded to the next even natural number}
 \item{n3}{total sample size for phase III; rounded to the next even natural number}
 \item{n}{total sample size in the program; n = n2 + n3}
-\item{K}{maximal costs of the program}
+\item{K}{maximal costs of the program (i.e. the cost constraint, if it is set or the sum K2+K3 if no cost constraint is set)}
 \item{pgo}{probability to go to phase III}
 \item{sProg}{probability of a successful program}
 \item{sProg1}{probability of a successful program with "small" treatment effect in phase III}
@@ -181,11 +181,3 @@ cat(comment(res))                                        # displays the optimiza
 \references{
 IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

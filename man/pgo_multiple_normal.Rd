@@ -22,9 +22,9 @@ pgo_multiple_normal(
 
 \item{n2}{total sample size for phase II; must be even number}
 
-\item{Delta1}{assumed true treatment effect for standardized difference in means}
+\item{Delta1}{assumed true treatment effect given as difference in means for endpoint 1}
 
-\item{Delta2}{assumed true treatment effect for standardized difference in means}
+\item{Delta2}{assumed true treatment effect given as difference in means for endpoint 2}
 
 \item{in1}{amount of information for Delta1 in terms of sample size}
 
@@ -39,7 +39,7 @@ pgo_multiple_normal(
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-The output of the the function \code{pgo_multiple_normal()} is the probability to go to phase III.
+The output of the function \code{pgo_multiple_normal()} is the probability to go to phase III.
 }
 \description{
 This function calculated the probability that we go to phase III, i.e. that results of phase II are promising enough to
@@ -48,13 +48,5 @@ get a successful drug development program. Successful means that both endpoints 
 \examples{
 res <- pgo_multiple_normal(kappa = 0.1, n2 = 50,
                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-                               sigma1 = 8, sigma2 = 4, fixed = TRUE, rho = 0.3)
+                               sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

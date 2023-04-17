@@ -30,12 +30,12 @@ Epgo_R2(HRgo, d2, Adj, w, hr1, hr2, id1, id2, fixed)
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
 }
 \value{
-The output of the the functions \code{Epgo_L2} and \code{Epgo_R2} is the expected number of participants in phase III with conservative decision rule and sample size calculation.
+The output of the functions \code{Epgo_L2} and \code{Epgo_R2} is the expected probability to go to phase III with conservative decision rule and sample size calculation.
 }
 \description{
 In the case we do not only want do discount for overoptimistic results in phase II when calculating the sample size in phase III,
 but also when deciding whether to go to phase III or not the functions \code{Epgo_L2} and \code{Epgo_R2} are necessary.
-The function \code{Epgo_L2} uses an additive adjustment parameter (i.e adjust the lower bound of the one-sided confidence interval),
+The function \code{Epgo_L2} uses an additive adjustment parameter (i.e. adjust the lower bound of the one-sided confidence interval),
 the function \code{Epgo_R2} uses a multiplicative adjustment parameter (i.e. use estimate with a retention factor)
 }
 \examples{
@@ -46,11 +46,3 @@ res <- Epgo_L2(HRgo = 0.8, d2 = 50, Adj = 0.4,
                                 w = 0.3, hr1 = 0.69, hr2 = 0.81, 
                                 id1 = 280, id2 = 420, fixed = FALSE)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-11-04
-}
-

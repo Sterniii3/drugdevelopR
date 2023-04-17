@@ -34,16 +34,10 @@ Strategy: Only best promising treatment goes to phase III
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Bias_adjustment.html">Methods for Discounting of Phase II Results - Bias Adjustment</a>
-    <a class="dropdown-item" href="../articles/Binary_distributed_outcomes.html">Binary Distributed Outcome Variables</a>
-    <a class="dropdown-item" href="../articles/Fixed_and_prior_distributions.html">Fixed effects and prior distributions</a>
-    <a class="dropdown-item" href="../articles/Interpreting_Output.html">Interpreting the Rest of the Output</a>
-    <a class="dropdown-item" href="../articles/introduction-to-drugdevelopR.html">Introduction to planning phase II and phase III trials with drugdevelopR</a>
-    <a class="dropdown-item" href="../articles/More_Parameters.html">More Parameters to Adapt to Specific Settings and Individual Needs</a>
-    <a class="dropdown-item" href="../articles/Multiarm_Trials.html">Multiarm - Methods for Multi-Arm Programs</a>
-    <a class="dropdown-item" href="../articles/Multiple_Endpoints.html">Multiple_Endpoints</a>
-    <a class="dropdown-item" href="../articles/Multitrial.html">Multitrial Programs - Methods for Programs with Several Phase III Trials</a>
-    <a class="dropdown-item" href="../articles/Time-to-event_outcomes.html">Time-to-event Outcome Variables</a>
+    <a class="dropdown-item" href="../articles/Introduction-to-drugdevelopR.html">Introduction to planning phase II and phase III trials with drugdevelopR</a>
+    <a class="dropdown-item" href="../articles/Package_validation.html">Package validation</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="../articles/index.html">More articles...</a>
   </div>
 </li>
 <li class="nav-item">
@@ -103,7 +97,7 @@ Strategy: Only best promising treatment goes to phase III
 
 
 <dt>strategy</dt>
-<dd><p>choose Strategy: 1 ("only best promising"), 2 ("all promising") or 3 (both)</p></dd>
+<dd><p>choose Strategy: 1 ("only best promising"), 2 ("all promising")</p></dd>
 
 
 <dt>case</dt>
@@ -116,18 +110,10 @@ Strategy: Only best promising treatment goes to phase III
 
 <p>The function pgo_binary() returns the probability to go to phase III.</p>
     </div>
-    <div class="section level2">
-    <h2 id="last-edited-by">Last Edited By<a class="anchor" aria-label="anchor" href="#last-edited-by"></a></h2>
-    <p>Johannes Cepicka</p>
-    </div>
-    <div class="section level2">
-    <h2 id="last-edit-date">Last Edit Date<a class="anchor" aria-label="anchor" href="#last-edit-date"></a></h2>
-    <p>2022-04-23</p>
-    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">pgo_binary</span><span class="op">(</span>RRgo <span class="op">=</span> <span class="fl">0.8</span> ,n2 <span class="op">=</span> <span class="fl">50</span> ,p0 <span class="op">=</span> <span class="fl">0.6</span>, p11 <span class="op">=</span>  <span class="fl">0.3</span>, p12 <span class="op">=</span> <span class="fl">0.5</span>,strategy <span class="op">=</span> <span class="fl">3</span>, case <span class="op">=</span> <span class="fl">31</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">pgo_binary</span><span class="op">(</span>RRgo <span class="op">=</span> <span class="fl">0.8</span> ,n2 <span class="op">=</span> <span class="fl">50</span> ,p0 <span class="op">=</span> <span class="fl">0.6</span>, p11 <span class="op">=</span>  <span class="fl">0.3</span>, p12 <span class="op">=</span> <span class="fl">0.5</span>,strategy <span class="op">=</span> <span class="fl">2</span>, case <span class="op">=</span> <span class="fl">31</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

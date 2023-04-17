@@ -27,3 +27,23 @@ test_that("Utility increases with higher treatment effect", {
                                        steps1 = 0, stepm1 = 0.5,  stepl1 = 0.8,
                                        b1 = 1000, b2 = 2000, b3 = 3000)[1])
 })
+
+test_that("pgo_normal: Setting 1.21", {
+  expect_equal(pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625,
+                          strategy = 1, case = 21), 0.22276717)
+})
+
+test_that("pgo_normal: Setting 1.22", {
+  expect_equal(pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625,
+                          strategy = 1, case = 22), 0.73960867)
+})
+
+test_that("pgo_normal: Setting 2.31", {
+  expect_equal(pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625,
+                          strategy = 2, case = 31), 0.19557404)
+})
+
+test_that("pgo_normal: Setting 2.32", {
+  expect_equal(pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625,
+                          strategy = 2, case = 32), 0.56359338)
+})

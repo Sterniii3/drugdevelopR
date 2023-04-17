@@ -45,7 +45,7 @@ fmax<-function (z,mu1,mu2,sigma1,sigma2,rho){
 #'@export
 dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){ 
   covariancemat <- matrix(c(sigma1,rho*sqrt(sigma1)*sqrt(sigma2), rho*sqrt(sigma1)*sqrt(sigma2),sigma2),ncol=2)
-  ff <- dmvnorm(cbind(x,y), mean=c(mu1,mu2),sigma=covariancemat)
+  ff <- mvtnorm::dmvnorm(cbind(x,y), mean=c(mu1,mu2),sigma=covariancemat)
   return(ff)
 }
 
@@ -56,13 +56,13 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #' get a successful drug development program. Successful means that at least one endpoint shows a statistically significant positive treatment effect in phase III. 
 #' @param HRgo threshold value for the go/no-go decision rule; 
 #' @param n2 total sample size for phase II; must be even number
-#' @param hr1 assumed true treatment effect on HR scale for treatment 1
-#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param hr1 assumed true treatment effect on HR scale for endpoint OS
+#' @param hr2 assumed true treatment effect on HR scale for endpoint PFS
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
-#' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
+#' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `pgo_multiple_tte()` is the probability to go to phase III.
+#' @return The output of the function `pgo_multiple_tte()` is the probability to go to phase III.
 #' @examples res <- pgo_multiple_tte(HRgo = 0.8, n2 = 50,
 #'                                hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
 #'                                fixed = TRUE, rho = 0.3)
@@ -115,13 +115,13 @@ pgo_multiple_tte<-function(HRgo,n2,hr1,hr2,id1,id2,fixed,rho){
 #' @param n2 total sample size for phase II; must be even number
 #' @param beta `1-beta` power for calculation of the number of events for phase III by Schoenfeld (1981) formula
 #' @param alpha one- sided significance level
-#' @param hr1 assumed true treatment effect on HR scale for treatment 1
-#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param hr1 assumed true treatment effect on HR scale for endpoint OS
+#' @param hr2 assumed true treatment effect on HR scale for endpoint PFS
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
-#' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
+#' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
-#' @return the output of the the function `Ess_multiple_tte()` is the expected number of participants in phase III
+#' @return the output of the function `Ess_multiple_tte()` is the expected number of participants in phase III
 #' @examples res <- Ess_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
 #'                                hr1 = 0.75, hr2 = 0.80, 
 #'                                id1 = 300, id2 = 600, 
@@ -175,13 +175,13 @@ Ess_multiple_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #' 
 #' Z=X-Y is normally distributed with expectation mu_x - mu_y and variance sigma_x + sigma_y- 2 rho sdx sdy
 #' @param n2 total sample size for phase II; must be even number
-#' @param hr1 assumed true treatment effect on HR scale for treatment 1
-#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param hr1 assumed true treatment effect on HR scale for endpoint OS
+#' @param hr2 assumed true treatment effect on HR scale for endpoint PFS
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
-#' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
+#' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `pw()` is the probability that endpoint one has a better result than endpoint two
+#' @return The output of the function `pw()` is the probability that endpoint one has a better result than endpoint two
 #' @examples res <- pw(n2 = 50,hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
 #'                     fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
@@ -218,12 +218,12 @@ else {
 }
 
 #E(n3|GO)
-expn3go_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
-  
-  expe3go_tte<-Ess_multiple_tte(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho)/pgo_multiple_tte(HRgo,n2,hr1,hr2,id1,id2,fixed,rho)
-  
-  return(expe3go_tte/hr[1])*pw(n2,hr1,hr2,id1,id2,fixed,rho)+(expe3go_tte/hr[2])*(1-pw(n2,hr1,hr2,id1,id2,fixed,rho))
-  }
+# expn3go_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
+#  hr <- c(hr1,hr2)
+#  expe3go_tte<-Ess_multiple_tte(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho)/pgo_multiple_tte(HRgo,n2,hr1,hr2,id1,id2,fixed,rho)
+#  
+#  return(expe3go_tte/hr[1])*pw(n2,hr1,hr2,id1,id2,fixed,rho)+(expe3go_tte/hr[2])*(1-pw(n2,hr1,hr2,id1,id2,fixed,rho))
+#  }
   
   
 #' Expected probability of a successful program for multiple endpoints in a time-to-event setting 
@@ -235,15 +235,15 @@ expn3go_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
 #' @param ec control arm event rate for phase II and III
-#' @param hr1 assumed true treatment effect on HR scale for treatment 1
-#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param hr1 assumed true treatment effect on HR scale for endpoint OS
+#' @param hr2 assumed true treatment effect on HR scale for endpoint PFS
 #' @param id1 amount of information for `hr1` in terms of sample size
 #' @param id2 amount of information for `hr2` in terms of sample size
 #' @param step1 lower boundary for effect size
 #' @param step2 upper boundary for effect size
-#' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
+#' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `EPsProg_multiple_tte()` is the expected probability of a successful program, when going to phase III.
+#' @return The output of the function `EPsProg_multiple_tte()` is the expected probability of a successful program, when going to phase III.
 #' @examples res <- EPsProg_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                ec = 1, hr1 = 0.75, hr2 = 0.80,
 #'                                id1 = 300, id2 = 600, 
@@ -278,27 +278,52 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
    }
   
   
-   else {
+   else {     
+    mu_prior_tte<-c(hr1, hr2) # true treatment effect theta
+    Sigma_prior_tte<-matrix(c(4/id1,rho*sqrt(4/id1)*sqrt(4/id2), rho*sqrt(4/id1)*sqrt(4/id2),4/id2),ncol=2)
+    nsim<-5000 
+    set.seed(61216)
+    rsamp <- MASS::mvrnorm(n = nsim, mu_prior_tte, Sigma_prior_tte, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
+     
+   for (m in 1:nsim){
+     hr1_prior <- rsamp[m,1]
+     hr2_prior <- rsamp[m,2]
+     EPsProg_multiple_tte_vector <- vector(length = nsim) 
+    
+     EPsProg_multiple_tte_vector[m] <- integrate(function(x){ 
+       sapply(x,function(x){ 
+         integrate(function(y){ 
+           sapply(y,function(y){
+             fmax(y,-log(hr1_prior)/sqrt((x^2/c)*(ec/hr[1])),-log(hr2_prior)/sqrt((x^2/c)*(ec/hr[2])),1,1,rho)*
+               fmax(x,-log(hr1_prior),-log(hr2_prior),sqrt(var1),sqrt(var2),rho)
+           })
+         },qnorm(1-alpha)-log(step1)/sqrt((x^2/c)),qnorm(1-alpha)-log(step2)/sqrt((x^2/c)))$value
+       })
+     }, -log(HRgo),Inf)$value
+     
+   } 
+   
+   return(sum(EPsProg_multiple_tte_vector))
 
-     return(integrate(function(u){
-        sapply(u,function(u){
-          integrate(function(v){
-            sapply(v,function(v){
-              integrate(function(x){ 
-                sapply(x,function(x){ 
-                  integrate(function(y){ 
-                    sapply(y,function(y){
-                      (fmax(y,-log(hr1)/sqrt((x^2/c)*(hr[ec]/hr[1])),-log(hr2)/sqrt((x^2/c)*(hr[ec]/hr[2])),1,1,rho)*
-                         fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)*
-                         dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho))
-                    })
-                  },qnorm(1-alpha)-log(step1)/sqrt((x^2/c)),qnorm(1-alpha)-log(step2)/sqrt((x^2/c)))$value
-                })
-              },-log(HRgo),Inf)$value
-            })
-          },-Inf,Inf)$value
-        })
-      },-Inf,Inf)$value)
+#     return(integrate(function(u){
+#        sapply(u,function(u){
+#          integrate(function(v){
+#            sapply(v,function(v){
+#              integrate(function(x){ 
+#                sapply(x,function(x){ 
+#                  integrate(function(y){ 
+#                    sapply(y,function(y){
+#                      (fmax(y,-log(hr1)/sqrt((x^2/c)*(hr[ec]/hr[1])),-log(hr2)/sqrt((x^2/c)*(hr[ec]/hr[2])),1,1,rho)*
+#                         fmax(x,-log(hr1),-log(hr2),sqrt(var1),sqrt(var2),rho)*
+#                         dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho))
+#                    })
+#                  },qnorm(1-alpha)-log(step1)/sqrt((x^2/c)),qnorm(1-alpha)-log(step2)/sqrt((x^2/c)))$value
+#                })
+#              },-log(HRgo),Inf)$value
+#            })
+#          },-Inf,Inf)$value
+#       })
+#      },-Inf,Inf)$value)
      
    }
 }
@@ -312,13 +337,13 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
 #' @param n2 total sample size for phase II; must be even number
 #' @param beta 1-beta power for calculation of the number of events for phase III by Schoenfeld (1981) formula
 #' @param alpha one- sided significance level
-#' @param hr1 assumed true treatment effect on HR scale for treatment 1
-#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param hr1 assumed true treatment effect on HR scale for endpoint OS
+#' @param hr2 assumed true treatment effect on HR scale for endpoint PFS
 #' @param id1 amount of information for `hr1` in terms of number of events
 #' @param id2 amount of information for `hr2` in terms of number of events
-#' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
+#' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `os_tte()` is the probability that endpoint OS significant.
+#' @return The output of the function `os_tte()` is the probability that endpoint OS significant.
 #' @examples res <- os_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
 #'                                hr1 = 0.75, hr2 = 0.80, 
 #'                                id1 = 300, id2 = 600, 
@@ -355,34 +380,67 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
       },-Inf,Inf)$value}
 
   else {
+    
+    mu_prior_tte<-c(hr1, hr2) # true treatment effect theta
+    Sigma_prior_tte<-matrix(c(4/id1,rho*sqrt(4/id1)*sqrt(4/id2), rho*sqrt(4/id1)*sqrt(4/id2),4/id2),ncol=2)
+    nsim<-1000 
+    set.seed(61216)
+    rsamp <- MASS::mvrnorm(n = nsim, mu_prior_tte, Sigma_prior_tte, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
+    
+    for (m in 1:nsim){
+      hr1_prior <- rsamp[m,1]
+      hr2_prior <- rsamp[m,2]
+      os1_tte_vector <- vector(length = nsim) 
+      os2_tte_vector <- vector(length = nsim)
+   
+      
+      os1_tte_vector[m] <- integrate(function(x){ 
+        sapply(x,function(x){ 
+          pnorm(-qnorm(1-alpha)-log(hr2_prior)/sqrt((x^2/c)*(hr[1]/hr[2])))*fmax(x,-log(hr1_prior),-log(hr2_prior),sqrt(var1),sqrt(var2),rho)
+        })
+      },-Inf,Inf)$value
+      
+      os1_tte <- sum(os1_tte_vector)
+      
+      os2_tte_vector[m] <- integrate(function(x){ 
+        sapply(x,function(x){ 
+          pnorm(-qnorm(1-alpha)-log(hr2_prior)/sqrt((x^2/c)*(hr[2]/hr[2])))*fmax(x,-log(hr1_prior),-log(hr2_prior),sqrt(var1),sqrt(var2),rho)
+        })
+      },-Inf,Inf)$value
+      
+      os2_tte <- sum(os2_tte_vector)
+      
+       }
+    
   
-      os1_tte<-integrate(function(u){
-      sapply(u,function(u){
-        integrate(function(v){
-          sapply(v,function(v){
-            integrate(function(x){ 
-              sapply(x,function(x){ 
-                pnorm(-qnorm(1-alpha)-log(hr2)/sqrt((x^2/c)*(hr[1]/hr[2])))*fmax(x,u,v,sqrt(var1),sqrt(var2),rho)*dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho)
-              })
-            },-Inf,Inf)$value
-          })
-        },-1000,1000)$value
-      })
-    },-1000,1000)$value
+#      os1_tte<-integrate(function(u){
+#      sapply(u,function(u){
+#        integrate(function(v){
+#          sapply(v,function(v){
+#            integrate(function(x){ 
+#              sapply(x,function(x){ 
+#                pnorm(-qnorm(1-alpha)-log(hr2)/sqrt((x^2/c)*(hr[1]/hr[2])))*fmax(x,u,v,sqrt(var1),sqrt(var2),rho)*dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho)
+#              })
+#            },-Inf,Inf)$value
+#          })
+#        },-1000,1000)$value
+#      })
+#    },-1000,1000)$value
 
-    os2_tte<-integrate(function(u){
-      sapply(u,function(u){
-        integrate(function(v){
-          sapply(v,function(v){
-            integrate(function(x){ 
-              sapply(x,function(x){ 
-                pnorm(-qnorm(1-alpha)-log(hr2)/sqrt((x^2/c)*(hr[2]/hr[2])))*fmax(x,u,v,sqrt(var1),sqrt(var2),rho)*dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho)
-              })
-            },-Inf,Inf)$value
-          })
-        },-1000,1000)$value
-      })
-    },-1000,1000)$value}
+#    os2_tte<-integrate(function(u){
+#      sapply(u,function(u){
+#        integrate(function(v){
+#          sapply(v,function(v){
+#            integrate(function(x){ 
+#              sapply(x,function(x){ 
+#                pnorm(-qnorm(1-alpha)-log(hr2)/sqrt((x^2/c)*(hr[2]/hr[2])))*fmax(x,u,v,sqrt(var1),sqrt(var2),rho)*dbivanorm(u,v,-log(hr1),-log(hr2),vartrue1,vartrue2,rho)
+#              })
+#            },-Inf,Inf)$value
+#          })
+#        },-1000,1000)$value
+#      })
+#  },-1000,1000)$value
+}
 
     return(os_tte <- os1_tte*pw(n2,hr1,hr2,id1,id2,fixed,rho) + os2_tte*(1-pw(n2,hr1,hr2,id1,id2,fixed,rho)))
 }
@@ -400,8 +458,8 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
 #' @param n2 total sample size for phase II; must be even number
 #' @param alpha significance level
 #' @param beta `1-beta` power for calculation of sample size for phase III
-#' @param hr1 assumed true treatment effect on HR scale for treatment 1
-#' @param hr2 assumed true treatment effect on HR scale for treatment 2
+#' @param hr1 assumed true treatment effect on HR scale for endpoint OS
+#' @param hr2 assumed true treatment effect on HR scale for endpoint PFS
 #' @param id1 amount of information for `hr1` in terms of sample size
 #' @param id2 amount of information for `hr2` in terms of sample size
 #' @param c2 variable per-patient cost for phase II
@@ -422,7 +480,7 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
 #' @param b32 expected gain for effect size category `"large"` if endpoint OS is not significant
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' @return The output of the the function `utility_multiple_tte()` is the expected utility of the program.
+#' @return The output of the function `utility_multiple_tte()` is the expected utility of the program.
 #' @examples res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
 #'                                hr1 = 0.75, hr2 = 0.80,
 #'                                id1 = 300, id2 = 600,

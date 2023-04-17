@@ -88,7 +88,7 @@ EPsProg4_normal(
 \item{fixed}{choose if true treatment effects are fixed or random}
 }
 \value{
-The output of the the function \code{EPsProg2_normal()}, \code{EPsProg3_normal()} and \code{EPsProg4_normal()} is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively).
+The output of the function \code{EPsProg2_normal()}, \code{EPsProg3_normal()} and \code{EPsProg4_normal()} is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively).
 }
 \description{
 These functions calculate the expected probability of a successful program given the parameters.
@@ -128,11 +128,3 @@ res <- EPsProg2_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
                                  a = 0.25, b = 0.75, 
                                  case = 3, size = "small", fixed = TRUE)                      
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

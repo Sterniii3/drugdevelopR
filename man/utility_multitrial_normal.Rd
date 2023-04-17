@@ -133,7 +133,7 @@ utility4_normal(
 \item{fixed}{choose if true treatment effects are fixed or random}
 }
 \value{
-The output of the the functions utility2_normal(), utility3_normal() and utility4_normal() is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
+The output of the functions utility2_normal(), utility3_normal() and utility4_normal() is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
 }
 \description{
 The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program.
@@ -162,11 +162,3 @@ res <- utility2_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
                                  case = 3, fixed = TRUE)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

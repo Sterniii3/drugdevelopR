@@ -39,7 +39,7 @@ EPsProg4(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, fixed)
 \item{fixed}{choose if true treatment effects are fixed or random}
 }
 \value{
-The output of the the function EPsProg2(), EPsProg3() and EPsProg4() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively)
+The output of the function EPsProg2(), EPsProg3() and EPsProg4() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively)
 }
 \description{
 These functions calculate the expected probability of a successful program given the parameters.
@@ -79,11 +79,3 @@ res <- EPsProg2(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1,
                                  id1 = 210, id2 = 420, case = 3, size = "small",
                                  fixed = TRUE)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

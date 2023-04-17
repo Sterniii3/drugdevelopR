@@ -13,7 +13,7 @@ test_that("01.01", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = FALSE, # use a prior distribution
@@ -47,7 +47,7 @@ test_that("01.02", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = TRUE, # use a prior distribution
@@ -79,7 +79,7 @@ test_that("01.03", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = FALSE, # use a prior distribution
@@ -110,7 +110,7 @@ test_that("01.04", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = FALSE, # use a prior distribution
@@ -143,7 +143,7 @@ test_that("01.05", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = FALSE, # use a prior distribution
@@ -174,7 +174,7 @@ test_that("01.06", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = FALSE, # use a prior distribution
@@ -203,7 +203,7 @@ test_that("01.07", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = FALSE, # use a prior distribution
@@ -228,7 +228,7 @@ test_that("01.08", {
                        rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
                        steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                        b1 = 1000, b2 = 3000, b3 = 5000,
-                       num_cl = 3,
+                       num_cl = 12,
                        c02 = 100, c03 = 150,
                        c2 = 0.75, c3 = 1,
                        fixed = TRUE,
@@ -254,7 +254,7 @@ test_that("01.09", {
                        rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,
                        steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                        b1 = 1000, b2 = 3000, b3 = 5000,
-                       num_cl = 3,
+                       num_cl = 12,
                        c02 = 100, c03 = 150,
                        c2 = 0.75, c3 = 1,
                        fixed = FALSE,
@@ -278,7 +278,7 @@ test_that("01.10", {
     kappamin = 0.01, kappamax = 0.5, stepkappa = 0.01,
     steps1 = 0, stepm1 = 0.375, stepl1 = 0.625,
     b1 = 625, b2 = 2000, b3 = 10000,
-    num_cl = 3,
+    num_cl = 12,
     c02 = 15, c03 = 20,
     c2 = 0.675, c3 = 0.72,
     fixed = FALSE,
@@ -303,7 +303,7 @@ test_that("01.11", {
     kappamin = 0.01, kappamax = 0.5, stepkappa = 0.01,
     steps1 = 0, stepm1 = 0.375, stepl1 = 0.625,
     b1 = 625, b2 = 2000, b3 = 10000,
-    num_cl = 3,
+    num_cl = 12,
     c02 = 15, c03 = 20,
     c2 = 0.675, c3 = 0.72,
     fixed = TRUE,
@@ -341,7 +341,7 @@ test_that("01.12", {
     steps1 = 1, stepm1 = 0.95, stepl1 = 0.85, # boundaries for the effect size
     # categories small, medium and large
     b1 = 1000, b2 = 3000, b3 = 5000, # expected gains for each effect size
-    num_cl = 3, # number of clusters
+    num_cl = 12, # number of clusters
     c02 = 100, c03 = 150, # fixed cost for phase II and phase III
     c2 = 0.75, c3 = 1, # variable per-patient cost in phase II and phase III
     fixed = FALSE, # use a prior distribution
@@ -376,3 +376,60 @@ test_that("01.12", {
   expect_true(time_elapsed_01_02_num_cl_1 > time_elapsed_01_02_num_cl_3)
 }
 )
+#' @editor Lukas D Sauer
+#' @editDate 2023-03-30
+test_that("01.13", {
+  # Comparing results of Epgo_normal() and En3_normal() to SAS results
+  data <- haven::read_sas("./validation/ref/valref_normal.sas7bdat")
+  Epgo_r <- rep(0, nrow(data))
+  En3_r <- rep(0, nrow(data))
+  for(i in (1:nrow(data))){
+    Epgo_r[i] <- Epgo_normal(kappa = data$kappa_vec[i], n2 = data$n2_vec[i],
+                            Delta1 = data$Delta1_vec[i], Delta2 = NULL,
+                            w = NULL, in1 = NULL, in2 = NULL, fixed = TRUE)
+    En3_r[i] <- En3_normal(kappa = data$kappa_vec[i], n2 = data$n2_vec[i],
+                           alpha = data$alpha_vec[i], beta = data$beta_vec[i],
+                           Delta1 = data$Delta1_vec[i], Delta2 = NULL,
+                           w = NULL, in1 = NULL, in2 = NULL, fixed = TRUE)
+  }
+  expect_equal(Epgo_r, data$pgo_sas)
+  expect_equal(En3_r, data$n3_sas)
+})
+#' @editor Lukas D Sauer
+#' @editDate 2023-03-30
+test_that("01.14", {
+  # Comparing results of Epgo_binary() and En3_binary() to SAS results
+  data <- haven::read_sas("./validation/ref/valref_binary.sas7bdat")
+  Epgo_r <- rep(0, nrow(data))
+  En3_r <- rep(0, nrow(data))
+  for(i in (1:nrow(data))){
+    Epgo_r[i] <- Epgo_binary(RRgo = data$RRgo_vec[i], n2 = data$n2_vec[i],
+                           p0 = data$p0_vec[i], p11 = data$p11_vec[i],
+                           p12 = NULL, in1 = NULL, in2 = NULL, fixed = TRUE)
+    En3_r[i] <- En3_binary(RRgo = data$RRgo_vec[i], n2 = data$n2_vec[i],
+                           alpha = data$alpha_vec[i], beta = data$beta_vec[i],
+                           p0 = data$p0_vec[i], w = NULL, p11 = data$p11_vec[i],
+                           p12 = NULL, in1 = NULL, in2 = NULL, fixed = TRUE)
+  }
+  expect_equal(Epgo_r, data$pgo_sas)
+  expect_equal(En3_r, data$n3_sas)
+})
+#' @editor Lukas D Sauer
+#' @editDate 2023-03-30
+test_that("01.15", {
+  # Comparing results of Epgo_tte() and En3_tte() to SAS results
+  data <- haven::read_sas("./validation/ref/valref_tte.sas7bdat")
+  Epgo_r <- rep(0, nrow(data))
+  Ed3_r <- rep(0, nrow(data))
+  for(i in (1:nrow(data))){
+    Epgo_r[i] <- Epgo_tte(HRgo = data$HRgo_vec[i], d2 = data$d2_vec[i],
+                          hr1 = data$hr1_vec[i], hr2 = NULL,
+                          w = NULL, id1 = NULL, id2 = NULL, fixed = TRUE)
+    Ed3_r[i] <- Ed3_tte(HRgo = data$HRgo_vec[i], d2 = data$d2_vec[i],
+                        alpha = data$alpha_vec[i], beta = data$beta_vec[i],
+                        hr1 = data$hr1_vec[i], hr2 = NULL,
+                        w = NULL, id1 = NULL, id2 = NULL, fixed = TRUE)
+  }
+  expect_equal(Epgo_r, data$pgo_sas)
+  expect_equal(Ed3_r, data$d3_sas)
+})

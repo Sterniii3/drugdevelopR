@@ -9,20 +9,20 @@ pw(n2, hr1, hr2, id1, id2, fixed, rho)
 \arguments{
 \item{n2}{total sample size for phase II; must be even number}
 
-\item{hr1}{assumed true treatment effect on HR scale for treatment 1}
+\item{hr1}{assumed true treatment effect on HR scale for endpoint OS}
 
-\item{hr2}{assumed true treatment effect on HR scale for treatment 2}
+\item{hr2}{assumed true treatment effect on HR scale for endpoint PFS}
 
 \item{id1}{amount of information for \code{hr1} in terms of number of events}
 
 \item{id2}{amount of information for \code{hr2} in terms of number of events}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random}
 
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-The output of the the function \code{pw()} is the probability that endpoint one has a better result than endpoint two
+The output of the function \code{pw()} is the probability that endpoint one has a better result than endpoint two
 }
 \description{
 This function calculated the probability that the treatment effect in endpoint one (or endpoint x) is larger than in endpoint two (or endpoint y), i.e. P(x>y) = P(x-y>0)
@@ -34,11 +34,3 @@ Z=X-Y is normally distributed with expectation mu_x - mu_y and variance sigma_x 
 res <- pw(n2 = 50,hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
                     fixed = FALSE, rho = 0.3)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

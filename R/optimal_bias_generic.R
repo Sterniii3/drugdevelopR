@@ -10,8 +10,8 @@
 #' @param lambdamin minimal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)
 #' @param lambdamax maximal multiplicative adjustment parameter lambda (i.e. use estimate with a retention factor)
 #' @param steplambda stepsize for the adjustment parameter lambda
-#' @param alphaCImin minimal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)
-#' @param alphaCImax maximal additive adjustment parameter alphaCI (i.e adjust the lower bound of the one-sided confidence interval)
+#' @param alphaCImin minimal additive adjustment parameter alphaCI (i.e. adjust the lower bound of the one-sided confidence interval)
+#' @param alphaCImax maximal additive adjustment parameter alphaCI (i.e. adjust the lower bound of the one-sided confidence interval)
 #' @param stepalphaCI stepsize for alphaCI
 optimal_bias_generic <- function(adj = "both",
                                  lambdamin = NULL, lambdamax = NULL, steplambda = NULL,

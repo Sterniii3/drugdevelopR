@@ -28,7 +28,7 @@ Use the function `optimal_bias()`. Supply the following input values to the func
   * the optimization region {0.7, 0.72, ..., 0.9} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
   * expected gains of 100,000,000\$, 200,000,000\$, and 300,000,000\$ for each effect size, respectively,
-  * three clusters for parallel computing,
+  * twelve clusters for parallel computing,
   * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * “fixed=FALSE”, i.e. set the function to use a prior distribution,
@@ -49,7 +49,7 @@ Furthermore, verify that the probability to go to phase III is 0.38.
 ### 02.03 (shows that req. 02.06, 02.12, 02.16 and 02.20 are met): {-}
 Use the function `optimal_bias`. Supply the same input values as in test case 02.01, however set the adjustment method to "both" and set the optimization region for the multiplicative adjustment parameter $\lambda$ to {0.5, 0.55, ..., 1} and the parameters for the additive method $\alpha_{CI}$ to {0.3, 0.325, ..., 0.5}. Furthermore, set a constraint for the maximum sample size to be 350.
 
-Verify that the program returns the results for both adjustment methods by returning the selected methods "multipl." and "add." as well as the calculated adjustment parameter. Hereby verify, that the results for the additive method are the same as in test case 02.01 as the sample size constraint is not binding and that the optimal sample size for the multiplicative method changes to 100 in phase II and 240 in phase III, (i.e a total of 340) and the expected utility changes to 98 (in 10^5\$).
+Verify that the program returns the results for both adjustment methods by returning the selected methods "multipl." and "add." as well as the calculated adjustment parameter. Hereby verify, that the results for the additive method are the same as in test case 02.01 as the sample size constraint is not binding and that the optimal sample size for the multiplicative method changes to 100 in phase II and 240 in phase III, (i.e. a total of 340) and the expected utility changes to 98 (in 10^5\$).
 
 ### 02.04 (shows that req. 02.13 and 02.20 are met): {-}
 Use the function `optimal_bias`. Supply the same input values as in test case 02.03 (including the optimization regions for the adjustment parameters and the constraint for the maximal sample size), however set the adjustment method to "all".
@@ -72,7 +72,7 @@ Use the function `optimal_bias`. Supply the same input values as in test case 02
 Verify that both adjustment methods and the case with no bias adjustment return the same results, i.e. an expected utility of 75.8 (in 10^5\$) and optimal sample sizes of 122 participants in phase II and 210 participants in phase III (i.e. a total sample size of 332).
 
 ### 02.08 (shows that req. 02.09 is met): {-}
-Use the function `optimal_bias`. Supply the same input values as in test case 02.01, however change the number of clusters for parallel computing to 1. 
+Use the function `optimal_bias`. Supply the same input values as in test case 02.01, however change the number of clusters for parallel computing to 6. 
 Verify that the computation time will increase compared to the setting in 02.01.
 
 ### 02.09 (shows that req. 02.01, 02.05 and 02.11 are met): {-}
@@ -85,7 +85,7 @@ Use the function `optimal_bias_normal()`. Supply the following input values to t
   * the optimization region {0.02, 0.04,…, 0.4} for the threshold values,
   * boundaries of 0, 0.5 and 0.8 for the effect size categories small, medium and large,
   * expected gains of 300,000,000\$, 800,000,000\$ and 1,000,000,000\$ for each effect size, respectively,
-  * three clusters for parallel computing,
+  * twelve clusters for parallel computing,
   * fixed costs of 1,500,000\$ in phase II and of 2,000,000\$ in phase III,
   * variable costs of 67,500\$ in phase II and 72,000\$ in phase III,
   * “fixed=FALSE”, i.e. set the function to model the treatment effects on a prior distribution,
@@ -115,12 +115,12 @@ Use the function ` optimal_bias_binary()`. Supply the following input values to 
   * the optimization region {0.7, 0.71, …, 0.9} for the threshold values,
   * boundaries of 1, 0.95 and 0.85 for the effect size categories small, medium and large,
   * expected gains of 100,000,000, 200,000,000, and 300,000,000 for each effect size, respectively,
-  * three clusters for parallel computing,
+  * twelve clusters for parallel computing,
   * fixed costs of 10,000,000\$ in phase II and of 15,000,000\$ in phase III,
   * variable costs of 75,000\$ in phase II and 100,000\$ in phase III,
   * “fixed=FALSE”, i.e. set the function to use treatment effects modeled on a prior distribution,
   * weight of 0.3 for the prior distribution,
-  * a sample size of 30 and 60 for the the two treatment effect estimate, respectively,
+  * a sample size of 30 and 60 for the two treatment effect estimate, respectively,
   * additive adjustment method "additive", and
   * an optimization region of {0.1, 0.125, ..., 0.5} for the adjustment parameter $\alpha_{CI}$.
 

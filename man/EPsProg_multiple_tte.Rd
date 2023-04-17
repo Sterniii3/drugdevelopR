@@ -31,9 +31,9 @@ EPsProg_multiple_tte(
 
 \item{ec}{control arm event rate for phase II and III}
 
-\item{hr1}{assumed true treatment effect on HR scale for treatment 1}
+\item{hr1}{assumed true treatment effect on HR scale for endpoint OS}
 
-\item{hr2}{assumed true treatment effect on HR scale for treatment 2}
+\item{hr2}{assumed true treatment effect on HR scale for endpoint PFS}
 
 \item{id1}{amount of information for \code{hr1} in terms of sample size}
 
@@ -43,12 +43,12 @@ EPsProg_multiple_tte(
 
 \item{step2}{upper boundary for effect size}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random}
 
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-The output of the the function \code{EPsProg_multiple_tte()} is the expected probability of a successful program, when going to phase III.
+The output of the function \code{EPsProg_multiple_tte()} is the expected probability of a successful program, when going to phase III.
 }
 \description{
 This function calculates the probability that our drug development program is successful.
@@ -61,11 +61,3 @@ res <- EPsProg_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.025, beta = 0.1,
                                step1 = 1, step2 = 0.95,
                                fixed = TRUE, rho = 0.3)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

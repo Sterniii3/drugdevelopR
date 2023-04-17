@@ -1,3 +1,5 @@
+
+
 test_that("Utility increases with lower hazard ratio", {
   expect_lte(utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
                                   hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600,
@@ -15,4 +17,11 @@ test_that("Utility increases with lower hazard ratio", {
                                   b11 = 1000, b21 = 2000, b31 = 3000,
                                   b12 = 1000, b22 = 1500, b32 = 2000,
                                   fixed = TRUE, rho = 0.3)[1])
+})
+
+test_that("probability to go to phase III increases with lower hazard ratio", {
+  expect_lte(pgo_multiple_tte(HRgo = 0.8, n2 = 50,  hr1 = 0.75, hr2 = 0.80,
+                              id1 = 300, id2 = 600, fixed = FALSE, rho = 0.3), 
+             pgo_multiple_tte(HRgo = 0.8, n2 = 50,  hr1 = 0.7, hr2 = 0.70,
+                              id1 = 300, id2 = 600, fixed = FALSE, rho = 0.3))
 })

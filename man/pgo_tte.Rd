@@ -36,11 +36,3 @@ Given our parameters this function calculates the probability to go to phase III
 \examples{
 res <- pgo_tte(HRgo = 0.8, n2 = 48 , ec = 0.6, hr1 = 0.7, hr2 = 0.8, strategy = 2, case = 31)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

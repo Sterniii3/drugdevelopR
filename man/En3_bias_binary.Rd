@@ -42,16 +42,16 @@ En3_binary_R2(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2, fixed)
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{p11} is used as fixed effect}
 }
 \value{
-The output of the the functions \code{En3_binary_L}, \code{En3_binary_L2}, \code{En3_binary_R} and \code{En3_binary_R2} is the expected number of participants in phase III.
+The output of the functions \code{En3_binary_L}, \code{En3_binary_L2}, \code{En3_binary_R} and \code{En3_binary_R2} is the expected number of participants in phase III.
 }
 \description{
 To discount for overoptimistic results in phase II when calculating the optimal sample size in phase III,
 it is necessary to use the functions \code{En3_binary_L()}, \code{En3_binary_L2()}, \code{En3_binary_R()} and \code{En3_binary_R2()}.
 Each function describes a specific case:
 \itemize{
-\item \code{En3_binary_L()}: calculates the optimal sample size for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval),
+\item \code{En3_binary_L()}: calculates the optimal sample size for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval),
 however the go-decision is not affected by the bias adjustment
-\item \code{En3_binary_L2()}: calculates the optimal sample size for an additive adjustment factor (i.e adjust the lower bound of the one-sided confidence interval)
+\item \code{En3_binary_L2()}: calculates the optimal sample size for an additive adjustment factor (i.e. adjust the lower bound of the one-sided confidence interval)
 when the go-decision is also affected by the bias adjustment
 \item \code{En3_binary_R()}: calculates the optimal sample size for a multiplicative adjustment factor (i.e. use estimate with a retention factor),
 however the go-decision is not affected by the bias adjustment
@@ -78,11 +78,3 @@ res <- En3_binary_L(RRgo = 0.8, n2 = 50, Adj = 0,
                               fixed = FALSE)
                               
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

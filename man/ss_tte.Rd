@@ -36,11 +36,3 @@ l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
 \examples{
 res <- ss_tte(alpha = 0.05, beta = 0.1, ec = 0.6, ek = 0.8, y = 0.5, l=1)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-05-08
-}
-

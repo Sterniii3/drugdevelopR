@@ -12,13 +12,15 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Depends:
-    mvtnorm,
     doParallel,
     parallel,
-    msm,
     foreach,
     iterators,
+Imports:
+    mvtnorm,
     cubature,
+    msm,
+    MASS,
     stats
 URL: https://github.com/Sterniii3/drugdevelopR,
     https://sterniii3.github.io/drugdevelopR/
@@ -32,5 +34,6 @@ Suggests:
     magrittr,
     devtools
 VignetteBuilder: knitr
-Additional_repositories: https://github.com/phuse-org/valtools 
+Additional_repositories: https://github.com/phuse-org/valtools
+Config/testthat/parallel: true
 Config/testthat/edition: 3

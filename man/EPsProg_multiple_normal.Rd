@@ -32,9 +32,9 @@ EPsProg_multiple_normal(
 
 \item{beta}{\code{1-beta} power for calculation of sample size for phase III}
 
-\item{Delta1}{assumed true treatment effect for standardized difference in means}
+\item{Delta1}{assumed true treatment effect given as difference in means for endpoint 1}
 
-\item{Delta2}{assumed true treatment effect for standardized difference in means}
+\item{Delta2}{assumed true treatment effect given as difference in means for endpoint 2}
 
 \item{sigma1}{standard deviation of first endpoint}
 
@@ -57,7 +57,7 @@ EPsProg_multiple_normal(
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-The output of the the function \code{EPsProg_multiple_normal()} is the expected probability of a successfull program, when going to phase III.
+The output of the function \code{EPsProg_multiple_normal()} is the expected probability of a successfull program, when going to phase III.
 }
 \description{
 This function calculates the probability that our drug development program is successful.
@@ -65,15 +65,7 @@ Successful is defined as both endpoints showing a statistically significant posi
 }
 \examples{
 res <- EPsProg_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
-                               Delta1 = 0.375, Delta2 = 0.625, sigma1 = 8, sigma2 = 4,
+                               Delta1 = 0.375, Delta2 = 0.625, sigma1 = 2, sigma2 = 1,
                                step11 = 0, step12 = 0, step21 = 0.5, step22 = 0.5, 
                                in1 = 300, in2 = 600, fixed = TRUE, rho = 0.3)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

@@ -83,7 +83,7 @@ EPsProg4_binary(
 \item{fixed}{choose if true treatment effects are fixed or random}
 }
 \value{
-The output of the the function EPsProg2_binary(), EPsProg3_binary() and EPsProg4_binary() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively)
+The output of the function EPsProg2_binary(), EPsProg3_binary() and EPsProg4_binary() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively)
 }
 \description{
 These functions calculate the expected probability of a successful program given the parameters.
@@ -123,11 +123,3 @@ res <- EPsProg2_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1,
                                  in1 = 300, in2 = 600, case = 3, size = "small",
                                  fixed = FALSE)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

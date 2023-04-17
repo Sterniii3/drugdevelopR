@@ -31,9 +31,9 @@
 #' @inheritParams optimal_multiple_generic
 #' @inheritParams optimal_normal_generic
 #' @param Delta1 assumed true treatment effect for endpoint 1 measured as the
-#'  standardized difference in means
+#'  difference in means
 #' @param Delta2 assumed true treatment effect for endpoint 2 measured as the
-#'  standardized difference in means
+#'   difference in means
 #' @param in1 amount of information for Delta1 in terms of number of events
 #' @param in2 amount of information for Delta2 in terms of number of events
 #' @param sigma1 variance of endpoint 1
@@ -42,6 +42,7 @@
 #' @param beta type-II error rate for any pair, i.e. `1 - beta` is the (any-pair) power for calculation of the sample size for phase III
 #'
 #' @importFrom stats quantile rnorm
+#' @importFrom MASS mvrnorm
 #'
 #' @return
 #' `r optimal_return_doc(type = "normal", setting = "multiple")`
@@ -160,7 +161,7 @@ optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,
       result <-  rbind(result, data.frame(u = round(Eud,2), Kappa = KAPPA[J], n2 = N2[I],
                                           n3 = n3, n = N2[I] + n3,
                                           pgo = round(pg,2), sProg = round(prob,2),
-                                          w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, 
+                                          Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, 
                                           sigma1 = sigma1, sigma2 = sigma2, rho = rho, relaxed = relaxed,
                                           K = K, K2 = round(k2), K3 = round(k3),
                                           sProg1 = round(prob-prob2-prob3,2), sProg2 = round(prob2,2), sProg3 = round(prob3,2),

@@ -62,7 +62,7 @@ optimal_return_doc <- function(type,
                 "\\item{n2}{total sample size for phase II; rounded to the next even natural number}
                  \\item{n3}{total sample size for phase III; rounded to the next even natural number}
                  \\item{n}{total sample size in the program; n = n2 + n3}
-                 \\item{K}{maximal costs of the program}
+                 \\item{K}{maximal costs of the program (i.e. the cost constraint, if it is set or the sum K2+K3 if no cost constraint is set)}
                  \\item{pgo}{probability to go to phase III}
                  \\item{sProg}{probability of a successful program}
                  \\item{sProg1}{probability of a successful program with \"small\" treatment effect in phase III", steps1_str, "}

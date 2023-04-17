@@ -6,23 +6,23 @@ test_that("05.01", {
                           beta = 0.1,
                           hr1 = 0.75, hr2 = 0.85,
                           id1 = 210, id2 = 420,
-                          n2min = 20, n2max = 200, stepn2 = 4,
-                          hrgomin = 0.70, hrgomax = 0.86, stephrgo = 0.02,
+                          n2min = 100, n2max = 300, stepn2 = 4,
+                          hrgomin = 0.80, hrgomax = 0.90, stephrgo = 0.02,
                           steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                           b11 = 1000, b21 = 1500, b31 = 2000,
                           b12 = 1000, b22 = 2000, b32 = 3000,
-                          num_cl = 3,
+                          num_cl = 12,
                           c02 = 100, c03 = 150,
                           c2 = 0.75, c3 = 1,
                           rho = 0.6,
                           fixed = FALSE,
                )
-  expect_equal(res$u, 0, tolerance = 0.005)
-  expect_equal(res$n2, 0)
-  expect_equal(res$n3, 0)
-  expect_equal(res$n, 0)
-  expect_equal(res$HRgo, 0)
-  expect_equal(res$pgo, 0)
+  expect_equal(res$u, 597.78, tolerance = 0.005)
+  expect_equal(res$n2, 216)
+  expect_equal(res$n3, 280)
+  expect_equal(res$n, 496)
+  expect_equal(res$HRgo, 0.88)
+  expect_equal(res$pgo, 0.75)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
@@ -32,25 +32,24 @@ test_that("05.02", {
                               beta = 0.1,
                               hr1 = 0.75, hr2 = 0.85,
                               id1 = 210, id2 = 420,
-                              n2min = 20, n2max = 200, stepn2 = 4,
-                              hrgomin = 0.70, hrgomax = 0.86, stephrgo = 0.02,
+                              n2min = 100, n2max = 300, stepn2 = 4,
+                              hrgomin = 0.80, hrgomax = 0.9, stephrgo = 0.02,
                               steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                               b11 = 1000, b21 = 1500, b31 = 2000,
                               b12 = 1000, b22 = 2000, b32 = 3000,
-                              num_cl = 3,
+                              num_cl = 12,
                               c02 = 100, c03 = 150,
                               c2 = 0.75, c3 = 1,
                               rho = 0.6,
                               fixed = FALSE,
-                              N = 300
+                              N = 480
                               
   )
-  expect_equal(res$u, 0, tolerance = 0.005)
-  expect_equal(res$n2, 0)
-  expect_equal(res$n3, 0)
-  expect_equal(res$n, 0)
-  expect_equal(res$HRgo, 0)
-  expect_equal(res$pgo, 0)
+  expect_equal(res$u, 595.85, tolerance = 0.005)
+  expect_equal(res$n2, 200)
+  expect_equal(res$n3, 279)
+  expect_equal(res$n, 479)
+  expect_equal(res$HRgo, 0.88)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
@@ -60,12 +59,12 @@ test_that("05.03", {
                               beta = 0.1,
                               hr1 = 0.75, hr2 = 0.85,
                               id1 = 210, id2 = 420,
-                              n2min = 20, n2max = 200, stepn2 = 4,
-                              hrgomin = 0.70, hrgomax = 0.86, stephrgo = 0.02,
+                              n2min = 100, n2max = 300, stepn2 = 4,
+                              hrgomin = 0.80, hrgomax = 0.90, stephrgo = 0.02,
                               steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                               b11 = 1000, b21 = 1500, b31 = 2000,
                               b12 = 1000, b22 = 2000, b32 = 3000,
-                              num_cl = 3,
+                              num_cl = 12,
                               c02 = 100, c03 = 150,
                               c2 = 0.75, c3 = 1,
                               rho = 0.6,
@@ -76,34 +75,34 @@ test_that("05.03", {
                               beta = 0.1,
                               hr1 = 0.75, hr2 = 0.85,
                               id1 = 210, id2 = 420,
-                              n2min = 20, n2max = 200, stepn2 = 4,
-                              hrgomin = 0.70, hrgomax = 0.86, stephrgo = 0.02,
+                              n2min = 100, n2max = 300, stepn2 = 4,
+                              hrgomin = 0.80, hrgomax = 0.90, stephrgo = 0.02,
                               steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                               b11 = 1000, b21 = 1500, b31 = 2000,
                               b12 = 1000, b22 = 2000, b32 = 3000,
-                              num_cl = 3,
+                              num_cl = 12,
                               c02 = 100, c03 = 150,
                               c2 = 0.75, c3 = 1,
                               rho = 0.6,
                               fixed = TRUE,
-                              K = 400
+                              K = 600
   )
-  
+
+  expect_equal(res_nolim$u, 161.11, tolerance = 0.005)
   expect_equal(res_nolim$n2, 196)
   expect_equal(res_nolim$n3, 424)
   expect_equal(res_nolim$n, 620)
   expect_equal(res_nolim$HRgo, 0.86)
-  expect_equal(res_nolim$u, 161.11, tolerance = 0.005)
   expect_equal(res_nolim$K2, 247)
   expect_equal(res_nolim$K3, 549)
-  
+
+  expect_equal(res_lim$u, 137.33, tolerance = 0.005)
   expect_equal(res_lim$n2, 112)
   expect_equal(res_lim$n3, 301)
   expect_equal(res_lim$n, 413)
-  expect_equal(res_lim$HRgo, 0.84)
-  expect_equal(res_lim$u, 137.33, tolerance = 0.005)
-  expect_equal(res_lim$K2, 184)
-  expect_equal(res_lim$K3, 414)
+  expect_equal(res_nolim$HRgo, 0.84)
+  expect_equal(res_nolim$K2, 184)
+  expect_equal(res_nolim$K3, 414)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
@@ -113,27 +112,26 @@ test_that("05.04", {
                               beta = 0.1,
                               hr1 = 0.75, hr2 = 0.85,
                               id1 = 210, id2 = 420,
-                              n2min = 20, n2max = 200, stepn2 = 4,
-                              hrgomin = 0.70, hrgomax = 0.86, stephrgo = 0.02,
+                              n2min = 100, n2max = 300, stepn2 = 4,
+                              hrgomin = 0.80, hrgomax = 0.90, stephrgo = 0.02,
                               steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                               b11 = 1000, b21 = 1500, b31 = 2000,
                               b12 = 1000, b22 = 2000, b32 = 3000,
-                              num_cl = 3,
+                              num_cl = 12,
                               c02 = 100, c03 = 150,
                               c2 = 0.75, c3 = 1,
                               rho = 0.6,
                               fixed = TRUE,
-                              S = 0.7
+                              S = 0.6
   )
-  
+
+  expect_equal(res$u, 153.98, tolerance = 0.005)
   expect_equal(res$n2, 280)
   expect_equal(res$n3, 467)
   expect_equal(res$n, 746)
   expect_equal(res$HRgo, 0.86)
-  expect_equal(res$u, 153.98, tolerance = 0.005)
   expect_equal(res$sProg, 0.6)
-  expect_equal(res$OP, 0.54)
-  
+  expect_equal(res$OS, 0.54)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
@@ -144,12 +142,12 @@ test_that("05.05", {
                               beta = 0.1,
                               hr1 = 0.75, hr2 = 0.85,
                               id1 = 210, id2 = 420,
-                              n2min = 20, n2max = 200, stepn2 = 4,
-                              hrgomin = 0.70, hrgomax = 0.86, stephrgo = 0.02,
+                              n2min = 200, n2max = 300, stepn2 = 4,
+                              hrgomin = 0.86, hrgomax = 0.90, stephrgo = 0.02,
                               steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                               b11 = 1000, b21 = 1500, b31 = 2000,
                               b12 = 1000, b22 = 2000, b32 = 3000,
-                              num_cl = 3,
+                              num_cl = 12,
                               c02 = 100, c03 = 150,
                               c2 = 0.75, c3 = 1,
                               rho = 0.6,
@@ -162,12 +160,12 @@ test_that("05.05", {
                               beta = 0.1,
                               hr1 = 0.75, hr2 = 0.85,
                               id1 = 210, id2 = 420,
-                              n2min = 20, n2max = 200, stepn2 = 4,
-                              hrgomin = 0.70, hrgomax = 0.86, stephrgo = 0.02,
+                              n2min = 200, n2max = 300, stepn2 = 4,
+                              hrgomin = 0.86, hrgomax = 0.90, stephrgo = 0.02,
                               steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                               b11 = 1000, b21 = 1500, b31 = 2000,
                               b12 = 1000, b22 = 2000, b32 = 3000,
-                              num_cl = 1,
+                              num_cl = 6,
                               c02 = 100, c03 = 150,
                               c2 = 0.75, c3 = 1,
                               rho = 0.6,
@@ -183,48 +181,46 @@ test_that("05.06", {
   # Multiple normally distributed endpoints -- no sample size constraint
   res_nolim <- optimal_multiple_normal(alpha = 0.05,
                               beta = 0.1,
-                              Delta1 = 0.75, Delta2 = 0.85,
-                              n2min = 20, n2max = 200, stepn2 = 4,
-                              kappamin = 0.02, kappamax = 0.2, kappago = 0.02,
+                              Delta1 = 0.75, Delta2 = 0.8,
+                              n2min = 80, n2max = 160, stepn2 = 4,
+                              kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                               b1 = 1000, b2 = 2000, b3 = 3000,
-                              num_cl = 3,
-                              c02 = 15, c03 = 20,
-                              c2 = 0.675, c3 = 0.72,
+                              num_cl = 12,
+                              c02 = 100, c03 = 150,
+                              c2 = 0.75, c3 = 1,
                               fixed = FALSE,
-                              rho = 0.6,
-                              sigma1 = 8, sigma2 = 12,
-                              in1 = 210, in2 = 420,
+                              rho = 0.5,
+                              sigma1 = 2, sigma2 = 1,
+                              in1 = 300, in2 = 600,
                               relaxed = TRUE
   )
-  expect_equal(res_nolim$u, 0, tolerance = 0.005)
-  expect_equal(res_nolim$n2, 0)
-  expect_equal(res_nolim$n3, 0)
-  expect_equal(res_nolim$n, 0)
-  expect_equal(res_nolim$HRgo, 0)
-  expect_equal(res_nolim$pgo, 0)
+  expect_equal(res_nolim$u, 960.55, tolerance = 0.005)
+  expect_equal(res_nolim$n2, 108)
+  expect_equal(res_nolim$n3, 85)
+  expect_equal(res_nolim$n, 193)
+  expect_equal(res_nolim$Kappa, 0.02)
   # Multiple normally distributed endpoints -- with sample size constraint
   res_lim <- optimal_multiple_normal(alpha = 0.05,
                                      beta = 0.1,
-                                     Delta1 = 0.75, Delta2 = 0.85,
-                                     n2min = 20, n2max = 200, stepn2 = 4,
-                                     kappamin = 0.02, kappamax = 0.2, kappago = 0.02,
+                                     Delta1 = 0.75, Delta2 = 0.8,
+                                     n2min = 80, n2max = 160, stepn2 = 4,
+                                     kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                                      b1 = 1000, b2 = 2000, b3 = 3000,
-                                     num_cl = 3,
-                                     c02 = 15, c03 = 20,
-                                     c2 = 0.675, c3 = 0.72,
+                                     num_cl = 12,
+                                     c02 = 100, c03 = 150,
+                                     c2 = 0.75, c3 = 1,
                                      fixed = FALSE,
-                                     rho = 0.6,
-                                     sigma1 = 8, sigma2 = 12,
-                                     in1 = 210, in2 = 420,
+                                     rho = 0.5,
+                                     sigma1 = 2, sigma2 = 1,
+                                     in1 = 300, in2 = 600,
                                      relaxed = TRUE,
-                                     N = 300,
+                                     N = 190,
   )
-  expect_equal(res_lim$u, 0, tolerance = 0.005)
-  expect_equal(res_lim$n2, 0)
-  expect_equal(res_lim$n3, 0)
-  expect_equal(res_lim$n, 0)
-  expect_equal(res_lim$HRgo, 0)
-  expect_equal(res_lim$pgo, 0)
+  expect_equal(res_lim$u, 959.20, tolerance = 0.005)
+  expect_equal(res_lim$n2, 96)
+  expect_equal(res_lim$n3, 94)
+  expect_equal(res_lim$n, 190)
+  expect_equal(res_lim$Kappa, 0.02)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
@@ -233,17 +229,17 @@ test_that("05.07", {
   start_time_3 = Sys.time()
   optimal_multiple_normal(alpha = 0.05,
                                        beta = 0.1,
-                                       Delta1 = 0.75, Delta2 = 0.85,
-                                       n2min = 20, n2max = 200, stepn2 = 4,
-                                       kappamin = 0.02, kappamax = 0.2, kappago = 0.02,
+                                       Delta1 = 0.75, Delta2 = 0.8,
+                                       n2min = 80, n2max = 160, stepn2 = 4,
+                                       kappamin = 0.02, kappamax = 0.04, stepkappa = 0.02,
                                        b1 = 1000, b2 = 2000, b3 = 3000,
-                                       num_cl = 3,
-                                       c02 = 15, c03 = 20,
-                                       c2 = 0.675, c3 = 0.72,
+                                       num_cl = 12,
+                                       c02 = 100, c03 = 150,
+                                       c2 = 0.75, c3 = 1,
                                        fixed = FALSE,
-                                       rho = 0.6,
-                                       sigma1 = 8, sigma2 = 12,
-                                       in1 = 210, in2 = 420,
+                                       rho = 0.5,
+                                       sigma1 = 2, sigma2 = 1,
+                                       in1 = 300, in2 = 600,
                                        relaxed = TRUE
   )
   end_time_3 = Sys.time()
@@ -251,17 +247,17 @@ test_that("05.07", {
   start_time_1 = Sys.time()
   optimal_multiple_normal(alpha = 0.05,
                           beta = 0.1,
-                          Delta1 = 0.75, Delta2 = 0.85,
-                          n2min = 20, n2max = 200, stepn2 = 4,
-                          kappamin = 0.02, kappamax = 0.2, kappago = 0.02,
+                          Delta1 = 0.75, Delta2 = 0.8,
+                          n2min = 80, n2max = 160, stepn2 = 4,
+                          kappamin = 0.02, kappamax = 0.04, stepkappa = 0.02,
                           b1 = 1000, b2 = 2000, b3 = 3000,
-                          num_cl = 1,
-                          c02 = 15, c03 = 20,
-                          c2 = 0.675, c3 = 0.72,
+                          num_cl = 6,
+                          c02 = 100, c03 = 150,
+                          c2 = 0.75, c3 = 1,
                           fixed = FALSE,
-                          rho = 0.6,
-                          sigma1 = 8, sigma2 = 12,
-                          in1 = 210, in2 = 420,
+                          rho = 0.5,
+                          sigma1 = 2, sigma2 = 1,
+                          in1 = 300, in2 = 600,
                           relaxed = TRUE
   )
   end_time_1 = Sys.time()
@@ -274,137 +270,135 @@ test_that("05.08", {
   # Multiple normally distributed endpoints -- with and without cost limit
   res_nolim <- optimal_multiple_normal(alpha = 0.05,
                                        beta = 0.1,
-                                       Delta1 = 0.75, Delta2 = 0.85,
-                                       n2min = 20, n2max = 200, stepn2 = 4,
-                                       kappamin = 0.02, kappamax = 0.2, kappago = 0.02,
+                                       Delta1 = 0.75, Delta2 = 0.8,
+                                       n2min = 80, n2max = 160, stepn2 = 4,
+                                       kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                                        b1 = 1000, b2 = 2000, b3 = 3000,
-                                       num_cl = 3,
-                                       c02 = 15, c03 = 20,
-                                       c2 = 0.675, c3 = 0.72,
+                                       num_cl = 12,
+                                       c02 = 100, c03 = 150,
+                                       c2 = 0.75, c3 = 1,
                                        fixed = TRUE,
-                                       rho = 0.6,
-                                       sigma1 = 8, sigma2 = 12,
-                                       in1 = 210, in2 = 420,
+                                       rho = 0.5,
+                                       sigma1 = 2, sigma2 = 1,
+                                       in1 = 300, in2 = 600,
                                        relaxed = TRUE
   )
   res_lim <- optimal_multiple_normal(alpha = 0.05,
                                        beta = 0.1,
-                                       Delta1 = 0.75, Delta2 = 0.85,
-                                       n2min = 20, n2max = 200, stepn2 = 4,
-                                       kappamin = 0.02, kappamax = 0.2, kappago = 0.02,
+                                       Delta1 = 0.75, Delta2 = 0.8,
+                                       n2min = 80, n2max = 160, stepn2 = 4,
+                                       kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                                        b1 = 1000, b2 = 2000, b3 = 3000,
-                                       num_cl = 3,
-                                       c02 = 15, c03 = 20,
-                                       c2 = 0.675, c3 = 0.72,
+                                       num_cl = 12,
+                                       c02 = 100, c03 = 150,
+                                       c2 = 0.75, c3 = 1,
                                        fixed = TRUE,
-                                       rho = 0.6,
-                                       sigma1 = 8, sigma2 = 12,
-                                       in1 = 210, in2 = 420,
+                                       rho = 0.5,
+                                       sigma1 = 2, sigma2 = 1,
+                                       in1 = 300, in2 = 600,
                                        relaxed = TRUE,
                                        K = 400
   )
   expect_equal(res_nolim$u, 596.08, tolerance = 0.005)
-  expect_equal(res_nolim$Kappa, 0.02)
   expect_equal(res_nolim$n2, 120)
   expect_equal(res_nolim$K2, 190)
   expect_equal(res_nolim$K3, 217)
-  expect_equal(res_nolim$K, 407)
-  
+  expect_equal(res_nolim$Kappa, 0.02)
   expect_equal(res_lim$u, 592.48, tolerance = 0.005)
-  expect_equal(res_lim$Kappa, 0.02)
   expect_equal(res_lim$n2, 104)
-  expect_equal(res_lim$K2, 178)
-  expect_equal(res_lim$K3, 220)
-  expect_equal(res_lim$K, 398)
+  expect_equal(res_nolim$K2, 178)
+  expect_equal(res_nolim$K3, 220)
+  expect_equal(res_lim$Kappa, 0.02)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
 test_that("05.09", {
   # Multiple normally distributed endpoints
-  # -- strict effect size combination rule, constraint on success probability
+  # -- constraint on success probability
   res_nolim <- optimal_multiple_normal(alpha = 0.05,
                                        beta = 0.1,
-                                       Delta1 = 0.75, Delta2 = 0.85,
-                                       n2min = 20, n2max = 200, stepn2 = 4,
-                                       kappamin = 0.02, kappamax = 0.2, kappago = 0.02,
+                                       Delta1 = 0.75, Delta2 = 0.8,
+                                       n2min = 80, n2max = 160, stepn2 = 4,
+                                       kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                                        b1 = 1000, b2 = 2000, b3 = 3000,
-                                       num_cl = 3,
-                                       c02 = 15, c03 = 20,
-                                       c2 = 0.675, c3 = 0.72,
+                                       num_cl = 12,
+                                       c02 = 100, c03 = 150,
+                                       c2 = 0.75, c3 = 1,
                                        fixed = TRUE,
-                                       rho = 0.6,
-                                       sigma1 = 8, sigma2 = 12,
-                                       in1 = 210, in2 = 420,
-                                       relaxed = FALSE
+                                       rho = 0.5,
+                                       sigma1 = 2, sigma2 = 1,
+                                       in1 = 300, in2 = 600,
+                                       relaxed = TRUE
   )
   res_lim <- optimal_multiple_normal(alpha = 0.05,
                                        beta = 0.1,
-                                       Delta1 = 0.75, Delta2 = 0.85,
-                                       n2min = 20, n2max = 200, stepn2 = 4,
-                                       kappamin = 0.02, kappamax = 0.2, kappago = 0.02,
+                                       Delta1 = 0.75, Delta2 = 0.8,
+                                       n2min = 80, n2max = 160, stepn2 = 4,
+                                       kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                                        b1 = 1000, b2 = 2000, b3 = 3000,
-                                       num_cl = 3,
-                                       c02 = 15, c03 = 20,
-                                       c2 = 0.675, c3 = 0.72,
+                                       num_cl = 12,
+                                       c02 = 100, c03 = 150,
+                                       c2 = 0.75, c3 = 1,
                                        fixed = TRUE,
-                                       rho = 0.6,
-                                       sigma1 = 8, sigma2 = 12,
-                                       in1 = 210, in2 = 420,
-                                       relaxed = FALSE,
-                                     S = 0.7
+                                       rho = 0.5,
+                                       sigma1 = 2, sigma2 = 1,
+                                       in1 = 300, in2 = 600,
+                                       relaxed = TRUE,
+                                       S = 0.7
   )
   expect_equal(res_nolim$u, 596.08, tolerance = 0.005)
-  expect_equal(res_nolim$Kappa, 0.02)
   expect_equal(res_nolim$n2, 120)
   expect_equal(res_nolim$sProg, 0.55)
   expect_equal(res_nolim$sProg1, 0.14)
   expect_equal(res_nolim$sProg2, 0.36)
   expect_equal(res_nolim$sProg3, 0.05)
+  expect_equal(res_nolim$Kappa, 0.02)
   
-  expect_equal(res_lim$u, -9999)
+  expect_equal(res_lim$u, -9999, tolerance = 0.005)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
 test_that("05.10", {
   # Multiple normally distributed endpoints
   # -- with and without
-  res_relaxed <- optimal_multiple_normal(alpha = 0.05,
+
+  res_relax <- optimal_multiple_normal(alpha = 0.05,
+
                                        beta = 0.1,
-                                       Delta1 = 0.75, Delta2 = 0.85,
-                                       n2min = 20, n2max = 200, stepn2 = 4,
-                                       kappamin = 0.02, kappamax = 0.2, kappago = 0.02,
+                                       Delta1 = 0.75, Delta2 = 0.8,
+                                       n2min = 80, n2max = 160, stepn2 = 4,
+                                       kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                                        b1 = 1000, b2 = 2000, b3 = 3000,
-                                       num_cl = 3,
-                                       c02 = 15, c03 = 20,
-                                       c2 = 0.675, c3 = 0.72,
+                                       num_cl = 12,
+                                       c02 = 100, c03 = 150,
+                                       c2 = 0.75, c3 = 1,
                                        fixed = TRUE,
-                                       rho = 0.6,
-                                       sigma1 = 8, sigma2 = 12,
-                                       in1 = 210, in2 = 420,
+                                       rho = 0.5,
+                                       sigma1 = 2, sigma2 = 1,
+                                       in1 = 300, in2 = 600,
                                        relaxed = TRUE
   )
-  res_not<- optimal_multiple_normal(alpha = 0.05,
-                                         beta = 0.1,
-                                         Delta1 = 0.75, Delta2 = 0.85,
-                                         n2min = 20, n2max = 200, stepn2 = 4,
-                                         kappamin = 0.02, kappamax = 0.2, kappago = 0.02,
-                                         b1 = 1000, b2 = 2000, b3 = 3000,
-                                         num_cl = 3,
-                                         c02 = 15, c03 = 20,
-                                         c2 = 0.675, c3 = 0.72,
-                                         fixed = TRUE,
-                                         rho = 0.6,
-                                         sigma1 = 8, sigma2 = 12,
-                                         in1 = 210, in2 = 420,
-                                         relaxed = FALSE
+  res_strict <- optimal_multiple_normal(alpha = 0.05,
+                                     beta = 0.1,
+                                     Delta1 = 0.75, Delta2 = 0.8,
+                                     n2min = 80, n2max = 160, stepn2 = 4,
+                                     kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
+                                     b1 = 1000, b2 = 2000, b3 = 3000,
+                                     num_cl = 12,
+                                     c02 = 100, c03 = 150,
+                                     c2 = 0.75, c3 = 1,
+                                     fixed = TRUE,
+                                     rho = 0.5,
+                                     sigma1 = 2, sigma2 = 1,
+                                     in1 = 300, in2 = 600,
+                                     relaxed = FALSE,
   )
-  expect_equal(res_relaxed$u, 596.08, tolerance = 0.005)
-  expect_equal(res_relaxed$Kappa, 0.02)
-  expect_equal(res_relaxed$n2, 122)
-  expect_equal(res_relaxed$pgo, 0.97)
-  
-  expect_equal(res_not$u, -99.03, tolerance = 0.005)
-  expect_equal(res_not$Kappa, 0.02)
-  expect_equal(res_not$n2, 96)
-  expect_equal(res_not$pgo, 0.96)
+  expect_equal(res_relax$u, 596.08, tolerance = 0.005)
+  expect_equal(res_relax$n2, 120)
+  expect_equal(res_relax$Kappa, 0.02)
+  expect_equal(res_relax$pgo, 0.97)
+  expect_equal(res_relax$u, -99.33, tolerance = 0.005)
+  expect_equal(res_relax$n2, 96)
+  expect_equal(res_relax$Kappa, 0.02)
+  expect_equal(res_relax$pgo, 0.96)
 })

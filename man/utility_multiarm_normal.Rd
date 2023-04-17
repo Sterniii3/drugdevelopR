@@ -69,10 +69,10 @@ utility_multiarm_normal(
 \item{b3}{expected gain for effect size category "large"}
 }
 \value{
-The output of the the function \code{utility_multiarm_normal()} is the expected utility of the program.
+The output of the function \code{utility_multiarm_normal()} is the expected utility of the program.
 }
 \description{
-The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the the sample size and expected probability of a successful program.
+The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters as on the sample size and expected probability of a successful program.
 The utility is in further step maximized by the \code{optimal_multiarm_normal()} function.
 }
 \examples{
@@ -83,11 +83,3 @@ res <- utility_multiarm_normal(n2 = 50, kappa = 0.8, alpha = 0.05, beta = 0.1,
                             steps1 = 0, stepm1 = 0.5,   stepl1 = 0.8,
                             b1 = 1000, b2 = 2000, b3 = 3000)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-05-08
-}
-

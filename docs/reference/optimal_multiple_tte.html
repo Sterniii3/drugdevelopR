@@ -58,16 +58,10 @@ Fast computing is enabled by parallel programming."><!-- mathjax --><script src=
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Bias_adjustment.html">Methods for Discounting of Phase II Results - Bias Adjustment</a>
-    <a class="dropdown-item" href="../articles/Binary_distributed_outcomes.html">Binary Distributed Outcome Variables</a>
-    <a class="dropdown-item" href="../articles/Fixed_and_prior_distributions.html">Fixed effects and prior distributions</a>
-    <a class="dropdown-item" href="../articles/Interpreting_Output.html">Interpreting the Rest of the Output</a>
-    <a class="dropdown-item" href="../articles/introduction-to-drugdevelopR.html">Introduction to planning phase II and phase III trials with drugdevelopR</a>
-    <a class="dropdown-item" href="../articles/More_Parameters.html">More Parameters to Adapt to Specific Settings and Individual Needs</a>
-    <a class="dropdown-item" href="../articles/Multiarm_Trials.html">Multiarm - Methods for Multi-Arm Programs</a>
-    <a class="dropdown-item" href="../articles/Multiple_Endpoints.html">Multiple_Endpoints</a>
-    <a class="dropdown-item" href="../articles/Multitrial.html">Multitrial Programs - Methods for Programs with Several Phase III Trials</a>
-    <a class="dropdown-item" href="../articles/Time-to-event_outcomes.html">Time-to-event Outcome Variables</a>
+    <a class="dropdown-item" href="../articles/Introduction-to-drugdevelopR.html">Introduction to planning phase II and phase III trials with drugdevelopR</a>
+    <a class="dropdown-item" href="../articles/Package_validation.html">Package validation</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="../articles/index.html">More articles...</a>
   </div>
 </li>
 <li class="nav-item">
@@ -143,11 +137,11 @@ larger expected gains than PFS alone (i.e. endpoint 2).</p>
 <span>  <span class="va">b12</span>,</span>
 <span>  <span class="va">b22</span>,</span>
 <span>  <span class="va">b32</span>,</span>
-<span>  <span class="va">steps1</span>,</span>
-<span>  <span class="va">stepm1</span>,</span>
-<span>  <span class="va">stepl1</span>,</span>
+<span>  steps1 <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  stepm1 <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  stepl1 <span class="op">=</span> <span class="fl">0.85</span>,</span>
 <span>  <span class="va">rho</span>,</span>
-<span>  <span class="va">fixed</span>,</span>
+<span>  fixed <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  num_cl <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -305,7 +299,7 @@ larger expected gains than PFS alone (i.e. endpoint 2).</p>
 <dd><p>total sample size in the program; n = n2 + n3</p></dd>
 
 <dt>K</dt>
-<dd><p>maximal costs of the program</p></dd>
+<dd><p>maximal costs of the program (i.e. the cost constraint, if it is set or the sum K2+K3 if no cost constraint is set)</p></dd>
 
 <dt>pgo</dt>
 <dd><p>probability to go to phase III</p></dd>
@@ -336,14 +330,6 @@ finish date of the optimization procedure.</p>
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal Designs for Multi-Arm Phase II/III Drug Development Programs. Submitted to peer-review journal.</p>
 <p>IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at <a href="https://www.iqwig.de/de/methoden/methodenpapier.3020.html" class="external-link">https://www.iqwig.de/de/methoden/methodenpapier.3020.html</a>, assessed last 15.05.19.</p>
-    </div>
-    <div class="section level2">
-    <h2 id="last-edited-by">Last Edited By<a class="anchor" aria-label="anchor" href="#last-edited-by"></a></h2>
-    <p>Johannes Cepicka</p>
-    </div>
-    <div class="section level2">
-    <h2 id="last-edit-date">Last Edit Date<a class="anchor" aria-label="anchor" href="#last-edit-date"></a></h2>
-    <p>2022-04-23</p>
     </div>
 
     <div class="section level2">
@@ -387,8 +373,8 @@ finish date of the optimization procedure.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence HRgo: 0.7 0.75 0.8 0.85 0.9 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence n2: 30 36 42 48 54 60 66 72 78 84 90 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2023-02-08 14:56:11 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2023-02-08 14:56:20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2023-04-17 14:56:05 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2023-04-17 14:56:16</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

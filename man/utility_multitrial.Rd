@@ -133,7 +133,7 @@ utility4(
 \item{fixed}{choose if true treatment effects are fixed or random}
 }
 \value{
-The output of the the functions \code{utility2()}, \code{utility3()} and \code{utility4()} is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
+The output of the functions \code{utility2()}, \code{utility3()} and \code{utility4()} is the expected utility of the program when 2, 3 or 4 phase III trials are performed.
 }
 \description{
 The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program.
@@ -165,11 +165,3 @@ res <- utility2(d2 = 50, HRgo = 0.8,  w = 0.3,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 
                                  case = 3, fixed = TRUE)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

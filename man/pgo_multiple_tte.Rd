@@ -11,20 +11,20 @@ pgo_multiple_tte(HRgo, n2, hr1, hr2, id1, id2, fixed, rho)
 
 \item{n2}{total sample size for phase II; must be even number}
 
-\item{hr1}{assumed true treatment effect on HR scale for treatment 1}
+\item{hr1}{assumed true treatment effect on HR scale for endpoint OS}
 
-\item{hr2}{assumed true treatment effect on HR scale for treatment 2}
+\item{hr2}{assumed true treatment effect on HR scale for endpoint PFS}
 
 \item{id1}{amount of information for \code{hr1} in terms of number of events}
 
 \item{id2}{amount of information for \code{hr2} in terms of number of events}
 
-\item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
+\item{fixed}{choose if true treatment effects are fixed or random}
 
 \item{rho}{correlation between the two endpoints}
 }
 \value{
-The output of the the function \code{pgo_multiple_tte()} is the probability to go to phase III.
+The output of the function \code{pgo_multiple_tte()} is the probability to go to phase III.
 }
 \description{
 This function calculates the probability that we go to phase III, i.e. that results of phase II are promising enough to
@@ -35,11 +35,3 @@ res <- pgo_multiple_tte(HRgo = 0.8, n2 = 50,
                                hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
                                fixed = TRUE, rho = 0.3)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

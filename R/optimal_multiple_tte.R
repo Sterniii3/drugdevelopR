@@ -73,8 +73,8 @@ optimal_multiple_tte <- function(hr1, hr2, id1, id2,
                                c2, c3, c02, c03, 
                                K = Inf, N = Inf, S = -Inf,
                                b11, b21, b31, b12, b22, b32,
-                               steps1, stepm1, stepl1,
-                               rho, fixed,  num_cl = 1){
+                               steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
+                               rho, fixed = TRUE,  num_cl = 1){
   
 
   

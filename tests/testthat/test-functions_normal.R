@@ -174,7 +174,7 @@ test_that("box normal returns a vector with 100000 realizations", {
                 75.183296)
  })
  
- test_that("Higher treatment effect (i.e median prior larger) leads to smaller number of n3",{
+ test_that("Higher treatment effect (i.e. median prior larger) leads to smaller number of n3",{
    expect_gt(n3_skipII_normal(alpha=0.05,beta=0.1,median_prior=0.675),
              n3_skipII_normal(alpha=0.05,beta=0.1,median_prior=0.875))
  })

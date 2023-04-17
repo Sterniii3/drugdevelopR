@@ -28,7 +28,7 @@ Epgo23_binary(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2)
 \item{in2}{amount of information for \code{p12} in terms of sample size}
 }
 \value{
-The output of the the function \code{Epgo23_binary()} is the probability to to a third phase III trial.
+The output of the function \code{Epgo23_binary()} is the probability to a third phase III trial.
 }
 \description{
 In the setting of Case 2: Strategy 2/2( + 1); at least two trials significant (and the
@@ -38,11 +38,3 @@ treatment effect of the other one at least showing in the same direction) this f
 res <- Epgo23_binary(RRgo = 0.8, n2 = 50,  p0 = 0.3, w = 0.3, alpha = 0.025, beta = 0.1,
                                p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-05-09
-}
-

@@ -172,7 +172,7 @@ utility_binary_R2(
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{p11} is used as fixed effect}
 }
 \value{
-The output of the the functions \code{utility_binary_L()}, \code{utility_binary_L2()}, \code{utility_binary_R()} and \code{utility_binary_R2()} is the expected utility of the program.
+The output of the functions \code{utility_binary_L()}, \code{utility_binary_L2()}, \code{utility_binary_R()} and \code{utility_binary_R2()} is the expected utility of the program.
 }
 \description{
 The utility function calculates the expected utility of our drug development program and is given as gains minus costs and depends on the parameters and the expected probability of a successful program.
@@ -216,11 +216,3 @@ res <- utility_binary_L(n2 = 50, RRgo = 0.8, Adj = 0.1, w = 0.3,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 
                                  fixed = TRUE)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

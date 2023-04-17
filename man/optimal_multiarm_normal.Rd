@@ -91,7 +91,7 @@ The output of the function is a \code{data.frame} object containing the optimiza
 \describe{\item{Strategy}{Strategy, 1: "only best promising" or 2: "all promising"}\item{u}{maximal expected utility under the optimization constraints, i.e. the expected utility of the optimal sample size and threshold value}\item{Kappa}{optimal threshold value for the decision rule to go to phase III}\item{n2}{total sample size for phase II; rounded to the next even natural number}
 \item{n3}{total sample size for phase III; rounded to the next even natural number}
 \item{n}{total sample size in the program; n = n2 + n3}
-\item{K}{maximal costs of the program}
+\item{K}{maximal costs of the program (i.e. the cost constraint, if it is set or the sum K2+K3 if no cost constraint is set)}
 \item{pgo}{probability to go to phase III}
 \item{sProg}{probability of a successful program}
 \item{sProg1}{probability of a successful program with "small" treatment effect in phase III}
@@ -135,11 +135,3 @@ cat(comment(res))                                        # displays the optimiza
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences.
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-
