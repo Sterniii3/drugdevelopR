@@ -222,11 +222,3 @@ res <- utility_L(d2 = 50, HRgo = 0.8, Adj = 0.4, w = 0.3,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 
                                  fixed = TRUE)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-11-04
-}
-

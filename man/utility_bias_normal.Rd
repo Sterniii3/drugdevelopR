@@ -226,11 +226,3 @@ res <- utility_normal_L(kappa = 0.1, n2 = 50, Adj = 0,
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
                                  fixed = TRUE)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-

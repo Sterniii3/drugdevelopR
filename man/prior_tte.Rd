@@ -31,11 +31,3 @@ as well as the \href{https://web.imbi.uni-heidelberg.de/prior/}{Shiny app}.
 \examples{
 res <- prior_tte(x = 0.5, w = 0.5, hr1 = 0.69, hr2 = 0.88, id1 = 240, id2 = 420)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-01-30
-}
-

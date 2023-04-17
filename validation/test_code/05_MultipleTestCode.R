@@ -87,6 +87,7 @@ test_that("05.03", {
                               fixed = TRUE,
                               K = 600
   )
+
   expect_equal(res_nolim$u, 161.11, tolerance = 0.005)
   expect_equal(res_nolim$n2, 196)
   expect_equal(res_nolim$n3, 424)
@@ -123,6 +124,7 @@ test_that("05.04", {
                               fixed = TRUE,
                               S = 0.6
   )
+
   expect_equal(res$u, 153.98, tolerance = 0.005)
   expect_equal(res$n2, 280)
   expect_equal(res$n3, 467)
@@ -351,6 +353,7 @@ test_that("05.09", {
   expect_equal(res_nolim$sProg2, 0.36)
   expect_equal(res_nolim$sProg3, 0.05)
   expect_equal(res_nolim$Kappa, 0.02)
+  
   expect_equal(res_lim$u, -9999, tolerance = 0.005)
 })
 #' @editor Lukas D Sauer
@@ -358,7 +361,9 @@ test_that("05.09", {
 test_that("05.10", {
   # Multiple normally distributed endpoints
   # -- with and without
+
   res_relax <- optimal_multiple_normal(alpha = 0.05,
+
                                        beta = 0.1,
                                        Delta1 = 0.75, Delta2 = 0.8,
                                        n2min = 80, n2max = 160, stepn2 = 4,
