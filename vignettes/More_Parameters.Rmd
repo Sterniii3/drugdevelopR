@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
 
-The drugdevelopR package enables us to optimally plan such programs using a utility-maximizing approach. To get a brief introduction, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html). However, there are many more parameters, which the user can provide to adapt the program to your specific needs. In this article, we therefore want to present the options you have.
+The drugdevelopR package enables us to optimally plan such programs using a utility-maximizing approach. To get a brief introduction, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html). However, there are many more parameters, which you can provide to adapt the program to your specific needs. In this article, we therefore want to present the options you have.
 
 # The example setting and the input parameters
 
@@ -205,7 +205,7 @@ Up until now, the effect size categories for a small, medium or large treatment 
 Due to different population structures in phase II and phase III, the assumed true treatment effect `Delta1` may not be the same in both phases. Phase III trials are often conducted in populations that are more heterogeneous than those of the preceding phase II trials (Kirby et al., 2012), so the effect in phase III may differ from that in phase II. In order to model these differences, one can use the parameter `gamma`. The treatment effect in phase III is then calculated as follows: $\Delta_3 = \Delta_2 + \gamma$. Values of gamma below zero indicate a more pessimistic view, values above zero indicate a more optimistic view about the treatment effect in the confirmatory phase. The default value of `gamma` is zero.
 
 ## Skipping phase II
-Adding the option to skip phase II can be integrated in the framework by using the parameter `skipII` The value of the treatment effect used for phase III planning may be calculated by the median of the prior distribution used for modeling the true assumed treatment effect in phase II. If we set the parameter `TRUE`, the program calculates the expected utility for the case when phase II is skipped and compares it to the situation when phase II is not skipped.The results are then returned as a list of two results lists, `res[[1]]` being the results when including phase II and `res[[2]]` when skipping phase II. The default value is `skipII = FALSE`.
+If enough information is available, one may decide to skip the phase II trial and move directly to a confirmatory trial. This can be integrated in the framework by using the parameter `skipII`. If we set the parameter `TRUE`, the program calculates the expected utility for the case when phase II is skipped and compares it to the situation when phase II is not skipped. When skipping phase II, the assumed treatment effect used for planning the phase III trial is calculated as the median of the prior distribution. The results are then returned as a list of two lists, `res[[1]]` being the results when including phase II and `res[[2]]` when skipping phase II. The default value is `skipII = FALSE`.
 
 ```{r,eval = FALSE}
  resII <- optimal_normal(Delta1 = 0.625, fixed = TRUE, # treatment effect
@@ -248,11 +248,11 @@ resII <- readRDS(file="optimal_normal_skipII.RDS")
 ```{r}
 resII
 ```
-It can be seen that in this case skipping phase II yields a higher utility than including phase II. As skipping phase II automatically sets `n2 = O`, leading to costs `K2 = 0` , hence, overall costs may be smaller. Furthermore, note that the optimal threshold value `Kappa` is also automatically set to `-Inf` and the probability to go to phase III `pgo = 1`, as we go to phase III every time, when skipping phase II.
+It can be seen that in this case skipping phase II yields a higher utility than including phase II. Skipping phase II automatically sets `n2 = O` which leads to costs `K2 = 0`. Hence, overall costs are smaller in our example. Furthermore, note that the optimal threshold value `Kappa` is also automatically set to `-Inf` and the probability to go to phase III `pgo = 1`, as we go to phase III every time, when skipping phase II.
 
 ## Parallel computing
-As some of the programs may have very long run-times, especial more complex ones, fast computing is enabled by parallel
-programming. The parameter `num_cl` allows you to set the number of cores for parallel computing. It is advisable to check the number of cores available by using the function `detectCores()`. The default value is `num_cl = 1`. Note, that using this parameters does not change the results, but can decrease run-time significantly.
+As some of the programs may have very long run-times, especial more complex ones, faster computing is enabled by parallel
+programming. The parameter `num_cl` allows you to set the number of cores for parallel computing. It is advisable to check the number of cores available by using the function `detectCores()`. The default value is `num_cl = 1`. Note that using this parameters does not change the results, but can decrease run-time.
 
 # Where to go from here
 This tutorial presents more parameters, so you can adapt the program to your specific needs.

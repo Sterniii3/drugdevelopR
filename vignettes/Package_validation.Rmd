@@ -1,0 +1,49 @@
+---
+title: "Package validation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Package_validation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+As an open source software system, R is continuously evolving. In the clinical trials, reliable and valid software is crucial and hence enforced by regulatory authorities (FDA 2003). In order to establish proof of the package's validity on our server, we developed a validation suite following the *PHUSE R Package Validation Framework* (Hughes 2021). We first formulated user requirements. For each requirement, human-readable test cases were written, i.e. small scenarios for checking the package's functionality. Subsequently, an independent programmer (none of the package developers) implemented the test cases in code, reporting bugs and unclear documentation back to the developers.
+
+The whole validation suite was run on our server, and the validation report can be found [here](https://github.com/Sterniii3/drugdevelopR/tree/master/validation/validation.pdf). As every system configuration is different, we can not guarantee that the `drugdevelopR` package will work as expected on your system. The validation suite may serve as a building block in your own validation framework. In the following, we will explain how to use it.
+
+# Guide to running the validation suite
+
+The validation report is compiled using the PHUSE's [`valtools`](https://github.com/phuse-org/valtools) package. We recommend using our forked branch were a few bugs were fixed that were not yet merged into to the package's main repository. It can be installed by running the following command:
+
+```{r}
+devtools::install_github("LukasDSauer/valtools")
+```
+
+In the next step, download the *source files* of the current `drugdevelopR` project using this [link](https://github.com/Sterniii3/drugdevelopR/archive/refs/heads/master.zip). Extract the folder and navigate to it using RStudio. Install the package from source using the following command:
+
+```{r}
+devtools::install()
+```
+
+Then, open the file `./validation/validation.Rmd` in RStudio and use the *Knit* button for compiling the report. This may take a long time due to the long runtime of the test codes. We used 12 cores of our RStudio server, which took xx hours (i.e. several days) to complete.
+
+# Adding a signature page
+
+If you need a signature page within your report, proceed as follows:
+
+1. Open the file `./validation/validation.yml` and replace our names by the names of the responsible persons at your facility.
+2. Open the file `./validation/validation.Rmd` and uncomment the section `## Certifications {-}` and its subsection (approx. 20 lines of code).
+3. Knit the document as explained above.
+
+# References
+
+FDA, US Food and Drug Administration (2003): Guidance for Industry Part 11. https://www.fda.gov/media/75414/download.
+Ellis Hughes and the PHUSE Data Visualisation & Open Source Technology Working Group (2021): White Paper 059. R Package Validation Framework. https://advance.phuse.global/display/WEL/R+Package+Validation+Framework.

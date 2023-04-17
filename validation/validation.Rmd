@@ -1,6 +1,6 @@
 ---
 title: Validation Report for drugdevelopR
-author: Johannes Cepicka
+author: Johannes Cepicka, Lukas D. Sauer
 date: "`r Sys.Date()`"
 output:
   pdf_document:
@@ -55,31 +55,29 @@ all_sig <- vt_scrape_sig_table()
 
 \newpage
 
-# Certifications {-}
+<!-- # Certifications {-} -->
 
-## Signatures  {-}
+<!-- ## Signatures  {-} -->
 
-**AUTHOR** My signature designates authorship of this document.
+<!-- **AUTHOR** My signature designates authorship of this document. -->
 
-```{r validation-lead-sig-block}
-all_sig[grepl("validation lead",all_sig$role, ignore.case = TRUE),] %>%
-  set_rownames(seq_len(nrow(.))) %>%
-  vt_kable_sig_table()
-```
+<!-- ```{r validation-lead-sig-block} -->
+<!-- all_sig[grepl("validation lead",all_sig$role, ignore.case = TRUE),] %>% -->
+<!--   set_rownames(seq_len(nrow(.))) %>% -->
+<!--   vt_kable_sig_table() -->
+<!-- ``` -->
 
-**APPROVAL** I have reviewed this document and approve its content.
+<!-- **APPROVAL** I have reviewed this document and approve its content. -->
 
-```{r sig-block,eval=FALSE}
+<!-- ```{r sig-block} -->
+<!-- all_sig[!grepl("validation lead",all_sig$role, ignore.case = TRUE),] %>% -->
+<!--   set_rownames(seq_len(nrow(.))) %>%  -->
+<!--   vt_kable_sig_table() -->
+<!-- ``` -->
 
-all_sig[!grepl("validation lead",all_sig$role, ignore.case = TRUE),] %>%
-  set_rownames(seq_len(nrow(.))) %>% 
-  vt_kable_sig_table()
+<!-- The effective date of this document is the last date of signature. -->
 
-```
-
-The effective date of this document is the last date of signature.
-
-\newpage
+<!-- \newpage -->
 
 # General introduction and validation plan {-}
 
@@ -197,15 +195,17 @@ vt_file(vt_path(child_files_test),dynamic_referencing = FALSE)
 
 # Test Results {-}
 
-```{r}
-# Currently, this code causes a LaTeX error in valtools. This can be manually
-# fixed by installing valtools from source and adapting the source code as
-# described in:
-# https://github.com/phuse-org/valtools/pull/222
-vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R",
-                  "test_code/02_BiasAdjustmentTestCode.R")),
-        dynamic_referencing = FALSE)
-```
+<!-- ```{r} -->
+<!-- # Currently, this code causes a LaTeX error in valtools. This can be manually -->
+<!-- # fixed by installing valtools from source and adapting the source code as -->
+<!-- # described in: -->
+<!-- # https://github.com/phuse-org/valtools/pull/222 -->
+<!-- # or by simply downloading or fork from -->
+<!-- # https://github.com/LukasDSauer/valtools -->
+<!-- vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R", -->
+<!--                   "test_code/02_BiasAdjustmentTestCode.R")), -->
+<!--         dynamic_referencing = FALSE) -->
+<!-- ``` -->
 
 
 # References {-}
