@@ -1,9 +1,19 @@
-pandoc: '2.18'
-pkgdown: 2.0.6
+pandoc: 2.19.2
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  introduction-to-drugdevelopR: introduction-to-drugdevelopR.html
-last_built: 2022-09-20T14:54Z
+  Bias_adjustment: Bias_adjustment.html
+  Binary_outcomes: Binary_outcomes.html
+  Fixed_and_prior_distributions: Fixed_and_prior_distributions.html
+  Interpreting_Output: Interpreting_Output.html
+  Introduction-to-drugdevelopR: Introduction-to-drugdevelopR.html
+  More_Parameters: More_Parameters.html
+  Multiarm_Trials: Multiarm_Trials.html
+  Multiple_Endpoints: Multiple_Endpoints.html
+  Multitrial: Multitrial.html
+  Package_validation: Package_validation.html
+  Time-to-event_outcomes: Time-to-event_outcomes.html
+last_built: 2023-04-17T11:26Z
 urls:
   reference: https://sterniii3.github.io/drugdevelopR/reference
   article: https://sterniii3.github.io/drugdevelopR/articles

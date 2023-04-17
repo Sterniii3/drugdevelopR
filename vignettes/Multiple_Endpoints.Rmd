@@ -1,5 +1,5 @@
 ---
-title: "Programs for Trials with Multiple Endpoints"
+title: "Multiple - methods for trials with multiple endpoints"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Multiple_Endpoints}
@@ -16,28 +16,27 @@ knitr::opts_chunk$set(
 
 Suppose we are planning a drug development program testing the superiority of an experimental treatment over a control treatment. Our drug development program consists of an exploratory phase II trial which is, in case of promising results, followed by a confirmatory phase III trial.
 
-The drugdevelopR package enables us to optimally plan such programs using a utility-maximizing approach. To get a brief introduction, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html). Contrary to the basic setting, when only one phase II and one phase III trial were conducted, in this scenario we investigate what happens when multiple endpoints are of interest. The functions currently implemented allow for the conduction of trials with two different endpoints. The drugdevelopR package enables programs where only one endpoints has to show a significant positive treatment effect or all endpoints have to show a significant positive treatment effect.  As the differences between these two cases are more pronounced than in the other methods implemented for the package, we present examples for both settings individually in this article.
+The drugdevelopR package enables us to optimally plan such programs using a utility-maximizing approach. To get a brief introduction, we presented a very basic example on how the package works in [Introduction to planning phase II and phase III trials with drugdevelopR](https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html). Contrary to the basic setting, where only one phase II and one phase III trial were conducted, in this scenario we investigate what happens when multiple endpoints are of interest. The functions currently implemented only allow for the conduction of trials with up to two different endpoints. The drugdevelopR package enables programs where only one endpoints has to show a significant positive treatment effect or all endpoints have to show a significant positive treatment effect.
 
-# Only one endpoint has to be significant
-
-Suppose we are developing a new tumor treatment, *exper*.  The two endpoints we consider interesting are overall survival (OS) and progression free survival (PFS). These are time-to-event outcome variables. Therefore, we will use the function `optimal_multiple_tte`, which calculates optimal sample sizes and threshold decisions values for time-to-event outcomes when multiple endpoints are investigated. 
-
-Within our drug development program, we will compare our experimental treatment to the control treatment *contro*. The treatment effect measure of *exper* for each endpoint $i \in \{1,2\}$ is given by $\theta_i = −\log(HR_i)$, which is the negative logarithm of the hazard ratio $HR_i$, which is the ratio of the hazard rates between the experimental treatment and the control treatment, for each endpoint. For more information on the hazard ratio, see the vignette on [time-to-event endpoints](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html). 
-
-## Applying the package to the example
-
-After installing the package according to the [installation instructions](https://sterniii3.github.io/drugdevelopR/#Installation), we can load it using the following code:
+After installing the package according to the [installation instructions](https://sterniii3.github.io/drugdevelopR/#Installation), we can load it using the following code, and start right into the two examples:
 ```{r}
 library(drugdevelopR)
 ```
 
-## Defining all necessary parameters
-As, the parameters in the setting with multiple endpoints differ slightly from the other cases ([bias adjustment](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html) and [multitrial](https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html)), we will explain the differing parameters in more detail.
-As in the basic setting, the treatment effect may be fixed (as in this example) or follows a prior distribution (see [Fixed or Prior](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html)) Note, that in this case, contrary to the other setting, the second treatment effect describes the effect of the second endpoint and is also relevant for `fixed = TRUE`. Furthermore, some options to adapt the program to your specific needs are also available in this setting (see [More parameters](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html)), however skipping phase II and choosing different treatment effects in phase II and III are not possible.
+# Only one endpoint has to be significant
 
-* `hr1` is our hazard ratio for the treatment effect of the endpoint OS and `hr2` is our hazard ratio for the treatment effect of the endpoint PFS. We assume that our experimental treatment *exper* leads to unfavorable events occurring only 80\% of times compared to the control treatment *contro* for endpoint OS and only 75\% of times for PFS. Therefore, we set `hr1 = 0.8` and `hr2 = 0.75`.
+Suppose we are developing a new tumor treatment, *exper*.  The two endpoints we consider interesting are overall survival (OS) and progression-free survival (PFS). These are time-to-event outcome variables. Therefore, we will use the function `optimal_multiple_tte`, which calculates optimal sample sizes and threshold decisions values for time-to-event outcomes when multiple endpoints are investigated. 
+
+Within our drug development program, we will compare our experimental treatment to the control treatment *contro*. The treatment effect measure of *exper* for each endpoint $i \in \{1,2\}$ is given by $\theta_i = −\log(HR_i)$, where the hazard ratio $HR_i$ is the ratio of the hazard rates between the experimental treatment and the control treatment, for each endpoint. For more information on the hazard ratio, see the vignette on [time-to-event endpoints](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html). 
+
+
+## Defining all necessary parameters
+The parameters in the setting with multiple endpoints differ slightly from the other cases ([bias adjustment](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html) and [multitrial](https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html)).
+As in the basic setting, the treatment effect may be fixed (as in this example) or may follow a prior distribution (see [Fixed or Prior](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html)) Note that in this case, contrary to the other settings, the second treatment effect describes the effect of the second endpoint and is also relevant for `fixed = TRUE`. Furthermore, some options to adapt the program to your specific needs are also available in this setting (see [More parameters](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html)), however skipping phase II and choosing different treatment effects in phase II and III are not possible.
+
+* `hr1` is the assumed hazard ratio of the endpoint OS. `hr2` is the assumed hazard ratio of the endpoint PFS. We assume that our experimental treatment *exper* leads to a hazard reduction of 80\% compared to the control treatment *contro* for endpoint OS and a reduction of 75\% for PFS. Therefore, we set `hr1 = 0.8` and `hr2 = 0.75`.
 * `n2min` and `n2max` specify the minimal and maximal number of participants (not events) for the phase II trial. The package will search for the optimal sample size within this region. For now, we want the program to search for the optimal sample size in the interval between 20 and 400 participants. In addition, we will tell the program to search this region in steps of ten participants at a time by setting `stepn2 = 10`.
-* Differing from the basis setting, one has to provide to sets of benefits triples, one triple `b11`, `b21`, `b31` in the case endpoint OS is significant (independent of PFS is significant or not) and one triple `b12`, `b22`, `b32` in the case OS is not significant. The intuition is, that overall survival is the "more relevant" endpoint, i.e. if this endpoints shows a significant result, we have higher gains than if only the "less important" endpoint PFS shows a significant result. We assign benefit triples of {1000, 2000, 3000} for the case OS is significant and {1000, 1500, 2000} if not (all in units of 10^5\$).
+* Differing from the basis setting, one has to provide two sets of benefits triples, one triple `b11`, `b21`, `b31` in the case endpoint OS is significant (independent of PFS beiing significant or not) and one triple `b12`, `b22`, `b32` in the case OS is not significant. The intuition is that overall survival is the "more relevant" endpoint, i.e. if this endpoints shows a significant result, we have higher gains than if only the "less important" endpoint PFS shows a significant result. We assign benefit triples of {1000, 2000, 3000} for the case OS is significant and {1000, 1500, 2000} if not (all in units of 10^5\$).
 * Finally, the parameter `rho` determines the correlation between the treatment effects of the two endpoints. In our case, we set `rho = 0.6`, indicating the correlation between the treatment effects of OS and PFS is 0.6.
 
 ```{r,eval = FALSE}
@@ -91,25 +90,18 @@ The program returns a data frame, with the following results:
 
 # Both endpoints have to be significant
 
-In this scenario, suppose we are developing a new Alzheimer medication, *exper*.  The two endpoints we consider interesting are improving cognition (cognitive endpoint) and improving activities of daily living (functional endpoint). These are normally distributed outcome variables. Therefore, we will use the function `optimal_multiple_normal`, which calculates optimal sample sizes and threshold decisions values for normally distributed outcomes when multiple endpoints are investigated.  
+In this scenario, suppose we are developing a new Alzheimer medication, *exper*.  The two endpoints we consider interesting are improving cognition (cognitive endpoint) and improving activities of daily living (functional endpoint). We want both outcomes to be show statistically significant differences for the trial to be successful. These are normally distributed outcome variables. Therefore, we will use the function `optimal_multiple_normal`, which calculates optimal sample sizes and threshold decisions values for normally distributed outcomes when multiple endpoints are investigated.  
 
 Within our drug development program, we will compare our experimental treatment to the control treatment *contro*. The treatment effect measure of *exper* for each endpoint $i \in \{1,2\}$ is given by $\Delta_i = \mu_{exper} - \mu_{contro}$, which is the difference in mean between the experimental treatment and the control treatment, for both endpoints. Note that this is not divided by the standard deviation, hence is it not standardized. For more information, see the vignette on [normally distributed outcomes](https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html).
 
-## Applying the package to the example
-
-After installing the package according to the [installation instructions](https://sterniii3.github.io/drugdevelopR/#Installation), we can load it using the following code:
-```{r}
-library(drugdevelopR)
-```
-
 ## Defining all necessary parameters
-As, the parameters in the setting with multiple endpoints differ slightly from the other cases ([bias adjustment](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html) and [multitrial](https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html)), we will explain the differing parameters in more detail.
-As in the basic setting, the treatment effect may be fixed (as in this example) or follows a prior distribution (see [Fixed or Prior](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html)) Note, that in this case, contrary to the other setting, the second treatment effect describes the effect of the second endpoint and is also relevant for `fixed = TRUE`. Furthermore, some options to adapt the program to your specific needs are also available in this setting (see [More parameters](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html)), however skipping phase II and choosing different treatment effects in phase II and III are not possible.
+Again, the parameters in the setting with multiple endpoints differ slightly from the other cases ([bias adjustment](https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html) and [multitrial](https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html)).
+As in the basic setting, the treatment effect may be fixed (as in this example) or may follow a prior distribution (see [Fixed or Prior](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html)) Note, that in this case, contrary to the other settings, the second treatment effect describes the effect of the second endpoint and is also relevant for `fixed = TRUE`. Furthermore, some options to adapt the program to your specific needs are also available in this setting (see [More parameters](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html)), however skipping phase II and choosing different treatment effects in phase II and III are not possible.
 
-* `Delta1` is our assumed true treatment effect given as difference in means between *exper* and *contro* for the cognitive endpoint and `Delta1` is our assumed true treatment effect given as difference in means between *exper* and *contro* for the functional endpoint. We assume true treatment effects to be 0.8 and 0.5 for each endpoint respectively, hence `Delta1 = 0.8` and `Delta2 = 0.5`.
+* `Delta1` is our assumed true treatment effect given as difference in means between *exper* and *contro* for the cognitive endpoint and `Delta2` is our assumed true treatment effect given as difference in means between *exper* and *contro* for the functional endpoint. We assume true treatment effects to be 0.8 and 0.5 for each endpoint respectively, hence `Delta1 = 0.8` and `Delta2 = 0.5`.
 * `n2min` and `n2max` specify the minimal and maximal number of participants for the phase II trial. The package will search for the optimal sample size within this region. For now, we want the program to search for the optimal sample size in the interval between 20 and 200 participants. In addition, we will tell the program to search this region in steps of ten participants at a time by setting `stepn2 = 10`.
-* As we do not include the variances of the experimental and control treatment when calculating the assumed true treatment effect, we have to include two parameters that amount for the standard deviations $\sigma_i$ for $i \in \{1,2\}$. We set `sigma1 = 2` and `sigma2 = 1` for our example. 
-* As both endpoints have to show a significant positive treatment effect, in order for a program to be successful, we have the parameter `relaxed` to decide, whether a program shows a large, medium or small treatment effect overall. If `relaxed = FALSE` , we consider a strict rule assigning a large overall effect in case both endpoints show an effect of large size, a small overall effect in case that at least one of the endpoints shows a small effect, and a medium overall effect otherwise. If `relaxed = TRUE`, we investigate the characteristics for a more relaxed rule assigning a large overall effect if at least one of the endpoints shows a large effect, a small effect if both endpoints show a small effect, and a medium overall effect otherwise. For our example, we set `relaxed = TRUE`
+* We have to include two parameters that amount for the standard deviations $\sigma_i$ for $i \in \{1,2\}$. We set `sigma1 = 2` and `sigma2 = 1` for our example. 
+* The parameter `relaxed` decides how the effect sizes of the two endpoints are combined into one overall effect size (large, medium or small overall treatment effect). If `relaxed = FALSE` , we consider a strict rule assigning a large overall effect if both endpoints show an effect of large size, a small overall effect if at least one of the endpoints shows a small effect, and a medium overall effect otherwise. If `relaxed = TRUE`, we investigate the characteristics for a more relaxed rule assigning a large overall effect if at least one of the endpoints shows a large effect, a small effect if both endpoints show a small effect, and a medium overall effect otherwise. For our example, we set `relaxed = TRUE`
 * Finally, the parameter `rho` determines the correlation between the treatment effects of the two endpoints. In our case, we set `rho = 0.5`, indicating the correlation between the treatment effects is 0.5.
 
 ```{r,eval = FALSE}
@@ -162,6 +154,7 @@ The program returns a data frame, with the following results:
 
 # Where to go from here
 In this article we presented examples when multiple endpoints are of interest.
+
 For more information on how to use the package, see:
 
 * [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html) See how the package works in a basic example.

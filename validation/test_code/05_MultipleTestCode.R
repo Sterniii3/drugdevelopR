@@ -87,10 +87,18 @@ test_that("05.03", {
                               fixed = TRUE,
                               K = 600
   )
+<<<<<<< HEAD
   expect_equal(res_nolim$u, 144.96, tolerance = 0.005)
   expect_equal(res_nolim$n2, 172)
   expect_equal(res_nolim$n3, 408)
   expect_equal(res_nolim$n, 580)
+=======
+
+  expect_equal(res_nolim$u, 161.11, tolerance = 0.005)
+  expect_equal(res_nolim$n2, 196)
+  expect_equal(res_nolim$n3, 424)
+  expect_equal(res_nolim$n, 620)
+>>>>>>> b0980873dc9ca30a51a3d0734b380ae39046c4be
   expect_equal(res_nolim$HRgo, 0.86)
   expect_equal(res_nolim$K2, 229)
   expect_equal(res_nolim$K3, 532)
@@ -123,7 +131,12 @@ test_that("05.04", {
                               fixed = TRUE,
                               S = 0.6
   )
+<<<<<<< HEAD
   expect_equal(res$u, 132.6, tolerance = 0.005)
+=======
+
+  expect_equal(res$u, 153.98, tolerance = 0.005)
+>>>>>>> b0980873dc9ca30a51a3d0734b380ae39046c4be
   expect_equal(res$n2, 280)
   expect_equal(res$n3, 467)
   expect_equal(res$n, 747)
@@ -181,7 +194,7 @@ test_that("05.06", {
                               beta = 0.1,
                               Delta1 = 0.75, Delta2 = 0.8,
                               n2min = 80, n2max = 160, stepn2 = 4,
-                              kappamin = 0.02, kappamax = 0.1, kappago = 0.02,
+                              kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                               b1 = 1000, b2 = 2000, b3 = 3000,
                               num_cl = 12,
                               c02 = 100, c03 = 150,
@@ -202,7 +215,7 @@ test_that("05.06", {
                                      beta = 0.1,
                                      Delta1 = 0.75, Delta2 = 0.8,
                                      n2min = 80, n2max = 160, stepn2 = 4,
-                                     kappamin = 0.02, kappamax = 0.1, kappago = 0.02,
+                                     kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                                      b1 = 1000, b2 = 2000, b3 = 3000,
                                      num_cl = 12,
                                      c02 = 100, c03 = 150,
@@ -229,7 +242,7 @@ test_that("05.07", {
                                        beta = 0.1,
                                        Delta1 = 0.75, Delta2 = 0.8,
                                        n2min = 80, n2max = 160, stepn2 = 4,
-                                       kappamin = 0.02, kappamax = 0.04, kappago = 0.02,
+                                       kappamin = 0.02, kappamax = 0.04, stepkappa = 0.02,
                                        b1 = 1000, b2 = 2000, b3 = 3000,
                                        num_cl = 12,
                                        c02 = 100, c03 = 150,
@@ -247,7 +260,7 @@ test_that("05.07", {
                           beta = 0.1,
                           Delta1 = 0.75, Delta2 = 0.8,
                           n2min = 80, n2max = 160, stepn2 = 4,
-                          kappamin = 0.02, kappamax = 0.04, kappago = 0.02,
+                          kappamin = 0.02, kappamax = 0.04, stepkappa = 0.02,
                           b1 = 1000, b2 = 2000, b3 = 3000,
                           num_cl = 6,
                           c02 = 100, c03 = 150,
@@ -270,7 +283,7 @@ test_that("05.08", {
                                        beta = 0.1,
                                        Delta1 = 0.75, Delta2 = 0.8,
                                        n2min = 80, n2max = 160, stepn2 = 4,
-                                       kappamin = 0.02, kappamax = 0.1, kappago = 0.02,
+                                       kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                                        b1 = 1000, b2 = 2000, b3 = 3000,
                                        num_cl = 12,
                                        c02 = 100, c03 = 150,
@@ -285,7 +298,7 @@ test_that("05.08", {
                                        beta = 0.1,
                                        Delta1 = 0.75, Delta2 = 0.8,
                                        n2min = 80, n2max = 160, stepn2 = 4,
-                                       kappamin = 0.02, kappamax = 0.1, kappago = 0.02,
+                                       kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                                        b1 = 1000, b2 = 2000, b3 = 3000,
                                        num_cl = 12,
                                        c02 = 100, c03 = 150,
@@ -317,7 +330,7 @@ test_that("05.09", {
                                        beta = 0.1,
                                        Delta1 = 0.75, Delta2 = 0.8,
                                        n2min = 80, n2max = 160, stepn2 = 4,
-                                       kappamin = 0.02, kappamax = 0.1, kappago = 0.02,
+                                       kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                                        b1 = 1000, b2 = 2000, b3 = 3000,
                                        num_cl = 12,
                                        c02 = 100, c03 = 150,
@@ -332,7 +345,7 @@ test_that("05.09", {
                                        beta = 0.1,
                                        Delta1 = 0.75, Delta2 = 0.8,
                                        n2min = 80, n2max = 160, stepn2 = 4,
-                                       kappamin = 0.02, kappamax = 0.1, kappago = 0.02,
+                                       kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                                        b1 = 1000, b2 = 2000, b3 = 3000,
                                        num_cl = 12,
                                        c02 = 100, c03 = 150,
@@ -351,6 +364,7 @@ test_that("05.09", {
   expect_equal(res_nolim$sProg2, 0.36)
   expect_equal(res_nolim$sProg3, 0.05)
   expect_equal(res_nolim$Kappa, 0.02)
+  
   expect_equal(res_lim$u, -9999, tolerance = 0.005)
 })
 #' @editor Lukas D Sauer
@@ -358,11 +372,13 @@ test_that("05.09", {
 test_that("05.10", {
   # Multiple normally distributed endpoints
   # -- with and without
+
   res_relax <- optimal_multiple_normal(alpha = 0.05,
+
                                        beta = 0.1,
                                        Delta1 = 0.75, Delta2 = 0.8,
                                        n2min = 80, n2max = 160, stepn2 = 4,
-                                       kappamin = 0.02, kappamax = 0.1, kappago = 0.02,
+                                       kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                                        b1 = 1000, b2 = 2000, b3 = 3000,
                                        num_cl = 12,
                                        c02 = 100, c03 = 150,
@@ -377,7 +393,7 @@ test_that("05.10", {
                                      beta = 0.1,
                                      Delta1 = 0.75, Delta2 = 0.8,
                                      n2min = 80, n2max = 160, stepn2 = 4,
-                                     kappamin = 0.02, kappamax = 0.1, kappago = 0.02,
+                                     kappamin = 0.02, kappamax = 0.1, stepkappa = 0.02,
                                      b1 = 1000, b2 = 2000, b3 = 3000,
                                      num_cl = 12,
                                      c02 = 100, c03 = 150,

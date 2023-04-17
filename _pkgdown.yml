@@ -1,4 +1,33 @@
 url: https://sterniii3.github.io/drugdevelopR/
 template:
   bootstrap: 5
+articles:
+- title: Introduction
+  navbar: ~
+  contents:
+  - Introduction-to-drugdevelopR
+
+- title: Different outcome variables
+  contents:
+  - Binary_outcomes
+  - Time-to-event_outcomes
+
+- title: Input and output
+  contents:
+  - Fixed_and_prior_distributions
+  - More_Parameters
+  - Interpreting_Output
+  
+- title: Complex settings
+  contents:
+  - Bias_adjustment
+  - Multitrial
+  - Multiarm_Trials
+  - Multiple_Endpoints
+  
+- title: Package validation
+  navbar: ~
+  contents:
+  - Package_validation
+
 

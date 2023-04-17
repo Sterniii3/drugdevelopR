@@ -4,10 +4,43 @@
     <loc>https://sterniii3.github.io/drugdevelopR/404.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/articles/Binary_distributed_outcomes.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/articles/Binary_outcomes.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html</loc>
+    <loc>https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/articles/Multiarm_Trials.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/articles/Multiple_Endpoints.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/articles/Package_validation.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/authors.html</loc>
@@ -25,10 +58,19 @@
     <loc>https://sterniii3.github.io/drugdevelopR/news/index.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/d3_skipII_tte.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/dbivanorm.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/drugdevelopR.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/Ed3_bias.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/Ed3_tte.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/En3_bias_binary.html</loc>
@@ -46,10 +88,16 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo23_normal.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_bias.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_bias_binary.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_bias_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_tte.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg23.html</loc>
@@ -59,6 +107,9 @@
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg23_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_bias.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_bias_binary.html</loc>
@@ -80,6 +131,9 @@
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multitrial_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_tte.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_binary.html</loc>
@@ -169,6 +223,9 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/posp_normal.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/prior_tte.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/PsProg_binary.html</loc>
   </url>
   <url>
@@ -199,6 +256,9 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/utility23_normal.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_bias.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_bias_binary.html</loc>
   </url>
   <url>
@@ -227,5 +287,8 @@
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multitrial_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_tte.html</loc>
   </url>
 </urlset>

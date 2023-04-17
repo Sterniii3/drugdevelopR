@@ -259,8 +259,8 @@ test_that("02.06", {
                       S = 0.7
   )
   expect_equal(res$n2, 144)
-  expect_equal(res$n3, 710)
-  expect_equal(res$u, 769.80)
+  expect_equal(res$n3, 552)
+  expect_equal(res$u, 857.77)
   expect_equal(res$Adj, 0.5)
   expect_equal(res$sProg, 0.7)
   expect_equal(res$sProg1, 0.07)
