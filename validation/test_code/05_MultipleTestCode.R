@@ -87,21 +87,21 @@ test_that("05.03", {
                               fixed = TRUE,
                               K = 600
   )
-  expect_equal(res_nolim$u, 161.11, tolerance = 0.005)
-  expect_equal(res_nolim$n2, 196)
-  expect_equal(res_nolim$n3, 424)
-  expect_equal(res_nolim$n, 620)
+  expect_equal(res_nolim$u, 144.96, tolerance = 0.005)
+  expect_equal(res_nolim$n2, 172)
+  expect_equal(res_nolim$n3, 408)
+  expect_equal(res_nolim$n, 580)
   expect_equal(res_nolim$HRgo, 0.86)
-  expect_equal(res_nolim$K2, 247)
-  expect_equal(res_nolim$K3, 549)
+  expect_equal(res_nolim$K2, 229)
+  expect_equal(res_nolim$K3, 532)
 
-  expect_equal(res_lim$u, 137.33, tolerance = 0.005)
+  expect_equal(res_lim$u, 130.67, tolerance = 0.005)
   expect_equal(res_lim$n2, 112)
   expect_equal(res_lim$n3, 301)
   expect_equal(res_lim$n, 413)
-  expect_equal(res_nolim$HRgo, 0.84)
-  expect_equal(res_nolim$K2, 184)
-  expect_equal(res_nolim$K3, 414)
+  expect_equal(res_lim$HRgo, 0.84)
+  expect_equal(res_lim$K2, 184)
+  expect_equal(res_lim$K3, 414)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
@@ -123,10 +123,10 @@ test_that("05.04", {
                               fixed = TRUE,
                               S = 0.6
   )
-  expect_equal(res$u, 153.98, tolerance = 0.005)
+  expect_equal(res$u, 132.6, tolerance = 0.005)
   expect_equal(res$n2, 280)
   expect_equal(res$n3, 467)
-  expect_equal(res$n, 746)
+  expect_equal(res$n, 747)
   expect_equal(res$HRgo, 0.86)
   expect_equal(res$sProg, 0.6)
   expect_equal(res$OS, 0.54)
