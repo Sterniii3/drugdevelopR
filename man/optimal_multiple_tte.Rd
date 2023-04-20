@@ -156,11 +156,11 @@ res <- optimal_multiple_tte(hr1 = 0.75, hr2 = 0.80, # define assumed true HRs
   stepm1 = 0.95,                                    # "medium"
   stepl1 = 0.85,                                    # and "large" treatment effect size categories as proposed by IQWiG (2016)
   b11 = 1000, b21 = 2000, b31 = 3000,
-  b12 = 1000, b22 = 1500, b32 = 2000,               # define expected benefit for a "small", "medium" and "large" treatment effect (for both categories)
+  b12 = 1000, b22 = 1500, b32 = 2000,               # define expected benefits for each effect size category (both scenarios)
   rho = 0.6, fixed = TRUE,                          # correlation and treatment effect
   num_cl = 1)                                       # set number of cores used for parallelized computing 
  res
- cat(comment(res))                                   # displays the optimization sequence, start and finish date of the optimization 
+ cat(comment(res))                                  # displays optimization sequence, start and finish date of the optimization 
 
 }
 \references{

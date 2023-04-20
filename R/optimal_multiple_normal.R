@@ -54,16 +54,16 @@
 #'   kappamin = 0.05, kappamax = 0.2, stepkappa = 0.05,     # define optimization set for HRgo
 #'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
-#'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
+#'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ sample size/ minimum success probability constraint
 #'   steps1 = 0,                                            # define lower boundary for "small"
 #'   stepm1 = 0.5,                                          # "medium"
 #'   stepl1 = 0.8,                                          # and "large" treatment effect size categories as proposed by IQWiG (2016)
 #'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
 #'   rho = 0.5, relaxed = TRUE,                             # relaxed "TRUE"
-#'   fixed = TRUE,                                          #   treatment effect
-#'   num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
+#'   fixed = TRUE,                                          # treatment effect
+#'   num_cl = 1)                                            # set number of cores used for parallelized computing 
 #'  res
-#'  cat(comment(res))                                       # displays the optimization sequence, start and finish date of the optimization procedure.
+#'  cat(comment(res))                                       # displays optimization sequence, start and finish date of the optimization procedure.
 #' 
 #' @references
 #' Meinhard Kieser, Marietta Kirchner, Eva Dölger, Heiko Götte (2018). Optimal planning of phase II/III programs for clinical trials with multiple endpoints

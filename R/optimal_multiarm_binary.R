@@ -28,14 +28,14 @@
 #'   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,         # define optimization set for RRgo
 #'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III,
-#'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
+#'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ sample size/ minimum success probability constraint
 #'   steps1 = 1,                                            # define lower boundary for "small"
 #'   stepm1 = 0.95,                                         # "medium"
 #'   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
 #'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
-#'   strategy = 1, num_cl = 1)                              # set number of cores used for parallelized computing (check maximum number possible with detectCores())
+#'   strategy = 1, num_cl = 1)                              # set number of cores used for parallelized computing 
 #' res
-#' cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+#' cat(comment(res))                                        # displays optimization sequence, start and finish date of the optimization procedure.
 #' 
 #' @references
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.

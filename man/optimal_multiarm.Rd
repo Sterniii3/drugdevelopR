@@ -125,15 +125,15 @@ res <- optimal_multiarm(hr1 = 0.75, hr2 = 0.80, ec = 0.6,# define assumed true H
   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
-  K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ expected sample size for the program or minimal expected probability of a successful program
+  K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ sample size/ minimum success probability constraint
   steps1 = 1,                                            # define lower boundary for "small"
   stepm1 = 0.95,                                         # "medium"
   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
   strategy = 1,                                          # choose strategy: 1, 2 or 3
-  num_cl = 1)                                            # set number of cores used for parallelized computing (check maximum number possible with detectCores())
+  num_cl = 1)                                            # set number of cores used for parallelized computing 
 res
-cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+cat(comment(res))                                        # displays optimization sequence, start and finish date of the optimization procedure.
 
 
 }

@@ -178,7 +178,7 @@ res <- optimal_bias_normal(w=0.3,                            # define parameters
   fixed = TRUE,                                              # choose if true treatment effects are fixed or random
   num_cl = 1)                                                # set number of cores used for parallelized computing 
 res
-cat(comment(res))                                        # displays the optimization sequence, start and finish date of the optimization procedure.
+cat(comment(res))                                        
 
 }
 \references{
