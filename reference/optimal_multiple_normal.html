@@ -340,13 +340,21 @@ finish date of the optimization procedure.</p>
     <p>Meinhard Kieser, Marietta Kirchner, Eva Dölger, Heiko Götte (2018). Optimal planning of phase II/III programs for clinical trials with multiple endpoints</p>
 <p>IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at <a href="https://www.iqwig.de/de/methoden/methodenpapier.3020.html" class="external-link">https://www.iqwig.de/de/methoden/methodenpapier.3020.html</a>, assessed last 15.05.19.</p>
     </div>
+    <div class="section level2">
+    <h2 id="last-edited-by">Last Edited By<a class="anchor" aria-label="anchor" href="#last-edited-by"></a></h2>
+    <p>Johannes Cepicka</p>
+    </div>
+    <div class="section level2">
+    <h2 id="last-edit-date">Last Edit Date<a class="anchor" aria-label="anchor" href="#last-edit-date"></a></h2>
+    <p>2022-04-23</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">optimal_multiple_normal</span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.75</span>, Delta2 <span class="op">=</span> <span class="fl">0.80</span>,    <span class="co"># define assumed true HRs</span></span></span>
 <span class="r-in"><span>  in1<span class="op">=</span><span class="fl">300</span>, in2<span class="op">=</span><span class="fl">600</span>, sigma1 <span class="op">=</span> <span class="fl">8</span>, sigma2<span class="op">=</span> <span class="fl">12</span>,</span></span>
-<span class="r-in"><span>  n2min <span class="op">=</span> <span class="fl">30</span>, n2max <span class="op">=</span> <span class="fl">90</span>, stepn2 <span class="op">=</span> <span class="fl">6</span>,                    <span class="co"># define optimization set for n2</span></span></span>
-<span class="r-in"><span>  kappamin <span class="op">=</span> <span class="fl">0.02</span>, kappamax <span class="op">=</span> <span class="fl">0.2</span>, stepkappa <span class="op">=</span> <span class="fl">0.02</span>,     <span class="co"># define optimization set for HRgo</span></span></span>
+<span class="r-in"><span>  n2min <span class="op">=</span> <span class="fl">30</span>, n2max <span class="op">=</span> <span class="fl">90</span>, stepn2 <span class="op">=</span> <span class="fl">10</span>,                   <span class="co"># define optimization set for n2</span></span></span>
+<span class="r-in"><span>  kappamin <span class="op">=</span> <span class="fl">0.05</span>, kappamax <span class="op">=</span> <span class="fl">0.2</span>, stepkappa <span class="op">=</span> <span class="fl">0.05</span>,     <span class="co"># define optimization set for HRgo</span></span></span>
 <span class="r-in"><span>  alpha <span class="op">=</span> <span class="fl">0.05</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                              <span class="co"># drug development planning parameters</span></span></span>
 <span class="r-in"><span>  c2 <span class="op">=</span> <span class="fl">0.75</span>, c3 <span class="op">=</span> <span class="fl">1</span>, c02 <span class="op">=</span> <span class="fl">100</span>, c03 <span class="op">=</span> <span class="fl">150</span>,               <span class="co"># define fixed and variable costs for phase II and III</span></span></span>
 <span class="r-in"><span>  K <span class="op">=</span> <span class="cn">Inf</span>, N <span class="op">=</span> <span class="cn">Inf</span>, S <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>,                            <span class="co"># set maximal costs/ expected sample size for the program or minimal expected probability of a successful program</span></span></span>
@@ -359,7 +367,7 @@ finish date of the optimization procedure.</p>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                            <span class="co"># set number of cores used for parallelized computing (check maximum number possible with detectCores())</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization progress:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
@@ -380,10 +388,10 @@ finish date of the optimization procedure.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.75  1 1000 2000 3000</span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/comment.html" class="external-link">comment</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span>                                       <span class="co"># displays the optimization sequence, start and finish date of the optimization procedure.</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence Kappa: 0.02 0.04 0.06 0.08 0.1 0.12 0.14 0.16 0.18 0.2 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence n2: 30 36 42 48 54 60 66 72 78 84 90 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2023-04-20 09:32:40 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2023-04-20 10:08:02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence Kappa: 0.05 0.1 0.15 0.2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence n2: 30 40 50 60 70 80 90 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2023-04-20 15:52:23 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2023-04-20 16:02:36</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
