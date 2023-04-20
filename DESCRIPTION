@@ -2,11 +2,14 @@ Package: drugdevelopR
 Type: Package
 Title: Utility based optimal phase II/III drug development planning 
 Version: 0.1.1
-Authors@R: c(
-    person("Stella", "Erdmann", email = "erdmann@imbi.uni-heidelberg.de", role = c("aut", "cre")),
-    person("Johannes", "Cepicka", role = "aut"),
-    person("Lukas D.", "Sauer", email = "sauer@imbi.uni-heidelberg.de", role = "aut"),
-           comment = c(ORCID = "0000-0002-1340-9994"))
+Authors@R: c(person("Stella", "Erdmann", email = "erdmann@imbi.uni-heidelberg.de", role = c("aut", "cre")),
+             person("Johannes", "Cepicka", role = "aut"),
+             person("Lukas D.", "Sauer", email = "sauer@imbi.uni-heidelberg.de", role = "aut",
+                    comment = c(ORCID = "0000-0002-1340-9994")))
+Author: Stella Erdmann [aut, cre],
+   Johannes Cepicka [aut],
+   Lukas D. Sauer [aut]
+ Maintainer: Stella Erdmann <erdmann@imbi.uni-heidelberg.de>           
 Description: The R package drugdevelopR is a tool to plan optimal sample size allocation and go/no-go
   decision rules for phase II/III drug development programs with time-to-event (measured by hazard ratio,
   HR), binary (measured by risk ratio, RR) or normally distributed (measured by standardized difference
