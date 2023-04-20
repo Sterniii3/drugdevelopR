@@ -123,3 +123,11 @@ res <- EPsProg2_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1,
                                  in1 = 300, in2 = 600, case = 3, size = "small",
                                  fixed = FALSE)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

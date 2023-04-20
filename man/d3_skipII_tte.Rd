@@ -24,3 +24,11 @@ This function calculates the expected sample size for phase III for time-to-even
 \examples{
 res <- d3_skipII_tte(alpha = 0.05, beta = 0.1, median_prior = 0.35)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-01-30
+}
+

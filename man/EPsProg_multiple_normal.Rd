@@ -69,3 +69,11 @@ res <- EPsProg_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
                                step11 = 0, step12 = 0, step21 = 0.5, step22 = 0.5, 
                                in1 = 300, in2 = 600, fixed = TRUE, rho = 0.3)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

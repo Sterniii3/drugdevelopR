@@ -79,3 +79,11 @@ res <- EPsProg2(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1,
                                  id1 = 210, id2 = 420, case = 3, size = "small",
                                  fixed = TRUE)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-04-23
+}
+

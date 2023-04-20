@@ -104,3 +104,11 @@ res <- utility_tte(d2 = 50, HRgo = 0.8, w = 0.3,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 
                                  gamma = 0, fixed = TRUE)
 }
+\section{Last Edited By}{
+Johannes Cepicka
+}
+
+\section{Last Edit Date}{
+2022-01-30
+}
+
