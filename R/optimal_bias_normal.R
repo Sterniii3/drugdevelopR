@@ -14,26 +14,26 @@
 #' `r optimal_return_doc(type = "normal", setting = "bias")`
 #'
 #' @examples
-#' res <- optimal_bias_normal(w=0.3,                            # define parameters for prior
-#'   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,          # (https://web.imbi.uni-heidelberg.de/prior/)
+#' res <- optimal_bias_normal(w=0.3,                      # define parameters for prior
+#'   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,    # (https://web.imbi.uni-heidelberg.de/prior/)
 #'   a = 0.25, b = 0.75,
-#'   n2min = 20, n2max = 100, stepn2 = 10,                       # define optimization set for n2
-#'   kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,         # define optimization set for kappa
-#'   adj = "both",                                              # choose type of adjustment
-#'   lambdamin = 0.2, lambdamax = 1, steplambda = 0.05,         # define optimization set for lambda
-#'   alphaCImin = 0.025, alphaCImax = 0.5, stepalphaCI = 0.025, # define optimization set for alphaCI
-#'   alpha = 0.05, beta = 0.1,                                  # drug development planning parameters
-#'   c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,                 # define fixed and variable costs for phase II and III
-#'   K = Inf, N = Inf, S = -Inf,                                # set cost/sample size/sucess probability constraints
-#'   steps1 = 0,                                                # define lower boundary for "small"
-#'   stepm1 = 0.5,                                              # "medium"
-#'   stepl1 = 0.8,                                              # and "large" treatment effect size categories
-#'   b1 = 3000, b2 = 8000, b3 = 10000,                          # define expected benefit for a each effect size category
-#'   fixed = TRUE,                                              # choose if true treatment effects are fixed or random
-#'   num_cl = 1)                                                # set number of cores used for parallelized computing 
+#'   n2min = 20, n2max = 100, stepn2 = 10,                # define optimization set for n2
+#'   kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,   # define optimization set for kappa
+#'   adj = "both",                                        # choose type of adjustment
+#'   lambdamin = 0.2, lambdamax = 1, steplambda = 0.05,   # define optimization set for lambda
+#'   alphaCImin = 0.025, alphaCImax = 0.5,
+#'   stepalphaCI = 0.025,                                 # define optimization set for alphaCI
+#'   alpha = 0.05, beta = 0.1,                            # drug development planning parameters
+#'   c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,           # fixed and variable costs for phase II/III
+#'   K = Inf, N = Inf, S = -Inf,                          # set constraints
+#'   steps1 = 0,                                          # define lower boundary for "small"
+#'   stepm1 = 0.5,                                        # "medium"
+#'   stepl1 = 0.8,                                        # and "large" effect size categories
+#'   b1 = 3000, b2 = 8000, b3 = 10000,                    # define expected benefits
+#'   fixed = TRUE,                                        # true treatment effects are fixed/random
+#'   num_cl = 1)                                          # number of coresfor parallelized computing 
 #' res
 #' cat(comment(res))                                        
-#' 
 #' @references
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences.
 #'

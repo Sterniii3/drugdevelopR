@@ -120,21 +120,21 @@ user-friendly R Shiny App:
 computing is enabled by parallel programming.
 }
 \examples{
-res <- optimal_multiarm(hr1 = 0.75, hr2 = 0.80, ec = 0.6,# define assumed true HRs and control arm event rate
-  n2min = 30, n2max = 90, stepn2 = 6,                    # define optimization set for n2
-  hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
-  alpha = 0.05, beta = 0.1,                              # drug development planning parameters
-  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
-  K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ sample size/ minimum success probability constraint
-  steps1 = 1,                                            # define lower boundary for "small"
-  stepm1 = 0.95,                                         # "medium"
-  stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
-  b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a each effect size category
-  strategy = 1,                                          # choose strategy: 1, 2 or 3
-  num_cl = 1)                                            # set number of cores used for parallelized computing 
+res <- optimal_multiarm(hr1 = 0.75, hr2 = 0.80,      # define assumed true HRs 
+  ec = 0.6,                                          # control arm event rate
+  n2min = 30, n2max = 90, stepn2 = 6,                # define optimization set for n2
+  hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,     # define optimization set for HRgo
+  alpha = 0.05, beta = 0.1,                          # drug development planning parameters
+  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,           # fixed/variable costs for phase II/III
+  K = Inf, N = Inf, S = -Inf,                        # set constraints
+  steps1 = 1,                                        # define lower boundary for "small"
+  stepm1 = 0.95,                                     # "medium"
+  stepl1 = 0.85,                                     # and "large" effect size categories
+  b1 = 1000, b2 = 2000, b3 = 3000,                   # define expected benefit 
+  strategy = 1,                                      # choose strategy: 1, 2 or 3
+  num_cl = 1)                                        # number of cores for parallelized computing 
 res
-cat(comment(res))                                        # displays optimization sequence, start/finish date of procedure.
-
+cat(comment(res))                                        
 
 }
 \references{

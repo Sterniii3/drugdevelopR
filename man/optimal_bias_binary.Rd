@@ -158,22 +158,24 @@ The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} 
 Fast computing is enabled by parallel programming.
 }
 \examples{
-res <- optimal_bias_binary(w = 0.3,                      # define parameters for prior
-  p0 = 0.6, p11 =  0.3, p12 = 0.5, in1 = 30, in2 = 60,   # (https://web.imbi.uni-heidelberg.de/prior/)
-  n2min = 20, n2max = 100, stepn2 = 10,                  # define optimization set for n2
-  rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,         # define optimization set for RRgo
-  adj = "both",                                          # choose type of adjustment
-  alpha = 0.05, beta = 0.1,                              # drug development planning parameters
-  lambdamin = 0.2, lambdamax = 1, steplambda = 0.05,     # define optimization set for lambda
-  alphaCImin = 0.025, alphaCImax = 0.5, stepalphaCI = 0.025, # define optimization set for alphaCI
-  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III,
-  K = Inf, N = Inf, S = -Inf,                            # set maximal cost/ sample size/ success probability constraint
-  steps1 = 1,                                            # define lower boundary for "small"
-  stepm1 = 0.95,                                         # "medium"
-  stepl1 = 0.85,                                         # and "large" treatment effect size categories
-  b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a each effect size category
-  fixed = TRUE,                                          # choose if true treatment effects are fixed or random
-  num_cl = 1)                                            # set number of cores used for parallelized computing 
+res <- optimal_bias_binary(w = 0.3,                   # define parameters for prior
+  p0 = 0.6, p11 =  0.3, p12 = 0.5,
+   in1 = 30, in2 = 60,                                # (https://web.imbi.uni-heidelberg.de/prior/)
+  n2min = 20, n2max = 100, stepn2 = 10,               # define optimization set for n2
+  rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,      # define optimization set for RRgo
+  adj = "both",                                       # choose type of adjustment
+  alpha = 0.05, beta = 0.1,                           # drug development planning parameters
+  lambdamin = 0.2, lambdamax = 1, steplambda = 0.05,  # define optimization set for lambda
+  alphaCImin = 0.025, alphaCImax = 0.5,
+  stepalphaCI = 0.025,                                # define optimization set for alphaCI
+  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,            # fixed and variable costs for phase II/III
+  K = Inf, N = Inf, S = -Inf,                         # set constraints
+  steps1 = 1,                                         # define lower boundary for "small"
+  stepm1 = 0.95,                                      # "medium"
+  stepl1 = 0.85,                                      # and "large" effect size categories
+  b1 = 1000, b2 = 2000, b3 = 3000,                    # define expected benefits
+  fixed = TRUE,                                       # true treatment effects are fixed/random
+  num_cl = 1)                                         # number of cores for parallelized computing
 res
 cat(comment(res))                                       
 

@@ -47,22 +47,23 @@
 #' `r optimal_return_doc(type = "tte", setting = "bias")`
 #' 
 #' @examples
-#' res <- optimal_bias(w = 0.3,                                 # define parameters for prior
-#'   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,              # (https://web.imbi.uni-heidelberg.de/prior/)
-#'   d2min = 20, d2max = 100, stepd2 = 5,                       # define optimization set for d2
-#'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,             # define optimization set for HRgo
-#'   adj = "both",                                              # choose type of adjustment
-#'   lambdamin = 0.2, lambdamax = 1, steplambda = 0.05,         # define optimization set for lambda
-#'   alphaCImin = 0.025, alphaCImax = 0.5, stepalphaCI = 0.025, # define optimization set for alphaCI
-#'   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,            # drug development planning parameters
-#'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,                   # define fixed and variable costs for phase II and III
-#'   K = Inf, N = Inf, S = -Inf,                                # set maximal costs/ sample size/ minimum success probability constraint
-#'   steps1 = 1,                                                # define lower boundary for "small"
-#'   stepm1 = 0.95,                                             # "medium"
-#'   stepl1 = 0.85,                                             # and "large" treatment effect size categories (IQWiG (2016))
-#'   b1 = 1000, b2 = 2000, b3 = 3000,                           # define expected benefit for a each effect size category
-#'   fixed = FALSE,                                             # choose if true treatment effects are fixed or random
-#'   num_cl = 1)                                                # set number of cores used for parallelized computing 
+#' res <- optimal_bias(w = 0.3,                         # define parameters for prior
+#'   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,      # (https://web.imbi.uni-heidelberg.de/prior/)
+#'   d2min = 20, d2max = 100, stepd2 = 5,               # define optimization set for d2
+#'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,     # define optimization set for HRgo
+#'   adj = "both",                                      # choose type of adjustment
+#'   lambdamin = 0.2, lambdamax = 1, steplambda = 0.05, # define optimization set for lambda
+#'   alphaCImin = 0.025, alphaCImax = 0.5,
+#'   stepalphaCI = 0.025,                               # define optimization set for alphaCI
+#'   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,   # drug development planning parameters
+#'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,           # fixed/variable costs for phase II/III
+#'   K = Inf, N = Inf, S = -Inf,                        # set constraints
+#'   steps1 = 1,                                        # define lower boundary for "small"
+#'   stepm1 = 0.95,                                     # "medium"
+#'   stepl1 = 0.85,                                     # and "large" effect size categories
+#'   b1 = 1000, b2 = 2000, b3 = 3000,                   # define expected benefits 
+#'   fixed = FALSE,                                     # true treatment effects are fixed/random
+#'   num_cl = 1)                                        # number of coresfor parallelized computing 
 #' res
 #' cat(comment(res))                                            
 #' 

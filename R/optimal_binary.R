@@ -23,21 +23,22 @@
 #' `r optimal_return_doc(type = "binary")` 
 #'
 #' @examples
-#' res <- optimal_binary(w = 0.3,                           # define parameters for prior
-#'   p0 = 0.6, p11 =  0.3, p12 = 0.5, in1 = 30, in2 = 60,   # (https://web.imbi.uni-heidelberg.de/prior/)
-#'   n2min = 20, n2max = 100, stepn2 = 4,                   # define optimization set for n2
-#'   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,         # define optimization set for RRgo
-#'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
-#'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III,
-#'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ sample size/ minimum success probability constraint
-#'   steps1 = 1,                                            # define lower boundary for "small"
-#'   stepm1 = 0.95,                                         # "medium"
-#'   stepl1 = 0.85,                                         # and "large" treatment effect size categories (IQWiG (2016))
-#'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a each effect size category
-#'   gamma = 0,                                             # assume different/same population structures in phase II/III
-#'   fixed = FALSE,                                         # choose if true treatment effects are fixed or random
-#'   skipII = FALSE,                                        # choose if skipping phase II would be an option
-#'   num_cl = 1)                                            # set number of cores used for parallelized computing 
+#' res <- optimal_binary(w = 0.3,                      # define parameters for prior
+#'   p0 = 0.6, p11 =  0.3, p12 = 0.5,
+#'    in1 = 30, in2 = 60,                              # (https://web.imbi.uni-heidelberg.de/prior/)
+#'   n2min = 20, n2max = 100, stepn2 = 4,              # define optimization set for n2
+#'   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,    # define optimization set for RRgo
+#'   alpha = 0.05, beta = 0.1,                         # drug development planning parameters
+#'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,          # fixed and variable costs for phase II/III,
+#'   K = Inf, N = Inf, S = -Inf,                       # set constraints
+#'   steps1 = 1,                                       # define lower boundary for "small"
+#'   stepm1 = 0.95,                                    # "medium"
+#'   stepl1 = 0.85,                                    # and "large" treatment effect size categories
+#'   b1 = 1000, b2 = 2000, b3 = 3000,                  # define expected benefits
+#'   gamma = 0,                                        # population structures in phase II/III
+#'   fixed = FALSE,                                    # true treatment effects are fixed/random
+#'   skipII = FALSE,                                   # choose if skipping phase II is an option
+#'   num_cl = 1)                                       # number of cores for parallelized computing
 #' res
 #' cat(comment(res))                                        # displays optimization sequence, start/finish date of procedure.
 #' 
