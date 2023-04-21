@@ -28,7 +28,7 @@
 #'   steps1 = 0,                                                # define lower boundary for "small"
 #'   stepm1 = 0.5,                                              # "medium"
 #'   stepl1 = 0.8,                                              # and "large" treatment effect size categories
-#'   b1 = 3000, b2 = 8000, b3 = 10000,                          # define expected benefit for a "small", "medium" and "large" treatment effect
+#'   b1 = 3000, b2 = 8000, b3 = 10000,                          # define expected benefit for a each effect size category
 #'   fixed = TRUE,                                              # choose if true treatment effects are fixed or random
 #'   num_cl = 1)                                                # set number of cores used for parallelized computing 
 #' res

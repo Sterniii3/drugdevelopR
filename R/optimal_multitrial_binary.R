@@ -31,12 +31,12 @@
 #'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III,
 #'   K = Inf, N = Inf, S = -Inf,                            # set constraints
-#'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
+#'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a each effect size category
 #'   case = 1, strategy = TRUE,                             # chose Case and Strategy                                   
 #'   fixed = TRUE,                                          # choose if true treatment effects are fixed or random
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing 
 #' res
-#' cat(comment(res))                                        # displays the optimization sequence, start/finish date of procedure
+#' cat(comment(res))                                        # displays optimization sequence, start/finish date of procedure
 #' 
 #' @references
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.

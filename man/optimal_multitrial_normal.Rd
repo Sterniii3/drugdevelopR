@@ -154,13 +154,13 @@ res <- optimal_multitrial_normal(w = 0.3,                # define parameters for
   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
   c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,             # define fixed and variable costs for phase II and III
   K = Inf, N = Inf, S = -Inf,                            # set constraints
-  b1 = 3000, b2 = 8000, b3 = 10000,                      # define expected benefit for a "small", "medium" and "large" treatment effect                                             # assume different/same population structures in phase II and III
+  b1 = 3000, b2 = 8000, b3 = 10000,                      # define expected benefit for a each effect size category                                          # assume different/same population structures in phase II and III
   case = 1, strategy = TRUE,                             # chose Case and Strategy
   fixed = TRUE,                                          # choose if true treatment effects are fixed or random
   num_cl = 1)                                            # set number of cores used for parallelized computing
 res
 
-cat(comment(res))                                        # displays the optimization sequence, start/ finish date of procedure.
+cat(comment(res))                                        # displays optimization sequence, start/ finish date of procedure.
 
 
 }

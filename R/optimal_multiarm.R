@@ -37,11 +37,11 @@
 #'   steps1 = 1,                                            # define lower boundary for "small"
 #'   stepm1 = 0.95,                                         # "medium"
 #'   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
-#'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
+#'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a each effect size category
 #'   strategy = 1,                                          # choose strategy: 1, 2 or 3
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing 
 #' res
-#' cat(comment(res))                                        # displays optimization sequence, start and finish date of the optimization procedure.
+#' cat(comment(res))                                        # displays optimization sequence, start/finish date of procedure.
 #' 
 #' 
 #' @references

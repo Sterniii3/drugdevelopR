@@ -161,13 +161,13 @@ res <- optimal_tte(w = 0.3,                              # define parameters for
   steps1 = 1,                                            # define lower boundary for "small"
   stepm1 = 0.95,                                         # "medium"
   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
-  b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
+  b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a each effect size category
   gamma = 0,                                             # assume different/same population structures in phase II and III
   fixed = FALSE,                                         # choose if true treatment effects are fixed or random
   skipII = FALSE,                                        # choose if skipping phase II would be an option
   num_cl = 1)                                            # set number of cores used for parallelized computing 
 res
-cat(comment(res))                                        # displays optimization sequence, start/finish date of the optimization procedure.
+cat(comment(res))                                        # displays optimization sequence, start/finish date of procedure.
 
 }
 \references{

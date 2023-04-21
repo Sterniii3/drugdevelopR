@@ -56,14 +56,14 @@
 #'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ sample size/ minimum success probability constraint
 #'   steps1 = 0,                                            # define lower boundary for "small"
 #'   stepm1 = 0.5,                                          # "medium"
-#'   stepl1 = 0.8,                                          # and "large" treatment effect size categories as proposed by e.g. Cohen (1988)
-#'   b1 = 3000, b2 = 8000, b3 = 10000,                      # define expected benefit for a "small", "medium" and "large" treatment effect
+#'   stepl1 = 0.8,                                          # and "large" treatment effect size categories (Cohen (1988))
+#'   b1 = 3000, b2 = 8000, b3 = 10000,                      # define expected benefit for a each effect size category
 #'   gamma = 0,                                             # assume different/same population structures in phase II and III
 #'   fixed = FALSE,                                         # choose if true treatment effects are fixed or random
 #'   skipII = FALSE,                                        # choose if skipping phase II would be an option
 #'   num_cl = 1)                                            # set number of cores used for parallelized computing
 #' res
-#' cat(comment(res))                                        # displays optimization sequence, start/finish date of the optimization procedure
+#' cat(comment(res))                                        # displays optimization sequence, start/finish date of procedure
 #' @references
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences.
 #'

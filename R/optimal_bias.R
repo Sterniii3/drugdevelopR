@@ -59,8 +59,8 @@
 #'   K = Inf, N = Inf, S = -Inf,                                # set maximal costs/ sample size/ minimum success probability constraint
 #'   steps1 = 1,                                                # define lower boundary for "small"
 #'   stepm1 = 0.95,                                             # "medium"
-#'   stepl1 = 0.85,                                             # and "large" treatment effect size categories as proposed by IQWiG (2016)
-#'   b1 = 1000, b2 = 2000, b3 = 3000,                           # define expected benefit for a "small", "medium" and "large" treatment effect
+#'   stepl1 = 0.85,                                             # and "large" treatment effect size categories (IQWiG (2016))
+#'   b1 = 1000, b2 = 2000, b3 = 3000,                           # define expected benefit for a each effect size category
 #'   fixed = FALSE,                                             # choose if true treatment effects are fixed or random
 #'   num_cl = 1)                                                # set number of cores used for parallelized computing 
 #' res

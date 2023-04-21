@@ -31,11 +31,11 @@
 #'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ sample size/ minimum success probability constraint
 #'   steps1 = 1,                                            # define lower boundary for "small"
 #'   stepm1 = 0.95,                                         # "medium"
-#'   stepl1 = 0.85,                                         # and "large" treatment effect size categories as proposed by IQWiG (2016)
-#'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a "small", "medium" and "large" treatment effect
+#'   stepl1 = 0.85,                                         # and "large" treatment effect size categories (IQWiG (2016))
+#'   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a each effect size category
 #'   strategy = 1, num_cl = 1)                              # set number of cores used for parallelized computing 
 #' res
-#' cat(comment(res))                                        # displays optimization sequence, start and finish date of the optimization procedure.
+#' cat(comment(res))                                        # displays optimization sequence, start/finish date of procedure.
 #' 
 #' @references
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
