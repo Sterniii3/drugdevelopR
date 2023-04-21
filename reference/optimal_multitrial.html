@@ -305,7 +305,7 @@ to predefined values as explained under sProg1, sProg2 and sProg3 in the
 <span class="r-in"><span>  alpha <span class="op">=</span> <span class="fl">0.025</span>, beta <span class="op">=</span> <span class="fl">0.1</span>, xi2 <span class="op">=</span> <span class="fl">0.7</span>, xi3 <span class="op">=</span> <span class="fl">0.7</span>,       <span class="co"># drug development planning parameters</span></span></span>
 <span class="r-in"><span>  c2 <span class="op">=</span> <span class="fl">0.75</span>, c3 <span class="op">=</span> <span class="fl">1</span>, c02 <span class="op">=</span> <span class="fl">100</span>, c03 <span class="op">=</span> <span class="fl">150</span>,               <span class="co"># define fixed and variable costs for phase II and III</span></span></span>
 <span class="r-in"><span>  K <span class="op">=</span> <span class="cn">Inf</span>, N <span class="op">=</span> <span class="cn">Inf</span>, S <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>,                            <span class="co"># set constraints</span></span></span>
-<span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">1000</span>, b2 <span class="op">=</span> <span class="fl">2000</span>, b3 <span class="op">=</span> <span class="fl">3000</span>,                       <span class="co"># define expected benefit for a "small", "medium" and "large" treatment effect</span></span></span>
+<span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">1000</span>, b2 <span class="op">=</span> <span class="fl">2000</span>, b3 <span class="op">=</span> <span class="fl">3000</span>,                       <span class="co"># define expected benefit for a each effect size category</span></span></span>
 <span class="r-in"><span>  case <span class="op">=</span> <span class="fl">1</span>, strategy <span class="op">=</span> <span class="cn">TRUE</span>,                             <span class="co"># chose Case and Strategy</span></span></span>
 <span class="r-in"><span>  fixed <span class="op">=</span> <span class="cn">TRUE</span>,                                          <span class="co"># choose if true treatment effects are fixed or random</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                            <span class="co"># set number of cores used for parallelized computing </span></span></span>
@@ -341,12 +341,12 @@ to predefined values as explained under sProg1, sProg2 and sProg3 in the
 <span class="r-out co"><span class="r-pr">#&gt;</span>   c03   c2 c3   b1   b2   b3 gamma</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 150 0.75  1 1000 2000 3000     0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 150 0.75  1 1000 2000 3000     0</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/comment.html" class="external-link">comment</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span>                                        <span class="co"># displays the optimization sequence, start/ finish date of procedure.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/comment.html" class="external-link">comment</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span>                                        <span class="co"># displays optimization sequence, start/ finish date of procedure.</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence HRgo: 0.7 0.75 0.8 0.85 0.9 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence d2: 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2023-04-20 21:10:12 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2023-04-20 21:10:39</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2023-04-21 07:59:26 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2023-04-21 07:59:53</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

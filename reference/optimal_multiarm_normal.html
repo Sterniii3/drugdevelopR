@@ -291,8 +291,8 @@ finish date of the optimization procedure.</p>
 <span class="r-in"><span>  K <span class="op">=</span> <span class="cn">Inf</span>, N <span class="op">=</span> <span class="cn">Inf</span>, S <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>,                            <span class="co"># set maximal costs/ sample size/ minimum success probability constraint</span></span></span>
 <span class="r-in"><span>  steps1 <span class="op">=</span> <span class="fl">0</span>,                                            <span class="co"># define lower boundary for "small"</span></span></span>
 <span class="r-in"><span>  stepm1 <span class="op">=</span> <span class="fl">0.5</span>,                                          <span class="co"># "medium"</span></span></span>
-<span class="r-in"><span>  stepl1 <span class="op">=</span> <span class="fl">0.8</span>,                                          <span class="co"># and "large" treatment effect size categories as proposed by e.g. Cohen (1988)</span></span></span>
-<span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">3000</span>, b2 <span class="op">=</span> <span class="fl">8000</span>, b3 <span class="op">=</span> <span class="fl">10000</span>,                      <span class="co"># define expected benefit for a "small", "medium" and "large" treatment effect</span></span></span>
+<span class="r-in"><span>  stepl1 <span class="op">=</span> <span class="fl">0.8</span>,                                          <span class="co"># and "large" treatment effect size categories (Cohen (1988))</span></span></span>
+<span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">3000</span>, b2 <span class="op">=</span> <span class="fl">8000</span>, b3 <span class="op">=</span> <span class="fl">10000</span>,                      <span class="co"># define expected benefit for a each effect size category</span></span></span>
 <span class="r-in"><span>  strategy <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                            <span class="co"># set number of cores used for parallelized computing </span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization progress:</span>
@@ -316,12 +316,12 @@ finish date of the optimization procedure.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 138    0.8      0      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     b2    b3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 8000 10000</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/comment.html" class="external-link">comment</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span>                                        <span class="co"># displays optimization sequence, start and finish date of the optimization procedure.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/comment.html" class="external-link">comment</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span>                                        <span class="co"># displays optimization sequence, start/finish date of procedure.</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence Kappa: 0.02 0.04 0.06 0.08 0.1 0.12 0.14 0.16 0.18 0.2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence n2: 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2023-04-20 20:59:55 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2023-04-20 21:01:11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2023-04-21 07:49:07 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2023-04-21 07:50:22</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

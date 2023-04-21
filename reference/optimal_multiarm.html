@@ -295,7 +295,7 @@ finish date of the optimization procedure.</p>
 <span class="r-in"><span>  steps1 <span class="op">=</span> <span class="fl">1</span>,                                            <span class="co"># define lower boundary for "small"</span></span></span>
 <span class="r-in"><span>  stepm1 <span class="op">=</span> <span class="fl">0.95</span>,                                         <span class="co"># "medium"</span></span></span>
 <span class="r-in"><span>  stepl1 <span class="op">=</span> <span class="fl">0.85</span>,                                         <span class="co"># and "large" treatment effect size categories as proposed by IQWiG (2016)</span></span></span>
-<span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">1000</span>, b2 <span class="op">=</span> <span class="fl">2000</span>, b3 <span class="op">=</span> <span class="fl">3000</span>,                       <span class="co"># define expected benefit for a "small", "medium" and "large" treatment effect</span></span></span>
+<span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">1000</span>, b2 <span class="op">=</span> <span class="fl">2000</span>, b3 <span class="op">=</span> <span class="fl">3000</span>,                       <span class="co"># define expected benefit for a each effect size category</span></span></span>
 <span class="r-in"><span>  strategy <span class="op">=</span> <span class="fl">1</span>,                                          <span class="co"># choose strategy: 1, 2 or 3</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                            <span class="co"># set number of cores used for parallelized computing </span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization progress:</span>
@@ -315,12 +315,12 @@ finish date of the optimization procedure.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        1 241.46 0.85 90 342 432 0.77   0.4 0.75 0.8 0.6 Inf Inf -Inf 168 457</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03   c2 c3   b1   b2   b3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    0.4      0      1   0.95   0.85  0.05  0.1 100 150 0.75  1 1000 2000 3000</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/comment.html" class="external-link">comment</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span>                                        <span class="co"># displays optimization sequence, start and finish date of the optimization procedure.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/comment.html" class="external-link">comment</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span>                                        <span class="co"># displays optimization sequence, start/finish date of procedure.</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence HRgo: 0.7 0.75 0.8 0.85 0.9 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence n2: 30 36 42 48 54 60 66 72 78 84 90 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2023-04-20 20:59:00 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2023-04-20 20:59:20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2023-04-21 07:48:12 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2023-04-21 07:48:32</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
