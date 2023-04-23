@@ -147,7 +147,6 @@ Fast computing is enabled by parallel programming.
 \examples{
 res <- optimal_multiple_tte(hr1 = 0.75,
   hr2 = 0.80, id1 = 210, id2 = 420,          # define assumed true HRs
-  id1 = 210, id2 = 420,
   n2min = 30, n2max = 90, stepn2 = 6,        # define optimization set for n2
   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05, # define optimization set for HRgo
   alpha = 0.05, beta = 0.1,                  # drug development planning parameters

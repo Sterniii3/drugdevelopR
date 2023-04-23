@@ -40,7 +40,7 @@
 #'   skipII = FALSE,                                   # choose if skipping phase II is an option
 #'   num_cl = 1)                                       # number of cores for parallelized computing
 #' res
-#' cat(comment(res))                                        # displays optimization sequence, start/finish date of procedure.
+#' cat(comment(res))                                   # optimization sequence, start/finish date
 #' 
 #' @references
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.

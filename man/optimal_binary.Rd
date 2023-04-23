@@ -163,7 +163,7 @@ res <- optimal_binary(w = 0.3,                      # define parameters for prio
   skipII = FALSE,                                   # choose if skipping phase II is an option
   num_cl = 1)                                       # number of cores for parallelized computing
 res
-cat(comment(res))                                        # displays optimization sequence, start/finish date of procedure.
+cat(comment(res))                                   # optimization sequence, start/finish date
 
 }
 \references{

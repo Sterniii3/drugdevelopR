@@ -134,19 +134,19 @@ to predefined values as explained under sProg1, sProg2 and sProg3 in the
 }
 
 \examples{
-res <- optimal_multitrial(w = 0.3,                       # define parameters for prior
-  hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,          # (https://web.imbi.uni-heidelberg.de/prior/)
-  d2min = 20, d2max = 100, stepd2 = 5,                   # define optimization set for d2
-  hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,         # define optimization set for HRgo
-  alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,       # drug development planning parameters
-  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III
-  K = Inf, N = Inf, S = -Inf,                            # set constraints
-  b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefit for a each effect size category
-  case = 1, strategy = TRUE,                             # chose Case and Strategy
-  fixed = TRUE,                                          # choose if true treatment effects are fixed or random
-  num_cl = 1)                                            # set number of cores used for parallelized computing 
+res <- optimal_multitrial(w = 0.3,                  # define parameters for prior
+  hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,     # (https://web.imbi.uni-heidelberg.de/prior/)
+  d2min = 20, d2max = 100, stepd2 = 5,              # define optimization set for d2
+  hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,    # define optimization set for HRgo
+  alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,  # drug development planning parameters
+  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,          # fixed and variable costs for phase II/III
+  K = Inf, N = Inf, S = -Inf,                       # set constraints
+  b1 = 1000, b2 = 2000, b3 = 3000,                  # expected benefit for each effect size
+  case = 1, strategy = TRUE,                        # chose Case and Strategy
+  fixed = TRUE,                                     # true treatment effects are fixed/random
+  num_cl = 1)                                       # number of cores for parallelized computing 
 res
-cat(comment(res))                                        # displays optimization sequence, start/ finish date of procedure.
+cat(comment(res))                                   # optimization sequence, start/ finish date
 
 }
 \references{

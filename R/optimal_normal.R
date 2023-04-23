@@ -46,22 +46,22 @@
 #' Taking `cat(comment())` of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' 
 #' @examples
-#' res <- optimal_normal(w=0.3,                             # define parameters for prior
-#'   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,      # (https://web.imbi.uni-heidelberg.de/prior/)
+#' res <- optimal_normal(w=0.3,                         # define parameters for prior
+#'   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,  # (https://web.imbi.uni-heidelberg.de/prior/)
 #'   a = 0.25, b = 0.75,
-#'   n2min = 20, n2max = 100, stepn2 = 4,                   # define optimization set for n2
-#'   kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,     # define optimization set for kappa
-#'   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
-#'   c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,             # define fixed and variable costs for phase II and III
-#'   K = Inf, N = Inf, S = -Inf,                            # set maximal costs/ sample size/ minimum success probability constraint
-#'   steps1 = 0,                                            # define lower boundary for "small"
-#'   stepm1 = 0.5,                                          # "medium"
-#'   stepl1 = 0.8,                                          # and "large" treatment effect size categories (Cohen (1988))
-#'   b1 = 3000, b2 = 8000, b3 = 10000,                      # define expected benefit for a each effect size category
-#'   gamma = 0,                                             # assume different/same population structures in phase II and III
-#'   fixed = FALSE,                                         # choose if true treatment effects are fixed or random
-#'   skipII = FALSE,                                        # choose if skipping phase II would be an option
-#'   num_cl = 1)                                            # set number of cores used for parallelized computing
+#'   n2min = 20, n2max = 100, stepn2 = 4,               # define optimization set for n2
+#'   kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02, # define optimization set for kappa
+#'   alpha = 0.05, beta = 0.1,                          # drug development planning parameters
+#'   c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,         # fixed/variable costs for phase II/III
+#'   K = Inf, N = Inf, S = -Inf,                        # set constraints
+#'   steps1 = 0,                                        # define lower boundary for "small"
+#'   stepm1 = 0.5,                                      # "medium"
+#'   stepl1 = 0.8,                                      # and "large" effect size categories
+#'   b1 = 3000, b2 = 8000, b3 = 10000,                  # benefit for each effect size category
+#'   gamma = 0,                                         # population structures in phase II/III
+#'   fixed = FALSE,                                     # true treatment effects are fixed/random
+#'   skipII = FALSE,                                    # skipping phase II
+#'   num_cl = 1)                                        # number of cores for parallelized computing
 #' res
 #' cat(comment(res))                                        # displays optimization sequence, start/finish date of procedure
 #' @references
