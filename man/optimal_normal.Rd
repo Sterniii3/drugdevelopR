@@ -169,7 +169,7 @@ res <- optimal_normal(w=0.3,                         # define parameters for pri
   skipII = FALSE,                                    # skipping phase II
   num_cl = 1)                                        # number of cores for parallelized computing
 res
-cat(comment(res))                                        # displays optimization sequence, start/finish date of procedure
+cat(comment(res))                                    # optimization sequence, start/finish date
 }
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences.

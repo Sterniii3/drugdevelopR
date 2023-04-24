@@ -32,7 +32,7 @@
 #'   alpha = 0.05, beta = 0.1,                           # drug development planning parameters
 #'   c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,          # fixed and variable costs for phase II/III
 #'   K = Inf, N = Inf, S = -Inf,                         # set constraints
-#'   b1 = 3000, b2 = 8000, b3 = 10000,                   # expected benefit for a each effect size                                         # assume different/same population structures in phase II and III
+#'   b1 = 3000, b2 = 8000, b3 = 10000,                   # expected benefit for each effect size                                         
 #'   case = 1, strategy = TRUE,                          # chose Case and Strategy
 #'   fixed = TRUE,                                       # true treatment effects are fixed/random
 #'   num_cl = 1)                                         # number of cores for parallelized computing
