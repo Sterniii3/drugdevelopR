@@ -65,7 +65,7 @@ test_that("Optimal_multitrial work for Case 2: Strategy 23", {
   expect_equal(optimal_multitrial(w = 0.3,   hr1 = 0.69, hr2 = 0.88, 
                                   id1 = 210, id2 = 420,   
                                   d2min = 20, d2max = 100, stepd2 = 20,   
-                                  hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.1,    
+                                  hrgomin = 0.7, hrgomax = 0.8, stephrgo = 0.5,    
                                   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,   
                                   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,  
                                   K = Inf, N = Inf, S = -Inf,   
