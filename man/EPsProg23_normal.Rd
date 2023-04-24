@@ -69,10 +69,10 @@ In the utility function, this will lead to a utility of -9999.
 }
 }
 \examples{
-res <- EPsProg23_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
+\dontrun{EPsProg23_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
-                                 case = 2, size = "small", ymin = 0.5)
+                                 case = 2, size = "small", ymin = 0.5)}
 }
 \section{Last Edited By}{
 Johannes Cepicka, Lukas D. Sauer

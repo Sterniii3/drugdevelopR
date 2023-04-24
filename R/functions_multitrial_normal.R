@@ -1334,10 +1334,10 @@ Epgo23_normal <-  function(kappa, n2, alpha, beta, a, b,  w, Delta1, Delta2, in1
 #' @param size effect size category; possible values are `"small"`, `"medium"`, `"large"` and `"all"`
 #' @param ymin assumed minimal clinical relevant effect
 #' @return The output of the function `EPsProg23_normal()` is the expected probability of a successful program. 
-#' @examples res <- EPsProg23_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
+#' @examples \dontrun{EPsProg23_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
 #'                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                  a = 0.25, b = 0.75, 
-#'                                  case = 2, size = "small", ymin = 0.5)
+#'                                  case = 2, size = "small", ymin = 0.5)}
 #' @export
 #' @editor Johannes Cepicka, Lukas D. Sauer
 #' @editDate 2022-05-06
