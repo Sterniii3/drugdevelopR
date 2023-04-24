@@ -17,3 +17,9 @@ test_that("Utility increases with higher treatment effect", {
                                        fixed = TRUE, rho = 0.5, relaxed = "TRUE")[1])
 })
 
+test_that("Ess_multiple_tte works", {
+  expect_equal(Ess_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
+                                 Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600,
+                                 sigma1 = 2, sigma2 = 1, fixed = FALSE, rho = 0.3),374.95202)
+})
+
