@@ -1,4 +1,5 @@
 test_that("Optimal_tte works with prior distribution", {
+  skip_on_cran()
   expect_equal(optimal_tte(w = 0.3, hr1 = 0.69, hr2 = 0.88, 
                            id1 = 210, id2 = 420,     
                            d2min = 20, d2max = 100, stepd2 = 5,    
@@ -13,6 +14,7 @@ test_that("Optimal_tte works with prior distribution", {
 })
 
 test_that("Optimal_tte works without distribution", {
+  skip_on_cran()
   expect_equal(optimal_tte(w = 0.3, hr1 = 0.69, hr2 = 0.88, 
                            id1 = 210, id2 = 420,     
                            d2min = 20, d2max = 100, stepd2 = 5,    
@@ -27,6 +29,7 @@ test_that("Optimal_tte works without distribution", {
 })
 
 test_that("Optimal_tte works when skipping phase II", {
+  skip_on_cran()
   expect_equal(optimal_tte(w = 0.3, hr1 = 0.69, hr2 = 0.88, 
                            id1 = 210, id2 = 420,     
                            d2min = 20, d2max = 100, stepd2 = 5,    

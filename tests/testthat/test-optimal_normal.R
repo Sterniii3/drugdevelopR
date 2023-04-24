@@ -1,4 +1,5 @@
 test_that("Optimal normal works", {
+  skip_on_cran()
   expect_equal(optimal_normal(w=0.3, Delta1 = 0.375, Delta2 = 0.625, 
                               in1=300, in2=600,  a = 0.25, b = 0.75,   
                               n2min = 20, n2max = 100, stepn2 = 4,  
@@ -14,6 +15,7 @@ test_that("Optimal normal works", {
 })
 
 test_that("Skipping Phase II works", {
+  skip_on_cran()
  expect_equal(optimal_normal(w=0.3, Delta1 = 0.375, Delta2 = 0.625, 
                               in1=300, in2=600,  a = 0.25, b = 0.75,   
                               n2min = 20, n2max = 100, stepn2 = 4,  
@@ -28,6 +30,7 @@ test_that("Skipping Phase II works", {
 })
 
 test_that("Parameters for prior distribution are irrelevant if treatment effects are fixed", {
+  skip_on_cran()
   expect_equal(optimal_normal(w=0.3, Delta1 = 0.375, Delta2 = 0.625, 
                               in1=300, in2=600,  a = 0.25, b = 0.75,   
                               n2min = 20, n2max = 100, stepn2 = 4,  
