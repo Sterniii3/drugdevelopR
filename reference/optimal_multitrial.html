@@ -298,7 +298,7 @@ to predefined values as explained under sProg1, sProg2 and sProg3 in the
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">optimal_multitrial</span><span class="op">(</span>w <span class="op">=</span> <span class="fl">0.3</span>,                  <span class="co"># define parameters for prior</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu">optimal_multitrial</span><span class="op">(</span>w <span class="op">=</span> <span class="fl">0.3</span>,                <span class="co"># define parameters for prior</span></span></span>
 <span class="r-in"><span>  hr1 <span class="op">=</span> <span class="fl">0.69</span>, hr2 <span class="op">=</span> <span class="fl">0.88</span>, id1 <span class="op">=</span> <span class="fl">210</span>, id2 <span class="op">=</span> <span class="fl">420</span>,     <span class="co"># (https://web.imbi.uni-heidelberg.de/prior/)</span></span></span>
 <span class="r-in"><span>  d2min <span class="op">=</span> <span class="fl">20</span>, d2max <span class="op">=</span> <span class="fl">100</span>, stepd2 <span class="op">=</span> <span class="fl">5</span>,              <span class="co"># define optimization set for d2</span></span></span>
 <span class="r-in"><span>  hrgomin <span class="op">=</span> <span class="fl">0.7</span>, hrgomax <span class="op">=</span> <span class="fl">0.9</span>, stephrgo <span class="op">=</span> <span class="fl">0.05</span>,    <span class="co"># define optimization set for HRgo</span></span></span>
@@ -309,44 +309,6 @@ to predefined values as explained under sProg1, sProg2 and sProg3 in the
 <span class="r-in"><span>  case <span class="op">=</span> <span class="fl">1</span>, strategy <span class="op">=</span> <span class="cn">TRUE</span>,                        <span class="co"># chose Case and Strategy</span></span></span>
 <span class="r-in"><span>  fixed <span class="op">=</span> <span class="cn">TRUE</span>,                                     <span class="co"># true treatment effects are fixed/random</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                       <span class="co"># number of cores for parallelized computing </span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Case  1 : Optimization progess for Strategy  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Case  1 : Optimization progess for Strategy  2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Case Strategy      u HRgo  d2  d3   d  n2  n3   n  pgo sProg   hr   K   N</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    1        1 859.71 0.85 100 312 412 144 446 590 0.85  0.67 0.69 Inf Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    1        2 714.39 0.80 100 440 540 144 628 772 0.77  0.68 0.69 Inf Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      S  K2  K3 sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta xi2 xi3 c02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -Inf 208 574   0.07   0.21   0.38      1   0.95   0.85 0.025  0.1 0.7 0.7 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -Inf 208 859   0.05   0.18   0.46      1   0.95   0.85 0.025  0.1 0.7 0.7 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   c03   c2 c3   b1   b2   b3 gamma</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 150 0.75  1 1000 2000 3000     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 150 0.75  1 1000 2000 3000     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="va">res</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Case Strategy      u HRgo  d2  d3   d  n2  n3   n  pgo sProg   hr   K   N</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    1        1 859.71 0.85 100 312 412 144 446 590 0.85  0.67 0.69 Inf Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    1        2 714.39 0.80 100 440 540 144 628 772 0.77  0.68 0.69 Inf Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      S  K2  K3 sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta xi2 xi3 c02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -Inf 208 574   0.07   0.21   0.38      1   0.95   0.85 0.025  0.1 0.7 0.7 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -Inf 208 859   0.05   0.18   0.46      1   0.95   0.85 0.025  0.1 0.7 0.7 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   c03   c2 c3   b1   b2   b3 gamma</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 150 0.75  1 1000 2000 3000     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 150 0.75  1 1000 2000 3000     0</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/comment.html" class="external-link">comment</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span>                                   <span class="co"># optimization sequence, start/ finish date</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence HRgo: 0.7 0.75 0.8 0.85 0.9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> optimization sequence d2: 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> set on date: 2023-04-24 16:47:34.32852 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> finish date: 2023-04-24 16:48:07.589783</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

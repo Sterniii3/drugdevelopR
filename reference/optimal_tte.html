@@ -335,7 +335,7 @@ finish date of the optimization procedure.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> <span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">optimal_tte</span><span class="op">(</span>w <span class="op">=</span> <span class="fl">0.3</span>,            <span class="co"># define parameters for prior</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> <span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu">optimal_tte</span><span class="op">(</span>w <span class="op">=</span> <span class="fl">0.3</span>,                    <span class="co"># define parameters for prior</span></span></span>
 <span class="r-in"><span>  hr1 <span class="op">=</span> <span class="fl">0.69</span>, hr2 <span class="op">=</span> <span class="fl">0.88</span>, id1 <span class="op">=</span> <span class="fl">210</span>, id2 <span class="op">=</span> <span class="fl">420</span>,   <span class="co"># (https://web.imbi.uni-heidelberg.de/prior/)</span></span></span>
 <span class="r-in"><span>  d2min <span class="op">=</span> <span class="fl">20</span>, d2max <span class="op">=</span> <span class="fl">100</span>, stepd2 <span class="op">=</span> <span class="fl">5</span>,            <span class="co"># define optimization set for d2</span></span></span>
 <span class="r-in"><span>  hrgomin <span class="op">=</span> <span class="fl">0.7</span>, hrgomax <span class="op">=</span> <span class="fl">0.9</span>, stephrgo <span class="op">=</span> <span class="fl">0.05</span>,  <span class="co"># define optimization set for HRgo</span></span></span>
@@ -350,10 +350,6 @@ finish date of the optimization procedure.</p>
 <span class="r-in"><span>  fixed <span class="op">=</span> <span class="cn">FALSE</span>,                                  <span class="co"># true treatment effects are fixed/random</span></span></span>
 <span class="r-in"><span>  skipII <span class="op">=</span> <span class="cn">FALSE</span>,                                 <span class="co"># skipping phase II </span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                     <span class="co"># number of cores for parallelized computing </span></span></span>
-<span class="r-in"><span>  <span class="va">res</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'res' not found</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/comment.html" class="external-link">comment</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span>                                 <span class="co"># optimization sequence, start/finish date</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'res' not found</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
