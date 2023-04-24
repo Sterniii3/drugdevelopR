@@ -339,10 +339,10 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE then `Delta1` is used as fixed effect
 #' @param rho correlation between the two endpoints
 #' @return The output of the function `EPsProg_multiple_normal()` is the expected probability of a successfull program, when going to phase III.
-#' @examples res <- EPsProg_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
+#' @examples \dontrun{EPsProg_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, sigma1 = 2, sigma2 = 1,
 #'                                step11 = 0, step12 = 0, step21 = 0.5, step22 = 0.5, 
-#'                                in1 = 300, in2 = 600, fixed = TRUE, rho = 0.3)
+#'                                in1 = 300, in2 = 600, fixed = TRUE, rho = 0.3)}
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export
@@ -464,7 +464,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
 #' @param rho correlation between the two endpoints
 #' @param relaxed relaxed or strict decision rule
 #' @return The output of the function `utility_multiple_normal()` is the expected utility of the program.
-#' @examples res <- utility_multiple_normal(kappa = 0.1, n2 = 50, 
+#' @examples \dontrun{utility_multiple_normal(kappa = 0.1, n2 = 50, 
 #'                                alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, 
 #'                                in1 = 300, in2 = 600, sigma1 = 2, sigma2 = 1,
@@ -472,7 +472,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
 #'                                K = Inf, N = Inf, S = -Inf,
 #'                                steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
 #'                                b1 = 1000, b2 = 2000, b3 = 3000, 
-#'                                fixed = TRUE, rho = 0.3, relaxed = "TRUE")
+#'                                fixed = TRUE, rho = 0.3, relaxed = "TRUE")}
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export

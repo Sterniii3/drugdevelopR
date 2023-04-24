@@ -480,12 +480,12 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
 #' @return The output of the function `utility_multiarm()` is the expected utility of the program
-#' @examples res <- utility_multiarm(n2 = 50, HRgo = 0.8, alpha = 0.05, beta = 0.1,
+#' @examples \dontrun{utility_multiarm(n2 = 50, HRgo = 0.8, alpha = 0.05, beta = 0.1,
 #'                             hr1 = 0.7, hr2 = 0.8, strategy = 2, ec = 0.6,
 #'                             c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                             K = Inf, N = Inf, S = -Inf,  
 #'                             steps1 = 1, stepm1 = 0.95,  stepl1 = 0.85,
-#'                             b1 = 1000, b2 = 2000, b3 = 3000)
+#'                             b1 = 1000, b2 = 2000, b3 = 3000)}
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
 #' @export

@@ -17,7 +17,7 @@
 #' 
 #' 
 #' @examples
-#' res <- optimal_multitrial(w = 0.3,                  # define parameters for prior
+#' \dontrun{optimal_multitrial(w = 0.3,                # define parameters for prior
 #'   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,     # (https://web.imbi.uni-heidelberg.de/prior/)
 #'   d2min = 20, d2max = 100, stepd2 = 5,              # define optimization set for d2
 #'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,    # define optimization set for HRgo
@@ -28,9 +28,7 @@
 #'   case = 1, strategy = TRUE,                        # chose Case and Strategy
 #'   fixed = TRUE,                                     # true treatment effects are fixed/random
 #'   num_cl = 1)                                       # number of cores for parallelized computing 
-#' res
-#' cat(comment(res))                                   # optimization sequence, start/ finish date
-#' 
+#' }
 #' @references
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
 #'

@@ -115,18 +115,18 @@ The following cases can be investigated by the software:
 }
 }
 \examples{
-res <- EPsProg2_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
+\dontrun{EPsProg2_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
-                                 case = 2, size = "small", fixed = FALSE)
-          res <- EPsProg3_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
+                                 case = 2, size = "small", fixed = FALSE)}
+          \dontrun{EPsProg3_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
-                                 case = 2, size = "small", fixed = TRUE)
-          res <- EPsProg4_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
+                                 case = 2, size = "small", fixed = TRUE)}
+          \dontrun{EPsProg4_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1, w = 0.3,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
                                  a = 0.25, b = 0.75, 
-                                 case = 3, size = "small", fixed = TRUE)                      
+                                 case = 3, size = "small", fixed = TRUE)}                      
 }
 \section{Last Edited By}{
 Johannes Cepicka

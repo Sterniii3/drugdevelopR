@@ -152,7 +152,7 @@ distributions used in this package. Fast computing is enabled by parallel
 programming.
 }
 \examples{
-res <- optimal_normal(w=0.3,                         # define parameters for prior
+\dontrun{optimal_normal(w=0.3,                       # define parameters for prior
   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,  # (https://web.imbi.uni-heidelberg.de/prior/)
   a = 0.25, b = 0.75,
   n2min = 20, n2max = 100, stepn2 = 4,               # define optimization set for n2
@@ -168,8 +168,7 @@ res <- optimal_normal(w=0.3,                         # define parameters for pri
   fixed = FALSE,                                     # true treatment effects are fixed/random
   skipII = FALSE,                                    # skipping phase II
   num_cl = 1)                                        # number of cores for parallelized computing
-res
-cat(comment(res))                                    # optimization sequence, start/finish date
+}
 }
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences.

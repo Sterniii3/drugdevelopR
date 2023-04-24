@@ -48,7 +48,7 @@
 #' `r optimal_return_doc(type = "normal", setting = "multiple")`
 #' 
 #' @examples
-#'  res <- optimal_multiple_normal(Delta1 = 0.75,
+#'  \dontrun{optimal_multiple_normal(Delta1 = 0.75,
 #'   Delta2 = 0.80, in1=300, in2=600,                   # define assumed true HRs
 #'   sigma1 = 8, sigma2= 12,                            # variances for both endpoints
 #'   n2min = 30, n2max = 90, stepn2 = 10,               # define optimization set for n2
@@ -63,8 +63,7 @@
 #'   rho = 0.5, relaxed = TRUE,                         # strict or relaxed rule
 #'   fixed = TRUE,                                      # treatment effect
 #'   num_cl = 1)                                        # parallelized computing 
-#'  res
-#'  cat(comment(res))                                   
+#'   }
 #' 
 #' @references
 #' Meinhard Kieser, Marietta Kirchner, Eva Dölger, Heiko Götte (2018). Optimal planning of phase II/III programs for clinical trials with multiple endpoints

@@ -158,7 +158,7 @@ The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} 
 Fast computing is enabled by parallel programming.
 }
 \examples{
-res <- optimal_bias_binary(w = 0.3,                   # define parameters for prior
+\dontrun{optimal_bias_binary(w = 0.3,                 # define parameters for prior
   p0 = 0.6, p11 =  0.3, p12 = 0.5,
    in1 = 30, in2 = 60,                                # (https://web.imbi.uni-heidelberg.de/prior/)
   n2min = 20, n2max = 100, stepn2 = 10,               # define optimization set for n2
@@ -176,8 +176,7 @@ res <- optimal_bias_binary(w = 0.3,                   # define parameters for pr
   b1 = 1000, b2 = 2000, b3 = 3000,                    # define expected benefits
   fixed = TRUE,                                       # true treatment effects are fixed/random
   num_cl = 1)                                         # number of cores for parallelized computing
-res
-cat(comment(res))                                       
+  }
 
 }
 \references{

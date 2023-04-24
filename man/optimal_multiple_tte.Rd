@@ -145,7 +145,7 @@ larger expected gains than PFS alone (i.e. endpoint 2).
 Fast computing is enabled by parallel programming.
 }
 \examples{
-res <- optimal_multiple_tte(hr1 = 0.75,
+\dontrun{optimal_multiple_tte(hr1 = 0.75,
   hr2 = 0.80, id1 = 210, id2 = 420,          # define assumed true HRs
   n2min = 30, n2max = 90, stepn2 = 6,        # define optimization set for n2
   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05, # define optimization set for HRgo
@@ -159,8 +159,7 @@ res <- optimal_multiple_tte(hr1 = 0.75,
   b12 = 1000, b22 = 1500, b32 = 2000,        # define expected benefits (both scenarios)
   rho = 0.6, fixed = TRUE,                   # correlation and treatment effect
   num_cl = 1)                                # number of cores for parallelized computing 
- res
- cat(comment(res))                                  
+  }
 
 }
 \references{

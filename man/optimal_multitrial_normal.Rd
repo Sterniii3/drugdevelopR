@@ -146,7 +146,7 @@ to predefined values as explained under sProg1, sProg2 and sProg3 in the
 }
 
 \examples{
-res <- optimal_multitrial_normal(w = 0.3,             # define parameters for prior
+\dontrun{optimal_multitrial_normal(w = 0.3,           # define parameters for prior
   Delta1 = 0.375, Delta2 = 0.625,
   in1 = 300, in2 = 600,                               # (https://web.imbi.uni-heidelberg.de/prior/)
   a = 0.25, b = 0.75,
@@ -159,10 +159,7 @@ res <- optimal_multitrial_normal(w = 0.3,             # define parameters for pr
   case = 1, strategy = TRUE,                          # chose Case and Strategy
   fixed = TRUE,                                       # true treatment effects are fixed/random
   num_cl = 1)                                         # number of cores for parallelized computing
-res
-
-cat(comment(res))                                     # optimization sequence, start/ finish date
-
+  }
 
 }
 \references{

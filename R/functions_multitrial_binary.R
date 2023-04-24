@@ -39,18 +39,18 @@ t3 <- function(x, p0){sqrt(((1-p0)/p0) + ((1-x)/x))}
  #' @param size size category "small", "medium" or "large"
  #' @param fixed choose if true treatment effects are fixed or random
  #' @return The output of the function EPsProg2_binary(), EPsProg3_binary() and EPsProg4_binary() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively)
- #' @examples res <- EPsProg2_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
+ #' @examples \dontrun{EPsProg2_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
  #'                                  p0 = 0.6,  w = 0.3, p11 =  0.3, p12 = 0.5, 
  #'                                  in1 = 300, in2 = 600, case = 2, size = "small",
- #'                                  fixed = FALSE)
- #'           res <- EPsProg3_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
+ #'                                  fixed = FALSE)}
+ #'           \dontrun{EPsProg3_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
  #'                                  p0 = 0.6,  w = 0.3, p11 =  0.3, p12 = 0.5, 
  #'                                  in1 = 300, in2 = 600, case = 2, size = "small",
- #'                                  fixed = FALSE)
- #'           res <- EPsProg4_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
+ #'                                  fixed = FALSE)}
+ #'           \dontrun{EPsProg4_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
  #'                                  p0 = 0.6,  w = 0.3, p11 =  0.3, p12 = 0.5, 
  #'                                  in1 = 300, in2 = 600, case = 3, size = "small",
- #'                                  fixed = FALSE)
+ #'                                  fixed = FALSE)}
  #' @export                                 
  #' @name EPsProg_multitrial_binary  
  #' @editor Johannes Cepicka
@@ -1619,12 +1619,12 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
 #' @param b2 expected gain for effect size category `"medium"`
 #' @param b3 expected gain for effect size category `"large"`
 #' @return The output of the function `utility23_binary()` is the expected utility of the program depending on whether two or three phase III trials are performed.
-#' @examples res <- utility23_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
+#' @examples \dontrun{utility23_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
 #'                                  alpha = 0.05, beta = 0.1,
 #'                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
 #'                                  in1 = 300, in2 = 600, 
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
-#'                                  b1 = 1000, b2 = 2000, b3 = 3000)
+#'                                  b1 = 1000, b2 = 2000, b3 = 3000)}
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 #' @export

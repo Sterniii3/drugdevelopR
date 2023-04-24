@@ -145,7 +145,7 @@ to predefined values as explained under sProg1, sProg2 and sProg3 in the
 }
 
 \examples{
-res <- optimal_multitrial_binary(w = 0.3,         # define parameters for prior
+\dontrun{optimal_multitrial_binary(w = 0.3,         # define parameters for prior
   p0 = 0.6, p11 =  0.3, p12 = 0.5,
   in1 = 30, in2 = 60,                             # (https://web.imbi.uni-heidelberg.de/prior/)
   n2min = 20, n2max = 100, stepn2 = 4,            # define optimization set for n2
@@ -156,10 +156,8 @@ res <- optimal_multitrial_binary(w = 0.3,         # define parameters for prior
   b1 = 1000, b2 = 2000, b3 = 3000,                # expected benefit for a each effect size
   case = 1, strategy = TRUE,                      # chose Case and Strategy                                   
   fixed = TRUE,                                   # true treatment effects are fixed/random
-  num_cl = 1)                                     # number of cores for parallelized computing 
-res
-cat(comment(res))                                 # optimization sequence, start/finish
-
+  num_cl = 1)                                     # number of cores for parallelized computing
+  }
 }
 \references{
 IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.

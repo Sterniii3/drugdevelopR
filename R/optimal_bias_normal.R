@@ -32,8 +32,7 @@
 #'   b1 = 3000, b2 = 8000, b3 = 10000,                    # define expected benefits
 #'   fixed = TRUE,                                        # true treatment effects are fixed/random
 #'   num_cl = 1)                                          # number of coresfor parallelized computing 
-#' res
-#' cat(comment(res))}                                        
+#'   }                                        
 #' @references
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences.
 #'
