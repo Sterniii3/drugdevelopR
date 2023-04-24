@@ -1,4 +1,5 @@
 test_that("Optimal_binary works with prior distribution", {
+  skip_on_cran()
   expect_equal(optimal_binary(w = 0.3, p0 = 0.6, p11 =  0.3, p12 = 0.5, 
                               in1 = 30, in2 = 60,  
                               n2min = 20, n2max = 100, stepn2 = 4,   
@@ -14,6 +15,7 @@ test_that("Optimal_binary works with prior distribution", {
 })
 
 test_that("Optimal_binary works with fixed effects", {
+  skip_on_cran()
   expect_equal(optimal_binary(w = 0.3, p0 = 0.6, p11 =  0.3, p12 = 0.5, 
                               in1 = 30, in2 = 60,  
                               n2min = 20, n2max = 100, stepn2 = 4,   
@@ -29,6 +31,7 @@ test_that("Optimal_binary works with fixed effects", {
 })
 
 test_that("Optimal_binary works when skipping phase II", {
+  skip_on_cran()
   expect_equal(optimal_binary(w = 0.3, p0 = 0.6, p11 =  0.3, p12 = 0.5, 
                               in1 = 30, in2 = 60,  
                               n2min = 20, n2max = 100, stepn2 = 4,   
@@ -43,6 +46,7 @@ test_that("Optimal_binary works when skipping phase II", {
 })
 
 test_that("Optimal_binary works when skipping phase II with a prior distribution", {
+  skip_on_cran()
   expect_equal(optimal_binary(w = 0.3, p0 = 0.6, p11 =  0.3, p12 = 0.5, 
                               in1 = 30, in2 = 60,  
                               n2min = 20, n2max = 100, stepn2 = 4,   

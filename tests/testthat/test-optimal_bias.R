@@ -1,4 +1,5 @@
 test_that("Optimal_bias works for additive adjustment method", {
+  skip_on_cran()
   expect_equal(optimal_bias(w = 0.3, hr1 = 0.69, hr2 = 0.88, 
                             id1 = 210, id2 = 420,     
                             d2min = 20, d2max = 100, stepd2 = 5, 
@@ -15,6 +16,7 @@ test_that("Optimal_bias works for additive adjustment method", {
 })
 
 test_that("Optimal_bias works for multiplicative method", {
+  skip_on_cran()
   expect_equal(optimal_bias(w = 0.3, hr1 = 0.69, hr2 = 0.88, 
                             id1 = 210, id2 = 420,     
                             d2min = 20, d2max = 100, stepd2 = 5, 
@@ -31,6 +33,7 @@ test_that("Optimal_bias works for multiplicative method", {
 })
 
 test_that("Optimal_bias works for both methods", {
+  skip_on_cran()
   expect_equal(optimal_bias(w = 0.3, hr1 = 0.69, hr2 = 0.88, 
                             id1 = 210, id2 = 420,     
                             d2min = 50, d2max = 150, stepd2 = 5, 
@@ -47,6 +50,7 @@ test_that("Optimal_bias works for both methods", {
 })
 
 test_that("Optimal_bias works for method `all`", {
+  skip_on_cran()
   expect_equal(optimal_bias(w = 0.3, hr1 = 0.69, hr2 = 0.88, 
                             id1 = 210, id2 = 420,     
                             d2min = 50, d2max = 150, stepd2 = 5, 
@@ -63,6 +67,7 @@ test_that("Optimal_bias works for method `all`", {
 })
 
 test_that("Optimal_bias works for method `all` with prior distributions", {
+  skip_on_cran()
   expect_equal(optimal_bias(w = 0.3, hr1 = 0.69, hr2 = 0.88, 
                             id1 = 210, id2 = 420,     
                             d2min = 50, d2max = 150, stepd2 = 5, 

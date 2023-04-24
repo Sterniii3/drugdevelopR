@@ -1,4 +1,5 @@
 test_that("Optimal_multitrial work for Scenario 1/2", {
+  skip_on_cran()
   expect_equal(optimal_multitrial(w = 0.3,   hr1 = 0.69, hr2 = 0.88, 
                                   id1 = 210, id2 = 420,   
                                   d2min = 20, d2max = 100, stepd2 = 5,   
@@ -15,6 +16,7 @@ test_that("Optimal_multitrial work for Scenario 1/2", {
 
 
 test_that("Optimal_multitrial work for Scenario 3/4", {
+  skip_on_cran()
   expect_equal(optimal_multitrial(w = 0.3,   hr1 = 0.69, hr2 = 0.88, 
                                   id1 = 210, id2 = 420,   
                                   d2min = 20, d2max = 100, stepd2 = 5,   
@@ -29,6 +31,7 @@ test_that("Optimal_multitrial work for Scenario 3/4", {
 })
 
 test_that("Optimal_multitrial work for Scenario 2/2", {
+  skip_on_cran()
   expect_equal(optimal_multitrial(w = 0.3,   hr1 = 0.69, hr2 = 0.88, 
                                   id1 = 210, id2 = 420,   
                                   d2min = 20, d2max = 100, stepd2 = 5,   
@@ -43,6 +46,7 @@ test_that("Optimal_multitrial work for Scenario 2/2", {
 })
 
 test_that("Optimal_multitrial work for Case 3: Strategy TRUE", {
+  skip_on_cran()
   expect_equal(optimal_multitrial(w = 0.3,   hr1 = 0.69, hr2 = 0.88, 
                                   id1 = 210, id2 = 420,   
                                   d2min = 20, d2max = 100, stepd2 = 5,   
@@ -57,6 +61,7 @@ test_that("Optimal_multitrial work for Case 3: Strategy TRUE", {
 })
 
 test_that("Optimal_multitrial work for Case 2: Strategy 23", {
+  skip_on_cran()
   expect_equal(optimal_multitrial(w = 0.3,   hr1 = 0.69, hr2 = 0.88, 
                                   id1 = 210, id2 = 420,   
                                   d2min = 20, d2max = 100, stepd2 = 20,   

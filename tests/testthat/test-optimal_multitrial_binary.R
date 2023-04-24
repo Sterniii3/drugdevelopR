@@ -1,4 +1,5 @@
 test_that("optimal_multitrial_binary works for case 1", {
+  skip_on_cran()
   expect_equal(optimal_multitrial_binary(w = 0.3, p0 = 0.6, p11 =  0.3, p12 = 0.5,
                                          in1 = 30, in2 = 60,
                                          n2min = 20, n2max = 100, stepn2 = 4,
@@ -12,6 +13,7 @@ test_that("optimal_multitrial_binary works for case 1", {
 })
 
 test_that("optimal_multitrial_binary works for case 2", {
+  skip_on_cran()
   expect_equal(optimal_multitrial_binary(w = 0.3, p0 = 0.6, p11 =  0.3, p12 = 0.5,
                                          in1 = 30, in2 = 60,
                                          n2min = 20, n2max = 100, stepn2 = 4,
@@ -25,6 +27,7 @@ test_that("optimal_multitrial_binary works for case 2", {
 })
 
 test_that("optimal_multitrial_binary works for case 3", {
+  skip_on_cran()
   expect_equal(optimal_multitrial_binary(w = 0.3, p0 = 0.6, p11 =  0.3, p12 = 0.5,
                                          in1 = 30, in2 = 60,
                                          n2min = 150, n2max = 250, stepn2 = 4,

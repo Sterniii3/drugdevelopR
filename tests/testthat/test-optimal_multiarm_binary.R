@@ -1,4 +1,5 @@
 test_that("multiplication works", {
+  skip_on_cran()
   expect_equal(optimal_multiarm_binary( p0 = 0.6, p11 =  0.3, p12 = 0.5,
                                         n2min = 20, n2max = 100, stepn2 = 4, 
                                         rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,

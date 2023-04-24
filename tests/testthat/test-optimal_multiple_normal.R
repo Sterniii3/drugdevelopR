@@ -1,4 +1,5 @@
 test_that("optimal_multiple_normal works for fixed = TRUE", {
+  skip_on_cran()
   expect_equal(optimal_multiple_normal(Delta1 = 0.75, Delta2 = 0.80,
                                        in1=300, in2=600, sigma1 = 1, sigma2= 1,
                                        n2min = 30, n2max = 90, stepn2 = 10,

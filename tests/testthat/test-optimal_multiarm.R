@@ -1,4 +1,5 @@
 test_that("Optimal_multiarm works", {
+  skip_on_cran()
   expect_equal(optimal_multiarm(hr1 = 0.75, hr2 = 0.80, ec = 0.6,   
                                 n2min = 30, n2max = 90, stepn2 = 6,   
                                 hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,  

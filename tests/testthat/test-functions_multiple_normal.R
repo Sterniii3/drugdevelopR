@@ -1,4 +1,5 @@
 test_that("Utility increases with higher treatment effect", {
+  skip_on_cran()
   expect_lte(utility_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
                                        Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600,
                                        sigma1 = 2, sigma2 = 1, 
@@ -18,6 +19,7 @@ test_that("Utility increases with higher treatment effect", {
 })
 
 test_that("Ess_multiple_tte works", {
+  skip_on_cran()
   expect_equal(Ess_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600,
                                  sigma1 = 2, sigma2 = 1, fixed = FALSE, rho = 0.3),374.95202)

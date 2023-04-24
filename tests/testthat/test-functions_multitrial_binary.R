@@ -1,6 +1,7 @@
 ## Tests for two trials in phase III ##
 
 test_that("Utility increases for lower risk ratio", {
+  skip_on_cran()
   expect_lte(utility2_binary(n2 = 50, RRgo = 0.8, w = 0.3,
                              p0 = 0.6, p11 =  0.3, p12 = 0.5,
                              in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
@@ -18,6 +19,7 @@ test_that("Utility increases for lower risk ratio", {
 })
 
 test_that("Utility increases for lower risk ratio", {
+  skip_on_cran()
   expect_lte(utility2_binary(n2 = 50, RRgo = 0.8, w = 0.3,
                              p0 = 0.6, p11 =  0.3, p12 = 0.5,
                              in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
@@ -35,6 +37,7 @@ test_that("Utility increases for lower risk ratio", {
 })
 
 test_that("Utility2_binary works for case 1", {
+  skip_on_cran()
   expect_lte(utility2_binary(n2 = 50, RRgo = 0.8, w = 0.3,
                              p0 = 0.6, p11 =  0.3, p12 = 0.5,
                              in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
@@ -47,6 +50,7 @@ test_that("Utility2_binary works for case 1", {
 ## Tests for three trials in phase III ##
 
 test_that("Utility increases for lower risk ratio", {
+  skip_on_cran()
   expect_lte(utility3_binary(n2 = 50, RRgo = 0.8, w = 0.3,
                              p0 = 0.6, p11 =  0.3, p12 = 0.5,
                              in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
@@ -64,6 +68,7 @@ test_that("Utility increases for lower risk ratio", {
 })
 
 test_that("Utility increases for lower risk ratio", {
+  skip_on_cran()
   expect_lte(utility3_binary(n2 = 100, RRgo = 0.8, w = 0.3,
                              p0 = 0.6, p11 =  0.3, p12 = 0.5,
                              in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
@@ -81,6 +86,7 @@ test_that("Utility increases for lower risk ratio", {
 })
 
 test_that("EPsProg3_binary works for case 3", {
+  skip_on_cran()
   expect_equal(EPsProg3_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
                                p0 = 0.6,  w = 0.3, p11 =  0.3, p12 = 0.5, 
                                in1 = 300, in2 = 600, case = 3, size = "small",
@@ -88,6 +94,7 @@ test_that("EPsProg3_binary works for case 3", {
 })
 
 test_that("EPsProg3_binary works for case 3", {
+  skip_on_cran()
   expect_equal(EPsProg3_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
                                p0 = 0.6,  w = 0.3, p11 =  0.3, p12 = 0.5, 
                                in1 = 300, in2 = 600, case = 3, size = "large",
@@ -95,6 +102,7 @@ test_that("EPsProg3_binary works for case 3", {
 })
 
 test_that("EPsProg3_binary works for case 3", {
+  skip_on_cran()
   expect_equal(EPsProg3_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
                                p0 = 0.6,  w = 0.3, p11 =  0.3, p12 = 0.5, 
                                in1 = 300, in2 = 600, case = 3, size = "all",
@@ -104,6 +112,7 @@ test_that("EPsProg3_binary works for case 3", {
 ## Tests for four trials in phase III ##
 
 test_that("Utility increases for lower risk ratio", {
+  skip_on_cran()
   expect_lte(utility4_binary(n2 = 50, RRgo = 0.8, w = 0.3,
                              p0 = 0.6, p11 =  0.3, p12 = 0.5,
                              in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
@@ -121,6 +130,7 @@ test_that("Utility increases for lower risk ratio", {
 })
 
 test_that("Utility is -9999 if constraint is not met", {
+  skip_on_cran()
   expect_lte(utility4_binary(n2 = 50, RRgo = 0.8, w = 0.3,
                              p0 = 0.6, p11 =  0.3, p12 = 0.5,
                              in1 = 300, in2 = 600, alpha = 0.025, beta = 0.1,
@@ -131,6 +141,7 @@ test_that("Utility is -9999 if constraint is not met", {
 })
 
 test_that("Probability for large is smaller than all", {
+  skip_on_cran()
   expect_lte(EPsProg4_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
                              p0 = 0.6,  w = 0.3, p11 =  0.3, p12 = 0.5, 
                              in1 = 300, in2 = 600, case = 3, size = "large",
@@ -142,6 +153,7 @@ test_that("Probability for large is smaller than all", {
 })
 
 test_that("Probability for small is smaller than all", {
+  skip_on_cran()
   expect_lte(EPsProg4_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
                              p0 = 0.6,  w = 0.3, p11 =  0.3, p12 = 0.5, 
                              in1 = 300, in2 = 600, case = 3, size = "small",
@@ -155,6 +167,7 @@ test_that("Probability for small is smaller than all", {
 ## Tests for case 23 ##
 
 test_that("Utility function works for case 23", {
+  skip_on_cran()
   expect_equal(utility23_binary(n2 = 50, RRgo = 0.8,  w = 0.3,
                               alpha = 0.05, beta = 0.1,
                               p0 = 0.6, p11 =  0.3, p12 = 0.5, 

@@ -1,4 +1,5 @@
 test_that("optimal_multiarm_normal works for strategy 1", {
+  skip_on_cran()
   expect_equal(optimal_multiarm_normal(Delta1 = 0.375, Delta2 = 0.625, 
                                        n2min = 20, n2max = 100, stepn2 = 4,    
                                        kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,    
