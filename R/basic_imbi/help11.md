@@ -1,7 +1,0 @@
-### Optimal Designs for Phase II/III Drug Development Programs - Time-to-event Endpoints
-
-Further reading: Kirchner, M., Kieser, M., Goette, H., & Schueler, A. (2016). Utility-based optimization of phase II/III programs. <i>Statistics in Medicine</i>, 35(2), 305-316.
-
-#### Summary
-This shiny App is a tool for phase II/III drug development planning aiming to optimize the sample size allocation and go/no-go decision rule with respect to the maximal expected utility. The approach is based on a utility function taking into account, e.g., fixed and variable costs of the program (c<sub>02</sub>, c<sub>03</sub>, c<sub>2</sub> , c<sub>3</sub>), expected benefits after successful market launch (b<sub>1</sub>, b<sub>2</sub>, b<sub>3</sub> with respect to the treatment effect size observed in phase III), assumed true hazard rate (HR), and event rates in phase II and III (&xi;<sub>2</sub>, &xi;<sub>3</sub>) (Kirchner et. al, 2016). It gives insights on how optimal design parameters (e.g. sample size for phase II and III (n<sub>2</sub>=d<sub>2</sub>/&xi;<sub>2</sub>, n<sub>3</sub>=d<sub>3</sub>/&xi;<sub>2</sub>; d<sub>i</sub> number of events in phase i=2,3), threshold value for the go/no-go decision rule HR<sub>go</sub>) and program characteristics (e.g. maximal expected utility, probability to go to phase III, probability of a successful program) change with for example varying expected benefit and assumptions about the true treatment effect (&theta;=-log(HR)).
-
