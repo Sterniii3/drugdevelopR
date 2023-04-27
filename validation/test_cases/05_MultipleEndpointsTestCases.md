@@ -95,7 +95,7 @@ Verify, that due to the cost constraint the program now returns an expected util
 ### 05.09 (shows that req. 05.02, 05.03, 05.07 and 05.12 are met): {-}
 Use the function `optimal_multiple_normal`. Supply the same input values as in test case 05.06 (without sample size constraint), however, set the parameter fixed to be "TRUE". Redo this and set a minimum probability of a successful program of 0.7. 
 
-Verify that the program returns an expected utility of 596.08 (in 10^5 \$), an optimal threshold value of 0.02, an optimal sample size in phase II of 120. Furthermore, verify the probability of a successful program is 0.55, and the success probabilities for the various benefit categories are given by 0.14, 0.36 and 0.05 for small, medium and large treatment effects respectively. 
+Verify that the program returns an expected utility of 596.08 (in 10^5 \$), an optimal threshold value of 0.02, an optimal sample size in phase II of 120. Furthermore, verify the probability of a successful program is 0.55, and the success probabilities for the various benefit categories are given by 0.15, 0.36 and 0.05 for small, medium and large treatment effects respectively. 
 Furthermore verify, that the constraint cannot be met, within the optimization region, i.e. an expected utility of -9999 is returned, when the constraint is imposed.
 
 ### 05.10 (shows that req. 05.11, 05.13 and 05.14 are met): {-}

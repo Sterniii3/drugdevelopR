@@ -8,7 +8,6 @@ output:
     fig_crop: false
     toc_depth: 2
     number_sections: true
-    keep_tex: true
 vignette: >
   %\VignetteIndexEntry{Validation Report}
   \usepackage[utf8]{inputenc}
