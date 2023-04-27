@@ -400,3 +400,4 @@ test_that("05.10", {
   expect_equal(res_relax$Kappa, 0.02)
   expect_equal(res_relax$pgo, 0.96)
 })
+

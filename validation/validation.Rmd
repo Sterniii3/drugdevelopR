@@ -123,9 +123,9 @@ vt_scrape_val_env() %>%
 
 ### Requirements   {-}
 
-```{r req-authors}
+```{r req-authors, fig.pos='H'}
 vt_scrape_requirement_editors() %>% 
-  vt_kable_requirement_editors()
+  vt_kable_requirement_editors(latex_options = "HOLD_position")
 ```
 
 <!-- ### Functions  {-} -->
@@ -138,24 +138,24 @@ vt_scrape_requirement_editors() %>%
 
 ### Test Case Authors  {-}
 
-```{r test-case-authors}
+```{r test-case-authors, fig.pos='H'}
 vt_scrape_test_case_editors() %>%
- vt_kable_test_case_editors()
+ vt_kable_test_case_editors(latex_options = "HOLD_position")
 ```
 
 ### Test Code Authors  {-}
 
-```{r test-code-authors, eval=FALSE}
+```{r test-code-authors, fig.pos='H'}
 vt_scrape_test_code_editors() %>%
  vt_kable_test_code_editors()
 ```
+
 
 ## Traceability  {-}
 
 ```{r traceability}
 vt_scrape_coverage_matrix() %>% 
- vt_kable_coverage_matrix() %>%
-  kable_styling(longtable_clean_cut = FALSE)
+ vt_kable_coverage_matrix(longtable_clean_cut = FALSE)
 ```
 
 \clearpage
