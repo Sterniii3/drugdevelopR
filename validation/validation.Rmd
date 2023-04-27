@@ -125,7 +125,7 @@ vt_scrape_val_env() %>%
 
 ```{r req-authors}
 vt_scrape_requirement_editors() %>% 
-  vt_kable_requirement_editors()
+  vt_kable_requirement_editors(latex_options = "HOLD_position")
 ```
 
 <!-- ### Functions  {-} -->
@@ -140,22 +140,22 @@ vt_scrape_requirement_editors() %>%
 
 ```{r test-case-authors}
 vt_scrape_test_case_editors() %>%
- vt_kable_test_case_editors()
+ vt_kable_test_case_editors(latex_options = "HOLD_position")
 ```
 
 ### Test Code Authors  {-}
 
-```{r test-code-authors, eval=FALSE}
+```{r test-code-authors}
 vt_scrape_test_code_editors() %>%
- vt_kable_test_code_editors()
+ vt_kable_test_code_editors(latex_options = "HOLD_position",
+                            longtable_clean_cut = FALSE)
 ```
 
 ## Traceability  {-}
 
 ```{r traceability}
 vt_scrape_coverage_matrix() %>% 
- vt_kable_coverage_matrix() %>%
-  kable_styling(longtable_clean_cut = FALSE)
+ vt_kable_coverage_matrix(longtable_clean_cut = FALSE)
 ```
 
 \clearpage
@@ -195,16 +195,13 @@ vt_file(vt_path(child_files_test),dynamic_referencing = FALSE)
 
 # Test Results {-}
 
-<!-- ```{r, cache = TRUE} -->
-<!-- # Currently, this code causes a LaTeX error in valtools. This can be manually -->
-<!-- # fixed by installing valtools from source and adapting the source code as -->
-<!-- # described in: -->
-<!-- # https://github.com/phuse-org/valtools/pull/222 -->
-<!-- # or by simply downloading or fork from -->
-<!-- # https://github.com/LukasDSauer/valtools -->
-<!-- vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R")), -->
-<!--         dynamic_referencing = FALSE) -->
-<!-- ``` -->
+```{r, cache = TRUE}
+# Currently, this code causes a LaTeX error in valtools. This can be manually
+# fixed by simply downloading or fork via
+# devtools::install_github("LukasDSauer/valtools")
+vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R")),
+        dynamic_referencing = FALSE)
+```
 
 <!-- ```{r, cache = TRUE} -->
 <!-- vt_file(vt_path(c("test_code/02_BiasAdjustmentTestCode.R")), -->
