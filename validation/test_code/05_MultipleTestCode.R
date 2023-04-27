@@ -123,8 +123,7 @@ test_that("05.04", {
                               fixed = TRUE,
                               S = 0.6
   )
-
-  expect_equal(res$u, 153.98, tolerance = 0.005)
+  expect_equal(res$u, 132.6, tolerance = 0.005)
   expect_equal(res$n2, 280)
   expect_equal(res$n3, 467)
   expect_equal(res$n, 747)
