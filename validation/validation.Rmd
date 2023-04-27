@@ -8,7 +8,6 @@ output:
     fig_crop: false
     toc_depth: 2
     number_sections: true
-    keep_tex: true
 vignette: >
   %\VignetteIndexEntry{Validation Report}
   \usepackage[utf8]{inputenc}
@@ -145,9 +144,11 @@ vt_scrape_test_case_editors() %>%
 
 ### Test Code Authors  {-}
 
+
 ```{r test-code-authors, fig.pos='H'}
 vt_scrape_test_code_editors() %>%
- vt_kable_test_code_editors()
+ vt_kable_test_code_editors(latex_options = "HOLD_position",
+                            longtable_clean_cut = FALSE)
 ```
 
 
@@ -195,16 +196,13 @@ vt_file(vt_path(child_files_test),dynamic_referencing = FALSE)
 
 # Test Results {-}
 
-<!-- ```{r, cache = TRUE} -->
-<!-- # Currently, this code causes a LaTeX error in valtools. This can be manually -->
-<!-- # fixed by installing valtools from source and adapting the source code as -->
-<!-- # described in: -->
-<!-- # https://github.com/phuse-org/valtools/pull/222 -->
-<!-- # or by simply downloading or fork from -->
-<!-- # https://github.com/LukasDSauer/valtools -->
-<!-- vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R")), -->
-<!--         dynamic_referencing = FALSE) -->
-<!-- ``` -->
+```{r, cache = TRUE}
+# Currently, this code causes a LaTeX error in valtools. This can be manually
+# fixed by simply downloading or fork via
+# devtools::install_github("LukasDSauer/valtools")
+vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R")),
+        dynamic_referencing = FALSE)
+```
 
 <!-- ```{r, cache = TRUE} -->
 <!-- vt_file(vt_path(c("test_code/02_BiasAdjustmentTestCode.R")), -->
