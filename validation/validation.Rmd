@@ -196,7 +196,7 @@ vt_file(vt_path(child_files_test),dynamic_referencing = FALSE)
 
 # Test Results {-}
 
-```{r, cache = TRUE}
+```{r test-code-01, cache = TRUE}
 # Currently, this code causes a LaTeX error in valtools. This can be manually
 # fixed by simply downloading or fork via
 # devtools::install_github("LukasDSauer/valtools")
@@ -204,22 +204,22 @@ vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R")),
         dynamic_referencing = FALSE)
 ```
 
-<!-- ```{r, cache = TRUE} -->
+<!-- ```{r test-code-02, cache = TRUE} -->
 <!-- vt_file(vt_path(c("test_code/02_BiasAdjustmentTestCode.R")), -->
 <!--         dynamic_referencing = FALSE) -->
 <!-- ``` -->
 
-<!-- ```{r, cache = TRUE} -->
+<!-- ```{r test-code-03, cache = TRUE} -->
 <!-- vt_file(vt_path(c("test_code/03_MultitrialTestCode.R")), -->
 <!--         dynamic_referencing = FALSE) -->
 <!-- ``` -->
 
-<!-- ```{r, cache = TRUE} -->
+<!-- ```{r test-code-04, cache = TRUE} -->
 <!-- vt_file(vt_path(c("test_code/04_MultiarmTestCode.R")), -->
 <!--         dynamic_referencing = FALSE) -->
 <!-- ``` -->
 
-<!-- ```{r, cache = TRUE} -->
+<!-- ```{r test-code-05, cache = TRUE} -->
 <!-- vt_file(vt_path(c("test_code/05_MultipleTestCode.R")), -->
 <!--         dynamic_referencing = FALSE) -->
 <!-- ``` -->
