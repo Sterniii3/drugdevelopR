@@ -8,6 +8,7 @@ output:
     fig_crop: false
     toc_depth: 2
     number_sections: true
+    keep_tex: true
 vignette: >
   %\VignetteIndexEntry{Validation Report}
   \usepackage[utf8]{inputenc}
@@ -81,11 +82,11 @@ all_sig <- vt_scrape_sig_table()
 
 # General introduction and validation plan {-}
 
-In the planning of confirmatory studies, the determination of the sample size is essential, as it has a significant impact on the chances of achieving the study objective. Based on the work of Götte et al. [1], methods for optimal sample size and go/no-go decision rules for the example of phase II/III drug development programs within a utility-based, Bayesian-frequentist framework were developed, which was improved by Preussler in her dissertation “Integrated Planning of Pilot and Subsequent Confirmatory Study in Clinical Research - Finding Optimal Designs in a Utility-Based Framework” [@preussler2020] to include further extensions. Additionally, methods for multiple endpoints were implemented [3]. In order to facilitate the practical application of these approaches, R Shiny applications for a basic setting as well as for three extensions were implemented. The extension of this project to a fully functional software product was funded by the German Research Organisation DFG within a project entitled "Integrated Planning of Drug Development Programs - drugdevelopR". The package was developed at the Institute of Medical Biometry (IMBI) in Heidelberg, Germany.
+In the planning of confirmatory studies, the determination of the sample size is essential, as it has a significant impact on the chances of achieving the study objective. Based on the work of Götte et al. [@goette2015], methods for optimal sample size and go/no-go decision rules for the example of phase II/III drug development programs within a utility-based, Bayesian-frequentist framework were developed, which was improved by Preussler in her dissertation “Integrated Planning of Pilot and Subsequent Confirmatory Study in Clinical Research - Finding Optimal Designs in a Utility-Based Framework” [@preussler2020] to include further extensions. Additionally, methods for multiple endpoints were implemented [@kieser2018]. In order to facilitate the practical application of these approaches, R Shiny applications for a basic setting as well as for three extensions were implemented. The extension of this project to a fully functional software product was funded by the German Research Organisation DFG within a project entitled "Integrated Planning of Drug Development Programs - drugdevelopR". The package was developed at the Institute of Medical Biometry (IMBI) in Heidelberg, Germany.
 
 In order to assure unchanging scientific quality, in order to document that the package’s user requirements were met and in order to provide evidence of the package’s validity to the general public, we supply the following human-readable validation report. Within this report, we present the results of a validation suite developed at IMBI specifically for this package. The validation suite comprises several benchmark/testing scenarios of optimal drug development planning as presented in published work with scientific quality assurance. Published results are compared with the results of the software. The validation plan aims for full coverage of all package methods.
 
-The validation suite was programmed using the *valtools* R package [4] and the report was generated using the same package together with the *bookdown* R package. We closely followed the R package validation framework [5] of the PHUSE Working Group on “Data Visualisation & Open Source Technology”.
+The validation suite was programmed using the *valtools* R package [@hughes2021]. We closely followed the R package validation framework [@phuse2021] of the PHUSE Working Group on “Data Visualisation & Open Source Technology”.
 
 With the aim of avoiding confusion, it should be noted that the framework makes a clear distinction between testing (unit testing) and validating a package. Testing on the one hand means checking the program from the software developer’s perspective. The so-called unit tests usually cover small sections of the program, each checking one specific part of the software, e.g. a function. With their help, the programmer assures that the code works as intended. Unit tests aim for a code coverage close to one-hundred percent. Validation on the other hand means checking the program from the end user’s point of view. By checking larger parts of software within one test case, the validation process provides evidence that the program will deliver the expected results in a production environment.
 
@@ -122,27 +123,24 @@ vt_scrape_val_env() %>%
 
 ### Requirements   {-}
 
-
 ```{r req-authors}
 vt_scrape_requirement_editors() %>% 
-  vt_kable_requirement_editors() %>%
-  kable_styling(latex_options = "HOLD_position")
+  vt_kable_requirement_editors()
 ```
 
-### Functions  {-}
+<!-- ### Functions  {-} -->
 
-```{r func-authors, eval=FALSE}
-vt_scrape_function_editors(tags = c("editor", "editDate")) %>%
- vt_kable_function_editors()
+<!-- ```{r func-authors} -->
+<!-- vt_scrape_function_editors(tags = c("editor", "editDate")) %>% -->
+<!--  vt_kable_function_editors() -->
 
-```
+<!-- ``` -->
 
 ### Test Case Authors  {-}
 
 ```{r test-case-authors}
 vt_scrape_test_case_editors() %>%
- vt_kable_test_case_editors() %>%
-  kable_styling(latex_options = "HOLD_position")
+ vt_kable_test_case_editors()
 ```
 
 ### Test Code Authors  {-}
@@ -156,7 +154,8 @@ vt_scrape_test_code_editors() %>%
 
 ```{r traceability}
 vt_scrape_coverage_matrix() %>% 
- vt_kable_coverage_matrix()
+ vt_kable_coverage_matrix() %>%
+  kable_styling(longtable_clean_cut = FALSE)
 ```
 
 \clearpage
@@ -172,7 +171,7 @@ vt_scrape_risk_assessment() %>%
 
 # User Requirement Specification {-}
 
-In the following section, we will specify functionality that the end user can expect from the *drugdevelopR* package. We will use the following terms in the text (following the definitions in [@preussler2020]):
+In the following section, we will specify functionality that the end user can expect from the *drugdevelopR* package. We will use the following terms in the text, following the definitions from [@preussler2020]:
 
 *	In the most basic setting, a *drug development program* consists of a single exploratory phase II trial which is, in case of promising results, followed by one confirmatory phase III trial testing the superiority of an experimental treatment over a control treatment. The phase II trial and the phase III trial are two-arm randomized studies, each with balanced sample size allocation. They are performed independently with the same primary endpoint. Both trials draw from the same population. More complex drug development programs will be defined throughout the text.
 *	A drug development program is called a *successful program* if it proceeds from phase II to phase III and if there is a statistically significant positive treatment effect in phase III of the program.
@@ -196,35 +195,35 @@ vt_file(vt_path(child_files_test),dynamic_referencing = FALSE)
 
 # Test Results {-}
 
-```{r, cache = TRUE}
-# Currently, this code causes a LaTeX error in valtools. This can be manually
-# fixed by installing valtools from source and adapting the source code as
-# described in:
-# https://github.com/phuse-org/valtools/pull/222
-# or by simply downloading or fork from
-# https://github.com/LukasDSauer/valtools
-vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R")),
-        dynamic_referencing = FALSE)
-```
+<!-- ```{r, cache = TRUE} -->
+<!-- # Currently, this code causes a LaTeX error in valtools. This can be manually -->
+<!-- # fixed by installing valtools from source and adapting the source code as -->
+<!-- # described in: -->
+<!-- # https://github.com/phuse-org/valtools/pull/222 -->
+<!-- # or by simply downloading or fork from -->
+<!-- # https://github.com/LukasDSauer/valtools -->
+<!-- vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R")), -->
+<!--         dynamic_referencing = FALSE) -->
+<!-- ``` -->
 
-```{r, cache = TRUE}
-vt_file(vt_path(c("test_code/02_BiasAdjustmentTestCode.R")),
-        dynamic_referencing = FALSE)
-```
+<!-- ```{r, cache = TRUE} -->
+<!-- vt_file(vt_path(c("test_code/02_BiasAdjustmentTestCode.R")), -->
+<!--         dynamic_referencing = FALSE) -->
+<!-- ``` -->
 
-```{r, cache = TRUE}
-vt_file(vt_path(c("test_code/03_MultitrialTestCode.R")),
-        dynamic_referencing = FALSE)
-```
+<!-- ```{r, cache = TRUE} -->
+<!-- vt_file(vt_path(c("test_code/03_MultitrialTestCode.R")), -->
+<!--         dynamic_referencing = FALSE) -->
+<!-- ``` -->
 
-```{r, cache = TRUE}
-vt_file(vt_path(c("test_code/04_MultiarmTestCode.R")),
-        dynamic_referencing = FALSE)
-```
+<!-- ```{r, cache = TRUE} -->
+<!-- vt_file(vt_path(c("test_code/04_MultiarmTestCode.R")), -->
+<!--         dynamic_referencing = FALSE) -->
+<!-- ``` -->
 
-```{r, cache = TRUE}
-vt_file(vt_path(c("test_code/05_MultipleTestCode.R")),
-        dynamic_referencing = FALSE)
-```
+<!-- ```{r, cache = TRUE} -->
+<!-- vt_file(vt_path(c("test_code/05_MultipleTestCode.R")), -->
+<!--         dynamic_referencing = FALSE) -->
+<!-- ``` -->
 
 # References {-}
