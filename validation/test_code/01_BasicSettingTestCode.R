@@ -2,6 +2,7 @@
 #' @editDate 2022-09-13
 test_that("01.01", {
   # Testing time to event with prior distribution
+  sink(nullfile())
   res = optimal_tte(
     alpha = 0.025, # significance level
     beta = 0.1, # 1 - power
@@ -21,6 +22,7 @@ test_that("01.01", {
     id1 = 210, id2 = 420, # amount of information (number of events) for prior
     # true treatment effect
   )
+  sink()
   expect_equal(res$n2, 206) # optimal sample size in phase II
   expect_equal(res$n3, 354) # resulting sample size in phase III
   expect_equal(res$n, 560) # resulting total sample size
@@ -36,6 +38,7 @@ test_that("01.01", {
 #' @editDate 2022-10-10
 test_that("01.02", {
   # Time to event with fixed treatment effects
+  sink(nullfile())
   res = optimal_tte(
     alpha = 0.025, # significance level
     beta = 0.1, # 1 - power
@@ -55,6 +58,7 @@ test_that("01.02", {
     id1 = NULL, id2 = NULL, # amount of information (number of events) for prior
     # true treatment effect
   )
+  sink()
   expect_equal(res$n2, 240) # optimal sample size in phase II
   expect_equal(res$u, 352, tolerance = 0.001) # expected utility
   expect_equal(res$HRgo, 0.88) # threshold for proceeding to phase III
@@ -68,6 +72,7 @@ test_that("01.02", {
 #' @editDate 2022-10-10
 test_that("01.03", {
   # Testing time to event with cost constraints
+  sink(nullfile())
   res = optimal_tte(
     alpha = 0.025, # significance level
     beta = 0.1, # 1 - power
@@ -88,6 +93,7 @@ test_that("01.03", {
     # true treatment effect
     K = 750 # cost constraint
   )
+  sink()
   expect_equal(res$n2, 228) # optimal sample size in phase II
   expect_equal(res$u, 996, tolerance = 0.05) # expected utility
   expect_equal(res$HRgo, 0.84)
@@ -99,6 +105,7 @@ test_that("01.03", {
 #' @editDate 2022-10-10
 test_that("01.04", {
   # Testing time to event with sample size constraint
+  sink(nullfile())
   res = optimal_tte(
     alpha = 0.025, # significance level
     beta = 0.1, # 1 - power
@@ -119,6 +126,7 @@ test_that("01.04", {
     # true treatment effect
     N = 500 # sample size constraint
   )
+  sink()
   expect_equal(res$n2, 170) # optimal sample size in phase II
   expect_equal(res$n3, 328) # resulting sample size in phase III
   expect_equal(res$n, 498) # resulting total sample size
@@ -132,6 +140,7 @@ test_that("01.04", {
 #' @editDate 2022-10-10
 test_that("01.05", {
   # Testing time to event with success probability constraint
+  sink(nullfile())
   res = optimal_tte(
     alpha = 0.025, # significance level
     beta = 0.1, # 1 - power
@@ -152,6 +161,7 @@ test_that("01.05", {
     # true treatment effect
     S = 0.6 # constraint on success probability
   )
+  sink()
   expect_equal(res$n2, 470) # optimal sample size in phase II
   expect_equal(res$u, 899, tolerance = 0.01) # expected utility
   expect_equal(res$HRgo, 0.89) # threshold for proceeding to phase III
@@ -163,6 +173,7 @@ test_that("01.05", {
 #' @editDate 2022-10-10
 test_that("01.06", {
   # Testing time to event while to skipping phase II
+  sink(nullfile())
   res = optimal_tte(
     alpha = 0.025, # significance level
     beta = 0.1, # 1 - power
@@ -183,6 +194,7 @@ test_that("01.06", {
     # true treatment effect
     skipII = TRUE # skip phase II
   )
+  sink()
   expect_equal(res[[2]]$n3, 824) # optimal sample size in phase III after skipping phase II
   expect_equal(res[[2]]$u, 1706, tolerance = 0.0001) # expected utility
   expect_equal(res[[2]]$HR, 0.76) # threshold for proceeding to phase III
@@ -192,6 +204,7 @@ test_that("01.06", {
 #' @editDate 2022-10-11
 test_that("01.07", {
   # Testing time to event while modeling differing population structures in phase II and III
+  sink(nullfile())
   res = optimal_tte(
     alpha = 0.025, # significance level
     beta = 0.1, # 1 - power
@@ -212,6 +225,7 @@ test_that("01.07", {
     # true treatment effect
     gamma = 0.025
   )
+  sink()
   expect_equal(res$n2, 310) # optimal sample size in phase II
   expect_equal(res$u, 1207, tolerance = 0.0005) # expected utility
   expect_equal(res$HRgo, 0.86) # threshold for proceeding to phase III
@@ -221,6 +235,7 @@ test_that("01.07", {
 #' @editDate 2022-10-12
 test_that("01.08", {
   # Testing binary endpoints with fixed effects
+  sink(nullfile())
   res = optimal_binary(alpha = 0.025,
                        beta = 0.1,
                        p0 = 0.6, p11 = 0.5, p12 = NULL,
@@ -235,6 +250,7 @@ test_that("01.08", {
                        w = NULL,
                        in1 = NULL, in2 = NULL
                        )
+  sink()
   expect_equal(res$n2, 204)
   expect_equal(res$u, 299, tolerance = 0.0005)
   expect_equal(res$RRgo, 0.90)
@@ -247,6 +263,7 @@ test_that("01.08", {
 #' @editDate 2022-10-12
 test_that("01.09", {
   # Testing binary endpoints with treatment effects modelled on a prior distribution
+  sink(nullfile())
   res = optimal_binary(alpha = 0.025,
                        beta = 0.1,
                        p0 = 0.6, p11 = 0.3, p12 = 0.5,
@@ -261,6 +278,7 @@ test_that("01.09", {
                        w = 0.4,
                        in1 = 30, in2 = 60
   )
+  sink()
   expect_equal(res$n2, 224)
   expect_equal(res$u, 1542, tolerance = 0.0005)
   expect_equal(res$RRgo, 0.89)
@@ -270,6 +288,7 @@ test_that("01.09", {
 #' @editDate 2022-10-11
 test_that("01.10", {
   # Testing normally distributed endpoints with prior distribution on effects
+  sink(nullfile())
   res = optimal_normal(
     alpha = 0.025,
     beta = 0.1,
@@ -286,6 +305,7 @@ test_that("01.10", {
     in1 = 300, in2 = 600,
     a = 0, b = 0.75
   )
+  sink()
   expect_equal(res$n2, 86) # optimal sample size in phase II
   expect_equal(res$u, 337, tolerance = 0.001) # expected utility
   expect_equal(res$Kappa, 0.19) # threshold for proceeding to phase III
@@ -295,6 +315,7 @@ test_that("01.10", {
 #' @editDate 2022-10-11
 test_that("01.11", {
   # Testing normally distributed endpoints with fixed effects
+  sink(nullfile())
   res = optimal_normal(
     alpha = 0.025,
     beta = 0.1,
@@ -313,6 +334,7 @@ test_that("01.11", {
     in1 = NULL, in2 = NULL,
     a = NULL, b = NULL
   )
+  sink()
   expect_equal(res$n2, 78) # optimal sample size in phase II
   expect_equal(res$u, 944, tolerance = 0.0001) # expected utility
   expect_equal(res$Kappa, 0.12) # threshold for proceeding to phase III
@@ -330,6 +352,7 @@ test_that("01.11", {
 test_that("01.12", {
   # Testing that parallel computing has an effect
   start_time_3 = Sys.time()
+  sink(nullfile())
   res = optimal_tte(
     alpha = 0.025, # significance level
     beta = 0.1, # 1 - power
@@ -371,6 +394,7 @@ test_that("01.12", {
     id1 = 210, id2 = 420, # amount of information (number of events) for prior
     # true treatment effect
   )
+  sink()
   end_time_1 = Sys.time()
   time_elapsed_01_02_num_cl_1 = end_time_1 - start_time_1
   expect_true(time_elapsed_01_02_num_cl_1 > time_elapsed_01_02_num_cl_3)

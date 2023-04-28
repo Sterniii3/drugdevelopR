@@ -200,14 +200,20 @@ vt_file(vt_path(child_files_test),dynamic_referencing = FALSE)
 # Currently, this code causes a LaTeX error in valtools. This can be manually
 # fixed by simply downloading or fork via
 # devtools::install_github("LukasDSauer/valtools")
+start_time01 <- Sys.time()
 vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R")),
         dynamic_referencing = FALSE)
+```
+```{r}
+stop_time01 <- Sys.time()
+dur01 <- stop_time01 - start_time01
 ```
 
 <!-- ```{r test-code-02, cache = TRUE} -->
 <!-- vt_file(vt_path(c("test_code/02_BiasAdjustmentTestCode.R")), -->
 <!--         dynamic_referencing = FALSE) -->
 <!-- ``` -->
+
 
 <!-- ```{r test-code-03, cache = TRUE} -->
 <!-- vt_file(vt_path(c("test_code/03_MultitrialTestCode.R")), -->
@@ -223,5 +229,11 @@ vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R")),
 <!-- vt_file(vt_path(c("test_code/05_MultipleTestCode.R")), -->
 <!--         dynamic_referencing = FALSE) -->
 <!-- ``` -->
+
+```{r}
+data.frame(`01` = signif(dur01, digits = 3),
+           `Total` = signif(dur01, digits = 3)) %>% 
+  kable(caption = "Duration of test code runs")
+```
 
 # References {-}
