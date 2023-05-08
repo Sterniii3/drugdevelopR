@@ -204,36 +204,67 @@ start_time01 <- Sys.time()
 vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R")),
         dynamic_referencing = FALSE)
 ```
-```{r}
+```{r test-code-01-runtime, cache = TRUE}
 stop_time01 <- Sys.time()
 dur01 <- stop_time01 - start_time01
 ```
 
-<!-- ```{r test-code-02, cache = TRUE} -->
-<!-- vt_file(vt_path(c("test_code/02_BiasAdjustmentTestCode.R")), -->
-<!--         dynamic_referencing = FALSE) -->
-<!-- ``` -->
+```{r test-code-02, cache = TRUE}
+start_time02 <- Sys.time()
+vt_file(vt_path(c("test_code/02_BiasAdjustmentTestCode.R")),
+        dynamic_referencing = FALSE)
+```
+```{r test-code-02-runtime, cache = TRUE}
+stop_time02 <- Sys.time()
+dur02 <- stop_time02 - start_time02
+```
 
+```{r test-code-03, cache = TRUE}
+start_time03 <- Sys.time()
+vt_file(vt_path(c("test_code/03_MultitrialTestCode.R")),
+        dynamic_referencing = FALSE)
+```
+```{r test-code-03-runtime, cache = TRUE}
+stop_time03 <- Sys.time()
+dur03 <- stop_time03 - start_time03
+```
 
-<!-- ```{r test-code-03, cache = TRUE} -->
-<!-- vt_file(vt_path(c("test_code/03_MultitrialTestCode.R")), -->
-<!--         dynamic_referencing = FALSE) -->
-<!-- ``` -->
+```{r test-code-04, cache = TRUE}
+start_time04 <- Sys.time()
+vt_file(vt_path(c("test_code/04_MultiarmTestCode.R")),
+        dynamic_referencing = FALSE)
+```
+```{r test-code-04-runtime, cache = TRUE}
+stop_time04 <- Sys.time()
+dur04 <- stop_time04 - start_time04
+```
 
-<!-- ```{r test-code-04, cache = TRUE} -->
-<!-- vt_file(vt_path(c("test_code/04_MultiarmTestCode.R")), -->
-<!--         dynamic_referencing = FALSE) -->
-<!-- ``` -->
+```{r test-code-05, cache = TRUE}
+start_time05 <- Sys.time()
+vt_file(vt_path(c("test_code/05_MultipleTestCode.R")),
+        dynamic_referencing = FALSE)
+```
 
-<!-- ```{r test-code-05, cache = TRUE} -->
-<!-- vt_file(vt_path(c("test_code/05_MultipleTestCode.R")), -->
-<!--         dynamic_referencing = FALSE) -->
-<!-- ``` -->
+```{r test-code-05-runtime, cache = TRUE}
+stop_time05 <- Sys.time()
+dur05 <- stop_time05 - start_time05
+```
 
 ```{r}
-data.frame(`01` = signif(dur01, digits = 3),
-           `Total` = signif(dur01, digits = 3)) %>% 
-  kable(caption = "Duration of test code runs")
+in_hours <- function(x){
+  x <- as.numeric(x, units = "hours")
+  return(x)
+}
+
+data.frame(`Basic 01` = signif(dur01, digits = 3),
+           `Bias 02` = signif(dur02, digits = 3),
+           `Multitrial 03` = signif(dur03, digits = 3),
+           `Multiarm 04` = signif(dur04, digits = 3),
+           `Multiple 05` = signif(dur05, digits = 3),
+           `Total` = paste(signif(in_hours(dur01 + dur02 + dur03 + dur04 + 
+                                             dur05), digits = 3), "hours")) %>% 
+  kable(caption = "Duration of test code runs") %>% 
+  kable_styling(latex_options = "HOLD_position")
 ```
 
 # References {-}

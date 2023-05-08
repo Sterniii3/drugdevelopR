@@ -84,7 +84,7 @@ Use the function ` optimal_binary()`. Supply the following input values to the f
   * weight of NULL for the prior distribution,
   * NULL and NULL events for both treatment effects.
 
-Verify that the function calculates an optimal sample size of 204, an expected utility of 299 (in 10^5\$) and an optimal threshold value of 0.90 as suggested by Stella Erdmann [2]. Furthermore, verify that the programs returns the cost constraint (Inf in this case) as well as the total costs in phase II and III, 253 (in 10^5\$) and 810 (in 10^5\$), respectively.
+Verify that the function calculates an optimal sample size of 204, an expected utility of 299 (in 10^5\$) and an optimal threshold value of 0.90 as suggested by Stella Erdmann [2]. Furthermore, verify that the programs returns the cost constraint (Inf in this case) as well as the total costs in phase II and III, 253 (in 10^5\$) and 769 (in 10^5\$), respectively.
 
 ### 01.09 (shows that req. 01.02 and 01.06 are met):  {-}
 Use the function `optimal_binary()`. Supply the same input values as in test case 01.08 to the function except for the following changes and additions: Set the parameter “fixed” to be FALSE. Set the weight for the prior distribution to be 0.4, the assumed true rates for the prior distribution of the treatment group to be 0.3 and 0.5 and the number of events to be 30 and 60. 

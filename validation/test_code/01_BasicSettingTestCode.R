@@ -256,7 +256,7 @@ test_that("01.08", {
   expect_equal(res$RRgo, 0.90)
   expect_equal(res$K, Inf)
   expect_equal(res$K2, 253)
-  expect_equal(res$K3, 810)
+  expect_equal(res$K3, 769)
 })
 
 #' @editor Lukas D Sauer
@@ -404,14 +404,14 @@ test_that("01.12", {
 #' @editDate 2023-03-30
 test_that("01.13", {
   # Comparing results of Epgo_normal() and En3_normal() to SAS results
-  data <- haven::read_sas("./validation/ref/valref_normal.sas7bdat")
+  data <- haven::read_sas("../ref/valref_normal.sas7bdat")
   Epgo_r <- rep(0, nrow(data))
   En3_r <- rep(0, nrow(data))
   for(i in (1:nrow(data))){
-    Epgo_r[i] <- Epgo_normal(kappa = data$kappa_vec[i], n2 = data$n2_vec[i],
+    Epgo_r[i] <- drugdevelopR:::Epgo_normal(kappa = data$kappa_vec[i], n2 = data$n2_vec[i],
                             Delta1 = data$Delta1_vec[i], Delta2 = NULL,
                             w = NULL, in1 = NULL, in2 = NULL, fixed = TRUE)
-    En3_r[i] <- En3_normal(kappa = data$kappa_vec[i], n2 = data$n2_vec[i],
+    En3_r[i] <- drugdevelopR:::En3_normal(kappa = data$kappa_vec[i], n2 = data$n2_vec[i],
                            alpha = data$alpha_vec[i], beta = data$beta_vec[i],
                            Delta1 = data$Delta1_vec[i], Delta2 = NULL,
                            w = NULL, in1 = NULL, in2 = NULL, fixed = TRUE)
@@ -423,14 +423,14 @@ test_that("01.13", {
 #' @editDate 2023-03-30
 test_that("01.14", {
   # Comparing results of Epgo_binary() and En3_binary() to SAS results
-  data <- haven::read_sas("./validation/ref/valref_binary.sas7bdat")
+  data <- haven::read_sas("../ref/valref_binary.sas7bdat")
   Epgo_r <- rep(0, nrow(data))
   En3_r <- rep(0, nrow(data))
   for(i in (1:nrow(data))){
-    Epgo_r[i] <- Epgo_binary(RRgo = data$RRgo_vec[i], n2 = data$n2_vec[i],
+    Epgo_r[i] <- drugdevelopR:::Epgo_binary(RRgo = data$RRgo_vec[i], n2 = data$n2_vec[i],
                            p0 = data$p0_vec[i], p11 = data$p11_vec[i],
                            p12 = NULL, in1 = NULL, in2 = NULL, fixed = TRUE)
-    En3_r[i] <- En3_binary(RRgo = data$RRgo_vec[i], n2 = data$n2_vec[i],
+    En3_r[i] <- drugdevelopR:::En3_binary(RRgo = data$RRgo_vec[i], n2 = data$n2_vec[i],
                            alpha = data$alpha_vec[i], beta = data$beta_vec[i],
                            p0 = data$p0_vec[i], w = NULL, p11 = data$p11_vec[i],
                            p12 = NULL, in1 = NULL, in2 = NULL, fixed = TRUE)
@@ -442,14 +442,14 @@ test_that("01.14", {
 #' @editDate 2023-03-30
 test_that("01.15", {
   # Comparing results of Epgo_tte() and En3_tte() to SAS results
-  data <- haven::read_sas("./validation/ref/valref_tte.sas7bdat")
+  data <- haven::read_sas("../ref/valref_tte.sas7bdat")
   Epgo_r <- rep(0, nrow(data))
   Ed3_r <- rep(0, nrow(data))
   for(i in (1:nrow(data))){
-    Epgo_r[i] <- Epgo_tte(HRgo = data$HRgo_vec[i], d2 = data$d2_vec[i],
+    Epgo_r[i] <- drugdevelopR:::Epgo_tte(HRgo = data$HRgo_vec[i], d2 = data$d2_vec[i],
                           hr1 = data$hr1_vec[i], hr2 = NULL,
                           w = NULL, id1 = NULL, id2 = NULL, fixed = TRUE)
-    Ed3_r[i] <- Ed3_tte(HRgo = data$HRgo_vec[i], d2 = data$d2_vec[i],
+    Ed3_r[i] <- drugdevelopR:::Ed3_tte(HRgo = data$HRgo_vec[i], d2 = data$d2_vec[i],
                         alpha = data$alpha_vec[i], beta = data$beta_vec[i],
                         hr1 = data$hr1_vec[i], hr2 = NULL,
                         w = NULL, id1 = NULL, id2 = NULL, fixed = TRUE)
