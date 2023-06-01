@@ -337,8 +337,8 @@ test_that("02.07", {
   expect_equal(res$n, 332)
   expect_equal(res$u, 75.8, tolerance = 0.005)
 })
-#' @editor Lukas D Sauer
-#' @editDate 2022-12-14
+# #' @editor Lukas D Sauer
+# #' @editDate 2022-12-14
 # test_that("02.08", {
 #   # Parallel computing works
 #   start_time_3 = Sys.time()
