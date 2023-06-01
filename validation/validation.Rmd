@@ -207,8 +207,8 @@ n_pass <- rep(0, 5)
 # fixed by simply downloading or fork via
 # devtools::install_github("LukasDSauer/valtools")
 start_time01 <- Sys.time()
-body <- capture.output(vt_file(vt_path("test_code/01_BasicSettingTestCode.R",
-                               dynamic_referencing = FALSE)))
+body <- capture.output(vt_file(vt_path("test_code/01_BasicSettingTestCode.R"),
+                               dynamic_referencing = FALSE))
 ```
 
 
@@ -223,8 +223,8 @@ cat(body, sep = "\n")
 
 <!-- ```{r test-code-02, cache = TRUE} -->
 <!-- start_time02 <- Sys.time() -->
-<!-- body <- capture.output(vt_file(vt_path("test_code/02_BiasAdjustmentTestCode.R", -->
-<!--                                dynamic_referencing = FALSE))) -->
+<!-- body <- capture.output(vt_file(vt_path("test_code/02_BiasAdjustmentTestCode.R"), -->
+<!--                                dynamic_referencing = FALSE)) -->
 <!-- ``` -->
 
 <!-- ```{r test-code-02-runtime, cache = TRUE} -->
@@ -237,8 +237,8 @@ cat(body, sep = "\n")
 
 <!-- ```{r test-code-03, cache = TRUE} -->
 <!-- start_time03 <- Sys.time() -->
-<!-- body <- capture.output(vt_file(vt_path("test_code/03_MultitrialTestCode.R", -->
-<!--                                dynamic_referencing = FALSE))) -->
+<!-- body <- capture.output(vt_file(vt_path("test_code/03_MultitrialTestCode.R"), -->
+<!--                                dynamic_referencing = FALSE)) -->
 <!-- ``` -->
 
 <!-- ```{r test-code-03-runtime, cache = TRUE} -->
@@ -251,8 +251,8 @@ cat(body, sep = "\n")
 
 <!-- ```{r test-code-04, cache = TRUE} -->
 <!-- start_time04 <- Sys.time() -->
-<!-- body <- capture.output(vt_file(vt_path("test_code/04_MultiarmTestCode.R", -->
-<!--                                dynamic_referencing = FALSE))) -->
+<!-- body <- capture.output(vt_file(vt_path("test_code/04_MultiarmTestCode.R"), -->
+<!--                                dynamic_referencing = FALSE)) -->
 <!-- ``` -->
 
 <!-- ```{r test-code-04-runtime, cache = TRUE} -->
@@ -265,8 +265,8 @@ cat(body, sep = "\n")
 
 <!-- ```{r test-code-05, cache = TRUE} -->
 <!-- start_time05 <- Sys.time() -->
-<!-- body <- capture.output(vt_file(vt_path("test_code/05_MultipleTestCode.R", -->
-<!--                                dynamic_referencing = FALSE))) -->
+<!-- body <- capture.output(vt_file(vt_path("test_code/05_MultipleTestCode.R"), -->
+<!--                                dynamic_referencing = FALSE)) -->
 <!-- ``` -->
 
 <!-- ```{r test-code-05-runtime, cache = TRUE} -->
