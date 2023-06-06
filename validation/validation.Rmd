@@ -19,6 +19,7 @@ header-includes:
   - \usepackage{longtable}
   - \usepackage{booktabs}
 bibliography: references.bib
+always_allow_html: yes
 ---
 
 
@@ -291,7 +292,7 @@ data.frame(Setting = c("01 Basic", "02 Bias", "03 Multitrial", "04 Multiarm",
 
 ```{r}
 in_hours <- function(x){
-  x <- as.numeric(x, units = "hours")
+  x <- paste(signif(as.numeric(x, units = "hours"), digits = 3), "hours")
   return(x)
 }
 
@@ -299,14 +300,13 @@ data.frame(Setting = c("01 Basic",
                        "02 Bias", "03 Multitrial", "04 Multiarm",
                        "05 Multiple", "Total"
                        ),
-           Duration = c(signif(dur01, digits = 3),
-                        signif(dur02, digits = 3),
-                        signif(dur03, digits = 3),
-                        signif(dur04, digits = 3),
-                        signif(dur05, digits = 3),
-                        paste(signif(in_hours(dur01 + dur02 + dur03 + dur04 + 
-                                             dur05
-                                             ), digits = 3), "hours"))) %>% 
+           Duration = c(in_hours(dur01),
+                        in_hours(dur02),
+                        in_hours(dur03),
+                        in_hours(dur04),
+                        in_hours(dur05),
+                        in_hours(dur01 + dur02 + dur03 + dur04 + 
+                                             dur05))) %>% 
   kable(caption = "Duration of test code runs") %>% 
   kable_styling(latex_options = "HOLD_position")
 ```
