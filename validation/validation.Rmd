@@ -19,6 +19,7 @@ header-includes:
   - \usepackage{longtable}
   - \usepackage{booktabs}
 bibliography: references.bib
+always_allow_html: yes
 ---
 
 
@@ -122,7 +123,7 @@ vt_scrape_val_env() %>%
 
 ### Requirements   {-}
 
-```{r req-authors}
+```{r req-authors, fig.pos='H'}
 vt_scrape_requirement_editors() %>% 
   vt_kable_requirement_editors(latex_options = "HOLD_position")
 ```
@@ -137,18 +138,20 @@ vt_scrape_requirement_editors() %>%
 
 ### Test Case Authors  {-}
 
-```{r test-case-authors}
+```{r test-case-authors, fig.pos='H'}
 vt_scrape_test_case_editors() %>%
  vt_kable_test_case_editors(latex_options = "HOLD_position")
 ```
 
 ### Test Code Authors  {-}
 
-```{r test-code-authors}
+
+```{r test-code-authors, fig.pos='H'}
 vt_scrape_test_code_editors() %>%
  vt_kable_test_code_editors(latex_options = "HOLD_position",
                             longtable_clean_cut = FALSE)
 ```
+
 
 ## Traceability  {-}
 
@@ -188,38 +191,125 @@ vt_file(vt_path(child_files_req),dynamic_referencing = FALSE)
 
 ```{r child-files-test-evaluation}
 child_files_test <- vt_get_child_files(validation_order = "test_cases")
-vt_file(vt_path(child_files_test),dynamic_referencing = FALSE)
+vt_file(vt_path(child_files_test), dynamic_referencing = FALSE)
 ```
 
 
 # Test Results {-}
 
-```{r, cache = TRUE}
+```{r}
+n_fail <- rep(0, 5)
+n_pass <- rep(0, 5)
+```
+
+
+```{r test-code-01, cache = TRUE}
 # Currently, this code causes a LaTeX error in valtools. This can be manually
 # fixed by simply downloading or fork via
 # devtools::install_github("LukasDSauer/valtools")
-vt_file(vt_path(c("test_code/01_BasicSettingTestCode.R")),
-        dynamic_referencing = FALSE)
+start_time01 <- Sys.time()
+body <- capture.output(vt_file(vt_path("test_code/01_BasicSettingTestCode.R"),
+                               dynamic_referencing = FALSE))
 ```
 
-<!-- ```{r, cache = TRUE} -->
-<!-- vt_file(vt_path(c("test_code/02_BiasAdjustmentTestCode.R")), -->
-<!--         dynamic_referencing = FALSE) -->
-<!-- ``` -->
 
-<!-- ```{r, cache = TRUE} -->
-<!-- vt_file(vt_path(c("test_code/03_MultitrialTestCode.R")), -->
-<!--         dynamic_referencing = FALSE) -->
-<!-- ``` -->
+```{r test-code-01-runtime, cache = TRUE}
+stop_time01 <- Sys.time()
+dur01 <- stop_time01 - start_time01
+n_fail[1] <- sum(grepl("\\{Fail\\}", body))
+n_pass[1] <- sum(grepl("\\{Pass\\}", body))
+cat(body, sep = "\n")
+```
 
-<!-- ```{r, cache = TRUE} -->
-<!-- vt_file(vt_path(c("test_code/04_MultiarmTestCode.R")), -->
-<!--         dynamic_referencing = FALSE) -->
-<!-- ``` -->
 
-<!-- ```{r, cache = TRUE} -->
-<!-- vt_file(vt_path(c("test_code/05_MultipleTestCode.R")), -->
-<!--         dynamic_referencing = FALSE) -->
-<!-- ``` -->
+```{r test-code-02, cache = TRUE}
+start_time02 <- Sys.time()
+body <- capture.output(vt_file(vt_path("test_code/02_BiasAdjustmentTestCode.R"),
+                               dynamic_referencing = FALSE))
+```
+
+```{r test-code-02-runtime, cache = TRUE}
+stop_time02 <- Sys.time()
+dur02 <- stop_time02 - start_time02
+n_fail[2] <- sum(grepl("\\{Fail\\}", body))
+n_pass[2] <- sum(grepl("\\{Pass\\}", body))
+cat(body, sep = "\n")
+```
+
+```{r test-code-03, cache = TRUE}
+start_time03 <- Sys.time()
+body <- capture.output(vt_file(vt_path("test_code/03_MultitrialTestCode.R"),
+                               dynamic_referencing = FALSE))
+```
+
+```{r test-code-03-runtime, cache = TRUE}
+stop_time03 <- Sys.time()
+dur03 <- stop_time03 - start_time03
+n_fail[3] <- sum(grepl("\\{Fail\\}", body))
+n_pass[3] <- sum(grepl("\\{Pass\\}", body))
+cat(body, sep = "\n")
+```
+
+```{r test-code-04, cache = TRUE}
+start_time04 <- Sys.time()
+body <- capture.output(vt_file(vt_path("test_code/04_MultiarmTestCode.R"),
+                               dynamic_referencing = FALSE))
+```
+
+```{r test-code-04-runtime, cache = TRUE}
+stop_time04 <- Sys.time()
+dur04 <- stop_time04 - start_time04
+n_fail[4] <- sum(grepl("\\{Fail\\}", body))
+n_pass[4] <- sum(grepl("\\{Pass\\}", body))
+cat(body, sep = "\n")
+```
+
+```{r test-code-05, cache = TRUE}
+start_time05 <- Sys.time()
+body <- capture.output(vt_file(vt_path("test_code/05_MultipleTestCode.R"),
+                               dynamic_referencing = FALSE))
+```
+
+```{r test-code-05-runtime, cache = TRUE}
+stop_time05 <- Sys.time()
+dur05 <- stop_time05 - start_time05
+n_fail[5] <- sum(grepl("\\{Fail\\}", body))
+n_pass[5] <- sum(grepl("\\{Pass\\}", body))
+cat(body, sep = "\n")
+```
+
+
+```{r}
+data.frame(Setting = c("01 Basic", "02 Bias", "03 Multitrial", "04 Multiarm",
+                       "05 Multiple", "Total"),
+           Failures = c(n_fail,
+                        sum(n_fail)),
+           Passes = c(n_pass,
+                        sum(n_pass))) %>% 
+  kable(caption = "Summary of failures and passes") %>% 
+  kable_styling(latex_options = "HOLD_position")
+```
+
+```{r}
+in_hours <- function(x){
+  x <- paste(signif(as.numeric(x, units = "hours"), digits = 3), "hours")
+  return(x)
+}
+
+data.frame(Setting = c("01 Basic",
+                       "02 Bias", "03 Multitrial", "04 Multiarm",
+                       "05 Multiple", "Total"
+                       ),
+           Duration = c(in_hours(dur01),
+                        in_hours(dur02),
+                        in_hours(dur03),
+                        in_hours(dur04),
+                        in_hours(dur05),
+                        in_hours(dur01 + dur02 + dur03 + dur04 + 
+                                             dur05))) %>% 
+  kable(caption = "Duration of test code runs") %>% 
+  kable_styling(latex_options = "HOLD_position")
+```
+
 
 # References {-}

@@ -9,7 +9,7 @@
 #' 02.05: 02.04, 02.07, 02.15
 #' 02.06: 02.08, 02.18
 #' 02.07: 02.14
-#' 02.08: 02.09
+<!-- #' 02.08: 02.09 -->
 #' 02.09: 02.01, 02.04, 02.11
 #' 02.10: 02.01, 02.05, 02.13
 #' 02.11: 02.02, 02.04, 02.10
@@ -72,10 +72,13 @@ Use the function `optimal_bias`. Supply the same input values as in test case 02
 Verify that both adjustment methods and the case with no bias adjustment return the same results, i.e. an expected utility of 75.8 (in 10^5\$) and optimal sample sizes of 122 participants in phase II and 210 participants in phase III (i.e. a total sample size of 332).
 
 ### 02.08 (shows that req. 02.09 is met): {-}
-Use the function `optimal_bias`. Supply the same input values as in test case 02.01, however change the number of clusters for parallel computing to 6. 
-Verify that the computation time will increase compared to the setting in 02.01.
+
+Test case 02.09 was omitted for the following reason: A decrease in computation time can only be noted in processes with longer run time. In this setting with a rather short run time, the overhead of distributing tasks to more kernels actually leads to a slight increase in run time. As this feature is not critical and its general functionality is also checked in other test cases, we simple omit the test case. The original text read as follows:
+
+*Use the function `optimal_bias`. Supply the same input values as in test case 02.01, however change the number of clusters for parallel computing to 6.  Verify that the computation time will increase compared to the setting in 02.01.*
 
 ### 02.09 (shows that req. 02.01, 02.05 and 02.11 are met): {-}
+
 Use the function `optimal_bias_normal()`. Supply the following input values to the function:
 
   * a significance level of 0.05,

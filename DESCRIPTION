@@ -9,7 +9,7 @@ Authors@R: c(person("Stella", "Erdmann", email = "erdmann@imbi.uni-heidelberg.de
 Author: Stella Erdmann [aut, cre],
    Johannes Cepicka [aut],
    Lukas D. Sauer [aut]
- Maintainer: Stella Erdmann <erdmann@imbi.uni-heidelberg.de>           
+Maintainer: Stella Erdmann <erdmann@imbi.uni-heidelberg.de>           
 Description: The R package drugdevelopR is a tool to plan optimal sample size allocation and go/no-go
   decision rules for phase II/III drug development programs with time-to-event (measured by hazard ratio,
   HR), binary (measured by risk ratio, RR) or normally distributed (measured by standardized difference
@@ -44,6 +44,6 @@ Suggests:
     magrittr,
     devtools
 VignetteBuilder: knitr
-Additional_repositories: https://github.com/phuse-org/valtools
+Additional_repositories: https://github.com/LukasDSauer/valtools
 Config/testthat/parallel: true
 Config/testthat/edition: 3

@@ -2,6 +2,7 @@
 #' @editDate 2022-12-23
 test_that("03.01", {
   # Multi-trial time-to-event endpoints
+  sink(nullfile())
   res <- optimal_multitrial(alpha = 0.025,
                             beta = 0.1,
                             hr1 = 0.69, hr2 = 0.88,
@@ -17,6 +18,7 @@ test_that("03.01", {
                             id1 = 210, id2 = 420,
                             case = 2, strategy = TRUE
                )
+  sink()
   # Strategies
   expect_equal(res$Strategy, c(1, 2, 3, 23))
   # Strategy 1
@@ -60,6 +62,7 @@ test_that("03.01", {
 #' @editDate 2022-12-23
 test_that("03.02", {
   # Multi-trial time-to-event endpoints
+  sink(nullfile())
   res <- optimal_multitrial(alpha = 0.025,
                             beta = 0.1,
                             hr1 = 0.69, hr2 = 0.88,
@@ -75,6 +78,7 @@ test_that("03.02", {
                             id1 = 210, id2 = 420,
                             case = 3, strategy = 1
   )
+  sink()
   # Strategies
   expect_equal(res$Strategy, 1)
   expect_equal(res$u, -148.57, tolerance = 0.005)
@@ -88,6 +92,7 @@ test_that("03.02", {
 #' @editDate 2022-12-23
 test_that("03.03", {
   # Multi-trial time-to-event endpoints
+  sink(nullfile())
   res <- optimal_multitrial(alpha = 0.025,
                             beta = 0.1,
                             hr1 = 0.69, hr2 = 0.88,
@@ -104,6 +109,7 @@ test_that("03.03", {
                             case = 2, strategy = TRUE,
                             K = 500
   )
+  sink()
   # Strategies
   expect_equal(res$Strategy, c(1, 2, 3, 23))
   # Strategy 1
@@ -145,7 +151,9 @@ test_that("03.03", {
 #' @editDate 2022-12-23
 test_that("03.04", {
   # Multi-trial time-to-event endpoints
-  expect_error(optimal_multitrial(alpha = 0.025,
+  expect_error({
+    sink(nullfile())
+    optimal_multitrial(alpha = 0.025,
                             beta = 0.1,
                             hr1 = 0.69, hr2 = 0.88,
                             xi2 = 0.7, xi3 = 0.7,
@@ -159,12 +167,15 @@ test_that("03.04", {
                             w = 0.3,
                             id1 = 210, id2 = 420,
                             case = 3, strategy = 2
-  ))
+    )
+    sink()
+  })
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-23
 test_that("03.05", {
   # Multi-trial time-to-event endpoints
+  sink(nullfile())
   res <- optimal_multitrial(alpha = 0.025,
                             beta = 0.1,
                             hr1 = 0.69, hr2 = 0.88,
@@ -180,6 +191,7 @@ test_that("03.05", {
                             id1 = 210, id2 = 420,
                             case = 2, strategy = TRUE
   )
+  sink()
   # Strategies
   expect_equal(res$Strategy, c(1, 2, 3, 23))
   # Strategy 1
@@ -223,6 +235,7 @@ test_that("03.05", {
 #' @editDate 2022-12-23
 test_that("03.06", {
   # Multi-trial time-to-event endpoints
+  sink(nullfile())
   res <- optimal_multitrial(alpha = 0.025,
                             beta = 0.1,
                             hr1 = 0.69, hr2 = 0.88,
@@ -238,6 +251,7 @@ test_that("03.06", {
                             id1 = 210, id2 = 420,
                             case = 1, strategy = 1
   )
+  sink()
   # Strategies
   expect_equal(res$Strategy, 1)
   # Strategy 1
@@ -254,6 +268,7 @@ test_that("03.06", {
 #' @editDate 2022-12-23
 test_that("03.07", {
   # Multi-trial binary endpoints
+  sink(nullfile())
   res <- optimal_multitrial_binary(alpha = 0.025,
                             beta = 0.1,
                             p0 = 0.6, p11 = 0.3, p12 = 0.5,
@@ -268,6 +283,7 @@ test_that("03.07", {
                             in1 = 30, in2 = 60,
                             case = 3, strategy = TRUE,
   )
+  sink()
   # Strategies
   expect_equal(res$Strategy, c(1, 3, 4))
   # Strategy 1
@@ -293,6 +309,7 @@ test_that("03.07", {
 #' @editDate 2022-12-23
 test_that("03.08", {
   # Multi-trial binary endpoints
+  sink(nullfile())
   res <- optimal_multitrial_binary(alpha = 0.025,
                                    beta = 0.1,
                                    p0 = 0.6, p11 = 0.3, p12 = 0.5,
@@ -307,6 +324,7 @@ test_that("03.08", {
                                    in1 = 30, in2 = 60,
                                    case = 2, strategy = 23,
   )
+  sink()
   # Strategies
   expect_equal(res$Strategy, c(23))
   expect_equal(res$u, 1701.93, tolerance = 0.005)
@@ -317,6 +335,7 @@ test_that("03.08", {
 #' @editDate 2022-12-23
 test_that("03.09", {
   # Multi-trial binary endpoints
+  sink(nullfile())
   res <- optimal_multitrial_binary(alpha = 0.025,
                                    beta = 0.1,
                                    p0 = 0.6, p11 = 0.3, p12 = 0.5,
@@ -331,6 +350,7 @@ test_that("03.09", {
                                    in1 = 30, in2 = 60,
                                    case = 1, strategy = TRUE,
   )
+  sink()
   # Strategies
   expect_equal(res$Strategy, c(1, 2))
   # Strategy 1
@@ -350,6 +370,7 @@ test_that("03.09", {
 #' @editDate 2022-12-23
 test_that("03.10", {
   # Multi-trial binary endpoints
+  sink(nullfile())
   res <- optimal_multitrial_binary(alpha = 0.025,
                                    beta = 0.1,
                                    p0 = 0.6, p11 = 0.3, p12 = 0.5,
@@ -364,6 +385,7 @@ test_that("03.10", {
                                    in1 = 30, in2 = 60,
                                    case = 2, strategy = 3,
   )
+  sink()
   res_constrained <- optimal_multitrial_binary(alpha = 0.025,
                                    beta = 0.1,
                                    p0 = 0.6, p11 = 0.3, p12 = 0.5,
@@ -395,6 +417,7 @@ test_that("03.10", {
 #' @editDate 2022-12-23
 test_that("03.11", {
   # Multi-trial normal endpoints
+  sink(nullfile())
   res <- optimal_multitrial_normal(alpha = 0.05,
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
@@ -410,6 +433,7 @@ test_that("03.11", {
                                    a = 0.25, b = 0.75,
                                    case = 3, strategy = TRUE,
   )
+  sink()
   # Strategies
   expect_equal(res$Strategy, c(1, 3, 4))
   # Strategy 1
@@ -439,6 +463,7 @@ test_that("03.11", {
 test_that("03.12", {
   # Testing that parallel computing has an effect
   start_time_3 = Sys.time()
+  sink(nullfile())
   res <- optimal_multitrial_normal(alpha = 0.05,
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
@@ -454,9 +479,11 @@ test_that("03.12", {
                                    a = 0, b = 0.75,
                                    case = 3, strategy = TRUE,
   )
+  sink()
   end_time_3 = Sys.time()
   time_elapsed_num_cl_3 = end_time_3 - start_time_3
   start_time_1 = Sys.time()
+  sink(nullfile())
   res <- optimal_multitrial_normal(alpha = 0.05,
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
@@ -472,6 +499,7 @@ test_that("03.12", {
                                    a = 0, b = 0.75,
                                    case = 3, strategy = TRUE,
   )
+  sink()
   end_time_1 = Sys.time()
   time_elapsed_num_cl_1 = end_time_1 - start_time_1
   expect_true(time_elapsed_num_cl_1 > time_elapsed_num_cl_3)
@@ -480,6 +508,7 @@ test_that("03.12", {
 #' @editDate 2022-12-23
 test_that("03.13", {
   # Multi-trial normal endpoints
+  sink(nullfile())
   res <- optimal_multitrial_normal(alpha = 0.05,
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
@@ -511,6 +540,7 @@ test_that("03.13", {
                                    case = 3, strategy = TRUE,
                                    S = 0.82
   )
+  sink()
   # Unconstrained
   expect_equal(res$Strategy, c(1, 3, 4))
   # Strategy 1
@@ -558,6 +588,7 @@ test_that("03.13", {
 #' @editDate 2022-12-23
 test_that("03.14", {
   # Multi-trial normal endpoints
+  sink(nullfile())
   res <- optimal_multitrial_normal(alpha = 0.05,
                                    beta = 0.1,
                                    Delta1 = 0.375, Delta = 0.5,
@@ -573,6 +604,7 @@ test_that("03.14", {
                                    a = 0, b = 0.75,
                                    case = 2, strategy = 3,
   )
+  sink()
   # Strategy 1
   expect_equal(res$u, 1749.97, tolerance = 0.005)
   expect_equal(res$Kappa, 0.16)
