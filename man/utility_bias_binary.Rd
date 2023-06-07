@@ -216,11 +216,4 @@ res <- utility_binary_L(n2 = 50, RRgo = 0.8, Adj = 0.1, w = 0.3,
                                  b1 = 1000, b2 = 2000, b3 = 3000, 
                                  fixed = TRUE)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-
+\keyword{internal}

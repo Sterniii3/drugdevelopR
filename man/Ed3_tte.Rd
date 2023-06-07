@@ -39,11 +39,4 @@ res <-  Ed3_tte(HRgo = 0.8, d2 = 50,
                         hr1 =  0.69, hr2 = 0.81, 
                         id1 = 280, id2 = 420, fixed = FALSE)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-01-30
-}
-
+\keyword{internal}

@@ -49,11 +49,4 @@ res <- PsProg_normal(kappa = 0.1 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
                             Delta1 = 0.375, Delta2 = 0.625,  step1 = 0, step2 = 0.5,
                             strategy = 3, case = 31)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-
+\keyword{internal}

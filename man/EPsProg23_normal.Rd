@@ -74,11 +74,4 @@ In the utility function, this will lead to a utility of -9999.
                                  a = 0.25, b = 0.75, 
                                  case = 2, size = "small", ymin = 0.5)}
 }
-\section{Last Edited By}{
-Johannes Cepicka, Lukas D. Sauer
-}
-
-\section{Last Edit Date}{
-2022-05-06
-}
-
+\keyword{internal}

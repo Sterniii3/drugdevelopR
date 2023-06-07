@@ -74,11 +74,4 @@ The utility is in further step maximized by the \code{optimal_multitrial_binary(
                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                                  b1 = 1000, b2 = 2000, b3 = 3000)}
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-
+\keyword{internal}

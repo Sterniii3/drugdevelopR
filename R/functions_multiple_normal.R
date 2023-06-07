@@ -29,6 +29,7 @@
 #'@examples res <- fmin(y = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
 #'@editor Johannes Cepicka
 #'@editDate 2022-04-23
+#'@keywords internal
 #' @export
 fmin<-function (y,mu1,mu2,sigma1,sigma2,rho)
     {t1<-dnorm(y,mean=mu1,sd=sigma1)
@@ -54,6 +55,7 @@ return(t1+t2)}
 #'@name dbivanorm
 #'@editor Johannes Cepicka
 #'@editDate 2022-04-23
+#'@keywords internal
 #' @export
 dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){ 
   covariancemat <- matrix(c(sigma1, rho*sqrt(sigma1)*sqrt(sigma2), rho*sqrt(sigma1)*sqrt(sigma2), sigma2),ncol=2)
@@ -82,6 +84,7 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #'                                sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
 
@@ -151,6 +154,7 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
 #'                                sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
   
@@ -232,6 +236,7 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
 #'                                sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, in1, in2, fixed, rho){
   
@@ -345,6 +350,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
 #'                                in1 = 300, in2 = 600, fixed = TRUE, rho = 0.3)}
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2,
                       step11, step12, step21, step22, 
@@ -475,6 +481,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
 #'                                fixed = TRUE, rho = 0.3, relaxed = "TRUE")}
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 utility_multiple_normal<-function(kappa, n2, alpha, beta, 
                                   Delta1, Delta2, in1, in2, sigma1, sigma2,

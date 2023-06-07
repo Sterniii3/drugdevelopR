@@ -49,6 +49,7 @@
 #' @name EPsProg_multitrial_normal                                  
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-04-23
 EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, case, size, fixed){
   
@@ -404,6 +405,7 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
 #' @name utility_multitrial_normal                           
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-04-23
 utility2_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                       alpha, beta, 
@@ -482,6 +484,7 @@ utility2_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
 # Case 3: Strategy 3/3; all trials significant
 
 #' @rdname EPsProg_multitrial_normal 
+#' @keywords internal
 #' @export
 EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, case, size, fixed){
   
@@ -865,6 +868,7 @@ EPsProg3_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
 }
 
 #' @rdname utility_multitrial_normal 
+#' @keywords internal
 #' @export
 utility3_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                              alpha, beta, 
@@ -943,6 +947,7 @@ utility3_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
 # of the other one at least showing in the same direction
 
 #' @rdname EPsProg_multitrial_normal 
+#' @keywords internal
 #' @export
 EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, case, size,fixed){
   
@@ -1184,6 +1189,7 @@ EPsProg4_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
 }
 
 #' @rdname utility_multitrial_normal 
+#' @keywords internal
 #' @export
 utility4_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                              alpha, beta, 
@@ -1278,6 +1284,7 @@ utility4_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600)}
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-04-23
 Epgo23_normal <-  function(kappa, n2, alpha, beta, a, b,  w, Delta1, Delta2, in1, in2){
   
@@ -1340,6 +1347,7 @@ Epgo23_normal <-  function(kappa, n2, alpha, beta, a, b,  w, Delta1, Delta2, in1
 #'                                  case = 2, size = "small", ymin = 0.5)}
 #' @export
 #' @editor Johannes Cepicka, Lukas D. Sauer
+#' @keywords internal
 #' @editDate 2022-05-06
 EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, case, size, ymin){
   # Option 2.1: first two phase III trials are successful: no third phase III trial
@@ -1539,6 +1547,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
 #'                                 b1 = 3000, b2 = 8000, b3 = 10000)}
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-04-23
 utility23_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                        alpha, beta, 

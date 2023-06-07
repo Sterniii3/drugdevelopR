@@ -30,6 +30,7 @@
 #' @examples res <- pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625, strategy = 2, case = 31)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
+#' @keywords internal
 #' @export
 pgo_normal<-function(kappa,n2,Delta1,Delta2,strategy,case){
   
@@ -136,6 +137,7 @@ pgo_normal<-function(kappa,n2,Delta1,Delta2,strategy,case){
 #' @examples res <- ss_normal(alpha = 0.05, beta = 0.1, y = 0.5, l = 1)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
+#' @keywords internal
 #' @export
 ss_normal<-function(alpha,beta,y,l){
   
@@ -163,6 +165,7 @@ ss_normal<-function(alpha,beta,y,l){
 #'                             Delta1 = 0.375, Delta2 = 0.625, strategy = 3, case = 31)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
+#' @keywords internal
 #' @export
 Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
   
@@ -280,6 +283,7 @@ Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
 #'                             strategy = 3, case = 31)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,case){
   
@@ -476,6 +480,7 @@ PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,c
 #'                             b1 = 1000, b2 = 2000, b3 = 3000)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
+#' @keywords internal
 #' @export
 utility_multiarm_normal<-function(n2,kappa,alpha,beta,
                                   Delta1,Delta2,strategy,

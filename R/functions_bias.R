@@ -55,6 +55,7 @@
 #' @name Ed3_bias                            
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-11-04
 Ed3_L<-function(HRgo, d2, Adj, alpha, beta, w, hr1, hr2, id1, id2, fixed){
   
@@ -150,6 +151,7 @@ Ed3_L<-function(HRgo, d2, Adj, alpha, beta, w, hr1, hr2, id1, id2, fixed){
 #' @name EPsProg_bias                               
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-11-04
 EPsProg_L<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1, id2, fixed){
   
@@ -268,6 +270,7 @@ EPsProg_L<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1, 
 #' @name utility_bias                                 
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-11-04
 utility_L <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
                          alpha, beta, xi2, xi3,
@@ -382,6 +385,7 @@ utility_L <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
 #' @name Epgo_bias 
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-11-04
 Epgo_L2<-function(HRgo, d2, Adj, w, hr1, hr2, id1, id2, fixed){
   
@@ -451,6 +455,7 @@ Ed3_L2<-function(HRgo, d2, Adj, alpha, beta, w, hr1, hr2, id1, id2, fixed){
 
 # expected probability of a successful program
 #' @rdname EPsProg_bias 
+#' @keywords internal
 #' @export
 EPsProg_L2<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1, id2, fixed){
   
@@ -502,6 +507,7 @@ EPsProg_L2<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1,
 
 # Utility function
 #' @rdname utility_bias
+#' @keywords internal
 #' @export
 utility_L2 <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
                        alpha, beta, xi2, xi3,
@@ -594,6 +600,7 @@ utility_L2 <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
 
 # expected number of events for phase III when going to phase III
 #' @rdname Ed3_bias 
+#' @keywords internal
 #' @export
 Ed3_R<-function(HRgo, d2, Adj, alpha, beta, w, hr1, hr2, id1, id2, fixed){
   
@@ -642,6 +649,7 @@ Ed3_R<-function(HRgo, d2, Adj, alpha, beta, w, hr1, hr2, id1, id2, fixed){
 
 # expected probability of a successful program
 #' @rdname EPsProg_bias 
+#' @keywords internal
 #' @export
 EPsProg_R<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1, id2, fixed){
   
@@ -692,6 +700,7 @@ EPsProg_R<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1, 
 
 # Utility function
 #' @rdname utility_bias
+#' @keywords internal
 #' @export
 utility_R <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
                        alpha, beta, xi2, xi3,
@@ -785,6 +794,7 @@ utility_R <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
 
 # expected probability to go to phase III
 #' @rdname Epgo_bias
+#' @keywords internal
 #' @export
 Epgo_R2<-function(HRgo, d2, Adj, w, hr1, hr2, id1, id2, fixed){
 
@@ -805,6 +815,7 @@ Epgo_R2<-function(HRgo, d2, Adj, w, hr1, hr2, id1, id2, fixed){
 
 # expected number of events for phase III when going to phase III
 #' @rdname Ed3_bias 
+#' @keywords internal
 #' @export
 Ed3_R2<-function(HRgo, d2, Adj, alpha, beta, w, hr1, hr2, id1, id2, fixed){
   
@@ -855,6 +866,7 @@ Ed3_R2<-function(HRgo, d2, Adj, alpha, beta, w, hr1, hr2, id1, id2, fixed){
 
 # expected probability of a successful program
 #' @rdname EPsProg_bias 
+#' @keywords internal
 #' @export
 EPsProg_R2<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1, id2, fixed){
   
@@ -901,6 +913,7 @@ EPsProg_R2<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1,
 
 # Utility function
 #' @rdname utility_bias
+#' @keywords internal
 #' @export
 utility_R2 <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
                        alpha, beta, xi2, xi3,

@@ -58,6 +58,7 @@
 #' @name En3_bias_normal                           
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-04-23
 
 En3_normal_L <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, fixed){
@@ -157,6 +158,7 @@ En3_normal_L <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, i
 #' @name EPsProg_bias_normal                                
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-04-23
 
 EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, fixed){
@@ -274,6 +276,7 @@ EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
 #' @name utility_bias_normal                               
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-04-23
 
 utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
@@ -391,6 +394,7 @@ utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
 #' @name Epgo_bias_normal                              
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-04-23
 Epgo_normal_L2 <-  function(kappa, n2, Adj, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
@@ -499,6 +503,7 @@ EPsProg_normal_L2 <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Del
 }
 
 #' @rdname utility_bias_normal 
+#' @keywords internal
 #' @export
 utility_normal_L2 <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
                             alpha, beta, 
@@ -587,6 +592,7 @@ utility_normal_L2 <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b
 # as above
 
 #' @rdname En3_bias_normal 
+#' @keywords internal
 #' @export
 
 En3_normal_R <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, fixed){
@@ -633,6 +639,7 @@ En3_normal_R <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, i
 }
 
 #' @rdname EPsProg_bias_normal 
+#' @keywords internal
 #' @export
 EPsProg_normal_R <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
@@ -676,6 +683,7 @@ EPsProg_normal_R <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
 }
 
 #' @rdname utility_bias_normal 
+#' @keywords internal
 #' @export
 utility_normal_R <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
                             alpha, beta, 
@@ -763,6 +771,7 @@ utility_normal_R <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
 # as above
 
 #' @rdname Epgo_bias_normal 
+#' @keywords internal
 #' @export
 Epgo_normal_R2 <-  function(kappa, n2, Adj, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
@@ -783,6 +792,7 @@ Epgo_normal_R2 <-  function(kappa, n2, Adj, w, Delta1, Delta2, in1, in2, a, b, f
 }
 
 #' @rdname En3_bias_normal 
+#' @keywords internal
 #' @export
 En3_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
@@ -825,6 +835,7 @@ En3_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, 
 }
 
 #' @rdname EPsProg_bias_normal 
+#' @keywords internal
 #' @export
 EPsProg_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
@@ -871,6 +882,7 @@ EPsProg_normal_R2 <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Del
 
 
 #' @rdname utility_bias_normal 
+#' @keywords internal
 #' @export
 utility_normal_R2 <-  function(n2, kappa, Adj,  w, Delta1, Delta2, in1, in2, a, b,
                             alpha, beta, 

@@ -60,6 +60,7 @@ t3 <- function(x, p0){sqrt(((1-p0)/p0) + ((1-x)/x))}
 #' @name En3_bias_binary                             
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-04-23
 En3_binary_L <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2, fixed){
   if(fixed){
@@ -149,6 +150,7 @@ En3_binary_L <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2,
 #' @name EPsProg_bias_binary                               
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-04-23
 EPsProg_binary_L <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p11, p12, in1, in2, fixed){
   
@@ -269,6 +271,7 @@ EPsProg_binary_L <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p
 #'                                  fixed = TRUE)
 #' @name utility_bias_binary                                 
 #' @export
+#' @keywords internal
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
@@ -378,6 +381,7 @@ utility_binary_L <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 #'                               fixed = FALSE)
 #' @name Epgo_bias_binary 
 #' @export
+#' @keywords internal
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
 Epgo_binary_L2 <-  function(RRgo, n2, Adj, p0, w, p11, p12, in1, in2, fixed){
@@ -577,6 +581,7 @@ utility_binary_L2 <-  function(n2, RRgo, Adj, w, p0, p11, p12, in1, in2,
 # as above
 
 #' @rdname En3_bias_binary 
+#' @keywords internal
 #' @export
 En3_binary_R <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2, fixed){
   if(fixed){
@@ -771,6 +776,7 @@ Epgo_binary_R2 <-  function(RRgo, n2, Adj, p0, w, p11, p12, in1, in2, fixed){
 }
 
 #' @rdname En3_bias_binary 
+#' @keywords internal
 #' @export
 En3_binary_R2 <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2, fixed){
   if(fixed){
@@ -814,6 +820,7 @@ En3_binary_R2 <-  function(RRgo, n2, Adj, alpha, beta, p0, w, p11, p12, in1, in2
 } 
 
 #' @rdname EPsProg_bias_binary
+#' @keywords internal
 #' @export
 EPsProg_binary_R2 <-  function(RRgo, n2, Adj, alpha, beta, step1, step2, p0, w, p11, p12, in1, in2, fixed){
   

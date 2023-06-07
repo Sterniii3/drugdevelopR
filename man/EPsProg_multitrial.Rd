@@ -79,11 +79,4 @@ The following cases can be investigated by the software:
                                  id1 = 210, id2 = 420, case = 3, size = "small",
                                  fixed = TRUE)}
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-
+\keyword{internal}

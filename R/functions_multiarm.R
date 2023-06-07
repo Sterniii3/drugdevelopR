@@ -31,6 +31,7 @@
 #' @examples res <- pgo_tte(HRgo = 0.8, n2 = 48 , ec = 0.6, hr1 = 0.7, hr2 = 0.8, strategy = 2, case = 31)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 pgo_tte<-function(HRgo,n2,ec,hr1,hr2,strategy,case){
   
@@ -142,6 +143,7 @@ pgo_tte<-function(HRgo,n2,ec,hr1,hr2,strategy,case){
 #' @examples res <- ss_tte(alpha = 0.05, beta = 0.1, ec = 0.6, ek = 0.8, y = 0.5, l=1)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
+#' @keywords internal
 #' @export
 ss_tte<-function(alpha,beta,ec,ek,y,l){
 
@@ -170,6 +172,7 @@ ss_tte<-function(alpha,beta,ec,ek,y,l){
 #'                             ec = 0.6, hr1 = 0.7, hr2 = 0.8, strategy = 2, case = 21)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
+#' @keywords internal
 #' @export
 Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
   
@@ -290,6 +293,7 @@ Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
 #'                             strategy = 2, case = 21)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
+#' @keywords internal
 #' @export
 PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
   
@@ -488,6 +492,7 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
 #'                             b1 = 1000, b2 = 2000, b3 = 3000)}
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-08
+#' @keywords internal
 #' @export
 utility_multiarm<-function(n2,HRgo,alpha,beta,hr1,hr2,strategy,ec,c2,c02,c3,c03,K,N,S,steps1, stepm1, stepl1,b1, b2, b3){ 
   

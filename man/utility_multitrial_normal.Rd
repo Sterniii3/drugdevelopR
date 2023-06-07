@@ -162,11 +162,4 @@ res <- utility2_normal(kappa = 0.1, n2 = 50,  alpha = 0.025, beta = 0.1, w = 0.3
                                  b1 = 3000, b2 = 8000, b3 = 10000, 
                                  case = 3, fixed = TRUE)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-
+\keyword{internal}

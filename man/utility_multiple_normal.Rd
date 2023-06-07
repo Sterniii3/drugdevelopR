@@ -104,11 +104,4 @@ The utility is in a further step maximized by the \code{optimal_multiple_normal(
                                b1 = 1000, b2 = 2000, b3 = 3000, 
                                fixed = TRUE, rho = 0.3, relaxed = "TRUE")}
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-
+\keyword{internal}

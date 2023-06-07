@@ -86,11 +86,4 @@ The utility is in further step maximized by the \code{optimal_multiarm()} functi
                             steps1 = 1, stepm1 = 0.95,  stepl1 = 0.85,
                             b1 = 1000, b2 = 2000, b3 = 3000)}
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-05-08
-}
-
+\keyword{internal}

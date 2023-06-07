@@ -48,6 +48,7 @@
 #' @name EPsProg_multitrial                                 
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-04-23
 EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, fixed){
   
@@ -428,6 +429,7 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
 #' @name utility_multitrial 
 #' @export                                
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-04-23
 utility2 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                       alpha, beta, xi2, xi3,
@@ -509,6 +511,7 @@ utility2 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 # Case 3: Strategy 3/3; all trials significant
 
 #' @rdname EPsProg_multitrial 
+#' @keywords internal
 #' @export
 EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, fixed){
   
@@ -937,6 +940,7 @@ EPsProg3 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
 }
 
 #' @rdname utility_multitrial 
+#' @keywords internal
 #' @export
 utility3 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                       alpha, beta, xi2, xi3,
@@ -1016,6 +1020,7 @@ utility3 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 # of the other one at least showing in the same direction
 
 #' @rdname EPsProg_multitrial 
+#' @keywords internal
 #' @export
 EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, fixed){
   
@@ -1276,6 +1281,7 @@ EPsProg4 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
 
 # Utility function
 #' @rdname utility_multitrial 
+#' @keywords internal
 #' @export
 utility4 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                       alpha, beta, xi2, xi3,
@@ -1371,6 +1377,7 @@ utility4 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 #'                                hr1 =  0.69, hr2 = 0.81, id1 = 280, id2 = 420)
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-05-09
 Epgo23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
   
@@ -1431,6 +1438,7 @@ Epgo23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
 #'                                   ymin = 0.5)
 #' @export
 #' @editor Johannes Cepicka
+#' @keywords internal
 #' @editDate 2022-04-23
 EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, ymin){
   # Option 2.1: first two phase III trials are successful: no third phase III trial
@@ -1634,6 +1642,7 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000)}
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                        alpha, beta, xi2, xi3,

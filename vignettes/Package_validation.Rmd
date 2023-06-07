@@ -33,7 +33,7 @@ In the next step, download the *source files* of the current `drugdevelopR` proj
 devtools::install()
 ```
 
-Then, open the file `./validation/validation.Rmd` in RStudio and use the *Knit* button for compiling the report. This may take a long time due to the long runtime of the test codes. We used 12 cores of our RStudio server, which took xx hours (i.e. several days) to complete.
+Then, open the file `./validation/validation.Rmd` in RStudio and use the *Knit* button for compiling the report. This may take a long time due to the long runtime of the test codes. We used 12 cores of our RStudio server, which took 93.5 hours (i.e. almost four days) to complete.
 
 # Adding a signature page
 

@@ -34,11 +34,4 @@ The results of this function are necessary for calculating the utility of the pr
 res <- Ess_normal(kappa = 0.1 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
                             Delta1 = 0.375, Delta2 = 0.625, strategy = 3, case = 31)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-05-08
-}
-
+\keyword{internal}

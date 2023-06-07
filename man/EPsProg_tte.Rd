@@ -61,11 +61,4 @@ res <- EPsProg_tte(HRgo = 0.8, d2 = 50,
                            id1 = 280, id2 = 420,
                            gamma = 0, fixed = FALSE)
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-01-30
-}
-
+\keyword{internal}

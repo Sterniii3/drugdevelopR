@@ -76,11 +76,4 @@ res <-  Ed3_L(HRgo = 0.8, d2 = 50, Adj = 0.4,
                         id1 = 280, id2 = 420, fixed = FALSE)
                               
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-11-04
-}
-
+\keyword{internal}

@@ -54,6 +54,7 @@ t3 <- function(x, p0){sqrt(((1-p0)/p0) + ((1-x)/x))}
  #' @export                                 
  #' @name EPsProg_multitrial_binary  
  #' @editor Johannes Cepicka
+ #' @keywords internal
  #' @editDate 2022-04-23
  
 EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, case, size, fixed){
@@ -432,6 +433,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
  #' @name utility_multitrial_binary 
  #' @export                                
  #' @editor Johannes Cepicka
+ #' @keywords internal
  #' @editDate 2022-04-23
 utility2_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                             alpha, beta, 
@@ -503,6 +505,7 @@ utility2_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
 # Case 3: Strategy 3/3; all trials significant
 
 #' @rdname EPsProg_multitrial_binary 
+#' @keywords internal
 #' @export
 EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, case, size, fixed){
   
@@ -932,6 +935,7 @@ EPsProg3_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
 }
 
 #' @rdname utility_multitrial_binary 
+#' @keywords internal
 #' @export
 utility3_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                             alpha, beta, 
@@ -1003,6 +1007,7 @@ utility3_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
 # of the other one at least showing in the same direction
 
 #' @rdname EPsProg_multitrial_binary
+#' @keywords internal
 #' @export
 EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, case, size, fixed){
   
@@ -1266,6 +1271,7 @@ EPsProg4_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
 
 
 #' @rdname utility_multitrial_binary 
+#' @keywords internal
 #' @export
 utility4_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                              alpha, beta, 
@@ -1353,6 +1359,7 @@ utility4_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
 #'                                p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600)
 #' @editor Johannes Cepicka
 #' @editDate 2022-05-09
+#' @keywords internal
 #' @export
 Epgo23_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2){
   
@@ -1414,6 +1421,7 @@ Epgo23_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2){
 #'                                  ymin = 0.5)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, case, size, ymin){
   # Option 2.1: first two phase III trials are successful: no third phase III trial
@@ -1627,6 +1635,7 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000)}
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 utility23_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                              alpha, beta, 

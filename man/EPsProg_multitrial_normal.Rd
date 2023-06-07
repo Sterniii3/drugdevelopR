@@ -128,11 +128,4 @@ The following cases can be investigated by the software:
                                  a = 0.25, b = 0.75, 
                                  case = 3, size = "small", fixed = TRUE)}                      
 }
-\section{Last Edited By}{
-Johannes Cepicka
-}
-
-\section{Last Edit Date}{
-2022-04-23
-}
-
+\keyword{internal}

@@ -28,6 +28,7 @@
 #'@examples res <- fmax(z = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
 #'@editor Johannes Cepicka
 #'@editDate 2022-04-23
+#'@keywords internal
 #' @export
 fmax<-function (z,mu1,mu2,sigma1,sigma2,rho){ 
   t1<-dnorm(-z,mean=-mu1,sd=sigma1)
@@ -68,6 +69,7 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #'                                fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 pgo_multiple_tte<-function(HRgo,n2,hr1,hr2,id1,id2,fixed,rho){
   
@@ -128,6 +130,7 @@ pgo_multiple_tte<-function(HRgo,n2,hr1,hr2,id1,id2,fixed,rho){
 #'                                fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 Ess_multiple_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 
@@ -186,6 +189,7 @@ Ess_multiple_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #'                     fixed = FALSE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 pw <- function(n2,hr1,hr2,id1,id2,fixed,rho){
   
@@ -251,6 +255,7 @@ else {
 #'                                fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2,fixed,rho){
  
@@ -350,6 +355,7 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
 #'                                fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
 #' @editDate 2022-04-23
+#' @keywords internal
 #' @export
 os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
   
@@ -491,7 +497,8 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
 #'                                b12 = 1000, b22 = 1500, b32 = 2000, 
 #'                                fixed = TRUE, rho = 0.3)
 #' @editor Johannes Cepicka
-#' @editDate 2022-04-23  
+#' @editDate 2022-04-23 
+#' @keywords internal 
 #' @export
 utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,
                                c2, c02, c3, c03, K, N, S,
