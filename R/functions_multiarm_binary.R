@@ -30,9 +30,7 @@
 #' @return The function pgo_binary() returns the probability to go to phase III.
 #' @examples res <- pgo_binary(RRgo = 0.8 ,n2 = 50 ,p0 = 0.6, p11 =  0.3, p12 = 0.5,strategy = 2, case = 31)
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-04-23
 
 pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
   
@@ -141,9 +139,7 @@ pgo_binary<-function(RRgo,n2,p0,p11,p12,strategy,case){
 #' @return the function ss_binary() returns the total sample size for phase III trial with l treatments and equal allocation ratio
 #' @examples res <- ss_binary(alpha = 0.05, beta = 0.1, p0 = 0.6, p11 = 0.3, y = 0.5, l = 1)
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-05-08
  
 ss_binary<-function(alpha,beta, p0, p11,y,l){
   
@@ -171,9 +167,8 @@ ss_binary<-function(alpha,beta, p0, p11,y,l){
 #' @examples res <- Ess_binary(RRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             p0 = 0.6, p11 =  0.3, p12 = 0.5,strategy = 3, case = 31)
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-05-08
+
 Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
    
   # distribution of y, yk~N(thetak,sigmak^2) and correlation rho = 1/2 (equal sample size allocation)
@@ -289,9 +284,7 @@ Ess_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,strategy,case){
 #'                             p0 = 0.6, p11 =  0.3, p12 = 0.5, step1 = 1, step2 = 0.95,
 #'                             strategy = 3, case = 31)
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-05-08
 
 PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case){
 
@@ -487,8 +480,6 @@ PsProg_binary<-function(RRgo,n2,alpha,beta,p0,p11,p12,step1,step2,strategy,case)
 #'                             K = Inf, N = Inf, S = -Inf,  
 #'                             steps1 = 1, stepm1 = 0.95,   stepl1 = 0.85,
 #'                             b1 = 1000, b2 = 2000, b3 = 3000)
-#' @editor Johannes Cepicka
-#' @editDate 2022-05-08
 #' @keywords internal
 #' @export
 utility_multiarm_binary<-function(n2,RRgo,alpha,beta,

@@ -57,9 +57,7 @@
 #'                               a = 0.25, b = 0.75, fixed = FALSE)
 #' @name En3_bias_normal                           
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-04-23
 
 En3_normal_L <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, fixed){
    
@@ -157,9 +155,7 @@ En3_normal_L <-  function(kappa, n2, Adj, alpha, beta, w, Delta1, Delta2, in1, i
 #'                                  a = 0.25, b = 0.75, fixed = FALSE)
 #' @name EPsProg_bias_normal                                
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-04-23
 
 EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
@@ -275,9 +271,7 @@ EPsProg_normal_L <-  function(kappa, n2, Adj, alpha, beta, step1, step2, w, Delt
 #'                                  fixed = TRUE)
 #' @name utility_bias_normal                               
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-04-23
 
 utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
                             alpha, beta, 
@@ -393,9 +387,7 @@ utility_normal_L <-  function(n2, kappa, Adj, w, Delta1, Delta2, in1, in2, a, b,
 #'                                a = 0.25, b = 0.75, fixed = FALSE)
 #' @name Epgo_bias_normal                              
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-04-23
 Epgo_normal_L2 <-  function(kappa, n2, Adj, w, Delta1, Delta2, in1, in2, a, b, fixed){
   
   if(fixed){

@@ -16,9 +16,7 @@
 #' @return The output of the functions `Epgo_tte()` is the expected number of participants in phase III with conservative decision rule and sample size calculation.
 #' @examples res <- prior_tte(x = 0.5, w = 0.5, hr1 = 0.69, hr2 = 0.88, id1 = 240, id2 = 420)
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-01-30
 prior_tte<-function(x, w, hr1, hr2, id1, id2){
     w * dnorm(x, -log(hr1), sqrt(4/id1)) + 
     (1 - w) * dnorm(x, -log(hr2), sqrt(4/id2))
@@ -47,9 +45,7 @@ box_tte<-function(w, hr1, hr2, id1, id2){
 #'                                 w = 0.3, hr1 = 0.69, hr2 = 0.81, 
 #'                                 id1 = 280, id2 = 420, fixed = FALSE)
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-01-30
 Epgo_tte <-  function(HRgo, d2, w, hr1, hr2, id1, id2, fixed){
   if(!fixed){
     return(  
@@ -87,9 +83,7 @@ Epgo_tte <-  function(HRgo, d2, w, hr1, hr2, id1, id2, fixed){
 #'                         hr1 =  0.69, hr2 = 0.81, 
 #'                         id1 = 280, id2 = 420, fixed = FALSE)
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-01-30
 Ed3_tte <-  function(HRgo, d2, alpha, beta, 
                      w, hr1, hr2, id1, id2, fixed){
   if(!fixed){
@@ -143,9 +137,8 @@ Ed3_tte <-  function(HRgo, d2, alpha, beta,
 #'                            id1 = 280, id2 = 420,
 #'                            gamma = 0, fixed = FALSE)
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-01-30
+
 EPsProg_tte <-  function(HRgo, d2, alpha, beta, 
                          step1, step2, 
                          w, hr1, hr2, id1, id2, 
@@ -232,9 +225,7 @@ EPsProg_tte <-  function(HRgo, d2, alpha, beta,
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000, 
 #'                                  gamma = 0, fixed = TRUE)
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-01-30
 utility_tte <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                          alpha, beta, xi2, xi3,
                          c2, c3, c02, c03, 
@@ -331,9 +322,7 @@ utility_tte <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 #' @return The output of the functions `d3_skipII_tte()` is the expected number of events in phase III when skipping phase II.
 #' @examples res <- d3_skipII_tte(alpha = 0.05, beta = 0.1, median_prior = 0.35)
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-01-30
 d3_skipII_tte <-function(alpha, beta, median_prior){
   return(
     (4*(qnorm(1-alpha)+qnorm(1-beta))^2)/(median_prior^2)

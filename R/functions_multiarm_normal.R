@@ -28,8 +28,6 @@
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
 #' @return The function pgo_normal() returns the probability to go to phase III for multiarm programs with normally distributed outcomes 
 #' @examples res <- pgo_normal(kappa = 0.1, n2 = 50, Delta1 = 0.375, Delta2 = 0.625, strategy = 2, case = 31)
-#' @editor Johannes Cepicka
-#' @editDate 2022-05-08
 #' @keywords internal
 #' @export
 pgo_normal<-function(kappa,n2,Delta1,Delta2,strategy,case){
@@ -135,8 +133,6 @@ pgo_normal<-function(kappa,n2,Delta1,Delta2,strategy,case){
 #' - l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
 #' @return the function ss_normal() returns the total sample size for phase III trial with l treatments and equal allocation ratio
 #' @examples res <- ss_normal(alpha = 0.05, beta = 0.1, y = 0.5, l = 1)
-#' @editor Johannes Cepicka
-#' @editDate 2022-05-08
 #' @keywords internal
 #' @export
 ss_normal<-function(alpha,beta,y,l){
@@ -163,8 +159,6 @@ ss_normal<-function(alpha,beta,y,l){
 #' @return The function Ess_normal() returns the expected sample size for phase III when going to phase III when outcomes are normally distributed and we consider multiarm programs, i.e. several phase III trials with different doses or different treatments are performed
 #' @examples res <- Ess_normal(kappa = 0.1 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             Delta1 = 0.375, Delta2 = 0.625, strategy = 3, case = 31)
-#' @editor Johannes Cepicka
-#' @editDate 2022-05-08
 #' @keywords internal
 #' @export
 Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
@@ -281,8 +275,6 @@ Ess_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,strategy,case){
 #' @examples res <- PsProg_normal(kappa = 0.1 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             Delta1 = 0.375, Delta2 = 0.625,  step1 = 0, step2 = 0.5,
 #'                             strategy = 3, case = 31)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,case){
@@ -478,8 +470,6 @@ PsProg_normal<-function(kappa,n2,alpha,beta,Delta1,Delta2,step1,step2,strategy,c
 #'                             K = Inf, N = Inf, S = -Inf,  
 #'                             steps1 = 0, stepm1 = 0.5,   stepl1 = 0.8,
 #'                             b1 = 1000, b2 = 2000, b3 = 3000)
-#' @editor Johannes Cepicka
-#' @editDate 2022-05-08
 #' @keywords internal
 #' @export
 utility_multiarm_normal<-function(n2,kappa,alpha,beta,

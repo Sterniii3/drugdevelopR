@@ -69,8 +69,6 @@
 #' Meinhard Kieser, Marietta Kirchner, Eva Dölger, Heiko Götte (2018). Optimal planning of phase II/III programs for clinical trials with multiple endpoints
 #'
 #' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @export
 
 optimal_multiple_normal <- function(Delta1, Delta2, in1, in2, sigma1, sigma2,

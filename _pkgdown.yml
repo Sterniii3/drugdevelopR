@@ -30,4 +30,43 @@ articles:
   contents:
   - Package_validation
 
+reference:
+- title: Basic setting
+  desc: Optimally plan basic phase II/III drug development programs.
+- contents:
+  - "optimal_tte"
+  - "optimal_binary"
+  - "optimal_normal"
+- title: Bias adjustment
+  desc: >
+    As phase III is only conducted in case of promising phase II results,
+    treatment effect estimates from phase II generally overestimate the
+    treatment effect. The following methods supply bias adjustment strategies
+    for optimal program planning.
+- contents:
+  - starts_with("optimal_bias")
+- title: Multi-trial programs
+  desc: >
+    More and more often, regulatory authorities require more than one 
+    confirmatory phase III study to have delivered a significant result. With
+    the following methods, the planning of multi-trial programs can be 
+    optimized. 
+- contents:
+  - starts_with("optimal_multitrial")
+- title: Multi-arm trials
+  desc: >
+    An efficient way of discovering effective treatments among a range of
+    treatment choices is the conduct of multi-arm trials, which can be optimally
+    planned using the following methods.
+- contents:
+  - starts_with("optimal_multiarm")
+- title: Multiple endpoints
+  desc: >
+    In some trials, multiple endpoints may be of interest. Drug development
+    programs with multiple endpoints can be optimized using the following
+    methods.
+- contents:
+  - "optimal_multiple_tte"
+  - "optimal_multiple_normal"
+  
 

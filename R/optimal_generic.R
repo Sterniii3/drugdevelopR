@@ -1,3 +1,5 @@
+#' Generic function for optimizing drug development programs
+#' 
 #' @name optimal_generic
 #' @param c2 variable per-patient cost for phase II
 #' @param c3 variable per-patient cost for phase III
@@ -11,6 +13,7 @@
 #' @param b3 expected gain for effect size category "large"
 #' @param num_cl number of clusters used for parallel computing, default: 1
 #' @return NULL
+#' @keywords internal
 optimal_generic <- function(beta, alpha,
                             c2, c3, c02, c03,
                             K, N, S,

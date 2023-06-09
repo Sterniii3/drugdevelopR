@@ -48,9 +48,7 @@
 #'                                  case = 3, size = "small", fixed = TRUE)}                      
 #' @name EPsProg_multitrial_normal                                  
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-04-23
 EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, case, size, fixed){
   
   SIGMA <-  diag(2)
@@ -404,9 +402,7 @@ EPsProg2_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2
 #'                                  case = 3, fixed = TRUE)
 #' @name utility_multitrial_normal                           
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-04-23
 utility2_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                       alpha, beta, 
                       c2, c3, c02, c03, 
@@ -1283,9 +1279,7 @@ utility4_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
 #' @examples \dontrun{Epgo23_normal(kappa = 0.1, n2 = 50, w = 0.3, alpha = 0.025, beta = 0.1, a = 0.25, b=0.75,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600)}
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-04-23
 Epgo23_normal <-  function(kappa, n2, alpha, beta, a, b,  w, Delta1, Delta2, in1, in2){
   
   SIGMA <-  diag(2)
@@ -1346,9 +1340,8 @@ Epgo23_normal <-  function(kappa, n2, alpha, beta, a, b,  w, Delta1, Delta2, in1
 #'                                  a = 0.25, b = 0.75, 
 #'                                  case = 2, size = "small", ymin = 0.5)}
 #' @export
-#' @editor Johannes Cepicka, Lukas D. Sauer
 #' @keywords internal
-#' @editDate 2022-05-06
+
 EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in2, a, b, case, size, ymin){
   # Option 2.1: first two phase III trials are successful: no third phase III trial
   # Option 2.2: one of the two first phase III trials successful, the treatment
@@ -1546,9 +1539,7 @@ EPsProg23_normal <-  function(kappa, n2, alpha, beta, w, Delta1, Delta2, in1, in
 #'                                 c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,
 #'                                 b1 = 3000, b2 = 8000, b3 = 10000)}
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-04-23
 utility23_normal <-  function(n2, kappa, w, Delta1, Delta2, in1, in2, a, b,
                        alpha, beta, 
                        c2, c3, c02, c03, 

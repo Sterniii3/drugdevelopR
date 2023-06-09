@@ -27,8 +27,6 @@
 #'@return  The function `fmin()` will return the value of f(z), which is the value of the density function of the
 #'minimum of two normally distributed random variables.
 #'@examples res <- fmin(y = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
-#'@editor Johannes Cepicka
-#'@editDate 2022-04-23
 #'@keywords internal
 #' @export
 fmin<-function (y,mu1,mu2,sigma1,sigma2,rho)
@@ -53,8 +51,6 @@ return(t1+t2)}
 #'@return The Function `dbivanorm()` will return the density of a bivariate normal distribution.
 #'@examples res <- dbivanorm(x = 0.5, y = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
 #'@name dbivanorm
-#'@editor Johannes Cepicka
-#'@editDate 2022-04-23
 #'@keywords internal
 #' @export
 dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){ 
@@ -82,8 +78,6 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #' @examples res <- pgo_multiple_normal(kappa = 0.1, n2 = 50,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
@@ -152,8 +146,6 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
 #' @examples res <- Ess_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, sigma1, sigma2, fixed, rho){
@@ -234,8 +226,6 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
 #' @examples res <- posp_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
 #'                                sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, in1, in2, fixed, rho){
@@ -348,8 +338,6 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
 #'                                Delta1 = 0.375, Delta2 = 0.625, sigma1 = 2, sigma2 = 1,
 #'                                step11 = 0, step12 = 0, step21 = 0.5, step22 = 0.5, 
 #'                                in1 = 300, in2 = 600, fixed = TRUE, rho = 0.3)}
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2,
@@ -479,8 +467,6 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
 #'                                steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
 #'                                b1 = 1000, b2 = 2000, b3 = 3000, 
 #'                                fixed = TRUE, rho = 0.3, relaxed = "TRUE")}
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 utility_multiple_normal<-function(kappa, n2, alpha, beta, 

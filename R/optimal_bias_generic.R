@@ -1,3 +1,5 @@
+#' Generic function for optimizing drug development programs with bias adjustment
+#' 
 #' @name optimal_bias_generic
 #' 
 #' @param adj choose type of adjustment: \code{"multiplicative"},

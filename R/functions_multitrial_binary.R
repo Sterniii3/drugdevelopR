@@ -53,9 +53,7 @@ t3 <- function(x, p0){sqrt(((1-p0)/p0) + ((1-x)/x))}
  #'                                  fixed = FALSE)}
  #' @export                                 
  #' @name EPsProg_multitrial_binary  
- #' @editor Johannes Cepicka
  #' @keywords internal
- #' @editDate 2022-04-23
  
 EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, case, size, fixed){
   
@@ -432,9 +430,7 @@ EPsProg2_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2, c
  #'                                  case = 3, fixed = TRUE)
  #' @name utility_multitrial_binary 
  #' @export                                
- #' @editor Johannes Cepicka
  #' @keywords internal
- #' @editDate 2022-04-23
 utility2_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
                             alpha, beta, 
                             c2, c3, c02, c03, 
@@ -1357,8 +1353,6 @@ utility4_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,
 #' @return The output of the function `Epgo23_binary()` is the probability to a third phase III trial.
 #' @examples res <- Epgo23_binary(RRgo = 0.8, n2 = 50,  p0 = 0.3, w = 0.3, alpha = 0.025, beta = 0.1,
 #'                                p11 =  0.3, p12 = 0.5, in1 = 300, in2 = 600)
-#' @editor Johannes Cepicka
-#' @editDate 2022-05-09
 #' @keywords internal
 #' @export
 Epgo23_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2){
@@ -1419,8 +1413,6 @@ Epgo23_binary <-  function(RRgo, n2, alpha, beta, p0, w, p11, p12, in1, in2){
 #'                                  w = 0.6,  p0 = 0.3, p11 =  0.3, p12 = 0.5, 
 #'                                  in1 = 300, in2 = 600, case = 2, size = "small",
 #'                                  ymin = 0.5)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, case, size, ymin){
@@ -1633,8 +1625,6 @@ EPsProg23_binary <-  function(RRgo, n2, alpha, beta, w, p0, p11, p12, in1, in2, 
 #'                                  in1 = 300, in2 = 600, 
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000)}
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 utility23_binary <-  function(n2, RRgo, w, p0, p11, p12, in1, in2,

@@ -26,8 +26,6 @@
 #'@return The function `fmax()` will return the value of f(z), which is the value of the density function of the
 #'maximum of two normally distributed random variables.
 #'@examples res <- fmax(z = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
-#'@editor Johannes Cepicka
-#'@editDate 2022-04-23
 #'@keywords internal
 #' @export
 fmax<-function (z,mu1,mu2,sigma1,sigma2,rho){ 
@@ -67,8 +65,6 @@ dbivanorm <- function(x,y, mu1,mu2,sigma1,sigma2,rho){
 #' @examples res <- pgo_multiple_tte(HRgo = 0.8, n2 = 50,
 #'                                hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
 #'                                fixed = TRUE, rho = 0.3)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 pgo_multiple_tte<-function(HRgo,n2,hr1,hr2,id1,id2,fixed,rho){
@@ -128,8 +124,6 @@ pgo_multiple_tte<-function(HRgo,n2,hr1,hr2,id1,id2,fixed,rho){
 #'                                hr1 = 0.75, hr2 = 0.80, 
 #'                                id1 = 300, id2 = 600, 
 #'                                fixed = TRUE, rho = 0.3)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 Ess_multiple_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
@@ -187,8 +181,6 @@ Ess_multiple_tte<-function(HRgo,n2,alpha,beta,hr1,hr2,id1,id2,fixed,rho){
 #' @return The output of the function `pw()` is the probability that endpoint one has a better result than endpoint two
 #' @examples res <- pw(n2 = 50,hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600, 
 #'                     fixed = FALSE, rho = 0.3)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 pw <- function(n2,hr1,hr2,id1,id2,fixed,rho){
@@ -253,8 +245,6 @@ else {
 #'                                id1 = 300, id2 = 600, 
 #'                                step1 = 1, step2 = 0.95,
 #'                                fixed = TRUE, rho = 0.3)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2,fixed,rho){
@@ -353,8 +343,6 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
 #'                                hr1 = 0.75, hr2 = 0.80, 
 #'                                id1 = 300, id2 = 600, 
 #'                                fixed = TRUE, rho = 0.3)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
@@ -496,8 +484,6 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
 #'                                b11 = 1000, b21 = 2000, b31 = 3000,
 #'                                b12 = 1000, b22 = 1500, b32 = 2000, 
 #'                                fixed = TRUE, rho = 0.3)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23 
 #' @keywords internal 
 #' @export
 utility_multiple_tte<-function(n2, HRgo, alpha, beta, hr1, hr2, id1, id2,

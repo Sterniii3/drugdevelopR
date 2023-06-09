@@ -1,3 +1,5 @@
+#' Generic function for optimizing programs with binary endpoints
+#' 
 #' @name optimal_binary_generic
 #'
 #' @param w weight for \href{https://web.imbi.uni-heidelberg.de/prior/}{mixture prior distribution}
@@ -42,6 +44,7 @@
 #'   for details
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1
 #' @param num_cl number of clusters used for parallel computing, default: 1
+#' @keywords internal
 optimal_binary_generic <- function(w, p0, p11, p12, in1, in2,
                                    n2min, n2max, stepn2,
                                    rrgomin, rrgomax, steprrgo,

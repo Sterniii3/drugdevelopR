@@ -1,3 +1,5 @@
+#' Generic function for optimizing normally distributed endpoints
+#' 
 #' @name optimal_normal_generic
 #' @param w weight for
 #'  \href{https://web.imbi.uni-heidelberg.de/prior/}{mixture prior distribution}
@@ -41,6 +43,7 @@
 #'   for details
 #' @param fixed choose if true treatment effects are fixed or following a prior distribution, if TRUE `Delta1` is used as fixed effect
 #' @param num_cl number of clusters used for parallel computing, default: 1
+#' @keywords internal
 optimal_normal_generic <- function(w, Delta1, Delta2, in1, in2, a, b,
                                    n2min, n2max, stepn2,
                                    kappamin, kappamax, stepkappa,

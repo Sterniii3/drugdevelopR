@@ -29,8 +29,6 @@
 #' @param case different cases: 1 ("nogo"), 21 (treatment 1 is promising, treatment 2 is not), 22 (treatment 2 is promising, treatment 1 is not), 31 (both treatments are promising, treatment 1 is better), 32 (both treatments are promising, treatment 2 is better)
 #' @return The function pgo_tte() returns the probability to go to phase III.
 #' @examples res <- pgo_tte(HRgo = 0.8, n2 = 48 , ec = 0.6, hr1 = 0.7, hr2 = 0.8, strategy = 2, case = 31)
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 pgo_tte<-function(HRgo,n2,ec,hr1,hr2,strategy,case){
@@ -141,8 +139,6 @@ pgo_tte<-function(HRgo,n2,ec,hr1,hr2,strategy,case){
 #' - l=2: according to Dunnett to guarantee y any-pair power (Horn & Vollandt)
 #' @return the function ss_tte() returns the total sample size for phase III trial with l treatments and equal allocation ratio
 #' @examples res <- ss_tte(alpha = 0.05, beta = 0.1, ec = 0.6, ek = 0.8, y = 0.5, l=1)
-#' @editor Johannes Cepicka
-#' @editDate 2022-05-08
 #' @keywords internal
 #' @export
 ss_tte<-function(alpha,beta,ec,ek,y,l){
@@ -170,8 +166,6 @@ ss_tte<-function(alpha,beta,ec,ek,y,l){
 #' @return the function Ess_tte() returns the expected sample size for phase III when going to phase III
 #' @examples res <- Ess_tte(HRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             ec = 0.6, hr1 = 0.7, hr2 = 0.8, strategy = 2, case = 21)
-#' @editor Johannes Cepicka
-#' @editDate 2022-05-08
 #' @keywords internal
 #' @export
 Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
@@ -291,8 +285,6 @@ Ess_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,strategy,case){
 #' @examples res <- PsProg_tte(HRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
 #'                             ec = 0.6, hr1 = 0.7, hr2 = 0.8, step1 = 1, step2 = 0.95,
 #'                             strategy = 2, case = 21)
-#' @editor Johannes Cepicka
-#' @editDate 2022-05-08
 #' @keywords internal
 #' @export
 PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
@@ -490,8 +482,6 @@ PsProg_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,step1,step2,strategy,case){
 #'                             K = Inf, N = Inf, S = -Inf,  
 #'                             steps1 = 1, stepm1 = 0.95,  stepl1 = 0.85,
 #'                             b1 = 1000, b2 = 2000, b3 = 3000)}
-#' @editor Johannes Cepicka
-#' @editDate 2022-05-08
 #' @keywords internal
 #' @export
 utility_multiarm<-function(n2,HRgo,alpha,beta,hr1,hr2,strategy,ec,c2,c02,c3,c03,K,N,S,steps1, stepm1, stepl1,b1, b2, b3){ 

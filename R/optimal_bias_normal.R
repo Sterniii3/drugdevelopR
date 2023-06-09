@@ -36,8 +36,6 @@
 #' @references
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences.
 #'
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @export
 
 optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,

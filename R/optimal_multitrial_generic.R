@@ -1,3 +1,5 @@
+#' Generic function for optimizing multi-trial programs
+#' 
 #' @name optimal_multitrial_generic
 #' 
 #' @section Effect sizes:

@@ -1,3 +1,5 @@
+#' Generic function for optimal planning of time-to-event endpoints
+#' 
 #' @name optimal_tte_generic
 #' @param w weight for mixture prior distribution, see
 #'  \href{https://web.imbi.uni-heidelberg.de/prior/}{this Shiny application}
@@ -32,6 +34,7 @@
 #' @param gamma to model different populations in phase II and III choose `gamma != 0`, default: 0
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as a fixed effect and hr2 is ignored
 #' @param num_cl number of clusters used for parallel computing, default: 1
+#' @keywords internal
 optimal_tte_generic <- function(w,  hr1, hr2, id1, id2,
                                 d2min, d2max, stepd2,
                                 hrgomin, hrgomax, stephrgo,

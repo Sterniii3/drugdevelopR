@@ -1,14 +1,16 @@
-#' @name optimal_return_doc
+#' Function for generating documentation of return values
 #' 
 #' Generates the documentation of the return value
 #' of an optimal function including some custom text.
 #' 
+#' @name optimal_return_doc
 #' @param type string deciding whether this is return text for 
 #'  normal, binary or time-to-event endpoints
 #' @param setting string containing the setting, i.e. "basic", "bias",
 #' "multitrial"
 #'
 #' @return string containing the documentation of the return value.
+#' @keywords internal
 optimal_return_doc <- function(type,
                                setting = "basic"){
   custom_threshold = ""

@@ -54,9 +54,7 @@
 #'                               
 #' @name Ed3_bias                            
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-11-04
 Ed3_L<-function(HRgo, d2, Adj, alpha, beta, w, hr1, hr2, id1, id2, fixed){
   
   if(fixed){
@@ -150,9 +148,7 @@ Ed3_L<-function(HRgo, d2, Adj, alpha, beta, w, hr1, hr2, id1, id2, fixed){
 #'                            id1 = 280, id2 = 420, fixed = FALSE)
 #' @name EPsProg_bias                               
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-11-04
 EPsProg_L<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1, id2, fixed){
   
   c=(qnorm(1-alpha)+qnorm(1-beta))^2
@@ -269,9 +265,7 @@ EPsProg_L<-function(HRgo, d2, Adj, alpha, beta, step1, step2, w, hr1, hr2, id1, 
 #'                                  fixed = TRUE)
 #' @name utility_bias                                 
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-11-04
 utility_L <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
                          alpha, beta, xi2, xi3,
                          c2, c3, c02, c03, 
@@ -384,9 +378,7 @@ utility_L <-  function(d2, HRgo, Adj, w, hr1, hr2, id1, id2,
 #'                                 id1 = 280, id2 = 420, fixed = FALSE)
 #' @name Epgo_bias 
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-11-04
 Epgo_L2<-function(HRgo, d2, Adj, w, hr1, hr2, id1, id2, fixed){
   
   if(fixed){

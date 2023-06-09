@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">drugdevelopR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,9 +53,9 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="basic-setting">Basic setting<a class="anchor" aria-label="anchor" href="#basic-setting"></a></h2>
       
-      
+      <p class="section-desc"></p><p>Optimally plan basic phase II/III drug development programs.</p>
 
       
     </div><div id="" class="section level2">
@@ -65,10 +65,31 @@
 
       <dl><dt>
           
-          <code><a href="drugdevelopR.html">drugdevelopR()</a></code> 
+          <code><a href="optimal_tte.html">optimal_tte()</a></code> 
         </dt>
-        <dd>Utility based optimal phase II/III drug development planning</dd>
+        <dd>Optimal phase II/III drug development planning with time-to-event endpoint</dd>
       </dl><dl><dt>
+          
+          <code><a href="optimal_binary.html">optimal_binary()</a></code> 
+        </dt>
+        <dd>Optimal phase II/III drug development planning with binary endpoint</dd>
+      </dl><dl><dt>
+          
+          <code><a href="optimal_normal.html">optimal_normal()</a></code> 
+        </dt>
+        <dd>Optimal phase II/III drug development planning with normally distributed endpoint</dd>
+      </dl></div><div class="section level2">
+      <h2 id="bias-adjustment">Bias adjustment<a class="anchor" aria-label="anchor" href="#bias-adjustment"></a></h2>
+      
+      <p class="section-desc"></p><p>As phase III is only conducted in case of promising phase II results, treatment effect estimates from phase II generally overestimate the treatment effect. The following methods supply bias adjustment strategies for optimal program planning.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="optimal_bias.html">optimal_bias()</a></code> 
         </dt>
@@ -81,15 +102,57 @@ when discounting phase II results</dd>
         <dd>Optimal phase II/III drug development planning when discounting phase II results with binary endpoint</dd>
       </dl><dl><dt>
           
+          <code><a href="optimal_bias_generic.html">optimal_bias_generic()</a></code> 
+        </dt>
+        <dd>Generic function for optimizing drug development programs with bias adjustment</dd>
+      </dl><dl><dt>
+          
           <code><a href="optimal_bias_normal.html">optimal_bias_normal()</a></code> 
         </dt>
         <dd>Optimal phase II/III drug development planning when discounting phase II results with normally distributed endpoint</dd>
+      </dl></div><div class="section level2">
+      <h2 id="multi-trial-programs">Multi-trial programs<a class="anchor" aria-label="anchor" href="#multi-trial-programs"></a></h2>
+      
+      <p class="section-desc"></p><p>More and more often, regulatory authorities require more than one confirmatory phase III study to have delivered a significant result. With the following methods, the planning of multi-trial programs can be optimized.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="optimal_multitrial.html">optimal_multitrial()</a></code> 
+        </dt>
+        <dd>Optimal phase II/III drug development planning where several phase III trials are performed for time-to-event endpoints</dd>
       </dl><dl><dt>
           
-          <code><a href="optimal_binary.html">optimal_binary()</a></code> 
+          <code><a href="optimal_multitrial_binary.html">optimal_multitrial_binary()</a></code> 
         </dt>
-        <dd>Optimal phase II/III drug development planning with binary endpoint</dd>
+        <dd>Optimal phase II/III drug development planning where several phase III trials are performed</dd>
       </dl><dl><dt>
+          
+          <code><a href="optimal_multitrial_generic.html">optimal_multitrial_generic()</a></code> 
+        </dt>
+        <dd>Generic function for optimizing multi-trial programs</dd>
+      </dl><dl><dt>
+          
+          <code><a href="optimal_multitrial_normal.html">optimal_multitrial_normal()</a></code> 
+        </dt>
+        <dd>Optimal phase II/III drug development planning where several phase III trials are performed</dd>
+      </dl></div><div class="section level2">
+      <h2 id="multi-arm-trials">Multi-arm trials<a class="anchor" aria-label="anchor" href="#multi-arm-trials"></a></h2>
+      
+      <p class="section-desc"></p><p>An efficient way of discovering effective treatments among a range of treatment choices is the conduct of multi-arm trials, which can be optimally planned using the following methods.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="optimal_multiarm.html">optimal_multiarm()</a></code> 
         </dt>
@@ -103,17 +166,27 @@ time-to-event endpoint</dd>
 binary endpoint</dd>
       </dl><dl><dt>
           
+          <code><a href="optimal_multiarm_generic.html">optimal_multiarm_generic()</a></code> 
+        </dt>
+        <dd>Generic function for optimizing multi-arm programs</dd>
+      </dl><dl><dt>
+          
           <code><a href="optimal_multiarm_normal.html">optimal_multiarm_normal()</a></code> 
         </dt>
         <dd>Optimal phase II/III drug development planning for multi-arm programs with
 normally distributed endpoint</dd>
-      </dl><dl><dt>
-          
-          <code><a href="optimal_multiple_normal.html">optimal_multiple_normal()</a></code> 
-        </dt>
-        <dd>Optimal phase II/III drug development planning for programs with multiple
-normally distributed endpoints</dd>
-      </dl><dl><dt>
+      </dl></div><div class="section level2">
+      <h2 id="multiple-endpoints">Multiple endpoints<a class="anchor" aria-label="anchor" href="#multiple-endpoints"></a></h2>
+      
+      <p class="section-desc"></p><p>In some trials, multiple endpoints may be of interest. Drug development programs with multiple endpoints can be optimized using the following methods.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="optimal_multiple_tte.html">optimal_multiple_tte()</a></code> 
         </dt>
@@ -121,31 +194,13 @@ normally distributed endpoints</dd>
 time-to-event endpoints</dd>
       </dl><dl><dt>
           
-          <code><a href="optimal_multitrial.html">optimal_multitrial()</a></code> 
+          <code><a href="optimal_multiple_normal.html">optimal_multiple_normal()</a></code> 
         </dt>
-        <dd>Optimal phase II/III drug development planning where several phase III trials are performed for time-to-event endpoints</dd>
-      </dl><dl><dt>
-          
-          <code><a href="optimal_multitrial_binary.html">optimal_multitrial_binary()</a></code> 
-        </dt>
-        <dd>Optimal phase II/III drug development planning where several phase III trials are performed</dd>
-      </dl><dl><dt>
-          
-          <code><a href="optimal_multitrial_normal.html">optimal_multitrial_normal()</a></code> 
-        </dt>
-        <dd>Optimal phase II/III drug development planning where several phase III trials are performed</dd>
-      </dl><dl><dt>
-          
-          <code><a href="optimal_normal.html">optimal_normal()</a></code> 
-        </dt>
-        <dd>Optimal phase II/III drug development planning with normally distributed endpoint</dd>
-      </dl><dl><dt>
-          
-          <code><a href="optimal_tte.html">optimal_tte()</a></code> 
-        </dt>
-        <dd>Optimal phase II/III drug development planning with time-to-event endpoint</dd>
+        <dd>Optimal phase II/III drug development planning for programs with multiple
+normally distributed endpoints</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

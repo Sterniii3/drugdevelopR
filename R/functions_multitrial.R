@@ -47,9 +47,8 @@
 #'                                  fixed = TRUE)}
 #' @name EPsProg_multitrial                                 
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-04-23
+
 EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, fixed){
   
   SIGMA <-  diag(2)
@@ -428,9 +427,8 @@ EPsProg2 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, 
 #'                                  case = 3, fixed = TRUE)
 #' @name utility_multitrial 
 #' @export                                
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-04-23
+
 utility2 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
                       alpha, beta, xi2, xi3,
                       c2, c3, c02, c03, 
@@ -1376,9 +1374,8 @@ utility4 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,
 #' @examples res <- Epgo23(HRgo = 0.8, d2 = 50,  w = 0.3, alpha = 0.025, beta = 0.1,
 #'                                hr1 =  0.69, hr2 = 0.81, id1 = 280, id2 = 420)
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-05-09
+
 Epgo23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
   
   SIGMA <-  diag(2)
@@ -1437,9 +1434,8 @@ Epgo23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2){
 #'                                   id1 = 280, id2 = 420, case = 2, size = "small",
 #'                                   ymin = 0.5)
 #' @export
-#' @editor Johannes Cepicka
 #' @keywords internal
-#' @editDate 2022-04-23
+
 EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size, ymin){
   # Option 2.1: first two phase III trials are successful: no third phase III trial
   # Option 2.2: one of the two first phase III trials successful, the treatment
@@ -1640,8 +1636,6 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
 #'                                  alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,
 #'                                  c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
 #'                                  b1 = 1000, b2 = 2000, b3 = 3000)}
-#' @editor Johannes Cepicka
-#' @editDate 2022-04-23
 #' @keywords internal
 #' @export
 utility23 <-  function(d2, HRgo, w, hr1, hr2, id1, id2,

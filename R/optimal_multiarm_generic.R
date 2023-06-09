@@ -1,3 +1,5 @@
+#' Generic function for optimizing multi-arm programs
+#' 
 #' @name optimal_multiarm_generic
 #' @param n2min minimal total sample size in phase II, must be divisible by 3
 #' @param n2max maximal total sample size in phase II, must be divisible by 3
