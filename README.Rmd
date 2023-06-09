@@ -16,7 +16,6 @@ knitr::opts_chunk$set(
 # drugdevelopR: Utility-based optimal phase II/III drug development planning.
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.com/Sterniii3/drugdevelopR.svg?branch=master)](https://travis-ci.com/Sterniii3/drugdevelopR)
 [![CRAN status](https://www.r-pkg.org/badges/version/drugdevelopR)](https://CRAN.R-project.org/package=drugdevelopR)
 [![R-CMD-check](https://github.com/Sterniii3/drugdevelopR/workflows/R-CMD-check/badge.svg)](https://github.com/Sterniii3/drugdevelopR/actions)
 [![Codecov test coverage](https://codecov.io/gh/Sterniii3/drugdevelopR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Sterniii3/drugdevelopR?branch=master)
