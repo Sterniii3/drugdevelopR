@@ -178,7 +178,7 @@ Fast computing is enabled by parallel programming.
   }
 }
 \references{
-IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}{https://www.iqwig.de/de/methoden/methodenpapier.3020.html}, assessed last 15.05.19.
+IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}, assessed last 15.05.19.
 
 Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2020). Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. Submitted to peer-review journal.
 

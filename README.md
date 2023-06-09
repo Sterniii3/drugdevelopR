@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.com/Sterniii3/drugdevelopR.svg?branch=master)](https://travis-ci.com/Sterniii3/drugdevelopR)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/drugdevelopR)](https://CRAN.R-project.org/package=drugdevelopR)
 [![R-CMD-check](https://github.com/Sterniii3/drugdevelopR/workflows/R-CMD-check/badge.svg)](https://github.com/Sterniii3/drugdevelopR/actions)
@@ -19,8 +21,8 @@ modelled by a prior distribution. The corresponding [R Shiny
 application](https://web.imbi.uni-heidelberg.de/drugdevelopR/) has a
 graphic user interface for the package and thus makes it accessible for
 users without prior knowledge of R. Fast computing is made possible by
-parallel programming. theoretical foundations for this package were
-laid in the dissertation “Integrated Planning of Pilot and Subsequent
+parallel programming. theoretical foundations for this package were laid
+in the dissertation “Integrated Planning of Pilot and Subsequent
 Confirmatory Study in Clinical Research – Finding Optimal Designs in a
 Utility-Based Framework” by Stella Erdmann at the Institute of Medical
 Biometry at the University of Heidelberg.
@@ -28,7 +30,7 @@ Biometry at the University of Heidelberg.
 On the package webpage, we supply [full
 documentation](https://sterniii3.github.io/drugdevelopR/reference/index.html)
 of all functions as well as a [tutorial for getting
-started](https://sterniii3.github.io/drugdevelopR/vignettes/introduction-to-drugdevelopr.html)
+started](https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html)
 with drugdevelopR.
 
 ## Installation
@@ -52,14 +54,10 @@ program with a normally distributed outcome:
 
 ``` r
 library(drugdevelopR)
-#> Lade nötiges Paket: mvtnorm
 #> Lade nötiges Paket: doParallel
 #> Lade nötiges Paket: foreach
 #> Lade nötiges Paket: iterators
 #> Lade nötiges Paket: parallel
-#> Lade nötiges Paket: msm
-#> Lade nötiges Paket: cubature
-#> Lade nötiges Paket: MASS
 res <- optimal_normal(Delta1 = 0.625, Delta2 = 0.8, fixed = FALSE, # treatment effect
                       n2min = 20, n2max = 400, # sample size region
                       stepn2 = 4, # sample size step size

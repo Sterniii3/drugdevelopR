@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 As an open source software system, R is continuously evolving. In the clinical trials, reliable and valid software is crucial and hence enforced by regulatory authorities (FDA 2003). In order to establish proof of the package's validity on our server, we developed a validation suite following the *PHUSE R Package Validation Framework* (Hughes 2021). We first formulated user requirements. For each requirement, human-readable test cases were written, i.e. small scenarios for checking the package's functionality. Subsequently, an independent programmer (none of the package developers) implemented the test cases in code, reporting bugs and unclear documentation back to the developers.
 
-The whole validation suite was run on our server, and the validation report can be found [here](https://github.com/Sterniii3/drugdevelopR/tree/master/validation/validation.pdf). As every system configuration is different, we can not guarantee that the `drugdevelopR` package will work as expected on your system. The validation suite may serve as a building block in your own validation framework. In the following, we will explain how to use it.
+The whole validation suite was run on our server, and the validation report can be found [here](https://github.com/Sterniii3/drugdevelopR/blob/af99e25108d47b79bb0718b393ca90c9bbe188de/validation/validation.pdf). As every system configuration is different, we can not guarantee that the `drugdevelopR` package will work as expected on your system. The validation suite may serve as a building block in your own validation framework. In the following, we will explain how to use it.
 
 # Guide to running the validation suite
 
@@ -27,7 +27,7 @@ The validation report is compiled using our fork of PHUSE's [`valtools`](https:/
 devtools::install_github("LukasDSauer/valtools")
 ```
 
-In the next step, download the *source files* of the current `drugdevelopR` project using this [link](https://github.com/Sterniii3/drugdevelopR/archive/refs/heads/master.zip). Extract the folder and navigate to it using RStudio. Install the package from source using the following command:
+In the next step, download the [*source files*](https://github.com/Sterniii3/drugdevelopR/archive/refs/heads/master.zip) of the current `drugdevelopR` project. Extract the folder and navigate to it using RStudio. Install the package from source using the following command:
 
 ```{r}
 devtools::install()
