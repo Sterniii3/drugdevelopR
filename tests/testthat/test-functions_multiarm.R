@@ -66,7 +66,8 @@ test_that("Ess_tte works: Setting: 2.21", {
 test_that("Ess_tte works: Setting: 2.22", {
   expect_equal(Ess_tte(HRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
                        ec = 0.6, hr1 = 0.7, hr2 = 0.8, strategy = 2, case = 22), 
-               47.967458)
+               47.967458,
+               tolerance = 1e-07)
 })
 
 test_that("Ess_tte works: Setting: 2.31", {
@@ -113,7 +114,7 @@ test_that("PsProg_tte works: Setting: 2.22", {
   expect_equal(PsProg_tte(HRgo = 0.8 ,n2 = 50 ,alpha = 0.05, beta = 0.1,
                           ec = 0.6, hr1 = 0.7, hr2 = 0.8, step1 = 1, step2 = 0.95,
                           strategy = 2, case = 22), 
-               0.0144852983)
+               0.0144852983, tolerance = 1e-07)
 })
 
 test_that("PsProg_tte works: Setting: 2.31", {

@@ -2,20 +2,28 @@ Package: drugdevelopR
 Type: Package
 Title: Utility-Based Optimal Phase II/III Drug Development Planning 
 Version: 1.0.0
-Authors@R: c(person("Stella", "Erdmann", email = "erdmann@imbi.uni-heidelberg.de", role = "aut"),
+Authors@R: c(person("Stella", "Erdmann",
+                    email = "erdmann@imbi.uni-heidelberg.de", role = "aut"),
              person("Johannes", "Cepicka", role = "aut"),
-             person("Lukas D.", "Sauer", email = "sauer@imbi.uni-heidelberg.de", role = c("aut", "cre"),
+             person("Lukas D.", "Sauer", email = "sauer@imbi.uni-heidelberg.de",
+                    role = c("aut", "cre"),
                     comment = c(ORCID = "0000-0002-1340-9994")))
 Author: Stella Erdmann [aut],
    Johannes Cepicka [aut],
    Lukas D. Sauer [aut, cre] (<https://orcid.org/0000-0002-1340-9994>)
 Maintainer: Lukas D. Sauer <sauer@imbi.uni-heidelberg.de>           
-Description: The R package drugdevelopR is a tool to plan optimal sample size allocation and go/no-go
-  decision rules for phase II/III drug development programs with time-to-event (measured by hazard ratio,
-  HR), binary (measured by risk ratio, RR) or normally distributed (measured by standardized difference
-  in means, Delta) endpoints when assuming fixed treatment effects or a prior distribution for the
-  treatment effect. Optimal is in the sense of maximal expected utility, where the utility is calculated
-  with the help of a utility function taking into account the costs and expected benefits of the program.
+Description: Plan optimal sample size allocation and go/no-go decision rules
+  for phase II/III drug development programs with time-to-event, binary or
+  normally distributed endpoints when assuming fixed treatment effects or a
+  prior distribution for the treatment effect, using methods from Kirchner et al.
+  (2016) <doi:10.1002/sim.6624> and Preussler (2020). Optimal is in the sense of
+  maximal expected utility, where the utility is a function taking into account
+  the expected cost and benefit of the program. It is possible to extend to more
+  complex settings with bias correction (Preussler S et al. (2020)
+  <doi:10.1186/s12874-020-01093-w>),  multiple phase III trials (Preussler et
+  al. (2019) <doi:10.1002/bimj.201700241>), multi-arm trials (Preussler et al.
+  (2019) <doi:10.1080/19466315.2019.1702092>), and multiple endpoints
+  (Kieser et al. (2018) <doi:10.1002/pst.1861>).
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
