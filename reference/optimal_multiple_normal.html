@@ -343,7 +343,7 @@ finish date of the optimization procedure.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> <span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu">optimal_multiple_normal</span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.75</span>,</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> <span class="fu">optimal_multiple_normal</span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.75</span>,</span></span>
 <span class="r-in"><span>  Delta2 <span class="op">=</span> <span class="fl">0.80</span>, in1<span class="op">=</span><span class="fl">300</span>, in2<span class="op">=</span><span class="fl">600</span>,                   <span class="co"># define assumed true HRs</span></span></span>
 <span class="r-in"><span>  sigma1 <span class="op">=</span> <span class="fl">8</span>, sigma2<span class="op">=</span> <span class="fl">12</span>,                            <span class="co"># variances for both endpoints</span></span></span>
 <span class="r-in"><span>  n2min <span class="op">=</span> <span class="fl">30</span>, n2max <span class="op">=</span> <span class="fl">90</span>, stepn2 <span class="op">=</span> <span class="fl">10</span>,               <span class="co"># define optimization set for n2</span></span></span>
@@ -358,6 +358,26 @@ finish date of the optimization procedure.</p>
 <span class="r-in"><span>  rho <span class="op">=</span> <span class="fl">0.5</span>, relaxed <span class="op">=</span> <span class="cn">TRUE</span>,                         <span class="co"># strict or relaxed rule</span></span></span>
 <span class="r-in"><span>  fixed <span class="op">=</span> <span class="cn">TRUE</span>,                                      <span class="co"># treatment effect</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                        <span class="co"># parallelized computing </span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization progress:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         u Kappa n2 n3  n  pgo sProg Delta1 Delta2 sigma1 sigma2 rho relaxed   K</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -160.57   0.2 30  6 36 0.21  0.01   0.75    0.8      8     12 0.5    TRUE Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     N    S  K2 K3 sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Inf -Inf 122 38   0.02  -0.01      0      0    0.5    0.8  0.05  0.1 100 150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     c2 c3   b1   b2   b3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.75  1 1000 2000 3000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         u Kappa n2 n3  n  pgo sProg Delta1 Delta2 sigma1 sigma2 rho relaxed   K</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -160.57   0.2 30  6 36 0.21  0.01   0.75    0.8      8     12 0.5    TRUE Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     N    S  K2 K3 sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Inf -Inf 122 38   0.02  -0.01      0      0    0.5    0.8  0.05  0.1 100 150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     c2 c3   b1   b2   b3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.75  1 1000 2000 3000</span>
 <span class="r-in"><span>  </span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

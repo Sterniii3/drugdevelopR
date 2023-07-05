@@ -321,7 +321,7 @@ being the results when including phase II and <code>res[[2]]</code> when skippin
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu">optimal_normal</span><span class="op">(</span>w<span class="op">=</span><span class="fl">0.3</span>,                       <span class="co"># define parameters for prior</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">optimal_normal</span><span class="op">(</span>w<span class="op">=</span><span class="fl">0.3</span>,                       <span class="co"># define parameters for prior</span></span></span>
 <span class="r-in"><span>  Delta1 <span class="op">=</span> <span class="fl">0.375</span>, Delta2 <span class="op">=</span> <span class="fl">0.625</span>, in1<span class="op">=</span><span class="fl">300</span>, in2<span class="op">=</span><span class="fl">600</span>,  <span class="co"># (https://web.imbi.uni-heidelberg.de/prior/)</span></span></span>
 <span class="r-in"><span>  a <span class="op">=</span> <span class="fl">0.25</span>, b <span class="op">=</span> <span class="fl">0.75</span>,</span></span>
 <span class="r-in"><span>  n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">100</span>, stepn2 <span class="op">=</span> <span class="fl">4</span>,               <span class="co"># define optimization set for n2</span></span></span>
@@ -337,6 +337,26 @@ being the results when including phase II and <code>res[[2]]</code> when skippin
 <span class="r-in"><span>  fixed <span class="op">=</span> <span class="cn">FALSE</span>,                                     <span class="co"># true treatment effects are fixed/random</span></span></span>
 <span class="r-in"><span>  skipII <span class="op">=</span> <span class="cn">FALSE</span>,                                    <span class="co"># skipping phase II</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                        <span class="co"># number of cores for parallelized computing</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization progress:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         u Kappa  n2  n3   n  pgo sProg   w Delta1 Delta2 in1 in2    a    b   K</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2272.13  0.08 100 350 450 0.94  0.78 0.3  0.375  0.625 300 600 0.25 0.75 Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   K2  K3 sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03    c2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 82 271   0.73   0.05      0      0    0.5    0.8  0.05  0.1  15  20 0.675</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     c3   b1   b2    b3 gamma</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.72 3000 8000 10000     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         u Kappa  n2  n3   n  pgo sProg   w Delta1 Delta2 in1 in2    a    b   K</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2272.13  0.08 100 350 450 0.94  0.78 0.3  0.375  0.625 300 600 0.25 0.75 Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   K2  K3 sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03    c2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 82 271   0.73   0.05      0      0    0.5    0.8  0.05  0.1  15  20 0.675</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     c3   b1   b2    b3 gamma</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.72 3000 8000 10000     0</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
