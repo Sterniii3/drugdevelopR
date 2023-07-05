@@ -95,8 +95,7 @@ pgo_multiple_normal<-function(kappa, n2, Delta1, Delta2, in1, in2, sigma1, sigma
   else {
     mu_prior<-c(Delta1, Delta2) # true treatment effect theta
     Sigma_prior<-matrix(c(4/in1,rho*sqrt(4/in1)*sqrt(4/in2), rho*sqrt(4/in1)*sqrt(4/in2),4/in2),ncol=2)
-    nsim<-100 
-    set.seed(61216)
+    nsim<-100
     rsamp <- MASS::mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
     pgo_vector <- vector(length = nsim)
     
@@ -171,7 +170,6 @@ Ess_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, in1, in2, 
     mu_prior<-c(Delta1, Delta2) # true treatment effect theta
     Sigma_prior<-matrix(c(4/in1,rho*sqrt(4/in1)*sqrt(4/in2), rho*sqrt(4/in1)*sqrt(4/in2),4/in2),ncol=2)
     nsim<-100 
-    set.seed(61216)
     rsamp <- MASS::mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
     Ess_vector <- vector(length = nsim)
     
@@ -260,7 +258,6 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
     mu_prior<-c(Delta1, Delta2) # true treatment effect theta
     Sigma_prior<-matrix(c(4/in1,rho*sqrt(4/in1)*sqrt(4/in2), rho*sqrt(4/in1)*sqrt(4/in2),4/in2),ncol=2)
     nsim<-100 
-    set.seed(61216)
     rsamp <- MASS::mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
     
     for (m in 1:nsim){
@@ -334,7 +331,7 @@ posp_normal <- function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1, sigma2, 
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE then `Delta1` is used as fixed effect
 #' @param rho correlation between the two endpoints
 #' @return The output of the function `EPsProg_multiple_normal()` is the expected probability of a successfull program, when going to phase III.
-#' @examples \dontrun{EPsProg_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
+#' @examples \donttest{EPsProg_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, sigma1 = 2, sigma2 = 1,
 #'                                step11 = 0, step12 = 0, step21 = 0.5, step22 = 0.5, 
 #'                                in1 = 300, in2 = 600, fixed = TRUE, rho = 0.3)}
@@ -378,7 +375,6 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
     mu_prior<-c(Delta1, Delta2) # true treatment effect theta
     Sigma_prior<-matrix(c(4/in1,rho*sqrt(4/in1)*sqrt(4/in2), rho*sqrt(4/in1)*sqrt(4/in2),4/in2),ncol=2)
     nsim<-100 
-    set.seed(61216)
     rsamp <- MASS::mvrnorm(n = nsim, mu_prior, Sigma_prior, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
     
     for (m in 1:nsim){
@@ -458,7 +454,7 @@ EPsProg_multiple_normal<-function(kappa, n2, alpha, beta, Delta1, Delta2, sigma1
 #' @param rho correlation between the two endpoints
 #' @param relaxed relaxed or strict decision rule
 #' @return The output of the function `utility_multiple_normal()` is the expected utility of the program.
-#' @examples \dontrun{utility_multiple_normal(kappa = 0.1, n2 = 50, 
+#' @examples \donttest{utility_multiple_normal(kappa = 0.1, n2 = 50, 
 #'                                alpha = 0.025, beta = 0.1,
 #'                                Delta1 = 0.375, Delta2 = 0.625, 
 #'                                in1 = 300, in2 = 600, sigma1 = 2, sigma2 = 1,

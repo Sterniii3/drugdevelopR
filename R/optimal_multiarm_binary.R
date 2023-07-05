@@ -23,7 +23,7 @@
 #' `r optimal_return_doc(type = "binary", setting = "multiarm")`
 #' 
 #' @examples
-#' \dontrun{optimal_multiarm_binary( p0 = 0.6, 
+#' \donttest{optimal_multiarm_binary( p0 = 0.6, 
 #'   p11 =  0.3, p12 = 0.5, 
 #'   n2min = 20, n2max = 100, stepn2 = 4,               # define optimization set for n2
 #'   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,     # define optimization set for RRgo

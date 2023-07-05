@@ -12,13 +12,15 @@
 #' @param b2 expected gain for effect size category "medium"
 #' @param b3 expected gain for effect size category "large"
 #' @param num_cl number of clusters used for parallel computing, default: 1
+#' @param progressbar logical, display a progress bar or not (default: `TRUE`)
 #' @return NULL
 #' @keywords internal
 optimal_generic <- function(beta, alpha,
                             c2, c3, c02, c03,
                             K, N, S,
                             b1, b2, b3,
-                            num_cl){
+                            num_cl,
+                            progressbar = TRUE){
   # This function is only used for documentation.
   # Hence, it contains no code.
 }

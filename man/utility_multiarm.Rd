@@ -79,7 +79,7 @@ The utility function calculates the expected utility of our drug development pro
 The utility is in further step maximized by the \code{optimal_multiarm()} function.
 }
 \examples{
-\dontrun{utility_multiarm(n2 = 50, HRgo = 0.8, alpha = 0.05, beta = 0.1,
+\donttest{utility_multiarm(n2 = 50, HRgo = 0.8, alpha = 0.05, beta = 0.1,
                             hr1 = 0.7, hr2 = 0.8, strategy = 2, ec = 0.6,
                             c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
                             K = Inf, N = Inf, S = -Inf,  

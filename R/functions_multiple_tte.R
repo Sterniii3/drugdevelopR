@@ -277,7 +277,6 @@ EPsProg_multiple_tte<-function(HRgo,n2,alpha,beta,ec,hr1,hr2,id1,id2,step1,step2
     mu_prior_tte<-c(hr1, hr2) # true treatment effect theta
     Sigma_prior_tte<-matrix(c(4/id1,rho*sqrt(4/id1)*sqrt(4/id2), rho*sqrt(4/id1)*sqrt(4/id2),4/id2),ncol=2)
     nsim<-5000 
-    set.seed(61216)
     rsamp <- MASS::mvrnorm(n = nsim, mu_prior_tte, Sigma_prior_tte, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
      
    for (m in 1:nsim){
@@ -377,8 +376,6 @@ os_tte<-function(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho){
     
     mu_prior_tte<-c(hr1, hr2) # true treatment effect theta
     Sigma_prior_tte<-matrix(c(4/id1,rho*sqrt(4/id1)*sqrt(4/id2), rho*sqrt(4/id1)*sqrt(4/id2),4/id2),ncol=2)
-    nsim<-1000 
-    set.seed(61216)
     rsamp <- MASS::mvrnorm(n = nsim, mu_prior_tte, Sigma_prior_tte, tol = 1e-6, empirical = FALSE, EISPACK = FALSE)
     
     for (m in 1:nsim){

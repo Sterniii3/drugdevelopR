@@ -33,15 +33,15 @@
 #' @param size size category "small", "medium" or "large"
 #' @param fixed choose if true treatment effects are fixed or random
 #' @return The output of the function EPsProg2(), EPsProg3() and EPsProg4() is the expected probability of a successful program when performing several phase III trials (2, 3 or 4 respectively)
-#' @examples \dontrun{EPsProg2(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
+#' @examples \donttest{EPsProg2(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
 #'                                  w = 0.3, hr1 =  0.69, hr2 = 0.81, 
 #'                                  id1 = 210, id2 = 420, case = 2, size = "small",
 #'                                  fixed = FALSE)}
-#'           \dontrun{EPsProg3(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
+#'           \donttest{EPsProg3(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
 #'                                  w = 0.3, hr1 =  0.69, hr2 = 0.81, 
 #'                                  id1 = 210, id2 = 420, case = 2, size = "small",
 #'                                  fixed = TRUE)}
-#'           \dontrun{EPsProg4(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
+#'           \donttest{EPsProg4(HRgo = 0.8, d2 = 50,  alpha = 0.025, beta = 0.1, 
 #'                                  w = 0.3, hr1 =  0.69, hr2 = 0.81, 
 #'                                  id1 = 210, id2 = 420, case = 3, size = "small",
 #'                                  fixed = TRUE)}
@@ -1630,7 +1630,7 @@ EPsProg23 <-  function(HRgo, d2, alpha, beta, w, hr1, hr2, id1, id2, case, size,
 #' @param b3 expected gain for effect size category `"large"`
 #' @importFrom mvtnorm pmvnorm
 #' @return The output of the function `utility23()` is the expected utility of the program depending on whether two or three phase III trials are performed.
-#' @examples \dontrun{utility23(d2 = 50, HRgo = 0.8,  w = 0.3, 
+#' @examples \donttest{utility23(d2 = 50, HRgo = 0.8,  w = 0.3, 
 #'                                  hr1 =  0.69, hr2 = 0.81, 
 #'                                  id1 = 280, id2 = 420, 
 #'                                  alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,

@@ -110,15 +110,15 @@ The following cases can be investigated by the software:
 }
 }
 \examples{
-\dontrun{EPsProg2_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
+\donttest{EPsProg2_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
                                  p0 = 0.6,  w = 0.3, p11 =  0.3, p12 = 0.5, 
                                  in1 = 300, in2 = 600, case = 2, size = "small",
                                  fixed = FALSE)}
-          \dontrun{EPsProg3_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
+          \donttest{EPsProg3_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
                                  p0 = 0.6,  w = 0.3, p11 =  0.3, p12 = 0.5, 
                                  in1 = 300, in2 = 600, case = 2, size = "small",
                                  fixed = FALSE)}
-          \dontrun{EPsProg4_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
+          \donttest{EPsProg4_binary(RRgo = 0.8, n2 = 50,  alpha = 0.025, beta = 0.1, 
                                  p0 = 0.6,  w = 0.3, p11 =  0.3, p12 = 0.5, 
                                  in1 = 300, in2 = 600, case = 3, size = "small",
                                  fixed = FALSE)}

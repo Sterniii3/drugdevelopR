@@ -46,7 +46,7 @@
 #' Taking `cat(comment())` of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' 
 #' @examples
-#' \dontrun{optimal_normal(w=0.3,                       # define parameters for prior
+#' \donttest{optimal_normal(w=0.3,                       # define parameters for prior
 #'   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,  # (https://web.imbi.uni-heidelberg.de/prior/)
 #'   a = 0.25, b = 0.75,
 #'   n2min = 20, n2max = 100, stepn2 = 4,               # define optimization set for n2
@@ -76,7 +76,8 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                         steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                         b1, b2, b3,
                         gamma = 0,  fixed = FALSE,
-                        skipII = FALSE,  num_cl = 1){
+                        skipII = FALSE,  num_cl = 1,
+                        progressbar = TRUE){
 
    date <- Sys.time()
 
@@ -154,10 +155,13 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
 
    ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
      sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- matrix(0, length(N2), length(KAPPA))
+   
+   if(progressbar){
+     cat("Optimization progress:", fill = TRUE)
+     cat("", fill = TRUE)
+     pb <- txtProgressBar(min = 0, max = length(KAPPA), style = 3, label = "Optimization progess")
+   }
 
-   cat("Optimization progress:", fill = TRUE)
-   cat("", fill = TRUE)
-   pb <- txtProgressBar(min = 0, max = length(KAPPA), style = 3, label = "Optimization progess")
 
    for(j in 1:length(KAPPA)){
 
@@ -180,8 +184,9 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                           steps1, stepm1, stepl1,
                           b1, b2, b3,
                           gamma, fixed)
-      
-      setTxtProgressBar(title= "i", pb, j)
+      if(progressbar){
+        setTxtProgressBar(title= "i", pb, j)
+      }
       parallel::stopCluster(cl)
 
       ufkt[, j]      <-  result[1, ]
@@ -239,7 +244,10 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                       "\noptimization sequence n2:", N2,
                       "\nset on date:", as.character(date),
                       "\nfinish date:", as.character(Sys.time()))
-   close(pb)
+   if(progressbar){
+     close(pb)
+   }
+   
 
    cat("", fill = TRUE)
    cat("", fill = TRUE)

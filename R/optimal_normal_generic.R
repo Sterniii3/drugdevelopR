@@ -43,6 +43,7 @@
 #'   for details
 #' @param fixed choose if true treatment effects are fixed or following a prior distribution, if TRUE `Delta1` is used as fixed effect
 #' @param num_cl number of clusters used for parallel computing, default: 1
+#' @param progressbar logical, display a progress bar or not (default: `TRUE`)
 #' @keywords internal
 optimal_normal_generic <- function(w, Delta1, Delta2, in1, in2, a, b,
                                    n2min, n2max, stepn2,
@@ -52,7 +53,8 @@ optimal_normal_generic <- function(w, Delta1, Delta2, in1, in2, a, b,
                                    K = Inf, N = Inf, S = -Inf,
                                    steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                    b1, b2, b3,
-                                   gamma = 0,  fixed = FALSE, num_cl = 1){
+                                   gamma = 0,  fixed = FALSE, num_cl = 1,
+                                   progressbar = TRUE){
   # This function is only used for documentation.
   # Hence, it contains no code.
 }

@@ -67,7 +67,7 @@ The utility function calculates the expected utility of our drug development pro
 The utility is in further step maximized by the \code{optimal_multitrial_binary()} function.
 }
 \examples{
-\dontrun{utility23_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
+\donttest{utility23_binary(n2 = 50, RRgo = 0.8,  w = 0.3, 
                                  alpha = 0.05, beta = 0.1,
                                  p0 = 0.6, p11 =  0.3, p12 = 0.5, 
                                  in1 = 300, in2 = 600, 

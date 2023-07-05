@@ -94,7 +94,7 @@ The utility function calculates the expected utility of our drug development pro
 The utility is in a further step maximized by the \code{optimal_multiple_normal()} function.
 }
 \examples{
-\dontrun{utility_multiple_normal(kappa = 0.1, n2 = 50, 
+\donttest{utility_multiple_normal(kappa = 0.1, n2 = 50, 
                                alpha = 0.025, beta = 0.1,
                                Delta1 = 0.375, Delta2 = 0.625, 
                                in1 = 300, in2 = 600, sigma1 = 2, sigma2 = 1,

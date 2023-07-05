@@ -152,7 +152,7 @@ distributions used in this package. Fast computing is enabled by parallel
 programming.
 }
 \examples{
-\dontrun{optimal_normal(w=0.3,                       # define parameters for prior
+\donttest{optimal_normal(w=0.3,                       # define parameters for prior
   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,  # (https://web.imbi.uni-heidelberg.de/prior/)
   a = 0.25, b = 0.75,
   n2min = 20, n2max = 100, stepn2 = 4,               # define optimization set for n2
