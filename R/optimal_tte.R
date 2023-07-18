@@ -17,9 +17,9 @@
 #' @param skipII choose if skipping phase II is an option, default: FALSE; 
 #' if TRUE, the program calculates the expected utility for the case when phase
 #'II is skipped and compares it to the situation when phase II is not skipped.
-#' The results are then returned as a list of two results lists, `res[[1]]`
-#' being the results when including phase II and `res[[2]]` when skipping
-#' phase II. `res[[2]]` has an additional parameter, `res[[2]]$HR`, which is
+#' The results are then returned as a two-row data frame, `res[1, ]`
+#' being the results when including phase II and `res[2, ]` when skipping phase II.
+#' `res[2, ]` has an additional parameter, `res[2, ]$HR`, which is
 #' the assumed hazards ratio used for planning the phase III study when the 
 #' phase II is skipped. It is calculated as the exponential function of the 
 #' median of the prior function.

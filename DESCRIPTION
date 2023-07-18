@@ -34,6 +34,7 @@ Depends:
     parallel,
     foreach,
     iterators,
+    progressr
 Imports:
     mvtnorm,
     cubature,

@@ -34,7 +34,6 @@
 #' @param gamma to model different populations in phase II and III choose `gamma != 0`, default: 0
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE hr1 is used as a fixed effect and hr2 is ignored
 #' @param num_cl number of clusters used for parallel computing, default: 1
-#' @param progressbar logical, display a progress bar or not (default: `TRUE`)
 #' @keywords internal
 optimal_tte_generic <- function(w,  hr1, hr2, id1, id2,
                                 d2min, d2max, stepd2,
@@ -47,8 +46,7 @@ optimal_tte_generic <- function(w,  hr1, hr2, id1, id2,
                                 stepl1 = 0.85,
                                 b1, b2, b3,
                                 gamma = 0,  fixed = FALSE,
-                                num_cl = 1,
-                                progressbar = TRUE){
+                                num_cl = 1){
   # This function is only used for documentation.
   # Hence, it contains no code.
 }

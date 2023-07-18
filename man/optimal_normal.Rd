@@ -114,8 +114,8 @@ for details}
 \item{skipII}{choose if skipping phase II is an option, default: FALSE;
 if TRUE, the program calculates the expected utility for the case when phase
 II is skipped and compares it to the situation when phase II is not skipped.
-The results are then returned as a list of two results lists, \code{res[[1]]}
-being the results when including phase II and \code{res[[2]]} when skipping phase II.}
+The results are then returned as a two-row data frame, \code{res[1, ]}
+being the results when including phase II and \code{res[2, ]} when skipping phase II.}
 
 \item{num_cl}{number of clusters used for parallel computing, default: 1}
 }
@@ -152,7 +152,11 @@ distributions used in this package. Fast computing is enabled by parallel
 programming.
 }
 \examples{
-\donttest{optimal_normal(w=0.3,                       # define parameters for prior
+\donttest{
+# Activate progress bar (optional)
+progressr::handlers(global = TRUE)
+# Optimize
+optimal_normal(w=0.3,                       # define parameters for prior
   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,  # (https://web.imbi.uni-heidelberg.de/prior/)
   a = 0.25, b = 0.75,
   n2min = 20, n2max = 100, stepn2 = 4,               # define optimization set for n2

@@ -15,8 +15,8 @@
 #' @param skipII choose if skipping phase II is an option, default: FALSE; 
 #' if TRUE, the program calculates the expected utility for the case when phase
 #' II is skipped and compares it to the situation when phase II is not skipped.
-#' The results are then returned as a list of two results lists, `res[[1]]`
-#' being the results when including phase II and `res[[2]]` when skipping phase II.
+#' The results are then returned as a two-row data frame, `res[1, ]`
+#' being the results when including phase II and `res[2, ]` when skipping phase II.
 #' 
 #' @importFrom msm dtnorm ptnorm rtnorm
 #' @import doParallel
@@ -46,7 +46,11 @@
 #' Taking `cat(comment())` of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
 #' 
 #' @examples
-#' \donttest{optimal_normal(w=0.3,                       # define parameters for prior
+#' \donttest{
+#' # Activate progress bar (optional)
+#' progressr::handlers(global = TRUE)
+#' # Optimize
+#' optimal_normal(w=0.3,                       # define parameters for prior
 #'   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,  # (https://web.imbi.uni-heidelberg.de/prior/)
 #'   a = 0.25, b = 0.75,
 #'   n2min = 20, n2max = 100, stepn2 = 4,               # define optimization set for n2
@@ -76,8 +80,7 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                         steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                         b1, b2, b3,
                         gamma = 0,  fixed = FALSE,
-                        skipII = FALSE,  num_cl = 1,
-                        progressbar = TRUE){
+                        skipII = FALSE,  num_cl = 1){
 
    date <- Sys.time()
 
@@ -105,9 +108,13 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
       # c(EU, n3, SP, K3, prob1, prob2, prob3)
      if(fixed){
        
-       result_skipII <-  data.frame(u = round(res[1],2), Delta=round(median_prior,2),
+       result_skipII <-  data.frame(skipII = TRUE,
+                                    u = round(res[1],2), 
                                     Kappa = -Inf, n2 = 0, n3 = res[2],
-                                    pgo = 1, sProg = round(res[3],2), K = K, K2 = 0, K3 = round(res[4]),
+                                    n = res[2],
+                                    pgo = 1, sProg = round(res[3],2), 
+                                    Delta=round(median_prior,2),
+                                    K = K, K2 = 0, K3 = round(res[4]),
                                     sProg1 = round(res[5],2), sProg2 = round(res[6],2), sProg3 = round(res[7],2),
                                     steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
                                     alpha = alpha, beta = beta, c02 = 0,
@@ -115,9 +122,13 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                                     gamma = gamma)
        
      }else{
-       result_skipII <-  data.frame(u = round(res[1],2), median_prior_Delta=round(median_prior,2),
+       result_skipII <-  data.frame(skipII = TRUE,
+                                    u = round(res[1],2), 
                                     Kappa = -Inf, n2 = 0, n3 = res[2],
-                                    pgo = 1, sProg = round(res[3],2), K = K, K2 = 0, K3 = round(res[4]),
+                                    n = res[2],
+                                    pgo = 1, median_prior_Delta=round(median_prior,2),
+                                    sProg = round(res[3],2),
+                                    K = K, K2 = 0, K3 = round(res[4]),
                                     sProg1 = round(res[5],2), sProg2 = round(res[6],2), sProg3 = round(res[7],2),
                                     steps1 = round(steps1,2), stepm1 = round(stepm1,2), stepl1 = round(stepl1,2),
                                     alpha = alpha, beta = beta, c02 = 0,
@@ -126,28 +137,19 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                                     gamma = gamma)
      }
 
-
-     cat("Result when skipping phase II:", fill = TRUE)
-     cat("", fill = TRUE)
-     print(result_skipII)
-     cat("", fill = TRUE)
-     cat("", fill = TRUE)
    }
 
    if(round(n2min/2) != n2min / 2) {
      n2min = n2min - 1
-     cat(paste0("n2min must be equal number and is therefore set to: ", n2min), fill = TRUE)
-     cat("", fill = TRUE)
+     message(paste0("n2min must be an even number and is therefore set to: ", n2min))
      }
    if(round(n2max/2) != n2max / 2) {
      n2max = n2max + 1
-     cat(paste0("n2max must be equal number and is therefore set to: ", n2max), fill = TRUE)
-     cat("", fill = TRUE)
+     message(paste0("n2max must be an even number and is therefore set to: ", n2max))
      }
    if(round(stepn2/2) != stepn2 / 2) {
      stepn2 = stepn2 + 1
-     cat(paste0("stepn2 must be equal number and is therefore set to: ", stepn2), fill = TRUE)
-     cat("", fill = TRUE)
+     message(paste0("stepn2 must be an even number and is therefore set to: ", stepn2))
      }
 
    KAPPA <- seq(kappamin, kappamax, stepkappa)
@@ -156,11 +158,7 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
    ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
      sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- matrix(0, length(N2), length(KAPPA))
    
-   if(progressbar){
-     cat("Optimization progress:", fill = TRUE)
-     cat("", fill = TRUE)
-     pb <- txtProgressBar(min = 0, max = length(KAPPA), style = 3, label = "Optimization progess")
-   }
+   pb <- progressr::progressor(along = KAPPA, label = "Optimization progress", message = "Optimization progress")
 
 
    for(j in 1:length(KAPPA)){
@@ -184,9 +182,7 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                           steps1, stepm1, stepl1,
                           b1, b2, b3,
                           gamma, fixed)
-      if(progressbar){
-        setTxtProgressBar(title= "i", pb, j)
-      }
+      pb()
       parallel::stopCluster(cl)
 
       ufkt[, j]      <-  result[1, ]
@@ -219,7 +215,8 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
    
    if(fixed){
      
-     result <-  data.frame(u = round(Eud,2), Kappa = KAPPA[J], n2 = N2[I],
+     result <-  data.frame(skipII = FALSE,
+                           u = round(Eud,2), Kappa = KAPPA[J], n2 = N2[I],
                            n3 = n3, n = N2[I] + n3,
                            pgo = round(pg,2), sProg = round(prob,2),
                            Delta = Delta1,
@@ -229,7 +226,8 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                            alpha = alpha, beta = beta, c02 = c02,
                            c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma)
    }else{
-     result <-  data.frame(u = round(Eud,2), Kappa = KAPPA[J], n2 = N2[I],
+     result <-  data.frame(skipII = FALSE,
+                           u = round(Eud,2), Kappa = KAPPA[J], n2 = N2[I],
                            n3 = n3, n = N2[I] + n3,
                            pgo = round(pg,2), sProg = round(prob,2),
                            w = w, Delta1 = Delta1, Delta2 = Delta2, in1 = in1, in2 = in2, a = a, b = b,
@@ -239,34 +237,13 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                            alpha = alpha, beta = beta, c02 = c02,
                            c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma)
    }
-
+   if(skipII){
+     result <- merge(result,result_skipII, all = TRUE)
+   }
    comment(result) <-   c("\noptimization sequence Kappa:", KAPPA,
-                      "\noptimization sequence n2:", N2,
-                      "\nset on date:", as.character(date),
-                      "\nfinish date:", as.character(Sys.time()))
-   if(progressbar){
-     close(pb)
-   }
-   
-
-   cat("", fill = TRUE)
-   cat("", fill = TRUE)
-   cat("Optimization result:", fill = TRUE)
-   cat("", fill = TRUE)
-   print(result)
-   cat("", fill = TRUE)
-   
-   if(skipII==TRUE){
-     cat("", fill = TRUE)
-     if(result_skipII[1]>result[1]){
-       cat("Skipping phase II is the optimal option with respect to the maximal expected utility.", fill = TRUE)
-     }else{
-       cat("Skipping phase II is NOT the optimal option with respect to the maximal expected utility.", fill = TRUE)
-     }
-     print(list(result,result_skipII))
-     return(list(result,result_skipII))
-     
-   }
-
+                          "\noptimization sequence n2:", N2,
+                          "\nonset date:", as.character(date),
+                          "\nfinish date:", as.character(Sys.time()))
+   class(result) <- c("drugdevelopResult", class(result))
    return(result)
 }

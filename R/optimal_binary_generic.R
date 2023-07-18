@@ -44,7 +44,6 @@
 #'   for details
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE p11 is used as fixed effect for p1
 #' @param num_cl number of clusters used for parallel computing, default: 1
-#' @param progressbar logical, display a progress bar or not (default: `TRUE`)
 #' @keywords internal
 optimal_binary_generic <- function(w, p0, p11, p12, in1, in2,
                                    n2min, n2max, stepn2,
@@ -55,8 +54,7 @@ optimal_binary_generic <- function(w, p0, p11, p12, in1, in2,
                                    steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                                    b1, b2, b3,
                                    gamma = 0, fixed = FALSE,
-                                   num_cl = 1,
-                                   progressbar = TRUE){
+                                   num_cl = 1){
   # This function is only used for documentation.
   # Hence, it contains no code.
 }

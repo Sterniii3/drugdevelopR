@@ -16,8 +16,8 @@
 #' @param skipII skipII choose if skipping phase II is an option, default: FALSE; 
 #' if TRUE, the program calculates the expected utility for the case when phase
 #' II is skipped and compares it to the situation when phase II is not skipped.
-#' The results are then returned as a list of two results lists, `res[[1]]`
-#' being the results when including phase II and `res[[2]]` when skipping phase II.
+#' The results are then returned as a two-row data frame, `res[1, ]`
+#' being the results when including phase II and `res[2, ]` when skipping phase II.
 #' 
 #' @return
 #' `r optimal_return_doc(type = "binary")` 
