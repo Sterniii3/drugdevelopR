@@ -70,7 +70,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
 
   date <- Sys.time()
 
-  if(skipII==TRUE){
+  if(skipII){
     if(fixed){
       median_prior = -log(hr1)
     }else{
@@ -97,9 +97,9 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
 
     if(fixed){
       
-      result_skipII <- data.frame(u = round(res[1],2), 
-                        median_prior_HR=
-                          round(exp(-median_prior),2),
+      result_skipII <- data.frame(skipII = TRUE,
+                        u = round(res[1],2), 
+                        hr = round(exp(-median_prior),2),
                         HRgo = Inf, d2 = 0, d3 = res[2],
                         n2 = 0, n3 = res[3],
                         pgo = 1, sProg = round(res[4],2), 
@@ -119,8 +119,9 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                         id1 = id1, id2 = id2, gamma = gamma) 
       
     }else{
-      result_skipII <-  data.frame(u = round(res[1],2), 
-                         HR=round(exp(-median_prior),2),
+      result_skipII <-  data.frame(skipII = TRUE,
+                         u = round(res[1],2), 
+                         median_prior_HR=round(exp(-median_prior),2),
                          HRgo = Inf, d2 = 0, d3 = res[2],
                          n2 = 0, n3 = res[3], pgo = 1, 
                          sProg = round(res[4],2), 
@@ -138,11 +139,6 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                          b1 = b1, b2 = b2, b3 = b3,
                          gamma = gamma)
     }
-    cat("Result when skipping phase II:", fill = TRUE)
-    cat("", fill = TRUE)
-    print(result_skipII)
-    cat("", fill = TRUE)
-    cat("", fill = TRUE)
   }
 
   HRGO <- seq(hrgomin, hrgomax, stephrgo)
@@ -152,12 +148,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
    sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- 
    matrix(0, length(D2), length(HRGO))
 
-  cat("", fill = TRUE)
-  cat("Optimization progress:", fill = TRUE)
-  cat("", fill = TRUE)
-  pb <- txtProgressBar(min = 0, max = length(HRGO), 
-                       style = 3, 
-                       label = "Optimization progess")
+  pb <- progressr::progressor(along = HRGO, label = "Optimization progress", message = "Optimization progress")
 
   for(j in 1:length(HRGO)){
 
@@ -182,7 +173,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                         b1, b2, b3,
                         gamma, fixed)
 
-    setTxtProgressBar(title= "i", pb, j)
+    pb()
     parallel::stopCluster(cl)
 
     ufkt[, j]      <-  result[1, ]
@@ -216,7 +207,8 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
   n3    <- n3fkt[I,J]
   
   if(!fixed){
-    result <-  data.frame(u = round(Eud,2), 
+    result <-  data.frame(skipII = FALSE,
+                          u = round(Eud,2), 
                 HRgo = HRGO[J], d2 = D2[I], 
                 d3 = d3, d = D2[I] + d3,
                 n2 = n2, n3 = n3, n = n2 + n3,
@@ -236,7 +228,8 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                 c02 = c02, c03 = c03, c2 = c2, c3 = c3, 
                 b1 = b1, b2 = b2, b3 = b3, gamma = gamma)
   }else{
-    result <-  data.frame(u = round(Eud,2), 
+    result <-  data.frame(skipII = FALSE,
+                          u = round(Eud,2), 
                 HRgo = HRGO[J], d2 = D2[I], 
                 d3 = d3, d = D2[I] + d3,
                 n2 = n2, n3 = n3, n = n2 + n3,
@@ -257,28 +250,18 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
   }
 
 
-  comment(result) <- c("\noptimization sequence HRgo:", HRGO,
-                        "\noptimization sequence d2:", D2,
-                        "\nset on date:", 
-                          as.character(date),
-                        "\nfinish date:", 
-                          as.character(Sys.time()))
-  close(pb)
+  
 
-  cat("", fill = TRUE)
-  cat("", fill = TRUE)
-  cat("Optimization result:", fill = TRUE)
-  cat("", fill = TRUE)
-  print(result)
-  cat("", fill = TRUE)
-  if(skipII==TRUE){
-   cat("", fill = TRUE)
-   if(result_skipII[1]>result[1]){
-     cat("Skipping phase II is the optimal option with respect to the maximal expected utility.", fill = TRUE)
-   }else{
-     cat("Skipping phase II is NOT the optimal option with respect to the maximal expected utility.", fill = TRUE)
-   }
-    return(list(result,result_skipII))
+  if(skipII){
+    result <- merge(result,result_skipII, all = TRUE)
   }
+  
+  comment(result) <- c("\noptimization sequence HRgo:", HRGO,
+                       "\noptimization sequence d2:", D2,
+                       "\nset on date:", 
+                       as.character(date),
+                       "\nfinish date:", 
+                       as.character(Sys.time()))
+  
   return(result)
 }

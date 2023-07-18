@@ -23,7 +23,11 @@
 #' `r optimal_return_doc(type = "binary")` 
 #'
 #' @examples
-#' \donttest{optimal_binary(w = 0.3,                    # define parameters for prior
+#' \donttest{
+#' # Activate progress bar (optional)
+#' progressr::handlers(global = TRUE)
+#' # Optimize
+#' optimal_binary(w = 0.3,                    # define parameters for prior
 #'   p0 = 0.6, p11 =  0.3, p12 = 0.5,
 #'    in1 = 30, in2 = 60,                              # (https://web.imbi.uni-heidelberg.de/prior/)
 #'   n2min = 20, n2max = 100, stepn2 = 4,              # define optimization set for n2
@@ -79,7 +83,9 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                                   gamma = gamma, fixed = fixed)
 
      if(fixed){
-       result_skipII <-  data.frame(u = round(res[1],2), RR=round(median_prior/p0,2),
+       result_skipII <-  data.frame(skipII = TRUE,
+                                    u = round(res[1],2),
+                                    RR=round(median_prior/p0,2),
                                     RRgo = Inf, n2 = 0, n3 = res[2],
                                     pgo = 1, sProg = round(res[3],2), K = K, K2 = 0, K3 = round(res[4]),
                                     sProg1 = round(res[5],2), sProg2 = round(res[6],2), sProg3 = round(res[7],2),
@@ -88,7 +94,8 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                                     c03 = c03, c2 = 0, c3 = c3, b1 = b1, b2 = b2, b3 = b3,
                                     p0 = p0, p1 = p11, gamma = gamma)  
      }else{
-       result_skipII <-  data.frame(u = round(res[1],2), median_prior_RR=round(median_prior/p0,2),
+       result_skipII <-  data.frame(skipII = TRUE,
+                                    u = round(res[1],2), median_prior_RR=round(median_prior/p0,2),
                                     RRgo = Inf, n2 = 0, n3 = res[2],
                                     pgo = 1, sProg = round(res[3],2), K = K, K2 = 0, K3 = round(res[4]),
                                     sProg1 = round(res[5],2), sProg2 = round(res[6],2), sProg3 = round(res[7],2),
@@ -97,31 +104,20 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                                     c03 = c03, c2 = 0, c3 = c3, b1 = b1, b2 = b2, b3 = b3,
                                     w = w, p0 = p0, p11 = p11, p12 = p12, in1 = in1, in2 = in2, gamma = gamma)
      }
-     
-
-
-     cat("Result when skipping phase II:", fill = TRUE)
-     cat("", fill = TRUE)
-     print(result_skipII)
-     cat("", fill = TRUE)
-     cat("", fill = TRUE)
 
    }
   
    if(round(n2min/2) != n2min / 2) {
      n2min = n2min - 1
-     cat(paste0("n2min must be equal number and is therefore set to: ", n2min), fill = TRUE)
-     cat("", fill = TRUE)
+     message(paste0("n2min must be an even number and is therefore set to: ", n2min))
    }
    if(round(n2max/2) != n2max / 2) {
      n2max = n2max + 1
-     cat(paste0("n2max must be equal number and is therefore set to: ", n2max), fill = TRUE)
-     cat("", fill = TRUE)
+     message(paste0("n2max must be an even number and is therefore set to: ", n2max))
    }
    if(round(stepn2/2) != stepn2 / 2) {
      stepn2 = stepn2 + 1
-     cat(paste0("stepn2 must be equal number and is therefore set to: ", stepn2), fill = TRUE)
-     cat("", fill = TRUE)
+     message(paste0("stepn2 must be an even number and is therefore set to: ", stepn2))
    }
 
    HRGO <- seq(rrgomin, rrgomax, steprrgo)
@@ -130,9 +126,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
    ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
      sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- matrix(0, length(N2), length(HRGO))
 
-   cat("Optimization progress:", fill = TRUE)
-   cat("", fill = TRUE)
-   pb <- txtProgressBar(min = 0, max = length(HRGO), style = 3, label = "Optimization progess")
+   pb <- progressr::progressor(along = HRGO, label = "Optimization progress", message = "Optimization progress")
 
    for(j in 1:length(HRGO)){
 
@@ -155,7 +149,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           b1, b2, b3,
                           gamma, fixed)
 
-      setTxtProgressBar(title= "i", pb, j)
+      pb()
       parallel::stopCluster(cl)
 
       ufkt[, j]      <-  result[1, ]
@@ -186,7 +180,8 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
    prob3 <- sp3fkt[I, J]
 
    if(fixed){
-     result <-  data.frame(u = round(Eud,2), RRgo = HRGO[J], n2 = N2[I],
+     result <-  data.frame(skipII = FALSE,
+                           u = round(Eud,2), RRgo = HRGO[J], n2 = N2[I],
                            n3 = n3, n = N2[I] + n3,
                            pgo = round(pg,2), sProg = round(prob,2),
                            p0 = p0, p1 = p11, 
@@ -196,7 +191,8 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                            alpha = alpha, beta = beta, c02 = c02,
                            c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma)  
    }else{
-     result <-  data.frame(u = round(Eud,2), RRgo = HRGO[J], n2 = N2[I],
+     result <-  data.frame(skipII = FALSE,
+                           u = round(Eud,2), RRgo = HRGO[J], n2 = N2[I],
                            n3 = n3, n = N2[I] + n3,
                            pgo = round(pg,2), sProg = round(prob,2),
                            w = w, p0 = p0, p11 = p11, p12 = p12, in1 = in1, in2 = in2,
@@ -207,31 +203,13 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                            c03 = c03, c2 = c2, c3 = c3, b1 = b1, b2 = b2, b3 = b3, gamma = gamma)
    }
    
-
-
-   comment(result) <-   c("\noptimization sequence RRgo:", HRGO,
-                      "\noptimization sequence n2:", N2,
-                      "\nset on date:", as.character(date),
-                      "\nfinish date:", as.character(Sys.time()))
-   close(pb)
-
-   cat("", fill = TRUE)
-   cat("", fill = TRUE)
-   cat("Optimization result:", fill = TRUE)
-   cat("", fill = TRUE)
-   cat("", fill = TRUE)
-   
-   if(skipII==TRUE){
-     cat("", fill = TRUE)
-     if(result_skipII[1]>result[1]){
-       cat("Skipping phase II is the optimal option with respect to the maximal expected utility.", fill = TRUE)
-     }else{
-       cat("Skipping phase II is NOT the optimal option with respect to the maximal expected utility.", fill = TRUE)
-     }
-     return(list(result,result_skipII))
-     
+   if(skipII){
+     result <- merge(result,result_skipII, all = TRUE)
    }
-   
+   comment(result) <-   c("\noptimization sequence RRgo:", HRGO,
+                          "\noptimization sequence n2:", N2,
+                          "\nset on date:", as.character(date),
+                          "\nfinish date:", as.character(Sys.time()))
    return(result)
 }
 

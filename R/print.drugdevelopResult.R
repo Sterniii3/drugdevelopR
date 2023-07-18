@@ -74,17 +74,34 @@ print_drugdevelopResult_helper <- function(x, ...){
   cat(" Sample size:\n")
   cat("   Phase II: ", x$n2, ", phase III: ", x$n3, ", total: ", x$n, 
       "\n", sep = "")
+  if("d2" %in% names(x)){
+    cat(" Expected number of events:\n")
+    cat("   Phase II: ", x$d2, ", phase III: ", x$d3, ", total: ", x$d, 
+        "\n", sep = "")
+  }
+  if("xi3" %in% names(x)){
+    
+    if("xi2" %in% names(x)) {
+      cat(" Assumed event rate:\n")
+      cat("   Phase II: ", x$xi2, ", phase III: ", x$xi3, ", total: ", x$d, 
+          "\n", sep = "")
+    } else {
+      cat(" Assumed event rate in phase III:", x$xi3, 
+          "\n", sep = "")
+    }
+
+  }
   cat(" Probability to go to phase III: ", x$pgo, "\n", sep = "")
   cat(" Total cost:\n")
   cat("   Phase II: ", x$K2, ", phase III: ", x$K3, 
-      ", maximal cost/cost constraint: ", x$K, "\n", sep = "")
+      ", cost constraint: ", x$K, "\n", sep = "")
   cat(" Fixed cost:\n")
   cat("   Phase II: ", x$c02, ", phase III: ", x$c03, "\n", sep = "")
   cat(" Variable cost per patient:\n")
   cat("   Phase II: ", x$c2, ", phase III: ", x$c3, "\n", sep = "")
   cat(" Effect size categories (expected gains):\n")
-  cat("  small: ", x$steps1, " (", x$b1, "),", "  medium: ", x$stepm1, 
-      " (", x$b2, "),", "  large: ", x$stepl1, " (", x$b3, ")\n", sep = "")
+  cat("  small: ", x$steps1, " (", x$b1, "),", " medium: ", x$stepm1, 
+      " (", x$b2, "),", " large: ", x$stepl1, " (", x$b3, ")\n", sep = "")
   cat(" Success probability: ", x$sProg, "\n", sep = "")
   cat(" Success probability for effect size:\n")
   cat("   small: ", x$sProg1, ", medium: ", x$sProg2, 
@@ -92,17 +109,55 @@ print_drugdevelopResult_helper <- function(x, ...){
   if("Kappa" %in% names(x)){
     cat(" Decision rule threshold: ", x$Kappa, " (Kappa) \n", sep = "")
   }
+  if("RRgo" %in% names(x)){
+    cat(" Decision rule threshold: ", x$RRgo, " (RRgo) \n", sep = "")
+  }
+  if("HRgo" %in% names(x)){
+    cat(" Decision rule threshold: ", x$RRgo, " (HRgo) \n", sep = "")
+  }
   if("Delta" %in% names(x)){
-    cat(" Assumed fixed effect: ", x$Delta, "\n", sep = "")
+    cat(" Assumed fixed effect: ", x$Delta, " (Delta) \n", sep = "")
+  }
+  if("p1" %in% names(x)){
+    cat(" Assumed fixed effect:\n")
+    cat("  Rate in the control:", x$p0, ", rate in the treatment group:", x$p1,
+        "\n", sep = "")
+  }
+  if("hr" %in% names(x)){
+    cat(" Assumed fixed effect: ", x$Delta, " (Delta) \n", sep = "")
   }
   if("median_prior_Delta" %in% names(x)){
-    cat(" Assumed fixed effect for planning the phase III trial:", 
-        x$Delta, "\n", sep = "")
+    if(!is.na(x$median_prior_Delta)){
+      cat(" Assumed fixed effect for planning the phase III trial (median of prior): ", 
+          x$median_prior_Delta, "\n", sep = "")
+    }
+  }
+  if("median_prior_RR" %in% names(x)){
+    if(!is.na(x$median_prior_RR)){
+      cat(" Assumed fixed effect for planning the phase III trial (median of prior): ", 
+          x$median_prior_RR, "\n", sep = "")
+    }
+  }
+  if("median_prior_HR" %in% names(x)){
+    if(!is.na(x$median_prior_HR)){
+      cat(" Assumed fixed effect for planning the phase III trial (median of prior): ", 
+          x$median_prior_HR, "\n", sep = "")
+    }
   }
   if("Delta1" %in% names(x)){
-    cat(" Parameters of the prior distribution: ", x$Delta, "\n", sep = "")
+    cat(" Parameters of the prior distribution: \n", sep = "")
     cat("   Delta1: ", x$Delta1, ", Delta2: ", x$Delta2, ", in1: ", x$in1,
-        ", in2: ", x$in2, ", a: ", x$a, " b: ", x$b, "\n", sep = "")
+        ", in2: ", x$in2, ", a: ", x$a, ", b: ", x$b, ", w: ", x$w, "\n", sep = "")
+  }
+  if("p11" %in% names(x)){
+    cat(" Parameters of the prior distribution: \n", sep = "")
+    cat("   p0: ", x$p0,",  p11: ", x$p11, ", p12: ", x$p12, ", in1: ", x$in1,
+        ", in2: ", x$in2, ", w: ", x$w, "\n", sep = "")
+  }
+  if("hr1" %in% names(x)){
+    cat(" Parameters of the prior distribution: \n", sep = "")
+    cat("   hr1: ", x$hr1,",  hr2: ", x$hr2, ", id1: ", x$id1,
+        ", id2: ", x$id2, ", w: ", x$w, "\n", sep = "")
   }
   if("gamma" %in% names(x)){
     if(!is.null(x$gamma)){
