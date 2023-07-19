@@ -88,10 +88,8 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
       sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- pgo3fkt <- 
       d33fkt <-  n33fkt<-  sp13fkt   <- sp23fkt   <- sp33fkt <- matrix(0, length(D2), length(HRGO))
     
-    cat("", fill = TRUE)
-    cat(paste("Case ", case,": Optimization progess for Strategy ", Strategy), fill = TRUE)
-    cat("", fill = TRUE)
-    pb <- txtProgressBar(min = 0, max = length(HRGO), style = 3, label = "Optimization progess")
+    pb <- progressr::progressor(steps = length(STRATEGY)*length(HRGO), label = "Optimization progress", message = "Optimization progress")
+    pb(paste("Performing optimization for strategy", Strategy), class = "sticky", amount = 0)
 
     for(j in 1:length(HRGO)){
       
@@ -165,7 +163,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
                             case, fixed)  
       }
     
-    setTxtProgressBar(title= "i", pb, j)
+    pb()
     parallel::stopCluster(cl)
   
     ufkt[, j]      <-  res[1, ]
@@ -225,8 +223,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
     }
     
     
-    close(pb)
-    
+
     if(!fixed){
 
       result <-  rbind(result, data.frame(Case = case, Strategy = Strategy, 
@@ -259,16 +256,10 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
     
     comment(result) <-   c("\noptimization sequence HRgo:", HRGO,
                   "\noptimization sequence d2:", D2,
-                  "\nset on date:", as.character(date),
+                  "\nonset date:", as.character(date),
                   "\nfinish date:", as.character(Sys.time()))
 
   }
-  cat("", fill = TRUE)
-  cat("", fill = TRUE)
-  cat("Optimization result:", fill = TRUE)
-  cat("", fill = TRUE)
-  print(result)
-  cat("", fill = TRUE)
   
   return(result)
   

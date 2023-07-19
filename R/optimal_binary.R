@@ -127,6 +127,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
      sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- matrix(0, length(N2), length(HRGO))
 
    pb <- progressr::progressor(along = HRGO, label = "Optimization progress", message = "Optimization progress")
+   pb("Performing optimization", class = "sticky", amount = 0)
 
    for(j in 1:length(HRGO)){
 
@@ -208,7 +209,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
    }
    comment(result) <-   c("\noptimization sequence RRgo:", HRGO,
                           "\noptimization sequence n2:", N2,
-                          "\nset on date:", as.character(date),
+                          "\nonset date:", as.character(date),
                           "\nfinish date:", as.character(Sys.time()))
    return(result)
 }

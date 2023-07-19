@@ -92,10 +92,11 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
       sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- pgo3fkt <- 
       n33fkt<-  sp13fkt   <- sp23fkt   <- sp33fkt <- matrix(0, length(N2), length(RRGO))
     
-    cat("", fill = TRUE)
-    cat(paste("Case ", case,": Optimization progess for Strategy ", Strategy), fill = TRUE)
-    cat("", fill = TRUE)
-    pb <- txtProgressBar(min = 0, max = length(RRGO), style = 3, label = "Optimization progess")
+    pb <- progressr::progressor(steps = length(STRATEGY)*length(RRGO),
+                                label = "Optimization progress",
+                                message = "Optimization progress")
+    pb(paste("Performing optimization for strategy", Strategy),
+       class = "sticky", amount = 0)
     
     for(j in 1:length(RRGO)){
       
@@ -168,7 +169,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                          case, fixed)  
       }
       
-      setTxtProgressBar(title= "i", pb, j)
+      pb()
       parallel::stopCluster(cl)
       
       ufkt[, j]      <-  res[1, ]
@@ -222,7 +223,6 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
     }
     
     
-    close(pb)
     
     if(!fixed){
       
@@ -256,16 +256,11 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
     
     comment(result) <-   c("\noptimization sequence RRgo:", RRGO,
                            "\noptimization sequence n2:", N2,
-                           "\nset on date:", as.character(date),
+                           "\nonset date:", as.character(date),
                            "\nfinish date:", as.character(Sys.time()))
     
   }
-  cat("", fill = TRUE)
-  cat("", fill = TRUE)
-  cat("Optimization result:", fill = TRUE)
-  cat("", fill = TRUE)
-  print(result)
-  cat("", fill = TRUE)
+
   
   return(result)
   

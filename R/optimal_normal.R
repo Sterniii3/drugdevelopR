@@ -159,7 +159,7 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
      sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- matrix(0, length(N2), length(KAPPA))
    
    pb <- progressr::progressor(along = KAPPA, label = "Optimization progress", message = "Optimization progress")
-
+   pb("Performing optimization", class = "sticky", amount = 0)
 
    for(j in 1:length(KAPPA)){
 

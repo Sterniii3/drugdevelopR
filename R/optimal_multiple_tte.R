@@ -91,9 +91,10 @@ result <- NULL
   ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
     sp2fkt <- sp3fkt <- n3fkt <- OSfkt <- matrix(0, length(N2), length(HRGO))
   
-  cat("Optimization progress:", fill = TRUE)
-  cat("", fill = TRUE)
-  pb <- txtProgressBar(min = 0, max = length(HRGO), style = 3, label = "Optimization progess")
+  pb <- progressr::progressor(steps = length(HRGO),
+                              label = "Optimization progress",
+                              message = "Optimization progress")
+  pb("Performing optimization", class = "sticky", amount = 0)
   
   for(j in 1:length(HRGO)){
     
@@ -116,7 +117,7 @@ result <- NULL
                      c2,c02,c3,c03,K,N,S,
                      steps1, stepm1, stepl1,b11,b21,b31,b12,b22,b32)
     
-    setTxtProgressBar(title= "i", pb, j)
+    pb()
     parallel::stopCluster(cl)
     
     ufkt[, j]     <-  res[1, ]
@@ -175,16 +176,9 @@ result <- NULL
 
 comment(result) <-   c("\noptimization sequence HRgo:", HRGO,
                        "\noptimization sequence n2:", N2,
-                       "\nset on date:", as.character(date),
+                       "\nonset date:", as.character(date),
                        "\nfinish date:", as.character(Sys.time()))
-close(pb)
 
-cat("", fill = TRUE)
-cat("", fill = TRUE)
-cat("Optimization result:", fill = TRUE)
-cat("", fill = TRUE)
-print(result)
-cat("", fill = TRUE)
 
 return(result)
 

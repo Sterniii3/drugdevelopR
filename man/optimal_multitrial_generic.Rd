@@ -24,3 +24,4 @@ to predefined values as explained under sProg1, sProg2 and sProg3 in the
 \emph{Value} section.
 }
 
+\keyword{internals}

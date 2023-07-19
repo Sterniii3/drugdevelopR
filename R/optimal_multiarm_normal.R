@@ -73,9 +73,11 @@ optimal_multiarm_normal <- function(Delta1, Delta2,
     ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
       sp2fkt <- sp3fkt <- n3fkt <- matrix(0, length(N2), length(KAPPA))
     
-    cat("Optimization progress:", fill = TRUE)
-    cat("", fill = TRUE)
-    pb <- txtProgressBar(min = 0, max = length(KAPPA), style = 3, label = "Optimization progess")
+    pb <- progressr::progressor(steps = length(KAPPA),
+                                label = "Optimization progress",
+                                message = "Optimization progress")
+    pb(paste("Performing optimization for strategy", strategy),
+       class = "sticky", amount = 0)
     
     for(j in 1:length(KAPPA)){
       
@@ -97,7 +99,7 @@ optimal_multiarm_normal <- function(Delta1, Delta2,
                        c2,c02,c3,c03,K,N,S,
                        steps1, stepm1, stepl1,b1, b2, b3)
       
-      setTxtProgressBar(title= "i", pb, j)
+      pb()
       parallel::stopCluster(cl)
       
       ufkt[, j]     <-  res[1, ]
@@ -139,16 +141,8 @@ optimal_multiarm_normal <- function(Delta1, Delta2,
   
   comment(result) <-   c("\noptimization sequence Kappa:", KAPPA,
                          "\noptimization sequence n2:", N2,
-                         "\nset on date:", as.character(date),
+                         "\nonset date:", as.character(date),
                          "\nfinish date:", as.character(Sys.time()))
-  close(pb)
-  
-  cat("", fill = TRUE)
-  cat("", fill = TRUE)
-  cat("Optimization result:", fill = TRUE)
-  cat("", fill = TRUE)
-  print(result)
-  cat("", fill = TRUE)
   
   return(result)
   

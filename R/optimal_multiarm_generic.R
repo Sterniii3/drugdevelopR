@@ -8,6 +8,8 @@
 #' @param alpha one-sided significance level/family-wise error rate
 #' @param strategy choose strategy: 1 (only the best promising candidate), 2 (all promising candidates) or 3 (both strategies)
 #' @inheritParams optimal_generic
+#' 
+#' @keywords internal
 optimal_multiarm_generic <- function(n2min, n2max, stepn2,
                                 beta, alpha,
                                 c2, c3, c02, c03,

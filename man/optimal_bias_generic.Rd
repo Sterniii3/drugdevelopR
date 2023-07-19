@@ -38,3 +38,4 @@ also the threshold value for the decision rule.}
 \description{
 Generic function for optimizing drug development programs with bias adjustment
 }
+\keyword{internal}

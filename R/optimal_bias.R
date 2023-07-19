@@ -123,10 +123,8 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
       ADJ <- seq(alphaCImin, alphaCImax, stepalphaCI)
     }
     
-    cat("", fill = TRUE)
-    cat(paste("Optimization progess for adjustment type ", proz), fill = TRUE)
-    cat("", fill = TRUE)
-    pb <- txtProgressBar(min = 0, max = length(ADJ), style = 3, label = "Optimization progess")
+    pb <- progressr::progressor(steps = length(ADJ)*length(HRGO), label = "Optimization progress", message = "Optimization progress")
+    pb(paste("Performing optimization for adjustment type", proz), class = "sticky", amount = 0)
     
     for(a in 1:length(ADJ)){
       
@@ -192,7 +190,7 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
                            fixed)  
         }
 
-        setTxtProgressBar(title= "i", pb, a)
+        pb()
         parallel::stopCluster(cl)
         
         ufkt[, j]      <-  res[1, ]
@@ -265,16 +263,8 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
 
   comment(result) <-   c("\noptimization sequence HRgo:", HRGO,
                     "\noptimization sequence d2:", D2,
-                    "\nset on date:", as.character(date),
+                    "\nonset date:", as.character(date),
                     "\nfinish date:", as.character(Sys.time()))
-  close(pb)
-
-  cat("", fill = TRUE)
-  cat("", fill = TRUE)
-  cat("Optimization result:", fill = TRUE)
-  cat("", fill = TRUE)
-  print(result)
-  cat("", fill = TRUE)
   
   return(result)
   

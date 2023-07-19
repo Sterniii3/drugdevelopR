@@ -18,6 +18,7 @@ optimal_return_doc <- function(type,
   steps1_str = ""
   stepm1_str = ""
   stepl1_str = ""
+  custom_sProg = ""
   if(type == "normal"){
     custom_threshold = "\\item{Kappa}{optimal threshold value for the decision rule to go to phase III}"
   }
@@ -46,15 +47,20 @@ optimal_return_doc <- function(type,
       stepl1_str = " (lower boundary in HR scale is set to 0.8, as proposed Cohen (1988))"
     }
   }
-  if(setting == "multiarm"){
-    custom_further = "\\item{Strategy}{Strategy, 1: \"only best promising\" or 2: \"all promising\"}"
-  }
   if(setting == "multiple"){
     if(type == "tte"){
       custom_further = paste0(
         "",
         "\\item{OP}{probability that one endpoint is significant}")
     }
+  }
+  custom_sProg = paste0("\\item{sProg1}{probability of a successful program with \"small\" treatment effect in phase III", steps1_str, "}
+                 \\item{sProg2}{probability of a successful program with \"medium\" treatment effect in phase III", stepm1_str,"}
+                 \\item{sProg3}{probability of a successful program with \"large\" treatment effect in phase III", stepl1_str,"}")
+  if(setting == "multiarm"){
+    custom_further = "\\item{Strategy}{Strategy, 1: \"only best promising\" or 2: \"all promising\"}"
+    custom_sProg = paste0("\\item{sProg2}{probability of a successful program with two arms in phase III", stepm1_str,"}
+                 \\item{sProg3}{probability of a successful program with three arms in phase III", stepl1_str,"}")
   }
   return(paste0("The output of the function is a `data.frame` object containing the optimization results:
                  \\describe{",
@@ -66,11 +72,9 @@ optimal_return_doc <- function(type,
                  \\item{n}{total sample size in the program; n = n2 + n3}
                  \\item{K}{maximal costs of the program (i.e. the cost constraint, if it is set or the sum K2+K3 if no cost constraint is set)}
                  \\item{pgo}{probability to go to phase III}
-                 \\item{sProg}{probability of a successful program}
-                 \\item{sProg1}{probability of a successful program with \"small\" treatment effect in phase III", steps1_str, "}
-                 \\item{sProg2}{probability of a successful program with \"medium\" treatment effect in phase III", stepm1_str,"}
-                 \\item{sProg3}{probability of a successful program with \"large\" treatment effect in phase III", stepl1_str,"}
-                 \\item{K2}{expected costs for phase II}
+                 \\item{sProg}{probability of a successful program}",
+                 custom_sProg,
+                 "\\item{K2}{expected costs for phase II}
                  \\item{K3}{expected costs for phase III}}
                  and further input parameters. Taking `cat(comment())` of the
                  data frame lists the used optimization sequences, start and 

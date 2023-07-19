@@ -15,6 +15,8 @@
 #' @param alphaCImin minimal additive adjustment parameter alphaCI (i.e. adjust the lower bound of the one-sided confidence interval)
 #' @param alphaCImax maximal additive adjustment parameter alphaCI (i.e. adjust the lower bound of the one-sided confidence interval)
 #' @param stepalphaCI stepsize for alphaCI
+#' 
+#' @keywords internal
 optimal_bias_generic <- function(adj = "both",
                                  lambdamin = NULL, lambdamax = NULL, steplambda = NULL,
                                  alphaCImin = NULL, alphaCImax = NULL, stepalphaCI = NULL){

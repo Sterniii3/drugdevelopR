@@ -29,7 +29,11 @@
 #' `r optimal_return_doc(type = "tte", setting = "basic")`
 #' 
 #' @examples
-#'  \donttest{optimal_tte(w = 0.3,                    # define parameters for prior
+#'  \donttest{
+#' # Activate progress bar (optional)
+#' progressr::handlers(global = TRUE)
+#' # Optimize
+#' optimal_tte(w = 0.3,                    # define parameters for prior
 #'   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,   # (https://web.imbi.uni-heidelberg.de/prior/)
 #'   d2min = 20, d2max = 100, stepd2 = 5,            # define optimization set for d2
 #'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,  # define optimization set for HRgo
@@ -137,6 +141,8 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                          xi3 = xi3, c02 = 0, c03 = c03, 
                          c2 = 0, c3 = c3, 
                          b1 = b1, b2 = b2, b3 = b3,
+                         w = w, hr1 = hr1, hr2 = hr2, 
+                         id1 = id1, id2 = id2, 
                          gamma = gamma)
     }
   }
@@ -149,6 +155,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
    matrix(0, length(D2), length(HRGO))
 
   pb <- progressr::progressor(along = HRGO, label = "Optimization progress", message = "Optimization progress")
+  pb("Performing optimization", class = "sticky", amount = 0)
 
   for(j in 1:length(HRGO)){
 
@@ -258,7 +265,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
   
   comment(result) <- c("\noptimization sequence HRgo:", HRGO,
                        "\noptimization sequence d2:", D2,
-                       "\nset on date:", 
+                       "\nonset date:", 
                        as.character(date),
                        "\nfinish date:", 
                        as.character(Sys.time()))

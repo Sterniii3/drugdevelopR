@@ -62,3 +62,4 @@ optimal_multiarm_generic(
 \description{
 Generic function for optimizing multi-arm programs
 }
+\keyword{internal}

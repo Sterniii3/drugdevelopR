@@ -109,11 +109,9 @@ The output of the function is a \code{data.frame} object containing the optimiza
 \item{n}{total sample size in the program; n = n2 + n3}
 \item{K}{maximal costs of the program (i.e. the cost constraint, if it is set or the sum K2+K3 if no cost constraint is set)}
 \item{pgo}{probability to go to phase III}
-\item{sProg}{probability of a successful program}
-\item{sProg1}{probability of a successful program with "small" treatment effect in phase III (lower boundary in HR scale is set to 1, as proposed by IQWiG (2016))}
+\item{sProg}{probability of a successful program}\item{sProg1}{probability of a successful program with "small" treatment effect in phase III (lower boundary in HR scale is set to 1, as proposed by IQWiG (2016))}
 \item{sProg2}{probability of a successful program with "medium" treatment effect in phase III (lower boundary in HR scale is set to 0.95, as proposed by IQWiG (2016))}
-\item{sProg3}{probability of a successful program with "large" treatment effect in phase III (lower boundary in HR scale is set to 0.85, as proposed by IQWiG (2016))}
-\item{K2}{expected costs for phase II}
+\item{sProg3}{probability of a successful program with "large" treatment effect in phase III (lower boundary in HR scale is set to 0.85, as proposed by IQWiG (2016))}\item{K2}{expected costs for phase II}
 \item{K3}{expected costs for phase III}}
 and further input parameters. Taking \code{cat(comment())} of the
 data frame lists the used optimization sequences, start and

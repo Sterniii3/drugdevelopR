@@ -94,10 +94,11 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
       sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- pgo3fkt <- 
       n33fkt<-  sp13fkt   <- sp23fkt   <- sp33fkt <- matrix(0, length(N2), length(KAPPA))
     
-    cat("", fill = TRUE)
-    cat(paste("Case ", case,": Optimization progess for Strategy ", Strategy), fill = TRUE)
-    cat("", fill = TRUE)
-    pb <- txtProgressBar(min = 0, max = length(KAPPA), style = 3, label = "Optimization progess")
+    pb <- progressr::progressor(steps = length(STRATEGY)*length(KAPPA),
+                                label = "Optimization progress",
+                                message = "Optimization progress")
+    pb(paste("Performing optimization for strategy", Strategy),
+       class = "sticky", amount = 0)
     
     for(j in 1:length(KAPPA)){
       
@@ -170,7 +171,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                          case, fixed)  
       }
       
-      setTxtProgressBar(title= "i", pb, j)
+      pb()
       parallel::stopCluster(cl)
       
       ufkt[, j]      <-  res[1, ]
@@ -223,8 +224,6 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
     }
     
     
-    close(pb)
-    
     if(!fixed){
       
       result <-  rbind(result, data.frame(Case = case, Strategy = Strategy, 
@@ -257,16 +256,10 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
     
     comment(result) <-   c("\noptimization sequence kappa:", KAPPA,
                            "\noptimization sequence n2:", N2,
-                           "\nset on date:", as.character(date),
+                           "\nonset date:", as.character(date),
                            "\nfinish date:", as.character(Sys.time()))
     
   }
-  cat("", fill = TRUE)
-  cat("", fill = TRUE)
-  cat("Optimization result:", fill = TRUE)
-  cat("", fill = TRUE)
-  print(result)
-  cat("", fill = TRUE)
   
   return(result)
   
