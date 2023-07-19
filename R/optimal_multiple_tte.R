@@ -41,7 +41,11 @@
 #' `r optimal_return_doc(type = "tte", setting = "multiple")`
 #' 
 #' @examples
-#' \donttest{optimal_multiple_tte(hr1 = 0.75,
+#' \donttest{
+#' # Activate progress bar (optional)
+#' progressr::handlers(global = TRUE)
+#' # Optimize
+#' optimal_multiple_tte(hr1 = 0.75,
 #'   hr2 = 0.80, id1 = 210, id2 = 420,          # define assumed true HRs
 #'   n2min = 30, n2max = 90, stepn2 = 6,        # define optimization set for n2
 #'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05, # define optimization set for HRgo
@@ -55,7 +59,7 @@
 #'   b12 = 1000, b22 = 1500, b32 = 2000,        # define expected benefits (both scenarios)
 #'   rho = 0.6, fixed = TRUE,                   # correlation and treatment effect
 #'   num_cl = 1)                                # number of cores for parallelized computing 
-#'   }
+#'  }
 #' 
 #' @references
 #' Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal Designs for Multi-Arm Phase II/III Drug Development Programs. Submitted to peer-review journal.

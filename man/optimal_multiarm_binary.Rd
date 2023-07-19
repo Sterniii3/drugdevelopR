@@ -114,7 +114,11 @@ distributions used in this package. Fast computing is enabled by parallel
 programming.
 }
 \examples{
-\donttest{optimal_multiarm_binary( p0 = 0.6, 
+\donttest{
+# Activate progress bar (optional)
+progressr::handlers(global = TRUE)
+# Optimize
+optimal_multiarm_binary( p0 = 0.6, 
   p11 =  0.3, p12 = 0.5, 
   n2min = 20, n2max = 100, stepn2 = 4,               # define optimization set for n2
   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,     # define optimization set for RRgo

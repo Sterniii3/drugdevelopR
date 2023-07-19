@@ -301,7 +301,6 @@ also the threshold value for the decision rule.</p></dd>
 
 <dt>sProg</dt>
 <dd><p>probability of a successful program</p></dd>
-
 <dt>sProg1</dt>
 <dd><p>probability of a successful program with "small" treatment effect in phase III</p></dd>
 
@@ -310,7 +309,6 @@ also the threshold value for the decision rule.</p></dd>
 
 <dt>sProg3</dt>
 <dd><p>probability of a successful program with "large" treatment effect in phase III</p></dd>
-
 <dt>K2</dt>
 <dd><p>expected costs for phase II</p></dd>
 
@@ -328,7 +326,12 @@ finish date of the optimization procedure.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu">optimal_bias_binary</span><span class="op">(</span>w <span class="op">=</span> <span class="fl">0.3</span>,                 <span class="co"># define parameters for prior</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="co"># Activate progress bar (optional)</span></span></span>
+<span class="r-in"><span><span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/handlers.html" class="external-link">handlers</a></span><span class="op">(</span>global <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in globalCallingHandlers(condition = global_progression_handler):</span> should not be called with handlers on the stack</span>
+<span class="r-in"><span><span class="co"># Optimize</span></span></span>
+<span class="r-in"><span><span class="fu">optimal_bias_binary</span><span class="op">(</span>w <span class="op">=</span> <span class="fl">0.3</span>,                 <span class="co"># define parameters for prior</span></span></span>
 <span class="r-in"><span>  p0 <span class="op">=</span> <span class="fl">0.6</span>, p11 <span class="op">=</span>  <span class="fl">0.3</span>, p12 <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
 <span class="r-in"><span>   in1 <span class="op">=</span> <span class="fl">30</span>, in2 <span class="op">=</span> <span class="fl">60</span>,                                <span class="co"># (https://web.imbi.uni-heidelberg.de/prior/)</span></span></span>
 <span class="r-in"><span>  n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">100</span>, stepn2 <span class="op">=</span> <span class="fl">10</span>,               <span class="co"># define optimization set for n2</span></span></span>
@@ -346,7 +349,13 @@ finish date of the optimization procedure.</p>
 <span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">1000</span>, b2 <span class="op">=</span> <span class="fl">2000</span>, b3 <span class="op">=</span> <span class="fl">3000</span>,                    <span class="co"># define expected benefits</span></span></span>
 <span class="r-in"><span>  fixed <span class="op">=</span> <span class="cn">TRUE</span>,                                       <span class="co"># true treatment effects are fixed/random</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                         <span class="co"># number of cores for parallelized computing</span></span></span>
-<span class="r-in"><span>  </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Method       u  Adj RRgo  n2  n3   n  pgo sProg  p0  p1   K  K2  K3 sProg1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 multipl. 2110.63 0.65 0.80 100 312 412 0.97  0.94 0.6 0.3 Inf 175 458   0.01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      add. 1971.77 0.10 0.75 100 246 346 0.95  0.89 0.6 0.3 Inf 175 389   0.03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03   c2 c3   b1   b2   b3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   0.05   0.87      1   0.95   0.85  0.05  0.1 100 150 0.75  1 1000 2000 3000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    0.08   0.78      1   0.95   0.85  0.05  0.1 100 150 0.75  1 1000 2000 3000</span>
+<span class="r-in"><span>  <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -257,8 +257,8 @@ for details</p></dd>
 <dd><p>choose if skipping phase II is an option, default: FALSE;
 if TRUE, the program calculates the expected utility for the case when phase
 II is skipped and compares it to the situation when phase II is not skipped.
-The results are then returned as a list of two results lists, <code>res[[1]]</code>
-being the results when including phase II and <code>res[[2]]</code> when skipping phase II.</p></dd>
+The results are then returned as a two-row data frame, <code>res[1, ]</code>
+being the results when including phase II and <code>res[2, ]</code> when skipping phase II.</p></dd>
 
 
 <dt>num_cl</dt>
@@ -321,7 +321,12 @@ being the results when including phase II and <code>res[[2]]</code> when skippin
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu">optimal_normal</span><span class="op">(</span>w<span class="op">=</span><span class="fl">0.3</span>,                       <span class="co"># define parameters for prior</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="co"># Activate progress bar (optional)</span></span></span>
+<span class="r-in"><span><span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/handlers.html" class="external-link">handlers</a></span><span class="op">(</span>global <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in globalCallingHandlers(condition = global_progression_handler):</span> should not be called with handlers on the stack</span>
+<span class="r-in"><span><span class="co"># Optimize</span></span></span>
+<span class="r-in"><span><span class="fu">optimal_normal</span><span class="op">(</span>w<span class="op">=</span><span class="fl">0.3</span>,                       <span class="co"># define parameters for prior</span></span></span>
 <span class="r-in"><span>  Delta1 <span class="op">=</span> <span class="fl">0.375</span>, Delta2 <span class="op">=</span> <span class="fl">0.625</span>, in1<span class="op">=</span><span class="fl">300</span>, in2<span class="op">=</span><span class="fl">600</span>,  <span class="co"># (https://web.imbi.uni-heidelberg.de/prior/)</span></span></span>
 <span class="r-in"><span>  a <span class="op">=</span> <span class="fl">0.25</span>, b <span class="op">=</span> <span class="fl">0.75</span>,</span></span>
 <span class="r-in"><span>  n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">100</span>, stepn2 <span class="op">=</span> <span class="fl">4</span>,               <span class="co"># define optimization set for n2</span></span></span>
@@ -337,7 +342,30 @@ being the results when including phase II and <code>res[[2]]</code> when skippin
 <span class="r-in"><span>  fixed <span class="op">=</span> <span class="cn">FALSE</span>,                                     <span class="co"># true treatment effects are fixed/random</span></span></span>
 <span class="r-in"><span>  skipII <span class="op">=</span> <span class="cn">FALSE</span>,                                    <span class="co"># skipping phase II</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                        <span class="co"># number of cores for parallelized computing</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 2272.13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 350, total: 450</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 82, phase III: 271, cost constraint: Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 15, phase III: 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.675, phase III: 0.72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Effect size categories (expected gains):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability by effect size:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    small: 0.73, medium: 0.05, large: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.08 [Kappa] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Parameters of the prior distribution: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Delta1: 0.375, Delta2: 0.625, in1: 300, in2: 600,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    a: 0.25, b: 0.75, w: 0.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Treatment effect offset between phase II and III: 0 [gamma] </span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

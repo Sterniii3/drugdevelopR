@@ -115,7 +115,8 @@ We start by loading the drugdevelopR package.</p>
 <span><span class="co">#&gt; Loading required package: doParallel</span></span>
 <span><span class="co">#&gt; Loading required package: foreach</span></span>
 <span><span class="co">#&gt; Loading required package: iterators</span></span>
-<span><span class="co">#&gt; Loading required package: parallel</span></span></code></pre></div>
+<span><span class="co">#&gt; Loading required package: parallel</span></span>
+<span><span class="co">#&gt; Loading required package: progressr</span></span></code></pre></div>
 <p>Back then, we got the following output:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span></span>
@@ -322,9 +323,9 @@ expected utility for the case when phase II is skipped and compares it
 to the situation when phase II is not skipped. When skipping phase II,
 the assumed treatment effect used for planning the phase III trial is
 calculated as the median of the prior distribution. The results are then
-returned as a list of two lists, <code>res[[1]]</code> being the results
-when including phase II and <code>res[[2]]</code> when skipping phase
-II. The default value is <code>skipII = FALSE</code>.</p>
+returned as a two-row data frame, <code>res[1, ]</code> being the
+results when including phase II and <code>res[2, ]</code> when skipping
+phase II. The default value is <code>skipII = FALSE</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="va">resII</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_normal.html">optimal_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.625</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># treatment effect</span></span>
 <span>                       n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">400</span>, <span class="co"># sample size region</span></span>
