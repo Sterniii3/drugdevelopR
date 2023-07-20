@@ -289,10 +289,27 @@ finish date of the optimization procedure.</p>
 <span class="r-in"><span>  stepl1 <span class="op">=</span> <span class="fl">0.85</span>,                                     <span class="co"># and "large" effect size categories</span></span></span>
 <span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">1000</span>, b2 <span class="op">=</span> <span class="fl">2000</span>, b3 <span class="op">=</span> <span class="fl">3000</span>,                   <span class="co"># define expected benefits </span></span></span>
 <span class="r-in"><span>  strategy <span class="op">=</span> <span class="fl">1</span>, num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                          <span class="co"># number of cores for parallelized computing </span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Strategy       u RRgo  n2  n3   n  pgo sProg  p0 p11 p12   K   N    S  K2  K3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        1 1671.27  0.9 100 192 292 0.98  0.79 0.6 0.3 0.5 Inf Inf -Inf 175 339</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03   c2 c3   b1   b2   b3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.79      0      1   0.95   0.85  0.05  0.1 100 150 0.75  1 1000 2000 3000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 1671.27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 192, total: 292</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.98</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 175, phase III: 339, cost constraint: Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.75, phase III: 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Effect size categories (expected gains):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   small: 1 (1000), medium: 0.95 (2000), large: 0.85 (3000)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.79</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability for a trial with:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    two arms in phase III: 0.79, three arms in phase III: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.9 [RRgo] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Assumed true rates: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    control group: 0.6,  treatment 1: 0.3, treatment 2: 0.5</span>
 <span class="r-in"><span>  <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

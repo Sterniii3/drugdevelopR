@@ -354,12 +354,32 @@ finish date of the optimization procedure.</p>
 <span class="r-in"><span>  fixed <span class="op">=</span> <span class="cn">FALSE</span>,                                  <span class="co"># true treatment effects are fixed/random</span></span></span>
 <span class="r-in"><span>  skipII <span class="op">=</span> <span class="cn">FALSE</span>,                                 <span class="co"># skipping phase II </span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                     <span class="co"># number of cores for parallelized computing </span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   skipII      u HRgo d2  d3   d  n2  n3   n  pgo sProg   w  hr1  hr2 id1 id2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  FALSE 164.01  0.8 90 121 211 130 172 302 0.45  0.26 0.3 0.69 0.88 210 420</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     K   N    S  K2  K3 sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta xi2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Inf Inf -Inf 198 240   0.05   0.09   0.12      1   0.95   0.85  0.05  0.1 0.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   xi3 c02 c03   c2 c3   b1   b2   b3 gamma</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.7 100 150 0.75  1 1000 2000 3000     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 164.01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 130, phase III: 172, total: 302</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Expected number of events:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 90, phase III: 121, total: 211</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Assumed event rate:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.7, phase III: 0.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 198, phase III: 240, cost constraint: Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.75, phase III: 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Effect size categories (expected gains):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   small: 1 (1000), medium: 0.95 (2000), large: 0.85 (3000)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability by effect size:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    small: 0.05, medium: 0.09, large: 0.12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.8 [HRgo] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Parameters of the prior distribution: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hr1: 0.69,  hr2: 0.88, id1: 210, id2: 420, w: 0.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Treatment effect offset between phase II and III: 0 [gamma] </span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
