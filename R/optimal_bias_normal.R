@@ -233,7 +233,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                          "\noptimization sequence n2:", N2,
                          "\nonset date:", as.character(date),
                          "\nfinish date:", as.character(Sys.time()))
-  
+  class(result) <- c("drugdevelopResult", class(result))
   return(result)
   
 }

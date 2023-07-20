@@ -147,7 +147,7 @@ optimal_multiarm_normal <- function(Delta1, Delta2,
                          "\noptimization sequence n2:", N2,
                          "\nonset date:", as.character(date),
                          "\nfinish date:", as.character(Sys.time()))
-  
+  class(result) <- c("drugdevelopResult", class(result))
   return(result)
   
 }

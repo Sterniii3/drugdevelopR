@@ -4,7 +4,7 @@
 \alias{os_tte}
 \title{Probability that endpoint OS significant}
 \usage{
-os_tte(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho)
+os_tte(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho, rsamp)
 }
 \arguments{
 \item{HRgo}{threshold value for the go/no-go decision rule;}
@@ -26,6 +26,8 @@ os_tte(HRgo, n2, alpha, beta, hr1, hr2, id1, id2, fixed, rho)
 \item{fixed}{choose if true treatment effects are fixed or random}
 
 \item{rho}{correlation between the two endpoints}
+
+\item{rsamp}{sample data set for Monte Carlo integration}
 }
 \value{
 The output of the function \code{os_tte()} is the probability that endpoint OS significant.
@@ -36,8 +38,10 @@ In the context of cancer research OS stands for overall survival, a positive tre
 }
 \examples{
 res <- os_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
-                               hr1 = 0.75, hr2 = 0.80, 
-                               id1 = 300, id2 = 600, 
-                               fixed = TRUE, rho = 0.3)
+                               hr1 = 0.75, hr2 = 0.80,
+                               id1 = 300, id2 = 600,
+                               fixed = TRUE, rho = 0.3,
+                               rsamp = get_sample_multiple_tte(hr1 = 0.75,
+                               hr2 = 0.80, id1 = 300, id2 = 600, rho = 0.3))
 }
 \keyword{internal}

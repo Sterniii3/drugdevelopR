@@ -265,7 +265,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
     
   }
 
-  
+  class(result) <- c("drugdevelopResult", class(result))
   return(result)
   
 }

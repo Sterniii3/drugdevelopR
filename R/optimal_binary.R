@@ -213,6 +213,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           "\noptimization sequence n2:", N2,
                           "\nonset date:", as.character(date),
                           "\nfinish date:", as.character(Sys.time()))
+   class(result) <- c("drugdevelopResult", class(result))
    return(result)
 }
 

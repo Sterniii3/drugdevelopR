@@ -264,7 +264,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                            "\nfinish date:", as.character(Sys.time()))
     
   }
-  
+  class(result) <- c("drugdevelopResult", class(result))
   return(result)
   
 }

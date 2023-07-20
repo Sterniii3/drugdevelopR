@@ -264,7 +264,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
                   "\nfinish date:", as.character(Sys.time()))
 
   }
-  
+  class(result) <- c("drugdevelopResult", class(result))
   return(result)
   
 }

@@ -125,7 +125,8 @@ The function \code{\link{optimal_multiple_tte}} of the drugdevelopR package
 enables planning of phase II/III drug development programs with optimal
 sample size allocation and go/no-go decision rules (Preussler et. al, 2019)
 in a two-arm trial with two time-to-event endpoints.
-
+}
+\details{
 In this setting, the drug development program is defined to be successful if
 it proceeds from phase II to phase III and at least one endpoint shows a
 statistically significant treatment effect in phase III. For example,
@@ -147,6 +148,7 @@ Fast computing is enabled by parallel programming.
 \dontrun{progressr::handlers(global = TRUE)}
 # Optimize
 \donttest{
+set.seed(123) # This function relies on Monte Carlo integration
 optimal_multiple_tte(hr1 = 0.75,
   hr2 = 0.80, id1 = 210, id2 = 420,          # define assumed true HRs
   n2min = 30, n2max = 90, stepn2 = 6,        # define optimization set for n2
@@ -160,7 +162,7 @@ optimal_multiple_tte(hr1 = 0.75,
   b11 = 1000, b21 = 2000, b31 = 3000,
   b12 = 1000, b22 = 1500, b32 = 2000,        # define expected benefits (both scenarios)
   rho = 0.6, fixed = TRUE,                   # correlation and treatment effect
-  num_cl = 1)                                # number of cores for parallelized computing 
+  num_cl = 1)                                # number of cores for parallelized computing
  }
 
 }

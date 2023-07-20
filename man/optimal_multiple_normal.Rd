@@ -125,7 +125,8 @@ package enables planning of phase II/III drug development programs with
 optimal sample size allocation and go/no-go decision rules for two-arm
 trials with two normally  distributed endpoints and one control group
 (Preussler et. al, 2019).
-
+}
+\details{
 For this setting, the drug development program is defined to be successful
 if it proceeds from phase II to phase III and all endpoints show a
 statistically significant treatment effect in phase III. For example, this
@@ -153,6 +154,7 @@ Fast computing is enabled by parallel programming.
 \dontrun{progressr::handlers(global = TRUE)}
 # Optimize
 \donttest{
+set.seed(123) # This function relies on Monte Carlo integration
 optimal_multiple_normal(Delta1 = 0.75,
   Delta2 = 0.80, in1=300, in2=600,                   # define assumed true HRs
   sigma1 = 8, sigma2= 12,                            # variances for both endpoints
@@ -167,7 +169,7 @@ optimal_multiple_normal(Delta1 = 0.75,
   b1 = 1000, b2 = 2000, b3 = 3000,                   # define expected benefit
   rho = 0.5, relaxed = TRUE,                         # strict or relaxed rule
   fixed = TRUE,                                      # treatment effect
-  num_cl = 1)                                        # parallelized computing 
+  num_cl = 1)                                        # parallelized computing
   }
 
 }

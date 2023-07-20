@@ -296,10 +296,10 @@ to predefined values as explained under sProg1, sProg2 and sProg3 in the
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="co"># Activate progress bar (optional)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Activate progress bar (optional)</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/handlers.html" class="external-link">handlers</a></span><span class="op">(</span>global <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Optimize</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">optimal_multitrial</span><span class="op">(</span>w <span class="op">=</span> <span class="fl">0.3</span>,                <span class="co"># define parameters for prior</span></span></span>
 <span class="r-in"><span>  hr1 <span class="op">=</span> <span class="fl">0.69</span>, hr2 <span class="op">=</span> <span class="fl">0.88</span>, id1 <span class="op">=</span> <span class="fl">210</span>, id2 <span class="op">=</span> <span class="fl">420</span>,     <span class="co"># (https://web.imbi.uni-heidelberg.de/prior/)</span></span></span>
 <span class="r-in"><span>  d2min <span class="op">=</span> <span class="fl">20</span>, d2max <span class="op">=</span> <span class="fl">100</span>, stepd2 <span class="op">=</span> <span class="fl">5</span>,              <span class="co"># define optimization set for d2</span></span></span>

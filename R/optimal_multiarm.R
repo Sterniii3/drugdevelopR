@@ -152,7 +152,7 @@ optimal_multiarm <- function(hr1, hr2, ec,
                     "\noptimization sequence n2:", N2,
                     "\nonset date:", as.character(date),
                     "\nfinish date:", as.character(Sys.time()))
-  
+  class(result) <- c("drugdevelopResult", class(result))
   return(result)
   
 }

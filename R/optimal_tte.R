@@ -271,6 +271,6 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                        as.character(date),
                        "\nfinish date:", 
                        as.character(Sys.time()))
-  
+  class(result) <- c("drugdevelopResult", class(result))
   return(result)
 }

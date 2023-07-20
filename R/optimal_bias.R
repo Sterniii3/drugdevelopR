@@ -271,7 +271,7 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
                     "\noptimization sequence d2:", D2,
                     "\nonset date:", as.character(date),
                     "\nfinish date:", as.character(Sys.time()))
-  
+  class(result) <- c("drugdevelopResult", class(result))
   return(result)
   
 } 

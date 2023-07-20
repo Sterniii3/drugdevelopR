@@ -16,7 +16,8 @@ Ess_multiple_normal(
   sigma1,
   sigma2,
   fixed,
-  rho
+  rho,
+  rsamp
 )
 }
 \arguments{
@@ -43,6 +44,8 @@ Ess_multiple_normal(
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect}
 
 \item{rho}{correlation between the two endpoints}
+
+\item{rsamp}{sample data set for Monte Carlo integration}
 }
 \value{
 the output of the function Ess_multiple_normal is the expected number of participants in phase III
@@ -53,7 +56,9 @@ The results of this function are necessary for calculating the utility of the pr
 }
 \examples{
 res <- Ess_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
-                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-                               sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
+                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600,
+                               sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3,
+                               rsamp = get_sample_multiple_normal(Delta1 = 0.375,
+                               Delta2 = 0.625, in1 = 300, in2 = 600, rho = 0.3))
 }
 \keyword{internal}
