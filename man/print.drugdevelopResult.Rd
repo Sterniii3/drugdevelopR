@@ -19,7 +19,7 @@ Displays details about the optimal results from a \code{drugdevelopResult} objec
 \examples{
 \donttest{
 # Activate progress bar (optional)
-progressr::handlers(global = TRUE)
+\dontrun{progressr::handlers(global = TRUE)}
 # Optimize
 res <- optimal_normal(w=0.3,                       
   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,  

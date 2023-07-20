@@ -143,10 +143,10 @@ larger expected gains than PFS alone (i.e. endpoint 2).
 Fast computing is enabled by parallel programming.
 }
 \examples{
-\donttest{
 # Activate progress bar (optional)
-progressr::handlers(global = TRUE)
+\dontrun{progressr::handlers(global = TRUE)}
 # Optimize
+\donttest{
 optimal_multiple_tte(hr1 = 0.75,
   hr2 = 0.80, id1 = 210, id2 = 420,          # define assumed true HRs
   n2min = 30, n2max = 90, stepn2 = 6,        # define optimization set for n2

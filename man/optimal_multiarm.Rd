@@ -117,10 +117,10 @@ user-friendly R Shiny App:
 computing is enabled by parallel programming.
 }
 \examples{
-\donttest{
 # Activate progress bar (optional)
-progressr::handlers(global = TRUE)
+\dontrun{progressr::handlers(global = TRUE)}
 # Optimize
+\donttest{
 optimal_multiarm(hr1 = 0.75, hr2 = 0.80,    # define assumed true HRs 
   ec = 0.6,                                          # control arm event rate
   n2min = 30, n2max = 90, stepn2 = 6,                # define optimization set for n2

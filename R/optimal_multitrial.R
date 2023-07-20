@@ -17,10 +17,10 @@
 #' 
 #' 
 #' @examples
-#' \donttest{
 #' # Activate progress bar (optional)
-#' progressr::handlers(global = TRUE)
+#' \dontrun{progressr::handlers(global = TRUE)}
 #' # Optimize
+#' \donttest{
 #' optimal_multitrial(w = 0.3,                # define parameters for prior
 #'   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,     # (https://web.imbi.uni-heidelberg.de/prior/)
 #'   d2min = 20, d2max = 100, stepd2 = 5,              # define optimization set for d2

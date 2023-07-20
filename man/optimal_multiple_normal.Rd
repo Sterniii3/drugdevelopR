@@ -149,10 +149,10 @@ endpoints show a  small effect, and a medium overall effect otherwise.
 Fast computing is enabled by parallel programming.
 }
 \examples{
- \donttest{
 # Activate progress bar (optional)
-progressr::handlers(global = TRUE)
+\dontrun{progressr::handlers(global = TRUE)}
 # Optimize
+\donttest{
 optimal_multiple_normal(Delta1 = 0.75,
   Delta2 = 0.80, in1=300, in2=600,                   # define assumed true HRs
   sigma1 = 8, sigma2= 12,                            # variances for both endpoints

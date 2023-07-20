@@ -114,10 +114,10 @@ distributions used in this package. Fast computing is enabled by parallel
 programming.
 }
 \examples{
-\donttest{
 # Activate progress bar (optional)
-progressr::handlers(global = TRUE)
+\dontrun{progressr::handlers(global = TRUE)}
 # Optimize
+\donttest{
 optimal_multiarm_binary( p0 = 0.6, 
   p11 =  0.3, p12 = 0.5, 
   n2min = 20, n2max = 100, stepn2 = 4,               # define optimization set for n2

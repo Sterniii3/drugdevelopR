@@ -4,6 +4,7 @@
 # drugdevelopR: Utility-based optimal phase II/III drug development planning.
 
 <!-- badges: start -->
+
 [![CRAN
 status](https://www.r-pkg.org/badges/version/drugdevelopR)](https://CRAN.R-project.org/package=drugdevelopR)
 [![R-CMD-check](https://github.com/Sterniii3/drugdevelopR/workflows/R-CMD-check/badge.svg)](https://github.com/Sterniii3/drugdevelopR/actions)
@@ -51,35 +52,38 @@ program with a normally distributed outcome:
 
 ``` r
 library(drugdevelopR)
-#> Lade nötiges Paket: doParallel
-#> Lade nötiges Paket: foreach
-#> Lade nötiges Paket: iterators
-#> Lade nötiges Paket: parallel
-res <- optimal_normal(Delta1 = 0.625, Delta2 = 0.8, fixed = FALSE, # treatment effect
-                      n2min = 20, n2max = 400, # sample size region
-                      stepn2 = 4, # sample size step size
-                      kappamin = 0.02, kappamax = 0.2, # threshold region
-                      stepkappa = 0.02, # threshold step size
-                      c2 = 0.675, c3 = 0.72, # maximal total trial costs
-                      c02 = 15, c03 = 20, # maximal per-patient costs
-                      b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
-                      alpha = 0.05, # significance level
-                      beta = 0.1, # 1 - power
-                      w = 0.6, in1 = 300, in2 = 600, # weight and amount of information
-                      a = 0.25, b = 0.75) # truncation values
-#> Optimization progress:
-#> 
-#>   |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%
-#> 
-#> 
+optimal_normal(Delta1 = 0.625, Delta2 = 0.8, fixed = FALSE, # treatment effect
+               n2min = 20, n2max = 400, # sample size region
+               stepn2 = 4, # sample size step size
+               kappamin = 0.02, kappamax = 0.2, # threshold region
+               stepkappa = 0.02, # threshold step size
+               c2 = 0.675, c3 = 0.72, # maximal total trial costs
+               c02 = 15, c03 = 20, # maximal per-patient costs
+               b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
+               alpha = 0.05, # significance level
+               beta = 0.1, # 1 - power
+               w = 0.6, in1 = 300, in2 = 600, # weight and amount of information
+               a = 0.25, b = 0.75) # truncation values
 #> Optimization result:
-#> 
-#>         u Kappa n2  n3   n  pgo sProg   w Delta1 Delta2 in1 in2    a    b   K
-#> 1 3392.88  0.06 84 158 242 0.99  0.86 0.6  0.625    0.8 300 600 0.25 0.75 Inf
-#>   K2  K3 sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03    c2
-#> 1 72 134   0.65   0.19   0.01      0    0.5    0.8  0.05  0.1  15  20 0.675
-#>     c3   b1   b2    b3 gamma
-#> 1 0.72 3000 8000 10000     0
+#>  Utility: 3392.88
+#>  Sample size:
+#>    Phase II: 84, phase III: 158, total: 242
+#>  Probability to go to phase III: 0.99
+#>  Total cost:
+#>    Phase II: 72, phase III: 134, maximal cost/cost constraint: Inf
+#>  Fixed cost:
+#>    Phase II: 15, phase III: 20
+#>  Variable cost per patient:
+#>    Phase II: 0.675, phase III: 0.72
+#>  Effect size categories (expected gains):
+#>   small: 0 (3000),  medium: 0.5 (8000),  large: 0.8 (10000)
+#>  Success probability: 0.86
+#>  Success probability for effect size:
+#>    small: 0.65, medium: 0.19, large: 0.01
+#>  Decision rule threshold: 0.06 (Kappa) 
+#>  Parameters of the prior distribution: 
+#>    Delta1: 0.625, Delta2: 0.8, in1: 300, in2: 600, a: 0.25 b: 0.75
+#>  Treatment effect offset between phase II and III: 0 (gamma)
 ```
 
 ## drugdevelopR functions

@@ -283,8 +283,7 @@ finish date of the optimization procedure.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Activate progress bar (optional)</span></span></span>
-<span class="r-in"><span><span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/handlers.html" class="external-link">handlers</a></span><span class="op">(</span>global <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in globalCallingHandlers(condition = global_progression_handler):</span> should not be called with handlers on the stack</span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/handlers.html" class="external-link">handlers</a></span><span class="op">(</span>global <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Optimize</span></span></span>
 <span class="r-in"><span><span class="fu">optimal_multiarm</span><span class="op">(</span>hr1 <span class="op">=</span> <span class="fl">0.75</span>, hr2 <span class="op">=</span> <span class="fl">0.80</span>,    <span class="co"># define assumed true HRs </span></span></span>
 <span class="r-in"><span>  ec <span class="op">=</span> <span class="fl">0.6</span>,                                          <span class="co"># control arm event rate</span></span></span>

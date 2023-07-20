@@ -156,10 +156,10 @@ The R Shiny application \href{https://web.imbi.uni-heidelberg.de/prior/}{prior} 
 Fast computing is enabled by parallel programming.
 }
 \examples{
-\donttest{
 # Activate progress bar (optional)
-progressr::handlers(global = TRUE)
+\dontrun{progressr::handlers(global = TRUE)}
 # Optimize
+\donttest{
 optimal_bias_binary(w = 0.3,                 # define parameters for prior
   p0 = 0.6, p11 =  0.3, p12 = 0.5,
    in1 = 30, in2 = 60,                                # (https://web.imbi.uni-heidelberg.de/prior/)
