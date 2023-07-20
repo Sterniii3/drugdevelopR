@@ -265,7 +265,6 @@ for details</p></dd>
 
 <dt>sProg</dt>
 <dd><p>probability of a successful program</p></dd>
-
 <dt>sProg1</dt>
 <dd><p>probability of a successful program with "small" treatment effect in phase III (lower boundary in HR scale is set to 0, as proposed by Cohen (1988))</p></dd>
 
@@ -274,7 +273,6 @@ for details</p></dd>
 
 <dt>sProg3</dt>
 <dd><p>probability of a successful program with "large" treatment effect in phase III (lower boundary in HR scale is set to 0.8, as proposed Cohen (1988))</p></dd>
-
 <dt>K2</dt>
 <dd><p>expected costs for phase II</p></dd>
 
@@ -309,7 +307,11 @@ to predefined values as explained under sProg1, sProg2 and sProg3 in the
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">optimal_multitrial_normal</span><span class="op">(</span>w <span class="op">=</span> <span class="fl">0.3</span>,           <span class="co"># define parameters for prior</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Activate progress bar (optional)</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/handlers.html" class="external-link">handlers</a></span><span class="op">(</span>global <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Optimize</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="fu">optimal_multitrial_normal</span><span class="op">(</span>w <span class="op">=</span> <span class="fl">0.3</span>,           <span class="co"># define parameters for prior</span></span></span>
 <span class="r-in"><span>  Delta1 <span class="op">=</span> <span class="fl">0.375</span>, Delta2 <span class="op">=</span> <span class="fl">0.625</span>,</span></span>
 <span class="r-in"><span>  in1 <span class="op">=</span> <span class="fl">300</span>, in2 <span class="op">=</span> <span class="fl">600</span>,                               <span class="co"># (https://web.imbi.uni-heidelberg.de/prior/)</span></span></span>
 <span class="r-in"><span>  a <span class="op">=</span> <span class="fl">0.25</span>, b <span class="op">=</span> <span class="fl">0.75</span>,</span></span>
@@ -322,18 +324,6 @@ to predefined values as explained under sProg1, sProg2 and sProg3 in the
 <span class="r-in"><span>  case <span class="op">=</span> <span class="fl">1</span>, strategy <span class="op">=</span> <span class="cn">TRUE</span>,                          <span class="co"># chose Case and Strategy</span></span></span>
 <span class="r-in"><span>  fixed <span class="op">=</span> <span class="cn">TRUE</span>,                                       <span class="co"># true treatment effects are fixed/random</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                         <span class="co"># number of cores for parallelized computing</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Case  1 : Optimization progess for Strategy  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Case  1 : Optimization progess for Strategy  2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Case Strategy       u Kappa  n2  n3   n  pgo sProg Delta   K   N    S K2  K3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    1        1 1890.94  0.10 100 376 476 0.92  0.74 0.375 Inf Inf -Inf 82 289</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    1        2 1928.79  0.12 100 656 756 0.90  0.82 0.375 Inf Inf -Inf 82 508</span>
@@ -343,17 +333,7 @@ to predefined values as explained under sProg1, sProg2 and sProg3 in the
 <span class="r-out co"><span class="r-pr">#&gt;</span>     b2    b3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 8000 10000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 8000 10000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Case Strategy       u Kappa  n2  n3   n  pgo sProg Delta   K   N    S K2  K3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    1        1 1890.94  0.10 100 376 476 0.92  0.74 0.375 Inf Inf -Inf 82 289</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    1        2 1928.79  0.12 100 656 756 0.90  0.82 0.375 Inf Inf -Inf 82 508</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03    c2   c3   b1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.74   0.01      0      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   0.81   0.01      0      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     b2    b3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 8000 10000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 8000 10000</span>
-<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

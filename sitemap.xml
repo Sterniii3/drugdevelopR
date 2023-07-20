@@ -157,6 +157,9 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/drugdevelopR.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/drugdevelopResult.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/fmax.html</loc>
   </url>
   <url>
@@ -254,6 +257,12 @@
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/posp_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/print.drugdevelopResult.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/print_drugdevelopResult_helper.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/prior_tte.html</loc>
