@@ -10,7 +10,7 @@ test_that("Optimal_tte works with prior distribution", {
                            steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,   
                            b1 = 1000, b2 = 2000, b3 = 3000,   gamma = 0, 
                            fixed = FALSE, skipII = FALSE, num_cl = 1)[2], 
-               data.frame(u=164.01))
+               drugdevelopResult(data.frame(u=164.01)))
 })
 
 test_that("Optimal_tte works without distribution", {
@@ -25,7 +25,7 @@ test_that("Optimal_tte works without distribution", {
                            steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,   
                            b1 = 1000, b2 = 2000, b3 = 3000,   gamma = 0, 
                            fixed = TRUE, skipII = FALSE, num_cl = 1)[2], 
-               data.frame(u=1020.73))
+               drugdevelopResult(data.frame(u=1020.73)))
 })
 
 test_that("Optimal_tte works when skipping phase II", {

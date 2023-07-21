@@ -8,5 +8,6 @@
 #' @export
 #' @keywords internal
 drugdevelopResult <- function(x, ...) {
-  
+  class(x) <- c("drugdevelopResult", class(x))
+  return(x)
 }

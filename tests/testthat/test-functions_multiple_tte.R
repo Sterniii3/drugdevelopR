@@ -51,5 +51,11 @@ test_that("os_tte works", {
   set.seed(61216)
   expect_equal(os_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
                       hr1 = 0.75, hr2 = 0.80,id1 = 300, id2 = 600,
-                      fixed = FALSE, rho = 0.3), 0.5681915)
+                      fixed = FALSE, rho = 0.3,
+                      rsamp = get_sample_multiple_tte(hr1 = 0.75,
+                                                      hr2 = 0.80,
+                                                      id1 = 300,
+                                                      id2 = 600,
+                                                      rho = 0.3)),
+               0.5681915)
 })

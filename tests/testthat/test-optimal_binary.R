@@ -11,7 +11,7 @@ test_that("Optimal_binary works with prior distribution", {
                               b1 = 1000, b2 = 2000, b3 = 3000,  
                               gamma = 0,  fixed = FALSE,
                               skipII = FALSE,num_cl = 1)[2], 
-               data.frame(u=678.04))
+               drugdevelopResult(data.frame(u=678.04)))
 })
 
 test_that("Optimal_binary works with fixed effects", {
@@ -27,7 +27,7 @@ test_that("Optimal_binary works with fixed effects", {
                               b1 = 1000, b2 = 2000, b3 = 3000,  
                               gamma = 0,  fixed = TRUE,
                               skipII = FALSE,num_cl = 1)[2], 
-               data.frame(u=1806.86))
+               drugdevelopResult(data.frame(u=1806.86)))
 })
 
 test_that("Optimal_binary works when skipping phase II", {

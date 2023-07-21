@@ -11,7 +11,7 @@ test_that("Optimal normal works", {
                               b1 = 3000, b2 = 8000, b3 = 10000,  
                               gamma = 0,  fixed = FALSE, skipII = FALSE,  
                               num_cl = 2)[2], 
-               data.frame(u=2272.13))
+               drugdevelopResult(data.frame(u=2272.13)))
 })
 
 test_that("Skipping Phase II works", {

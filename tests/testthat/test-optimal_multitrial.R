@@ -10,7 +10,7 @@ test_that("Optimal_multitrial work for Scenario 1/2", {
                                   b1 = 1000, b2 = 2000, b3 = 3000,  
                                   case = 1, strategy = 2,  
                                   fixed = FALSE,   num_cl = 2)[3], 
-               data.frame(u=20.25))
+               drugdevelopResult(data.frame(u=20.25)))
 })
 
 
@@ -27,7 +27,7 @@ test_that("Optimal_multitrial work for Scenario 3/4", {
                                   b1 = 1000, b2 = 2000, b3 = 3000,  
                                   case = 3, strategy = 4,  
                                   fixed = TRUE,   num_cl = 2)[3], 
-               data.frame(u=-400.59))
+               drugdevelopResult(data.frame(u=-400.59)))
 })
 
 test_that("Optimal_multitrial work for Scenario 2/2", {
@@ -42,7 +42,7 @@ test_that("Optimal_multitrial work for Scenario 2/2", {
                                   b1 = 1000, b2 = 2000, b3 = 3000,  
                                   case = 2, strategy = 2,  
                                   fixed = TRUE,   num_cl = 2)[3], 
-               data.frame(u=-10.8))
+               drugdevelopResult(data.frame(u=-10.8)))
 })
 
 test_that("Optimal_multitrial work for Case 3: Strategy TRUE", {

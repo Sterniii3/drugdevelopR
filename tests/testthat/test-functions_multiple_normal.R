@@ -24,6 +24,12 @@ test_that("Ess_multiple_tte works", {
   set.seed(61216)
   expect_equal(Ess_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
                                  Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600,
-                                 sigma1 = 2, sigma2 = 1, fixed = FALSE, rho = 0.3),374.95202)
+                                 sigma1 = 2, sigma2 = 1, fixed = FALSE, rho = 0.3,
+                                 rsamp = get_sample_multiple_normal(Delta1 = 0.375,
+                                                                    Delta2 = 0.625,
+                                                                    in1 = 300,
+                                                                    in2 = 600,
+                                                                    rho = 0.3)),
+               374.95202)
 })
 
