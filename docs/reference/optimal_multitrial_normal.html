@@ -324,15 +324,48 @@ to predefined values as explained under sProg1, sProg2 and sProg3 in the
 <span class="r-in"><span>  case <span class="op">=</span> <span class="fl">1</span>, strategy <span class="op">=</span> <span class="cn">TRUE</span>,                          <span class="co"># chose Case and Strategy</span></span></span>
 <span class="r-in"><span>  fixed <span class="op">=</span> <span class="cn">TRUE</span>,                                       <span class="co"># true treatment effects are fixed/random</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                         <span class="co"># number of cores for parallelized computing</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Case Strategy       u Kappa  n2  n3   n  pgo sProg Delta   K   N    S K2  K3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    1        1 1890.94  0.10 100 376 476 0.92  0.74 0.375 Inf Inf -Inf 82 289</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    1        2 1928.79  0.12 100 656 756 0.90  0.82 0.375 Inf Inf -Inf 82 508</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03    c2   c3   b1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.74   0.01      0      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   0.81   0.01      0      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     b2    b3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 8000 10000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 8000 10000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result where 1 trial(s) need(s) to show significant results, strategy 1:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 1890.94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 376, total: 476</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.92</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 82, phase III: 289, cost constraint: Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 15, phase III: 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.675, phase III: 0.72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Effect size categories (expected gains):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.74</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability by effect size:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    small: 0.74, medium: 0.01, large: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.1 [Kappa] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Assumed true effect: 0.375 [Delta] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result where 1 trial(s) need(s) to show significant results, strategy 2:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 1928.79</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 656, total: 756</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 82, phase III: 508, cost constraint: Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 15, phase III: 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.675, phase III: 0.72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Effect size categories (expected gains):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.82</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability by effect size:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    small: 0.81, medium: 0.01, large: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.12 [Kappa] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Assumed true effect: 0.375 [Delta] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span>  <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

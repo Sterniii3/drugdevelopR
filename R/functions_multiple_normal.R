@@ -314,7 +314,7 @@ posp_normal <-
       ), ncol = 2) #covariance-Matrix of c(true1,true2)
     covmatt3 <- matrix(c(1, rho, rho, 1), ncol = 2)
     
-    c <- qnorm(1 - alpha) + qnorm(1 - beta)
+    c <- (qnorm(1 - alpha) + qnorm(1 - beta))^2
     
     if (fixed) {
       return(integrate(function(y) {

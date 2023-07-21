@@ -76,7 +76,8 @@ Successful is defined as at least one endpoint showing a statistically significa
 <span>  <span class="va">step1</span>,</span>
 <span>  <span class="va">step2</span>,</span>
 <span>  <span class="va">fixed</span>,</span>
-<span>  <span class="va">rho</span></span>
+<span>  <span class="va">rho</span>,</span>
+<span>  <span class="va">rsamp</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -133,6 +134,10 @@ Successful is defined as at least one endpoint showing a statistically significa
 <dt>rho</dt>
 <dd><p>correlation between the two endpoints</p></dd>
 
+
+<dt>rsamp</dt>
+<dd><p>sample data set for Monte Carlo integration</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -145,9 +150,11 @@ Successful is defined as at least one endpoint showing a statistically significa
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">EPsProg_multiple_tte</span><span class="op">(</span>HRgo <span class="op">=</span> <span class="fl">0.8</span>, n2 <span class="op">=</span> <span class="fl">50</span>, alpha <span class="op">=</span> <span class="fl">0.025</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,</span></span>
 <span class="r-in"><span>                               ec <span class="op">=</span> <span class="fl">1</span>, hr1 <span class="op">=</span> <span class="fl">0.75</span>, hr2 <span class="op">=</span> <span class="fl">0.80</span>,</span></span>
-<span class="r-in"><span>                               id1 <span class="op">=</span> <span class="fl">300</span>, id2 <span class="op">=</span> <span class="fl">600</span>, </span></span>
+<span class="r-in"><span>                               id1 <span class="op">=</span> <span class="fl">300</span>, id2 <span class="op">=</span> <span class="fl">600</span>,</span></span>
 <span class="r-in"><span>                               step1 <span class="op">=</span> <span class="fl">1</span>, step2 <span class="op">=</span> <span class="fl">0.95</span>,</span></span>
-<span class="r-in"><span>                               fixed <span class="op">=</span> <span class="cn">TRUE</span>, rho <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                               fixed <span class="op">=</span> <span class="cn">TRUE</span>, rho <span class="op">=</span> <span class="fl">0.3</span>,</span></span>
+<span class="r-in"><span>                               rsamp <span class="op">=</span> <span class="fu"><a href="get_sample_multiple_tte.html">get_sample_multiple_tte</a></span><span class="op">(</span>hr1 <span class="op">=</span> <span class="fl">0.75</span>,</span></span>
+<span class="r-in"><span>                               hr2 <span class="op">=</span> <span class="fl">0.80</span>, id1 <span class="op">=</span> <span class="fl">300</span>, id2 <span class="op">=</span> <span class="fl">600</span>, rho <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
