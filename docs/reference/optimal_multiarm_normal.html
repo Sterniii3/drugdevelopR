@@ -248,16 +248,11 @@ means for treatment arm 2</p></dd>
 
 <dt>sProg</dt>
 <dd><p>probability of a successful program</p></dd>
-
-<dt>sProg1</dt>
-<dd><p>probability of a successful program with "small" treatment effect in phase III</p></dd>
-
 <dt>sProg2</dt>
-<dd><p>probability of a successful program with "medium" treatment effect in phase III</p></dd>
+<dd><p>probability of a successful program with two arms in phase III</p></dd>
 
 <dt>sProg3</dt>
-<dd><p>probability of a successful program with "large" treatment effect in phase III</p></dd>
-
+<dd><p>probability of a successful program with three arms in phase III</p></dd>
 <dt>K2</dt>
 <dd><p>expected costs for phase II</p></dd>
 
@@ -275,7 +270,11 @@ finish date of the optimization procedure.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu">optimal_multiarm_normal</span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.375</span>, Delta2 <span class="op">=</span> <span class="fl">0.625</span>,     </span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Activate progress bar (optional)</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/handlers.html" class="external-link">handlers</a></span><span class="op">(</span>global <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Optimize</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="fu">optimal_multiarm_normal</span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.375</span>, Delta2 <span class="op">=</span> <span class="fl">0.625</span>,     </span></span>
 <span class="r-in"><span>  n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">100</span>, stepn2 <span class="op">=</span> <span class="fl">4</span>,                 <span class="co"># define optimization set for n2</span></span></span>
 <span class="r-in"><span>  kappamin <span class="op">=</span> <span class="fl">0.02</span>, kappamax <span class="op">=</span> <span class="fl">0.2</span>, stepkappa <span class="op">=</span> <span class="fl">0.02</span>,   <span class="co"># define optimization set for kappa</span></span></span>
 <span class="r-in"><span>  alpha <span class="op">=</span> <span class="fl">0.05</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                            <span class="co"># drug development planning parameters</span></span></span>
@@ -287,7 +286,28 @@ finish date of the optimization procedure.</p>
 <span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">3000</span>, b2 <span class="op">=</span> <span class="fl">8000</span>, b3 <span class="op">=</span> <span class="fl">10000</span>,                    <span class="co"># define expected benefits </span></span></span>
 <span class="r-in"><span>  strategy <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                          <span class="co"># number of cores for parallelized computing </span></span></span>
-<span class="r-in"><span>  </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 2924.13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 164, total: 264</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.99</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 82, phase III: 138, cost constraint: Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 15, phase III: 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.675, phase III: 0.72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Effect size categories (expected gains):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability for a trial with:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    two arms in phase III: 0.8, three arms in phase III: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.06 [Kappa] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Assumed true effects [Delta]: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    treatment 1: 0.375, treatment 2: 0.625</span>
+<span class="r-in"><span>  <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

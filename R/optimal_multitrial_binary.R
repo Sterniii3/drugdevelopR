@@ -24,7 +24,11 @@
 #' `r optimal_return_doc(type = "binary", setting = "multitrial")`
 #' 
 #' @examples
-#' \donttest{optimal_multitrial_binary(w = 0.3,         # define parameters for prior
+#' # Activate progress bar (optional)
+#' \dontrun{progressr::handlers(global = TRUE)}
+#' # Optimize
+#' \donttest{
+#' optimal_multitrial_binary(w = 0.3,         # define parameters for prior
 #'   p0 = 0.6, p11 =  0.3, p12 = 0.5,
 #'   in1 = 30, in2 = 60,                             # (https://web.imbi.uni-heidelberg.de/prior/)
 #'   n2min = 20, n2max = 100, stepn2 = 4,            # define optimization set for n2
@@ -261,7 +265,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
     
   }
 
-  
+  class(result) <- c("drugdevelopResult", class(result))
   return(result)
   
 }

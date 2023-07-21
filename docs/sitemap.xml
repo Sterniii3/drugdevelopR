@@ -67,6 +67,9 @@
     <loc>https://sterniii3.github.io/drugdevelopR/reference/drugdevelopR.html</loc>
   </url>
   <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/drugdevelopResult.html</loc>
+  </url>
+  <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/Ed3_bias.html</loc>
   </url>
   <url>
@@ -155,6 +158,12 @@
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/fmin.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/get_sample_multiple_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/get_sample_multiple_tte.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/index.html</loc>
@@ -248,6 +257,12 @@
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/posp_normal.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/print.drugdevelopResult.html</loc>
+  </url>
+  <url>
+    <loc>https://sterniii3.github.io/drugdevelopR/reference/print_drugdevelopResult_helper.html</loc>
   </url>
   <url>
     <loc>https://sterniii3.github.io/drugdevelopR/reference/prior_tte.html</loc>

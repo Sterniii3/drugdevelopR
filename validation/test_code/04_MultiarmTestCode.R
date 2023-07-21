@@ -2,7 +2,7 @@
 #' @editDate 2022-12-23
 test_that("04.01", {
   # Multiarm time-to-event endpoints
-  sink(nullfile())
+  
   res <- optimal_multiarm(alpha = 0.025,
                           beta = 0.1,
                           hr1 = 0.75, hr2 = 0.85,
@@ -16,7 +16,7 @@ test_that("04.01", {
                           c2 = 0.75, c3 = 1,
                           strategy = 1
                )
-  sink()
+  
   expect_equal(res$u, 8.56, tolerance = 0.005)
   expect_equal(res$n2, 141)
   expect_equal(res$n3, 391)
@@ -28,7 +28,7 @@ test_that("04.01", {
 #' @editDate 2022-12-23
 test_that("04.02", {
   # Multiarm time-to-event endpoints
-  sink(nullfile())
+  
   res <- optimal_multiarm(alpha = 0.025,
                           beta = 0.1,
                           hr1 = 0.75, hr2 = 0.85,
@@ -42,7 +42,7 @@ test_that("04.02", {
                           c2 = 0.75, c3 = 1,
                           strategy = 2
   )
-  sink()
+  
   expect_equal(res$u, 4.36, tolerance = 0.005)
   expect_equal(res$n2, 79)
   expect_equal(res$n3, 426)
@@ -54,7 +54,7 @@ test_that("04.02", {
 #' @editDate 2022-12-23
 test_that("04.03", {
   # Multiarm time-to-event endpoints
-  sink(nullfile())
+  
   res <- optimal_multiarm(alpha = 0.025,
                           beta = 0.1,
                           hr1 = 0.75, hr2 = 0.85,
@@ -69,7 +69,7 @@ test_that("04.03", {
                           strategy = 3,
                           N = 520
   )
-  sink()
+  
   # Strategy 1 = best promising
   expect_equal(res[1,]$u, 8.34, tolerance = 0.005)
   expect_equal(res[1,]$n2, 133)
@@ -89,7 +89,7 @@ test_that("04.03", {
 test_that("04.04", {
   # Multiarm time-to-event endpoints
   start_time_3 = Sys.time()
-  sink(nullfile())
+  
   res <- optimal_multiarm(alpha = 0.025,
                           beta = 0.1,
                           hr1 = 0.75, hr2 = 0.85,
@@ -119,7 +119,7 @@ test_that("04.04", {
                           c2 = 0.75, c3 = 1,
                           strategy = 2
   )
-  sink()
+  
   end_time_1 = Sys.time()
   time_elapsed_num_cl_1 = end_time_1 - start_time_1
   expect_true(time_elapsed_num_cl_1 > time_elapsed_num_cl_3)
@@ -128,7 +128,7 @@ test_that("04.04", {
 #' @editDate 2022-12-23
 test_that("04.05", {
   # Multiarm binary endpoints
-  sink(nullfile())
+  
   res <- optimal_multiarm_binary(alpha = 0.025,
                           beta = 0.1,
                           p0 = 0.5, p11 = 0.3, p12 = 0.4,
@@ -141,7 +141,7 @@ test_that("04.05", {
                           c2 = 0.75, c3 = 1,
                           strategy = 1
   )
-  sink()
+  
   expect_equal(res$u, 1264.64, tolerance = 0.005)
   expect_equal(res$n2, 386)
   expect_equal(res$n3, 344)
@@ -152,7 +152,7 @@ test_that("04.05", {
 #' @editDate 2022-12-29
 test_that("04.06", {
   # Multiarm binary endpoints with strategy 2
-  sink(nullfile())
+  
   res <- optimal_multiarm_binary(alpha = 0.025,
                                  beta = 0.1,
                                  p0 = 0.5, p11 = 0.3, p12 = 0.4,
@@ -165,7 +165,7 @@ test_that("04.06", {
                                  c2 = 0.75, c3 = 1,
                                  strategy = 2
   )
-  sink()
+  
   expect_equal(res$u, 1281.74, tolerance = 0.005)
   expect_equal(res$n2, 312)
   expect_equal(res$n3, 561)
@@ -176,7 +176,7 @@ test_that("04.06", {
 #' @editDate 2022-12-29
 test_that("04.07", {
   # Multiarm binary endpoints with strategy 3
-  sink(nullfile())
+  
   res <- optimal_multiarm_binary(alpha = 0.025,
                                  beta = 0.1,
                                  p0 = 0.5, p11 = 0.3, p12 = 0.4,
@@ -190,7 +190,7 @@ test_that("04.07", {
                                  strategy = 3,
                                  S = 0.85
   )
-  sink()
+  
   # Return results for both strategies
   expect_equal(res[1,]$u, -9999)
 
@@ -204,7 +204,7 @@ test_that("04.07", {
 #' @editDate 2022-12-29
 test_that("04.08", {
   # Multiarm normal endpoints with strategy 1
-  sink(nullfile())
+  
   res <- optimal_multiarm_normal(alpha = 0.05,
                                  beta = 0.1,
                                  Delta1 = 0.175, Delta2 = 0.225,
@@ -217,7 +217,7 @@ test_that("04.08", {
                                  c2 = 0.675, c3 = 0.72,
                                  strategy = 1
   )
-  sink()
+  
   expect_equal(res$u, 109.9, tolerance = 0.005)
   expect_equal(res$n2, 56)
   expect_equal(res$n3, 205)
@@ -229,7 +229,7 @@ test_that("04.08", {
 #' @editDate 2022-12-29
 test_that("04.09", {
   # Multiarm normal endpoints with strategy 2
-  sink(nullfile())
+  
   res <- optimal_multiarm_normal(alpha = 0.05,
                                  beta = 0.1,
                                  Delta1 = 0.175, Delta2 = 0.225,
@@ -242,7 +242,7 @@ test_that("04.09", {
                                  c2 = 0.675, c3 = 0.72,
                                  strategy = 2
   )
-  sink()
+  
   expect_equal(res$u, 107.09, tolerance = 0.005)
   expect_equal(res$n2, 30)
   expect_equal(res$n3, 247)
@@ -254,7 +254,7 @@ test_that("04.09", {
 #' @editDate 2022-12-29
 test_that("04.10", {
   # Multiarm normal endpoints with strategy 3 (i.e. strategies 1 and 2)
-  sink(nullfile())
+  
   res <- optimal_multiarm_normal(alpha = 0.05,
                                  beta = 0.1,
                                  Delta1 = 0.175, Delta2 = 0.225,
@@ -268,7 +268,7 @@ test_that("04.10", {
                                  strategy = 3,
                                  K = 200
   )
-  sink()
+  
   expect_equal(res[1,]$u, 109.68, tolerance = 0.005)
   expect_equal(res[1,]$n2, 46)
   expect_equal(res[1,]$n3, 190)

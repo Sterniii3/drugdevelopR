@@ -144,10 +144,12 @@ distributions used in this package. Fast computing is enabled by parallel
 programming.
 }
 \examples{
-\donttest{
 # Activate progress bar (optional)
+\dontrun{
 progressr::handlers(global = TRUE)
+}
 # Optimize
+\donttest{
 optimal_binary(w = 0.3,                    # define parameters for prior
   p0 = 0.6, p11 =  0.3, p12 = 0.5,
    in1 = 30, in2 = 60,                              # (https://web.imbi.uni-heidelberg.de/prior/)

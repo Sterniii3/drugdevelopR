@@ -23,7 +23,11 @@
 #' `r optimal_return_doc(type = "binary", setting = "multiarm")`
 #' 
 #' @examples
-#' \donttest{optimal_multiarm_binary( p0 = 0.6, 
+#' # Activate progress bar (optional)
+#' \dontrun{progressr::handlers(global = TRUE)}
+#' # Optimize
+#' \donttest{
+#' optimal_multiarm_binary( p0 = 0.6, 
 #'   p11 =  0.3, p12 = 0.5, 
 #'   n2min = 20, n2max = 100, stepn2 = 4,               # define optimization set for n2
 #'   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,     # define optimization set for RRgo
@@ -141,7 +145,7 @@ optimal_multiarm_binary <- function(p0, p11, p12,
                          "\nonset date:", as.character(date),
                          "\nfinish date:", as.character(Sys.time()))
 
-  
+  class(result) <- c("drugdevelopResult", class(result))
   return(result)
   
 }

@@ -17,7 +17,8 @@ EPsProg_multiple_tte(
   step1,
   step2,
   fixed,
-  rho
+  rho,
+  rsamp
 )
 }
 \arguments{
@@ -46,6 +47,8 @@ EPsProg_multiple_tte(
 \item{fixed}{choose if true treatment effects are fixed or random}
 
 \item{rho}{correlation between the two endpoints}
+
+\item{rsamp}{sample data set for Monte Carlo integration}
 }
 \value{
 The output of the function \code{EPsProg_multiple_tte()} is the expected probability of a successful program, when going to phase III.
@@ -57,8 +60,10 @@ Successful is defined as at least one endpoint showing a statistically significa
 \examples{
 res <- EPsProg_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.025, beta = 0.1,
                                ec = 1, hr1 = 0.75, hr2 = 0.80,
-                               id1 = 300, id2 = 600, 
+                               id1 = 300, id2 = 600,
                                step1 = 1, step2 = 0.95,
-                               fixed = TRUE, rho = 0.3)
+                               fixed = TRUE, rho = 0.3,
+                               rsamp = get_sample_multiple_tte(hr1 = 0.75,
+                               hr2 = 0.80, id1 = 300, id2 = 600, rho = 0.3))
 }
 \keyword{internal}

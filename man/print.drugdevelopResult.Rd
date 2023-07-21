@@ -18,6 +18,9 @@ Displays details about the optimal results from a \code{drugdevelopResult} objec
 }
 \examples{
 \donttest{
+# Activate progress bar (optional)
+\dontrun{progressr::handlers(global = TRUE)}
+# Optimize
 res <- optimal_normal(w=0.3,                       
   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,  
   a = 0.25, b = 0.75,
@@ -34,8 +37,8 @@ res <- optimal_normal(w=0.3,
   fixed = FALSE,                                    
   skipII = FALSE,                                    
   num_cl = 1)
+# Print results
 print(res)                                  
 }
-
-
 }
+\keyword{internal}

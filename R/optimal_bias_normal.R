@@ -14,7 +14,11 @@
 #' `r optimal_return_doc(type = "normal", setting = "bias")`
 #'
 #' @examples
-#' \donttest{res <- optimal_bias_normal(w=0.3,             # define parameters for prior
+#' # Activate progress bar (optional)
+#' \dontrun{progressr::handlers(global = TRUE)}
+#' # Optimize
+#' \donttest{
+#' optimal_bias_normal(w=0.3,             # define parameters for prior
 #'   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,    # (https://web.imbi.uni-heidelberg.de/prior/)
 #'   a = 0.25, b = 0.75,
 #'   n2min = 20, n2max = 100, stepn2 = 10,                # define optimization set for n2
@@ -229,7 +233,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                          "\noptimization sequence n2:", N2,
                          "\nonset date:", as.character(date),
                          "\nfinish date:", as.character(Sys.time()))
-  
+  class(result) <- c("drugdevelopResult", class(result))
   return(result)
   
 }

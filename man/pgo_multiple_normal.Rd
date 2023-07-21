@@ -14,7 +14,8 @@ pgo_multiple_normal(
   sigma1,
   sigma2,
   fixed,
-  rho
+  rho,
+  rsamp
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ pgo_multiple_normal(
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE Delta1 is used as fixed effect}
 
 \item{rho}{correlation between the two endpoints}
+
+\item{rsamp}{sample data set for Monte Carlo integration}
 }
 \value{
 The output of the function \code{pgo_multiple_normal()} is the probability to go to phase III.
@@ -47,7 +50,9 @@ get a successful drug development program. Successful means that both endpoints 
 }
 \examples{
 res <- pgo_multiple_normal(kappa = 0.1, n2 = 50,
-                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600, 
-                               sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3)
+                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600,
+                               sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3,
+                               rsamp = get_sample_multiple_normal(Delta1 = 0.375,
+                               Delta2 = 0.625, in1 = 300, in2 = 600, rho = 0.3))
 }
 \keyword{internal}

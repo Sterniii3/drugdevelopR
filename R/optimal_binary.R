@@ -23,10 +23,12 @@
 #' `r optimal_return_doc(type = "binary")` 
 #'
 #' @examples
-#' \donttest{
 #' # Activate progress bar (optional)
+#' \dontrun{
 #' progressr::handlers(global = TRUE)
+#' }
 #' # Optimize
+#' \donttest{
 #' optimal_binary(w = 0.3,                    # define parameters for prior
 #'   p0 = 0.6, p11 =  0.3, p12 = 0.5,
 #'    in1 = 30, in2 = 60,                              # (https://web.imbi.uni-heidelberg.de/prior/)
@@ -211,6 +213,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           "\noptimization sequence n2:", N2,
                           "\nonset date:", as.character(date),
                           "\nfinish date:", as.character(Sys.time()))
+   class(result) <- c("drugdevelopResult", class(result))
    return(result)
 }
 

@@ -2,7 +2,7 @@
 #' @editDate 2022-12-29
 test_that("05.01", {
   # Multiple time-to-event endpoints
-  sink(nullfile())
+  
   res <- optimal_multiple_tte(alpha = 0.025,
                           beta = 0.1,
                           hr1 = 0.75, hr2 = 0.85,
@@ -18,7 +18,7 @@ test_that("05.01", {
                           rho = 0.6,
                           fixed = FALSE,
                )
-  sink()
+  
   expect_equal(res$u, 597.78, tolerance = 0.005)
   expect_equal(res$n2, 216)
   expect_equal(res$n3, 280)
@@ -30,7 +30,7 @@ test_that("05.01", {
 #' @editDate 2022-12-29
 test_that("05.02", {
   # Multiple time-to-event endpoints with sample size constraint
-  sink(nullfile())
+  
   res <- optimal_multiple_tte(alpha = 0.025,
                               beta = 0.1,
                               hr1 = 0.75, hr2 = 0.85,
@@ -48,7 +48,7 @@ test_that("05.02", {
                               N = 480
                               
   )
-  sink()
+  
   expect_equal(res$u, 595.85, tolerance = 0.005)
   expect_equal(res$n2, 200)
   expect_equal(res$n3, 279)
@@ -59,7 +59,7 @@ test_that("05.02", {
 #' @editDate 2022-12-29
 test_that("05.03", {
   # Multiple time-to-event endpoints -- no cost limit
-  sink(nullfile())
+  
   res_nolim <- optimal_multiple_tte(alpha = 0.025,
                               beta = 0.1,
                               hr1 = 0.75, hr2 = 0.85,
@@ -92,7 +92,7 @@ test_that("05.03", {
                               fixed = TRUE,
                               K = 600
   )
-  sink()
+  
   expect_equal(res_nolim$u, 144.96, tolerance = 0.005)
   expect_equal(res_nolim$n2, 172)
   expect_equal(res_nolim$n3, 408)
@@ -113,7 +113,7 @@ test_that("05.03", {
 #' @editDate 2022-12-29
 test_that("05.04", {
   # Multiple time-to-event endpoints
-  sink(nullfile())
+  
   res <- optimal_multiple_tte(alpha = 0.025,
                               beta = 0.1,
                               hr1 = 0.75, hr2 = 0.85,
@@ -130,7 +130,7 @@ test_that("05.04", {
                               fixed = TRUE,
                               S = 0.6
   )
-  sink()
+  
   expect_equal(res$u, 132.6, tolerance = 0.005)
   expect_equal(res$n2, 280)
   expect_equal(res$n3, 467)
@@ -144,7 +144,7 @@ test_that("05.04", {
 test_that("05.05", {
   # Multiple time-to-event endpoints
   start_time_3 = Sys.time()
-  sink(nullfile())
+  
   optimal_multiple_tte(alpha = 0.025,
                               beta = 0.1,
                               hr1 = 0.75, hr2 = 0.85,
@@ -178,7 +178,7 @@ test_that("05.05", {
                               rho = 0.6,
                               fixed = FALSE,
   )
-  sink()
+  
   end_time_1 = Sys.time()
   time_elapsed_num_cl_1 = end_time_1 - start_time_1
   expect_true(time_elapsed_num_cl_1 > time_elapsed_num_cl_3)
@@ -187,7 +187,7 @@ test_that("05.05", {
 #' @editDate 2022-12-29
 test_that("05.06", {
   # Multiple normally distributed endpoints -- no sample size constraint
-  sink(nullfile())
+  
   res_nolim <- optimal_multiple_normal(alpha = 0.05,
                               beta = 0.1,
                               Delta1 = 0.75, Delta2 = 0.8,
@@ -203,14 +203,14 @@ test_that("05.06", {
                               in1 = 300, in2 = 600,
                               relaxed = TRUE
   )
-  sink()
+  
   expect_equal(res_nolim$u, 960.55, tolerance = 0.005)
   expect_equal(res_nolim$n2, 108)
   expect_equal(res_nolim$n3, 85)
   expect_equal(res_nolim$n, 193)
   expect_equal(res_nolim$Kappa, 0.02)
   # Multiple normally distributed endpoints -- with sample size constraint
-  sink(nullfile())
+  
   res_lim <- optimal_multiple_normal(alpha = 0.05,
                                      beta = 0.1,
                                      Delta1 = 0.75, Delta2 = 0.8,
@@ -227,7 +227,7 @@ test_that("05.06", {
                                      relaxed = TRUE,
                                      N = 190,
   )
-  sink()
+  
   expect_equal(res_lim$u, 959.20, tolerance = 0.005)
   expect_equal(res_lim$n2, 96)
   expect_equal(res_lim$n3, 94)
@@ -239,7 +239,7 @@ test_that("05.06", {
 test_that("05.07", {
   # Multiple normally distributed endpoints -- parallel computing
   start_time_3 = Sys.time()
-  sink(nullfile())
+  
   optimal_multiple_normal(alpha = 0.05,
                                        beta = 0.1,
                                        Delta1 = 0.75, Delta2 = 0.8,
@@ -273,7 +273,7 @@ test_that("05.07", {
                           in1 = 300, in2 = 600,
                           relaxed = TRUE
   )
-  sink()
+  
   end_time_1 = Sys.time()
   time_elapsed_num_cl_1 = end_time_1 - start_time_1
   expect_true(time_elapsed_num_cl_1 > time_elapsed_num_cl_3)
@@ -282,7 +282,7 @@ test_that("05.07", {
 #' @editDate 2022-12-29
 test_that("05.08", {
   # Multiple normally distributed endpoints -- with and without cost limit
-  sink(nullfile())
+  
   res_nolim <- optimal_multiple_normal(alpha = 0.05,
                                        beta = 0.1,
                                        Delta1 = 0.75, Delta2 = 0.8,
@@ -314,7 +314,7 @@ test_that("05.08", {
                                        relaxed = TRUE,
                                        K = 400
   )
-  sink()
+  
   expect_equal(res_nolim$u, 596.08, tolerance = 0.005)
   expect_equal(res_nolim$n2, 120)
   expect_equal(res_nolim$K2, 190)
@@ -331,7 +331,7 @@ test_that("05.08", {
 test_that("05.09", {
   # Multiple normally distributed endpoints
   # -- constraint on success probability
-  sink(nullfile())
+  
   res_nolim <- optimal_multiple_normal(alpha = 0.05,
                                        beta = 0.1,
                                        Delta1 = 0.75, Delta2 = 0.8,
@@ -363,7 +363,7 @@ test_that("05.09", {
                                        relaxed = TRUE,
                                        S = 0.7
   )
-  sink()
+  
   expect_equal(res_nolim$u, 596.08, tolerance = 0.005)
   expect_equal(res_nolim$n2, 120)
   expect_equal(res_nolim$sProg, 0.55)
@@ -379,7 +379,7 @@ test_that("05.09", {
 test_that("05.10", {
   # Multiple normally distributed endpoints
   # -- with and without
-  sink(nullfile())
+  
   res_relax <- optimal_multiple_normal(alpha = 0.05,
 
                                        beta = 0.1,
@@ -411,7 +411,7 @@ test_that("05.10", {
                                      in1 = 300, in2 = 600,
                                      relaxed = FALSE,
   )
-  sink()
+  
   expect_equal(res_relax$u, 596.08, tolerance = 0.005)
   expect_equal(res_relax$n2, 120)
   expect_equal(res_relax$Kappa, 0.02)

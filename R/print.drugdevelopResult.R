@@ -10,6 +10,9 @@
 #'
 #' @examples
 #' \donttest{
+#' # Activate progress bar (optional)
+#' \dontrun{progressr::handlers(global = TRUE)}
+#' # Optimize
 #' res <- optimal_normal(w=0.3,                       
 #'   Delta1 = 0.375, Delta2 = 0.625, in1=300, in2=600,  
 #'   a = 0.25, b = 0.75,
@@ -26,10 +29,10 @@
 #'   fixed = FALSE,                                    
 #'   skipII = FALSE,                                    
 #'   num_cl = 1)
+#' # Print results
 #' print(res)                                  
 #' }
-#' 
-#' 
+#' @keywords internal
 print.drugdevelopResult <- function(x, sequence = FALSE, ...) {
   if(nrow(x) > 1){
     # Skip phase II option
@@ -44,9 +47,6 @@ print.drugdevelopResult <- function(x, sequence = FALSE, ...) {
         cat("Skipping phase II is the optimal option with respect to the maximal expected utility.\n")
       }else{
         cat("Skipping phase II is NOT the optimal option with respect to the maximal expected utility.\n")
-      }
-      if(sequence){
-        cat(attr(x, "comment"))
       }
     }
     # Bias adjustment
@@ -70,9 +70,6 @@ print.drugdevelopResult <- function(x, sequence = FALSE, ...) {
         cat("Optimization result with additive adjustment of treatment effect and decision rule:\n")
         print_drugdevelopResult_helper(x[which(x$Method == "add2."),], ...)
         cat("\n")
-      }
-      if(sequence){
-        cat(attr(x, "comment"))
       }
     }
     # Multi-trial
@@ -102,12 +99,10 @@ print.drugdevelopResult <- function(x, sequence = FALSE, ...) {
   else{
     cat("Optimization result:\n")
     print_drugdevelopResult_helper(x, ...)
-    if(sequence){
-      cat(attr(x, "comment"))
-    }
   }
-  
-
+  if(sequence){
+    cat(attr(x, "comment"))
+  }
 }
 
 #' Helper function for printing a drugdevelopResult Object
@@ -167,7 +162,7 @@ print_drugdevelopResult_helper <- function(x, ...){
   }
   cat(" Success probability: ", x$sProg, "\n", sep = "")
   if("sProg1" %in% names(x)){
-    cat(" Success probability for effect size:\n")
+    cat(" Success probability by effect size:\n")
     cat("   small: ", x$sProg1, ", medium: ", x$sProg2, 
         ", large: ", x$sProg3, "\n", sep = "")
   } else if("sProg2" %in% names(x)){
@@ -226,7 +221,7 @@ print_drugdevelopResult_helper <- function(x, ...){
      !("rho" %in% names(x))){
     cat(" Parameters of the prior distribution: \n", sep = "")
     cat("   Delta1: ", x$Delta1, ", Delta2: ", x$Delta2, ", in1: ", x$in1,
-        ", in2: ", x$in2, ", a: ", x$a, ", b: ", x$b, ", w: ", x$w, "\n", sep = "")
+        ", in2: ", x$in2, ",\n   a: ", x$a, ", b: ", x$b, ", w: ", x$w, "\n", sep = "")
   }
   if("Delta1" %in% names(x) & 
      (!("Case" %in% names(x)) & "Strategy" %in% names(x))){

@@ -20,7 +20,8 @@ EPsProg_multiple_normal(
   in1,
   in2,
   fixed,
-  rho
+  rho,
+  rsamp
 )
 }
 \arguments{
@@ -55,6 +56,8 @@ EPsProg_multiple_normal(
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE then \code{Delta1} is used as fixed effect}
 
 \item{rho}{correlation between the two endpoints}
+
+\item{rsamp}{sample data set for Monte Carlo integration}
 }
 \value{
 The output of the function \code{EPsProg_multiple_normal()} is the expected probability of a successfull program, when going to phase III.
@@ -66,7 +69,9 @@ Successful is defined as both endpoints showing a statistically significant posi
 \examples{
 \donttest{EPsProg_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
                                Delta1 = 0.375, Delta2 = 0.625, sigma1 = 2, sigma2 = 1,
-                               step11 = 0, step12 = 0, step21 = 0.5, step22 = 0.5, 
-                               in1 = 300, in2 = 600, fixed = TRUE, rho = 0.3)}
+                               step11 = 0, step12 = 0, step21 = 0.5, step22 = 0.5,
+                               in1 = 300, in2 = 600, fixed = TRUE, rho = 0.3,
+                               rsamp = get_sample_multiple_normal(Delta1 = 0.375,
+                               Delta2 = 0.625, in1 = 300, in2 = 600, rho = 0.3))}
 }
 \keyword{internal}

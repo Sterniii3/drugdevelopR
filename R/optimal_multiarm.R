@@ -28,7 +28,11 @@
 #' `r optimal_return_doc(type = "tte", setting = "multiarm")`
 #' 
 #' @examples
-#' \donttest{optimal_multiarm(hr1 = 0.75, hr2 = 0.80,    # define assumed true HRs 
+#' # Activate progress bar (optional)
+#' \dontrun{progressr::handlers(global = TRUE)}
+#' # Optimize
+#' \donttest{
+#' optimal_multiarm(hr1 = 0.75, hr2 = 0.80,    # define assumed true HRs 
 #'   ec = 0.6,                                          # control arm event rate
 #'   n2min = 30, n2max = 90, stepn2 = 6,                # define optimization set for n2
 #'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,     # define optimization set for HRgo
@@ -148,7 +152,7 @@ optimal_multiarm <- function(hr1, hr2, ec,
                     "\noptimization sequence n2:", N2,
                     "\nonset date:", as.character(date),
                     "\nfinish date:", as.character(Sys.time()))
-  
+  class(result) <- c("drugdevelopResult", class(result))
   return(result)
   
 }

@@ -113,7 +113,11 @@ prior distributions used in this package. Fast computing is enabled by
 parallel programming.
 }
 \examples{
-\donttest{optimal_multiarm_normal(Delta1 = 0.375, Delta2 = 0.625,     
+# Activate progress bar (optional)
+\dontrun{progressr::handlers(global = TRUE)}
+# Optimize
+\donttest{
+optimal_multiarm_normal(Delta1 = 0.375, Delta2 = 0.625,     
   n2min = 20, n2max = 100, stepn2 = 4,                 # define optimization set for n2
   kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,   # define optimization set for kappa
   alpha = 0.05, beta = 0.1,                            # drug development planning parameters
