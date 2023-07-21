@@ -10,7 +10,7 @@ test_that("Optimal_binary works with prior distribution", {
                               steps1 = 1, stepm1 = 0.95,  stepl1 = 0.85,  
                               b1 = 1000, b2 = 2000, b3 = 3000,  
                               gamma = 0,  fixed = FALSE,
-                              skipII = FALSE,num_cl = 1)[1], 
+                              skipII = FALSE,num_cl = 1)[2], 
                data.frame(u=678.04))
 })
 
@@ -26,7 +26,7 @@ test_that("Optimal_binary works with fixed effects", {
                               steps1 = 1, stepm1 = 0.95,  stepl1 = 0.85,  
                               b1 = 1000, b2 = 2000, b3 = 3000,  
                               gamma = 0,  fixed = TRUE,
-                              skipII = FALSE,num_cl = 1)[1], 
+                              skipII = FALSE,num_cl = 1)[2], 
                data.frame(u=1806.86))
 })
 
@@ -42,7 +42,7 @@ test_that("Optimal_binary works when skipping phase II", {
                               steps1 = 1, stepm1 = 0.95,  stepl1 = 0.85,  
                               b1 = 1000, b2 = 2000, b3 = 3000,  
                               gamma = 0,  fixed = TRUE,
-                              skipII = TRUE,num_cl = 1)[[2]]$u, 2234.78)
+                              skipII = TRUE,num_cl = 1)[2, ]$u, 2234.78)
 })
 
 test_that("Optimal_binary works when skipping phase II with a prior distribution", {
@@ -57,5 +57,5 @@ test_that("Optimal_binary works when skipping phase II with a prior distribution
                               steps1 = 1, stepm1 = 0.95,  stepl1 = 0.85,  
                               b1 = 1000, b2 = 2000, b3 = 3000,  
                               gamma = 0,  fixed = FALSE,
-                              skipII = TRUE,num_cl = 1)[[2]]$u, 1160.48)
+                              skipII = TRUE,num_cl = 1)[2, ]$u, 1160.48)
 })
