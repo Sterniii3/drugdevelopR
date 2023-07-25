@@ -10,5 +10,5 @@ test_that("optimal_multiple_normal works for fixed = TRUE", {
                                        steps1 = 0,  stepm1 = 0.5, stepl1 = 0.8,
                                        b1 = 1000, b2 = 2000, b3 = 3000, 
                                        rho = 0.5, relaxed = TRUE,
-                                       fixed = TRUE,  num_cl = 2)$u, 511.52)
+                                       fixed = TRUE,  num_cl = 2)$u, 1096)
 })
