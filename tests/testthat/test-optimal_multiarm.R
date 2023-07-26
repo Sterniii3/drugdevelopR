@@ -9,5 +9,5 @@ test_that("Optimal_multiarm works", {
                                 steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,   
                                 b1 = 1000, b2 = 2000, b3 = 3000,  
                                 strategy = 1,  num_cl = 2)[2], 
-               data.frame(u=241.46))
+               drugdevelopResult(data.frame(u=241.46)))
 })
