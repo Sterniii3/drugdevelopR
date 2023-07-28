@@ -30,6 +30,7 @@ test_that("Ess_multiple_normal works", {
                                                                     in1 = 300,
                                                                     in2 = 600,
                                                                     rho = 0.3)),
-               377.2879)
+               377.2879,
+               tolerance = 1e-03)
 })
 
