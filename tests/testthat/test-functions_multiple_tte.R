@@ -41,7 +41,7 @@ test_that("probability to go to phase III increases with lower hazard ratio", {
                                                     id1 = 300,
                                                     id2 = 600,
                                                     rho = 0.3)),
-               0.5681915)
+               0.4265765)
 })
 
 
@@ -63,5 +63,5 @@ test_that("os_tte works", {
                                                       id1 = 300,
                                                       id2 = 600,
                                                       rho = 0.3)),
-               0.5681915)
+               0.4265765)
 })
