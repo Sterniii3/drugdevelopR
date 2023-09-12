@@ -339,6 +339,6 @@ optimal_multiple_tte <- function(hr1,
   )
   
   
-  return(result)
+  return(drugdevelopResult(result))
   
 }
