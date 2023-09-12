@@ -5,6 +5,8 @@ Version: 1.0.0
 Authors@R: c(person("Stella", "Erdmann",
                     email = "erdmann@imbi.uni-heidelberg.de", role = "aut"),
              person("Johannes", "Cepicka", role = "aut"),
+             person("Marietta", "Kirchner", role = "aut"),
+             person("Meinhard", "Kieser", role = "aut"),
              person("Lukas D.", "Sauer", email = "sauer@imbi.uni-heidelberg.de",
                     role = c("aut", "cre"),
                     comment = c(ORCID = "0000-0002-1340-9994")))
