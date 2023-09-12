@@ -328,12 +328,31 @@ larger expected gains than PFS alone (i.e. endpoint 2).</p>
 <span class="r-in"><span>  b12 <span class="op">=</span> <span class="fl">1000</span>, b22 <span class="op">=</span> <span class="fl">1500</span>, b32 <span class="op">=</span> <span class="fl">2000</span>,        <span class="co"># define expected benefits (both scenarios)</span></span></span>
 <span class="r-in"><span>  rho <span class="op">=</span> <span class="fl">0.6</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span>,                   <span class="co"># correlation and treatment effect</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                <span class="co"># number of cores for parallelized computing</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     u HRgo n2  n3   n  pgo sProg  hr1 hr2 rho   K   N    S  K2  K3 sProg2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 353 0.85 90 245 335 0.79  0.47 0.75 0.8 0.6 Inf Inf -Inf 168 364   0.23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   sProg3   OS steps1 stepm1 stepl1 alpha beta c02 c03   c2 c3  b11  b21  b31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.13 0.64      1   0.95   0.85  0.05  0.1 100 150 0.75  1 1000 2000 3000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    b12  b22  b32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1000 1500 2000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 353</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 90, phase III: 245, total: 335</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.79</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 168, phase III: 364, cost constraint: Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.75, phase III: 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Effect size categories:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   small: 1 medium: 0.95 large: 0.85</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Expected gains if endpoint 1 is significant:  small: 1000 medium: 2000 large: 3000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Expected gains if only endpoint 2 is significant:  small: 1000 medium: 1500 large: 2000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability for a trial with:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    two arms in phase III: 0.23, three arms in phase III: 0.13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability of endpoint 1 being significant in phase III: 0.64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.85 [HRgo] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Assumed true effects [HR]: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    endpoint 1: 0.75,  endpoint2 2: 0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Correlation between endpoints: 0.6</span>
 <span class="r-in"><span> <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
