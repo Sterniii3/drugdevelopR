@@ -658,6 +658,7 @@ utility_multiple_tte <-
     steps2 <- stepm1
     stepm2 <- stepl1
     stepl2 <- 0
+    rsamp <- get_sample_multiple_tte(hr1, hr2, id1, id2, rho)
     
     n3 <- Ess_multiple_tte(
       HRgo = HRgo,
@@ -683,7 +684,8 @@ utility_multiple_tte <-
       id1 = id1,
       id2 = id2,
       fixed = fixed,
-      rho = rho
+      rho = rho,
+      rsamp = rsamp
     )
     
     pw <-
