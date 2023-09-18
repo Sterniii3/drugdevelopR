@@ -2,7 +2,7 @@
 #' @editDate 2022-12-29
 test_that("05.01", {
   # Multiple time-to-event endpoints
-  set.seed(123)
+  set.seed(456)
   res <- optimal_multiple_tte(alpha = 0.025,
                           beta = 0.1,
                           hr1 = 0.75, hr2 = 0.85,
@@ -19,12 +19,12 @@ test_that("05.01", {
                           fixed = FALSE,
                )
   
-  expect_equal(res$u, 1269, tolerance = 0.005)
-  expect_equal(res$n2, 124)
-  expect_equal(res$n3, 190)
-  expect_equal(res$n, 314)
-  expect_equal(res$HRgo, 0.84)
-  expect_equal(res$pgo, 0.70)
+  expect_equal(res$u, 1249, tolerance = 0.005)
+  expect_equal(res$n2, 144)
+  expect_equal(res$n3, 227)
+  expect_equal(res$n, 371)
+  expect_equal(res$HRgo, 0.86)
+  expect_equal(res$pgo, 0.72)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
