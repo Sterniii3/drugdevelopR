@@ -65,7 +65,7 @@ res <- optimal_binary(p0 = 0.5, p11 =  0.3,               # probabilities of the
 
 ```{r, eval=TRUE, include=FALSE}
 # Comment this chunk after running it once
-#res <- optimal_binary(p0 = 0.5, p11 =  0.3,               # probabilities of the unfavorable outcome
+# res <- optimal_binary(p0 = 0.5, p11 =  0.3,               # probabilities of the unfavorable outcome
 #   n2min = 20, n2max = 400, stepn2 = 4,                   # define optimization set for n2
 #   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,         # define optimization set for RRgo
 #   alpha = 0.025, beta = 0.1,                              # drug development planning parameters
@@ -78,7 +78,7 @@ res <- optimal_binary(p0 = 0.5, p11 =  0.3,               # probabilities of the
 #   fixed = TRUE,                                          # choose if true treatment effects are fixed or random
 #   skipII = FALSE,                                        # choose if skipping phase II would be an option
 #   num_cl = 1)
-#saveRDS(res, file="optimal_binary_basic_setting.RDS")
+# saveRDS(res, file="optimal_binary_basic_setting.RDS")
 ```
 ```{r, eval=TRUE, include=FALSE}
 res <- readRDS(file="optimal_binary_basic_setting.RDS")
@@ -95,9 +95,9 @@ res
 
 The program returns a total of thirteen values and the input values. For now, we will only look at the most important ones:
 
-* `res$n2` is the optimal sample size for phase II and `res$n3` the resulting sample size for phase III. We see that the optimal scenario requires 256 participants in phase II and 290 participants in phase III. 
-* `res$RRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a risk ratio of less than 0.87 in phase II in order to proceed to phase III. 
-* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 1528.94, i.e. we have an expected utility of 152 894 000\$. 
+* `res$n2` is the optimal sample size for phase II and `res$n3` the resulting sample size for phase III. We see that the optimal scenario requires 260 participants in phase II and 346 participants in phase III. 
+* `res$RRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a risk ratio of less than 0.86 in phase II in order to proceed to phase III. 
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 1399.56, i.e. we have an expected utility of 139 956 000\$. 
 
 # Where to go from here
 

@@ -89,9 +89,9 @@ res
 
 The program returns a total of thirteen values and the input values. Once again, we will only focus at the most important ones:
 
-* `res$n2` is the optimal sample size for phase II and `res$n3` the resulting sample size for phase III. We see that the optimal scenario requires 76 participants in phase II and 158 participants in phase III. The number of participants in both phases was reduced compared to the setting with a fixed treatment effect. 
+* `res$n2` is the optimal sample size for phase II and `res$n3` the resulting sample size for phase III. We see that the optimal scenario requires 80 participants in phase II and 188 participants in phase III. The number of participants in both phases was reduced compared to the setting with a fixed treatment effect. 
 * `res$Kappa` is the optimal threshold value for the go/no-go decision rule. We see that we need a treatment effect of more than 0.06 in phase II in order to proceed to phase III, which is the same as in the baseline scenario. 
-* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 3473.81, i.e. we have an expected utility of 347 381 000\$. This is a 6.56\% increase over the scenario without the prior distribution. The increase in the expected utility can be attributed to the additional weight which was put on the second treatment effect `Delta2`, which was more promising than our treatment effect.
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 3147.32, i.e. we have an expected utility of 314 732 000\$. This is a 6.83\% increase over the scenario without the prior distribution. The increase in the expected utility can be attributed to the additional weight which was put on the second treatment effect `Delta2`, which was more promising than our treatment effect.
 
 Of course, the differences in the output values compared to the fixed setting heavily depend on the choice of the prior.
 
@@ -99,7 +99,7 @@ Of course, the differences in the output values compared to the fixed setting he
 
 Note that in the setting of [time-to-event outcomes](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html), the following input parameters have to be specified, which differ from the setting with normally distributed outcomes:
 
-* Instead of the parameters `in1` and `in2` for the "amount of information", we have to use the parameters `id1` and `id2` which represent the "number of events". They refer to the number of events which were observed in the study to determine the treatment effect. If in our study 210 events could be observed, then the value for `id1` is set to be 420. If we assume assume that in the study of the other research group 420 events could be observed, the parameter value for `id2` is 420.
+* Instead of the parameters `in1` and `in2` for the "amount of information", we have to use the parameters `id1` and `id2` which represent the "number of events". They refer to the number of events which were observed in the study to determine the treatment effect. If in our study 210 events could be observed, then the value for `id1` is set to be 210. If we assume assume that in the study of the other research group 420 events could be observed, the parameter value for `id2` is 420.
 * Moreover, we do not need truncation values, i.e. values for the parameters `a` and `b`.
 
 # Where to go from here
