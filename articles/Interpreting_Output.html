@@ -167,7 +167,7 @@ necessary detail:</p>
 <li>
 <code>res$u</code> is the expected utility of the program for the
 optimal sample size and threshold value. In our case it amounts to
-3259.83, i.e. we have an expected utility of 325 983 000$. As the
+2946.07, i.e. we have an expected utility of 294 607 000$. As the
 function maximizes the expected utility, this is the highest expected
 utility one can receive given the input parameters.</li>
 <li>
@@ -180,7 +180,7 @@ the threshold value, we proceed to phase III.</li>
 <li>
 <code>res$n2</code> is the optimal sample size for phase II and
 <code>res$n3</code> the resulting sample size for phase III. We see that
-the optimal scenario requires 84 participants in phase II and 166
+the optimal scenario requires 92 participants in phase II and 192
 participants in phase III. <code>res$n</code> is the sum of
 <code>res$n2</code> and <code>res$n3</code> and refers to the total
 number of participants. Note, that one can set a maximum number of
@@ -202,11 +202,11 @@ successful program is 0.85, so a trial with these input parameters will
 be successful 85% of the time. The probability of a successful program
 is further subdivided in probabilities for small, medium or large
 treatment effect. The probability of a small treatment effect
-<code>res$sProg1</code> is 0.68 in our case, for a medium treatment
-effect the probability <code>res$sProg2</code> is 0.17 and for a large
-treatment effect the probability <code>res&amp;$sProg3</code> is 0.01.
-The treatment effects correspond to the benefit categories, so with a
-probability of 0.68 we receive a benefit of 300,000,000$ and so on. Due
+<code>res$sProg1</code> is 0.72 in our case, for a medium treatment
+effect the probability <code>res$sProg2</code> is 0.12 and for a large
+treatment effect the probability <code>res&amp;$sProg3</code> is 0. The
+treatment effects correspond to the benefit categories, so with a
+probability of 0.72 we receive a benefit of 300,000,000$ and so on. Due
 to rounding, the probabilities may not add up exactly to the overall
 probability of a successful program. Note that one can set a minimum
 probability of successful program, leading to constrained optimization.
@@ -217,7 +217,7 @@ phase II and <code>res$K3</code> in phase III. The costs in phase II are
 calculated as <span class="math inline">\(c_{02} + n_2\cdot c_2\)</span>
 and the costs in phase II are calculated as <span class="math inline">\((c_{03} + n_3\cdot c_3)\cdot p_{go}\)</span>,
 i.e. in phase III the expected costs are returned. In our setting, we
-have costs of 72 in 10^5$ (i.e. 7,200,000$) in phase II and costs of 139
+have costs of 77 in 10^5$ (i.e. 7,200,000$) in phase II and costs of 158
 in 10^5$(i.e. 13,900,000) in phase III. Note, that one can set a maximum
 cost limit for <span class="math inline">\(K=K_2+K_3\)</span> , leading
 to constrained optimization. For more information, see the article about

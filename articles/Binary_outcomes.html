@@ -229,26 +229,44 @@ variable.</p>
 let’s take a look at the output of the program.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span></span>
-<span><span class="co">#&gt;         u RRgo  n2  n3   n  pgo sProg  p0  p1   K  K2  K3 sProg1 sProg2 sProg3</span></span>
-<span><span class="co">#&gt; 1 1528.94 0.87 256 290 546 0.99  0.84 0.5 0.3 Inf 292 438   0.05   0.16   0.63</span></span>
-<span><span class="co">#&gt;   steps1 stepm1 stepl1 alpha beta c02 c03   c2 c3   b1   b2   b3 gamma</span></span>
-<span><span class="co">#&gt; 1      1   0.95   0.85  0.05  0.1 100 150 0.75  1 1000 2000 3000     0</span></span></code></pre></div>
+<span><span class="co">#&gt; Optimization result:</span></span>
+<span><span class="co">#&gt;  Utility: 1399.56</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 260, phase III: 346, total: 606</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 0.99</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 295, phase III: 494, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 100, phase III: 150</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.75, phase III: 1</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 1 (1000), medium: 0.95 (2000), large: 0.85 (3000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.83</span></span>
+<span><span class="co">#&gt;  Success probability by effect size:</span></span>
+<span><span class="co">#&gt;    small: 0.06, medium: 0.18, large: 0.59</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.86 [RRgo] </span></span>
+<span><span class="co">#&gt;  Assumed true effect:</span></span>
+<span><span class="co">#&gt;   rate in the control: 0.5, rate in the treatment group: 0.3</span></span>
+<span><span class="co">#&gt;  Treatment effect offset between phase II and III: 0 [gamma]</span></span></code></pre></div>
 <p>The program returns a total of thirteen values and the input values.
 For now, we will only look at the most important ones:</p>
 <ul>
 <li>
 <code>res$n2</code> is the optimal sample size for phase II and
 <code>res$n3</code> the resulting sample size for phase III. We see that
-the optimal scenario requires 256 participants in phase II and 290
+the optimal scenario requires 260 participants in phase II and 346
 participants in phase III.</li>
 <li>
 <code>res$RRgo</code> is the optimal threshold value for the
 go/no-go decision rule. We see that we need a risk ratio of less than
-0.87 in phase II in order to proceed to phase III.</li>
+0.86 in phase II in order to proceed to phase III.</li>
 <li>
 <code>res$u</code> is the expected utility of the program for the
 optimal sample size and threshold value. In our case it amounts to
-1528.94, i.e. we have an expected utility of 152 894 000$.</li>
+1399.56, i.e. we have an expected utility of 139 956 000$.</li>
 </ul>
 </div>
 </div>
