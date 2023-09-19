@@ -191,7 +191,7 @@ the risk ratio) we have a small treatment effect yielding an expected
 benefit of 100 000 000$.</li>
 <li>
 <code>alpha</code> is the specified significance level. We will set
-<code>alpha = 0.05</code>.</li>
+<code>alpha = 0.025</code>.</li>
 <li>1 - <code>beta</code> is the minimal power that we require for our
 drug development program. We will set <code>beta = 0.1</code>, meaning
 that we require a power of 90%.</li>
@@ -211,7 +211,7 @@ variable.</p>
 <code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_binary.html">optimal_binary</a></span><span class="op">(</span>p0 <span class="op">=</span> <span class="fl">0.5</span>, p11 <span class="op">=</span>  <span class="fl">0.3</span>,               <span class="co"># probabilities of the unfavorable outcome</span></span>
 <span>   n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">400</span>, stepn2 <span class="op">=</span> <span class="fl">4</span>,                   <span class="co"># define optimization set for n2</span></span>
 <span>   rrgomin <span class="op">=</span> <span class="fl">0.7</span>, rrgomax <span class="op">=</span> <span class="fl">0.9</span>, steprrgo <span class="op">=</span> <span class="fl">0.01</span>,         <span class="co"># define optimization set for RRgo</span></span>
-<span>   alpha <span class="op">=</span> <span class="fl">0.05</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                              <span class="co"># drug development planning parameters</span></span>
+<span>   alpha <span class="op">=</span> <span class="fl">0.025</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                              <span class="co"># drug development planning parameters</span></span>
 <span>   c2 <span class="op">=</span> <span class="fl">0.75</span>, c3 <span class="op">=</span> <span class="fl">1</span>, c02 <span class="op">=</span> <span class="fl">100</span>, c03 <span class="op">=</span> <span class="fl">150</span>,               <span class="co"># define fixed and variable costs for phase II and III,</span></span>
 <span>   K <span class="op">=</span> <span class="cn">Inf</span>, N <span class="op">=</span> <span class="cn">Inf</span>, S <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>,                            <span class="co"># constraints</span></span>
 <span>   steps1 <span class="op">=</span> <span class="fl">1</span>, stepm1 <span class="op">=</span> <span class="fl">0.95</span>,  stepl1 <span class="op">=</span> <span class="fl">0.85</span>,             <span class="co"># treatment effect size categories as proposed by IQWiG (2016)</span></span>
