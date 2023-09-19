@@ -27,7 +27,7 @@
 #'   lambdamin = 0.2, lambdamax = 1, steplambda = 0.05,   # define optimization set for lambda
 #'   alphaCImin = 0.025, alphaCImax = 0.5,
 #'   stepalphaCI = 0.025,                                 # define optimization set for alphaCI
-#'   alpha = 0.05, beta = 0.1,                            # drug development planning parameters
+#'   alpha = 0.025, beta = 0.1,                           # drug development planning parameters
 #'   c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,           # fixed and variable costs for phase II/III
 #'   K = Inf, N = Inf, S = -Inf,                          # set constraints
 #'   steps1 = 0,                                          # define lower boundary for "small"

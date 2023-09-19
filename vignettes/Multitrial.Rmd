@@ -54,11 +54,11 @@ So, in addition to the parameters from the basic setting, we provide the followi
 
 Note that for the following example, some input parameters were changed compared to the basic setting in order to reduce computation time.
 ```{r,eval = FALSE}
-res <- optimal_multitrial(w = 0.3,                       # define parameters for prior
+res <- optimal_multitrial(w = 0.3,                        # define parameters for prior
    hr1 = 0.7, hr2 = 0.8, id1 = 210, id2 = 420,            # (https://web.imbi.uni-heidelberg.de/prior/)
    d2min = 20, d2max = 200, stepd2 = 5,                   # define optimization set for d2
    hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.02,         # define optimization set for HRgo
-   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,        # drug development planning parameters
+   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,       # drug development planning parameters
    c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs
    K = Inf, N = Inf, S = -Inf,                            # set constraints
    b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefits
@@ -69,18 +69,18 @@ res <- optimal_multitrial(w = 0.3,                       # define parameters for
 
 ```{r, eval=TRUE, include=FALSE}
 # Comment this chunk after running it once
-#res <- optimal_multitrial(w = 0.3,                       # define parameters for prior
+# res <- optimal_multitrial(w = 0.3,                       # define parameters for prior
 #   hr1 = 0.7, hr2 = 0.8, id1 = 210, id2 = 420,            # (https://web.imbi.uni-heidelberg.de/prior/)
 #   d2min = 20, d2max = 200, stepd2 = 5,                   # define optimization set for d2
 #   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.02,         # define optimization set for HRgo
-#   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,        # drug development planning parameters
+#   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,       # drug development planning parameters
 #   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs
 #   K = Inf, N = Inf, S = -Inf,                            # set constraints
 #   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefits
 #   fixed = TRUE,                                          # choose if  effects are fixed or random
 #   case = 3, strategy = TRUE,                             # choose case and strategy
 #   num_cl = 3)
-#saveRDS(res, file="optimal_multitrial_case3.RDS")
+# saveRDS(res, file="optimal_multitrial_case3.RDS")
 ```
 ```{r, eval=TRUE, include=FALSE}
 res <- readRDS(file="optimal_multitrial_case3.RDS")
@@ -98,22 +98,22 @@ The program returns a data frame where the output for all implemented strategies
 
 For strategy 1 we get:
 
-* `res[1,]$d2` is the optimal number of events for phase II and `res[1,]$d3` the resulting number of events for phase III. We see that the optimal scenario requires 105 events in phase II and 444 events in phase III, which correspond to 150 participants in phase II and 634 in phase III. 
-* `res[1,]$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.78 in phase II in order to proceed to phase III. 
-* `res[1,]$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to -64.48, i.e. we have an expected utility of -6 448 000\$.
-* Note that the input parameter `alpha` is returned having a value of 0.000125, which corresponds to the adjusted significance level $\alpha^3$.
+* `res[1,]$d2` is the optimal number of events for phase II and `res[1,]$d3` the resulting number of events for phase III. We see that the optimal scenario requires 20 events in phase II and 258 events in phase III, which correspond to 30 participants in phase II and 368 in phase III. 
+* `res[1,]$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.76 in phase II in order to proceed to phase III. 
+* `res[1,]$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to -231.07, i.e. we have an expected utility of -23 107 000\$.
+* Note that the input parameter `alpha` is returned having a value of 0.000016, which corresponds to the adjusted significance level $\alpha^3$.
 
 The results for strategy 3 are:
 
-* `res[2,]$d2` is the optimal number of events for phase II and `res[2,]$d3` the resulting number of events for phase III. We see that the optimal scenario requires 75 events in phase II and 417 events in phase III, which leads to 108 participants in phase II and 594 in phase III. This corresponds to three trials in phase III with each trial having 298 participants.
-* `res[2,]$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.78 in phase II in order to proceed to phase III. 
-* `res[2,]$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to -272.50, i.e. we have an expected utility of -27 250 000\$.
+* `res[2,]$d2` is the optimal number of events for phase II and `res[2,]$d3` the resulting number of events for phase III. We see that the optimal scenario requires 20 events in phase II and 180 events in phase III, which leads to 30 participants in phase II and 258 in phase III. This corresponds to three trials in phase III with each trial having 86 participants.
+* `res[2,]$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.7 in phase II in order to proceed to phase III. 
+* `res[2,]$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to -411.1, i.e. we have an expected utility of -41 110 000\$.
 
 Strategy 4 yields the following results:
 
-* `res[3,]$d2` is the optimal number of events for phase II and `res[3,]$d3` the resulting number of events for phase III. We see that the optimal scenario requires 60 events in phase II and 264 events in phase III, which leads to 86 participants in phase II and 376 in phase III. This corresponds to four trials in phase III with each trial having 94 participants.
+* `res[3,]$d2` is the optimal number of events for phase II and `res[3,]$d3` the resulting number of events for phase III. We see that the optimal scenario requires 40 events in phase II and 292 events in phase III, which leads to 58 participants in phase II and 416 in phase III. This corresponds to four trials in phase III with each trial having 104 participants.
 * `res[3,]$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.70 in phase II in order to proceed to phase III. 
-* `res[3,]$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to -293.81, i.e. we have an expected utility of -29 381 000\$.
+* `res[3,]$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to -436.79, i.e. we have an expected utility of -43 679 000\$.
 
 # Where to go from here
 In this article we presented an example where several phase III trials are conducted. Note that this example is not restricted to time-to-event endpoints but can also be applied to binary and normally distributed endpoints by using the functions `optimal_multitrial_binary` and `optimal_multitrial_normal`. For more information on how to use the package, see:

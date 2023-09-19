@@ -55,7 +55,7 @@
 #'   a = 0.25, b = 0.75,
 #'   n2min = 20, n2max = 100, stepn2 = 4,               # define optimization set for n2
 #'   kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02, # define optimization set for kappa
-#'   alpha = 0.05, beta = 0.1,                          # drug development planning parameters
+#'   alpha = 0.025, beta = 0.1,                          # drug development planning parameters
 #'   c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,         # fixed/variable costs for phase II/III
 #'   K = Inf, N = Inf, S = -Inf,                        # set constraints
 #'   steps1 = 0,                                        # define lower boundary for "small"

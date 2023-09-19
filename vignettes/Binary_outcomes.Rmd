@@ -41,7 +41,7 @@ In order to apply the package to the setting from our example, we need to specif
 * `c02` and `c03` are fixed costs for phase II and phase III, respectively. We will set the phase II costs to 100 and the phase III costs to 150 (in $10^5$\$), i.e. we have fixed costs of 10 000 000\$ in phase II and 15 000 000\$ in phase III. Note that the currency of the input values does not matter, so an input value for `c02` of 15 could also be interpreted as fixed costs of 1 500 000€ if necessary. 
 * `c2` and `c3` are the per-patient costs in phase II and phase III. We will set them to be 0.75 in phase II and 0.1 in phase III. Again, these values are given in $10^5$\$, i.e. we have per-patient costs of 75 000\$ in phase II and 100 000\$ in phase III.
 * `b1`, `b2` and `b3` are the expected small, medium and large benefit categories for successfully launching the treatment on the market for each effect size category in $10^5$\$. We will define a small benefit of 1000, a medium benefit of 2000, and a large benefit of 3000. The effect size categories directly correspond to the treatment effect: For example, if the treatment effect is between 1 and 0.95 (in terms of the risk ratio) we have a small treatment effect yielding an expected benefit of 100 000 000\$.
-* `alpha` is the specified significance level. We will set `alpha = 0.05`.
+* `alpha` is the specified significance level. We will set `alpha = 0.025`.
 * 1 - `beta` is the minimal power that we require for our drug development program. We will set `beta = 0.1`, meaning that we require a power of 90%.
 
 As in the setting with normally distributed outcomes, the treatment effect may be fixed (as in this example) or may be distributed with respect to a [prior distribution](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html). Furthermore, [all options](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) to adapt the program to your specific needs are also available in this setting.
@@ -51,7 +51,7 @@ Now that we have defined all parameters needed for our example, we are ready to 
 res <- optimal_binary(p0 = 0.5, p11 =  0.3,               # probabilities of the unfavorable outcome
    n2min = 20, n2max = 400, stepn2 = 4,                   # define optimization set for n2
    rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,         # define optimization set for RRgo
-   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
+   alpha = 0.025, beta = 0.1,                              # drug development planning parameters
    c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III,
    K = Inf, N = Inf, S = -Inf,                            # constraints
    steps1 = 1, stepm1 = 0.95,  stepl1 = 0.85,             # treatment effect size categories as proposed by IQWiG (2016)
@@ -68,7 +68,7 @@ res <- optimal_binary(p0 = 0.5, p11 =  0.3,               # probabilities of the
 #res <- optimal_binary(p0 = 0.5, p11 =  0.3,               # probabilities of the unfavorable outcome
 #   n2min = 20, n2max = 400, stepn2 = 4,                   # define optimization set for n2
 #   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.01,         # define optimization set for RRgo
-#   alpha = 0.05, beta = 0.1,                              # drug development planning parameters
+#   alpha = 0.025, beta = 0.1,                              # drug development planning parameters
 #   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs for phase II and III,
 #   K = Inf, N = Inf, S = -Inf,                            # constraints
 #   steps1 = 1, stepm1 = 0.95,  stepl1 = 0.85,             # treatment effect size categories as proposed by IQWiG (2016)

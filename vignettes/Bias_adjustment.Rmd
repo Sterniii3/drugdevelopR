@@ -52,7 +52,7 @@ res <- optimal_bias(w = 0.3,                                 # define parameters
    lambdamin = 0.7, lambdamax = 1, steplambda = 0.05,        # optimization set for multiplicative adjustment
    alphaCImin = 0.1, alphaCImax = 0.5, stepalphaCI = 0.05,   # optimization set for additive adjustment
    hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.01,            # define optimization set for HRgo
-   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,           # drug development planning parameters
+   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,           # drug development planning parameters
    c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,                  # define fixed and variable costs
    K = Inf, N = Inf, S = -Inf,                               # set constraints
    steps1 = 1,  stepm1 = 0.95, stepl1 = 0.85,                # define boundary for  effect size categories
@@ -69,7 +69,7 @@ res <- optimal_bias(w = 0.3,                                 # define parameters
 #   lambdamin = 0.7, lambdamax = 1, steplambda = 0.05,        # optimization set for multiplicative adjustment
 #   alphaCImin = 0.1, alphaCImax = 0.5, stepalphaCI = 0.05,   # optimization set for additive adjustment
 #   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.01,            # define optimization set for HRgo
-#   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,           # drug development planning parameters
+#   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,           # drug development planning parameters
 #   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,                  # define fixed and variable costs
 #   K = Inf, N = Inf, S = -Inf,                               # set constraints
 #   steps1 = 1,  stepm1 = 0.95, stepl1 = 0.85,                # define boundary for  effect size categories

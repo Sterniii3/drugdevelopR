@@ -39,7 +39,7 @@
 #'   hr1 = 0.69, hr2 = 0.88, id1 = 210, id2 = 420,   # (https://web.imbi.uni-heidelberg.de/prior/)
 #'   d2min = 20, d2max = 100, stepd2 = 5,            # define optimization set for d2
 #'   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,  # define optimization set for HRgo
-#'   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7, # drug development planning parameters
+#'   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7, # drug development planning parameters
 #'   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,        # fixed/variable costs for phase II/III
 #'   K = Inf, N = Inf, S = -Inf,                     # set constraints
 #'   steps1 = 1,                                     # define lower boundary for "small"

@@ -41,7 +41,7 @@ Then we insert the input values into the function `optimal_normal`:
                        c2 = 0.675, c3 = 0.72, # maximal total trial costs
                        c02 = 15, c03 = 20, # maximal per-patient costs
                        b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
-                       alpha = 0.05, # significance level
+                       alpha = 0.025, # significance level
                        beta = 0.1, # 1 - power
                        Delta2 = NULL, w = NULL, in1 = NULL, in2 = NULL, 
                        a = NULL,b = NULL) # setting all unneeded parameters to NULL
@@ -57,7 +57,7 @@ Then we insert the input values into the function `optimal_normal`:
 #                        c2 = 0.675, c3 = 0.72, # maximal total trial costs
 #                        c02 = 15, c03 = 20, # maximal per-patient costs
 #                        b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
-#                        alpha = 0.05, # significance level
+#                        alpha = 0.025, # significance level
 #                        beta = 0.1, # 1 - power
 #                        Delta2 = NULL, w = NULL, in1 = NULL, in2 = NULL, 
 #                        a = NULL,b = NULL) # setting all unneeded parameters to NULL

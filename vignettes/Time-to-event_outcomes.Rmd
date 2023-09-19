@@ -1,5 +1,5 @@
 ---
-title: "Time-to-event Outcome Variables"
+title: "Time-to-event outcome Variables"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Time-to-event_outcomes}
@@ -41,7 +41,7 @@ In order to apply the package to the setting from our example, we need to specif
 * `c02` and `c03` are fixed costs for phase II and phase III respectively. We will set the phase II costs to 100 and the phase III costs to 150 (in $10^5$\$), i.e. we have fixed costs of 10 000 000\$ in phase II and 15 000 000\$ in phase III. Note that the currency of the input values does not matter, so an input value for `c02` of 15 could also be interpreted as fixed costs of 1 500 000€ if necessary. 
 * `c2` and `c3` are the costs in phase II and phase III per patient. We will set them to be 0.75 in phase II and 0.1 in phase III. Again, these values are given in $10^5$\$, i.e. we have per patient costs of 75 000\$ in phase II and 100 000\$ in phase III.
 * `b1`, `b2` and `b3` are the expected small, medium and large benefit categories for successfully launching the treatment on the market for each effect size category in $10^5$\$. We will define a small benefit of 1000, a medium benefit of 2000, and a large benefit of 3000. The effect size categories directly correspond to the treatment effect: For example, if the treatment effect is between 1 and 0.95 (in terms of the risk ratio) we have a small treatment effect yielding an expected benefit of 100 000 000\$.
-* `alpha` is the specified significance level. We will set `alpha = 0.05`.
+* `alpha` is the specified one-sided significance level. We will set `alpha = 0.025`.
 * 1 - `beta` is the minimal power that we require for our drug development program. We will set `beta = 0.1`, meaning that we require a power of 90%.
 
 As in the setting with normally distributed outcomes, the treatment effect may be fixed (as in this example) or may be distributed with respect to a [prior distribution](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html). Furthermore, [all options](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) to adapt the program to your specific needs are also available in this setting.
@@ -52,7 +52,7 @@ res <- optimal_tte(w = 0.3,                               # define parameters fo
    hr1 = 0.75, hr2 = 0.8, id1 = 210, id2 = 420,           # (https://web.imbi.uni-heidelberg.de/prior/)
    d2min = 20, d2max = 400, stepd2 = 5,                   # define optimization set for d2
    hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.01,         # define optimization set for HRgo
-   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,        # drug development planning parameters
+   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,        # drug development planning parameters
    c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs
    K = Inf, N = Inf, S = -Inf,                            # set constraints
    steps1 = 1,  stepm1 = 0.95, stepl1 = 0.85,             # define boundary for  effect size categories
@@ -65,20 +65,20 @@ res <- optimal_tte(w = 0.3,                               # define parameters fo
 
 ```{r, eval=TRUE, include=FALSE}
 # Comment this chunk after running it once
-#res <- optimal_tte(w = 0.3,                               # define parameters for prior
+# res <- optimal_tte(w = 0.3,                              # define parameters for prior
 #   hr1 = 0.75, hr2 = 0.8, id1 = 210, id2 = 420,           # (https://web.imbi.uni-heidelberg.de/prior/)
 #   d2min = 20, d2max = 400, stepd2 = 5,                   # define optimization set for d2
 #   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.01,         # define optimization set for HRgo
-#   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,        # drug development planning parameters
+#   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,       # drug development planning parameters
 #   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,               # define fixed and variable costs
 #   K = Inf, N = Inf, S = -Inf,                            # set constraints
 #   steps1 = 1,  stepm1 = 0.95, stepl1 = 0.85,             # define boundary for  effect size categories
-#  b1 = 1000, b2 = 2000, b3 = 3000,                        # define expected benefits
-#   gamma = 0,                                             # assume different/same population structures 
+#   b1 = 1000, b2 = 2000, b3 = 3000,                       # define expected benefits
+#   gamma = 0,                                             # assume different/same population structures
 #   fixed = TRUE,                                          # choose if  effects are fixed or random
 #   skipII = FALSE,                                        # more parameters
 #   num_cl = 1)
-#saveRDS(res, file="optimal_tte_basic_setting.RDS")
+# saveRDS(res, file="optimal_tte_basic_setting.RDS")
 ```
 ```{r, eval=TRUE, include=FALSE}
 res <- readRDS(file="optimal_tte_basic_setting.RDS")
@@ -95,9 +95,9 @@ res
 
 The program returns a total of sixteen output values and the input parameters. For now, we will only look at the most important ones:
 
-* `res$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 210 events in phase II and 441 events in phase III, which correspond to 300 participants in phase II and 630 in phase III. 
-* `res$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.88 in phase II in order to proceed to phase III. 
-* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 584.57, i.e. we have an expected utility of 58 457 000\$. 
+* `res$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 165 events in phase II and 430 events in phase III, which correspond to 236 participants in phase II and 614 in phase III. 
+* `res$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.86 in phase II in order to proceed to phase III. 
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 377.1, i.e. we have an expected utility of 37 710 000\$. 
 
 
 # Where to go from here

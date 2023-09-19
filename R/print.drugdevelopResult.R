@@ -18,7 +18,7 @@
 #'   a = 0.25, b = 0.75,
 #'   n2min = 20, n2max = 100, stepn2 = 4,               
 #'   kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02, 
-#'   alpha = 0.05, beta = 0.1,                       
+#'   alpha = 0.025, beta = 0.1,                       
 #'   c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,   
 #'   K = Inf, N = Inf, S = -Inf,                        
 #'   steps1 = 0,                                      

@@ -24,7 +24,7 @@
 #' @param kappamax maximal threshold value  kappa for the go/no-go decision rule
 #' @param stepkappa step size for the optimization over the threshold value kappa
 #' @param beta type II error rate; i.e. `1 - beta` is the power for calculation of the sample size for phase III
-#' @param alpha significance level
+#' @param alpha one-sided significance level
 #' @param c2 variable per-patient cost for phase II in 10^5 $
 #' @param c3 variable per-patient cost for phase III in 10^5 $
 #' @param c02 fixed cost for phase II in 10^5 $
