@@ -75,8 +75,8 @@ print.drugdevelopResult <- function(x, sequence = FALSE, ...) {
     # Multi-trial
     if("Case" %in% names(x) & "Strategy" %in% names(x)){
       for(i in (1:nrow(x))){
-        cat("Optimization result where ", x[i,"Case"], " trial(s) need(s) to show significant ",
-            "results, strategy ", x[i,"Strategy"], ":", "\n", sep = "")
+        cat("Optimization result with ", x[i,"Case"], " significant trial(s) needed,",
+            " strategy ", x[i,"Strategy"], ":", "\n", sep = "")
         print_drugdevelopResult_helper(x[i, ], ...)
         cat("\n")
       }
@@ -153,10 +153,10 @@ print_drugdevelopResult_helper <- function(x, ...){
     cat(" Effect size categories:\n")
     cat("  small: ", x$steps1, " medium: ", x$stepm1, " large: ", x$stepl1,
         "\n", sep = "")
-    cat(" Expected gains if endpoint 1 is significant:")
+    cat(" Expected gains if endpoint 1 is significant:\n")
     cat("  small: ", x$b11, " medium: ", x$b21, " large: ", x$b31,
         "\n", sep = "")
-    cat(" Expected gains if only endpoint 2 is significant:")
+    cat(" Expected gains if only endpoint 2 is significant:\n")
     cat("  small: ", x$b12, " medium: ", x$b22, " large: ", x$b32,
         "\n", sep = "")
   }

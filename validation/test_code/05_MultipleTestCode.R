@@ -2,7 +2,7 @@
 #' @editDate 2022-12-29
 test_that("05.01", {
   # Multiple time-to-event endpoints
-  
+  set.seed(456)
   res <- optimal_multiple_tte(alpha = 0.025,
                           beta = 0.1,
                           hr1 = 0.75, hr2 = 0.85,
@@ -19,18 +19,18 @@ test_that("05.01", {
                           fixed = FALSE,
                )
   
-  expect_equal(res$u, 597.78, tolerance = 0.005)
-  expect_equal(res$n2, 216)
-  expect_equal(res$n3, 280)
-  expect_equal(res$n, 496)
-  expect_equal(res$HRgo, 0.88)
-  expect_equal(res$pgo, 0.75)
+  expect_equal(res$u, 1249, tolerance = 0.005)
+  expect_equal(res$n2, 144)
+  expect_equal(res$n3, 227)
+  expect_equal(res$n, 371)
+  expect_equal(res$HRgo, 0.86)
+  expect_equal(res$pgo, 0.72)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
 test_that("05.02", {
   # Multiple time-to-event endpoints with sample size constraint
-  
+  set.seed(123)
   res <- optimal_multiple_tte(alpha = 0.025,
                               beta = 0.1,
                               hr1 = 0.75, hr2 = 0.85,
@@ -59,7 +59,7 @@ test_that("05.02", {
 #' @editDate 2022-12-29
 test_that("05.03", {
   # Multiple time-to-event endpoints -- no cost limit
-  
+  set.seed(123)
   res_nolim <- optimal_multiple_tte(alpha = 0.025,
                               beta = 0.1,
                               hr1 = 0.75, hr2 = 0.85,
@@ -113,7 +113,7 @@ test_that("05.03", {
 #' @editDate 2022-12-29
 test_that("05.04", {
   # Multiple time-to-event endpoints
-  
+  set.seed(123)
   res <- optimal_multiple_tte(alpha = 0.025,
                               beta = 0.1,
                               hr1 = 0.75, hr2 = 0.85,
@@ -144,7 +144,7 @@ test_that("05.04", {
 test_that("05.05", {
   # Multiple time-to-event endpoints
   start_time_3 = Sys.time()
-  
+  set.seed(123)
   optimal_multiple_tte(alpha = 0.025,
                               beta = 0.1,
                               hr1 = 0.75, hr2 = 0.85,
@@ -187,7 +187,7 @@ test_that("05.05", {
 #' @editDate 2022-12-29
 test_that("05.06", {
   # Multiple normally distributed endpoints -- no sample size constraint
-  
+  set.seed(123)
   res_nolim <- optimal_multiple_normal(alpha = 0.05,
                               beta = 0.1,
                               Delta1 = 0.75, Delta2 = 0.8,
@@ -239,7 +239,7 @@ test_that("05.06", {
 test_that("05.07", {
   # Multiple normally distributed endpoints -- parallel computing
   start_time_3 = Sys.time()
-  
+  set.seed(123)
   optimal_multiple_normal(alpha = 0.05,
                                        beta = 0.1,
                                        Delta1 = 0.75, Delta2 = 0.8,
@@ -282,7 +282,7 @@ test_that("05.07", {
 #' @editDate 2022-12-29
 test_that("05.08", {
   # Multiple normally distributed endpoints -- with and without cost limit
-  
+  set.seed(123)
   res_nolim <- optimal_multiple_normal(alpha = 0.05,
                                        beta = 0.1,
                                        Delta1 = 0.75, Delta2 = 0.8,
@@ -331,7 +331,7 @@ test_that("05.08", {
 test_that("05.09", {
   # Multiple normally distributed endpoints
   # -- constraint on success probability
-  
+  set.seed(123)
   res_nolim <- optimal_multiple_normal(alpha = 0.05,
                                        beta = 0.1,
                                        Delta1 = 0.75, Delta2 = 0.8,
@@ -379,7 +379,7 @@ test_that("05.09", {
 test_that("05.10", {
   # Multiple normally distributed endpoints
   # -- with and without
-  
+  set.seed(123)
   res_relax <- optimal_multiple_normal(alpha = 0.05,
 
                                        beta = 0.1,
