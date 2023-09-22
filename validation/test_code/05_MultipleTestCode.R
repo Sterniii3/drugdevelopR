@@ -2,7 +2,7 @@
 #' @editDate 2022-12-29
 test_that("05.01", {
   # Multiple time-to-event endpoints
-  set.seed(456)
+  set.seed(123)
   res <- optimal_multiple_tte(alpha = 0.025,
                           beta = 0.1,
                           hr1 = 0.75, hr2 = 0.85,

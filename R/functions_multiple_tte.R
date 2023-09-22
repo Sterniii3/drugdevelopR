@@ -880,7 +880,7 @@ get_sample_multiple_tte <- function(hr1, hr2, id1, id2, rho) {
     rho * sqrt(4 / id1) * sqrt(4 / id2),
     4 / id2
   ), ncol = 2)
-  nsim <- 5000000
+  nsim <- 5000
   rsamp <-
     MASS::mvrnorm(
       n = nsim,

@@ -26,6 +26,10 @@
 #'    endpoints show a  small effect, and a medium overall effect otherwise.
 #'
 #'  Fast computing is enabled by parallel programming.
+#'  
+#' Monte Carlo simulations are applied for calculating utility, event count and
+#' other operating characteristics in this setting. Hence, the results are affected
+#' by random uncertainty.
 #'
 #' @name optimal_multiple_normal
 #' @inheritParams optimal_multiple_generic
