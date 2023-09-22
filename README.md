@@ -52,6 +52,12 @@ program with a normally distributed outcome:
 
 ``` r
 library(drugdevelopR)
+#> Lade nötiges Paket: doParallel
+#> Lade nötiges Paket: foreach
+#> Lade nötiges Paket: iterators
+#> Lade nötiges Paket: parallel
+#> Lade nötiges Paket: progressr
+# Optimize
 optimal_normal(Delta1 = 0.625, Delta2 = 0.8, fixed = FALSE, # treatment effect
                n2min = 20, n2max = 400, # sample size region
                stepn2 = 4, # sample size step size
@@ -60,30 +66,33 @@ optimal_normal(Delta1 = 0.625, Delta2 = 0.8, fixed = FALSE, # treatment effect
                c2 = 0.675, c3 = 0.72, # maximal total trial costs
                c02 = 15, c03 = 20, # maximal per-patient costs
                b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
-               alpha = 0.05, # significance level
+               alpha = 0.025, # one-sided significance level
                beta = 0.1, # 1 - power
                w = 0.6, in1 = 300, in2 = 600, # weight and amount of information
                a = 0.25, b = 0.75) # truncation values
 #> Optimization result:
-#>  Utility: 3392.88
+#>  Utility: 3073.85
 #>  Sample size:
-#>    Phase II: 84, phase III: 158, total: 242
+#>    phase II: 84, phase III: 194, total: 278
 #>  Probability to go to phase III: 0.99
 #>  Total cost:
-#>    Phase II: 72, phase III: 134, maximal cost/cost constraint: Inf
+#>    phase II: 72, phase III: 160, cost constraint: Inf
 #>  Fixed cost:
-#>    Phase II: 15, phase III: 20
+#>    phase II: 15, phase III: 20
 #>  Variable cost per patient:
-#>    Phase II: 0.675, phase III: 0.72
+#>    phase II: 0.675, phase III: 0.72
 #>  Effect size categories (expected gains):
-#>   small: 0 (3000),  medium: 0.5 (8000),  large: 0.8 (10000)
-#>  Success probability: 0.86
-#>  Success probability for effect size:
-#>    small: 0.65, medium: 0.19, large: 0.01
-#>  Decision rule threshold: 0.06 (Kappa) 
+#>   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)
+#>  Success probability: 0.85
+#>  Success probability by effect size:
+#>    small: 0.69, medium: 0.15, large: 0.01
+#>  Significance level: 0.025
+#>  Targeted power: 0.9
+#>  Decision rule threshold: 0.06 [Kappa] 
 #>  Parameters of the prior distribution: 
-#>    Delta1: 0.625, Delta2: 0.8, in1: 300, in2: 600, a: 0.25 b: 0.75
-#>  Treatment effect offset between phase II and III: 0 (gamma)
+#>    Delta1: 0.625, Delta2: 0.8, in1: 300, in2: 600,
+#>    a: 0.25, b: 0.75, w: 0.6
+#>  Treatment effect offset between phase II and III: 0 [gamma]
 ```
 
 ## drugdevelopR functions
@@ -97,15 +106,15 @@ The drugdevelopR package provides the functions
 
 to plan optimal phase II/III drug development programs with
 
-- time-to-event (treatment effect measured by hazard ratio (HR)),
-- binary (treatment effect measured by risk ratio (RR)), or
+- time-to-event (treatment effect measured by hazard ratio, *HR*),
+- binary (treatment effect measured by risk ratio, *RR*), or
 - normally distributed (treatment effect measured by standardized
-  difference in means (Delta))
+  difference in means, *Delta*)
 
-endpoints, where the treatment effect is modelled by a
-[prior](https://web.imbi.uni-heidelberg.de/prior/). Optimal phase II/III
-drug development planning with fixed treatment effects can be done with
-the help of the R Shiny application
+endpoints, where the treatment effect is modelled on a [prior
+distribution](https://web.imbi.uni-heidelberg.de/prior/). Optimal phase
+II/III drug development planning with fixed treatment effects can be
+done with the help of the R Shiny application
 [basic](https://web.imbi.uni-heidelberg.de/basic/).
 
 Extensions to the basic setting are:

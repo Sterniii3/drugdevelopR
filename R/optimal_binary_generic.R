@@ -25,7 +25,7 @@
 #' @param rrgomax maximal threshold value for the go/no-go decision rule
 #' @param steprrgo step size for the optimization over RRgo
 #' @param beta type II error rate; i.e. `1 - beta` is the power for calculation of the number of events for phase III
-#' @param alpha significance level
+#' @param alpha one-sided significance level
 #' @param c2 variable per-patient cost for phase II in 10^5 $
 #' @param c3 variable per-patient cost for phase III in 10^5 $
 #' @param c02 fixed cost for phase II in 10^5 $

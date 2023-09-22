@@ -51,7 +51,7 @@ In order to apply the package to the setting from our example, we need to specif
 * `c02` and `c03` are fixed costs for phase II and phase III respectively. We will set the phase II costs to 15 and the phase III costs to 20 (in $10^5$\$), i.e. we have fixed costs of 1 500 000\$ in phase II and 2 000 000\$ in phase III. Note that the currency of the input values does not matter, so an input value for `c02` of 15 could also be interpreted as fixed costs of 1 500 000€ if necessary. 
 * `c2` and `c3` are the costs in phase II and phase III per patient. We will set them to be 0.675 in phase II and 0.72 in phase III. Again, these values are given in $10^5$\$, i.e. we have per patient costs of 67 500\$ in phase II and 72 000\$ in phase III.
 * `b1`, `b2` and `b3` are the expected small, medium and large benefit categories for successfully launching the treatment on the market for each effect size category in $10^5$\$. We will define a small benefit of 3000, a medium benefit of 8000, and a large benefit of 10000. The effect size categories directly correspond to the treatment effect, i.e. if the treatment effect is between 0 and 0.5 (in standardized differences of mean) we have a small treatment effect, hence yielding expected benefits of the drug development program of 300 000 000\$.
-* `alpha` is the specified significance level. We will set `alpha = 0.05`.
+* `alpha` is the specified one-sided significance level. We will set `alpha = 0.025`.
 * 1 - `beta` is the minimal power that we require for our drug development program. We will set `beta = 0.1`, meaning that we require a power of 90%.
 * Further parameters: In more advanced settings, we would need to pre-specify even more parameters. For now, we can set all remaining parameters to `NULL`. Their use is explained in the [vignette on parameters](https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html) and in the [vigentte on prior distributions](https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html).
 
@@ -65,7 +65,7 @@ Now that we have defined all parameters needed for our example, we are ready to 
                        c2 = 0.675, c3 = 0.72, # maximal total trial costs
                        c02 = 15, c03 = 20, # maximal per-patient costs
                        b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
-                       alpha = 0.05, # significance level
+                       alpha = 0.025, # one-sided significance level
                        beta = 0.1, # 1 - power
                        Delta2 = NULL, w = NULL, in1 = NULL, in2 = NULL, 
                        a = NULL,b = NULL) # setting all unneeded parameters to NULL
@@ -81,9 +81,9 @@ Now that we have defined all parameters needed for our example, we are ready to 
 #                        c2 = 0.675, c3 = 0.72, # maximal total trial costs
 #                        c02 = 15, c03 = 20, # maximal per-patient costs
 #                        b1 = 3000, b2 = 8000, b3 = 10000, # gains for patients
-#                        alpha = 0.05, # significance level
+#                        alpha = 0.025, # significance level
 #                        beta = 0.1, # 1 - power
-#                        Delta2 = NULL, w = NULL, in1 = NULL, in2 = NULL, 
+#                        Delta2 = NULL, w = NULL, in1 = NULL, in2 = NULL,
 #                        a = NULL,b = NULL) # setting all unneeded parameters to NULL
 # saveRDS(res, file="optimal_normal_basic_setting.RDS")
 ```
@@ -102,9 +102,9 @@ res
 
 The program returns a total of thirteen values and the input values. For now, we will only look at the most important ones:
 
-* `res$n2` is the optimal sample size for phase II and `res$n3` the resulting sample size for phase III. We see that the optimal scenario requires 84 participants in phase II and 166 participants in phase III. 
+* `res$n2` is the optimal sample size for phase II and `res$n3` the resulting sample size for phase III. We see that the optimal scenario requires 92 participants in phase II and 192 participants in phase III. 
 * `res$Kappa` is the optimal threshold value for the go/no-go decision rule. We see that we need a treatment effect of more than 0.06 in phase II in order to proceed to phase III. 
-* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 3259.83, i.e. we have an expected utility of 325 983 000\$. 
+* `res$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 2946.07, i.e. we have an expected utility of 294 607 000\$. 
 
 
 # Where to go from here

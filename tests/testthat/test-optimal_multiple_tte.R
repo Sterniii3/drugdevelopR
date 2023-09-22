@@ -1,5 +1,6 @@
 test_that("optimal_multiple_tte works for fixed = TRUE", {
   skip_on_cran()
+  set.seed(123)
   expect_equal(optimal_multiple_tte(hr1 = 0.75, hr2 = 0.80,  id1 = 210, id2 = 420,
                                     n2min = 30, n2max = 90, stepn2 = 6,
                                     hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05,

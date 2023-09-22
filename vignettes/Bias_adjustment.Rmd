@@ -52,7 +52,7 @@ res <- optimal_bias(w = 0.3,                                 # define parameters
    lambdamin = 0.7, lambdamax = 1, steplambda = 0.05,        # optimization set for multiplicative adjustment
    alphaCImin = 0.1, alphaCImax = 0.5, stepalphaCI = 0.05,   # optimization set for additive adjustment
    hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.01,            # define optimization set for HRgo
-   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,           # drug development planning parameters
+   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,           # drug development planning parameters
    c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,                  # define fixed and variable costs
    K = Inf, N = Inf, S = -Inf,                               # set constraints
    steps1 = 1,  stepm1 = 0.95, stepl1 = 0.85,                # define boundary for  effect size categories
@@ -62,14 +62,14 @@ res <- optimal_bias(w = 0.3,                                 # define parameters
 ```
 
 ```{r, eval=TRUE, include=FALSE}
-#res <- optimal_bias(w = 0.3,                                 # define parameters for prior
+# res <- optimal_bias(w = 0.3,                                 # define parameters for prior
 #   hr1 = 0.75, hr2 = 0.8, id1 = 210, id2 = 420,              # (https://web.imbi.uni-heidelberg.de/prior/)
 #   d2min = 20, d2max = 400, stepd2 = 5,                      # define optimization set for d2
 #   adj = "both",                                             # choose both adjustment methods
 #   lambdamin = 0.7, lambdamax = 1, steplambda = 0.05,        # optimization set for multiplicative adjustment
 #   alphaCImin = 0.1, alphaCImax = 0.5, stepalphaCI = 0.05,   # optimization set for additive adjustment
 #   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.01,            # define optimization set for HRgo
-#   alpha = 0.05, beta = 0.1, xi2 = 0.7, xi3 = 0.7,           # drug development planning parameters
+#   alpha = 0.025, beta = 0.1, xi2 = 0.7, xi3 = 0.7,           # drug development planning parameters
 #   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,                  # define fixed and variable costs
 #   K = Inf, N = Inf, S = -Inf,                               # set constraints
 #   steps1 = 1,  stepm1 = 0.95, stepl1 = 0.85,                # define boundary for  effect size categories
@@ -93,18 +93,19 @@ res
 The program returns output values for both adjustment methods. The most important ones for the multiplicative method are:
 
 * `res[1,]$Adj` is the optimal multiplicative adjustment parameter. In this setting, our optimal value is 0.95, indicating that a slight bias adjustment leads to a higher utility.
-* `res[1,]$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 210 events in phase II and 451 events in phase III, which correspond to 300 participants in phase II and 644 in phase III. 
-* `res[1,]$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.87 in phase II in order to proceed to phase III. 
-* `res[1,]$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 587.18, i.e. we have an expected utility of 58 718 000\$. 
+* `res[1,]$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 165 events in phase II and 436 events in phase III, which correspond to 236 participants in phase II and 624 in phase III. 
+* `res[1,]$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.85  in phase II in order to proceed to phase III. 
+* `res[1,]$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 378.47, i.e. we have an expected utility of 37 847 000\$. 
 
 For the additive method we get:
 
 * `res[2,]$Adj` is the optimal additive adjustment parameter. In this setting, our optimal value is 0.5, indicating that no  bias adjustment leads to the highest utility. In this case, our results match the results of the basic setting as can be verified [here](https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html).
-* `res[2,]$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 210 events in phase II and 441 events in phase III, which correspond to 300 participants in phase II and 630 in phase III. 
-* `res[2,]$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.88 in phase II in order to proceed to phase III. 
-* `res[2,]$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 584.57, i.e. we have an expected utility of 58 457 000\$. 
+* `res[2,]$d2` is the optimal number of events for phase II and `res$d3` the resulting number of events for phase III. We see that the optimal scenario requires 165 events in phase II and 430 events in phase III, which correspond to 236 participants in phase II and 614 in phase III. 
+* `res[2,]$HRgo` is the optimal threshold value for the go/no-go decision rule. We see that we need a hazard ratio of less than 0.86  in phase II in order to proceed to phase III. 
+* `res[2,]$u` is the expected utility of the program for the optimal sample size and threshold value. In our case it amounts to 377.1, i.e. we have an expected utility of 37 710 000\$. 
 
 # Where to go from here
+
 In this article we presented an example how methods to discount the results of phase II can be included for the purpose of bias adjustment. Note that this example is not restricted to time-to-event endpoints but can also be applied to binary and normally distributed endpoints using the functions `optimal_bias_binary` and `optimal_bias_normal`. For more information on how to use the package, see:
 
 * [*Introduction to drugdevelopR:*](https://sterniii3.github.io/drugdevelopR/articles/Introduction-to-drugdevelopR.html) See how the package works in a basic example.
