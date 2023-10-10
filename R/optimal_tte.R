@@ -158,20 +158,21 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
 
   pb <- progressr::progressor(along = HRGO, label = "Optimization progress", message = "Optimization progress")
   pb("Performing optimization", class = "sticky", amount = 0)
+  cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) 
+  parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", 
+                                "Epgo_tte", "Ed3_tte",
+                                "EPsProg_tte", "alpha", "beta",
+                                "steps1", "stepm1", "stepl1", 
+                                "K", "N", "S", "gamma", "fixed",
+                                "xi2", "xi3", "c2", "c3", "c02", "c03",
+                                "b1", "b2", "b3", "w", "HRgo",
+                                "hr1", "hr2", "id1", "id2"), 
+                          envir = environment())
 
   for(j in 1:length(HRGO)){
 
     HRgo <- HRGO[j]
-    cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) 
-    parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", 
-                        "Epgo_tte", "Ed3_tte",
-                        "EPsProg_tte", "alpha", "beta",
-                        "steps1", "stepm1", "stepl1", 
-                        "K", "N", "S", "gamma", "fixed",
-                        "xi2", "xi3", "c2", "c3", "c02", "c03",
-                        "b1", "b2", "b3", "w", "HRgo",
-                        "hr1", "hr2", "id1", "id2"), 
-                  envir = environment())
+    
 
     result <- parallel::parSapply(cl, D2, utility_tte, 
                         HRgo, w, hr1, hr2, id1, id2,
@@ -183,7 +184,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                         gamma, fixed)
 
     pb()
-    parallel::stopCluster(cl)
+    
 
     ufkt[, j]      <-  result[1, ]
     d3fkt[, j]     <-  result[2, ]
@@ -272,5 +273,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                        "\nfinish date:", 
                        as.character(Sys.time()))
   class(result) <- c("drugdevelopResult", class(result))
+  parallel::stopCluster(cl)
+  
   return(result)
 }

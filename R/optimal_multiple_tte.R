@@ -129,64 +129,63 @@ optimal_multiple_tte <- function(hr1,
   pb("Performing optimization",
      class = "sticky",
      amount = 0)
+  HRgo <- NA_real_
+  cl <-
+    parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+  parallel::clusterExport(
+    cl,
+    c(
+      "pnorm",
+      "pmvnorm",
+      "dnorm",
+      "dmvnorm",
+      "qnorm",
+      "qmvnorm",
+      "adaptIntegrate",
+      "dbivanorm",
+      "fmax",
+      "pgo_multiple_tte",
+      "pw",
+      "Ess_multiple_tte",
+      "EPsProg_multiple_tte",
+      "os_tte",
+      "alpha",
+      "beta",
+      "steps1",
+      "steps2",
+      "stepm1",
+      "stepm2",
+      "stepl1",
+      "stepl2",
+      "K",
+      "N",
+      "S",
+      "c2",
+      "c3",
+      "c02",
+      "c03",
+      "b11",
+      "b21",
+      "b31",
+      "b12",
+      "b22",
+      "b32",
+      "HRgo",
+      "hr1",
+      "hr2",
+      "id1",
+      "id2",
+      "rho",
+      "fixed",
+      "get_sample_multiple_tte"
+    ),
+    envir = environment()
+  )
   
   for (j in 1:length(HRGO)) {
     HRgo <- HRGO[j]
     
-    cl <-
-      parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
-    
-    parallel::clusterExport(
-      cl,
-      c(
-        "pnorm",
-        "pmvnorm",
-        "dnorm",
-        "dmvnorm",
-        "qnorm",
-        "qmvnorm",
-        "adaptIntegrate",
-        "dbivanorm",
-        "fmax",
-        "pgo_multiple_tte",
-        "pw",
-        "Ess_multiple_tte",
-        "EPsProg_multiple_tte",
-        "os_tte",
-        "alpha",
-        "beta",
-        "steps1",
-        "steps2",
-        "stepm1",
-        "stepm2",
-        "stepl1",
-        "stepl2",
-        "K",
-        "N",
-        "S",
-        "c2",
-        "c3",
-        "c02",
-        "c03",
-        "b11",
-        "b21",
-        "b31",
-        "b12",
-        "b22",
-        "b32",
-        "HRgo",
-        "hr1",
-        "hr2",
-        "id1",
-        "id2",
-        "rho",
-        "fixed",
-        "get_sample_multiple_tte"
-      ),
-      envir = environment()
-    )
-    
-    
+
     res <-
       parallel::parSapply(
         cl,
@@ -220,7 +219,6 @@ optimal_multiple_tte <- function(hr1,
       )
     
     pb()
-    parallel::stopCluster(cl)
     
     ufkt[, j]     <-  res[1,]
     n3fkt[, j]    <-  res[2,]
@@ -344,8 +342,8 @@ optimal_multiple_tte <- function(hr1,
     "\nfinish date:",
     as.character(Sys.time())
   )
-  
-  
+  showConnections(all = TRUE)
+  parallel::stopCluster(cl)
   return(drugdevelopResult(result))
   
 }

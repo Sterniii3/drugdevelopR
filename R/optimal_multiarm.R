@@ -87,20 +87,21 @@ optimal_multiarm <- function(hr1, hr2, ec,
                                 message = "Optimization progress")
     pb(paste("Performing optimization for strategy", strategy),
        class = "sticky", amount = 0)
+    HRgo <- NA_real_
+    cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
     
+    parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_tte", "ss_tte", "Ess_tte",
+                                  "PsProg_tte", "alpha", "beta",
+                                  "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
+                                  "K", "N", "S", "strategy",
+                                  "c2", "c3", "c02", "c03",
+                                  "b1", "b2", "b3", "HRgo",
+                                  "hr1", "hr2", "ec"), envir = environment())
     for(j in 1:length(HRGO)){
       
       HRgo <- HRGO[j]
       
-      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
-      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_tte", "ss_tte", "Ess_tte",
-                          "PsProg_tte", "alpha", "beta",
-                          "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                          "K", "N", "S", "strategy",
-                          "c2", "c3", "c02", "c03",
-                          "b1", "b2", "b3", "HRgo",
-                          "hr1", "hr2", "ec"), envir = environment())
       
       
       res <- parallel::parSapply(cl, N2, utility_multiarm, HRgo,
@@ -109,7 +110,6 @@ optimal_multiarm <- function(hr1, hr2, ec,
                        steps1, stepm1, stepl1,b1, b2, b3)
       
       pb()
-      parallel::stopCluster(cl)
       
       ufkt[, j]     <-  res[1, ]
       n3fkt[, j]    <-  res[2, ]
@@ -153,6 +153,8 @@ optimal_multiarm <- function(hr1, hr2, ec,
                     "\nonset date:", as.character(date),
                     "\nfinish date:", as.character(Sys.time()))
   class(result) <- c("drugdevelopResult", class(result))
+  parallel::stopCluster(cl)
+  
   return(result)
   
 }

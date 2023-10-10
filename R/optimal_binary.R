@@ -130,20 +130,23 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
 
    pb <- progressr::progressor(along = HRGO, label = "Optimization progress", message = "Optimization progress")
    pb("Performing optimization", class = "sticky", amount = 0)
+   
+   RRgo <- NA_real_
+   cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+   
+   parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "En3_binary",
+                                 "EPsProg_binary","t1", "t2", "t3", "alpha", "beta",
+                                 "steps1", "stepm1",  "stepl1", 
+                                 "K", "N", "S", "gamma", "fixed",
+                                 "c2", "c3", "c02", "c03",
+                                 "b1", "b2", "b3", "w", "RRgo",
+                                 "p0", "p11", "p12", "in1", "in2"), envir=environment())
 
    for(j in 1:length(HRGO)){
 
       RRgo <- HRGO[j]
 
-      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
-      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "En3_binary",
-                          "EPsProg_binary","t1", "t2", "t3", "alpha", "beta",
-                          "steps1", "stepm1",  "stepl1", 
-                          "K", "N", "S", "gamma", "fixed",
-                          "c2", "c3", "c02", "c03",
-                          "b1", "b2", "b3", "w", "RRgo",
-                          "p0", "p11", "p12", "in1", "in2"), envir=environment())
       
       result <- parallel::parSapply(cl, N2, utility_binary, RRgo, w, p0, p11, p12, in1, in2,
                           alpha, beta, 
@@ -153,7 +156,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           gamma, fixed)
 
       pb()
-      parallel::stopCluster(cl)
+      
 
       ufkt[, j]      <-  result[1, ]
       n3fkt[, j]     <-  result[2, ]
@@ -214,6 +217,9 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           "\nonset date:", as.character(date),
                           "\nfinish date:", as.character(Sys.time()))
    class(result) <- c("drugdevelopResult", class(result))
+   
+   parallel::stopCluster(cl)
+   
    return(result)
 }
 

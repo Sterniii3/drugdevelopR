@@ -95,6 +95,19 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
     
     pb <- progressr::progressor(steps = length(ADJ)*length(KAPPA), label = "Optimization progress", message = "Optimization progress")
     pb(paste("Performing optimization for adjustment type", proz), class = "sticky", amount = 0)
+    Adj <- NA_real_
+    kappa <- NA_real_
+    cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+    
+    parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "dtnorm", "prior_normal","Epgo_normal", "En3_normal_L",
+                                  "EPsProg_normal_L","Epgo_normal_L2", "En3_normal_L2",
+                                  "EPsProg_normal_L2","En3_normal_R", "EPsProg_normal_R", "Epgo_normal_R2", "En3_normal_R2",
+                                  "EPsProg_normal_R2", "alpha", "beta",
+                                  "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
+                                  "K", "N", "S", "fixed",
+                                  "c2", "c3", "c02", "c03",
+                                  "b1", "b2", "b3", "w", "kappa", "Adj",
+                                  "Delta1", "Delta2", "in1", "in2", "a", "b"), envir=environment())
     
     for(l in 1:length(ADJ)){
       
@@ -107,17 +120,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
         
         kappa <- KAPPA[j]
         
-        cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
         
-        parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "dtnorm", "prior_normal","Epgo_normal", "En3_normal_L",
-                            "EPsProg_normal_L","Epgo_normal_L2", "En3_normal_L2",
-                            "EPsProg_normal_L2","En3_normal_R", "EPsProg_normal_R", "Epgo_normal_R2", "En3_normal_R2",
-                            "EPsProg_normal_R2", "alpha", "beta",
-                            "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                            "K", "N", "S", "fixed",
-                            "c2", "c3", "c02", "c03",
-                            "b1", "b2", "b3", "w", "kappa", "Adj",
-                            "Delta1", "Delta2", "in1", "in2", "a", "b"), envir=environment())
         
         if(strategy == 1){
           strat = "multipl."
@@ -161,7 +164,7 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
         }
         
         pb()
-        parallel::stopCluster(cl)
+        
         
         ufkt[, j]      <-  res[1, ]
         n3fkt[, j]     <-  res[2, ]
@@ -234,6 +237,9 @@ optimal_bias_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                          "\nonset date:", as.character(date),
                          "\nfinish date:", as.character(Sys.time()))
   class(result) <- c("drugdevelopResult", class(result))
+  
+  parallel::stopCluster(cl)
+  
   return(result)
   
 }
