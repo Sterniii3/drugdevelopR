@@ -342,7 +342,6 @@ optimal_multiple_tte <- function(hr1,
     "\nfinish date:",
     as.character(Sys.time())
   )
-  showConnections(all = TRUE)
   parallel::stopCluster(cl)
   return(drugdevelopResult(result))
   
