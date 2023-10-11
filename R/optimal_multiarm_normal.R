@@ -71,6 +71,16 @@ optimal_multiarm_normal <- function(Delta1, Delta2,
   if(strategy==3){STRATEGY = c(1, 2)}
   
   result <- NULL
+  kappa <- NA_real_
+  cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+  
+  parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_normal", "ss_normal", "Ess_normal",
+                                "PsProg_normal", "alpha", "beta",
+                                "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
+                                "K", "N", "S", "strategy",
+                                "c2", "c3", "c02", "c03",
+                                "b1", "b2", "b3", "KAPPA",
+                                "Delta1", "Delta2"), envir = environment())
   
   for(strategy in STRATEGY){
     
@@ -87,15 +97,7 @@ optimal_multiarm_normal <- function(Delta1, Delta2,
       
       kappa <- KAPPA[j]
       
-      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
-      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_normal", "ss_normal", "Ess_normal",
-                          "PsProg_normal", "alpha", "beta",
-                          "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                          "K", "N", "S", "strategy",
-                          "c2", "c3", "c02", "c03",
-                          "b1", "b2", "b3", "KAPPA",
-                          "Delta1", "Delta2"), envir = environment())
       
       
       res <- parallel::parSapply(cl, N2, utility_multiarm_normal, kappa,
@@ -104,7 +106,7 @@ optimal_multiarm_normal <- function(Delta1, Delta2,
                        steps1, stepm1, stepl1,b1, b2, b3)
       
       pb()
-      parallel::stopCluster(cl)
+      
       
       ufkt[, j]     <-  res[1, ]
       n3fkt[, j]    <-  res[2, ]
@@ -148,6 +150,8 @@ optimal_multiarm_normal <- function(Delta1, Delta2,
                          "\nonset date:", as.character(date),
                          "\nfinish date:", as.character(Sys.time()))
   class(result) <- c("drugdevelopResult", class(result))
+  
+  parallel::stopCluster(cl)
   return(result)
   
 }

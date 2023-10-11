@@ -91,6 +91,15 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
   }else{
     STRATEGY = strategy
   }
+  kappa <- NA_real_
+  cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+  parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "dtnorm", "prior_normal", "Epgo_normal", "Epgo23_normal", "En3_normal",
+                                "EPsProg_normal", "EPsProg2_normal", "EPsProg3_normal", "EPsProg4_normal", "EPsProg23_normal",
+                                "alpha", "beta",
+                                "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
+                                "K", "N", "S", "fixed", "case", "Strategy",
+                                "b1", "b2", "b3", "w", "kappa",
+                                "Delta1", "Delta2", "ymin", "in1", "in2", "a", "b" ), envir = environment())
   
   for(Strategy in STRATEGY){
     
@@ -108,7 +117,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
       
       kappa <- KAPPA[j]
       
-      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+      
       
       ###################
       # Strategy 1alpha #
@@ -127,13 +136,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
         alpha <- alpha_in
       }
       
-      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "dtnorm", "prior_normal", "Epgo_normal", "Epgo23_normal", "En3_normal",
-                          "EPsProg_normal", "EPsProg2_normal", "EPsProg3_normal", "EPsProg4_normal", "EPsProg23_normal",
-                          "alpha", "beta",
-                          "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                          "K", "N", "S", "fixed", "case", "Strategy",
-                          "b1", "b2", "b3", "w", "kappa",
-                          "Delta1", "Delta2", "ymin", "in1", "in2", "a", "b" ), envir = environment())
+      
       
       if(Strategy==1){
         res <- parallel::parSapply(cl, N2, utility_normal, kappa, w, Delta1, Delta2, in1, in2, a, b,
@@ -176,7 +179,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
       }
       
       pb()
-      parallel::stopCluster(cl)
+      
       
       ufkt[, j]      <-  res[1, ]
       n3fkt[, j]     <-  res[2, ]
@@ -265,6 +268,8 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
     
   }
   class(result) <- c("drugdevelopResult", class(result))
+  parallel::stopCluster(cl)
+  
   return(result)
   
 }

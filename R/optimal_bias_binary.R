@@ -103,23 +103,24 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
       ufkt <- n3fkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
         sp1fkt <- sp2fkt <- sp3fkt  <- matrix(0, length(N2), length(RRGO))
   
+  RRgo <- NA_real_
+  cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
   
+  parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary","Epgo_binary", "En3_binary_L",
+                                "EPsProg_binary_L","Epgo_binary_L2", "En3_binary_L2",
+                                "EPsProg_binary_L2","En3_binary_R", "EPsProg_binary_R", "Epgo_binary_R2", "En3_binary_R2",
+                                "EPsProg_binary_R2", "t1", "t2", "t3", "alpha", "beta",
+                                "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
+                                "K", "N", "S", "fixed",
+                                "c2", "c3", "c02", "c03",
+                                "b1", "b2", "b3", "w", "RRgo", "Adj",
+                                "p0", "p11", "p12", "in1", "in2"), envir=environment())
   
   for(j in 1:length(RRGO)){
     
     RRgo <- RRGO[j]
     
-    cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
     
-    parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary","Epgo_binary", "En3_binary_L",
-                        "EPsProg_binary_L","Epgo_binary_L2", "En3_binary_L2",
-                        "EPsProg_binary_L2","En3_binary_R", "EPsProg_binary_R", "Epgo_binary_R2", "En3_binary_R2",
-                        "EPsProg_binary_R2", "t1", "t2", "t3", "alpha", "beta",
-                        "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                        "K", "N", "S", "fixed",
-                        "c2", "c3", "c02", "c03",
-                        "b1", "b2", "b3", "w", "RRgo", "Adj",
-                        "p0", "p11", "p12", "in1", "in2"), envir=environment())
     
     if(strategy == 1){
       strat = "multipl."
@@ -163,7 +164,7 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
     }
     
     pb()
-    parallel::stopCluster(cl)
+
     
     ufkt[, j]      <-  res[1, ]
     n3fkt[, j]     <-  res[2, ]
@@ -233,6 +234,8 @@ optimal_bias_binary <- function(w, p0, p11, p12, in1, in2,
   
   
   class(result) <- c("drugdevelopResult", class(result))
+  parallel::stopCluster(cl)
+  
   return(result)
 }
 

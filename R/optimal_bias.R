@@ -132,6 +132,20 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
     pb <- progressr::progressor(steps = length(ADJ)*length(HRGO), label = "Optimization progress", message = "Optimization progress")
     pb(paste("Performing optimization for adjustment type", proz), class = "sticky", amount = 0)
     
+    HRgo <- NA_real_
+    Adj <- NA_real_
+    cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+    
+    parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte","Epgo_tte", "Ed3_L",
+                                  "EPsProg_L","Epgo_L2", "Ed3_L2",
+                                  "EPsProg_L2","Ed3_R", "EPsProg_R", "Epgo_R2", "Ed3_R2",
+                                  "EPsProg_R2", "alpha", "beta",
+                                  "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
+                                  "K", "N", "S", "fixed",
+                                  "xi2", "xi3", "c2", "c3", "c02", "c03",
+                                  "b1", "b2", "b3", "w", "HRgo", "Adj",
+                                  "hr1", "hr2", "id1", "id2"), envir = environment())
+    
     for(a in 1:length(ADJ)){
       
       Adj <- ADJ[a]
@@ -143,17 +157,7 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
         
         HRgo <- HRGO[j]
         
-        cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
         
-        parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte","Epgo_tte", "Ed3_L",
-                            "EPsProg_L","Epgo_L2", "Ed3_L2",
-                            "EPsProg_L2","Ed3_R", "EPsProg_R", "Epgo_R2", "Ed3_R2",
-                            "EPsProg_R2", "alpha", "beta",
-                            "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                            "K", "N", "S", "fixed",
-                            "xi2", "xi3", "c2", "c3", "c02", "c03",
-                            "b1", "b2", "b3", "w", "HRgo", "Adj",
-                            "hr1", "hr2", "id1", "id2"), envir = environment())
         
         if(strategy == 1){
           strat = "multipl."
@@ -197,7 +201,7 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
         }
 
         pb()
-        parallel::stopCluster(cl)
+        
         
         ufkt[, j]      <-  res[1, ]
         d3fkt[, j]     <-  res[2, ]
@@ -272,6 +276,8 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
                     "\nonset date:", as.character(date),
                     "\nfinish date:", as.character(Sys.time()))
   class(result) <- c("drugdevelopResult", class(result))
+  
+  parallel::stopCluster(cl)
   return(result)
   
 } 

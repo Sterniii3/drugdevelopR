@@ -81,8 +81,7 @@ pgo_multiple_tte <- function(HRgo, n2, hr1, hr2, id1, id2, fixed, rho) {
   hr <- c(hr1, hr2)
   var1 <- 4 / e21
   var2 <- 4 / e22
-  vartrue1 <- sqrt(4 / id1)
-  vartrue2 <- sqrt(4 / id2)
+  
   covmat <-
     matrix(c(
       var1,
@@ -99,6 +98,8 @@ pgo_multiple_tte <- function(HRgo, n2, hr1, hr2, id1, id2, fixed, rho) {
   }
   
   else  {
+    vartrue1 <- sqrt(4 / id1)
+    vartrue2 <- sqrt(4 / id2)
     return(integrate(function(u) {
       sapply(u, function(u) {
         integrate(function(v) {
@@ -165,8 +166,7 @@ Ess_multiple_tte <-
     hr <- c(hr1, hr2)
     var1 <- 4 / e21
     var2 <- 4 / e22
-    vartrue1 <- sqrt(4 / id1)
-    vartrue2 <- sqrt(4 / id2)
+    
     covmat <-
       matrix(c(
         var1,
@@ -185,6 +185,8 @@ Ess_multiple_tte <-
     }
     
     else   {
+      vartrue1 <- sqrt(4 / id1)
+      vartrue2 <- sqrt(4 / id2)
       return(integrate(function(u) {
         sapply(u, function(u) {
           integrate(function(v) {
@@ -238,8 +240,7 @@ pw <- function(n2, hr1, hr2, id1, id2, fixed, rho) {
   hr <- c(hr1, hr2)
   var1 <- 4 / e21
   var2 <- 4 / e22
-  vartrue1 <- sqrt(4 / id1)
-  vartrue2 <- sqrt(4 / id2)
+  
   covmat <-
     matrix(c(
       var1,
@@ -258,6 +259,8 @@ pw <- function(n2, hr1, hr2, id1, id2, fixed, rho) {
   }
   
   else {
+    vartrue1 <- sqrt(4 / id1)
+    vartrue2 <- sqrt(4 / id2)
     return (integrate(function(u) {
       sapply(u, function(u) {
         integrate(function(v) {
@@ -335,8 +338,7 @@ EPsProg_multiple_tte <-
     hr <- c(hr1, hr2)
     var1 <- 4 / e21
     var2 <- 4 / e22
-    vartrue1 <- sqrt(4 / id1)
-    vartrue2 <- sqrt(4 / id2)
+    
     covmat <-
       matrix(c(
         var1,
@@ -376,6 +378,8 @@ EPsProg_multiple_tte <-
     
     
     else {
+      vartrue1 <- sqrt(4 / id1)
+      vartrue2 <- sqrt(4 / id2)
       nsim <- nrow(rsamp)
       
       for (m in 1:nsim) {
@@ -478,8 +482,7 @@ os_tte <-
     hr <- c(hr1, hr2)
     var1 <- 4 / e21
     var2 <- 4 / e22
-    vartrue1 <- sqrt(4 / id1)
-    vartrue2 <- sqrt(4 / id2)
+    
     covmat <-
       matrix(c(
         var1,
@@ -509,7 +512,8 @@ os_tte <-
     
     else {
       nsim <- nrow(rsamp)
-      
+      vartrue1 <- sqrt(4 / id1)
+      vartrue2 <- sqrt(4 / id2)
       for (m in 1:nsim) {
         hr1_prior <- rsamp[m, 1]
         hr2_prior <- rsamp[m, 2]
@@ -658,7 +662,11 @@ utility_multiple_tte <-
     steps2 <- stepm1
     stepm2 <- stepl1
     stepl2 <- 0
-    rsamp <- get_sample_multiple_tte(hr1, hr2, id1, id2, rho)
+    rsamp <- NULL
+    if(!fixed){
+      rsamp <- get_sample_multiple_tte(hr1, hr2, id1, id2, rho)
+    }
+
     
     n3 <- Ess_multiple_tte(
       HRgo = HRgo,

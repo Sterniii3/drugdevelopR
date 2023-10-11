@@ -102,11 +102,22 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
     pb(paste("Performing optimization for strategy", Strategy),
        class = "sticky", amount = 0)
     
+    RRgo <- NA_real_
+    cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+    parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "Epgo23_binary", "En3_binary",
+                                  "EPsProg_binary", "EPsProg2_binary", "EPsProg3_binary", "EPsProg4_binary", "EPsProg23_binary",
+                                  "alpha", "beta", "t1", "t2", "t3",
+                                  "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
+                                  "K", "N", "S", "fixed",
+                                  "c2", "c3", "c02", "c03",
+                                  "b1", "b2", "b3", "w", "RRgo", "ymin",
+                                  "p0", "p11", "p12", "in1", "in2"), envir = environment())
+    
     for(j in 1:length(RRGO)){
       
       RRgo <- RRGO[j]
       
-      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+      
       
       ###################
       # Strategy 1alpha #
@@ -125,14 +136,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
         alpha <- alpha_in
       }
       
-      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_binary", "Epgo_binary", "Epgo23_binary", "En3_binary",
-                          "EPsProg_binary", "EPsProg2_binary", "EPsProg3_binary", "EPsProg4_binary", "EPsProg23_binary",
-                          "alpha", "beta", "t1", "t2", "t3",
-                          "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                          "K", "N", "S", "fixed",
-                          "c2", "c3", "c02", "c03",
-                          "b1", "b2", "b3", "w", "RRgo", "ymin",
-                          "p0", "p11", "p12", "in1", "in2"), envir = environment())
+      
       
       if(Strategy==1){
         res <- parallel::parSapply(cl, N2, utility_binary, RRgo, w, p0, p11, p12, in1, in2,
@@ -174,7 +178,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
       }
       
       pb()
-      parallel::stopCluster(cl)
+      
       
       ufkt[, j]      <-  res[1, ]
       n3fkt[, j]     <-  res[2, ]
@@ -266,6 +270,8 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
   }
 
   class(result) <- c("drugdevelopResult", class(result))
+  parallel::stopCluster(cl)
+  
   return(result)
   
 }

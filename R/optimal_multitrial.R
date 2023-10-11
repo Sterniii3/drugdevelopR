@@ -85,7 +85,19 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
   }else{
     STRATEGY = strategy
   }
-
+  
+  HRgo <- NA_real_
+  cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+  parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", "Epgo_tte", "Epgo23", "Ed3_tte",
+                                "EPsProg_tte", "EPsProg2", "EPsProg3", "EPsProg4", "EPsProg23",
+                                "alpha", "beta",
+                                "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
+                                "K", "N", "S","gamma", "fixed", "case", "Strategy",
+                                "xi2", "xi3", "c2", "c3", "c02", "c03",
+                                "b1", "b2", "b3", "w", "HRgo", "ymin",
+                                "hr1", "hr2", "id1", "id2"), envir = environment())
+  
+  
   for(Strategy in STRATEGY){
     
     ufkt <- d3fkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
@@ -99,7 +111,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
       
       HRgo <- HRGO[j]
       
-      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+      
     
       ###################
       # Strategy 1alpha #
@@ -118,14 +130,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
         alpha <- alpha_in
       }
 
-      parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", "Epgo_tte", "Epgo23", "Ed3_tte",
-                          "EPsProg_tte", "EPsProg2", "EPsProg3", "EPsProg4", "EPsProg23",
-                          "alpha", "beta",
-                          "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                          "K", "N", "S","gamma", "fixed", "case", "Strategy",
-                          "xi2", "xi3", "c2", "c3", "c02", "c03",
-                          "b1", "b2", "b3", "w", "HRgo", "ymin",
-                          "hr1", "hr2", "id1", "id2"), envir = environment())
+      
       
       if(Strategy==1){
         res <- parallel::parSapply(cl, D2, utility_tte, HRgo, w, hr1, hr2, id1, id2,
@@ -168,7 +173,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
       }
     
     pb()
-    parallel::stopCluster(cl)
+    
   
     ufkt[, j]      <-  res[1, ]
     d3fkt[, j]     <-  res[2, ]
@@ -265,6 +270,8 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
 
   }
   class(result) <- c("drugdevelopResult", class(result))
+  parallel::stopCluster(cl)
+  
   return(result)
   
 }

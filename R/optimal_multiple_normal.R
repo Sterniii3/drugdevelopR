@@ -132,63 +132,64 @@ optimal_multiple_normal <-
     pb("Performing optimization",
        class = "sticky",
        amount = 0)
+    kappa <- NA_real_
+    cl <-
+      parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
     
+    parallel::clusterExport(
+      cl,
+      c(
+        "pmvnorm",
+        "pnorm",
+        "dmvnorm",
+        "dnorm",
+        "qmvnorm",
+        "qnorm",
+        "dbivanorm",
+        "max",
+        "min",
+        "pgo_multiple_normal",
+        "Ess_multiple_normal",
+        "EPsProg_multiple_normal",
+        "posp_normal",
+        "fmin",
+        "alpha",
+        "beta",
+        "steps1",
+        "stepm1",
+        "stepl1",
+        "K",
+        "N",
+        "S",
+        "c2",
+        "c3",
+        "c02",
+        "c03",
+        "b1",
+        "b2",
+        "b3",
+        "kappa",
+        "integrate",
+        "sapply",
+        "Delta1",
+        "Delta2",
+        "in1",
+        "in2",
+        "sigma1",
+        "sigma2",
+        "rho",
+        "fixed",
+        "relaxed",
+        "get_sample_multiple_normal"
+      ),
+      envir = environment()
+    )
     
     for (j in 1:length(KAPPA)) {
       kappa <- KAPPA[j]
       
       
-      cl <-
-        parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
       
-      parallel::clusterExport(
-        cl,
-        c(
-          "pmvnorm",
-          "pnorm",
-          "dmvnorm",
-          "dnorm",
-          "qmvnorm",
-          "qnorm",
-          "dbivanorm",
-          "max",
-          "min",
-          "pgo_multiple_normal",
-          "Ess_multiple_normal",
-          "EPsProg_multiple_normal",
-          "posp_normal",
-          "fmin",
-          "alpha",
-          "beta",
-          "steps1",
-          "stepm1",
-          "stepl1",
-          "K",
-          "N",
-          "S",
-          "c2",
-          "c3",
-          "c02",
-          "c03",
-          "b1",
-          "b2",
-          "b3",
-          "kappa",
-          "integrate",
-          "sapply",
-          "Delta1",
-          "Delta2",
-          "in1",
-          "in2",
-          "sigma1",
-          "sigma2",
-          "rho",
-          "fixed",
-          "relaxed",
-          "get_sample_multiple_normal"
-        ),
-        envir = environment()
-      )
       
       
       
@@ -225,7 +226,7 @@ optimal_multiple_normal <-
         )
       
       pb()
-      parallel::stopCluster(cl)
+      
       
       ufkt[, j]     <-  res[1,]
       n3fkt[, j]    <-  res[2,]
@@ -349,6 +350,9 @@ optimal_multiple_normal <-
       as.character(Sys.time())
     )
     class(result) <- c("drugdevelopResult", class(result))
+    
+    parallel::stopCluster(cl)
+    
     return(result)
     
   }
