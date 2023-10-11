@@ -68,6 +68,17 @@ optimal_multiarm_binary <- function(p0, p11, p12,
   if(strategy==3){STRATEGY = c(1, 2)}
   
   result <- NULL
+  strategy <- NA_real_
+  RRgo <- NA_real_
+  cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+  
+  parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_binary", "ss_binary", "Ess_binary",
+                                "PsProg_binary", "alpha", "beta",
+                                "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
+                                "K", "N", "S", "strategy",
+                                "c2", "c3", "c02", "c03",
+                                "b1", "b2", "b3", "RRgo",
+                                "p0", "p11", "p12"), envir = environment())
   
   for(strategy in STRATEGY){
     
@@ -80,22 +91,10 @@ optimal_multiarm_binary <- function(p0, p11, p12,
     pb(paste("Performing optimization for strategy", strategy),
        class = "sticky", amount = 0)
     
-    RRgo <- NA_real_
-    cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
     
-    parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_binary", "ss_binary", "Ess_binary",
-                                  "PsProg_binary", "alpha", "beta",
-                                  "steps1", "steps2", "stepm1", "stepm2", "stepl1", "stepl2",
-                                  "K", "N", "S", "strategy",
-                                  "c2", "c3", "c02", "c03",
-                                  "b1", "b2", "b3", "RRgo",
-                                  "p0", "p11", "p12"), envir = environment())
     for(j in 1:length(RRGO)){
       
       RRgo <- RRGO[j]
-      
-
-      
       
       res <- parallel::parSapply(cl, N2, utility_multiarm_binary, RRgo,
                        alpha,beta,p0,p11,p12,strategy,

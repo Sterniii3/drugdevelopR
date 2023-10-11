@@ -72,6 +72,7 @@ optimal_multiarm_normal <- function(Delta1, Delta2,
   
   result <- NULL
   kappa <- NA_real_
+  strategy <- NA_real_
   cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
   
   parallel::clusterExport(cl, c("pmvnorm", "dmvnorm","qmvnorm","adaptIntegrate", "pgo_normal", "ss_normal", "Ess_normal",
