@@ -92,6 +92,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
     STRATEGY = strategy
   }
   kappa <- NA_real_
+  Strategy <- NA_real_
   cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
   parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "dtnorm", "prior_normal", "Epgo_normal", "Epgo23_normal", "En3_normal",
                                 "EPsProg_normal", "EPsProg2_normal", "EPsProg3_normal", "EPsProg4_normal", "EPsProg23_normal",

@@ -87,6 +87,7 @@ optimal_multitrial <- function(w,  hr1, hr2, id1, id2,
   }
   
   HRgo <- NA_real_
+  Strategy <- NA_real_
   cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
   parallel::clusterExport(cl, c("pmvnorm", "dmvnorm", "prior_tte", "Epgo_tte", "Epgo23", "Ed3_tte",
                                 "EPsProg_tte", "EPsProg2", "EPsProg3", "EPsProg4", "EPsProg23",
