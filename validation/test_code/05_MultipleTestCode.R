@@ -1,7 +1,7 @@
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
 test_that("05.01", {
-  # Multiple time-to-event endpoints
+  # Multiple time-to-event endpoints (run time approx. 1 day)
   set.seed(123)
   res <- optimal_multiple_tte(alpha = 0.025,
                           beta = 0.1,
@@ -19,17 +19,18 @@ test_that("05.01", {
                           fixed = FALSE,
                )
   
-  expect_equal(res$u, 1249, tolerance = 0.005)
-  expect_equal(res$n2, 144)
-  expect_equal(res$n3, 227)
-  expect_equal(res$n, 371)
-  expect_equal(res$HRgo, 0.86)
-  expect_equal(res$pgo, 0.72)
+  expect_equal(res$u, 1262, tolerance = 0.005)
+  expect_equal(res$n2, 104)
+  expect_equal(res$n3, 137)
+  expect_equal(res$n, 241)
+  expect_equal(res$HRgo, 0.80)
+  expect_equal(res$pgo, 0.65)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
 test_that("05.02", {
   # Multiple time-to-event endpoints with sample size constraint
+  # (run time approx. 1 day)
   set.seed(123)
   res <- optimal_multiple_tte(alpha = 0.025,
                               beta = 0.1,
@@ -49,11 +50,11 @@ test_that("05.02", {
                               
   )
   
-  expect_equal(res$u, 595.85, tolerance = 0.005)
-  expect_equal(res$n2, 200)
-  expect_equal(res$n3, 279)
-  expect_equal(res$n, 479)
-  expect_equal(res$HRgo, 0.88)
+  expect_equal(res$u, 1172, tolerance = 0.005)
+  expect_equal(res$n2, 144)
+  expect_equal(res$n3, 164)
+  expect_equal(res$n, 308)
+  expect_equal(res$HRgo, 0.82)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
