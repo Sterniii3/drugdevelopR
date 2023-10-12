@@ -155,7 +155,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
   ufkt <- d3fkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
    sp1fkt <- sp2fkt <- sp3fkt <- n2fkt <- n3fkt <- 
    matrix(0, length(D2), length(HRGO))
-
+  HRgo <- NA_real_
   pb <- progressr::progressor(along = HRGO, label = "Optimization progress", message = "Optimization progress")
   pb("Performing optimization", class = "sticky", amount = 0)
   cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) 
