@@ -59,7 +59,7 @@ test_that("05.02", {
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
 test_that("05.03", {
-  # Multiple time-to-event endpoints -- no cost limit
+  # Multiple time-to-event endpoints -- no cost limit (duration: several seconds)
   set.seed(123)
   res_nolim <- optimal_multiple_tte(alpha = 0.025,
                               beta = 0.1,
@@ -113,7 +113,7 @@ test_that("05.03", {
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
 test_that("05.04", {
-  # Multiple time-to-event endpoints
+  # Multiple time-to-event endpoints (duration: several seconds)
   set.seed(123)
   res <- optimal_multiple_tte(alpha = 0.025,
                               beta = 0.1,
@@ -143,7 +143,7 @@ test_that("05.04", {
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
 test_that("05.05", {
-  # Multiple time-to-event endpoints
+  # Multiple time-to-event endpoints (duration: approx. one day)
   start_time_3 = Sys.time()
   set.seed(123)
   optimal_multiple_tte(alpha = 0.025,
