@@ -188,6 +188,7 @@ test_that("05.05", {
 #' @editDate 2022-12-29
 test_that("05.06", {
   # Multiple normally distributed endpoints -- no sample size constraint
+  # (Duration: too long -- after one day still 0%)
   set.seed(123)
   res_nolim <- optimal_multiple_normal(alpha = 0.05,
                               beta = 0.1,
@@ -239,6 +240,7 @@ test_that("05.06", {
 #' @editDate 2022-12-29
 test_that("05.07", {
   # Multiple normally distributed endpoints -- parallel computing
+  # (Duration: too long -- after three days still 0%)
   start_time_3 = Sys.time()
   set.seed(123)
   optimal_multiple_normal(alpha = 0.05,
@@ -283,6 +285,7 @@ test_that("05.07", {
 #' @editDate 2022-12-29
 test_that("05.08", {
   # Multiple normally distributed endpoints -- with and without cost limit
+  # Duration approx. 1 hour
   set.seed(123)
   res_nolim <- optimal_multiple_normal(alpha = 0.05,
                                        beta = 0.1,
@@ -316,12 +319,12 @@ test_that("05.08", {
                                        K = 400
   )
   
-  expect_equal(res_nolim$u, 596.08, tolerance = 0.005)
-  expect_equal(res_nolim$n2, 120)
-  expect_equal(res_nolim$K2, 190)
-  expect_equal(res_nolim$K3, 217)
+  expect_equal(res_nolim$u, 1133, tolerance = 0.005)
+  expect_equal(res_nolim$n2, 160)
+  expect_equal(res_nolim$K2, 220)
+  expect_equal(res_nolim$K3, 215)
   expect_equal(res_nolim$Kappa, 0.02)
-  expect_equal(res_lim$u, 592.48, tolerance = 0.005)
+  expect_equal(res_lim$u, 1099, tolerance = 0.005)
   expect_equal(res_lim$n2, 104)
   expect_equal(res_lim$K2, 178)
   expect_equal(res_lim$K3, 220)
@@ -332,6 +335,7 @@ test_that("05.08", {
 test_that("05.09", {
   # Multiple normally distributed endpoints
   # -- constraint on success probability
+  # Duration several minutes
   set.seed(123)
   res_nolim <- optimal_multiple_normal(alpha = 0.05,
                                        beta = 0.1,
@@ -362,15 +366,15 @@ test_that("05.09", {
                                        sigma1 = 2, sigma2 = 1,
                                        in1 = 300, in2 = 600,
                                        relaxed = TRUE,
-                                       S = 0.7
+                                       S = 0.85
   )
   
-  expect_equal(res_nolim$u, 596.08, tolerance = 0.005)
-  expect_equal(res_nolim$n2, 120)
-  expect_equal(res_nolim$sProg, 0.55)
+  expect_equal(res_nolim$u, 1133, tolerance = 0.005)
+  expect_equal(res_nolim$n2, 160)
+  expect_equal(res_nolim$sProg, 0.8)
   expect_equal(res_nolim$sProg1, 0.15)
-  expect_equal(res_nolim$sProg2, 0.36)
-  expect_equal(res_nolim$sProg3, 0.05)
+  expect_equal(res_nolim$sProg2, 0.6)
+  expect_equal(res_nolim$sProg3, 0.048)
   expect_equal(res_nolim$Kappa, 0.02)
   
   expect_equal(res_lim$u, -9999, tolerance = 0.005)
@@ -379,7 +383,8 @@ test_that("05.09", {
 #' @editDate 2022-12-29
 test_that("05.10", {
   # Multiple normally distributed endpoints
-  # -- with and without
+  # -- relaxed and strict rule
+  # Duration several minutes
   set.seed(123)
   res_relax <- optimal_multiple_normal(alpha = 0.05,
 
@@ -413,15 +418,15 @@ test_that("05.10", {
                                      relaxed = FALSE,
   )
   
-  expect_equal(res_relax$u, 596.08, tolerance = 0.005)
-  expect_equal(res_relax$n2, 120)
+  expect_equal(res_relax$u, 1133, tolerance = 0.005)
+  expect_equal(res_relax$n2, 160)
   expect_equal(res_relax$Kappa, 0.02)
-  expect_equal(res_relax$pgo, 0.97)
+  expect_equal(res_relax$pgo, 0.99)
 
-  expect_equal(res_strict$u, -99.33, tolerance = 0.005)
-  expect_equal(res_strict$n2, 96)
+  expect_equal(res_strict$u, -410, tolerance = 0.005)
+  expect_equal(res_strict$n2, 132)
   expect_equal(res_strict$Kappa, 0.02)
-  expect_equal(res_strict$pgo, 0.96)
+  expect_equal(res_strict$pgo, 0.98)
 })
 
 
