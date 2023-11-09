@@ -930,7 +930,7 @@ get_sample_multiple_normal <-
       rho * sqrt(4 / in1) * sqrt(4 / in2),
       4 / in2
     ), ncol = 2)
-    nsim <- 5000
+    nsim <- 100
     rsamp <-
       MASS::mvrnorm(
         n = nsim,
