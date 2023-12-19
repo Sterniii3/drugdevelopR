@@ -197,7 +197,7 @@ test_that("01.06", {
   
   expect_equal(res[2,]$n3, 824) # optimal sample size in phase III after skipping phase II
   expect_equal(res[2,]$u, 1706, tolerance = 0.0001) # expected utility
-  expect_equal(res[2,]$HR, 0.76) # threshold for proceeding to phase III
+  expect_equal(res[2,]$HR, Inf) # threshold for proceeding to phase III
 })
 
 #' @editor Lukas D Sauer

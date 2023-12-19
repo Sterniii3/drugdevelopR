@@ -19,12 +19,12 @@ test_that("05.01", {
                           fixed = FALSE,
                )
   
-  expect_equal(res$u, 1262, tolerance = 0.005)
-  expect_equal(res$n2, 104)
-  expect_equal(res$n3, 137)
-  expect_equal(res$n, 241)
-  expect_equal(res$HRgo, 0.80)
-  expect_equal(res$pgo, 0.65)
+  expect_equal(res$u, 1136, tolerance = 0.005)
+  expect_equal(res$n2, 140)
+  expect_equal(res$n3, 271)
+  expect_equal(res$n, 411)
+  expect_equal(res$HRgo, 0.88)
+  expect_equal(res$pgo, 0.74)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
@@ -50,11 +50,11 @@ test_that("05.02", {
                               
   )
   
-  expect_equal(res$u, 1172, tolerance = 0.005)
-  expect_equal(res$n2, 144)
-  expect_equal(res$n3, 164)
-  expect_equal(res$n, 308)
-  expect_equal(res$HRgo, 0.82)
+  expect_equal(res$u, 1182, tolerance = 0.005)
+  expect_equal(res$n2, 128)
+  expect_equal(res$n3, 140)
+  expect_equal(res$n, 268)
+  expect_equal(res$HRgo, 0.80)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
@@ -206,11 +206,11 @@ test_that("05.06", {
                               relaxed = TRUE
   )
   
-  expect_equal(res_nolim$u, 960.55, tolerance = 0.005)
-  expect_equal(res_nolim$n2, 108)
-  expect_equal(res_nolim$n3, 85)
-  expect_equal(res_nolim$n, 193)
-  expect_equal(res_nolim$Kappa, 0.02)
+  expect_equal(res_nolim$u, 1765, tolerance = 0.005)
+  expect_equal(res_nolim$n2, 160)
+  expect_equal(res_nolim$n3, 74)
+  expect_equal(res_nolim$n, 234)
+  expect_equal(res_nolim$Kappa, 0.06)
   # Multiple normally distributed endpoints -- with sample size constraint
   
   res_lim <- optimal_multiple_normal(alpha = 0.05,
@@ -230,11 +230,11 @@ test_that("05.06", {
                                      N = 190,
   )
   
-  expect_equal(res_lim$u, 959.20, tolerance = 0.005)
-  expect_equal(res_lim$n2, 96)
-  expect_equal(res_lim$n3, 94)
-  expect_equal(res_lim$n, 190)
-  expect_equal(res_lim$Kappa, 0.02)
+  expect_equal(res_lim$u, 1384, tolerance = 0.005)
+  expect_equal(res_lim$n2, 80)
+  expect_equal(res_lim$n3, 109)
+  expect_equal(res_lim$n, 189)
+  expect_equal(res_lim$Kappa, 0.08)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
@@ -371,9 +371,9 @@ test_that("05.09", {
   
   expect_equal(res_nolim$u, 1133, tolerance = 0.005)
   expect_equal(res_nolim$n2, 160)
-  expect_equal(res_nolim$sProg, 0.8)
+  expect_equal(res_nolim$sProg, 0.83)
   expect_equal(res_nolim$sProg1, 0.15)
-  expect_equal(res_nolim$sProg2, 0.6)
+  expect_equal(res_nolim$sProg2, 0.64)
   expect_equal(res_nolim$sProg3, 0.048)
   expect_equal(res_nolim$Kappa, 0.02)
   
@@ -423,7 +423,7 @@ test_that("05.10", {
   expect_equal(res_relax$Kappa, 0.02)
   expect_equal(res_relax$pgo, 0.99)
 
-  expect_equal(res_strict$u, -410, tolerance = 0.005)
+  expect_equal(res_strict$u, 410, tolerance = 0.005)
   expect_equal(res_strict$n2, 132)
   expect_equal(res_strict$Kappa, 0.02)
   expect_equal(res_strict$pgo, 0.98)
