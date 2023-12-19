@@ -17,9 +17,9 @@ development programs with optimal sample size allocation and go/no-go
 decision rules. The assumed true treatment effects can be fixed or
 modelled by a prior distribution. The corresponding [R Shiny
 application](https://web.imbi.uni-heidelberg.de/drugdevelopR/) has a
-graphic user interface for the package and thus makes it accessible for
+graphic user interface and thus makes it accessible for
 users without prior knowledge of R. Fast computing is made possible by
-parallel programming. theoretical foundations for this package were laid
+parallel programming. Theoretical foundations for this package were laid
 in the dissertation “Integrated Planning of Pilot and Subsequent
 Confirmatory Study in Clinical Research – Finding Optimal Designs in a
 Utility-Based Framework” by Stella Erdmann at the Institute of Medical
