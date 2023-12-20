@@ -180,7 +180,7 @@ effects of OS and PFS is 0.6.</li>
 <span>                    id1 <span class="op">=</span> <span class="cn">NULL</span>, id2 <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>                    n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">400</span>, stepn2 <span class="op">=</span> <span class="fl">10</span>,             <span class="co"># define optimization set for n2</span></span>
 <span>                    hrgomin <span class="op">=</span> <span class="fl">0.7</span>, hrgomax <span class="op">=</span> <span class="fl">0.9</span>, stephrgo <span class="op">=</span> <span class="fl">0.05</span>,    <span class="co"># define optimization set for HRgo</span></span>
-<span>                    alpha <span class="op">=</span> <span class="fl">0.025</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                         <span class="co"># drug development planning parameters</span></span>
+<span>                    alpha <span class="op">=</span> <span class="fl">0.025</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                        <span class="co"># drug development planning parameters</span></span>
 <span>                    c2 <span class="op">=</span> <span class="fl">0.75</span>, c3 <span class="op">=</span> <span class="fl">1</span>, c02 <span class="op">=</span> <span class="fl">100</span>, c03 <span class="op">=</span> <span class="fl">150</span>,          <span class="co"># define costs for phase II and III</span></span>
 <span>                    K <span class="op">=</span> <span class="cn">Inf</span>, N <span class="op">=</span> <span class="cn">Inf</span>, S <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>,                       <span class="co"># set constraints</span></span>
 <span>                    steps1 <span class="op">=</span> <span class="fl">1</span>,  stepm1 <span class="op">=</span> <span class="fl">0.95</span>,  stepl1 <span class="op">=</span> <span class="fl">0.85</span>,       <span class="co"># effect size categories</span></span>
@@ -196,33 +196,54 @@ effects of OS and PFS is 0.6.</li>
 let’s take a look at the output of the program.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res1</span></span>
-<span><span class="co">#&gt;        u HRgo  n2  n3   n  pgo sProg hr1  hr2 rho   K   N    S  K2  K3 sProg2</span></span>
-<span><span class="co">#&gt; 1 295.29 0.85 140 284 424 0.82  0.49 0.8 0.75 0.6 Inf Inf -Inf 205 407   0.25</span></span>
-<span><span class="co">#&gt;   sProg3   OS steps1 stepm1 stepl1 alpha beta c02 c03   c2 c3  b11  b21  b31</span></span>
-<span><span class="co">#&gt; 1   0.11 0.77      1   0.95   0.85  0.05  0.1 100 150 0.75  1 1000 2000 3000</span></span>
-<span><span class="co">#&gt;    b12  b22  b32</span></span>
-<span><span class="co">#&gt; 1 1000 1500 2000</span></span></code></pre></div>
+<span><span class="co">#&gt; Optimization result:</span></span>
+<span><span class="co">#&gt;  Utility: 106.61</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 90, phase III: 301, total: 391</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 0.79</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 168, phase III: 420, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 100, phase III: 150</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.75, phase III: 1</span></span>
+<span><span class="co">#&gt;  Effect size categories:</span></span>
+<span><span class="co">#&gt;   small: 1 medium: 0.95 large: 0.85</span></span>
+<span><span class="co">#&gt;  Expected gains if endpoint 1 is significant:</span></span>
+<span><span class="co">#&gt;   small: 1000 medium: 2000 large: 3000</span></span>
+<span><span class="co">#&gt;  Expected gains if only endpoint 2 is significant:</span></span>
+<span><span class="co">#&gt;   small: 1000 medium: 1500 large: 2000</span></span>
+<span><span class="co">#&gt;  Success probability: 0.4</span></span>
+<span><span class="co">#&gt;  Success probability for a trial with:</span></span>
+<span><span class="co">#&gt;    two arms in phase III: 0.21, three arms in phase III: 0.07</span></span>
+<span><span class="co">#&gt;  Probability of endpoint 1 being significant in phase III: 0.71</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.85 [HRgo] </span></span>
+<span><span class="co">#&gt;  Assumed true effects [HR]: </span></span>
+<span><span class="co">#&gt;    endpoint 1: 0.8,  endpoint2 2: 0.75</span></span>
+<span><span class="co">#&gt;  Correlation between endpoints: 0.6</span></span></code></pre></div>
 <p>The program returns a data frame, with the following results:</p>
 <ul>
 <li>
-<code>res$n2</code> is the optimal number of participants for phase
+<code>res1$n2</code> is the optimal number of participants for phase
 II and <code>res$n3</code> the resulting number of events for phase III.
-We see that the optimal scenario requires 140 participants in phase II
-and 284 participants in phase III.</li>
+We see that the optimal scenario requires 90 participants in phase II
+and 301 participants in phase III.</li>
 <li>
-<code>res$HRgo</code> is the optimal threshold value for the
+<code>res1$HRgo</code> is the optimal threshold value for the
 go/no-go decision rule. We see that we need a hazard ratio of less than
 0.85 in phase II in order to proceed to phase III.</li>
 <li>
-<code>res$u</code> is the expected utility of the program for the
+<code>res1$u</code> is the expected utility of the program for the
 optimal sample size and threshold value. In our case it amounts to
-295.29, i.e. we have an expected utility of 29 529 000$.</li>
+106.61, i.e. we have an expected utility of 10 661 000$.</li>
 <li>
-<code>res$OS</code> is the probability that endpoint OS is
+<code>res1$OS</code> is the probability that endpoint OS is
 significant, given that the program is successful overall. The
-probability of a successful program is 0.49, thus, if the program is
+probability of a successful program is 0.4, thus, if the program is
 successful the probability that the endpoint OS is significant and we
-obtain higher benefits is 0.77.</li>
+obtain higher benefits is 0.71.</li>
 </ul>
 </div>
 </div>
@@ -302,11 +323,11 @@ effects is 0.5.</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_multiple_normal.html">optimal_multiple_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.8</span>, Delta2 <span class="op">=</span> <span class="fl">0.5</span>,  <span class="co"># define assumed true treatmen effects</span></span>
+<span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_multiple_normal.html">optimal_multiple_normal</a></span><span class="op">(</span>Delta1 <span class="op">=</span> <span class="fl">0.8</span>, Delta2 <span class="op">=</span> <span class="fl">0.5</span>,  <span class="co"># define assumed true treatment effects</span></span>
 <span>   in1<span class="op">=</span> <span class="cn">NULL</span>, in2<span class="op">=</span> <span class="cn">NULL</span>, sigma1 <span class="op">=</span> <span class="fl">2</span>, sigma2<span class="op">=</span> <span class="fl">1</span>,              <span class="co"># standard deviations</span></span>
 <span>   n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">200</span>, stepn2 <span class="op">=</span> <span class="fl">10</span>,                     <span class="co"># define optimization set for n2</span></span>
 <span>   kappamin <span class="op">=</span> <span class="fl">0.02</span>, kappamax <span class="op">=</span> <span class="fl">0.2</span>, stepkappa <span class="op">=</span> <span class="fl">0.02</span>,        <span class="co"># define optimization set for HRgo</span></span>
-<span>   alpha <span class="op">=</span> <span class="fl">0.025</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                                 <span class="co"># drug development planning parameters</span></span>
+<span>   alpha <span class="op">=</span> <span class="fl">0.025</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                                <span class="co"># drug development planning parameters</span></span>
 <span>   c2 <span class="op">=</span> <span class="fl">0.75</span>, c3 <span class="op">=</span> <span class="fl">1</span>, c02 <span class="op">=</span> <span class="fl">100</span>, c03 <span class="op">=</span> <span class="fl">150</span>,                  <span class="co"># define fixed and variable costs for phase II and III</span></span>
 <span>   K <span class="op">=</span> <span class="cn">Inf</span>, N <span class="op">=</span> <span class="cn">Inf</span>, S <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>,                               <span class="co"># set constraints</span></span>
 <span>   steps1 <span class="op">=</span> <span class="fl">0</span>,  stepm1 <span class="op">=</span> <span class="fl">0.5</span>, stepl1 <span class="op">=</span> <span class="fl">0.8</span>,                  <span class="co"># benefit categories</span></span>
@@ -322,19 +343,35 @@ effects is 0.5.</li>
 let’s take a look at the output of the program.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res2</span></span>
-<span><span class="co">#&gt;        u Kappa  n2 n3   n  pgo sProg Delta1 Delta2 sigma1 sigma2 rho relaxed</span></span>
-<span><span class="co">#&gt; 1 472.44  0.02 100 72 172 0.97  0.54    0.8   0.75      2      1 0.5    TRUE</span></span>
-<span><span class="co">#&gt;     K   N    S  K2  K3 sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02</span></span>
-<span><span class="co">#&gt; 1 Inf Inf -Inf 175 218   0.24   0.28   0.02      0    0.5    0.8  0.05  0.1 100</span></span>
-<span><span class="co">#&gt;   c03   c2 c3   b1   b2   b3</span></span>
-<span><span class="co">#&gt; 1 150 0.75  1 1000 2000 3000</span></span></code></pre></div>
+<span><span class="co">#&gt; Optimization result:</span></span>
+<span><span class="co">#&gt;  Utility: 342.07</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 120, phase III: 171, total: 291</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 0.98</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 190, phase III: 318, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 100, phase III: 150</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.75, phase III: 1</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 0 (1000), medium: 0.5 (2000), large: 0.8 (3000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.824</span></span>
+<span><span class="co">#&gt;  Success probability by effect size:</span></span>
+<span><span class="co">#&gt;    small: 0.798, medium: 0.026, large: 0</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.02 [Kappa] </span></span>
+<span><span class="co">#&gt;  Assumed true effects [Delta]: </span></span>
+<span><span class="co">#&gt;    endpoint 1: 0.8, endpoint 2: 0.5</span></span>
+<span><span class="co">#&gt;  Correlation between endpoints: 0.5</span></span></code></pre></div>
 <p>The program returns a data frame, with the following results:</p>
 <ul>
 <li>
 <code>res$n2</code> is the optimal number of participants for phase
 II and <code>res$n3</code> the resulting number of events for phase III.
-We see that the optimal scenario requires 100 participants in phase II
-and 72 participants in phase III.</li>
+We see that the optimal scenario requires 120 participants in phase II
+and 171 participants in phase III.</li>
 <li>
 <code>res$Kappa</code> is the optimal threshold value for the
 go/no-go decision rule. We see that we need a hazard ratio of less than
@@ -342,7 +379,7 @@ go/no-go decision rule. We see that we need a hazard ratio of less than
 <li>
 <code>res$u</code> is the expected utility of the program for the
 optimal sample size and threshold value. In our case it amounts to
-472.44, i.e. we have an expected utility of 47 244 000$.</li>
+342.07, i.e. we have an expected utility of 34 207 000$.</li>
 </ul>
 </div>
 </div>
