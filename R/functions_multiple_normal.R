@@ -661,7 +661,10 @@ utility_multiple_normal <- function(kappa,
                                     fixed,
                                     rho,
                                     relaxed) {
-  rsamp <- get_sample_multiple_normal(Delta1, Delta2, in1, in2, rho)
+  rsamp <- NULL
+  if(!fixed){
+    rsamp <- get_sample_multiple_normal(Delta1, Delta2, in1, in2, rho)
+  }
   n3 <-
     Ess_multiple_normal(
       kappa = kappa,
