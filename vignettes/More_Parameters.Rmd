@@ -3,7 +3,7 @@ title: "More parameters to adapt to specific settings"
 author: "Johannes Cepicka"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{More_Parameters}
+  %\VignetteIndexEntry{More parameters to adapt to specific settings}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

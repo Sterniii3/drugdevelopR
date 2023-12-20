@@ -2,7 +2,7 @@
 title: "Package validation"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Package_validation}
+  %\VignetteIndexEntry{Package validation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

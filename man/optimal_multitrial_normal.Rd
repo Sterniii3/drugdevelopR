@@ -72,7 +72,7 @@ for details}
 
 \item{stepkappa}{step size for the optimization over the threshold value kappa}
 
-\item{alpha}{significance level}
+\item{alpha}{one-sided significance level}
 
 \item{beta}{type II error rate; i.e. \code{1 - beta} is the power for calculation of the sample size for phase III}
 
@@ -154,7 +154,7 @@ optimal_multitrial_normal(w = 0.3,           # define parameters for prior
   a = 0.25, b = 0.75,
   n2min = 20, n2max = 100, stepn2 = 4,                # define optimization set for n2
   kappamin = 0.02, kappamax = 0.2, stepkappa = 0.02,  # define optimization set for kappa
-  alpha = 0.05, beta = 0.1,                           # drug development planning parameters
+  alpha = 0.025, beta = 0.1,                          # drug development planning parameters
   c2 = 0.675, c3 = 0.72, c02 = 15, c03 = 20,          # fixed and variable costs for phase II/III
   K = Inf, N = Inf, S = -Inf,                         # set constraints
   b1 = 3000, b2 = 8000, b3 = 10000,                   # expected benefit for each effect size                                         

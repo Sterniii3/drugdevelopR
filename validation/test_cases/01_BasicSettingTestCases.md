@@ -61,7 +61,7 @@ Verify that the function calculates an optimal sample size of 470 in phase II, a
 
 ### 01.06 (shows that req. 01.04 is met):  {-}
 Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following changes and additions: Set the weight for the prior distribution to be 0.6 and use the option to skip phase II.
-Verify that the function calculates an optimal sample size of 824 in phase III (corresponding to the total sample size), an expected utility of 1706 (in 10^5\$) and an effect size of 0.76 used for planning phase III (returned as HR, as the classical "optimal" threshold value HRgo is returned as Inf) as suggested by Stella Erdmann [2].
+Verify that the function calculates an optimal sample size of 824 in phase III (corresponding to the total sample size), an expected utility of 1706 (in 10^5\$) and an effect size of 0.76 used for planning phase III (returned as `median_prior_HR`, as the classical "optimal" threshold value `HRgo` is returned as `Inf`) as suggested by Stella Erdmann [2].
 
 ### 01.07 (shows that req. 01.07 is met):  {-}
 Use the function `optimal_tte()`. Supply the same input values as in test case 01.01 to the function except for the following changes and additions: Set the weight for the prior distribution to be 0.6 and use the option to model different population structures and set the parameter $\gamma$ to 0.025.

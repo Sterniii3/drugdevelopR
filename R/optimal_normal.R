@@ -17,6 +17,9 @@
 #' II is skipped and compares it to the situation when phase II is not skipped.
 #' The results are then returned as a two-row data frame, `res[1, ]`
 #' being the results when including phase II and `res[2, ]` when skipping phase II.
+#' `res[2, ]` has an additional parameter, `res[2, ]$median_prior_Delta`, which is
+#' the assumed effect size used for planning the phase III study when the 
+#' phase II is skipped.
 #' 
 #' @importFrom msm dtnorm ptnorm rtnorm
 #' @import doParallel

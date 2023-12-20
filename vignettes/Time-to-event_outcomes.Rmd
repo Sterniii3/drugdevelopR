@@ -1,8 +1,8 @@
 ---
-title: "Time-to-event outcome Variables"
+title: "Time-to-event outcome variables"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Time-to-event_outcomes}
+  %\VignetteIndexEntry{Time-to-event outcome variables}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

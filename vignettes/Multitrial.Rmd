@@ -2,7 +2,7 @@
 title: "Multitrial - methods for programs with several phase III trials"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Multitrial}
+  %\VignetteIndexEntry{Multitrial - methods for programs with several phase III trials}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

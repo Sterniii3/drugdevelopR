@@ -70,7 +70,7 @@ for details}
 
 \item{steprrgo}{step size for the optimization over RRgo}
 
-\item{alpha}{significance level}
+\item{alpha}{one-sided significance level}
 
 \item{beta}{type II error rate; i.e. \code{1 - beta} is the power for calculation of the number of events for phase III}
 
@@ -152,7 +152,7 @@ optimal_multitrial_binary(w = 0.3,         # define parameters for prior
   in1 = 30, in2 = 60,                             # (https://web.imbi.uni-heidelberg.de/prior/)
   n2min = 20, n2max = 100, stepn2 = 4,            # define optimization set for n2
   rrgomin = 0.7, rrgomax = 0.9, steprrgo = 0.05,  # define optimization set for RRgo
-  alpha = 0.05, beta = 0.1,                       # drug development planning parameters
+  alpha = 0.025, beta = 0.1,                      # drug development planning parameters
   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,        # fixed and variable costs for phase II/III,
   K = Inf, N = Inf, S = -Inf,                     # set constraints
   b1 = 1000, b2 = 2000, b3 = 3000,                # expected benefit for a each effect size

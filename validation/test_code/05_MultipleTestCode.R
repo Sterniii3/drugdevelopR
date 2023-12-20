@@ -188,7 +188,7 @@ test_that("05.05", {
 #' @editDate 2022-12-29
 test_that("05.06", {
   # Multiple normally distributed endpoints -- no sample size constraint
-  # (Duration: too long -- after one day still 0%)
+  # (Duration: approx. one day)
   set.seed(123)
   res_nolim <- optimal_multiple_normal(alpha = 0.05,
                               beta = 0.1,
@@ -240,7 +240,7 @@ test_that("05.06", {
 #' @editDate 2022-12-29
 test_that("05.07", {
   # Multiple normally distributed endpoints -- parallel computing
-  # (Duration: too long -- after three days still 0%)
+  # (Duration: approx. one day)
   start_time_3 = Sys.time()
   set.seed(123)
   optimal_multiple_normal(alpha = 0.05,

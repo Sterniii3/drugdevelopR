@@ -72,7 +72,7 @@ for details}
 
 \item{steprrgo}{step size for the optimization over RRgo}
 
-\item{alpha}{significance level}
+\item{alpha}{one-sided significance level}
 
 \item{beta}{type II error rate; i.e. \code{1 - beta} is the power for calculation of the number of events for phase III}
 

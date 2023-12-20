@@ -2,7 +2,7 @@
 title: "Bias adjustment - methods for discounting of phase II results"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Bias_adjustment}
+  %\VignetteIndexEntry{Bias adjustment - methods for discounting of phase II results}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

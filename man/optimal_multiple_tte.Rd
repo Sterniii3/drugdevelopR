@@ -142,6 +142,11 @@ also matches the oncology example, where OS (i.e. endpoint 1) implicates
 larger expected gains than PFS alone (i.e. endpoint 2).
 
 Fast computing is enabled by parallel programming.
+
+Monte Carlo simulations are applied for calculating utility, event count and
+other operating characteristics in this setting. Hence, the results are affected
+by random uncertainty. The extent of uncertainty is discussed in
+(Kieser et al. 2018).
 }
 \examples{
 # Activate progress bar (optional)
@@ -153,7 +158,7 @@ optimal_multiple_tte(hr1 = 0.75,
   hr2 = 0.80, id1 = 210, id2 = 420,          # define assumed true HRs
   n2min = 30, n2max = 90, stepn2 = 6,        # define optimization set for n2
   hrgomin = 0.7, hrgomax = 0.9, stephrgo = 0.05, # define optimization set for HRgo
-  alpha = 0.05, beta = 0.1,                  # drug development planning parameters
+  alpha = 0.025, beta = 0.1,                 # drug development planning parameters
   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,   # fixed/variable costs for phase II/III
   K = Inf, N = Inf, S = -Inf,                # set constraints
   steps1 = 1,                                # define lower boundary for "small"
@@ -167,6 +172,8 @@ optimal_multiple_tte(hr1 = 0.75,
 
 }
 \references{
+Kieser, M., Kirchner, M. Dölger, E., Götte, H. (2018).Optimal planning of phase II/III programs for clinical trials with multiple endpoints, Pharm Stat. 2018 Sep; 17(5):437-457.
+
 Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal Designs for Multi-Arm Phase II/III Drug Development Programs. Submitted to peer-review journal.
 
 IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}, assessed last 15.05.19.

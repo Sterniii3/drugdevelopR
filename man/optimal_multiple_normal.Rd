@@ -148,6 +148,10 @@ endpoints show a  small effect, and a medium overall effect otherwise.
 }
 
 Fast computing is enabled by parallel programming.
+
+Monte Carlo simulations are applied for calculating utility, event count and
+other operating characteristics in this setting. Hence, the results are affected
+by random uncertainty.
 }
 \examples{
 # Activate progress bar (optional)
@@ -160,7 +164,7 @@ optimal_multiple_normal(Delta1 = 0.75,
   sigma1 = 8, sigma2= 12,                            # variances for both endpoints
   n2min = 30, n2max = 90, stepn2 = 10,               # define optimization set for n2
   kappamin = 0.05, kappamax = 0.2, stepkappa = 0.05, # define optimization set for HRgo
-  alpha = 0.05, beta = 0.1,                          # planning parameters
+  alpha = 0.025, beta = 0.1,                         # planning parameters
   c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,           # fixed/variable costs: phase II/III
   K = Inf, N = Inf, S = -Inf,                        # set constraints
   steps1 = 0,                                        # define lower boundary for "small"
