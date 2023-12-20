@@ -2,7 +2,7 @@
 title: "Multiarm - methods for multi-arm programs"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Multiarm_Trials}
+  %\VignetteIndexEntry{Multiarm - methods for multi-arm programs}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

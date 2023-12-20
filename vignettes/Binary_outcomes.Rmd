@@ -3,7 +3,7 @@ title: "Binary outcome variables"
 author: "Johannes Cepicka"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Binary_distributed_outcomes}
+  %\VignetteIndexEntry{Binary outcome variables}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

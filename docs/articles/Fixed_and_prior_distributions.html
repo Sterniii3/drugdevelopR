@@ -8,8 +8,8 @@
 <meta name="description" content="drugdevelopR">
 <title>Fixed effect estimates and prior distributions • drugdevelopR</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Fixed effect estimates and prior distributions">
 <meta property="og:description" content="drugdevelopR">
@@ -79,7 +79,7 @@
 Cepicka</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Sterniii3/drugdevelopR/blob/HEAD/../../../../../../P:/meth_ks/drugdevelopR/programs/drugdevelopR/vignettes/Fixed_and_prior_distributions.Rmd" class="external-link"><code>../../../../../../P:/meth_ks/drugdevelopR/programs/drugdevelopR/vignettes/Fixed_and_prior_distributions.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Sterniii3/drugdevelopR/blob/HEAD/../../../../../../U:/r-pakete/drugdevelopR/drugdevelopR_source/vignettes/Fixed_and_prior_distributions.Rmd" class="external-link"><code>../../../../../../U:/r-pakete/drugdevelopR/drugdevelopR_source/vignettes/Fixed_and_prior_distributions.Rmd</code></a></small>
       <div class="d-none name"><code>Fixed_and_prior_distributions.Rmd</code></div>
     </div>
 
@@ -183,7 +183,7 @@ app</a>.</p>
 <span>                       c2 <span class="op">=</span> <span class="fl">0.675</span>, c3 <span class="op">=</span> <span class="fl">0.72</span>, <span class="co"># maximal total trial costs</span></span>
 <span>                       c02 <span class="op">=</span> <span class="fl">15</span>, c03 <span class="op">=</span> <span class="fl">20</span>, <span class="co"># maximal per-patient costs</span></span>
 <span>                       b1 <span class="op">=</span> <span class="fl">3000</span>, b2 <span class="op">=</span> <span class="fl">8000</span>, b3 <span class="op">=</span> <span class="fl">10000</span>, <span class="co"># gains for patients</span></span>
-<span>                       alpha <span class="op">=</span> <span class="fl">0.05</span>, <span class="co"># significance level</span></span>
+<span>                       alpha <span class="op">=</span> <span class="fl">0.025</span>, <span class="co"># significance level</span></span>
 <span>                       beta <span class="op">=</span> <span class="fl">0.1</span>, <span class="co"># 1 - power</span></span>
 <span>                       w <span class="op">=</span> <span class="fl">0.6</span>, in1 <span class="op">=</span> <span class="fl">300</span>, in2 <span class="op">=</span> <span class="fl">600</span>, <span class="co">#weight and amount of information</span></span>
 <span>                       a <span class="op">=</span> <span class="fl">0.25</span>, b <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span> <span class="co">#truncation values</span></span></code></pre></div>
@@ -195,19 +195,36 @@ app</a>.</p>
 let’s take a look at the output of the program.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span></span>
-<span><span class="co">#&gt;         u Kappa n2  n3   n  pgo sProg   w Delta1 Delta2 in1 in2    a    b   K</span></span>
-<span><span class="co">#&gt; 1 3473.81  0.06 76 158 234 0.99  0.85 0.6  0.625    0.9 300 600 0.25 0.75 Inf</span></span>
-<span><span class="co">#&gt;   K2  K3 sProg1 sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03    c2</span></span>
-<span><span class="co">#&gt; 1 66 134   0.64    0.2   0.02      0    0.5    0.8  0.05  0.1  15  20 0.675</span></span>
-<span><span class="co">#&gt;     c3   b1   b2    b3 gamma</span></span>
-<span><span class="co">#&gt; 1 0.72 3000 8000 10000     0</span></span></code></pre></div>
+<span><span class="co">#&gt; Optimization result:</span></span>
+<span><span class="co">#&gt;  Utility: 3147.32</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 80, phase III: 188, total: 268</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 0.99</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 69, phase III: 155, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 15, phase III: 20</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.675, phase III: 0.72</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.85</span></span>
+<span><span class="co">#&gt;  Success probability by effect size:</span></span>
+<span><span class="co">#&gt;    small: 0.68, medium: 0.16, large: 0.01</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.06 [Kappa] </span></span>
+<span><span class="co">#&gt;  Parameters of the prior distribution: </span></span>
+<span><span class="co">#&gt;    Delta1: 0.625, Delta2: 0.9, in1: 300, in2: 600,</span></span>
+<span><span class="co">#&gt;    a: 0.25, b: 0.75, w: 0.6</span></span>
+<span><span class="co">#&gt;  Treatment effect offset between phase II and III: 0 [gamma]</span></span></code></pre></div>
 <p>The program returns a total of thirteen values and the input values.
 Once again, we will only focus at the most important ones:</p>
 <ul>
 <li>
 <code>res$n2</code> is the optimal sample size for phase II and
 <code>res$n3</code> the resulting sample size for phase III. We see that
-the optimal scenario requires 76 participants in phase II and 158
+the optimal scenario requires 80 participants in phase II and 188
 participants in phase III. The number of participants in both phases was
 reduced compared to the setting with a fixed treatment effect.</li>
 <li>
@@ -218,8 +235,8 @@ same as in the baseline scenario.</li>
 <li>
 <code>res$u</code> is the expected utility of the program for the
 optimal sample size and threshold value. In our case it amounts to
-3473.81, i.e. we have an expected utility of 347 381 000$. This is a
-6.56% increase over the scenario without the prior distribution. The
+3147.32, i.e. we have an expected utility of 314 732 000$. This is a
+6.83% increase over the scenario without the prior distribution. The
 increase in the expected utility can be attributed to the additional
 weight which was put on the second treatment effect <code>Delta2</code>,
 which was more promising than our treatment effect.</li>
@@ -240,7 +257,7 @@ the “amount of information”, we have to use the parameters
 <code>id1</code> and <code>id2</code> which represent the “number of
 events”. They refer to the number of events which were observed in the
 study to determine the treatment effect. If in our study 210 events
-could be observed, then the value for <code>id1</code> is set to be 420.
+could be observed, then the value for <code>id1</code> is set to be 210.
 If we assume assume that in the study of the other research group 420
 events could be observed, the parameter value for <code>id2</code> is
 420.</li>
@@ -296,7 +313,7 @@ parallel computing.</li>
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Stella Erdmann, Johannes Cepicka, Lukas D. Sauer.</p>
+<p>Developed by Stella Erdmann, Johannes Cepicka, Marietta Kirchner, Meinhard Kieser, Lukas D. Sauer.</p>
 </div>
 
 <div class="pkgdown-footer-right">

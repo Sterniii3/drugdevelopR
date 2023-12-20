@@ -3,7 +3,7 @@ title: "Fixed effect estimates and prior distributions"
 author: "Johannes Cepicka"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Fixed_and_prior_distributions}
+  %\VignetteIndexEntry{Fixed effect estimates and prior distributions}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

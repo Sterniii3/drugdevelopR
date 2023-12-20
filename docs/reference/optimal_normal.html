@@ -7,7 +7,7 @@ difference in means. The assumed true treatment effects can be assumed to be
 fixed or modelled by a prior distribution. The R Shiny application
 prior visualizes the prior
 distributions used in this package. Fast computing is enabled by parallel
-programming."><title>Optimal phase II/III drug development planning with normally distributed endpoint — optimal_normal • drugdevelopR</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Optimal phase II/III drug development planning with normally distributed endpoint — optimal_normal"><meta property="og:description" content="The function optimal_normal of the drugdevelopR
+programming."><title>Optimal phase II/III drug development planning with normally distributed endpoint — optimal_normal • drugdevelopR</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Optimal phase II/III drug development planning with normally distributed endpoint — optimal_normal"><meta property="og:description" content="The function optimal_normal of the drugdevelopR
 package enables planning of phase II/III drug development programs with
 optimal sample size allocation and go/no-go decision rules for normally
 distributed endpoints. The treatment effect is measured by the standardized
@@ -184,7 +184,7 @@ for details</p></dd>
 
 
 <dt>alpha</dt>
-<dd><p>significance level</p></dd>
+<dd><p>one-sided significance level</p></dd>
 
 
 <dt>beta</dt>
@@ -258,7 +258,10 @@ for details</p></dd>
 if TRUE, the program calculates the expected utility for the case when phase
 II is skipped and compares it to the situation when phase II is not skipped.
 The results are then returned as a two-row data frame, <code>res[1, ]</code>
-being the results when including phase II and <code>res[2, ]</code> when skipping phase II.</p></dd>
+being the results when including phase II and <code>res[2, ]</code> when skipping phase II.
+<code>res[2, ]</code> has an additional parameter, <code>res[2, ]$median_prior_Delta</code>, which is
+the assumed effect size used for planning the phase III study when the
+phase II is skipped.</p></dd>
 
 
 <dt>num_cl</dt>
@@ -330,7 +333,7 @@ being the results when including phase II and <code>res[2, ]</code> when skippin
 <span class="r-in"><span>  a <span class="op">=</span> <span class="fl">0.25</span>, b <span class="op">=</span> <span class="fl">0.75</span>,</span></span>
 <span class="r-in"><span>  n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">100</span>, stepn2 <span class="op">=</span> <span class="fl">4</span>,               <span class="co"># define optimization set for n2</span></span></span>
 <span class="r-in"><span>  kappamin <span class="op">=</span> <span class="fl">0.02</span>, kappamax <span class="op">=</span> <span class="fl">0.2</span>, stepkappa <span class="op">=</span> <span class="fl">0.02</span>, <span class="co"># define optimization set for kappa</span></span></span>
-<span class="r-in"><span>  alpha <span class="op">=</span> <span class="fl">0.05</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                          <span class="co"># drug development planning parameters</span></span></span>
+<span class="r-in"><span>  alpha <span class="op">=</span> <span class="fl">0.025</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                          <span class="co"># drug development planning parameters</span></span></span>
 <span class="r-in"><span>  c2 <span class="op">=</span> <span class="fl">0.675</span>, c3 <span class="op">=</span> <span class="fl">0.72</span>, c02 <span class="op">=</span> <span class="fl">15</span>, c03 <span class="op">=</span> <span class="fl">20</span>,         <span class="co"># fixed/variable costs for phase II/III</span></span></span>
 <span class="r-in"><span>  K <span class="op">=</span> <span class="cn">Inf</span>, N <span class="op">=</span> <span class="cn">Inf</span>, S <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>,                        <span class="co"># set constraints</span></span></span>
 <span class="r-in"><span>  steps1 <span class="op">=</span> <span class="fl">0</span>,                                        <span class="co"># define lower boundary for "small"</span></span></span>
@@ -342,24 +345,24 @@ being the results when including phase II and <code>res[2, ]</code> when skippin
 <span class="r-in"><span>  skipII <span class="op">=</span> <span class="cn">FALSE</span>,                                    <span class="co"># skipping phase II</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                        <span class="co"># number of cores for parallelized computing</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 2272.13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 2090.29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 350, total: 450</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 372, total: 472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.93</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 82, phase III: 271, cost constraint: Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 82, phase III: 287, cost constraint: Inf</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 15, phase III: 20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.675, phase III: 0.72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Effect size categories (expected gains):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.76</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability by effect size:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    small: 0.73, medium: 0.05, large: 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    small: 0.72, medium: 0.03, large: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.025</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.08 [Kappa] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.1 [Kappa] </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Parameters of the prior distribution: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Delta1: 0.375, Delta2: 0.625, in1: 300, in2: 600,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    a: 0.25, b: 0.75, w: 0.3</span>
@@ -372,7 +375,7 @@ being the results when including phase II and <code>res[2, ]</code> when skippin
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Stella Erdmann, Johannes Cepicka, Lukas D. Sauer.</p>
+  <p></p><p>Developed by Stella Erdmann, Johannes Cepicka, Marietta Kirchner, Meinhard Kieser, Lukas D. Sauer.</p>
 </div>
 
 <div class="pkgdown-footer-right">

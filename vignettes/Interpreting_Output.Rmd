@@ -3,7 +3,7 @@ title: "Interpreting the rest of the output"
 author: "Johannes Cepicka"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Interpreting_Output}
+  %\VignetteIndexEntry{Interpreting the rest of the output}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

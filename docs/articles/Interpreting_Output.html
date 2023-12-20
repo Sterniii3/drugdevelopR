@@ -8,8 +8,8 @@
 <meta name="description" content="drugdevelopR">
 <title>Interpreting the rest of the output • drugdevelopR</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Interpreting the rest of the output">
 <meta property="og:description" content="drugdevelopR">
@@ -79,7 +79,7 @@
 Cepicka</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Sterniii3/drugdevelopR/blob/HEAD/../../../../../../P:/meth_ks/drugdevelopR/programs/drugdevelopR/vignettes/Interpreting_Output.Rmd" class="external-link"><code>../../../../../../P:/meth_ks/drugdevelopR/programs/drugdevelopR/vignettes/Interpreting_Output.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Sterniii3/drugdevelopR/blob/HEAD/../../../../../../U:/r-pakete/drugdevelopR/drugdevelopR_source/vignettes/Interpreting_Output.Rmd" class="external-link"><code>../../../../../../U:/r-pakete/drugdevelopR/drugdevelopR_source/vignettes/Interpreting_Output.Rmd</code></a></small>
       <div class="d-none name"><code>Interpreting_Output.Rmd</code></div>
     </div>
 
@@ -127,7 +127,7 @@ We start by loading the drugdevelopR package.</p>
 <span>                       c2 <span class="op">=</span> <span class="fl">0.675</span>, c3 <span class="op">=</span> <span class="fl">0.72</span>, <span class="co"># maximal total trial costs</span></span>
 <span>                       c02 <span class="op">=</span> <span class="fl">15</span>, c03 <span class="op">=</span> <span class="fl">20</span>, <span class="co"># maximal per-patient costs</span></span>
 <span>                       b1 <span class="op">=</span> <span class="fl">3000</span>, b2 <span class="op">=</span> <span class="fl">8000</span>, b3 <span class="op">=</span> <span class="fl">10000</span>, <span class="co"># gains for patients</span></span>
-<span>                       alpha <span class="op">=</span> <span class="fl">0.05</span>, <span class="co"># significance level</span></span>
+<span>                       alpha <span class="op">=</span> <span class="fl">0.025</span>, <span class="co"># significance level</span></span>
 <span>                       beta <span class="op">=</span> <span class="fl">0.1</span>, <span class="co"># 1 - power</span></span>
 <span>                       Delta2 <span class="op">=</span> <span class="cn">NULL</span>, w <span class="op">=</span> <span class="cn">NULL</span>, in1 <span class="op">=</span> <span class="cn">NULL</span>, in2 <span class="op">=</span> <span class="cn">NULL</span>, </span>
 <span>                       a <span class="op">=</span> <span class="cn">NULL</span>,b <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="co"># setting all unneeded parameters to NULL</span></span></code></pre></div>
@@ -139,10 +139,27 @@ We start by loading the drugdevelopR package.</p>
 let’s take a look at the output of the program.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span></span>
-<span><span class="co">#&gt;         u Kappa n2  n3   n pgo sProg Delta   K K2  K3 sProg1 sProg2 sProg3</span></span>
-<span><span class="co">#&gt; 1 3259.83  0.06 84 166 250   1  0.85 0.625 Inf 72 139   0.68   0.17   0.01</span></span>
-<span><span class="co">#&gt;   steps1 stepm1 stepl1 alpha beta c02 c03    c2   c3   b1   b2    b3 gamma</span></span>
-<span><span class="co">#&gt; 1      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000 8000 10000     0</span></span></code></pre></div>
+<span><span class="co">#&gt; Optimization result:</span></span>
+<span><span class="co">#&gt;  Utility: 2946.07</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 92, phase III: 192, total: 284</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 1</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 77, phase III: 158, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 15, phase III: 20</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.675, phase III: 0.72</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.85</span></span>
+<span><span class="co">#&gt;  Success probability by effect size:</span></span>
+<span><span class="co">#&gt;    small: 0.72, medium: 0.12, large: 0</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.06 [Kappa] </span></span>
+<span><span class="co">#&gt;  Assumed true effect: 0.625 [Delta] </span></span>
+<span><span class="co">#&gt;  Treatment effect offset between phase II and III: 0 [gamma]</span></span></code></pre></div>
 <p>The program returns a total of thirteen values and the input values.
 We will now take a closer look and explain all output values with the
 necessary detail:</p>
@@ -150,7 +167,7 @@ necessary detail:</p>
 <li>
 <code>res$u</code> is the expected utility of the program for the
 optimal sample size and threshold value. In our case it amounts to
-3259.83, i.e. we have an expected utility of 325 983 000$. As the
+2946.07, i.e. we have an expected utility of 294 607 000$. As the
 function maximizes the expected utility, this is the highest expected
 utility one can receive given the input parameters.</li>
 <li>
@@ -163,7 +180,7 @@ the threshold value, we proceed to phase III.</li>
 <li>
 <code>res$n2</code> is the optimal sample size for phase II and
 <code>res$n3</code> the resulting sample size for phase III. We see that
-the optimal scenario requires 84 participants in phase II and 166
+the optimal scenario requires 92 participants in phase II and 192
 participants in phase III. <code>res$n</code> is the sum of
 <code>res$n2</code> and <code>res$n3</code> and refers to the total
 number of participants. Note, that one can set a maximum number of
@@ -185,11 +202,11 @@ successful program is 0.85, so a trial with these input parameters will
 be successful 85% of the time. The probability of a successful program
 is further subdivided in probabilities for small, medium or large
 treatment effect. The probability of a small treatment effect
-<code>res$sProg1</code> is 0.68 in our case, for a medium treatment
-effect the probability <code>res$sProg2</code> is 0.17 and for a large
-treatment effect the probability <code>res&amp;$sProg3</code> is 0.01.
-The treatment effects correspond to the benefit categories, so with a
-probability of 0.68 we receive a benefit of 300,000,000$ and so on. Due
+<code>res$sProg1</code> is 0.72 in our case, for a medium treatment
+effect the probability <code>res$sProg2</code> is 0.12 and for a large
+treatment effect the probability <code>res&amp;$sProg3</code> is 0. The
+treatment effects correspond to the benefit categories, so with a
+probability of 0.72 we receive a benefit of 300,000,000$ and so on. Due
 to rounding, the probabilities may not add up exactly to the overall
 probability of a successful program. Note that one can set a minimum
 probability of successful program, leading to constrained optimization.
@@ -200,7 +217,7 @@ phase II and <code>res$K3</code> in phase III. The costs in phase II are
 calculated as <span class="math inline">\(c_{02} + n_2\cdot c_2\)</span>
 and the costs in phase II are calculated as <span class="math inline">\((c_{03} + n_3\cdot c_3)\cdot p_{go}\)</span>,
 i.e. in phase III the expected costs are returned. In our setting, we
-have costs of 72 in 10^5$ (i.e. 7,200,000$) in phase II and costs of 139
+have costs of 77 in 10^5$ (i.e. 7,200,000$) in phase II and costs of 158
 in 10^5$(i.e. 13,900,000) in phase III. Note, that one can set a maximum
 cost limit for <span class="math inline">\(K=K_2+K_3\)</span> , leading
 to constrained optimization. For more information, see the article about
@@ -255,7 +272,7 @@ parallel computing.</li>
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Stella Erdmann, Johannes Cepicka, Lukas D. Sauer.</p>
+<p>Developed by Stella Erdmann, Johannes Cepicka, Marietta Kirchner, Meinhard Kieser, Lukas D. Sauer.</p>
 </div>
 
 <div class="pkgdown-footer-right">

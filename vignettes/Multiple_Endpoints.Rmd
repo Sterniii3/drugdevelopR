@@ -2,7 +2,7 @@
 title: "Multiple - methods for trials with multiple endpoints"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Multiple_Endpoints}
+  %\VignetteIndexEntry{Multiple - methods for trials with multiple endpoints}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

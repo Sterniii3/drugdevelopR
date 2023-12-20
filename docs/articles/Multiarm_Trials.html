@@ -8,8 +8,8 @@
 <meta name="description" content="drugdevelopR">
 <title>Multiarm - methods for multi-arm programs • drugdevelopR</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Multiarm - methods for multi-arm programs">
 <meta property="og:description" content="drugdevelopR">
@@ -77,7 +77,7 @@
       <img src="" class="logo" alt=""><h1>Multiarm - methods for multi-arm programs</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Sterniii3/drugdevelopR/blob/HEAD/../../../../../../P:/meth_ks/drugdevelopR/programs/drugdevelopR/vignettes/Multiarm_Trials.Rmd" class="external-link"><code>../../../../../../P:/meth_ks/drugdevelopR/programs/drugdevelopR/vignettes/Multiarm_Trials.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Sterniii3/drugdevelopR/blob/HEAD/../../../../../../U:/r-pakete/drugdevelopR/drugdevelopR_source/vignettes/Multiarm_Trials.Rmd" class="external-link"><code>../../../../../../U:/r-pakete/drugdevelopR/drugdevelopR_source/vignettes/Multiarm_Trials.Rmd</code></a></small>
       <div class="d-none name"><code>Multiarm_Trials.Rmd</code></div>
     </div>
 
@@ -185,7 +185,7 @@ them into the function:</p>
 <code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimal_multiarm.html">optimal_multiarm</a></span><span class="op">(</span>hr1 <span class="op">=</span> <span class="fl">0.75</span>, hr2 <span class="op">=</span> <span class="fl">0.80</span>, ec <span class="op">=</span> <span class="fl">0.6</span>, <span class="co"># define assumed true HRs and control arm event rate</span></span>
 <span>   n2min <span class="op">=</span> <span class="fl">100</span>, n2max <span class="op">=</span> <span class="fl">200</span>, stepn2 <span class="op">=</span> <span class="fl">10</span>,                 <span class="co"># define optimization set for n2</span></span>
 <span>   hrgomin <span class="op">=</span> <span class="fl">0.76</span>, hrgomax <span class="op">=</span> <span class="fl">0.9</span>, stephrgo <span class="op">=</span> <span class="fl">0.02</span>,        <span class="co"># define optimization set for HRgo</span></span>
-<span>   alpha <span class="op">=</span> <span class="fl">0.05</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                              <span class="co"># drug development planning parameters</span></span>
+<span>   alpha <span class="op">=</span> <span class="fl">0.025</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                             <span class="co"># drug development planning parameters</span></span>
 <span>   c2 <span class="op">=</span> <span class="fl">0.75</span>, c3 <span class="op">=</span> <span class="fl">1</span>, c02 <span class="op">=</span> <span class="fl">100</span>, c03 <span class="op">=</span> <span class="fl">150</span>,               <span class="co"># define fixed and variable costs for phase II and III</span></span>
 <span>   b1 <span class="op">=</span> <span class="fl">1000</span>, b2 <span class="op">=</span> <span class="fl">2000</span>, b3 <span class="op">=</span> <span class="fl">3000</span>,                       <span class="co"># gains for each effect size category</span></span>
 <span>   strategy <span class="op">=</span> <span class="fl">3</span>,                                          </span>
@@ -198,12 +198,51 @@ them into the function:</p>
 let’s take a look at the output of the program.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span></span>
-<span><span class="co">#&gt;   Strategy      u HRgo  n2  n3   n  pgo sProg  hr1 hr2  ec   K   N    S  K2  K3</span></span>
-<span><span class="co">#&gt; 1        1 261.00 0.84 180 408 588 0.79  0.47 0.75 0.8 0.6 Inf Inf -Inf 235 526</span></span>
-<span><span class="co">#&gt; 2        2 246.92 0.80 100 483 583 0.71  0.47 0.75 0.8 0.6 Inf Inf -Inf 175 589</span></span>
-<span><span class="co">#&gt;   sProg2 sProg3 steps1 stepm1 stepl1 alpha beta c02 c03   c2 c3   b1   b2   b3</span></span>
-<span><span class="co">#&gt; 1   0.47   0.00      1   0.95   0.85  0.05  0.1 100 150 0.75  1 1000 2000 3000</span></span>
-<span><span class="co">#&gt; 2   0.21   0.26      1   0.95   0.85  0.05  0.1 100 150 0.75  1 1000 2000 3000</span></span></code></pre></div>
+<span><span class="co">#&gt; Optimization result where only the most promising candidate continues:</span></span>
+<span><span class="co">#&gt;  Utility: 66.88</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 140, phase III: 393, total: 533</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 0.75</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 205, phase III: 505, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 100, phase III: 150</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.75, phase III: 1</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 1 (1000), medium: 0.95 (2000), large: 0.85 (3000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.38</span></span>
+<span><span class="co">#&gt;  Success probability for a trial with:</span></span>
+<span><span class="co">#&gt;    two arms in phase III: 0.38, three arms in phase III: 0</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.82 [HRgo] </span></span>
+<span><span class="co">#&gt;  Assumed true effects [HR]: </span></span>
+<span><span class="co">#&gt;    treatment 1: 0.75,  treatment 2: 0.8</span></span>
+<span><span class="co">#&gt;  Control arm event rate: 0.6</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Optimization result where all promising candidates continue:</span></span>
+<span><span class="co">#&gt;  Utility: 56.6</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 100, phase III: 481, total: 581</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 0.68</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 175, phase III: 583, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 100, phase III: 150</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.75, phase III: 1</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 1 (1000), medium: 0.95 (2000), large: 0.85 (3000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.4</span></span>
+<span><span class="co">#&gt;  Success probability for a trial with:</span></span>
+<span><span class="co">#&gt;    two arms in phase III: 0.18, three arms in phase III: 0.22</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.78 [HRgo] </span></span>
+<span><span class="co">#&gt;  Assumed true effects [HR]: </span></span>
+<span><span class="co">#&gt;    treatment 1: 0.75,  treatment 2: 0.8</span></span>
+<span><span class="co">#&gt;  Control arm event rate: 0.6</span></span></code></pre></div>
 <p>The program returns a data frame, where the output for all
 implemented strategies is listed. For strategy 1 (only the best
 promising proceeds to phase III) we get:</p>
@@ -211,16 +250,16 @@ promising proceeds to phase III) we get:</p>
 <li>
 <code>res[1,]$n2</code> is the optimal number of participants for
 phase II and <code>res$n3</code> the resulting number of events for
-phase III. We see that the optimal scenario requires 180 participants in
-phase II and 408 participants in phase III.</li>
+phase III. We see that the optimal scenario requires 140 participants in
+phase II and 393 participants in phase III.</li>
 <li>
 <code>res[1,]$HRgo</code> is the optimal threshold value for the
 go/no-go decision rule. We see that we need a hazard ratio of less than
-0.84 in phase II in order to proceed to phase III.</li>
+0.82 in phase II in order to proceed to phase III.</li>
 <li>
 <code>res[1,]$u</code> is the expected utility of the program for
 the optimal sample size and threshold value. In our case it amounts to
-261.00, i.e. we have an expected utility of 26 100 000$.</li>
+66.88, i.e. we have an expected utility of 6 688 000$.</li>
 </ul>
 <p>The results for strategy 2 (all promising proceed to phase III)
 are:</p>
@@ -229,15 +268,15 @@ are:</p>
 <code>res[2,]$n2</code> is the optimal number of participants for
 phase II and <code>res$n3</code> the resulting number of events for
 phase III. We see that the optimal scenario requires 100 participants in
-phase II and 483 participants in phase III.</li>
+phase II and 481 participants in phase III.</li>
 <li>
 <code>res[2,]$HRgo</code> is the optimal threshold value for the
 go/no-go decision rule. We see that we need a hazard ratio of less than
-0.80 in phase II in order to proceed to phase III.</li>
+0.78 in phase II in order to proceed to phase III.</li>
 <li>
 <code>res[2,]$u</code> is the expected utility of the program for
 the optimal sample size and threshold value. In our case it amounts to
-246.92, i.e. we have an expected utility of 24 692 000$.</li>
+56.6, i.e. we have an expected utility of 5 660 000$.</li>
 </ul>
 <p>Furthermore, consider the return values <code>sProg</code>,
 <code>sProg2</code> and <code>sProg3</code>. Contrary to the basic
@@ -246,11 +285,11 @@ with only one treatment in phase III (i.e. two arms) and
 <code>sProg3</code> is the probability of a successful program with two
 treatments in phase III (i.e. three arms). Hence, for strategy 1 (only
 the most promising treatment in phase II proceeds to phase III)
-<code>sProg = sProg2 = 0.47</code>. With strategy 2 (all promising
+<code>sProg = sProg2 = 0.38</code>. With strategy 2 (all promising
 treatments proceed to phase III), the success probability
 <code>sProg</code> is the sum of the probability that both treatments go
-to phase III <code>sProg3 = 0.26</code> and the probability that only
-one treatment proceeds to phase III <code>sProg2 = 0.21</code>.</p>
+to phase III <code>sProg3 = 0.22</code> and the probability that only
+one treatment proceeds to phase III <code>sProg2 = 0.18</code>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -306,7 +345,7 @@ parallel computing.</li>
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Stella Erdmann, Johannes Cepicka, Lukas D. Sauer.</p>
+<p>Developed by Stella Erdmann, Johannes Cepicka, Marietta Kirchner, Meinhard Kieser, Lukas D. Sauer.</p>
 </div>
 
 <div class="pkgdown-footer-right">

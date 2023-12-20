@@ -8,8 +8,8 @@
 <meta name="description" content="drugdevelopR">
 <title>Multitrial - methods for programs with several phase III trials • drugdevelopR</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Multitrial - methods for programs with several phase III trials">
 <meta property="og:description" content="drugdevelopR">
@@ -77,7 +77,7 @@
       <img src="" class="logo" alt=""><h1>Multitrial - methods for programs with several phase III trials</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Sterniii3/drugdevelopR/blob/HEAD/../../../../../../P:/meth_ks/drugdevelopR/programs/drugdevelopR/vignettes/Multitrial.Rmd" class="external-link"><code>../../../../../../P:/meth_ks/drugdevelopR/programs/drugdevelopR/vignettes/Multitrial.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Sterniii3/drugdevelopR/blob/HEAD/../../../../../../U:/r-pakete/drugdevelopR/drugdevelopR_source/vignettes/Multitrial.Rmd" class="external-link"><code>../../../../../../U:/r-pakete/drugdevelopR/drugdevelopR_source/vignettes/Multitrial.Rmd</code></a></small>
       <div class="d-none name"><code>Multitrial.Rmd</code></div>
     </div>
 
@@ -207,11 +207,11 @@ case (see table above). For the following example we set
 <p>Note that for the following example, some input parameters were
 changed compared to the basic setting in order to reduce computation
 time.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">optimal_multitrial</span>(<span class="at">w =</span> <span class="fl">0.3</span>,                       <span class="co"># define parameters for prior</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">optimal_multitrial</span>(<span class="at">w =</span> <span class="fl">0.3</span>,                        <span class="co"># define parameters for prior</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>   <span class="at">hr1 =</span> <span class="fl">0.7</span>, <span class="at">hr2 =</span> <span class="fl">0.8</span>, <span class="at">id1 =</span> <span class="dv">210</span>, <span class="at">id2 =</span> <span class="dv">420</span>,            <span class="co"># (https://web.imbi.uni-heidelberg.de/prior/)</span></span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>   <span class="at">d2min =</span> <span class="dv">20</span>, <span class="at">d2max =</span> <span class="dv">200</span>, <span class="at">stepd2 =</span> <span class="dv">5</span>,                   <span class="co"># define optimization set for d2</span></span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>   <span class="at">hrgomin =</span> <span class="fl">0.7</span>, <span class="at">hrgomax =</span> <span class="fl">0.9</span>, <span class="at">stephrgo =</span> <span class="fl">0.02</span>,         <span class="co"># define optimization set for HRgo</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>   <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">beta =</span> <span class="fl">0.1</span>, <span class="at">xi2 =</span> <span class="fl">0.7</span>, <span class="at">xi3 =</span> <span class="fl">0.7</span>,        <span class="co"># drug development planning parameters</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>   <span class="at">alpha =</span> <span class="fl">0.025</span>, <span class="at">beta =</span> <span class="fl">0.1</span>, <span class="at">xi2 =</span> <span class="fl">0.7</span>, <span class="at">xi3 =</span> <span class="fl">0.7</span>,       <span class="co"># drug development planning parameters</span></span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>   <span class="at">c2 =</span> <span class="fl">0.75</span>, <span class="at">c3 =</span> <span class="dv">1</span>, <span class="at">c02 =</span> <span class="dv">100</span>, <span class="at">c03 =</span> <span class="dv">150</span>,               <span class="co"># define fixed and variable costs</span></span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>   <span class="at">K =</span> <span class="cn">Inf</span>, <span class="at">N =</span> <span class="cn">Inf</span>, <span class="at">S =</span> <span class="sc">-</span><span class="cn">Inf</span>,                            <span class="co"># set constraints</span></span>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>   <span class="at">b1 =</span> <span class="dv">1000</span>, <span class="at">b2 =</span> <span class="dv">2000</span>, <span class="at">b3 =</span> <span class="dv">3000</span>,                       <span class="co"># define expected benefits</span></span>
@@ -225,18 +225,83 @@ time.</p>
 let’s take a look at the output of the program.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span></span>
-<span><span class="co">#&gt;   Case Strategy       u HRgo  d2  d3   d  n2  n3   n  pgo sProg  hr   K   N</span></span>
-<span><span class="co">#&gt; 1    3        1  -64.48 0.78 105 444 549 150 634 784 0.71  0.45 0.7 Inf Inf</span></span>
-<span><span class="co">#&gt; 2    3        3 -272.50 0.78  75 417 492 108 594 702 0.68  0.32 0.7 Inf Inf</span></span>
-<span><span class="co">#&gt; 3    3        4 -293.81 0.70  60 264 324  86 376 462 0.50  0.25 0.7 Inf Inf</span></span>
-<span><span class="co">#&gt;      S  K2  K3 sProg1 sProg2 sProg3 steps1 stepm1 stepl1    alpha beta xi2 xi3</span></span>
-<span><span class="co">#&gt; 1 -Inf 212 741   0.10   0.25   0.10      1   0.95   0.85 0.000125  0.1 0.7 0.7</span></span>
-<span><span class="co">#&gt; 2 -Inf 181 900   0.01   0.13   0.18      1   0.95   0.85 0.050000  0.1 0.7 0.7</span></span>
-<span><span class="co">#&gt; 3 -Inf 164 676   0.00   0.20   0.05      1   0.95   0.85 0.050000  0.1 0.7 0.7</span></span>
-<span><span class="co">#&gt;   c02 c03   c2 c3   b1   b2   b3 gamma</span></span>
-<span><span class="co">#&gt; 1 100 150 0.75  1 1000 2000 3000     0</span></span>
-<span><span class="co">#&gt; 2 100 150 0.75  1 1000 2000 3000     0</span></span>
-<span><span class="co">#&gt; 3 100 150 0.75  1 1000 2000 3000     0</span></span></code></pre></div>
+<span><span class="co">#&gt; Optimization result with 3 significant trial(s) needed, strategy 1:</span></span>
+<span><span class="co">#&gt;  Utility: -231.07</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 30, phase III: 368, total: 398</span></span>
+<span><span class="co">#&gt;  Expected number of events:</span></span>
+<span><span class="co">#&gt;    phase II: 20, phase III: 258, total: 278</span></span>
+<span><span class="co">#&gt;  Assumed event rate:</span></span>
+<span><span class="co">#&gt;    phase II: 0.7, phase III: 0.7</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 0.57</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 122, phase III: 454, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 100, phase III: 150</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.75, phase III: 1</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 1 (1000), medium: 0.95 (2000), large: 0.85 (3000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.19</span></span>
+<span><span class="co">#&gt;  Success probability by effect size:</span></span>
+<span><span class="co">#&gt;    small: 0.06, medium: 0.11, large: 0.02</span></span>
+<span><span class="co">#&gt;  Significance level: 1.5625e-05</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.76 [HRgo] </span></span>
+<span><span class="co">#&gt;  Assumed true effect: 0.7 [hr] </span></span>
+<span><span class="co">#&gt;  Treatment effect offset between phase II and III: 0 [gamma] </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Optimization result with 3 significant trial(s) needed, strategy 3:</span></span>
+<span><span class="co">#&gt;  Utility: -411.1</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 30, phase III: 258, total: 288</span></span>
+<span><span class="co">#&gt;  Expected number of events:</span></span>
+<span><span class="co">#&gt;    phase II: 20, phase III: 180, total: 200</span></span>
+<span><span class="co">#&gt;  Assumed event rate:</span></span>
+<span><span class="co">#&gt;    phase II: 0.7, phase III: 0.7</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 0.5</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 122, phase III: 483, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 100, phase III: 150</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.75, phase III: 1</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 1 (1000), medium: 0.95 (2000), large: 0.85 (3000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.08</span></span>
+<span><span class="co">#&gt;  Success probability by effect size:</span></span>
+<span><span class="co">#&gt;    small: 0, medium: 0.05, large: 0.03</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.7 [HRgo] </span></span>
+<span><span class="co">#&gt;  Assumed true effect: 0.7 [hr] </span></span>
+<span><span class="co">#&gt;  Treatment effect offset between phase II and III: 0 [gamma] </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Optimization result with 3 significant trial(s) needed, strategy 4:</span></span>
+<span><span class="co">#&gt;  Utility: -436.79</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 58, phase III: 416, total: 474</span></span>
+<span><span class="co">#&gt;  Expected number of events:</span></span>
+<span><span class="co">#&gt;    phase II: 40, phase III: 292, total: 332</span></span>
+<span><span class="co">#&gt;  Assumed event rate:</span></span>
+<span><span class="co">#&gt;    phase II: 0.7, phase III: 0.7</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 0.5</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 144, phase III: 716, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 100, phase III: 150</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.75, phase III: 1</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 1 (1000), medium: 0.95 (2000), large: 0.85 (3000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.2</span></span>
+<span><span class="co">#&gt;  Success probability by effect size:</span></span>
+<span><span class="co">#&gt;    small: 0, medium: 0.17, large: 0.02</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.7 [HRgo] </span></span>
+<span><span class="co">#&gt;  Assumed true effect: 0.7 [hr] </span></span>
+<span><span class="co">#&gt;  Treatment effect offset between phase II and III: 0 [gamma]</span></span></code></pre></div>
 <p>The program returns a data frame where the output for all implemented
 strategies is listed.</p>
 <p>For strategy 1 we get:</p>
@@ -244,19 +309,19 @@ strategies is listed.</p>
 <li>
 <code>res[1,]$d2</code> is the optimal number of events for phase II
 and <code>res[1,]$d3</code> the resulting number of events for phase
-III. We see that the optimal scenario requires 105 events in phase II
-and 444 events in phase III, which correspond to 150 participants in
-phase II and 634 in phase III.</li>
+III. We see that the optimal scenario requires 20 events in phase II and
+258 events in phase III, which correspond to 30 participants in phase II
+and 368 in phase III.</li>
 <li>
 <code>res[1,]$HRgo</code> is the optimal threshold value for the
 go/no-go decision rule. We see that we need a hazard ratio of less than
-0.78 in phase II in order to proceed to phase III.</li>
+0.76 in phase II in order to proceed to phase III.</li>
 <li>
 <code>res[1,]$u</code> is the expected utility of the program for
 the optimal sample size and threshold value. In our case it amounts to
--64.48, i.e. we have an expected utility of -6 448 000$.</li>
+-231.07, i.e. we have an expected utility of -23 107 000$.</li>
 <li>Note that the input parameter <code>alpha</code> is returned having
-a value of 0.000125, which corresponds to the adjusted significance
+a value of 0.000016, which corresponds to the adjusted significance
 level <span class="math inline">\(\alpha^3\)</span>.</li>
 </ul>
 <p>The results for strategy 3 are:</p>
@@ -264,28 +329,28 @@ level <span class="math inline">\(\alpha^3\)</span>.</li>
 <li>
 <code>res[2,]$d2</code> is the optimal number of events for phase II
 and <code>res[2,]$d3</code> the resulting number of events for phase
-III. We see that the optimal scenario requires 75 events in phase II and
-417 events in phase III, which leads to 108 participants in phase II and
-594 in phase III. This corresponds to three trials in phase III with
-each trial having 298 participants.</li>
+III. We see that the optimal scenario requires 20 events in phase II and
+180 events in phase III, which leads to 30 participants in phase II and
+258 in phase III. This corresponds to three trials in phase III with
+each trial having 86 participants.</li>
 <li>
 <code>res[2,]$HRgo</code> is the optimal threshold value for the
 go/no-go decision rule. We see that we need a hazard ratio of less than
-0.78 in phase II in order to proceed to phase III.</li>
+0.7 in phase II in order to proceed to phase III.</li>
 <li>
 <code>res[2,]$u</code> is the expected utility of the program for
 the optimal sample size and threshold value. In our case it amounts to
--272.50, i.e. we have an expected utility of -27 250 000$.</li>
+-411.1, i.e. we have an expected utility of -41 110 000$.</li>
 </ul>
 <p>Strategy 4 yields the following results:</p>
 <ul>
 <li>
 <code>res[3,]$d2</code> is the optimal number of events for phase II
 and <code>res[3,]$d3</code> the resulting number of events for phase
-III. We see that the optimal scenario requires 60 events in phase II and
-264 events in phase III, which leads to 86 participants in phase II and
-376 in phase III. This corresponds to four trials in phase III with each
-trial having 94 participants.</li>
+III. We see that the optimal scenario requires 40 events in phase II and
+292 events in phase III, which leads to 58 participants in phase II and
+416 in phase III. This corresponds to four trials in phase III with each
+trial having 104 participants.</li>
 <li>
 <code>res[3,]$HRgo</code> is the optimal threshold value for the
 go/no-go decision rule. We see that we need a hazard ratio of less than
@@ -293,7 +358,7 @@ go/no-go decision rule. We see that we need a hazard ratio of less than
 <li>
 <code>res[3,]$u</code> is the expected utility of the program for
 the optimal sample size and threshold value. In our case it amounts to
--293.81, i.e. we have an expected utility of -29 381 000$.</li>
+-436.79, i.e. we have an expected utility of -43 679 000$.</li>
 </ul>
 </div>
 </div>
@@ -360,7 +425,7 @@ statistics in medicine 2005; 24: 1619–1637. Statistics in Medicine,
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Stella Erdmann, Johannes Cepicka, Lukas D. Sauer.</p>
+<p>Developed by Stella Erdmann, Johannes Cepicka, Marietta Kirchner, Meinhard Kieser, Lukas D. Sauer.</p>
 </div>
 
 <div class="pkgdown-footer-right">

@@ -8,8 +8,8 @@
 <meta name="description" content="drugdevelopR">
 <title>More parameters to adapt to specific settings • drugdevelopR</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="More parameters to adapt to specific settings">
 <meta property="og:description" content="drugdevelopR">
@@ -79,7 +79,7 @@
 Cepicka</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Sterniii3/drugdevelopR/blob/HEAD/../../../../../../P:/meth_ks/drugdevelopR/programs/drugdevelopR/vignettes/More_Parameters.Rmd" class="external-link"><code>../../../../../../P:/meth_ks/drugdevelopR/programs/drugdevelopR/vignettes/More_Parameters.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Sterniii3/drugdevelopR/blob/HEAD/../../../../../../U:/r-pakete/drugdevelopR/drugdevelopR_source/vignettes/More_Parameters.Rmd" class="external-link"><code>../../../../../../U:/r-pakete/drugdevelopR/drugdevelopR_source/vignettes/More_Parameters.Rmd</code></a></small>
       <div class="d-none name"><code>More_Parameters.Rmd</code></div>
     </div>
 
@@ -120,10 +120,27 @@ We start by loading the drugdevelopR package.</p>
 <p>Back then, we got the following output:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span></span>
-<span><span class="co">#&gt;         u Kappa n2  n3   n pgo sProg Delta   K K2  K3 sProg1 sProg2 sProg3</span></span>
-<span><span class="co">#&gt; 1 3259.83  0.06 84 166 250   1  0.85 0.625 Inf 72 139   0.68   0.17   0.01</span></span>
-<span><span class="co">#&gt;   steps1 stepm1 stepl1 alpha beta c02 c03    c2   c3   b1   b2    b3 gamma</span></span>
-<span><span class="co">#&gt; 1      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000 8000 10000     0</span></span></code></pre></div>
+<span><span class="co">#&gt; Optimization result:</span></span>
+<span><span class="co">#&gt;  Utility: 2946.07</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 92, phase III: 192, total: 284</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 1</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 77, phase III: 158, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 15, phase III: 20</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.675, phase III: 0.72</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.85</span></span>
+<span><span class="co">#&gt;  Success probability by effect size:</span></span>
+<span><span class="co">#&gt;    small: 0.72, medium: 0.12, large: 0</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.06 [Kappa] </span></span>
+<span><span class="co">#&gt;  Assumed true effect: 0.625 [Delta] </span></span>
+<span><span class="co">#&gt;  Treatment effect offset between phase II and III: 0 [gamma]</span></span></code></pre></div>
 <p>We now want to see how different modifications, i.e. using more
 parameters change the outcome of the program.</p>
 <div class="section level3">
@@ -162,7 +179,7 @@ by providing an parameter value of <code>K = 200</code> into the
 <span>                       c2 <span class="op">=</span> <span class="fl">0.675</span>, c3 <span class="op">=</span> <span class="fl">0.72</span>, <span class="co"># maximal total trial costs</span></span>
 <span>                       c02 <span class="op">=</span> <span class="fl">15</span>, c03 <span class="op">=</span> <span class="fl">20</span>, <span class="co"># maximal per-patient costs</span></span>
 <span>                       b1 <span class="op">=</span> <span class="fl">3000</span>, b2 <span class="op">=</span> <span class="fl">8000</span>, b3 <span class="op">=</span> <span class="fl">10000</span>, <span class="co"># gains for patients</span></span>
-<span>                       alpha <span class="op">=</span> <span class="fl">0.05</span>, <span class="co"># significance level</span></span>
+<span>                       alpha <span class="op">=</span> <span class="fl">0.025</span>, <span class="co"># one-sided significance level</span></span>
 <span>                       beta <span class="op">=</span> <span class="fl">0.1</span>, <span class="co"># 1 - power</span></span>
 <span>                       Delta2 <span class="op">=</span> <span class="cn">NULL</span>, w <span class="op">=</span> <span class="cn">NULL</span>, in1 <span class="op">=</span> <span class="cn">NULL</span>, in2 <span class="op">=</span> <span class="cn">NULL</span>, </span>
 <span>                       a <span class="op">=</span> <span class="cn">NULL</span>,b <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># setting all unneeded parameters to NULL</span></span>
@@ -171,14 +188,31 @@ by providing an parameter value of <code>K = 200</code> into the
 <p>We get the following results:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resK</span></span>
-<span><span class="co">#&gt;         u Kappa n2  n3   n  pgo sProg Delta   K K2  K3 sProg1 sProg2 sProg3</span></span>
-<span><span class="co">#&gt; 1 3247.42   0.1 88 146 234 0.99  0.85 0.625 200 74 125   0.68   0.17   0.01</span></span>
-<span><span class="co">#&gt;   steps1 stepm1 stepl1 alpha beta c02 c03    c2   c3   b1   b2    b3 gamma</span></span>
-<span><span class="co">#&gt; 1      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000 8000 10000     0</span></span></code></pre></div>
-<p>We see that due to the cost constraint the costs in phase II actually
-increase from 72 to 74, however the costs in phase III decrease from 139
-to 125, so overall the constraint is met. Moreover, the expected utility
-at the optimum decreases from 325,983,000 to 324,742,000 dollars.</p>
+<span><span class="co">#&gt; Optimization result:</span></span>
+<span><span class="co">#&gt;  Utility: 2846.69</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 76, phase III: 158, total: 234</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 0.97</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 66, phase III: 133, cost constraint: 200</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 15, phase III: 20</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.675, phase III: 0.72</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.82</span></span>
+<span><span class="co">#&gt;  Success probability by effect size:</span></span>
+<span><span class="co">#&gt;    small: 0.7, medium: 0.11, large: 0</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.18 [Kappa] </span></span>
+<span><span class="co">#&gt;  Assumed true effect: 0.625 [Delta] </span></span>
+<span><span class="co">#&gt;  Treatment effect offset between phase II and III: 0 [gamma]</span></span></code></pre></div>
+<p>We see that due to the cost constraint the cost in phase II decreases
+from 77 to 66 and the cost in phase III decreases from 158 to 133, so
+overall the constraint is met. Moreover, the expected utility at the
+optimum decreases from 294 607 000 to 284 669 000 dollars.</p>
 </div>
 <div class="section level4">
 <h4 id="sample-size-constraint-maximum-number-of-participants">Sample size constraint – maximum number of participants<a class="anchor" aria-label="anchor" href="#sample-size-constraint-maximum-number-of-participants"></a>
@@ -202,7 +236,7 @@ participants between phase II and III. The default value for
 <span>                       c2 <span class="op">=</span> <span class="fl">0.675</span>, c3 <span class="op">=</span> <span class="fl">0.72</span>, <span class="co"># maximal total trial costs</span></span>
 <span>                       c02 <span class="op">=</span> <span class="fl">15</span>, c03 <span class="op">=</span> <span class="fl">20</span>, <span class="co"># maximal per-patient costs</span></span>
 <span>                       b1 <span class="op">=</span> <span class="fl">3000</span>, b2 <span class="op">=</span> <span class="fl">8000</span>, b3 <span class="op">=</span> <span class="fl">10000</span>, <span class="co"># gains for patients</span></span>
-<span>                       alpha <span class="op">=</span> <span class="fl">0.05</span>, <span class="co"># significance level</span></span>
+<span>                       alpha <span class="op">=</span> <span class="fl">0.025</span>, <span class="co"># significance level</span></span>
 <span>                       beta <span class="op">=</span> <span class="fl">0.1</span>, <span class="co"># 1 - power</span></span>
 <span>                       Delta2 <span class="op">=</span> <span class="cn">NULL</span>, w <span class="op">=</span> <span class="cn">NULL</span>, in1 <span class="op">=</span> <span class="cn">NULL</span>, in2 <span class="op">=</span> <span class="cn">NULL</span>, </span>
 <span>                       a <span class="op">=</span> <span class="cn">NULL</span>,b <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># setting all unneeded parameters to NULL</span></span>
@@ -211,14 +245,31 @@ participants between phase II and III. The default value for
 <p>We get the following results:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resN</span></span>
-<span><span class="co">#&gt;         u Kappa n2  n3   n  pgo sProg Delta   K K2  K3 sProg1 sProg2 sProg3</span></span>
-<span><span class="co">#&gt; 1 3142.41  0.18 72 128 200 0.97  0.82 0.625 Inf 64 112   0.66   0.16   0.01</span></span>
-<span><span class="co">#&gt;   steps1 stepm1 stepl1 alpha beta c02 c03    c2   c3   b1   b2    b3 gamma</span></span>
-<span><span class="co">#&gt; 1      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000 8000 10000     0</span></span></code></pre></div>
+<span><span class="co">#&gt; Optimization result:</span></span>
+<span><span class="co">#&gt;  Utility: 2658.9</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 48, phase III: 150, total: 198</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 0.93</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 47, phase III: 127, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 15, phase III: 20</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.675, phase III: 0.72</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.76</span></span>
+<span><span class="co">#&gt;  Success probability by effect size:</span></span>
+<span><span class="co">#&gt;    small: 0.65, medium: 0.11, large: 0</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.2 [Kappa] </span></span>
+<span><span class="co">#&gt;  Assumed true effect: 0.625 [Delta] </span></span>
+<span><span class="co">#&gt;  Treatment effect offset between phase II and III: 0 [gamma]</span></span></code></pre></div>
 <p>Due to our sample size constraint to optimal number of participants
-in phase II is 72 and 128 in phase III (down from 84 and 166
+in phase II is 48 and 150 in phase III (down from 92 and 192
 respectively) within this framework. The expected utility in the optimum
-decreases to 314,241,000$.</p>
+decreases to 265 890 000$.</p>
 </div>
 <div class="section level4">
 <h4 id="success-probability-constraint---minimum-probability-of-a-successful-program">Success probability constraint - minimum probability of a successful
@@ -243,7 +294,7 @@ setting it to <code>S = 0.87</code>. The default value for
 <span>                       c2 <span class="op">=</span> <span class="fl">0.675</span>, c3 <span class="op">=</span> <span class="fl">0.72</span>, <span class="co"># maximal total trial costs</span></span>
 <span>                       c02 <span class="op">=</span> <span class="fl">15</span>, c03 <span class="op">=</span> <span class="fl">20</span>, <span class="co"># maximal per-patient costs</span></span>
 <span>                       b1 <span class="op">=</span> <span class="fl">3000</span>, b2 <span class="op">=</span> <span class="fl">8000</span>, b3 <span class="op">=</span> <span class="fl">10000</span>, <span class="co"># gains for patients</span></span>
-<span>                       alpha <span class="op">=</span> <span class="fl">0.05</span>, <span class="co"># significance level</span></span>
+<span>                       alpha <span class="op">=</span> <span class="fl">0.025</span>, <span class="co"># significance level</span></span>
 <span>                       beta <span class="op">=</span> <span class="fl">0.1</span>, <span class="co"># 1 - power</span></span>
 <span>                       Delta2 <span class="op">=</span> <span class="cn">NULL</span>, w <span class="op">=</span> <span class="cn">NULL</span>, in1 <span class="op">=</span> <span class="cn">NULL</span>, in2 <span class="op">=</span> <span class="cn">NULL</span>, </span>
 <span>                       a <span class="op">=</span> <span class="cn">NULL</span>,b <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># setting all unneeded parameters to NULL</span></span>
@@ -252,13 +303,30 @@ setting it to <code>S = 0.87</code>. The default value for
 <p>We get the following results:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resS</span></span>
-<span><span class="co">#&gt;         u Kappa  n2  n3   n pgo sProg Delta   K  K2  K3 sProg1 sProg2 sProg3</span></span>
-<span><span class="co">#&gt; 1 3235.57  0.06 132 126 258   1  0.87 0.625 Inf 104 111   0.71   0.16   0.01</span></span>
-<span><span class="co">#&gt;   steps1 stepm1 stepl1 alpha beta c02 c03    c2   c3   b1   b2    b3 gamma</span></span>
-<span><span class="co">#&gt; 1      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000 8000 10000     0</span></span></code></pre></div>
+<span><span class="co">#&gt; Optimization result:</span></span>
+<span><span class="co">#&gt;  Utility: 2906.94</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 172, phase III: 138, total: 310</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 1</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 131, phase III: 119, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 15, phase III: 20</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.675, phase III: 0.72</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.87</span></span>
+<span><span class="co">#&gt;  Success probability by effect size:</span></span>
+<span><span class="co">#&gt;    small: 0.76, medium: 0.11, large: 0</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.06 [Kappa] </span></span>
+<span><span class="co">#&gt;  Assumed true effect: 0.625 [Delta] </span></span>
+<span><span class="co">#&gt;  Treatment effect offset between phase II and III: 0 [gamma]</span></span></code></pre></div>
 <p>The probability of a successful program now increased from 0.85 to
 0.87, mainly by increasing the number of participants in phase II. The
-expected utility decreased to 323,557,000.</p>
+expected utility decreased to 290 694 000 $.</p>
 </div>
 </div>
 <div class="section level3">
@@ -289,7 +357,7 @@ we set them to <code>steps1 = 0.1</code>, <code>stepm1 = 0.6</code> and
 <span>                       c2 <span class="op">=</span> <span class="fl">0.675</span>, c3 <span class="op">=</span> <span class="fl">0.72</span>, <span class="co"># maximal total trial costs</span></span>
 <span>                       c02 <span class="op">=</span> <span class="fl">15</span>, c03 <span class="op">=</span> <span class="fl">20</span>, <span class="co"># maximal per-patient costs</span></span>
 <span>                       b1 <span class="op">=</span> <span class="fl">3000</span>, b2 <span class="op">=</span> <span class="fl">8000</span>, b3 <span class="op">=</span> <span class="fl">10000</span>, <span class="co"># gains for patients</span></span>
-<span>                       alpha <span class="op">=</span> <span class="fl">0.05</span>, <span class="co"># significance level</span></span>
+<span>                       alpha <span class="op">=</span> <span class="fl">0.025</span>, <span class="co"># significance level</span></span>
 <span>                       beta <span class="op">=</span> <span class="fl">0.1</span>, <span class="co"># 1 - power</span></span>
 <span>                       Delta2 <span class="op">=</span> <span class="cn">NULL</span>, w <span class="op">=</span> <span class="cn">NULL</span>, in1 <span class="op">=</span> <span class="cn">NULL</span>, in2 <span class="op">=</span> <span class="cn">NULL</span>, </span>
 <span>                       a <span class="op">=</span> <span class="cn">NULL</span>,b <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># setting all unneeded parameters to NULL</span></span>
@@ -335,7 +403,7 @@ phase II. The default value is <code>skipII = FALSE</code>.</p>
 <span>                       c2 <span class="op">=</span> <span class="fl">0.675</span>, c3 <span class="op">=</span> <span class="fl">0.72</span>, <span class="co"># maximal total trial costs</span></span>
 <span>                       c02 <span class="op">=</span> <span class="fl">15</span>, c03 <span class="op">=</span> <span class="fl">20</span>, <span class="co"># maximal per-patient costs</span></span>
 <span>                       b1 <span class="op">=</span> <span class="fl">3000</span>, b2 <span class="op">=</span> <span class="fl">8000</span>, b3 <span class="op">=</span> <span class="fl">10000</span>, <span class="co"># gains for patients</span></span>
-<span>                       alpha <span class="op">=</span> <span class="fl">0.05</span>, <span class="co"># significance level</span></span>
+<span>                       alpha <span class="op">=</span> <span class="fl">0.025</span>, <span class="co"># significance level</span></span>
 <span>                       beta <span class="op">=</span> <span class="fl">0.1</span>, <span class="co"># 1 - power</span></span>
 <span>                       Delta2 <span class="op">=</span> <span class="cn">NULL</span>, w <span class="op">=</span> <span class="cn">NULL</span>, in1 <span class="op">=</span> <span class="cn">NULL</span>, in2 <span class="op">=</span> <span class="cn">NULL</span>, </span>
 <span>                       a <span class="op">=</span> <span class="cn">NULL</span>,b <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># setting all unneeded parameters to NULL</span></span>
@@ -344,17 +412,51 @@ phase II. The default value is <code>skipII = FALSE</code>.</p>
 <p>We get the following results:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resII</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt;         u Kappa n2  n3   n pgo sProg Delta   K K2  K3 sProg1 sProg2 sProg3</span></span>
-<span><span class="co">#&gt; 1 3259.83  0.06 84 166 250   1  0.85 0.625 Inf 72 139   0.68   0.17   0.01</span></span>
-<span><span class="co">#&gt;   steps1 stepm1 stepl1 alpha beta c02 c03    c2   c3   b1   b2    b3 gamma</span></span>
-<span><span class="co">#&gt; 1      0    0.5    0.8  0.05  0.1  15  20 0.675 0.72 3000 8000 10000     0</span></span>
+<span><span class="co">#&gt; Optimization result including phase II:</span></span>
+<span><span class="co">#&gt;  Utility: 2946.07</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 92, phase III: 192, total: 284</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 1</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 77, phase III: 158, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 15, phase III: 20</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0.675, phase III: 0.72</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.85</span></span>
+<span><span class="co">#&gt;  Success probability by effect size:</span></span>
+<span><span class="co">#&gt;    small: 0.72, medium: 0.12, large: 0</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: 0.06 [Kappa] </span></span>
+<span><span class="co">#&gt;  Assumed true effect: 0.625 [Delta] </span></span>
+<span><span class="co">#&gt;  Treatment effect offset between phase II and III: 0 [gamma] </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt;         u Delta Kappa n2 n3 pgo sProg   K K2 K3 sProg1 sProg2 sProg3 steps1</span></span>
-<span><span class="co">#&gt; 1 3353.72  0.62  -Inf  0 88   1   0.9 Inf  0 83   0.76   0.14   0.01      0</span></span>
-<span><span class="co">#&gt;   stepm1 stepl1 alpha beta c02 c03 c2   c3   b1   b2    b3 gamma</span></span>
-<span><span class="co">#&gt; 1    0.5    0.8  0.05  0.1   0  20  0 0.72 3000 8000 10000     0</span></span></code></pre></div>
+<span><span class="co">#&gt; Result when skipping phase II:</span></span>
+<span><span class="co">#&gt;  Utility: 3080.46</span></span>
+<span><span class="co">#&gt;  Sample size:</span></span>
+<span><span class="co">#&gt;    phase II: 0, phase III: 108, total: 108</span></span>
+<span><span class="co">#&gt;  Probability to go to phase III: 1</span></span>
+<span><span class="co">#&gt;  Total cost:</span></span>
+<span><span class="co">#&gt;    phase II: 0, phase III: 98, cost constraint: Inf</span></span>
+<span><span class="co">#&gt;  Fixed cost:</span></span>
+<span><span class="co">#&gt;    phase II: 0, phase III: 20</span></span>
+<span><span class="co">#&gt;  Variable cost per patient:</span></span>
+<span><span class="co">#&gt;    phase II: 0, phase III: 0.72</span></span>
+<span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
+<span><span class="co">#&gt;   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span></span>
+<span><span class="co">#&gt;  Success probability: 0.9</span></span>
+<span><span class="co">#&gt;  Success probability by effect size:</span></span>
+<span><span class="co">#&gt;    small: 0.81, medium: 0.09, large: 0</span></span>
+<span><span class="co">#&gt;  Significance level: 0.025</span></span>
+<span><span class="co">#&gt;  Targeted power: 0.9</span></span>
+<span><span class="co">#&gt;  Decision rule threshold: -Inf [Kappa] </span></span>
+<span><span class="co">#&gt;  Assumed true effect: 0.62 [Delta] </span></span>
+<span><span class="co">#&gt;  Treatment effect offset between phase II and III: 0 [gamma] </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Skipping phase II is the optimal option with respect to the maximal expected utility.</span></span></code></pre></div>
 <p>It can be seen that in this case skipping phase II yields a higher
 utility than including phase II. Skipping phase II automatically sets
 <code>n2 = O</code> which leads to costs <code>K2 = 0</code>. Hence,
@@ -425,7 +527,7 @@ Pharmaceutical Statistics, 11(5):373–385.</p>
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Stella Erdmann, Johannes Cepicka, Lukas D. Sauer.</p>
+<p>Developed by Stella Erdmann, Johannes Cepicka, Marietta Kirchner, Meinhard Kieser, Lukas D. Sauer.</p>
 </div>
 
 <div class="pkgdown-footer-right">

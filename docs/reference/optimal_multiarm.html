@@ -8,7 +8,7 @@ treatment effects are assumed fixed (planning is also possible via
 user-friendly R Shiny App:
 multiarm). Fast
 computing is enabled by parallel programming."><title>Optimal phase II/III drug development planning for multi-arm programs with
-time-to-event endpoint — optimal_multiarm • drugdevelopR</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Optimal phase II/III drug development planning for multi-arm programs with
+time-to-event endpoint — optimal_multiarm • drugdevelopR</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Optimal phase II/III drug development planning for multi-arm programs with
 time-to-event endpoint — optimal_multiarm"><meta property="og:description" content="The function optimal_multiarm of the drugdevelopR package
 enables planning of multi-arm phase II/III drug development programs with
 optimal sample size allocation and go/no-go decision rules
@@ -289,7 +289,7 @@ finish date of the optimization procedure.</p>
 <span class="r-in"><span>  ec <span class="op">=</span> <span class="fl">0.6</span>,                                          <span class="co"># control arm event rate</span></span></span>
 <span class="r-in"><span>  n2min <span class="op">=</span> <span class="fl">30</span>, n2max <span class="op">=</span> <span class="fl">90</span>, stepn2 <span class="op">=</span> <span class="fl">6</span>,                <span class="co"># define optimization set for n2</span></span></span>
 <span class="r-in"><span>  hrgomin <span class="op">=</span> <span class="fl">0.7</span>, hrgomax <span class="op">=</span> <span class="fl">0.9</span>, stephrgo <span class="op">=</span> <span class="fl">0.05</span>,     <span class="co"># define optimization set for HRgo</span></span></span>
-<span class="r-in"><span>  alpha <span class="op">=</span> <span class="fl">0.05</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                          <span class="co"># drug development planning parameters</span></span></span>
+<span class="r-in"><span>  alpha <span class="op">=</span> <span class="fl">0.025</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                         <span class="co"># drug development planning parameters</span></span></span>
 <span class="r-in"><span>  c2 <span class="op">=</span> <span class="fl">0.75</span>, c3 <span class="op">=</span> <span class="fl">1</span>, c02 <span class="op">=</span> <span class="fl">100</span>, c03 <span class="op">=</span> <span class="fl">150</span>,           <span class="co"># fixed/variable costs for phase II/III</span></span></span>
 <span class="r-in"><span>  K <span class="op">=</span> <span class="cn">Inf</span>, N <span class="op">=</span> <span class="cn">Inf</span>, S <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>,                        <span class="co"># set constraints</span></span></span>
 <span class="r-in"><span>  steps1 <span class="op">=</span> <span class="fl">1</span>,                                        <span class="co"># define lower boundary for "small"</span></span></span>
@@ -299,22 +299,22 @@ finish date of the optimization procedure.</p>
 <span class="r-in"><span>  strategy <span class="op">=</span> <span class="fl">1</span>,                                      <span class="co"># choose strategy: 1, 2 or 3</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                        <span class="co"># number of cores for parallelized computing </span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 241.46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 56.47</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 90, phase III: 342, total: 432</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 90, phase III: 420, total: 510</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.77</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 168, phase III: 457, cost constraint: Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 168, phase III: 535, cost constraint: Inf</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 150</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.75, phase III: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Effect size categories (expected gains):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   small: 1 (1000), medium: 0.95 (2000), large: 0.85 (3000)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.37</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability for a trial with:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    two arms in phase III: 0.4, three arms in phase III: 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    two arms in phase III: 0.37, three arms in phase III: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.025</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.85 [HRgo] </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Assumed true effects [HR]: </span>
@@ -329,7 +329,7 @@ finish date of the optimization procedure.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Stella Erdmann, Johannes Cepicka, Lukas D. Sauer.</p>
+  <p></p><p>Developed by Stella Erdmann, Johannes Cepicka, Marietta Kirchner, Meinhard Kieser, Lukas D. Sauer.</p>
 </div>
 
 <div class="pkgdown-footer-right">
