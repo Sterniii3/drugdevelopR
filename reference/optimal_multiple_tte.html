@@ -300,10 +300,15 @@ is significant, then  <code>b12</code>, <code>b22</code> and <code>b32</code> wi
 also matches the oncology example, where OS (i.e. endpoint 1) implicates
 larger expected gains than PFS alone (i.e. endpoint 2).</p>
 <p>Fast computing is enabled by parallel programming.</p>
+<p>Monte Carlo simulations are applied for calculating utility, event count and
+other operating characteristics in this setting. Hence, the results are affected
+by random uncertainty. The extent of uncertainty is discussed in
+(Kieser et al. 2018).</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal Designs for Multi-Arm Phase II/III Drug Development Programs. Submitted to peer-review journal.</p>
+    <p>Kieser, M., Kirchner, M. Dölger, E., Götte, H. (2018).Optimal planning of phase II/III programs for clinical trials with multiple endpoints, Pharm Stat. 2018 Sep; 17(5):437-457.</p>
+<p>Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2019). Optimal Designs for Multi-Arm Phase II/III Drug Development Programs. Submitted to peer-review journal.</p>
 <p>IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at <a href="https://www.iqwig.de/ueber-uns/methoden/methodenpapier/" class="external-link">https://www.iqwig.de/ueber-uns/methoden/methodenpapier/</a>, assessed last 15.05.19.</p>
     </div>
 
@@ -318,7 +323,7 @@ larger expected gains than PFS alone (i.e. endpoint 2).</p>
 <span class="r-in"><span>  hr2 <span class="op">=</span> <span class="fl">0.80</span>, id1 <span class="op">=</span> <span class="fl">210</span>, id2 <span class="op">=</span> <span class="fl">420</span>,          <span class="co"># define assumed true HRs</span></span></span>
 <span class="r-in"><span>  n2min <span class="op">=</span> <span class="fl">30</span>, n2max <span class="op">=</span> <span class="fl">90</span>, stepn2 <span class="op">=</span> <span class="fl">6</span>,        <span class="co"># define optimization set for n2</span></span></span>
 <span class="r-in"><span>  hrgomin <span class="op">=</span> <span class="fl">0.7</span>, hrgomax <span class="op">=</span> <span class="fl">0.9</span>, stephrgo <span class="op">=</span> <span class="fl">0.05</span>, <span class="co"># define optimization set for HRgo</span></span></span>
-<span class="r-in"><span>  alpha <span class="op">=</span> <span class="fl">0.05</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                  <span class="co"># drug development planning parameters</span></span></span>
+<span class="r-in"><span>  alpha <span class="op">=</span> <span class="fl">0.025</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                 <span class="co"># drug development planning parameters</span></span></span>
 <span class="r-in"><span>  c2 <span class="op">=</span> <span class="fl">0.75</span>, c3 <span class="op">=</span> <span class="fl">1</span>, c02 <span class="op">=</span> <span class="fl">100</span>, c03 <span class="op">=</span> <span class="fl">150</span>,   <span class="co"># fixed/variable costs for phase II/III</span></span></span>
 <span class="r-in"><span>  K <span class="op">=</span> <span class="cn">Inf</span>, N <span class="op">=</span> <span class="cn">Inf</span>, S <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>,                <span class="co"># set constraints</span></span></span>
 <span class="r-in"><span>  steps1 <span class="op">=</span> <span class="fl">1</span>,                                <span class="co"># define lower boundary for "small"</span></span></span>
@@ -329,12 +334,12 @@ larger expected gains than PFS alone (i.e. endpoint 2).</p>
 <span class="r-in"><span>  rho <span class="op">=</span> <span class="fl">0.6</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span>,                   <span class="co"># correlation and treatment effect</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                <span class="co"># number of cores for parallelized computing</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 353</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 171.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 90, phase III: 245, total: 335</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 90, phase III: 301, total: 391</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.79</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 168, phase III: 364, cost constraint: Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 168, phase III: 420, cost constraint: Inf</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 150</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
@@ -345,11 +350,11 @@ larger expected gains than PFS alone (i.e. endpoint 2).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   small: 1000 medium: 2000 large: 3000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Expected gains if only endpoint 2 is significant:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   small: 1000 medium: 1500 large: 2000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.43</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability for a trial with:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    two arms in phase III: 0.23, three arms in phase III: 0.13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability of endpoint 1 being significant in phase III: 0.64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    two arms in phase III: 0.23, three arms in phase III: 0.09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability of endpoint 1 being significant in phase III: 0.61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.025</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.85 [HRgo] </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Assumed true effects [HR]: </span>

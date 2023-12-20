@@ -90,7 +90,7 @@
 <span class="r-in"><span>  a <span class="op">=</span> <span class="fl">0.25</span>, b <span class="op">=</span> <span class="fl">0.75</span>,</span></span>
 <span class="r-in"><span>  n2min <span class="op">=</span> <span class="fl">20</span>, n2max <span class="op">=</span> <span class="fl">100</span>, stepn2 <span class="op">=</span> <span class="fl">4</span>,               </span></span>
 <span class="r-in"><span>  kappamin <span class="op">=</span> <span class="fl">0.02</span>, kappamax <span class="op">=</span> <span class="fl">0.2</span>, stepkappa <span class="op">=</span> <span class="fl">0.02</span>, </span></span>
-<span class="r-in"><span>  alpha <span class="op">=</span> <span class="fl">0.05</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                       </span></span>
+<span class="r-in"><span>  alpha <span class="op">=</span> <span class="fl">0.025</span>, beta <span class="op">=</span> <span class="fl">0.1</span>,                       </span></span>
 <span class="r-in"><span>  c2 <span class="op">=</span> <span class="fl">0.675</span>, c3 <span class="op">=</span> <span class="fl">0.72</span>, c02 <span class="op">=</span> <span class="fl">15</span>, c03 <span class="op">=</span> <span class="fl">20</span>,   </span></span>
 <span class="r-in"><span>  K <span class="op">=</span> <span class="cn">Inf</span>, N <span class="op">=</span> <span class="cn">Inf</span>, S <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>,                        </span></span>
 <span class="r-in"><span>  steps1 <span class="op">=</span> <span class="fl">0</span>,                                      </span></span>
@@ -104,24 +104,24 @@
 <span class="r-in"><span><span class="co"># Print results</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span>                                  </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 2272.13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 2090.29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 350, total: 450</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 372, total: 472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.93</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 82, phase III: 271, cost constraint: Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 82, phase III: 287, cost constraint: Inf</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 15, phase III: 20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.675, phase III: 0.72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Effect size categories (expected gains):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.76</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability by effect size:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    small: 0.73, medium: 0.05, large: 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    small: 0.72, medium: 0.03, large: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.025</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.08 [Kappa] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.1 [Kappa] </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Parameters of the prior distribution: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Delta1: 0.375, Delta2: 0.625, in1: 300, in2: 600,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    a: 0.25, b: 0.75, w: 0.3</span>
