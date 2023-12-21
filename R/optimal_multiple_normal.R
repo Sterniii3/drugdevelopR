@@ -116,7 +116,10 @@ optimal_multiple_normal <-
     
     KAPPA <- seq(kappamin, kappamax, stepkappa)
     N2   <- seq(n2min, n2max, stepn2)
-    
+    rsamp <- NULL
+    if(!fixed){
+      rsamp <- get_sample_multiple_normal(Delta1, Delta2, in1, in2, rho)
+    }
     
     result <- NULL
     
@@ -180,7 +183,7 @@ optimal_multiple_normal <-
         "rho",
         "fixed",
         "relaxed",
-        "get_sample_multiple_normal"
+        "rsamp"
       ),
       envir = environment()
     )
@@ -222,7 +225,8 @@ optimal_multiple_normal <-
           stepl1,
           b1,
           b2,
-          b3
+          b3,
+          rsamp
         )
       
       pb()

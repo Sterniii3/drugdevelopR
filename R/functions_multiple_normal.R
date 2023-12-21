@@ -632,7 +632,9 @@ EPsProg_multiple_normal <-
 #'                                K = Inf, N = Inf, S = -Inf,
 #'                                steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
 #'                                b1 = 1000, b2 = 2000, b3 = 3000,
-#'                                fixed = TRUE, rho = 0.3, relaxed = "TRUE")}
+#'                                fixed = TRUE, rho = 0.3, relaxed = "TRUE",
+#'                                rsamp = get_sample_multiple_normal(Delta1 = 0.375,
+#'                                Delta2 = 0.625, in1 = 300, in2 = 600, rho = 0.3))}
 #' @keywords internal
 #' @export
 utility_multiple_normal <- function(kappa,
@@ -660,11 +662,9 @@ utility_multiple_normal <- function(kappa,
                                     b3,
                                     fixed,
                                     rho,
-                                    relaxed) {
-  rsamp <- NULL
-  if(!fixed){
-    rsamp <- get_sample_multiple_normal(Delta1, Delta2, in1, in2, rho)
-  }
+                                    relaxed,
+                                    rsamp) {
+
   n3 <-
     Ess_multiple_normal(
       kappa = kappa,

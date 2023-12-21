@@ -620,6 +620,7 @@ os_tte <-
 #' @param b32 expected gain for effect size category `"large"` if endpoint OS is not significant
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
+#' #' @param rsamp sample data set for Monte Carlo integration
 #' @return The output of the function `utility_multiple_tte()` is the expected utility of the program.
 #' @examples res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
 #'                                hr1 = 0.75, hr2 = 0.80,
@@ -629,7 +630,9 @@ os_tte <-
 #'                                steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
 #'                                b11 = 1000, b21 = 2000, b31 = 3000,
 #'                                b12 = 1000, b22 = 1500, b32 = 2000,
-#'                                fixed = TRUE, rho = 0.3)
+#'                                fixed = TRUE, rho = 0.3,
+#'                                rsamp = get_sample_multiple_tte(hr1 = 0.75,
+#'                                hr2 = 0.80, id1 = 300, id2 = 600, rho = 0.3))
 #' @keywords internal
 #' @export
 utility_multiple_tte <-
@@ -658,14 +661,12 @@ utility_multiple_tte <-
            b22,
            b32,
            fixed,
-           rho) {
+           rho,
+           rsamp) {
     steps2 <- stepm1
     stepm2 <- stepl1
     stepl2 <- 0
-    rsamp <- NULL
-    if(!fixed){
-      rsamp <- get_sample_multiple_tte(hr1, hr2, id1, id2, rho)
-    }
+
 
     
     n3 <- Ess_multiple_tte(
