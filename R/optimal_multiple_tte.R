@@ -110,6 +110,11 @@ optimal_multiple_tte <- function(hr1,
   stepm2 <- stepl1
   stepl2 <- 0
   
+  rsamp <- NULL
+  if(!fixed){
+    rsamp <- get_sample_multiple_tte(hr1, hr2, id1, id2, rho)
+  }
+  
   date <- Sys.time()
   
   HRGO <- seq(hrgomin, hrgomax, stephrgo)
@@ -177,7 +182,7 @@ optimal_multiple_tte <- function(hr1,
       "id2",
       "rho",
       "fixed",
-      "get_sample_multiple_tte"
+      "rsamp"
     ),
     envir = environment()
   )
@@ -215,7 +220,8 @@ optimal_multiple_tte <- function(hr1,
         b31,
         b12,
         b22,
-        b32
+        b32,
+        rsamp
       )
     
     pb()

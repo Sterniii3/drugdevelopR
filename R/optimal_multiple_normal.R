@@ -116,6 +116,7 @@ optimal_multiple_normal <-
     
     KAPPA <- seq(kappamin, kappamax, stepkappa)
     N2   <- seq(n2min, n2max, stepn2)
+    
     rsamp <- NULL
     if(!fixed){
       rsamp <- get_sample_multiple_normal(Delta1, Delta2, in1, in2, rho)
