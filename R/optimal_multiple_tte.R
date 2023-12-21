@@ -44,6 +44,8 @@
 #'
 #' @return
 #' `r optimal_return_doc(type = "tte", setting = "multiple")`
+#' 
+#' @importFrom progressr progressor
 #'
 #' @examples
 #' # Activate progress bar (optional)

@@ -24,6 +24,8 @@
 #' 
 #' @return
 #' `r optimal_return_doc(type = "binary")` 
+#' 
+#' @importFrom progressr progressor
 #'
 #' @examples
 #' # Activate progress bar (optional)

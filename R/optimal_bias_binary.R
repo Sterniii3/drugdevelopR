@@ -12,6 +12,8 @@
 #' 
 #' @return
 #' `r optimal_return_doc(type = "binary", setting = "bias")`
+#' 
+#' @importFrom progressr progressor
 #'
 #' @examples
 #' # Activate progress bar (optional)

@@ -26,6 +26,7 @@
 #' @import foreach 
 #' @import iterators 
 #' @import parallel
+#' @importFrom progressr progressor
 #' 
 #' @return
 #' The output of the function \code{\link{optimal_normal}} is a data.frame containing the optimization results:

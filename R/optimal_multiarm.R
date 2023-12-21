@@ -23,6 +23,7 @@
 #' @importFrom utils setTxtProgressBar txtProgressBar
 #' @importFrom mvtnorm dmvnorm qmvnorm
 #' @importFrom cubature adaptIntegrate
+#' @importFrom progressr progressor
 #' 
 #' @return
 #' `r optimal_return_doc(type = "tte", setting = "multiarm")`

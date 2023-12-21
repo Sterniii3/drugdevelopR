@@ -22,6 +22,8 @@
 #' @return
 #' `r optimal_return_doc(type = "binary", setting = "multiarm")`
 #' 
+#' @importFrom progressr progressor
+#' 
 #' @examples
 #' # Activate progress bar (optional)
 #' \dontrun{progressr::handlers(global = TRUE)}
