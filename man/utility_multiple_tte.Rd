@@ -30,7 +30,8 @@ utility_multiple_tte(
   b22,
   b32,
   fixed,
-  rho
+  rho,
+  rsamp
 )
 }
 \arguments{
@@ -84,7 +85,8 @@ utility_multiple_tte(
 
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
 
-\item{rho}{correlation between the two endpoints}
+\item{rho}{correlation between the two endpoints
+#' @param rsamp sample data set for Monte Carlo integration}
 }
 \value{
 The output of the function \code{utility_multiple_tte()} is the expected utility of the program.
@@ -107,6 +109,8 @@ res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
                                steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
                                b11 = 1000, b21 = 2000, b31 = 3000,
                                b12 = 1000, b22 = 1500, b32 = 2000,
-                               fixed = TRUE, rho = 0.3)
+                               fixed = TRUE, rho = 0.3,
+                               rsamp = get_sample_multiple_tte(hr1 = 0.75,
+                               hr2 = 0.80, id1 = 300, id2 = 600, rho = 0.3))
 }
 \keyword{internal}
