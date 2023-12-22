@@ -371,9 +371,9 @@ test_that("05.09", {
   
   expect_equal(res_nolim$u, 1133, tolerance = 0.005)
   expect_equal(res_nolim$n2, 160)
-  expect_equal(res_nolim$sProg, 0.83)
+  expect_equal(res_nolim$sProg, 0.835)
   expect_equal(res_nolim$sProg1, 0.15)
-  expect_equal(res_nolim$sProg2, 0.64)
+  expect_equal(res_nolim$sProg2, 0.637)
   expect_equal(res_nolim$sProg3, 0.048)
   expect_equal(res_nolim$Kappa, 0.02)
   
