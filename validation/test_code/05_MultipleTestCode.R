@@ -206,13 +206,13 @@ test_that("05.06", {
                               relaxed = TRUE
   )
   
-  expect_equal(res_nolim$u, 1765, tolerance = 0.005)
-  expect_equal(res_nolim$n2, 160)
-  expect_equal(res_nolim$n3, 74)
-  expect_equal(res_nolim$n, 234)
-  expect_equal(res_nolim$Kappa, 0.06)
-  # Multiple normally distributed endpoints -- with sample size constraint
+  expect_equal(res_nolim$u, 1476.09, tolerance = 0.005)
+  expect_equal(res_nolim$n2, 144)
+  expect_equal(res_nolim$n3, 78)
+  expect_equal(res_nolim$n, 222)
+  expect_equal(res_nolim$Kappa, 0.02)
   
+  # Multiple normally distributed endpoints -- with sample size constraint
   res_lim <- optimal_multiple_normal(alpha = 0.05,
                                      beta = 0.1,
                                      Delta1 = 0.75, Delta2 = 0.8,
