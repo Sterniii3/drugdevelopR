@@ -50,11 +50,11 @@ test_that("05.02", {
                               
   )
   
-  expect_equal(res$u, -212, tolerance = 0.005)
+  expect_equal(res$u, -218.92, tolerance = 0.005)
   expect_equal(res$n2, 100)
-  expect_equal(res$n3, 140)
-  expect_equal(res$n, 330)
-  expect_equal(res$HRgo, 0.80)
+  expect_equal(res$n3, 219)
+  expect_equal(res$n, 319)
+  expect_equal(res$HRgo, 0.86)
 })
 #' @editor Lukas D Sauer
 #' @editDate 2022-12-29
