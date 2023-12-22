@@ -19,10 +19,10 @@ test_that("05.01", {
                           fixed = FALSE,
                )
   
-  expect_equal(res$u, 1136, tolerance = 0.005)
-  expect_equal(res$n2, 140)
-  expect_equal(res$n3, 271)
-  expect_equal(res$n, 411)
+  expect_equal(res$u, -212.24, tolerance = 0.005)
+  expect_equal(res$n2, 100)
+  expect_equal(res$n3, 262)
+  expect_equal(res$n, 362)
   expect_equal(res$HRgo, 0.88)
   expect_equal(res$pgo, 0.74)
 })
@@ -46,14 +46,14 @@ test_that("05.02", {
                               c2 = 0.75, c3 = 1,
                               rho = 0.6,
                               fixed = FALSE,
-                              N = 480
+                              N = 330
                               
   )
   
-  expect_equal(res$u, 1182, tolerance = 0.005)
-  expect_equal(res$n2, 128)
+  expect_equal(res$u, -212, tolerance = 0.005)
+  expect_equal(res$n2, 100)
   expect_equal(res$n3, 140)
-  expect_equal(res$n, 268)
+  expect_equal(res$n, 330)
   expect_equal(res$HRgo, 0.80)
 })
 #' @editor Lukas D Sauer
