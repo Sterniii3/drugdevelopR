@@ -47,6 +47,7 @@
 #'
 #' @importFrom stats quantile rnorm
 #' @importFrom MASS mvrnorm
+#' @importFrom progressr progressor
 #'
 #' @return
 #' `r optimal_return_doc(type = "normal", setting = "multiple")`

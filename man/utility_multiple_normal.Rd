@@ -30,7 +30,8 @@ utility_multiple_normal(
   b3,
   fixed,
   rho,
-  relaxed
+  relaxed,
+  rsamp
 )
 }
 \arguments{
@@ -102,6 +103,8 @@ The utility is in a further step maximized by the \code{optimal_multiple_normal(
                                K = Inf, N = Inf, S = -Inf,
                                steps1 = 0, stepm1 = 0.5, stepl1 = 0.8,
                                b1 = 1000, b2 = 2000, b3 = 3000,
-                               fixed = TRUE, rho = 0.3, relaxed = "TRUE")}
+                               fixed = TRUE, rho = 0.3, relaxed = "TRUE",
+                               rsamp = get_sample_multiple_normal(Delta1 = 0.375,
+                               Delta2 = 0.625, in1 = 300, in2 = 600, rho = 0.3))}
 }
 \keyword{internal}

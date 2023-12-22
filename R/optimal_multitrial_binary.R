@@ -23,6 +23,8 @@
 #' @return
 #' `r optimal_return_doc(type = "binary", setting = "multitrial")`
 #' 
+#' @importFrom progressr progressor
+#' 
 #' @examples
 #' # Activate progress bar (optional)
 #' \dontrun{progressr::handlers(global = TRUE)}

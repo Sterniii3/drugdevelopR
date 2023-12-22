@@ -23,6 +23,8 @@
 #' @return
 #' `r optimal_return_doc(type = "normal", setting = "multiarm")`
 #' 
+#' @importFrom progressr progressor
+#' 
 #' @examples
 #' # Activate progress bar (optional)
 #' \dontrun{progressr::handlers(global = TRUE)}

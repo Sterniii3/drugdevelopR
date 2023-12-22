@@ -35,14 +35,14 @@ Depends:
     doParallel,
     parallel,
     foreach,
-    iterators,
-    progressr
+    iterators
 Imports:
     mvtnorm,
     cubature,
     msm,
     MASS,
-    stats
+    stats,
+    progressr
 URL: https://github.com/Sterniii3/drugdevelopR,
     https://sterniii3.github.io/drugdevelopR/
 BugReports: https://github.com/Sterniii3/drugdevelopR/issues

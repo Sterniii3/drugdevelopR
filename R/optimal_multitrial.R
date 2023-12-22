@@ -15,6 +15,8 @@
 #' @return
 #' `r optimal_return_doc(type = "tte", setting = "multitrial")`
 #' 
+#' @importFrom progressr progressor
+#' 
 #' 
 #' @examples
 #' # Activate progress bar (optional)
