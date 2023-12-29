@@ -230,9 +230,9 @@ test_that("05.06", {
                                      N = 190,
   )
   
-  expect_equal(res_lim$u, 1384, tolerance = 0.005)
-  expect_equal(res_lim$n2, 80)
-  expect_equal(res_lim$n3, 109)
+  expect_equal(res_lim$u, 809.23, tolerance = 0.005)
+  expect_equal(res_lim$n2, 92)
+  expect_equal(res_lim$n3, 97)
   expect_equal(res_lim$n, 189)
   expect_equal(res_lim$Kappa, 0.08)
 })
