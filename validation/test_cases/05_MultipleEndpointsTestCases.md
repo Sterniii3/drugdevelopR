@@ -34,12 +34,12 @@ Use the function `optimal_multiple_tte`. Supply the following input values to th
   * “fixed=FALSE”, i.e. set the function to model the treatment effects on a prior distribution,
   * amount of information for prior true treatment effect given by 210 and 420.
   
-Verify that the program returns an expected utility of 1136 (in 10^5 \$) an optimal number of participants in phase II of 140 and 271 in phase III (i.e. 411 in total) an optimal threshold value of 0.88. Furthermore, verify, that the program returns a probability to go to phase III of 0.74.
+Verify that the program returns an expected utility of -212.24 (in 10^5 \$) an optimal number of participants of 100 in phase II  and 262 in phase III (i.e. 362 in total), and an optimal threshold value of 0.88. Furthermore, verify, that the program returns a probability to go to phase III of 0.74.
 
 ### 05.02 (shows that req. 05.01, 05.04, 05.05 and 05.10 are met): {-}
-Use the function `optimal_multiple_tte`. Supply the same input values as in test case 05.01, however, set a sample size constraint of 500.
+Use the function `optimal_multiple_tte`. Supply the same input values as in test case 05.01, however, set a sample size constraint of 330.
 
-Verify that the program returns an expected utility of  1182 (in 10^5 \$), an optimal number of participants of 128 in phase II and 140 in phase III (i.e. 268 in total), hence, satisfying the constraint and an optimal threshold value of 0.80. 
+Verify that the program returns an expected utility of  -218.92 (in 10^5 \$), an optimal number of participants of 100 in phase II and 219 in phase III (i.e. 319 in total), hence, satisfying the constraint and an optimal threshold value of 0.86. 
 
 ### 05.03 (shows that req. 05.01, 05.03, 05.06 and 05.09 are met): {-}
 Use the function `optimal_multiple_tte`. Supply the same input values as in test case 05.01, however, set the parameter fixed to be "TRUE". Redo this, however, the second time use a maximum cost limit of 600 (in 10^5 \$).
@@ -78,8 +78,8 @@ Use the function `optimal_multiple_normal()`. Supply the following input values 
 
 Redo this, however, the second time set a sample size constraint of 190.
   
-Verify that the program returns an expected utility of 1765 (in 10^5 \$), an optimal threshold value of 0.06 and optimal sample sizes of 160 in phase II and 74 in phase III (i.e. 234 in total). 
-With the constraint, the program returns an expected utility of 1384 (in 10^5 \$), an optimal threshold value of 0.08 and optimal sample sizes of 80 in phase II and 109 in phase III (i.e. 189 in total).
+Verify that the program returns an expected utility of 1476.09 (in 10^5 \$), an optimal threshold value of 0.02 and optimal sample sizes of 144 in phase II and 78 in phase III (i.e. 222 in total). 
+With the constraint, the program returns an expected utility of 809.23 (in 10^5 \$), an optimal threshold value of 0.08 and optimal sample sizes of 92 in phase II and 97 in phase III (i.e. 189 in total).
 
 ### 05.07 (shows that req. 05.02, 05.04 and 05.08 are met): {-}
 Use the function `optimal_multiple_normal`. Supply the same input values as in test case 05.06 (without sample size constraint), however, however change the number of clusters for parallel computing to 6. 
@@ -95,7 +95,7 @@ Verify, that due to the cost constraint the program now returns an expected util
 ### 05.09 (shows that req. 05.02, 05.03, 05.07 and 05.12 are met): {-}
 Use the function `optimal_multiple_normal`. Supply the same input values as in test case 05.06 (without sample size constraint), however, set the parameter fixed to be "TRUE". Redo this and set a minimum probability of a successful program of 0.85. 
 
-Verify that the program returns an expected utility of 1133 (in 10^5 \$), an optimal threshold value of 0.02, an optimal sample size in phase II of 160. Furthermore, verify the probability of a successful program is 0.83, and the success probabilities for the various benefit categories are given by 0.15, 0.64 and 0.048 for small, medium and large treatment effects respectively. 
+Verify that the program returns an expected utility of 1133 (in 10^5 \$), an optimal threshold value of 0.02, an optimal sample size in phase II of 160. Furthermore, verify the probability of a successful program is 0.835, and the success probabilities for the various benefit categories are given by 0.15, 0.637 and 0.048 for small, medium and large treatment effects respectively. 
 Furthermore verify, that the constraint cannot be met, within the optimization region, i.e. an expected utility of -9999 is returned, when the constraint is imposed.
 
 ### 05.10 (shows that req. 05.11, 05.13 and 05.14 are met): {-}

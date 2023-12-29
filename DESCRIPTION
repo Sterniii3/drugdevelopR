@@ -1,7 +1,7 @@
 Package: drugdevelopR
 Type: Package
 Title: Utility-Based Optimal Phase II/III Drug Development Planning 
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(person("Stella", "Erdmann",
                     email = "erdmann@imbi.uni-heidelberg.de", role = "aut"),
              person("Johannes", "Cepicka", role = "aut"),
@@ -12,6 +12,8 @@ Authors@R: c(person("Stella", "Erdmann",
                     comment = c(ORCID = "0000-0002-1340-9994")))
 Author: Stella Erdmann [aut],
    Johannes Cepicka [aut],
+   Marietta Kirchner [aut],
+   Meinhard Kieser [aut],
    Lukas D. Sauer [aut, cre] (<https://orcid.org/0000-0002-1340-9994>)
 Maintainer: Lukas D. Sauer <sauer@imbi.uni-heidelberg.de>           
 Description: Plan optimal sample size allocation and go/no-go decision rules

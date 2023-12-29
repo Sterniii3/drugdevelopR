@@ -22,7 +22,7 @@ one triple when only the endpoint progression-free survival (PFS) shows a signif
     
     <a class="navbar-brand me-2" href="../index.html">drugdevelopR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,7 +101,8 @@ Note, that for calculating the utility of the program, two different benefit tri
 <span>  <span class="va">b22</span>,</span>
 <span>  <span class="va">b32</span>,</span>
 <span>  <span class="va">fixed</span>,</span>
-<span>  <span class="va">rho</span></span>
+<span>  <span class="va">rho</span>,</span>
+<span>  <span class="va">rsamp</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -208,7 +209,8 @@ Note, that for calculating the utility of the program, two different benefit tri
 
 
 <dt>rho</dt>
-<dd><p>correlation between the two endpoints</p></dd>
+<dd><p>correlation between the two endpoints
+#' @param rsamp sample data set for Monte Carlo integration</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -228,7 +230,9 @@ Note, that for calculating the utility of the program, two different benefit tri
 <span class="r-in"><span>                               steps1 <span class="op">=</span> <span class="fl">1</span>, stepm1 <span class="op">=</span> <span class="fl">0.95</span>, stepl1 <span class="op">=</span> <span class="fl">0.85</span>,</span></span>
 <span class="r-in"><span>                               b11 <span class="op">=</span> <span class="fl">1000</span>, b21 <span class="op">=</span> <span class="fl">2000</span>, b31 <span class="op">=</span> <span class="fl">3000</span>,</span></span>
 <span class="r-in"><span>                               b12 <span class="op">=</span> <span class="fl">1000</span>, b22 <span class="op">=</span> <span class="fl">1500</span>, b32 <span class="op">=</span> <span class="fl">2000</span>,</span></span>
-<span class="r-in"><span>                               fixed <span class="op">=</span> <span class="cn">TRUE</span>, rho <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                               fixed <span class="op">=</span> <span class="cn">TRUE</span>, rho <span class="op">=</span> <span class="fl">0.3</span>,</span></span>
+<span class="r-in"><span>                               rsamp <span class="op">=</span> <span class="fu"><a href="get_sample_multiple_tte.html">get_sample_multiple_tte</a></span><span class="op">(</span>hr1 <span class="op">=</span> <span class="fl">0.75</span>,</span></span>
+<span class="r-in"><span>                               hr2 <span class="op">=</span> <span class="fl">0.80</span>, id1 <span class="op">=</span> <span class="fl">300</span>, id2 <span class="op">=</span> <span class="fl">600</span>, rho <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
