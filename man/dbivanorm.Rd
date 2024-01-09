@@ -30,7 +30,4 @@ The Function \code{dbivanorm()} will return the density of a bivariate normal di
 \description{
 Density of the bivariate normal distribution
 }
-\examples{
-res <- dbivanorm(x = 0.5, y = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
-}
 \keyword{internal}

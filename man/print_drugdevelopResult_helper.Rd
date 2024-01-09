@@ -11,6 +11,9 @@ print_drugdevelopResult_helper(x, ...)
 
 \item{...}{Further arguments.}
 }
+\value{
+No return value, called for printing to the console using \code{cat()}
+}
 \description{
 Helper function for printing a drugdevelopResult Object
 }

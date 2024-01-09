@@ -54,11 +54,4 @@ The output of the function \code{posp_normal()} is the probability of a successf
 After getting the "go"-decision to go to phase III, i.e. our results of phase II are over the predefined threshold \code{kappa}, this function
 calculates the probability, that our program is successfull, i.e. that both endpoints show a statistically significant positive treatment effect in phase III.
 }
-\examples{
-res <- posp_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
-                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600,
-                               sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3,
-                               rsamp = get_sample_multiple_normal(Delta1 = 0.375,
-                               Delta2 = 0.625, in1 = 300, in2 = 600, rho = 0.3))
-}
 \keyword{internal}

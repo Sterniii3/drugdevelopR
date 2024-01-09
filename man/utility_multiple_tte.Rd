@@ -85,8 +85,9 @@ utility_multiple_tte(
 
 \item{fixed}{choose if true treatment effects are fixed or random, if TRUE \code{hr1} is used as fixed effect}
 
-\item{rho}{correlation between the two endpoints
-#' @param rsamp sample data set for Monte Carlo integration}
+\item{rho}{correlation between the two endpoints}
+
+\item{rsamp}{sample data set for Monte Carlo integration}
 }
 \value{
 The output of the function \code{utility_multiple_tte()} is the expected utility of the program.
@@ -99,18 +100,5 @@ Note, that for calculating the utility of the program, two different benefit tri
 \item one triple for the case that the more important endpoint overall survival (OS) shows a significant positive treatment effect
 \item one triple when only the endpoint progression-free survival (PFS) shows a significant positive treatment effect
 }
-}
-\examples{
-res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
-                               hr1 = 0.75, hr2 = 0.80,
-                               id1 = 300, id2 = 600,
-                               c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
-                               K = Inf, N = Inf, S = -Inf,
-                               steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
-                               b11 = 1000, b21 = 2000, b31 = 3000,
-                               b12 = 1000, b22 = 1500, b32 = 2000,
-                               fixed = TRUE, rho = 0.3,
-                               rsamp = get_sample_multiple_tte(hr1 = 0.75,
-                               hr2 = 0.80, id1 = 300, id2 = 600, rho = 0.3))
 }
 \keyword{internal}

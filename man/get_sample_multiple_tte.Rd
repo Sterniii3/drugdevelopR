@@ -6,6 +6,20 @@
 \usage{
 get_sample_multiple_tte(hr1, hr2, id1, id2, rho)
 }
+\arguments{
+\item{hr1}{assumed true treatment effect on HR scale for endpoint OS}
+
+\item{hr2}{assumed true treatment effect on HR scale for endpoint PFS}
+
+\item{id1}{amount of information for \code{hr1} in terms of sample size}
+
+\item{id2}{amount of information for \code{hr2} in terms of sample size}
+
+\item{rho}{correlation between the two endpoints}
+}
+\value{
+a randomly generated data frame
+}
 \description{
 Generate sample for Monte Carlo integration in the multiple setting
 }

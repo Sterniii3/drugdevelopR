@@ -110,6 +110,7 @@ print.drugdevelopResult <- function(x, sequence = FALSE, ...) {
 #' @param x Data frame
 #' @param ... Further arguments.
 #'
+#' @return No return value, called for printing to the console using `cat()`
 #' @keywords internal
 print_drugdevelopResult_helper <- function(x, ...){
   cat(" Utility: ", x$u, "\n", sep = "")

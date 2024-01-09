@@ -7,7 +7,6 @@
 # Date: 25.01.2017
 ################################################################################
 
-#load functions
 
 #' Density for the maximum of two normally distributed random variables
 #'
@@ -17,16 +16,15 @@
 #'  Z = max(X,Y) with X ~ N(mu1,sigma1^2), Y ~ N(mu2,sigma2^2)
 #'
 #' f(z)=f1(-z)+f2(-z)
-#'@param z integral variable
-#'@param mu1 mean of second endpoint
-#'@param mu2 mean of first endpoint
-#'@param sigma1 standard deviation of first endpoint
-#'@param sigma2 standard deviation of second endpoint
-#'@param rho correlation between the two endpoints
-#'@return The function `fmax()` will return the value of f(z), which is the value of the density function of the
-#'maximum of two normally distributed random variables.
-#'@examples res <- fmax(z = 0.5, mu1 = 0.375, mu2 = 0.25, sigma1 = 8, sigma2 = 12, rho = 0.4 )
-#'@keywords internal
+#' @param z integral variable
+#' @param mu1 mean of second endpoint
+#' @param mu2 mean of first endpoint
+#' @param sigma1 standard deviation of first endpoint
+#' @param sigma2 standard deviation of second endpoint
+#' @param rho correlation between the two endpoints
+#' @return The function `fmax()` will return the value of f(z), which is the value of the density function of the
+#' maximum of two normally distributed random variables.
+#' @keywords internal
 #' @export
 fmax <- function (z, mu1, mu2, sigma1, sigma2, rho) {
   t1 <- dnorm(-z, mean = -mu1, sd = sigma1)
@@ -40,8 +38,8 @@ fmax <- function (z, mu1, mu2, sigma1, sigma2, rho) {
   return(t1 + t2)
 }
 
-#'@rdname dbivanorm
-#'@export
+#' @rdname dbivanorm
+#' @export
 dbivanorm <- function(x, y, mu1, mu2, sigma1, sigma2, rho) {
   covariancemat <-
     matrix(c(
@@ -69,9 +67,7 @@ dbivanorm <- function(x, y, mu1, mu2, sigma1, sigma2, rho) {
 #' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
 #' @return The output of the function `pgo_multiple_tte()` is the probability to go to phase III.
-#' @examples res <- pgo_multiple_tte(HRgo = 0.8, n2 = 50,
-#'                                hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600,
-#'                                fixed = TRUE, rho = 0.3)
+#' 
 #' @keywords internal
 #' @export
 pgo_multiple_tte <- function(HRgo, n2, hr1, hr2, id1, id2, fixed, rho) {
@@ -143,10 +139,7 @@ pgo_multiple_tte <- function(HRgo, n2, hr1, hr2, id1, id2, fixed, rho) {
 #' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
 #' @return the output of the function `Ess_multiple_tte()` is the expected number of participants in phase III
-#' @examples res <- Ess_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
-#'                                hr1 = 0.75, hr2 = 0.80,
-#'                                id1 = 300, id2 = 600,
-#'                                fixed = TRUE, rho = 0.3)
+#' 
 #' @keywords internal
 #' @export
 Ess_multiple_tte <-
@@ -229,8 +222,7 @@ Ess_multiple_tte <-
 #' @param fixed choose if true treatment effects are fixed or random
 #' @param rho correlation between the two endpoints
 #' @return The output of the function `pw()` is the probability that endpoint one has a better result than endpoint two
-#' @examples res <- pw(n2 = 50,hr1 = 0.75, hr2 = 0.80, id1 = 300, id2 = 600,
-#'                     fixed = FALSE, rho = 0.3)
+#' 
 #' @keywords internal
 #' @export
 pw <- function(n2, hr1, hr2, id1, id2, fixed, rho) {
@@ -308,13 +300,7 @@ pw <- function(n2, hr1, hr2, id1, id2, fixed, rho) {
 #' @param rho correlation between the two endpoints
 #' @param rsamp sample data set for Monte Carlo integration
 #' @return The output of the function `EPsProg_multiple_tte()` is the expected probability of a successful program, when going to phase III.
-#' @examples res <- EPsProg_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.025, beta = 0.1,
-#'                                ec = 1, hr1 = 0.75, hr2 = 0.80,
-#'                                id1 = 300, id2 = 600,
-#'                                step1 = 1, step2 = 0.95,
-#'                                fixed = TRUE, rho = 0.3,
-#'                                rsamp = get_sample_multiple_tte(hr1 = 0.75,
-#'                                hr2 = 0.80, id1 = 300, id2 = 600, rho = 0.3))
+#' 
 #' @keywords internal
 #' @export
 EPsProg_multiple_tte <-
@@ -456,12 +442,7 @@ EPsProg_multiple_tte <-
 #' @param rho correlation between the two endpoints
 #' @param rsamp sample data set for Monte Carlo integration
 #' @return The output of the function `os_tte()` is the probability that endpoint OS significant.
-#' @examples res <- os_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
-#'                                hr1 = 0.75, hr2 = 0.80,
-#'                                id1 = 300, id2 = 600,
-#'                                fixed = TRUE, rho = 0.3,
-#'                                rsamp = get_sample_multiple_tte(hr1 = 0.75,
-#'                                hr2 = 0.80, id1 = 300, id2 = 600, rho = 0.3))
+#' 
 #' @keywords internal
 #' @export
 os_tte <-
@@ -620,19 +601,9 @@ os_tte <-
 #' @param b32 expected gain for effect size category `"large"` if endpoint OS is not significant
 #' @param fixed choose if true treatment effects are fixed or random, if TRUE `hr1` is used as fixed effect
 #' @param rho correlation between the two endpoints
-#' #' @param rsamp sample data set for Monte Carlo integration
+#' @param rsamp sample data set for Monte Carlo integration
 #' @return The output of the function `utility_multiple_tte()` is the expected utility of the program.
-#' @examples res <- utility_multiple_tte(n2 = 50, HRgo = 0.8, alpha = 0.025, beta = 0.1,
-#'                                hr1 = 0.75, hr2 = 0.80,
-#'                                id1 = 300, id2 = 600,
-#'                                c2 = 0.75, c3 = 1, c02 = 100, c03 = 150,
-#'                                K = Inf, N = Inf, S = -Inf,
-#'                                steps1 = 1, stepm1 = 0.95, stepl1 = 0.85,
-#'                                b11 = 1000, b21 = 2000, b31 = 3000,
-#'                                b12 = 1000, b22 = 1500, b32 = 2000,
-#'                                fixed = TRUE, rho = 0.3,
-#'                                rsamp = get_sample_multiple_tte(hr1 = 0.75,
-#'                                hr2 = 0.80, id1 = 300, id2 = 600, rho = 0.3))
+#' 
 #' @keywords internal
 #' @export
 utility_multiple_tte <-
@@ -880,6 +851,14 @@ utility_multiple_tte <-
   }
 
 #' Generate sample for Monte Carlo integration in the multiple setting
+#' 
+#' @param hr1 assumed true treatment effect on HR scale for endpoint OS
+#' @param hr2 assumed true treatment effect on HR scale for endpoint PFS
+#' @param id1 amount of information for `hr1` in terms of sample size
+#' @param id2 amount of information for `hr2` in terms of sample size
+#' @param rho correlation between the two endpoints
+#' 
+#' @return a randomly generated data frame
 #' @keywords internal
 get_sample_multiple_tte <- function(hr1, hr2, id1, id2, rho) {
   mu_prior_tte <- c(hr1, hr2) # true treatment effect theta

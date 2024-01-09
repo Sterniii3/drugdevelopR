@@ -54,11 +54,4 @@ the output of the function Ess_multiple_normal is the expected number of partici
 Given phase II results are promising enough to get the "go"-decision to go to phase III this function now calculates the expected sample size for phase III.
 The results of this function are necessary for calculating the utility of the program, which is then in a further step maximized by the \code{optimal_multiple_normal()} function
 }
-\examples{
-res <- Ess_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
-                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600,
-                               sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3,
-                               rsamp = get_sample_multiple_normal(Delta1 = 0.375,
-                               Delta2 = 0.625, in1 = 300, in2 = 600, rho = 0.3))
-}
 \keyword{internal}

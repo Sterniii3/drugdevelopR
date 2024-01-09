@@ -34,10 +34,4 @@ the output of the function \code{Ess_multiple_tte()} is the expected number of p
 Given phase II results are promising enough to get the "go"-decision to go to phase III this function now calculates the expected sample size for phase III.
 The results of this function are necessary for calculating the utility of the program, which is then in a further step maximized by the \code{optimal_multiple_tte()} function
 }
-\examples{
-res <- Ess_multiple_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
-                               hr1 = 0.75, hr2 = 0.80,
-                               id1 = 300, id2 = 600,
-                               fixed = TRUE, rho = 0.3)
-}
 \keyword{internal}

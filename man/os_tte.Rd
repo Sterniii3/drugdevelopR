@@ -36,12 +36,4 @@ The output of the function \code{os_tte()} is the probability that endpoint OS s
 This function calculate the probability that the endpoint OS is statistically significant.
 In the context of cancer research OS stands for overall survival, a positive treatment effect in this endpoints is thus sufficient for a successful program.
 }
-\examples{
-res <- os_tte(HRgo = 0.8, n2 = 50, alpha = 0.05, beta = 0.1,
-                               hr1 = 0.75, hr2 = 0.80,
-                               id1 = 300, id2 = 600,
-                               fixed = TRUE, rho = 0.3,
-                               rsamp = get_sample_multiple_tte(hr1 = 0.75,
-                               hr2 = 0.80, id1 = 300, id2 = 600, rho = 0.3))
-}
 \keyword{internal}

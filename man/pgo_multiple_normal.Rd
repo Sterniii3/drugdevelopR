@@ -48,11 +48,4 @@ The output of the function \code{pgo_multiple_normal()} is the probability to go
 This function calculated the probability that we go to phase III, i.e. that results of phase II are promising enough to
 get a successful drug development program. Successful means that both endpoints show a statistically significant positive treatment effect in phase III.
 }
-\examples{
-res <- pgo_multiple_normal(kappa = 0.1, n2 = 50,
-                               Delta1 = 0.375, Delta2 = 0.625, in1 = 300, in2 = 600,
-                               sigma1 = 2, sigma2 = 1, fixed = TRUE, rho = 0.3,
-                               rsamp = get_sample_multiple_normal(Delta1 = 0.375,
-                               Delta2 = 0.625, in1 = 300, in2 = 600, rho = 0.3))
-}
 \keyword{internal}

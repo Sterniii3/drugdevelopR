@@ -9,6 +9,9 @@ drugdevelopResult(x, ...)
 \arguments{
 \item{x}{data frame}
 }
+\value{
+the same data frame, equipped with class "drugdevelopResult"
+}
 \description{
 This is a short wrapper for adding the "drugdevelopR" string to the list
 of S3 classes of a data frame.

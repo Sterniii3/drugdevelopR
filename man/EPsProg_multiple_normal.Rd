@@ -66,12 +66,4 @@ The output of the function \code{EPsProg_multiple_normal()} is the expected prob
 This function calculates the probability that our drug development program is successful.
 Successful is defined as both endpoints showing a statistically significant positive treatment effect in phase III.
 }
-\examples{
-\donttest{EPsProg_multiple_normal(kappa = 0.1, n2 = 50, alpha = 0.025, beta = 0.1,
-                               Delta1 = 0.375, Delta2 = 0.625, sigma1 = 2, sigma2 = 1,
-                               step11 = 0, step12 = 0, step21 = 0.5, step22 = 0.5,
-                               in1 = 300, in2 = 600, fixed = TRUE, rho = 0.3,
-                               rsamp = get_sample_multiple_normal(Delta1 = 0.375,
-                               Delta2 = 0.625, in1 = 300, in2 = 600, rho = 0.3))}
-}
 \keyword{internal}

@@ -6,6 +6,20 @@
 \usage{
 get_sample_multiple_normal(Delta1, Delta2, in1, in2, rho)
 }
+\arguments{
+\item{Delta1}{assumed true treatment effect given as difference in means for endpoint 1}
+
+\item{Delta2}{assumed true treatment effect given as difference in means for endpoint 2}
+
+\item{in1}{amount of information for \code{Delta1} in terms of sample size}
+
+\item{in2}{amount of information for \code{Delta2} in terms of sample size}
+
+\item{rho}{correlation between the two endpoints}
+}
+\value{
+a randomly generated data frame
+}
 \description{
 Generate sample for Monte Carlo integration in the multiple setting
 }

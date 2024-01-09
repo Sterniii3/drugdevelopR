@@ -5,6 +5,7 @@
 #'
 #' @param x data frame
 #'
+#' @return the same data frame, equipped with class "drugdevelopResult"
 #' @export
 #' @keywords internal
 drugdevelopResult <- function(x, ...) {
