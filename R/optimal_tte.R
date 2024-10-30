@@ -56,7 +56,7 @@
 #' @references
 #' Kirchner, M., Kieser, M., Goette, H., & Schueler, A. (2016). Utility-based optimization of phase II/III programs. Statistics in Medicine, 35(2), 305-316.
 #'
-#' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}, assessed last 15.05.19.
+#' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}, last access 15.05.19.
 #'
 #' Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
 #'
@@ -170,7 +170,8 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                                 "b1", "b2", "b3", "w", "HRgo",
                                 "hr1", "hr2", "id1", "id2"), 
                           envir = environment())
-
+  
+  trace <- NULL
   for(j in 1:length(HRGO)){
 
     HRgo <- HRGO[j]
@@ -184,7 +185,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                         steps1, stepm1, stepl1,
                         b1, b2, b3,
                         gamma, fixed)
-
+    trace <- cbind(trace, rbind(rep(HRgo, length(D2)), D2, result))
     pb()
     
 
@@ -200,7 +201,10 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
     n2fkt[, j]     <-  result[10, ]
     n3fkt[, j]     <-  result[11, ]
 
-   }
+  }
+  row.names(trace) <- c("hrgo", "d2",
+                        "ufkt", "d3fkt", "spfkt", "pgofkt", "K2fkt", "K3fkt",
+                    "sp1fkt", "sp2fkt", "sp3fkt", "n2fkt", "n3fkt")
 
   ind   <-  which(ufkt  ==  max(ufkt), arr.ind <-  TRUE)
   I <-  as.vector(ind[1, 1])
@@ -274,6 +278,7 @@ optimal_tte <- function(w,  hr1, hr2, id1, id2,
                        as.character(date),
                        "\nfinish date:", 
                        as.character(Sys.time()))
+  attr(result, "trace") <- trace
   class(result) <- c("drugdevelopResult", class(result))
   parallel::stopCluster(cl)
   

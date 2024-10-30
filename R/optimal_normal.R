@@ -47,7 +47,10 @@
 #' }
 #' and further input parameters.
 #'
-#' Taking `cat(comment())` of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+#' Taking `cat(comment())` of the data.frame object lists the used optimization 
+#' sequences, start and finish date of the optimization procedure. Taking
+#' `attr(,"trace")` returns the utility values of all parameter combinations
+#' visited during optimization
 #' 
 #' @examples
 #' # Activate progress bar (optional)
@@ -175,6 +178,7 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                                  "b1", "b2", "b3", "w", "kappa",
                                  "Delta1", "Delta2", "in1", "in2", "a", "b"), envir=environment())
    
+   trace <- NULL
    for(j in 1:length(KAPPA)){
 
       kappa <- KAPPA[j]
@@ -188,6 +192,7 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                           steps1, stepm1, stepl1,
                           b1, b2, b3,
                           gamma, fixed)
+      trace <- cbind(trace, rbind(rep(kappa, length(N2)), N2, result))
       pb()
       
 
@@ -202,6 +207,9 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
       sp3fkt[, j]    <-  result[9, ]
 
    }
+   row.names(trace) <- c("kappa", "n2",
+                         "ufkt", "n3fkt", "spfkt", "pgofkt", "K2fkt", "K3fkt",
+                         "sp1fkt", "sp2fkt", "sp3fkt")
 
    ind   <-  which(ufkt  ==  max(ufkt), arr.ind <-  TRUE)
 
@@ -251,6 +259,7 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                           "\nonset date:", as.character(date),
                           "\nfinish date:", as.character(Sys.time()))
    class(result) <- c("drugdevelopResult", class(result))
+   attr(result, "trace") <- trace
    parallel::stopCluster(cl)
    
    return(result)

@@ -52,7 +52,7 @@
 #'   num_cl = 2)                                       # number of cores for parallelized computing
 #'   }
 #' @references
-#' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}, assessed last 15.05.19.
+#' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}, last access 15.05.19.
 #' @export
 optimal_binary <- function(w, p0, p11, p12, in1, in2,
                         n2min, n2max, stepn2,
@@ -146,7 +146,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                                  "c2", "c3", "c02", "c03",
                                  "b1", "b2", "b3", "w", "RRgo",
                                  "p0", "p11", "p12", "in1", "in2"), envir=environment())
-
+   trace <- NULL
    for(j in 1:length(HRGO)){
 
       RRgo <- HRGO[j]
@@ -159,6 +159,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           steps1, stepm1, stepl1,
                           b1, b2, b3,
                           gamma, fixed)
+      trace <- cbind(trace, rbind(rep(RRgo, length(N2)), N2, result))
 
       pb()
       
@@ -174,6 +175,9 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
       sp3fkt[, j]    <-  result[9, ]
 
    }
+   row.names(trace) <- c("rrgo", "n2",
+                         "ufkt", "n3fkt", "spfkt", "pgofkt", "K2fkt", "K3fkt",
+                         "sp1fkt", "sp2fkt", "sp3fkt")
 
    ind   <-  which(ufkt  ==  max(ufkt), arr.ind <-  TRUE)
 
@@ -222,7 +226,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           "\nonset date:", as.character(date),
                           "\nfinish date:", as.character(Sys.time()))
    class(result) <- c("drugdevelopResult", class(result))
-   
+   attr(result, "trace") <- trace
    parallel::stopCluster(cl)
    
    return(result)

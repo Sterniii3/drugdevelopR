@@ -1,7 +1,7 @@
 Package: drugdevelopR
 Type: Package
 Title: Utility-Based Optimal Phase II/III Drug Development Planning 
-Version: 1.0.1
+Version: 1.0.1.900
 Authors@R: c(person("Stella", "Erdmann",
                     email = "erdmann@imbi.uni-heidelberg.de", role = "aut"),
              person("Johannes", "Cepicka", role = "aut"),
@@ -31,7 +31,7 @@ Description: Plan optimal sample size allocation and go/no-go decision rules
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Depends:
     R (>= 3.5.0),
     doParallel,

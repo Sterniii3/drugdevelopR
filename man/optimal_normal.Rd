@@ -141,7 +141,10 @@ The output of the function \code{\link{optimal_normal}} is a data.frame containi
 }
 and further input parameters.
 
-Taking \code{cat(comment())} of the data.frame object lists the used optimization sequences, start and finish date of the optimization procedure.
+Taking \code{cat(comment())} of the data.frame object lists the used optimization
+sequences, start and finish date of the optimization procedure. Taking
+\code{attr(,"trace")} returns the utility values of all parameter combinations
+visited during optimization
 }
 \description{
 The function \code{\link{optimal_normal}} of the \code{\link{drugdevelopR}}
