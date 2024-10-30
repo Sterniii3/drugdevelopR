@@ -74,7 +74,7 @@
 #'   num_cl = 1)                                        # number of coresfor parallelized computing 
 #'   }
 #' @references
-#' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}, assessed last 15.05.19.
+#' IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}, last access 15.05.19.
 #'
 #' Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2020). Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. Submitted to peer-review journal.
 #'
@@ -116,8 +116,7 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
   if(adj=="all"){
     STRATEGY = c(1,2,3,4)
   }
-  
-
+  trace <- NULL
   for (strategy in STRATEGY){
     
     calresults <- NULL
@@ -147,7 +146,6 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
                                   "xi2", "xi3", "c2", "c3", "c02", "c03",
                                   "b1", "b2", "b3", "w", "HRgo", "Adj",
                                   "hr1", "hr2", "id1", "id2"), envir = environment())
-    
     for(a in 1:length(ADJ)){
       
       Adj <- ADJ[a]
@@ -201,7 +199,11 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
                            b1, b2, b3,
                            fixed)  
         }
-
+        trace <- cbind(trace, 
+                       rbind(rep(Adj, length(D2)),
+                             rep(strat, length(D2)),
+                             rep(HRgo, length(D2)),
+                             D2, res))
         pb()
         
         
@@ -218,6 +220,9 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
         n3fkt[, j]     <-  res[11, ]
         
       }
+      row.names(trace) <- c("adj", "strat", "hrgo", "d2",
+                            "ufkt", "d3fkt", "spfkt", "pgofkt", "K2fkt", "K3fkt",
+                            "sp1fkt", "sp2fkt", "sp3fkt", "n2fkt", "n3fkt")
       
       ind   <-  which(ufkt  ==  max(ufkt), arr.ind <-  TRUE)
       
@@ -278,7 +283,7 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
                     "\nonset date:", as.character(date),
                     "\nfinish date:", as.character(Sys.time()))
   class(result) <- c("drugdevelopResult", class(result))
-  
+  attr(result, "trace") <- trace
   parallel::stopCluster(cl)
   return(result)
   
