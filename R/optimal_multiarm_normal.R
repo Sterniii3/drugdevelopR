@@ -84,7 +84,7 @@ optimal_multiarm_normal <- function(Delta1, Delta2,
                                 "c2", "c3", "c02", "c03",
                                 "b1", "b2", "b3", "KAPPA",
                                 "Delta1", "Delta2"), envir = environment())
-  
+  trace <- NULL
   for(strategy in STRATEGY){
     
     ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
@@ -100,14 +100,14 @@ optimal_multiarm_normal <- function(Delta1, Delta2,
       
       kappa <- KAPPA[j]
       
-      
-      
-      
       res <- parallel::parSapply(cl, N2, utility_multiarm_normal, kappa,
                        alpha,beta, Delta1,Delta2,strategy,
                        c2,c02,c3,c03,K,N,S,
                        steps1, stepm1, stepl1,b1, b2, b3)
-      
+      trace <- cbind(trace, 
+                     rbind(rep(strategy, length(N2)),
+                           rep(kappa, length(N2)),
+                           N2, res))
       pb()
       
       
@@ -120,6 +120,7 @@ optimal_multiarm_normal <- function(Delta1, Delta2,
       K2fkt[, j]    <-  res[7, ]
       K3fkt[, j]    <-  res[8, ]
     }
+    
     
     ind   <-  which(ufkt  ==  max(ufkt), arr.ind <-  TRUE)
     
@@ -146,14 +147,18 @@ optimal_multiarm_normal <- function(Delta1, Delta2,
                                         c02 = c02, c03 = c03, c2 = c2, c3 = c3, 
                                         b1 = b1, b2 = b2, b3 = b3))  
   }
-  
+  row.names(trace) <- c("strategy", "kappa", "n2",
+                        "ufkt", "n3fkt", "spfkt", "pgofkt",
+                        "sp2fkt", "sp3fkt",
+                        "K2fkt", "K3fkt"
+  )
   
   comment(result) <-   c("\noptimization sequence Kappa:", KAPPA,
                          "\noptimization sequence n2:", N2,
                          "\nonset date:", as.character(date),
                          "\nfinish date:", as.character(Sys.time()))
   class(result) <- c("drugdevelopResult", class(result))
-  
+  attr(result, "trace") <- trace
   parallel::stopCluster(cl)
   return(result)
   

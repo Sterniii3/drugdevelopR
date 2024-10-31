@@ -220,9 +220,6 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
         n3fkt[, j]     <-  res[11, ]
         
       }
-      row.names(trace) <- c("adj", "strat", "hrgo", "d2",
-                            "ufkt", "d3fkt", "spfkt", "pgofkt", "K2fkt", "K3fkt",
-                            "sp1fkt", "sp2fkt", "sp3fkt", "n2fkt", "n3fkt")
       
       ind   <-  which(ufkt  ==  max(ufkt), arr.ind <-  TRUE)
       
@@ -275,9 +272,9 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
     
     result <- rbind(result, calresults[index,] ) 
   }
-  
-
-
+  row.names(trace) <- c("adj", "strat", "hrgo", "d2",
+                        "ufkt", "d3fkt", "spfkt", "pgofkt", "K2fkt", "K3fkt",
+                        "sp1fkt", "sp2fkt", "sp3fkt", "n2fkt", "n3fkt")
   comment(result) <-   c("\noptimization sequence HRgo:", HRGO,
                     "\noptimization sequence d2:", D2,
                     "\nonset date:", as.character(date),
