@@ -1,5 +1,5 @@
-pandoc: 3.1.11
-pkgdown: 2.0.7
+pandoc: '3.2'
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   Bias_adjustment: Bias_adjustment.html
@@ -13,8 +13,7 @@ articles:
   Multitrial: Multitrial.html
   Package_validation: Package_validation.html
   Time-to-event_outcomes: Time-to-event_outcomes.html
-last_built: 2024-01-09T08:33Z
+last_built: 2024-11-19T15:40Z
 urls:
   reference: https://sterniii3.github.io/drugdevelopR/reference
   article: https://sterniii3.github.io/drugdevelopR/articles
-

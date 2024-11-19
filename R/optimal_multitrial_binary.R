@@ -56,7 +56,6 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                                b1, b2, b3,
                                case, strategy = TRUE,
                                fixed = FALSE,  num_cl = 1){
-  
   result <- result23 <- NULL
   
   # spezifications for one phase III trial

@@ -50,7 +50,7 @@ test_that("printing optimization results", {
       " Effect size categories (expected gains):",
       "  small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)",
       " Success probability: 0.78",
-      " Success probability by effect size:" ,
+      " Joint probability of success and observed effect of size ... in phase III:" ,
       "   small: 0.73, medium: 0.05, large: 0",
       " Significance level: 0.05",
       " Targeted power: 0.9",

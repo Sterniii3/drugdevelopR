@@ -1,336 +1,114 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/404.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/articles/Binary_distributed_outcomes.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/articles/Binary_outcomes.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/articles/Multiarm_Trials.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/articles/Multiple_Endpoints.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/articles/Package_validation.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/index.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/d3_skipII_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/dbivanorm.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/drugdevelopR.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/drugdevelopResult.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/Ed3_bias.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/Ed3_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/En3_bias_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/En3_bias_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo23.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo23_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo23_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_bias.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_bias_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_bias_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg23.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg23_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg23_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_bias.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_bias_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_bias_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multiple_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multiple_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multitrial.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multitrial_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multitrial_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_multiple_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_multiple_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/fmax.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/fmin.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/get_sample_multiple_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/get_sample_multiple_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_bias.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_bias_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_bias_generic.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_bias_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_binary_generic.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_generic.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multiarm.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multiarm_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multiarm_generic.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multiarm_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multiple_generic.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multiple_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multiple_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multitrial.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multitrial_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multitrial_generic.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multitrial_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_normal_generic.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_return_doc.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_tte_generic.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/os_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/pgo_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/pgo_multiple_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/pgo_multiple_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/pgo_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/pgo_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/posp_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/print.drugdevelopResult.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/print_drugdevelopResult_helper.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/prior_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/PsProg_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/PsProg_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/PsProg_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/pw.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/ss_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/ss_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/ss_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility23.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility23_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility23_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_bias.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_bias_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_bias_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multiarm.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multiarm_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multiarm_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multiple_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multiple_tte.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multitrial.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multitrial_binary.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multitrial_normal.html</loc>
-  </url>
-  <url>
-    <loc>https://sterniii3.github.io/drugdevelopR/reference/utility_tte.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://sterniii3.github.io/drugdevelopR/404.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/articles/Bias_adjustment.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/articles/Binary_distributed_outcomes.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/articles/Binary_outcomes.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/articles/Fixed_and_prior_distributions.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/articles/index.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/articles/Interpreting_Output.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/articles/introduction-to-drugdevelopR.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/articles/More_Parameters.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/articles/Multiarm_Trials.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/articles/Multiple_Endpoints.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/articles/Multitrial.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/articles/Package_validation.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/articles/Time-to-event_outcomes.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/authors.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/index.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/LICENSE-text.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/LICENSE.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/news/index.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/d3_skipII_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/dbivanorm.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/drugdevelopR.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/drugdevelopResult.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/Ed3_bias.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/Ed3_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/En3_bias_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/En3_bias_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo23.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo23_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo23_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_bias.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_bias_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_bias_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/Epgo_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg23.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg23_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg23_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_bias.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_bias_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_bias_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multiple_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multiple_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multitrial.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multitrial_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_multitrial_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/EPsProg_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_multiple_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_multiple_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/Ess_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/fmax.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/fmin.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/get_sample_multiple_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/get_sample_multiple_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/index.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_bias.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_bias_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_bias_generic.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_bias_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_binary_generic.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_generic.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multiarm.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multiarm_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multiarm_generic.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multiarm_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multiple_generic.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multiple_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multiple_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multitrial.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multitrial_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multitrial_generic.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_multitrial_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_normal_generic.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_return_doc.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/optimal_tte_generic.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/os_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/pgo_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/pgo_multiple_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/pgo_multiple_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/pgo_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/pgo_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/posp_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/print.drugdevelopResult.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/print_drugdevelopResult_helper.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/prior_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/PsProg_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/PsProg_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/PsProg_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/pw.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/ss_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/ss_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/ss_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility23.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility23_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility23_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility_bias.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility_bias_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility_bias_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multiarm.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multiarm_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multiarm_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multiple_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multiple_tte.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multitrial.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multitrial_binary.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility_multitrial_normal.html</loc></url>
+<url><loc>https://sterniii3.github.io/drugdevelopR/reference/utility_tte.html</loc></url>
 </urlset>
+

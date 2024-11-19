@@ -163,7 +163,7 @@ print_drugdevelopResult_helper <- function(x, ...){
   }
   cat(" Success probability: ", x$sProg, "\n", sep = "")
   if("sProg1" %in% names(x)){
-    cat(" Success probability by effect size:\n")
+    cat("Joint probability of success and observed effect of size ... in phase III:\n")
     cat("   small: ", x$sProg1, ", medium: ", x$sProg2, 
         ", large: ", x$sProg3, "\n", sep = "")
   } else if("sProg2" %in% names(x)){

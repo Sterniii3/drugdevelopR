@@ -58,7 +58,6 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                                       b1, b2, b3,
                                       case, strategy = TRUE,
                                       fixed = FALSE,  num_cl = 1){
-  
   result <- result23 <- NULL
   
   # spezifications for one phase III trial

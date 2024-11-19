@@ -1,7 +1,7 @@
 Package: drugdevelopR
 Type: Package
 Title: Utility-Based Optimal Phase II/III Drug Development Planning 
-Version: 1.0.1.900
+Version: 1.0.2
 Authors@R: c(person("Stella", "Erdmann",
                     email = "erdmann@imbi.uni-heidelberg.de", role = "aut"),
              person("Johannes", "Cepicka", role = "aut"),
