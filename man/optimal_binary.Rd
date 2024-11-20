@@ -133,7 +133,9 @@ The output of the function is a \code{data.frame} object containing the optimiza
 \item{K3}{expected costs for phase III}}
 and further input parameters. Taking \code{cat(comment())} of the
 data frame lists the used optimization sequences, start and
-finish date of the optimization procedure.
+finish time of the optimization procedure. The attribute
+\code{attr(,"trace")} returns the utility values of all parameter
+combinations visited during optimization.
 }
 \description{
 The \code{\link{optimal_binary}} function of the drugdevelopR package enables
@@ -172,5 +174,5 @@ optimal_binary(w = 0.3,                             # define parameters for prio
   }
 }
 \references{
-IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}, assessed last 15.05.19.
+IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}, last access 15.05.19.
 }

@@ -2,6 +2,7 @@
 % Please edit documentation in R/drugdevelopR.R
 \docType{package}
 \name{drugdevelopR}
+\alias{-package}
 \alias{drugdevelopR}
 \title{Utility based optimal phase II/III drug development planning}
 \usage{

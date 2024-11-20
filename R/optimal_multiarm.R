@@ -87,7 +87,7 @@ optimal_multiarm <- function(hr1, hr2, ec,
                                 "c2", "c3", "c02", "c03",
                                 "b1", "b2", "b3", "HRgo",
                                 "hr1", "hr2", "ec"), envir = environment())
-  
+  trace <- NULL
   for(strategy in STRATEGY){
     
     ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
@@ -111,7 +111,10 @@ optimal_multiarm <- function(hr1, hr2, ec,
                        alpha,beta,hr1,hr2,strategy,ec,
                        c2,c02,c3,c03,K,N,S,
                        steps1, stepm1, stepl1,b1, b2, b3)
-      
+      trace <- cbind(trace, 
+                     rbind(rep(strategy, length(N2)),
+                           rep(HRgo, length(N2)),
+                           N2, res))
       pb()
       
       ufkt[, j]     <-  res[1, ]
@@ -149,15 +152,19 @@ optimal_multiarm <- function(hr1, hr2, ec,
                           c02 = c02, c03 = c03, c2 = c2, c3 = c3, 
                           b1 = b1, b2 = b2, b3 = b3))  
   }
-
+  row.names(trace) <- c("strat", "hrgo", "n2",
+                        "ufkt", "n3fkt", "spfkt", 
+                        "pgofkt",
+                        "sp2fkt", "sp3fkt",
+                        "K2fkt", "K3fkt")
 
   comment(result) <-   c("\noptimization sequence HRgo:", HRGO,
                     "\noptimization sequence n2:", N2,
                     "\nonset date:", as.character(date),
                     "\nfinish date:", as.character(Sys.time()))
   class(result) <- c("drugdevelopResult", class(result))
+  attr(result, "trace") <- trace
   parallel::stopCluster(cl)
-  
   return(result)
   
 }

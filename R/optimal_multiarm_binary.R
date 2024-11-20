@@ -81,7 +81,7 @@ optimal_multiarm_binary <- function(p0, p11, p12,
                                 "c2", "c3", "c02", "c03",
                                 "b1", "b2", "b3", "RRgo",
                                 "p0", "p11", "p12"), envir = environment())
-  
+  trace <- NULL
   for(strategy in STRATEGY){
     
     ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
@@ -102,7 +102,10 @@ optimal_multiarm_binary <- function(p0, p11, p12,
                        alpha,beta,p0,p11,p12,strategy,
                        c2,c02,c3,c03,K,N,S,
                        steps1, stepm1, stepl1,b1, b2, b3)
-      
+      trace <- cbind(trace, 
+                     rbind(rep(strategy, length(N2)),
+                           rep(RRgo, length(N2)),
+                           N2, res))
       pb()
 
       
@@ -141,13 +144,17 @@ optimal_multiarm_binary <- function(p0, p11, p12,
                                         c02 = c02, c03 = c03, c2 = c2, c3 = c3, 
                                         b1 = b1, b2 = b2, b3 = b3))  
   }
-  
+  row.names(trace) <- c("strat", "rrgo", "n2",
+                        "ufkt", "n3fkt", "spfkt", "pgofkt", 
+                        "sp2fkt", "sp3fkt",
+                        "K2fkt", 
+                        "K3fkt")
   
   comment(result) <-   c("\noptimization sequence RRgo:", RRGO,
                          "\noptimization sequence n2:", N2,
                          "\nonset date:", as.character(date),
                          "\nfinish date:", as.character(Sys.time()))
-
+  attr(result, "trace") <- trace
   class(result) <- c("drugdevelopResult", class(result))
   parallel::stopCluster(cl)
   

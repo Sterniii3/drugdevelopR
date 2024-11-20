@@ -133,7 +133,9 @@ The output of the function is a \code{data.frame} object containing the optimiza
 \item{K3}{expected costs for phase III}}
 and further input parameters. Taking \code{cat(comment())} of the
 data frame lists the used optimization sequences, start and
-finish date of the optimization procedure.
+finish time of the optimization procedure. The attribute
+\code{attr(,"trace")} returns the utility values of all parameter
+combinations visited during optimization.
 }
 \description{
 The function \code{\link{optimal_tte}} of the \code{\link{drugdevelopR}}
@@ -175,7 +177,7 @@ optimal_tte(w = 0.3,                    # define parameters for prior
 \references{
 Kirchner, M., Kieser, M., Goette, H., & Schueler, A. (2016). Utility-based optimization of phase II/III programs. Statistics in Medicine, 35(2), 305-316.
 
-IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}, assessed last 15.05.19.
+IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}, last access 15.05.19.
 
 Schoenfeld, D. (1981). The asymptotic properties of nonparametric tests for comparing survival distributions. Biometrika, 68(1), 316-319.
 }

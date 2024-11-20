@@ -113,7 +113,9 @@ The output of the function is a \code{data.frame} object containing the optimiza
 \item{K3}{expected costs for phase III}}
 and further input parameters. Taking \code{cat(comment())} of the
 data frame lists the used optimization sequences, start and
-finish date of the optimization procedure.
+finish time of the optimization procedure. The attribute
+\code{attr(,"trace")} returns the utility values of all parameter
+combinations visited during optimization.
 }
 \description{
 The function \code{\link{optimal_multitrial}} of the drugdevelopR package enables planning of phase II/III drug development programs with time-to-event endpoints for programs with several phase III trials (Preussler et. al, 2019).
@@ -146,7 +148,7 @@ optimal_multitrial(w = 0.3,                # define parameters for prior
   b1 = 1000, b2 = 2000, b3 = 3000,                  # expected benefit for each effect size
   case = 1, strategy = TRUE,                        # chose Case and Strategy
   fixed = TRUE,                                     # true treatment effects are fixed/random
-  num_cl = 1)                                       # number of cores for parallelized computing 
+  num_cl = 1)                                       # number of cores for parallelized computing
 }
 }
 \references{

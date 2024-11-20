@@ -148,7 +148,9 @@ The output of the function is a \code{data.frame} object containing the optimiza
 \item{K3}{expected costs for phase III}}
 and further input parameters. Taking \code{cat(comment())} of the
 data frame lists the used optimization sequences, start and
-finish date of the optimization procedure.
+finish time of the optimization procedure. The attribute
+\code{attr(,"trace")} returns the utility values of all parameter
+combinations visited during optimization.
 }
 \description{
 The function \code{\link{optimal_bias_normal}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results for normally distributed endpoints (Preussler et. al, 2020).

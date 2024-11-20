@@ -5,67 +5,51 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="drugdevelopR">
 <title>Binary outcome variables • drugdevelopR</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Binary outcome variables">
-<meta property="og:description" content="drugdevelopR">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Binary outcome variables">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">drugdevelopR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Introduction-to-drugdevelopR.html">Introduction to planning phase II and phase III trials with drugdevelopR</a>
-    <a class="dropdown-item" href="../articles/Package_validation.html">Package validation</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="../articles/index.html">More articles...</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/Introduction-to-drugdevelopR.html">Introduction to planning phase II and phase III trials with drugdevelopR</a></li>
+    <li><a class="dropdown-item" href="../articles/Package_validation.html">Package validation</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="../articles/index.html">More articles...</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/Sterniii3/drugdevelopR/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Sterniii3/drugdevelopR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -74,12 +58,13 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Binary outcome variables</h1>
+
+      <h1>Binary outcome variables</h1>
                         <h4 data-toc-skip class="author">Johannes
 Cepicka</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Sterniii3/drugdevelopR/blob/HEAD/../../../../../../U:/r-pakete/drugdevelopR/drugdevelopR_source/vignettes/Binary_outcomes.Rmd" class="external-link"><code>../../../../../../U:/r-pakete/drugdevelopR/drugdevelopR_source/vignettes/Binary_outcomes.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Sterniii3/drugdevelopR/blob/HEAD/vignettes/Binary_outcomes.Rmd" class="external-link"><code>vignettes/Binary_outcomes.Rmd</code></a></small>
       <div class="d-none name"><code>Binary_outcomes.Rmd</code></div>
     </div>
 
@@ -110,14 +95,19 @@ not (favourable outcome with value 0) over a pre-defined observation
 period. This is a binary outcome variable.</p>
 <p>Within our drug development program, we will compare our experimental
 treatment <em>exper</em> to the control treatment <em>contro</em>. The
-treatment effect measure is given by <span class="math inline">\(\rho =
-−\log(RR)\)</span>, which is the negative logarithm of the risk ratio
-(relative risk) <span class="math inline">\(RR =
-\frac{p_1}{p_0}\)</span>. Here, <span class="math inline">\(p_1\)</span>
-is the failure probability of the experimental treatment (i.e. <span class="math inline">\(\mathbb{P}(X_i = 1|\text{experimental})\)</span>,
-the probability that patient <span class="math inline">\(i\)</span> has
-a stroke) and analogously <span class="math inline">\(p_0\)</span> is
-the failure probability of the control treatment.</p>
+treatment effect measure is given by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><mi>−</mi><mo>log</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\rho = −\log(RR)</annotation></semantics></math>,
+which is the negative logarithm of the risk ratio (relative risk)
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>R</mi><mo>=</mo><mfrac><msub><mi>p</mi><mn>1</mn></msub><msub><mi>p</mi><mn>0</mn></msub></mfrac></mrow><annotation encoding="application/x-tex">RR = \frac{p_1}{p_0}</annotation></semantics></math>.
+Here,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>p</mi><mn>1</mn></msub><annotation encoding="application/x-tex">p_1</annotation></semantics></math>
+is the failure probability of the experimental treatment
+(i.e. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℙ</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>X</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo stretchy="false" form="prefix">|</mo><mtext mathvariant="normal">experimental</mtext><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathbb{P}(X_i = 1|\text{experimental})</annotation></semantics></math>,
+the probability that patient
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>
+has a stroke) and analogously
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>p</mi><mn>0</mn></msub><annotation encoding="application/x-tex">p_0</annotation></semantics></math>
+is the failure probability of the control treatment.</p>
 </div>
 <div class="section level2">
 <h2 id="applying-the-package-to-the-example">Applying the package to the example<a class="anchor" aria-label="anchor" href="#applying-the-package-to-the-example"></a>
@@ -164,30 +154,34 @@ steps of <code>steprrgo = 0.01</code>. Note that the lower bound of the
 decision rule represents the smallest size of treatment effect observed
 in phase II allowing to go to phase III, so it can be used to model the
 minimal clinically relevant effect size. Moreover, note that the
-interval specified above corresponds to the set <span class="math inline">\(\{-\log(0.9), ..., -\log(0.7)\}\)</span>.</li>
+interval specified above corresponds to the set
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mi>−</mi><mo>log</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>0.9</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>,</mo><mi>−</mi><mo>log</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>0.7</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{-\log(0.9), ..., -\log(0.7)\}</annotation></semantics></math>.</li>
 <li>
 <code>c02</code> and <code>c03</code> are fixed costs for phase II
 and phase III, respectively. We will set the phase II costs to 100 and
-the phase III costs to 150 (in <span class="math inline">\(10^5\)</span>$), i.e. we have fixed costs of 10
-000 000$ in phase II and 15 000 000$ in phase III. Note that the
-currency of the input values does not matter, so an input value for
-<code>c02</code> of 15 could also be interpreted as fixed costs of 1 500
-000€ if necessary.</li>
+the phase III costs to 150 (in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>10</mn><mn>5</mn></msup><annotation encoding="application/x-tex">10^5</annotation></semantics></math>$),
+i.e. we have fixed costs of 10 000 000$ in phase II and 15 000 000$ in
+phase III. Note that the currency of the input values does not matter,
+so an input value for <code>c02</code> of 15 could also be interpreted
+as fixed costs of 1 500 000€ if necessary.</li>
 <li>
 <code>c2</code> and <code>c3</code> are the per-patient costs in
 phase II and phase III. We will set them to be 0.75 in phase II and 0.1
-in phase III. Again, these values are given in <span class="math inline">\(10^5\)</span>$, i.e. we have per-patient costs of
-75 000$ in phase II and 100 000$ in phase III.</li>
+in phase III. Again, these values are given in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>10</mn><mn>5</mn></msup><annotation encoding="application/x-tex">10^5</annotation></semantics></math>$,
+i.e. we have per-patient costs of 75 000$ in phase II and 100 000$ in
+phase III.</li>
 <li>
 <code>b1</code>, <code>b2</code> and <code>b3</code> are the
 expected small, medium and large benefit categories for successfully
 launching the treatment on the market for each effect size category in
-<span class="math inline">\(10^5\)</span>$. We will define a small
-benefit of 1000, a medium benefit of 2000, and a large benefit of 3000.
-The effect size categories directly correspond to the treatment effect:
-For example, if the treatment effect is between 1 and 0.95 (in terms of
-the risk ratio) we have a small treatment effect yielding an expected
-benefit of 100 000 000$.</li>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>10</mn><mn>5</mn></msup><annotation encoding="application/x-tex">10^5</annotation></semantics></math>$.
+We will define a small benefit of 1000, a medium benefit of 2000, and a
+large benefit of 3000. The effect size categories directly correspond to
+the treatment effect: For example, if the treatment effect is between 1
+and 0.95 (in terms of the risk ratio) we have a small treatment effect
+yielding an expected benefit of 100 000 000$.</li>
 <li>
 <code>alpha</code> is the specified significance level. We will set
 <code>alpha = 0.025</code>.</li>
@@ -242,7 +236,7 @@ let’s take a look at the output of the program.</p>
 <span><span class="co">#&gt;  Effect size categories (expected gains):</span></span>
 <span><span class="co">#&gt;   small: 1 (1000), medium: 0.95 (2000), large: 0.85 (3000)</span></span>
 <span><span class="co">#&gt;  Success probability: 0.83</span></span>
-<span><span class="co">#&gt;  Success probability by effect size:</span></span>
+<span><span class="co">#&gt; Joint probability of success and observed effect of size ... in phase III:</span></span>
 <span><span class="co">#&gt;    small: 0.06, medium: 0.18, large: 0.59</span></span>
 <span><span class="co">#&gt;  Significance level: 0.025</span></span>
 <span><span class="co">#&gt;  Targeted power: 0.9</span></span>
@@ -311,28 +305,26 @@ computing:</em></a> Be faster at calculating the optimum by using
 parallel computing.</li>
 </ul>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Stella Erdmann, Johannes Cepicka, Marietta Kirchner, Meinhard Kieser, Lukas D. Sauer.</p>
+  <p>Developed by Stella Erdmann, Johannes Cepicka, Marietta Kirchner, Meinhard Kieser, Lukas D. Sauer.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>

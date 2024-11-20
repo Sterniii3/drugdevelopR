@@ -146,7 +146,9 @@ The output of the function is a \code{data.frame} object containing the optimiza
 \item{K3}{expected costs for phase III}}
 and further input parameters. Taking \code{cat(comment())} of the
 data frame lists the used optimization sequences, start and
-finish date of the optimization procedure.
+finish time of the optimization procedure. The attribute
+\code{attr(,"trace")} returns the utility values of all parameter
+combinations visited during optimization.
 }
 \description{
 The function \code{\link{optimal_bias}} of the drugdevelopR package enables planning of phase II/III drug development programs with optimal sample size allocation and go/no-go decision rules including methods for discounting of phase II results for time-to-event endpoints (Preussler et. al, 2020).
@@ -182,7 +184,7 @@ optimal_bias(w = 0.3,                       # define parameters for prior
   }
 }
 \references{
-IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}, assessed last 15.05.19.
+IQWiG (2016). Allgemeine Methoden. Version 5.0, 10.07.2016, Technical Report. Available at \href{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}{https://www.iqwig.de/ueber-uns/methoden/methodenpapier/}, last access 15.05.19.
 
 Preussler, S., Kirchner, M., Goette, H., Kieser, M. (2020). Optimal designs for phase II/III drug development programs including methods for discounting of phase II results. Submitted to peer-review journal.
 

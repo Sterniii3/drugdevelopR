@@ -58,7 +58,6 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                                       b1, b2, b3,
                                       case, strategy = TRUE,
                                       fixed = FALSE,  num_cl = 1){
-  
   result <- result23 <- NULL
   
   # spezifications for one phase III trial
@@ -103,7 +102,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                                 "K", "N", "S", "fixed", "case", "Strategy",
                                 "b1", "b2", "b3", "w", "kappa",
                                 "Delta1", "Delta2", "ymin", "in1", "in2", "a", "b" ), envir = environment())
-  
+  trace <- NULL
   for(Strategy in STRATEGY){
     
     ufkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
@@ -202,6 +201,19 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
         sp33fkt[, j]    <-  res[14, ]
       }
       
+      if(!(23 %in% STRATEGY) | Strategy == 23){
+        trace <- cbind(trace, 
+                       rbind(rep(Strategy, length(N2)),
+                             rep(kappa, length(N2)),
+                             N2, res))
+      } else {
+        trace <- cbind(trace, 
+                       rbind(rep(Strategy, length(N2)),
+                             rep(kappa, length(N2)),
+                             N2, res,
+                             matrix(numeric(0), nrow = 5, ncol = length(N2))))
+      }
+      
     }
     
     ind   <-  which(ufkt  ==  max(ufkt), arr.ind <-  TRUE)
@@ -270,9 +282,20 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                            "\nfinish date:", as.character(Sys.time()))
     
   }
+  if(23 %in% STRATEGY){
+    row.names(trace) <- c("strat", "kappa", "n2",
+                          "ufkt", "n3fkt", "spfkt", "pgofkt", "K2fkt", 
+                          "K3fkt", "sp1fkt", "sp2fkt", "sp3fkt",
+                          "pgo3fkt", "n33fkt", "sp13fkt",
+                          "sp23fkt", "sp33fkt")
+  } else {
+    row.names(trace) <- c("strat", "kappa", "n2",
+                          "ufkt", "n3fkt", "spfkt", "pgofkt", "K2fkt", 
+                          "K3fkt", "sp1fkt", "sp2fkt", "sp3fkt")
+  }
   class(result) <- c("drugdevelopResult", class(result))
   parallel::stopCluster(cl)
-  
+  attr(result, "trace") <- trace
   return(result)
   
 }
