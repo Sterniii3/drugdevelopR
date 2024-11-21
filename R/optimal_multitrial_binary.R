@@ -204,7 +204,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
         trace <- cbind(trace, 
                        rbind(rep(Strategy, length(N2)),
                              rep(RRgo, length(N2)),
-                             N2, res))
+                             N2, res[(1:14),]))
       } else {
         trace <- cbind(trace, 
                        rbind(rep(Strategy, length(N2)),

@@ -23,7 +23,7 @@ test_that("optimal_multitrial_binary works for case 2", {
                                          K = Inf, N = Inf, S = -Inf,   
                                          b1 = 1000, b2 = 2000, b3 = 3000,
                                          case = 2, strategy = TRUE, 
-                                         fixed = FALSE,num_cl = 2)$u, c(325.53,801.12,1034.92,822.46))
+                                         fixed = FALSE, num_cl = 2)$u, c(325.53,801.12,1034.92,822.46))
 })
 
 test_that("optimal_multitrial_binary works for case 3", {
