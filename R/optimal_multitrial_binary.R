@@ -201,10 +201,14 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
       }
 
       if(!(23 %in% STRATEGY) | Strategy == 23){
+        res_trace <- res
+        if(Strategy == 23){
+          res_trace <- res[(1:14),]
+        }
         trace <- cbind(trace, 
                        rbind(rep(Strategy, length(N2)),
                              rep(RRgo, length(N2)),
-                             N2, res[(1:14),]))
+                             N2, res_trace))
       } else {
         trace <- cbind(trace, 
                        rbind(rep(Strategy, length(N2)),
