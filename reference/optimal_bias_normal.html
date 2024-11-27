@@ -340,7 +340,50 @@ combinations visited during optimization.</p>
 <span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">3000</span>, b2 <span class="op">=</span> <span class="fl">8000</span>, b3 <span class="op">=</span> <span class="fl">10000</span>,                    <span class="co"># define expected benefits</span></span></span>
 <span class="r-in"><span>  fixed <span class="op">=</span> <span class="cn">TRUE</span>,                                        <span class="co"># true treatment effects are fixed/random</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                          <span class="co"># number of coresfor parallelized computing </span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in summary.connection(connection):</span> invalid connection</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result with multiplicative adjustment of the treatment effect:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 1854.94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Bias adjustment parameter: 0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 628, total: 728</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 82, phase III: 470, cost constraint: Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 15, phase III: 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.675, phase III: 0.72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Effect size categories (expected gains):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Joint probability of success and observed effect of size ... in phase III:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    small: 0.8, medium: 0, large: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.12 [Kappa] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Assumed true effect: 0.375 [Delta] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result with additive adjustment of the treatment effect:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 1768.13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Bias adjustment parameter: 0.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 460, total: 560</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.92</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 82, phase III: 350, cost constraint: Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 15, phase III: 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.675, phase III: 0.72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Effect size categories (expected gains):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   small: 0 (3000), medium: 0.5 (8000), large: 0.8 (10000)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.73</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Joint probability of success and observed effect of size ... in phase III:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    small: 0.73, medium: 0, large: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.1 [Kappa] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Assumed true effect: 0.375 [Delta] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span>  <span class="co"># }                                        </span></span></span>
 </code></pre></div>
     </div>
