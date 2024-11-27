@@ -346,60 +346,7 @@ combinations visited during optimization.</p>
 <span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">1000</span>, b2 <span class="op">=</span> <span class="fl">2000</span>, b3 <span class="op">=</span> <span class="fl">3000</span>,                   <span class="co"># define expected benefits </span></span></span>
 <span class="r-in"><span>  fixed <span class="op">=</span> <span class="cn">FALSE</span>,                                     <span class="co"># true treatment effects are fixed/random</span></span></span>
 <span class="r-in"><span>  num_cl <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                                        <span class="co"># number of coresfor parallelized computing </span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result with multiplicative adjustment of the treatment effect:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 98.28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Bias adjustment parameter: 0.75</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 122, phase III: 218, total: 340</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Expected number of events:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 85, phase III: 153, total: 238</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Assumed event rate:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.7, phase III: 0.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.36</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 192, phase III: 273, cost constraint: Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.75, phase III: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Effect size categories (expected gains):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   small: 1 (1000), medium: 0.95 (2000), large: 0.85 (3000)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Joint probability of success and observed effect of size ... in phase III:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    small: 0.04, medium: 0.08, large: 0.12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.75 [HRgo] </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Parameters of the prior distribution: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hr1: 0.69,  hr2: 0.88, id1: 210, id2: 420, w: 0.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization result with additive adjustment of the treatment effect:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Utility: 75.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Bias adjustment parameter: 0.475</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample size:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 130, phase III: 230, total: 360</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Expected number of events:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 90, phase III: 161, total: 251</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Assumed event rate:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.7, phase III: 0.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Probability to go to phase III: 0.45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Total cost:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 198, phase III: 298, cost constraint: Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed cost:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 100, phase III: 150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Variable cost per patient:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    phase II: 0.75, phase III: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Effect size categories (expected gains):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   small: 1 (1000), medium: 0.95 (2000), large: 0.85 (3000)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Success probability: 0.26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Joint probability of success and observed effect of size ... in phase III:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    small: 0.05, medium: 0.09, large: 0.11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Significance level: 0.025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Targeted power: 0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Decision rule threshold: 0.8 [HRgo] </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Parameters of the prior distribution: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hr1: 0.69,  hr2: 0.88, id1: 210, id2: 420, w: 0.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in summary.connection(connection):</span> invalid connection</span>
 <span class="r-in"><span>  <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
