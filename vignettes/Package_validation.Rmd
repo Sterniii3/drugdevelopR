@@ -21,7 +21,7 @@ The whole validation suite was run on our server, and the validation report can 
 
 # Guide to running the validation suite
 
-The validation report is compiled using our fork of PHUSE's [`valtools`](https://github.com/LukasDSauer/valtools) package. We recommend using our forke where a few bugs were fixed and features were added. This changes were not yet merged into to the package's main repository. It can be installed by running the following command:
+The validation report is compiled using our fork of PHUSE's [`valtools`](https://github.com/LukasDSauer/valtools) package. We recommend using our fork where a few bugs were fixed and features were added. This changes were not yet merged into to the package's main repository. It can be installed by running the following command:
 
 ```{r}
 devtools::install_github("LukasDSauer/valtools")

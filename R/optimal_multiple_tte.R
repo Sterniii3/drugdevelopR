@@ -188,6 +188,7 @@ optimal_multiple_tte <- function(hr1,
     ),
     envir = environment()
   )
+  on.exit(parallel::stopCluster(cl), add = TRUE)
   trace <- NULL
   for (j in 1:length(HRGO)) {
     HRgo <- HRGO[j]
@@ -356,7 +357,7 @@ optimal_multiple_tte <- function(hr1,
     as.character(Sys.time())
   )
   attr(result, "trace") <- trace
-  parallel::stopCluster(cl)
+  
   return(drugdevelopResult(result))
   
 }

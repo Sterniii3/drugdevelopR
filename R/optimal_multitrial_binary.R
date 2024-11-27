@@ -101,6 +101,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
                                 "c2", "c3", "c02", "c03",
                                 "b1", "b2", "b3", "w", "RRgo", "ymin",
                                 "p0", "p11", "p12", "in1", "in2"), envir = environment())
+  on.exit(parallel::stopCluster(cl), add = TRUE)
   trace <- NULL
   for(Strategy in STRATEGY){
     
@@ -300,7 +301,7 @@ optimal_multitrial_binary <- function(w, p0, p11, p12, in1, in2,
   }
 
   class(result) <- c("drugdevelopResult", class(result))
-  parallel::stopCluster(cl)
+  
   attr(result, "trace") <- trace
   return(result)
   

@@ -189,6 +189,7 @@ optimal_multiple_normal <-
       ),
       envir = environment()
     )
+    on.exit(parallel::stopCluster(cl), add = TRUE)
     trace <- NULL
     for (j in 1:length(KAPPA)) {
       kappa <- KAPPA[j]
@@ -354,7 +355,6 @@ optimal_multiple_normal <-
     )
     class(result) <- c("drugdevelopResult", class(result))
     attr(result, "trace") <- trace
-    parallel::stopCluster(cl)
     
     return(result)
     

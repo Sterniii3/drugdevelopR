@@ -146,6 +146,7 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                                  "c2", "c3", "c02", "c03",
                                  "b1", "b2", "b3", "w", "RRgo",
                                  "p0", "p11", "p12", "in1", "in2"), envir=environment())
+   on.exit(parallel::stopCluster(cl), add = TRUE)
    trace <- NULL
    for(j in 1:length(HRGO)){
 
@@ -227,7 +228,6 @@ optimal_binary <- function(w, p0, p11, p12, in1, in2,
                           "\nfinish date:", as.character(Sys.time()))
    class(result) <- c("drugdevelopResult", class(result))
    attr(result, "trace") <- trace
-   parallel::stopCluster(cl)
    
    return(result)
 }

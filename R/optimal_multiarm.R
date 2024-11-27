@@ -87,6 +87,7 @@ optimal_multiarm <- function(hr1, hr2, ec,
                                 "c2", "c3", "c02", "c03",
                                 "b1", "b2", "b3", "HRgo",
                                 "hr1", "hr2", "ec"), envir = environment())
+  on.exit(parallel::stopCluster(cl), add = TRUE)
   trace <- NULL
   for(strategy in STRATEGY){
     
@@ -164,7 +165,6 @@ optimal_multiarm <- function(hr1, hr2, ec,
                     "\nfinish date:", as.character(Sys.time()))
   class(result) <- c("drugdevelopResult", class(result))
   attr(result, "trace") <- trace
-  parallel::stopCluster(cl)
   return(result)
   
 }

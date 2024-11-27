@@ -12,3 +12,5 @@
 ^LICENSE\.md$
 
 ^validation$
+^doc$
+^Meta$

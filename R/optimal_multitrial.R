@@ -160,7 +160,7 @@ optimal_multitrial <- function(w,
     ),
     envir = environment()
   )
-  
+  on.exit(parallel::stopCluster(cl), add = TRUE)
   trace <- NULL
   for (Strategy in STRATEGY) {
     ufkt <- d3fkt <- spfkt <- pgofkt <- K2fkt <- K3fkt <-
@@ -543,7 +543,6 @@ optimal_multitrial <- function(w,
   }
   class(result) <- c("drugdevelopResult", class(result))
   attr(result, "trace") <- trace
-  parallel::stopCluster(cl)
   return(result)
   
 }

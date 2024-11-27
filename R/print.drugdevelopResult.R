@@ -166,7 +166,12 @@ print_drugdevelopResult_helper <- function(x, ...){
     cat(" Joint probability of success and observed effect of size ... in phase III:\n")
     cat("   small: ", x$sProg1, ", medium: ", x$sProg2, 
         ", large: ", x$sProg3, "\n", sep = "")
-  } else if("sProg2" %in% names(x)){
+  } else if ("OS" %in% names(x)) {
+    # This concerns "multiple" setting.
+    cat(" Joint probability of success and observed effect of size ... in phase III:\n")
+    cat("   medium: ", x$sProg2, 
+        ", large: ", x$sProg3, "\n", sep = "")
+  } else if("sProg2" %in% names(x) ){
     cat(" Success probability for a trial with:\n")
     cat("   two arms in phase III: ", x$sProg2, 
         ", three arms in phase III: ", x$sProg3, "\n", sep = "")

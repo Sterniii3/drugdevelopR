@@ -177,7 +177,7 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                                  "c2", "c3", "c02", "c03",
                                  "b1", "b2", "b3", "w", "kappa",
                                  "Delta1", "Delta2", "in1", "in2", "a", "b"), envir=environment())
-   
+   on.exit(parallel::stopCluster(cl), add = TRUE)
    trace <- NULL
    for(j in 1:length(KAPPA)){
 
@@ -260,7 +260,6 @@ optimal_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                           "\nfinish date:", as.character(Sys.time()))
    class(result) <- c("drugdevelopResult", class(result))
    attr(result, "trace") <- trace
-   parallel::stopCluster(cl)
    
    return(result)
 }

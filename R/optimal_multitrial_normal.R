@@ -102,6 +102,7 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                                 "K", "N", "S", "fixed", "case", "Strategy",
                                 "b1", "b2", "b3", "w", "kappa",
                                 "Delta1", "Delta2", "ymin", "in1", "in2", "a", "b" ), envir = environment())
+  on.exit(parallel::stopCluster(cl), add = TRUE)
   trace <- NULL
   for(Strategy in STRATEGY){
     
@@ -294,7 +295,6 @@ optimal_multitrial_normal <- function(w, Delta1, Delta2, in1, in2, a, b,
                           "K3fkt", "sp1fkt", "sp2fkt", "sp3fkt")
   }
   class(result) <- c("drugdevelopResult", class(result))
-  parallel::stopCluster(cl)
   attr(result, "trace") <- trace
   return(result)
   

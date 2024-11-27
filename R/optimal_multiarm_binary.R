@@ -81,6 +81,7 @@ optimal_multiarm_binary <- function(p0, p11, p12,
                                 "c2", "c3", "c02", "c03",
                                 "b1", "b2", "b3", "RRgo",
                                 "p0", "p11", "p12"), envir = environment())
+  on.exit(parallel::stopCluster(cl), add = TRUE)
   trace <- NULL
   for(strategy in STRATEGY){
     
@@ -156,7 +157,6 @@ optimal_multiarm_binary <- function(p0, p11, p12,
                          "\nfinish date:", as.character(Sys.time()))
   attr(result, "trace") <- trace
   class(result) <- c("drugdevelopResult", class(result))
-  parallel::stopCluster(cl)
   
   return(result)
   

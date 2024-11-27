@@ -146,6 +146,7 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
                                   "xi2", "xi3", "c2", "c3", "c02", "c03",
                                   "b1", "b2", "b3", "w", "HRgo", "Adj",
                                   "hr1", "hr2", "id1", "id2"), envir = environment())
+    on.exit(parallel::stopCluster(cl), add = TRUE)
     for(a in 1:length(ADJ)){
       
       Adj <- ADJ[a]
@@ -281,7 +282,6 @@ optimal_bias <- function(w, hr1, hr2, id1, id2,
                     "\nfinish date:", as.character(Sys.time()))
   class(result) <- c("drugdevelopResult", class(result))
   attr(result, "trace") <- trace
-  parallel::stopCluster(cl)
   return(result)
   
 } 

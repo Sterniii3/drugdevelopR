@@ -103,7 +103,8 @@ optimal_bias_binary <- function(w,
   if (adj == "all") {
     STRATEGY = c(1, 2, 3, 4)
   }
-  
+  cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
+  on.exit(parallel::stopCluster(cl), add = TRUE)
   trace <- NULL
   for (strategy in STRATEGY) {
     calresults <- NULL
@@ -135,8 +136,6 @@ optimal_bias_binary <- function(w,
         sp1fkt <- sp2fkt <- sp3fkt  <- matrix(0, length(N2), length(RRGO))
       
       RRgo <- NA_real_
-      cl <-  parallel::makeCluster(getOption("cl.cores", num_cl)) #define cluster
-      
       parallel::clusterExport(
         cl,
         c(
@@ -187,7 +186,6 @@ optimal_bias_binary <- function(w,
         ),
         envir = environment()
       )
-      
       for (j in 1:length(RRGO)) {
         RRgo <- RRGO[j]
         
@@ -451,7 +449,6 @@ optimal_bias_binary <- function(w,
   
   class(result) <- c("drugdevelopResult", class(result))
   attr(result, "trace") <- trace
-  parallel::stopCluster(cl)
   
   return(result)
 }
